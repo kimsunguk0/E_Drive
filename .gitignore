@@ -1,0 +1,41 @@
+# ==== 대용량 데이터/가중치/캐시/환경 (git 제외) ====
+/train/
+/test/
+/cache/
+/data/
+/env/
+/env_etri_extracted/
+/ckpt/
+/checkpoints/
+/b200_stage/
+/src/
+/v2a/
+/h200_latest/
+/results/
+/logs/
+/work_dirs/
+# dense_vocab_v1 내부 산출물
+dense_vocab_v1/work_dirs/
+dense_vocab_v1/data/
+dense_vocab_v1/ckpts/
+dense_vocab_v1/**/work_dirs/
+# 가중치/덤프/데이터 파일 (어디에 있든)
+*.pth
+*.pth.sha256
+*.npz
+*.npy
+*.pkl
+*.tar
+*.tgz
+*.parquet
+*.jpg
+*.png
+*.bin
+# 파이썬/백업/로그
+__pycache__/
+*.pyc
+*.pyo
+*.orig
+*.log
+*.out
+.ipynb_checkpoints/

@@ -1,0 +1,32 @@
+# nuScenes v1.0 — download list (public CloudFront CDN, no auth required)
+# Format: one URL per line. '#' comments and blank lines ignored.
+# Order matters: download_nuscenes.sh fetches sequentially top-to-bottom.
+#
+# NOTE: nuscenes.org "Asia" mirror links are signed/expiring. These CloudFront
+# URLs are the unsigned public origin and were verified reachable (HTTP 200/206)
+# on 2026-07-31. CloudFront is a global CDN, so requests are already served from
+# the nearest edge PoP.
+
+# ---- Priority 1: pipeline smoke test (3.88 GB) ----
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-mini.tgz
+
+# ---- Priority 2: metadata + expansions, required by SparseDrive converter (1.53 GB) ----
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval_meta.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/nuScenes-map-expansion-v1.3.zip
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/can_bus.zip
+
+# ---- Priority 3: trainval sensor blobs (292.9 GB) ----
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval01_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval02_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval03_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval04_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval05_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval06_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval07_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval08_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval09_blobs.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval10_blobs.tgz
+
+# ---- Priority 4: test set, for benchmark submission (53.71 GB) ----
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-test_meta.tgz
+https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-test_blobs.tgz

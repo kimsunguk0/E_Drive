@@ -1,0 +1,15 @@
+# Hard pins passed to every subsequent `pip install -c`.
+# Rationale: mmdet's own install already dragged numpy to 2.0.2 once and pulled
+# opencv-python 5.x (which *requires* numpy>=2). Any of these moving silently
+# breaks the compiled mmcv/SparseDrive extensions at import or first forward.
+numpy==1.23.5
+torch==2.1.2
+torchvision==0.16.2
+mmcv-full==1.7.2
+mmdet==2.28.2
+opencv-python==4.8.1.78
+yapf==0.33.0
+# pandas must stay on 1.x: motmetrics 1.1.3 calls Series.iteritems(), removed in
+# pandas 2.0, which breaks the idf1 path used by tracking eval (AMOTA/AMOTP).
+# Verified: pandas 2.3.3 -> AttributeError; pandas 1.1.5 -> metrics compute fine.
+pandas==1.1.5
