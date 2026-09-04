@@ -1,8 +1,8 @@
 # ETRI-ScoreDrive Compliance Manifest
 
-생성: 2026-09-04 11:58 KST  | 대상: champion pa2_softceexp/epoch_2 + A0 deploy bank
+생성: 2026-09-04 12:36 KST  | 대상: champion pa2_softceexp/epoch_2 + A0 deploy bank
 
-**판정: C1–C7 ALL PASS ✅** (C8 latency PENDING)
+**규정 게이트 C1–C7 ALL PASS ✅**  |  **C8 latency 측정: 3090 586.5ms ❌ >250ms → dense VAD 종료, Phase D sparse trunk 전환**
 
 | # | 테스트 | 스크립트 | 결과 | 판정 |
 |---|---|---|---|---|
@@ -13,7 +13,7 @@
 | C5 | Goal-only negative control (full-K) | `gate4_compliance_offline.py` | normal 0.239 / full-K shuffle 4.11 / cross-scenario 8.13 / goal-only 0.681(비production) | ✅ |
 | C6 | Pose-path audit (+can_bus) | `gate4_seal_model.py + offline` | decoder forward pose=[], deploy goal=[], use_can_bus=True==False(정렬만), decoder nargs=[3], img_metas ban keys=[] | ✅ |
 | C7 | Reset/depth audit (7 forward) | `gate4_compliance_model.py + seal` | reset 격리=True, depth 사용=True, clip당 forward=[7] (정확히 7=True) | ✅ |
-| C8 | Timing boundary / latency | `PENDING` | stream reset 후 전 forward 합산 측정 (다음 단계) | ⏳ |
+| C8 | Timing boundary / latency | `adcl_latency_bench.py (3090)` | 3090 7-forward 누적 cuda **586.5ms** (p99 589), peak 719MB/1316MB; candidate API +0.18ms → **>250ms KILL threshold** (penalty ×3.43). dense VAD 종료, Phase D sparse trunk 전환. | ❌ |
 
 ## C4 image ablation 표 (normal 기준)
 
@@ -28,6 +28,22 @@
 | camera_perm | 0.1691 | 0.8 | 0.828 | 0.996 |
 
 predict_candidates smoke: ran=True, keys=['candidate_ids', 'candidate_xy_abs_5s', 'candidate_xy_inc_5s', 'visual_logits'], shape=[1, 12, 10, 2]
+
+## C8 latency (RTX 3090, torch 2.7.1+cu128, 50 repeats)
+
+| 지표 | 값 |
+|---|---|
+| 7-forward 누적 cuda median | **586.47 ms** |
+| p90 / p95 / p99 | 587.51 / 588.59 / 589.21 ms |
+| min / max / std | 585.87 / 589.21 / 0.70 ms |
+| peak VRAM (alloc / reserved) | 719 / 1316 MB |
+| candidate API (build+selector, CPU) | median 0.177 / p99 0.196 ms |
+| **총 T_infer** | **≈586.6 ms** |
+| latency penalty ×(1+(T-100)/200) | **×3.43** → realized 0.234 → **0.80** |
+
+operator breakdown(profile, Self CUDA 479ms 활성): backbone conv 105ms + BN 32ms ≈ **137ms**, MultiScaleDeformableAttn(BEV) 47.7ms + attn/softmax/bmm ≈ **90ms**, addmm/GEMM(FPN+head+decoder) ≈ **225ms**, elementwise/copy/norm ≈ 90ms.
+**7-frame 순차 forward가 근본 원인(≈84ms/forward). §13 목표는 R34 sparse + 1~2 batched forward.**
+**판정: 586.6ms ≫ 250ms → dense VAD 종료. Phase D sparse ScoreDrive trunk 로 전환.**
 
 ## Artifact / Code SHA (train-only provenance)
 
@@ -48,6 +64,6 @@ predict_candidates smoke: ran=True, keys=['candidate_ids', 'candidate_xy_abs_5s'
 - 규정 구조·완성 후보 API 기준 dev38: **0.2335** (PC-res λ0.25) / 0.2392 (champion λ0.1)
 - candidate API/selector 계산오차: **0**
 - 아직 unbiased final-val 아님 (dev38 반복 사용)
-- **C8 latency penalty 미반영** — 다음 단계에서 3090 실측
+- **C8 latency 실측 완료: 3090 586.6ms → penalty ×3.43** (dense VAD 제출 부적합)
 
-> 정확도 추가 학습은 중단. latency 결과에 따라 sparse trunk(Phase D) 전환.
+> dense VAD 정확도 추가 학습 중단. **다음 = Phase D: R34/FPN sparse ScoreDrive trunk** (current 1 + history 1 batched forward, sparse path sampling, 4090 ≤100ms 목표).
