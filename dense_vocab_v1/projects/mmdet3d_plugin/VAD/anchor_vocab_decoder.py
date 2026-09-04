@@ -246,6 +246,60 @@ class AnchorGroundedVocabularyDecoder(nn.Module):
         index = logits.argmax(dim=-1)
         return self.anchors_inc.index_select(0, index), logits, index
 
+    # ---------------------------------------------- ③ 완성-후보 API (opt-in)
+    def attach_deploy_bank(self, path):
+        """A0 배포 bank(abs/inc/ids/anchor_dist/nms_tau) 를 buffer 로 붙인다.
+        학습 경로를 건드리지 않는 opt-in. first-6 불변식(abs/inc)을 로드 시 검증."""
+        import numpy as _np
+        z = _np.load(path, allow_pickle=True)
+        self.register_buffer('candidate_abs_5s',
+                             torch.from_numpy(z['candidate_xy_abs_5s'].astype('float32')))
+        self.register_buffer('candidate_inc_5s',
+                             torch.from_numpy(z['candidate_xy_inc_5s'].astype('float32')))
+        self.register_buffer('candidate_ids',
+                             torch.from_numpy(z['candidate_ids'].astype('int64')))
+        self.register_buffer('anchor_dist',
+                             torch.from_numpy(z['anchor_dist'].astype('float32')))
+        self.nms_tau = float(z['nms_tau'])
+        assert torch.equal(self.candidate_abs_5s[:, :6], self.anchors_abs), \
+            'candidate_abs_5s first-6 != anchors_abs'
+        assert torch.equal(self.candidate_inc_5s[:, :6], self.anchors_inc), \
+            'candidate_inc_5s first-6 != anchors_inc'
+        return self
+
+    def build_candidates(self, logits):
+        """규정 준수 완성-후보 API. logits [B,K] -> dict(N=12).
+        내부에서 image-only score3+nms9 shortlist 만 수행. full-K/goal/cmd 미노출.
+        반환: candidate_xy_abs_5s/inc_5s [B,12,10,2], visual_logits [B,12], candidate_ids [B,12]."""
+        assert hasattr(self, 'candidate_abs_5s'), 'attach_deploy_bank() 를 먼저 호출하라'
+        B = logits.shape[0]
+        tau = self.nms_tau
+        ad = self.anchor_dist
+        order = torch.argsort(logits, dim=-1, descending=True, stable=True)  # 동률->최저 idx
+        sel = logits.new_zeros(B, 12, dtype=torch.long)
+        for b in range(B):
+            ob = order[b]
+            s = ob[:3].tolist(); ss = set(s)
+            for c in ob[:64].tolist():
+                if len(s) >= 12:
+                    break
+                if c in ss:
+                    continue
+                if float(ad[c, s].min()) > tau:
+                    s.append(c); ss.add(c)
+            for c in ob.tolist():
+                if len(s) >= 12:
+                    break
+                if c not in ss:
+                    s.append(c); ss.add(c)
+            sel[b] = torch.tensor(s[:12], device=logits.device)
+        return {
+            'candidate_ids': self.candidate_ids[sel],
+            'candidate_xy_abs_5s': self.candidate_abs_5s[sel],
+            'candidate_xy_inc_5s': self.candidate_inc_5s[sel],
+            'visual_logits': torch.gather(logits, 1, sel),
+        }
+
     # ------------------------------------------------------------------ loss
     def _metric_distance(self, ego_fut_gt, ego_fut_masks):
         gt_abs = ego_fut_gt.cumsum(dim=-2)

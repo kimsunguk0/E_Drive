@@ -445,6 +445,34 @@ class VAD(MVXTwoStageDetector):
 
         return new_prev_bev, bbox_list
 
+    # ------------------------------------------ ③ 규정 준수 완성-후보 추론 API
+    def predict_candidates(self, img, img_metas, prev_bev=None,
+                           history_img=None, calibration=None,
+                           history_alignment=None,
+                           gt_bboxes_3d=None, gt_labels_3d=None, **_ignore):
+        """설계서 §3.2/§3.3 opt-in 추론 API. signature 에 goal/command/status/
+        ego_his/ego_lcf 가 **없다**. history_img/calibration/history_alignment 은
+        미래 sparse trunk 의 고정-기하 정렬 placeholder(현재 미사용).
+
+        반환 dict: candidate_xy_abs_5s [B,12,10,2], candidate_xy_inc_5s [B,12,10,2],
+        visual_logits [B,12], candidate_ids [B,12]. full-K/goal/cmd 미노출.
+        외부 selector 가 이 dict + 공식 goal/cmd 로 index 하나만 고른다."""
+        gd = self.pts_bbox_head.goal_decoder
+        assert gd is not None and not getattr(gd, 'uses_condition', True), \
+            'predict_candidates 는 goal-free decoder(uses_condition=False) 전용'
+        holder = []
+        h = gd.register_forward_hook(lambda m, i, o: holder.append(o[1]))
+        try:
+            # goal/cmd/status 를 전달하지 않는다(None). decoder 는 image evidence 만 읽는다.
+            self.simple_test(img_metas, gt_bboxes_3d, gt_labels_3d, img=img,
+                             prev_bev=prev_bev, ego_fut_goal=None, ego_fut_cmd=None,
+                             ego_his_trajs=None, ego_lcf_feat=None,
+                             ego_fut_trajs=None)
+        finally:
+            h.remove()
+        logits = holder[-1]                       # [B,K]  goal/cmd 미사용 경로 산출
+        return gd.build_candidates(logits)
+
     def simple_test_pts(
         self,
         x,
