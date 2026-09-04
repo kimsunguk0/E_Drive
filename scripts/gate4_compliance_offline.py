@@ -80,12 +80,17 @@ def main():
         return wm(out)
 
     R["C5_realized_normal"] = realized_from_logits(logC)
-    # visual shuffle: 각 sample logits 를 순열 -> 영상 순위 파괴
+    # (a) full-K within-sample shuffle: 각 sample 의 1024 logits 를 순열 -> ranking 이전에
+    #     영상 순위 자체를 파괴(shortlist 무너짐). N=12 안에서가 아니라 full-K 대상.
     rng = np.random.RandomState(0)
     logSh = np.empty_like(logC)
     for i in range(logC.shape[0]):
         logSh[i] = logC[i][rng.permutation(K)]
-    R["C5_realized_visual_shuffled"] = realized_from_logits(logSh)
+    R["C5_realized_fullK_shuffled"] = realized_from_logits(logSh)
+    # (b) scenario 간 shuffle: 다른 sample 의 full-K logits 를 사용(영상-프레임 불일치)
+    perm = rng.permutation(logC.shape[0])
+    R["C5_realized_cross_scenario"] = realized_from_logits(logC[perm])
+    R["C5_realized_visual_shuffled"] = R["C5_realized_fullK_shuffled"]  # 호환 alias
     # visual zero: 전부 동률 -> fallback stop
     R["C5_realized_visual_zero"] = realized_from_logits(np.zeros_like(logC))
     # full-K goal-only (production 경로 아님): 1024 전체에서 goal-endpoint 최근접

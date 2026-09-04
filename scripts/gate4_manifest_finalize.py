@@ -8,7 +8,8 @@ MAN = A + "/logs/compliance_manifest.json"
 OUT_MD = A + "/COMPLIANCE.md"
 
 man = json.load(open(MAN))
-off = man.get("offline", {}); mdl = man.get("model", {})
+off = man.get("offline", {}); mdl = man.get("model", {}); seal = man.get("seal_model", {})
+c4 = seal.get("C4_table", {})
 
 # C1/C4 는 별도 스크립트에서 이미 PASS (gate3_c1_audit.py / gate3_image_ablation.py)
 rows = [
@@ -18,27 +19,36 @@ rows = [
      f"logits goal 에 bitwise 불변={mdl.get('C2_logits_bitwise_invariant_to_goal')} "
      f"(goal 실제주입={mdl.get('C2_goal_override_reached_pipeline')})",
      mdl.get("C2_logits_bitwise_invariant_to_goal")),
-    ("C3", "Selector row identity", "gate4_compliance_offline.py",
-     f"최종 path==bank row bitwise={off.get('C3_final_path_eq_bank_row_bitwise')}, "
-     f"순수 slice={off.get('C3_no_coord_ops_pure_slice')}, tie-break unit OK",
-     off.get("C3_final_path_eq_bank_row_bitwise") and off.get("C3_no_coord_ops_pure_slice")
-     and off.get("C3_tie_all_equal_selects_stop0") and off.get("C3_tie_two_max_picks_lower_index")),
-    ("C4", "Image ablation", "gate3_image_ablation.py",
-     "zero→100% stop+goal불변; normal-vs-zero top1 0.0%; 후보 goal-불변(전 조건)", True),
-    ("C5", "Goal-only negative control", "gate4_compliance_offline.py",
-     f"normal {off.get('C5_realized_normal',0):.3f} vs shuffle "
-     f"{off.get('C5_realized_visual_shuffled',0):.2f} vs goal-only "
+    ("C3", "Selector row identity (full path)", "gate4_seal_model.py + offline",
+     f"VAD→API→selector→6point row-identity={seal.get('C3_fullpath_row_identity')}; "
+     f"offline bitwise={off.get('C3_final_path_eq_bank_row_bitwise')}, pure slice + tie-break unit OK",
+     seal.get("C3_fullpath_row_identity") and off.get("C3_final_path_eq_bank_row_bitwise")
+     and off.get("C3_no_coord_ops_pure_slice") and off.get("C3_tie_all_equal_selects_stop0")
+     and off.get("C3_tie_two_max_picks_lower_index")),
+    ("C4", "Image ablation (full table)", "gate4_seal_model.py",
+     "normal 기준 realized/top1-ID/top12-Jaccard/rank-corr 표 (아래)",
+     bool(c4) and c4.get("zero", {}).get("top1_ID_overlap", 1) == 0.0),
+    ("C5", "Goal-only negative control (full-K)", "gate4_compliance_offline.py",
+     f"normal {off.get('C5_realized_normal',0):.3f} / full-K shuffle "
+     f"{off.get('C5_realized_fullK_shuffled',0):.2f} / cross-scenario "
+     f"{off.get('C5_realized_cross_scenario',0):.2f} / goal-only "
      f"{off.get('C5_fullK_goal_only_L2_NOT_in_production',0):.3f}(비production)",
      off.get("C5_visual_shuffle_collapses")),
-    ("C6", "Pose-path audit", "gate4_compliance_offline.py",
-     f"decoder forward pose token={off.get('C6_decoder_forward_pose_tokens')}, "
-     f"배포분기 goal token={off.get('C6_deploy_branch_goal_tokens')}",
-     off.get("C6_pose_path_clean")),
-    ("C7", "Reset/depth audit", "gate4_compliance_model.py",
+    ("C6", "Pose-path audit (+can_bus)", "gate4_seal_model.py + offline",
+     f"decoder forward pose={off.get('C6_decoder_forward_pose_tokens')}, "
+     f"deploy goal={off.get('C6_deploy_branch_goal_tokens')}, "
+     f"use_can_bus={seal.get('C6_use_can_bus_False')}==False(정렬만), "
+     f"decoder nargs={seal.get('C6_decoder_forward_nargs')}, "
+     f"img_metas ban keys={seal.get('C6_img_metas_banned_keys')}",
+     off.get("C6_pose_path_clean") and seal.get("C6_use_can_bus_False")
+     and seal.get("C6_decoder_forward_nargs") == [3]
+     and len(seal.get("C6_img_metas_banned_keys", [1])) == 0),
+    ("C7", "Reset/depth audit (7 forward)", "gate4_compliance_model.py + seal",
      f"reset 격리={mdl.get('C7_reset_isolates_prior_scenario')}, "
-     f"depth 사용={mdl.get('C7_depth_matters_state_used')}, depth={mdl.get('C7_depth')} "
-     f"interval={mdl.get('C7_history_interval_frames')}f",
-     mdl.get("C7_reset_isolates_prior_scenario") and mdl.get("C7_depth_matters_state_used")),
+     f"depth 사용={mdl.get('C7_depth_matters_state_used')}, "
+     f"clip당 forward={seal.get('C7_forwards_per_clip')} (정확히 7={seal.get('C7_exactly_7')})",
+     mdl.get("C7_reset_isolates_prior_scenario") and mdl.get("C7_depth_matters_state_used")
+     and seal.get("C7_exactly_7")),
     ("C8", "Timing boundary / latency", "PENDING",
      "stream reset 후 전 forward 합산 측정 (다음 단계)", None),
 ]
@@ -55,16 +65,36 @@ lines = [f"# ETRI-ScoreDrive Compliance Manifest", "",
 for cid, name, scr, res, ok in rows:
     mark = "✅" if ok is True else ("❌" if ok is False else "⏳")
     lines.append(f"| {cid} | {name} | `{scr}` | {res} | {mark} |")
+if c4:
+    lines += ["", "## C4 image ablation 표 (normal 기준)", "",
+              "| ablation | realized L2 | top1 ID overlap | top12 Jaccard | rank corr |",
+              "|---|---|---|---|---|"]
+    for mm in ["normal", "zero", "constant", "clip_shuffle", "current_shuffle",
+               "history_shuffle", "camera_perm"]:
+        row = c4.get(mm, {})
+        lines.append(f"| {mm} | {row.get('realized_L2','')} | {row.get('top1_ID_overlap','')} "
+                     f"| {row.get('top12_Jaccard','')} | {row.get('rank_corr','')} |")
+    sm = seal.get("predict_candidates_smoke", {})
+    lines += ["", f"predict_candidates smoke: ran={sm.get('ran')}, keys={sm.get('keys')}, "
+              f"shape={sm.get('shape_abs')}"]
 lines += ["", "## Artifact / Code SHA (train-only provenance)", ""]
 for k, val in off.get("_artifact_sha", {}).items():
     lines.append(f"- `{k}` = `{val}`")
 lines += ["", "## 핵심 수치", "",
           f"- Selector realized L2: champion+λ0.1 **0.2392** / PC-res+λ0.25 **0.2335** / endpoint λ0 0.2476",
-          f"- C5 negative control: visual-shuffle **{off.get('C5_realized_visual_shuffled',0):.2f}**, "
+          f"- C5 negative control(full-K): shuffle **{off.get('C5_realized_fullK_shuffled',0):.2f}**, "
+          f"cross-scenario **{off.get('C5_realized_cross_scenario',0):.2f}**, "
           f"visual-zero **{off.get('C5_realized_visual_zero',0):.2f}**, "
           f"full-K goal-only **{off.get('C5_fullK_goal_only_L2_NOT_in_production',0):.3f}** (비production)",
           "- A1 multi-tail(1354)는 모델 반환 경로 미연결 — artifact only",
-          "", "> dev38 기반. unbiased final val 아님 — 최종 blind audit run 별도 필요."]
+          "",
+          "## 현재 상태의 정확한 표현",
+          "- **제출 구조의 candidate/selector 경계 완성** (제출 구조 전체 완성 아님)",
+          "- 규정 구조·완성 후보 API 기준 dev38: **0.2335** (PC-res λ0.25) / 0.2392 (champion λ0.1)",
+          "- candidate API/selector 계산오차: **0**",
+          "- 아직 unbiased final-val 아님 (dev38 반복 사용)",
+          "- **C8 latency penalty 미반영** — 다음 단계에서 3090 실측",
+          "", "> 정확도 추가 학습은 중단. latency 결과에 따라 sparse trunk(Phase D) 전환."]
 
 open(OUT_MD, "w").write("\n".join(lines))
 man["verdict"] = {"C1_C7_all_pass": all_pass, "timestamp": ts,

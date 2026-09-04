@@ -252,14 +252,15 @@ class AnchorGroundedVocabularyDecoder(nn.Module):
         학습 경로를 건드리지 않는 opt-in. first-6 불변식(abs/inc)을 로드 시 검증."""
         import numpy as _np
         z = _np.load(path, allow_pickle=True)
+        dev = self.anchors_abs.device                # 모델과 같은 device 로 붙인다
         self.register_buffer('candidate_abs_5s',
-                             torch.from_numpy(z['candidate_xy_abs_5s'].astype('float32')))
+                             torch.from_numpy(z['candidate_xy_abs_5s'].astype('float32')).to(dev))
         self.register_buffer('candidate_inc_5s',
-                             torch.from_numpy(z['candidate_xy_inc_5s'].astype('float32')))
+                             torch.from_numpy(z['candidate_xy_inc_5s'].astype('float32')).to(dev))
         self.register_buffer('candidate_ids',
-                             torch.from_numpy(z['candidate_ids'].astype('int64')))
+                             torch.from_numpy(z['candidate_ids'].astype('int64')).to(dev))
         self.register_buffer('anchor_dist',
-                             torch.from_numpy(z['anchor_dist'].astype('float32')))
+                             torch.from_numpy(z['anchor_dist'].astype('float32')).to(dev))
         self.nms_tau = float(z['nms_tau'])
         assert torch.equal(self.candidate_abs_5s[:, :6], self.anchors_abs), \
             'candidate_abs_5s first-6 != anchors_abs'
