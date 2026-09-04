@@ -64,6 +64,10 @@ Non-additive isolated medians:
 | real projection + sparse sampling + scorer | 1.365 ms | 1.634 ms |
 | stable shortlist + complete-candidate API | 2.045 ms | 2.089 ms |
 
+A preliminary B200 smoke (AMP FP16, 5 warm-up + 10 measured repetitions)
+produced 4.299 ms median and 4.315 ms maximum. It is retained as a smoke result,
+not used for the 3090 deployment gate.
+
 The old seven-forward dense VAD measured about 586.6 ms on the same RTX 3090.
 The AMP skeleton is approximately **45× faster**. Its latency multiplier is
 exactly **1.0×** because total forward time is below 100 ms.
@@ -90,6 +94,15 @@ exactly **1.0×** because total forward time is below 100 ms.
 - Full-K scores/candidates absent from the returned dictionary: PASS
 - Docker remained stopped; the 3090 measurement used the extracted host Python
   runtime directly.
+
+The portable test file is a genuine pytest suite (two collected tests), while
+retaining its real-fixture CLI smoke entry point. Verified on B200 with:
+
+```bash
+/NHNHOME/data/sukim/adcl/env/venv/bin/python -m pytest -q \
+  tests/test_sparse_scoredrive.py
+# 2 passed
+```
 
 ## Interpretation and next gate
 

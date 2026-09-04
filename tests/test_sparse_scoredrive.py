@@ -1,16 +1,92 @@
 #!/usr/bin/env python3
-"""C1/C3/C4 and real-calibration smoke for the Phase-5B skeleton."""
+"""Pytest gates plus an optional real-calibration CLI smoke for Phase-5B.
+
+Run the portable unit gates with::
+
+    python -m pytest -q tests/test_sparse_scoredrive.py
+
+Run the real 768x432 fixture smoke with the CLI arguments shown in the report.
+"""
 from __future__ import annotations
 
 import argparse
 import inspect
 import json
+import sys
+from pathlib import Path
 
 import numpy as np
 import torch
 
+# Make direct ``pytest`` collection work without a caller-supplied PYTHONPATH.
+REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+
 from sparse_scoredrive import SparseScoreDrive, project_candidate_points
 from scoredrive_api import shortlist_np
+
+
+def _make_synthetic_bank(path: Path) -> Path:
+    """Small-on-disk, canonical-shape bank for portable unit tests."""
+    k, t = 1024, 10
+    abs5 = np.zeros((k, t, 2), np.float32)
+    progress = np.linspace(0.05, 1.0, t, dtype=np.float32)
+    abs5[:, :, 0] = np.arange(k, dtype=np.float32)[:, None] / 1024.0 * progress
+    inc5 = np.diff(abs5, axis=1, prepend=np.zeros_like(abs5[:, :1]))
+    index = np.arange(k, dtype=np.float32)
+    distance = np.abs(index[:, None] - index[None, :]) / 1024.0
+    np.fill_diagonal(distance, np.inf)
+    np.savez(
+        path,
+        candidate_xy_abs_5s=abs5,
+        candidate_xy_inc_5s=inc5,
+        candidate_ids=np.arange(k, dtype=np.int64),
+        anchor_dist=distance.astype(np.float32),
+        nms_tau=np.asarray(0.01, np.float64),
+    )
+    return path
+
+
+def test_goal_free_signature_and_stable_shortlist(tmp_path):
+    """C1 plus exact parity with the audited NumPy shortlist on ties."""
+    bank_path = _make_synthetic_bank(tmp_path / "bank.npz")
+    model = SparseScoreDrive(bank_path).eval()
+    signature = inspect.signature(model.forward)
+    assert tuple(signature.parameters) == ("images", "lidar2img")
+    assert not ({"goal", "cmd", "command", "status"} & set(signature.parameters))
+    rng = np.random.default_rng(5)
+    distance = model.anchor_dist.numpy()
+    tau = float(model.nms_tau)
+    for probe in (rng.standard_normal((4, 1024)).astype(np.float32),
+                  np.zeros((4, 1024), np.float32)):
+        probe[:, ::7] = 1.0
+        got = model._stable_score3_nms9(torch.from_numpy(probe)).numpy()
+        expected = np.stack([shortlist_np(row, distance, tau) for row in probe])
+        assert np.array_equal(got, expected)
+
+
+def test_zero_evidence_complete_candidate_api(tmp_path):
+    """Portable C3/C4: zero input, hidden full-K, exact row/prefix outputs."""
+    bank_path = _make_synthetic_bank(tmp_path / "bank.npz")
+    model = SparseScoreDrive(bank_path).eval()
+    images = torch.zeros(1, 6, 3, 64, 96)
+    lidar2img = torch.zeros(1, 6, 4, 4)
+    with torch.inference_mode():
+        output = model(images, lidar2img)
+    assert set(output) == {
+        "candidate_xy_abs_5s", "candidate_xy_inc_5s",
+        "visual_logits", "candidate_ids",
+    }
+    assert output["candidate_xy_abs_5s"].shape == (1, 12, 10, 2)
+    assert output["candidate_xy_inc_5s"].shape == (1, 12, 10, 2)
+    assert output["visual_logits"].shape == (1, 12)
+    assert output["candidate_ids"].shape == (1, 12)
+    assert torch.count_nonzero(output["visual_logits"]) == 0
+    assert int(output["candidate_ids"][0, 0]) == 0
+    ids = output["candidate_ids"][0]
+    assert torch.equal(output["candidate_xy_abs_5s"][0], model.candidate_abs[ids])
+    assert torch.equal(output["candidate_xy_inc_5s"][0], model.candidate_inc[ids])
+    assert torch.equal(output["candidate_xy_inc_5s"][0, :, :6], model.candidate_inc[ids, :6])
 
 
 def main() -> None:
