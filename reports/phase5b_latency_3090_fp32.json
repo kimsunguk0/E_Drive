@@ -1,0 +1,69 @@
+{
+  "device": "NVIDIA GeForce RTX 3090",
+  "torch": "2.7.1+cu128",
+  "precision": "fp32",
+  "input_shape": [
+    1,
+    6,
+    3,
+    432,
+    768
+  ],
+  "warmup": 20,
+  "one_top_level_forward": true,
+  "total_forward": {
+    "median_ms": 18.92279350431636,
+    "p90_ms": 18.93774580967147,
+    "p95_ms": 18.93895618704846,
+    "p99_ms": 19.10317489237059,
+    "mean_ms": 18.929786000323173,
+    "std_ms": 0.04387599746391774,
+    "min_ms": 18.903949996456504,
+    "max_ms": 19.2515539820306,
+    "repeats": 60
+  },
+  "breakdown_non_additive": {
+    "backbone_fpn": {
+      "median_ms": 15.096731993253343,
+      "p90_ms": 15.717319506802596,
+      "p95_ms": 15.7194028943195,
+      "p99_ms": 15.731327158864588,
+      "mean_ms": 15.213650647880664,
+      "std_ms": 0.28757093577815157,
+      "min_ms": 14.873868989525363,
+      "max_ms": 15.73774399003014,
+      "repeats": 60
+    },
+    "projection_sampling_scorer": {
+      "median_ms": 1.6335839900420979,
+      "p90_ms": 1.6464785003336146,
+      "p95_ms": 1.6479140394949354,
+      "p99_ms": 1.6986166432616296,
+      "mean_ms": 1.6374065298199032,
+      "std_ms": 0.01834843970369011,
+      "min_ms": 1.625285018235445,
+      "max_ms": 1.769690978107974,
+      "repeats": 60
+    },
+    "stable_shortlist_candidate_api": {
+      "median_ms": 2.0887335122097284,
+      "p90_ms": 2.098390890751034,
+      "p95_ms": 2.102543909859378,
+      "p99_ms": 2.1523485271609384,
+      "mean_ms": 2.091958651241536,
+      "std_ms": 0.014988340843734916,
+      "min_ms": 2.0795850141439587,
+      "max_ms": 2.1935139957349747,
+      "repeats": 60
+    }
+  },
+  "peak_allocated_mib": 362.4375,
+  "peak_reserved_mib": 442.0,
+  "parameters": 21744320,
+  "conv_linear_flops": 306503778304,
+  "conv_linear_gflops": 306.503778304,
+  "flops_note": "2 FLOPs/MAC; excludes grid_sample, projection, sort, and elementwise ops",
+  "weights": "random Phase-5B skeleton; no accuracy claim",
+  "fixture_manifest": "{\"ann\": \"/NHNHOME/data/sukim/adcl/b200_stage/pkl/etri_val38_goal.pkl\", \"ann_sha256\": \"a622f0bb3098a55b07823b99ba2f7b872927a8e4fca675d7afe72dd9fb3091e9\", \"camera_order\": [\"camera_front\", \"camera_front_right\", \"camera_front_left\", \"camera_rear_wide\", \"camera_rear_left\", \"camera_rear_right\"], \"frame_idx\": 30, \"geometry\": \"undistorted intrinsic + crop(1920x1080) + scale(0.4)\", \"index\": 30, \"scene_token\": \"20260112-134847\", \"source_files\": [{\"path\": \"/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-134847/camera_front/00000030.jpg\", \"sha256\": \"9ea9c23d5b6b74993473a57cf3f9cfb40fc2d3b493de9fbea2433f1042779659\"}, {\"path\": \"/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-134847/camera_front_right/00000030.jpg\", \"sha256\": \"7d86e017eeb34e0aeb83d9e1ae9fdfaca25cf47672df094064d2af16b50216bb\"}, {\"path\": \"/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-134847/camera_front_left/00000030.jpg\", \"sha256\": \"79280404143a8bd1efdc33f64a416f66b7e9d1c497057449adbc4c92af2a36f5\"}, {\"path\": \"/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-134847/camera_rear_wide/00000030.jpg\", \"sha256\": \"ae364c676fe1d18449ddc9b9eddaf383ab341e5f51f57234b203c86d64786e7c\"}, {\"path\": \"/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-134847/camera_rear_left/00000030.jpg\", \"sha256\": \"2afdc0e9de72ff11a6f5396b652be862d280a65302ea0fd0516acda09d0634d3\"}, {\"path\": \"/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-134847/camera_rear_right/00000030.jpg\", \"sha256\": \"165f1630feada77488c1b918f081d32455200d5d1ed89a71cba55daaabf38f13\"}]}",
+  "gate": "VERY_GOOD_LE_100MS"
+}
