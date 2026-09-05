@@ -185,6 +185,7 @@ class SparseScoreDrive(nn.Module):
         occ_aux: bool = False,
         offset_sample: bool = False,
         use_p1: bool = False,
+        n_hist: int = 0,
     ) -> None:
         super().__init__()
         bank = np.load(str(bank_path), allow_pickle=False)
@@ -217,6 +218,15 @@ class SparseScoreDrive(nn.Module):
                 nn.Linear(channels, channels // 2), nn.ReLU(inplace=True),
                 nn.Linear(channels // 2, 1))
         self._occ_logits = None      # train-only stash
+        # ⑤-D temporal: 과거 n_hist 시점의 같은 후보 위치 표본을 설계 §6.4 대로
+        # [f_now, f_hist, f_now-f_hist, f_now*f_hist] 로 묶어 bias-free MLP 에 넣는다.
+        # 상대 pose 는 좌표 정렬 행렬로만 쓰이고 여기 feature 로 들어가지 않는다.
+        self.n_hist = int(n_hist)
+        if self.n_hist:
+            self.temporal_mlp = nn.Sequential(
+                nn.Linear(channels * (1 + 3 * self.n_hist), channels, bias=False),
+                nn.ReLU(inplace=True),
+                nn.Linear(channels, channels, bias=False))
         self.visual_proj = nn.Linear(channels, channels, bias=False)
         self.kinematic_proj = nn.Sequential(
             nn.Linear(6, channels, bias=False), nn.ReLU(inplace=True),
@@ -308,13 +318,41 @@ class SparseScoreDrive(nn.Module):
         evidence: Tensor,
     ) -> Tensor:
         """최종 logits. 성분 분해는 score_components 가 담당한다(수식 단일 출처)."""
-        path_score, g_term, ev = self.score_components(
-            levels, p4, lidar2img, image_hw, evidence)
+        return self.combine_logits(*self.score_components(
+            levels, p4, lidar2img, image_hw, evidence))
+
+    def combine_logits(self, path_score, g_term, ev):
+        """성분 -> 최종 logits. current-only 와 temporal 경로가 공유한다."""
         if self.logit_norm:
             logits = self.logit_scale.exp().clamp(max=100.0) * (path_score + g_term)
         else:
             logits = path_score + g_term
         return logits * ev
+
+    def sample_candidate_features(self, levels, lidar2img, image_hw):
+        """후보 waypoint 위치의 이미지 표본 [B,K,T,C] 와 가시성 [B,K,T].
+        temporal 확장에서 시점별로 각각 호출한다(과거는 정렬된 lidar2img 를 넘긴다)."""
+        grid, visible = project_candidate_points(
+            self.candidate_abs, lidar2img, image_hw, self.heights)
+        sampled_levels = []
+        valid = None
+        for level in levels:
+            sm, lv = self._sample_level(level, grid, visible)
+            sampled_levels.append(sm)
+            valid = lv if valid is None else (valid | lv)
+        sampled = torch.stack(sampled_levels, dim=0).mean(dim=0)
+        if self.n_off > 1:
+            sampled = self.offset_proj(sampled)
+        return sampled, valid
+
+    def fuse_temporal(self, f_now, f_hist):
+        """설계 §6.4 visual motion branch. f_hist = [n_hist] 개 [B,K,T,C]."""
+        parts = [f_now]
+        mul = getattr(self, "fuse_mul", True)
+        for fh in f_hist:
+            parts += [fh, f_now - fh]
+            parts.append(f_now * fh if mul else torch.zeros_like(fh))
+        return self.temporal_mlp(torch.cat(parts, dim=-1))
 
     def score_components(
         self,
@@ -326,17 +364,11 @@ class SparseScoreDrive(nn.Module):
     ) -> Tuple[Tensor, Tensor, Tensor]:
         """(path_score, g_term, evidence_mask). g_term 은 이미 0.25 및 스케일이 적용된
         global 기여분이라 호출부에서 단순 덧셈만 하면 된다. ablation 진단용."""
-        grid, visible = project_candidate_points(
-            self.candidate_abs, lidar2img, image_hw, self.heights)
-        sampled_levels = []
-        valid = None
-        for level in levels:
-            sampled, level_valid = self._sample_level(level, grid, visible)
-            sampled_levels.append(sampled)
-            valid = level_valid if valid is None else (valid | level_valid)
-        sampled = torch.stack(sampled_levels, dim=0).mean(dim=0)
-        if self.n_off > 1:
-            sampled = self.offset_proj(sampled)
+        sampled, valid = self.sample_candidate_features(levels, lidar2img, image_hw)
+        return self.score_from_sampled(sampled, valid, p4, evidence)
+
+    def score_from_sampled(self, sampled, valid, p4, evidence):
+        """표본이 주어진 뒤의 점수화. temporal 경로는 융합된 표본을 여기로 넘긴다."""
         if self.feature_norm:
             sampled = self.value_norm(sampled)
         if self.occ_aux and self.training:
@@ -403,6 +435,52 @@ class SparseScoreDrive(nn.Module):
             min_distance = torch.minimum(
                 min_distance, self.anchor_dist[pool, choice[:, None]])
         return torch.cat(pieces, dim=1)
+
+    def temporal_logits(self, images, img_hist, lidar2img, hist_T):
+        """⑤-D: 현재 + 과거 n_hist 시점을 shared backbone 으로 처리.
+
+        images [B,6,3,H,W], img_hist [B,n_hist,6,3,Hh,Wh],
+        lidar2img [B,6,4,4] (현재), hist_T [B,n_hist,4,4] (현재->과거 ego 강체변환).
+
+        과거 카메라 투영 = lidar2img @ hist_T[k] 로, 현재 좌표계의 후보를 과거 시점
+        카메라에 정렬한다(설계 §3.3: 고정 행렬 곱, feature/token 입력 아님).
+        해상도가 같으면 현재+과거를 한 번의 batch 로 encode 한다(7-frame 순차 아님).
+        """
+        b, nh = img_hist.shape[0], img_hist.shape[1]
+        hw_now = (int(images.shape[-2]), int(images.shape[-1]))
+        hw_his = (int(img_hist.shape[-2]), int(img_hist.shape[-1]))
+        evidence = images.abs().amax(dim=(1, 2, 3, 4)) > 0
+        flat_h = img_hist.reshape(b * nh, *img_hist.shape[2:])
+        if hw_now == hw_his and getattr(self, "merge_encode", False):
+            merged = torch.cat([images, flat_h], dim=0)      # [(B + B*nh),6,3,H,W]
+            lv, p4a = self.encode_images(merged)
+            levels_now = tuple(x[:b] for x in lv)
+            levels_his = tuple(x[b:] for x in lv)
+            p4 = p4a[:b]
+        else:
+            levels_now, p4 = self.encode_images(images)
+            levels_his, _ = self.encode_images(flat_h)
+        # 기하 기준은 항상 lidar2img 가 만들어진 768x432 픽셀 공간(hw_now)이다.
+        # grid_sample 은 [-1,1] 을 feature map 전체 범위로 매핑하므로 과거 프레임을
+        # 저해상도로 넣어도 정규화 기준을 바꾸면 안 된다(바꾸면 좌표가 배율만큼 틀린다).
+        f_now, valid = self.sample_candidate_features(levels_now, lidar2img, hw_now)
+        l2i_h = torch.einsum("bcij,bkjm->bkcim",
+                             lidar2img, hist_T)               # [B,nh,6,4,4]
+        f_hist = []
+        for k in range(nh):
+            lk = tuple(x.reshape(b, nh, *x.shape[1:])[:, k] for x in levels_his)
+            fk, vk = self.sample_candidate_features(lk, l2i_h[:, k], hw_now)
+            f_hist.append(fk)
+            valid = valid | vk
+        fused = self.fuse_temporal(f_now, f_hist)
+        return self.combine_logits(
+            *self.score_from_sampled(fused, valid, p4, evidence))
+
+    def forward_temporal(self, images, img_hist, lidar2img, hist_T):
+        """⑤-D 배포 API. 완성 후보 12개 + visual logits 만 반환하고 full-K 는 숨긴다.
+        goal/command/status 는 어떤 인자에도 없다."""
+        return self.build_candidates(
+            self.temporal_logits(images, img_hist, lidar2img, hist_T))
 
     def build_candidates(self, logits: Tensor) -> Dict[str, Tensor]:
         shortlist = self._stable_score3_nms9(logits)

@@ -64,6 +64,10 @@ class TrainableSparseScoreDrive(SparseScoreDrive):
         levels, p4 = self.encode_images(images)
         return self.score_features(levels, p4, lidar2img, image_hw, evidence)
 
+    def forward_logits_temporal(self, images, img_hist, lidar2img, hist_T):
+        """학습용 full-K temporal logits. 본체는 모델 파일(temporal_logits)에 있다."""
+        return self.temporal_logits(images, img_hist, lidar2img, hist_T)
+
 
 def load_imagenet_resnet34(backbone_fpn, path):
     """ImageNet resnet34 가중을 backbone_fpn(stem/layer1-4)에 주입. lat/out 은 random 유지."""
@@ -134,9 +138,11 @@ def build_loss_buffers(model, device):
     return cw3, cw5, anchors_abs, cand_abs5
 
 
-def evaluate_tuneval(model, arr, tune_rows, lidar2img_t, tgt, device, batch):
+def evaluate_tuneval(model, arr, tune_rows, lidar2img_t, tgt, device, batch,
+                     n_hist=0, hist_scale=1.0):
     logits = C.run_logits(model, arr, tune_rows, lidar2img_t, device,
-                          batch=batch, amp=True, num_workers=3)
+                          batch=batch, amp=True, num_workers=3,
+                          n_hist=n_hist, hist_scale=hist_scale)
     rep = C.eval_logits(logits, tgt["D3gt"], tgt["goal_xy"], tgt["cand_end5"],
                         tgt["anchor_dist"], tgt["nms_tau"], tgt["weight"],
                         buckets=tgt["buckets"])
@@ -150,16 +156,17 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--aux5", action="store_true", help="3초 + 약한 5초 aux L_exp(D5)")
     ap.add_argument("--beta5", type=float, default=0.1)
-    ap.add_argument("--epochs", type=int, default=15)
+    ap.add_argument("--epochs", type=int, default=8)
     ap.add_argument("--batch", type=int, default=16)
     ap.add_argument("--lr", type=float, default=2e-4, help="scorer head LR (§9.3)")
-    ap.add_argument("--fpn-lr", type=float, default=1e-4,
+    ap.add_argument("--fpn-lr", type=float, default=2e-4,
                     help="FPN lat/out LR (random init 이라 §9.3 의 2e-5 보다 높게)")
-    ap.add_argument("--backbone-lr", type=float, default=1e-5,
+    ap.add_argument("--backbone-lr", type=float, default=1e-4,
                     help="backbone layer4 LR (§9.3)")
-    ap.add_argument("--freeze-stages", type=int, default=3,
+    ap.add_argument("--freeze-stages", type=int, default=0,
                     help="stem+layer1..N 동결 (§9.2/§9.3, 0=전체 학습)")
-    ap.add_argument("--freeze-bn", type=int, default=1, help="§6.2 frozen BN")
+    ap.add_argument("--freeze-bn", type=int, default=0,
+                    help="⚠️ 1 은 ⑤-C/C3 에서 3회 학습 붕괴. 0 유지.")
     ap.add_argument("--logit-norm", type=int, default=1,
                     help="코사인+학습온도로 logit scale 유계화 (포화/NaN 방지)")
     ap.add_argument("--amp-dtype", default="bf16", choices=["bf16", "fp16"])
@@ -180,6 +187,14 @@ def main():
                     help="0 = occ-only (점유 학습 상한 진단)")
     ap.add_argument("--offset-sample", type=int, default=0, help="설계 §6.3 4-offset 표본")
     ap.add_argument("--use-p1", type=int, default=0, help="stride 4 FPN 레벨 추가")
+    ap.add_argument("--n-hist", type=int, default=0, help="⑤-D 과거 프레임 수")
+    ap.add_argument("--probe-a-n", type=int, default=810,
+                    help="probe A 표본 수(진단용이라 B 보다 작게)")
+    ap.add_argument("--hist-scale", type=float, default=1.0)
+    # merged(현재+과거 한 batch, BN 통계 공유) 는 ⑤-D 에서 학습이 발산했다.
+    # split 만 안정적이므로 기본 0.
+    ap.add_argument("--merge-encode", type=int, default=0)
+    ap.add_argument("--fuse-mul", type=int, default=1)
     ap.add_argument("--agent-labels",
                     default=os.path.join(A, "data/etri/agent_labels_train.npz"))
     ap.add_argument("--kd-min-frame", type=int, default=30,
@@ -194,6 +209,8 @@ def main():
                     help="1=학습 scene 10Hz 전체 프레임(90k), 0=2Hz main만(18k)")
     ap.add_argument("--wd", type=float, default=1e-2)
     ap.add_argument("--eval-frac", type=float, default=0.25)
+    # 기본값 = ⑤-C2 에서 검증된 설정. freeze/저LR 조합은 실패 확정이므로
+    # 기본값으로 두지 않는다(플래그 누락 시 실패 설정 재현 방지).
     ap.add_argument("--warmup", type=int, default=125)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--workdir", default=os.path.join(A, "work_dirs"))
@@ -224,6 +241,13 @@ def main():
     split = C.make_split(arr, all_frames=bool(args.all_frames),
                          holdout_offset=bool(args.holdout_offset))
     train_rows, tune_rows = split["train_rows"], split["tune_rows"]
+    probe_all = split["probe_rows"]
+    if args.n_hist:
+        # ⑤-D: 과거 n_hist 장이 같은 시나리오 안에 있어야 한다
+        train_rows = train_rows[C.history_available(arr, train_rows, args.n_hist)]
+        tune_rows = tune_rows[C.history_available(arr, tune_rows, args.n_hist)]
+        probe_all = probe_all[C.history_available(arr, probe_all, args.n_hist)]
+    split["probe_rows"] = probe_all
     P(f"train rows {len(train_rows)} (300 scene, all_frames={args.all_frames}) | tuneval rows {len(tune_rows)} "
       f"(30 scene, frame>=30) | tune scenes[:3]={split['tune_scenes'][:3]}")
 
@@ -237,7 +261,9 @@ def main():
         logit_norm=bool(args.logit_norm), arch=args.arch,
         occ_aux=(args.w_occ > 0.0),
         offset_sample=bool(args.offset_sample),
-        use_p1=bool(args.use_p1)).to(device)
+        use_p1=bool(args.use_p1), n_hist=args.n_hist).to(device)
+    model.merge_encode = bool(args.merge_encode)
+    model.fuse_mul = bool(args.fuse_mul)
     if args.init == "vad":
         inj = load_vad_backbone(model.backbone_fpn, VAD_CKPT)
     elif args.init == "imagenet":
@@ -274,14 +300,17 @@ def main():
                                alpha_kd=args.alpha_kd, tau_kd=args.tau_kd,
                                w_occ=args.w_occ, w_rank=args.w_rank)
     P(f"offset_sample={args.offset_sample} use_p1={args.use_p1} "
-      f"w_occ={args.w_occ} w_rank={args.w_rank}")
+      f"w_occ={args.w_occ} w_rank={args.w_rank} "
+      f"n_hist={args.n_hist} hist_scale={args.hist_scale} "
+      f"merge_encode={args.merge_encode}")
     P(f"objective={args.objective} set_k={args.set_k} w_exp_set={args.w_exp_set} "
       f"alpha_kd={args.alpha_kd} bucket_sample={args.bucket_sample} "
       f"aug={args.aug} cam_dropout={args.cam_dropout}")
 
     probe_rows = split["probe_rows"]
-    if len(probe_rows) > 1620:
-        probe_rows = probe_rows[np.linspace(0, len(probe_rows) - 1, 1620).astype(int)]
+    if len(probe_rows) > args.probe_a_n:
+        probe_rows = probe_rows[
+            np.linspace(0, len(probe_rows) - 1, args.probe_a_n).astype(int)]
     tgt = C.precompute_targets(arr, tune_rows, bank)     # probe B: 미학습 시나리오
     tgtA = C.precompute_targets(arr, probe_rows, bank)   # probe A: 학습 시나리오·미학습 offset
     P(f"probe A(same-scene unseen frame%5==4) n={len(probe_rows)} | "
@@ -318,7 +347,9 @@ def main():
         else:
             rows, shuf = train_rows, True
         ds = C.SparseFrameDataset(arr, rows, aug=bool(args.aug),
-                                  cam_dropout=args.cam_dropout, epoch=ep)
+                                  cam_dropout=args.cam_dropout, epoch=ep,
+                                  n_hist=args.n_hist,
+                                  hist_scale=args.hist_scale)
         return DataLoader(ds, batch_size=args.batch, shuffle=shuf,
                           num_workers=args.workers, pin_memory=True,
                           drop_last=True)
@@ -359,7 +390,12 @@ def main():
                 D5 = C.metric_d5(gt5, m5, cand_abs5, cw5)
             opt.zero_grad(set_to_none=True)
             with torch.autocast(device_type="cuda", dtype=amp_dt):
-                logits = model.forward_logits(img, l2ib)
+                if args.n_hist:
+                    logits = model.forward_logits_temporal(
+                        img, b["img_hist"].to(device, non_blocking=True), l2ib,
+                        b["hist_T"].to(device, non_blocking=True))
+                else:
+                    logits = model.forward_logits(img, l2ib)
             tb = kdm = None
             if teacher_map is not None and args.alpha_kd > 0.0:
                 rws = np.asarray(b["row"].tolist(), np.int64)
@@ -390,9 +426,11 @@ def main():
 
             if step % eval_every == 0:
                 rep, _ = evaluate_tuneval(model, arr, tune_rows, lidar2img_t,
-                                          tgt, device, args.batch)
+                                          tgt, device, args.batch,
+                                          args.n_hist, args.hist_scale)
                 repA, _ = evaluate_tuneval(model, arr, probe_rows, lidar2img_t,
-                                           tgtA, device, args.batch)
+                                           tgtA, device, args.batch,
+                                           args.n_hist, args.hist_scale)
                 set_train_mode(model, bool(args.freeze_bn))
                 r10 = rep["realized"]["0.1"]
                 el = time.time() - t0

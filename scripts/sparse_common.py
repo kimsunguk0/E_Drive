@@ -55,6 +55,8 @@ IMAGENET_STD = np.array([0.229, 0.224, 0.225], np.float32)
 N_TUNE_SCENES = 30          # train330 에서 떼어내는 고정 튜닝 holdout (val38 은 최종 보고 전용)
 STOP_ARCLEN = 0.5           # GT 3초 이동거리 < 0.5m = 정지 버킷
 HELD_OUT_OFFSET = 4         # ⑤-C2: frame%5==4 는 학습 제외(암기 probe)
+HIS_NOW = 30                # ego_cache.his 는 오래된 순, index 30 = 현재
+HIS_STRIDE = 5              # 0.1s 간격이므로 5 = 0.5s (ego2global 로 교차검증)
 
 
 # --------------------------------------------------------------------------- #
@@ -79,6 +81,8 @@ def load_arrays() -> Dict:
         scenarios=ec["scenarios"].astype(str),
         scen_idx=ec["scen_idx"].astype(np.int64),
         frame=ec["frame"].astype(np.int64),
+        his=ec["his"].astype(np.float32),          # [N,31,2] 오래된순 0.1s 간격
+        his_yaw=ec["his_yaw"].astype(np.float32),  # [N,31]
         fut=ec["fut"].astype(np.float32),          # [N,6,2] abs
         goal=ec["goal"].astype(np.float32),        # [N,2] = 5s endpoint
         vad_cmd=ec["vad_cmd"].astype(np.int64),
@@ -174,6 +178,40 @@ def make_epoch_rows(arr, train_rows, seed):
     return train_rows[np.array(out, dtype=np.int64)]
 
 
+def history_transforms(arr, row, n_hist=3, stride=HIS_STRIDE):
+    """현재 ego 좌표계 -> 과거 시점 ego 좌표계 강체변환 [n_hist,4,4].
+
+    설계 §3.3: 상대 pose 는 과거 image feature 를 현재 후보 좌표에 정렬하는
+    고정 행렬 곱에만 쓴다. 이 행렬은 scorer 에 feature/token 으로 들어가지 않는다.
+
+    ego_cache.his 는 오래된 순 [31,2] (0.1s 간격, index 30 = 현재),
+    his_yaw 는 같은 색인의 heading. lidar2ego 는 항등(검증됨)이라 lidar==ego.
+
+    과거 pose 가 현재 프레임에서 (p, θ) 이면 X_cur = R(θ)X_past + p 이므로
+    X_past = R(θ)^T (X_cur - p).  k=0 은 항등이 되어 current-only 와 정확히 일치한다.
+    """
+    his = arr["his"][row]
+    yaw = arr["his_yaw"][row]
+    out = np.zeros((n_hist, 4, 4), np.float32)
+    for k in range(n_hist):
+        idx = HIS_NOW - stride * (k + 1)
+        p = his[idx].astype(np.float64)
+        th = float(yaw[idx])
+        c, sn = np.cos(th), np.sin(th)
+        R = np.array([[c, sn, 0.0], [-sn, c, 0.0], [0.0, 0.0, 1.0]])  # R(θ)^T
+        M = np.eye(4)
+        M[:3, :3] = R
+        M[:3, 3] = -R @ np.array([p[0], p[1], 0.0])
+        out[k] = M
+    return out
+
+
+def history_available(arr, rows, n_hist=3, stride=HIS_STRIDE):
+    """과거 n_hist 장이 같은 시나리오 안에 존재하는 row 만 True.
+    프레임 인덱스가 시나리오 내부 0..299 이므로 frame >= n_hist*stride 면 충분하다."""
+    return arr["frame"][rows] >= n_hist * stride
+
+
 # --------------------------------------------------------------------------- #
 #  이미지 로딩
 # --------------------------------------------------------------------------- #
@@ -224,12 +262,15 @@ class SparseFrameDataset(Dataset):
     """단일 프레임: 6 이미지 + GT(3s/5s). lidar2img 는 전역이라 미포함."""
 
     def __init__(self, arr: Dict, rows: np.ndarray, aug: bool = False,
-                 cam_dropout: float = 0.0, epoch: int = 0):
+                 cam_dropout: float = 0.0, epoch: int = 0,
+                 n_hist: int = 0, hist_scale: float = 1.0):
         self.arr = arr
         self.rows = np.asarray(rows, np.int64)
         self.aug = bool(aug)
         self.cam_dropout = float(cam_dropout)
         self.epoch = int(epoch)
+        self.n_hist = int(n_hist)          # ⑤-D: 과거 프레임 수 (0 = current-only)
+        self.hist_scale = float(hist_scale)
 
     def __len__(self):
         return len(self.rows)
@@ -243,8 +284,23 @@ class SparseFrameDataset(Dataset):
             if self.aug else None
         img = load_six_images(scen, fr, aug=self.aug, rng=rng,
                               cam_dropout=self.cam_dropout)
+        extra = {}
+        if self.n_hist:
+            hs = []
+            for k in range(self.n_hist):
+                pf = fr - HIS_STRIDE * (k + 1)
+                hi = load_six_images(scen, pf, aug=self.aug, rng=rng,
+                                     cam_dropout=self.cam_dropout)
+                if self.hist_scale != 1.0:
+                    hi = torch.nn.functional.interpolate(
+                        hi, scale_factor=self.hist_scale, mode="bilinear",
+                        align_corners=False, recompute_scale_factor=False)
+                hs.append(hi)
+            extra["img_hist"] = torch.stack(hs)                     # [n_hist,6,3,H,W]
+            extra["hist_T"] = torch.from_numpy(
+                history_transforms(self.arr, r, self.n_hist))       # [n_hist,4,4]
         return dict(
-            img=img,
+            img=img, **extra,
             gt3=torch.from_numpy(a["fut"][r]),        # [6,2] abs
             gt5=torch.from_numpy(a["fut5"][r]),       # [10,2] abs
             mask5=torch.from_numpy(a["mask5"][r]),    # [10]
@@ -483,10 +539,10 @@ def eval_logits(logits, D3gt, goal_xy, cand_end5, anchor_dist, nms_tau,
 
 
 def run_logits(model, arr, rows, lidar2img_t, device, batch=16,
-               amp=True, num_workers=6):
+               amp=True, num_workers=6, n_hist=0, hist_scale=1.0):
     """model.forward_logits 로 rows 의 full-K logits [len(rows),K] (numpy) 계산."""
     from torch.utils.data import DataLoader
-    ds = SparseFrameDataset(arr, rows)
+    ds = SparseFrameDataset(arr, rows, n_hist=n_hist, hist_scale=hist_scale)
     dl = DataLoader(ds, batch_size=batch, shuffle=False,
                     num_workers=num_workers, pin_memory=True)
     model.eval()
@@ -498,7 +554,12 @@ def run_logits(model, arr, rows, lidar2img_t, device, batch=16,
             l2ib = l2i.unsqueeze(0).expand(img.shape[0], -1, -1, -1)
             with torch.autocast(device_type="cuda", enabled=amp,
                                 dtype=torch.float16):
-                lg = model.forward_logits(img, l2ib)
+                if n_hist:
+                    lg = model.forward_logits_temporal(
+                        img, b["img_hist"].to(device, non_blocking=True), l2ib,
+                        b["hist_T"].to(device, non_blocking=True))
+                else:
+                    lg = model.forward_logits(img, l2ib)
             out.append(lg.float().cpu().numpy())
     return np.concatenate(out, 0)
 

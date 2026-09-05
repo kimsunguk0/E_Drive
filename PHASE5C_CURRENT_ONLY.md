@@ -338,3 +338,101 @@ compliance: 상대 pose 는 과거 feature 를 현재 후보 좌표에 정렬하
 쓰고 MLP/attention 에 넣지 않는다(설계 §3.3). 설계 §6.1 은 "history 는 −0.5s 한 장
 먼저"라고 하지만 depth curve 는 3장까지 가야 수렴한다고 말한다 — 실측이 설계 권고를
 갱신하는 경우다.
+
+---
+
+# ⑤-D — 4-frame Temporal SparseScoreDrive (2026-09-05, 진행 중)
+
+## latency gate: PASS (3090 실측)
+
+RTX 3090, torch 2.7.1+cu128, 20 warmup / 50 rep, 배포 경로 `forward_temporal` 전체
+(완성 후보 12개 반환, full-K 미노출, score3+nms9 shortlist 포함).
+
+| 구성 | median | p99 | peak VRAM | penalty |
+|---|---:|---:|---:|---:|
+| T1 current-only | 15.15 ms | 15.20 | 292 MB | x1.000 |
+| T2 (t-0.5) | 27.30 | 27.34 | 349 | x1.000 |
+| T3 (t-1.0) | 36.01 | 36.15 | 517 | x1.000 |
+| **T4 (t-1.5)** | **46.56** | 46.76 | 683 | **x1.000** |
+| T4 (과거 1/2 해상도) | 28.04 | 28.14 | 343 | x1.000 |
+| T7 비교용 | 74.22 | 74.34 | 1259 | x1.000 |
+
+T4 = 46.56ms, 100ms 게이트에 여유 2.1배. dense 7-forward 586.6ms 대비 12.6배 빠름.
+T7 조차 74ms 로 게이트 안. 측정 환경은 ④-B 와 동일한 3090 박스
+(`/home/intern/adcl_latency`, runtime/uv-python + runtime/venv_dev).
+
+주의: B200 실측(T4 9.67ms)에 ⑤-B 의 3090/B200 비율 3.02 를 곱한 외삽(~29ms)은
+**틀렸다.** 실제 비율은 current-only 기준 4.2배(3.60→15.15). 외삽을 게이트 근거로
+쓰면 안 된다.
+
+## 구조
+
+t0 + t−0.5/−1.0/−1.5 (전부 768×432) → shared backbone → 시점별 후보 waypoint
+표본 → 융합 → K1024 logits → score3+nms9 → 완성 후보 12개.
+dense BEV, object/map decoder, prev_bev recurrent update 없음.
+
+과거 정렬: `ego_cache.his`(0.1s 간격, index 30=현재) + `his_yaw` 로 현재→과거 ego
+강체변환을 만들고 `lidar2img @ hist_T[k]` 로만 사용. 설계 §3.3 대로 pose 는
+feature/token 입력이 아니다.
+
+## 기하 게이트 8/8 PASS
+
+- 항등 변환 주입 시 current-only 표본과 **bitwise 동일**
+- 과거 시점에서 본 현재 원점 거리 ≈ speed×0.5k
+- scenario 경계 넘는 history 금지 (frame>=15, 3600/72000 제외)
+- frame 간격 0.5초 (his 0.1s × stride 5, ego2global 6.581m ≈ speed×0.5 6.538m 로 교차검증)
+- forward 시그니처에 goal/cmd/status/pose 없음
+- hist_T 가 항등이 아님(정렬이 실제로 일어남)
+
+## 잡은 버그 2개
+
+**1) 과거 프레임 투영 좌표계 (치명적).** `lidar2img` 는 768×432 픽셀 공간으로 투영하는데
+저해상도 history 에 `image_hw=(216,384)` 를 넘기면 가시성 판정과 grid 정규화가 그 기준으로
+돌아간다. 결과: any-camera 가시 후보가 **985/1024 → 14/1024**. 과거 프레임이 99% 장님.
+`grid_sample` 은 [-1,1] 을 feature map 전체로 매핑하므로 정규화 기준은 lidar2img 가
+만들어진 원 해상도로 고정해야 한다. → `d_T4_half` 의 0.5928 은 temporal 이 아니라
+**사실상 current-only** 였고 인용 불가.
+
+**2)** argparse help 여러 줄 문자열 미종료로 SyntaxError, 두 판 즉사. 이후 `ast.parse` 검증 추가.
+
+## 틀린 가설 (기록)
+
+**merged 단일 batch encode 가 발산 원인** — 동일 조건 A/B 에서 merged 0.7855 vs
+split 0.7710 으로 사실상 동일했고 둘 다 발산. 경로는 원인이 아니다.
+(`--merge-encode` 플래그로 남김, 기본 0.)
+
+## 진단 요인설계 (투영 수정 후, 900 iter, probe B slO@12)
+
+| run | 해상도 | 곱항 f_now·f_hist | LR | history | best |
+|---|---|---|---|---|---:|
+| **y_full_nomul** | full | **없음** | 2e-4 | 3 | **0.5952** |
+| y_half_nomul | half | 없음 | 2e-4 | 3 | 0.6539 |
+| y_full_mul | full | 있음 | 2e-4 | 3 | 0.7190 |
+| y_half_mul | half | 있음 | 2e-4 | 3 | 0.7438 |
+| y_full_lowlr | full | 있음 | 5e-5 | 3 | 0.9861 |
+| y_T2_full | full | 있음 | 2e-4 | **1** | 1.0485 |
+
+1. **곱항 제거가 양쪽 해상도에서 일관되게 이득** (0.719→0.595, 0.744→0.654).
+   설계 §6.4 가 지정한 항이지만 feature 크기의 제곱이라 발산을 유발한다.
+   **실측이 설계 권고를 갱신하는 두 번째 사례**(첫 번째는 §6.1 의 history 1장 권고).
+2. 투영 수정 후 **full-res > half-res**. 버그 상태에서는 반대로 보였다.
+3. **history 1장은 최악(1.049)** — depth curve 의 "3장 필요" 가 sparse 모델에서도 재현.
+
+## 기준선 (동일 프로토콜 current-only)
+
+| | seed0 | seed1 | 평균 | 표준편차 |
+|---|---:|---:|---:|---:|
+| slO@12 (probe B) | 0.5891 | 0.6410 | 0.6151 | 0.026 |
+
+⑤-C2 의 0.5190 은 eval 주기(0.25 vs 0.5)와 KD 조건이 달라 직접 비교 불가.
+T4 가 의미 있으려면 이 잡음(±0.026)을 넘어야 한다.
+
+## 확정 학습 설정
+
+full-res history, 곱항 제거, split encode, lr 2e-4 / fpn 2e-4 / backbone 1e-4,
+bf16 + logit 유계화, 6 epoch, eval 0.5 epoch, 체크포인트 선택 = slO@12.
+
+## 상태
+
+tournament 8판 진행 중 (GT s0/s1, depth3 KD s0/s1, set+KD, KD α=1.0, T3, current-only s1).
+정확도 판정 대기.
