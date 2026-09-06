@@ -141,6 +141,10 @@ def main():
     ap.add_argument("--kin-sig-v", type=float, default=0.0)
     ap.add_argument("--kin-sig-a", type=float, default=0.0)
     ap.add_argument("--out", default=os.path.join(A, "logs/e7_selector.json"))
+    ap.add_argument("--ckpt-out", default=os.path.join(A, "work_dirs/row_selector.pth"),
+                    help="판마다 다른 경로를 줘야 덮어쓰지 않는다")
+    ap.add_argument("--prefix", default="selector",
+                    help="덤프 파일 접두사. 예: selector_r3 -> data/etri/selector_r3_{split}.npz")
     args = ap.parse_args()
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
@@ -149,7 +153,7 @@ def main():
     bf, end5, rprof = bank_features(bank)
     rmean = rprof.mean(0)
 
-    D = {s: build(os.path.join(A, f"data/etri/selector_{s}.npz"), bf, end5, rprof, rmean)
+    D = {s: build(os.path.join(A, f"data/etri/{args.prefix}_{s}.npz"), bf, end5, rprof, rmean)
          for s in ("train", "tune", "val")}
     if args.kin:
         arr = C.load_arrays()
@@ -245,8 +249,7 @@ def main():
     res["match_oracle"] = float(np.average(
         (sel == d["D3"].argmin(1)).astype(float), weights=d["w"]))
     print(f"  선택==oracle {100*res['match_oracle']:.1f}%")
-    torch.save({"model": best[1], "args": vars(args), "feat_dim": F0},
-               os.path.join(A, "work_dirs/row_selector.pth"))
+    torch.save({"model": best[1], "args": vars(args), "feat_dim": F0}, args.ckpt_out)
     json.dump(res, open(args.out, "w"), indent=1, default=float)
     print(f"\nsaved {args.out}")
     return 0

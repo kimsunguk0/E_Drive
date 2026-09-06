@@ -37,13 +37,14 @@ def main():
     ap.add_argument("--kin-sig-a", type=float, default=0.0)
     ap.add_argument("--gpu", type=int, default=7)
     ap.add_argument("--out", default=os.path.join(A, "logs/e17_selector_cv.json"))
+    ap.add_argument("--prefix", default="selector")
     args = ap.parse_args()
     dev = torch.device(f"cuda:{args.gpu}")
     bank = np.load(C.BANK_A0, allow_pickle=False)
     bf, end5, rprof = bank_features(bank)
     rmean = rprof.mean(0)
 
-    parts = [build(os.path.join(A, f"data/etri/selector_{s}.npz"), bf, end5, rprof, rmean)
+    parts = [build(os.path.join(A, f"data/etri/{args.prefix}_{s}.npz"), bf, end5, rprof, rmean)
              for s in ("train", "tune")]
     if args.kin:
         arr = C.load_arrays()
