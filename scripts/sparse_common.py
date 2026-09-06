@@ -372,7 +372,7 @@ class ScoreDriveLoss:
                  aux5=False, beta5=0.1,
                  objective="softce_exp", set_k=16, w_exp_set=0.1,
                  alpha_kd=0.0, tau_kd=1.0, w_occ=0.0, w_rank=1.0,
-                 kd_mode="full", w_speed=0.0):
+                 kd_mode="full", w_speed=0.0, w_vo=0.0):
         self.objective = objective      # softce_exp | set
         self.set_k = int(set_k)         # L_set 의 GT-근접 후보 수
         self.w_exp_set = float(w_exp_set)   # set 목적일 때의 작은 L_exp 가중
@@ -382,6 +382,7 @@ class ScoreDriveLoss:
         self.w_rank = float(w_rank)         # 0 = occ-only (점유 학습 상한 진단)
         self.kd_mode = kd_mode              # full | top64 | shortlist
         self.w_speed = float(w_speed)       # 진행량 회귀 보조 가중
+        self.w_vo = float(w_vo)             # 과거 변위(VO) 회귀 보조 가중
         self.target_temp = target_temp
         self.tau_exp = tau_exp
         self.w_exp = w_exp
@@ -472,7 +473,7 @@ class ScoreDriveLoss:
 
     def __call__(self, logits, D3, D5=None, teacher=None, kd_mask=None,
                  occ_logits=None, occ_lab=None, kd_idx=None,
-                 speed_pred=None, speed_lab=None):
+                 speed_pred=None, speed_lab=None, vo_pred=None, vo_lab=None):
         logits = logits.float()
         comp = {}
         if self.objective == "set":
@@ -502,6 +503,12 @@ class ScoreDriveLoss:
             tsp = self._speed(speed_pred, speed_lab)
             loss = loss + self.w_speed * tsp
             comp["speed"] = tsp.detach()
+        if self.w_vo > 0.0 and vo_pred is not None and vo_lab is not None:
+            # 과거 변위는 미터 단위라 10m 로 정규화. 미래 예측이 아니라 관측 복원이다.
+            tvo = torch.nn.functional.smooth_l1_loss(
+                vo_pred.float() / 10.0, vo_lab / 10.0, beta=0.02)
+            loss = loss + self.w_vo * tvo
+            comp["vo"] = tvo.detach()
         if self.aux5 and D5 is not None:
             te5 = self._exp(D5, logits)
             loss = loss + self.beta5 * te5

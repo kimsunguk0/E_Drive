@@ -34,7 +34,10 @@ def load_model(ckpt, device):
     m = TrainableSparseScoreDrive(
         C.BANK_A0, feature_norm=fn, logit_norm=ln, arch=a.get("arch", "resnet34"),
         offset_sample=bool(a.get("offset_sample", 0)),
-        use_p1=bool(a.get("use_p1", 0)), n_hist=nh).to(device)
+        use_p1=bool(a.get("use_p1", 0)), n_hist=nh,
+        corridor=tuple(float(x) for x in str(a.get("corridor", "0")).split(",") if x != ""),
+        seq_head=a.get("seq_head", "none"),
+        speed_head=bool(a.get("w_speed", 0) > 0), speed_gamma=0.0).to(device)
     m.fuse_mul = bool(a.get("fuse_mul", 1))
     m.merge_encode = bool(a.get("merge_encode", 0))
     m._eval_nhist = nh

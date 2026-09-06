@@ -188,6 +188,9 @@ class SparseScoreDrive(nn.Module):
         n_hist: int = 0,
         speed_head: bool = False,
         speed_gamma: float = 0.0,
+        corridor: Tuple[float, ...] = (0.0,),
+        seq_head: str = "none",
+        vo_head: bool = False,
     ) -> None:
         super().__init__()
         bank = np.load(str(bank_path), allow_pickle=False)
@@ -279,8 +282,66 @@ class SparseScoreDrive(nn.Module):
             self.gamma_raw = nn.Parameter(torch.tensor(inv, dtype=torch.float32))
         self._speed_pred = None      # [B,8] stash (학습/평가 진단용)
 
+        # ⑤-F: path corridor. waypoint 중심만 찍으면 "이 경로가 차선 안인가"를
+        # 볼 수 없다. 경로 법선 방향으로 지면상 오프셋을 줘 ribbon 을 만든다.
+        # 화면 pixel offset(§6.3 offset_sample)과 달리 실제 지면 거리라
+        # 거리에 따라 자동으로 축소되고 차선폭과 물리적으로 대응한다.
+        self.corridor = tuple(float(x) for x in corridor)
+        self.n_lat = len(self.corridor)
+        if self.n_lat > 1:
+            self.register_buffer(
+                "candidate_ribbon",
+                self._build_ribbon(torch.from_numpy(abs5), self.corridor),
+                persistent=False)
+            # bias 없음 = 증거 0 -> 출력 0 (C4 불변식 유지)
+            self.corridor_proj = nn.Linear(channels * self.n_lat, channels, bias=False)
+
+        # ⑤-F: sequence head. 10개 waypoint 를 마지막에 평균내면 순서와 곡률이
+        # 사라진다. 이웃 waypoint 를 보는 depthwise conv 를 residual 로 걸어
+        # 표본 자체를 경로-인지적으로 만든다. bias/affine 없음 -> 0 -> 0 유지.
+        # ⑤-P: visual odometry head. **과거** 자차 변위를 영상만으로 회귀한다.
+        # speed head(⑤-E3)가 실패한 이유는 **미래** 진행량을 예측하려 했기 때문이다.
+        # 과거 변위는 연속 프레임에서 복원 가능한 순수 영상량이고, 외삽이 나머지를 한다.
+        # 입력은 이미 계산된 f_now - f_hist (후보 waypoint 별 시간차)라 추가 비용이 없다.
+        # 출력은 logits 경로에 들어가지 않고 selector 로만 나간다 -> C4 불변식 무관.
+        # 라벨은 hist_T 의 평행이동 성분(학습 시에만 사용, 추론 입력 아님).
+        self.vo_head_on = bool(vo_head)
+        if self.vo_head_on:
+            self.vo_head = nn.Sequential(
+                nn.Linear(channels * max(int(n_hist), 1), channels),
+                nn.GELU(), nn.LayerNorm(channels),
+                nn.Linear(channels, max(int(n_hist), 1) * 2))
+        self._vo_pred = None          # [B,n_hist,2] stash
+
+        self.seq_head_kind = str(seq_head)
+        if self.seq_head_kind == "tcn":
+            self.seq_head = nn.Sequential(
+                nn.Conv1d(channels, channels, 3, padding=1, groups=channels, bias=False),
+                nn.GELU(),
+                nn.Conv1d(channels, channels, 1, bias=False))
+        elif self.seq_head_kind != "none":
+            raise ValueError(f"unknown seq_head: {seq_head}")
+
         desc = self._kinematic_descriptors(torch.from_numpy(abs5))
         self.register_buffer("kinematic_desc", desc, persistent=True)
+
+    @staticmethod
+    def _build_ribbon(abs5: Tensor, offsets: Tuple[float, ...]) -> Tensor:
+        """[K,T,2] 후보 -> [K,T*L,2] 경로 법선 오프셋 ribbon.
+
+        t 지점의 진행방향 d_t = p_t - p_{t-1} (t=0 은 자차원점 기준),
+        법선 n_t = (-d_y, d_x)/|d|. 정지 후보(|d|~0)는 자차 전방 (1,0) 을 쓴다.
+        """
+        k, t, _ = abs5.shape
+        prev = torch.cat([torch.zeros_like(abs5[:, :1]), abs5[:, :-1]], dim=1)
+        d = abs5 - prev
+        n = torch.linalg.vector_norm(d, dim=-1, keepdim=True)
+        fwd = torch.where(n > 0.05, d / n.clamp_min(1e-6),
+                          torch.tensor([1.0, 0.0], dtype=abs5.dtype).view(1, 1, 2))
+        nrm = torch.stack([-fwd[..., 1], fwd[..., 0]], dim=-1)     # [K,T,2]
+        off = abs5.new_tensor(offsets).view(1, 1, -1, 1)           # [1,1,L,1]
+        ribbon = abs5[:, :, None, :] + off * nrm[:, :, None, :]    # [K,T,L,2]
+        return ribbon.reshape(k, t * len(offsets), 2).contiguous()
 
     @staticmethod
     def _kinematic_descriptors(path: Tensor) -> Tensor:
@@ -366,8 +427,9 @@ class SparseScoreDrive(nn.Module):
     def sample_candidate_features(self, levels, lidar2img, image_hw):
         """후보 waypoint 위치의 이미지 표본 [B,K,T,C] 와 가시성 [B,K,T].
         temporal 확장에서 시점별로 각각 호출한다(과거는 정렬된 lidar2img 를 넘긴다)."""
+        pts = self.candidate_ribbon if self.n_lat > 1 else self.candidate_abs
         grid, visible = project_candidate_points(
-            self.candidate_abs, lidar2img, image_hw, self.heights)
+            pts, lidar2img, image_hw, self.heights)
         sampled_levels = []
         valid = None
         for level in levels:
@@ -377,6 +439,12 @@ class SparseScoreDrive(nn.Module):
         sampled = torch.stack(sampled_levels, dim=0).mean(dim=0)
         if self.n_off > 1:
             sampled = self.offset_proj(sampled)
+        if self.n_lat > 1:
+            b, k, tl, c = sampled.shape
+            t = tl // self.n_lat
+            sampled = self.corridor_proj(
+                sampled.view(b, k, t, self.n_lat * c))
+            valid = valid.view(b, k, t, self.n_lat).any(dim=-1)
         return sampled, valid
 
     def fuse_temporal(self, f_now, f_hist):
@@ -409,6 +477,10 @@ class SparseScoreDrive(nn.Module):
             self._speed_pred = self.speed_head(sampled.mean(dim=(1, 2)))
         if self.feature_norm:
             sampled = self.value_norm(sampled)
+        if self.seq_head_kind == "tcn":
+            b, k, t, c = sampled.shape
+            h = self.seq_head(sampled.reshape(b * k, t, c).transpose(1, 2))
+            sampled = sampled + h.transpose(1, 2).reshape(b, k, t, c)
         if self.occ_aux and self.training:
             # [B,K,T] 점유 logit. 학습 손실에서만 읽고 forward 반환에는 없다.
             self._occ_logits = self.occ_head(sampled).squeeze(-1)
@@ -510,6 +582,10 @@ class SparseScoreDrive(nn.Module):
             fk, vk = self.sample_candidate_features(lk, l2i_h[:, k], hw_now)
             f_hist.append(fk)
             valid = valid | vk
+        if self.vo_head_on:
+            # 후보·waypoint 축으로 평균낸 시간차 = 장면 수준 겉보기 운동 서술자
+            mot = torch.cat([(f_now - fh).mean(dim=(1, 2)) for fh in f_hist], dim=-1)
+            self._vo_pred = self.vo_head(mot).view(b, nh, 2)
         fused = self.fuse_temporal(f_now, f_hist)
         return self.combine_logits(
             *self.score_from_sampled(fused, valid, p4, evidence))

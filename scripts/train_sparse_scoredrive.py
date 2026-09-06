@@ -212,6 +212,12 @@ def main():
                     help="0 = occ-only (점유 학습 상한 진단)")
     ap.add_argument("--offset-sample", type=int, default=0, help="설계 §6.3 4-offset 표본")
     ap.add_argument("--use-p1", type=int, default=0, help="stride 4 FPN 레벨 추가")
+    ap.add_argument("--corridor", default="0",
+                    help="경로 법선 방향 지면 오프셋(m), 콤마구분. 예 '0,0.75,-0.75,1.5,-1.5'")
+    ap.add_argument("--seq-head", default="none", choices=["none", "tcn"],
+                    help="waypoint 순서/곡률을 읽는 sequence head")
+    ap.add_argument("--w-vo", type=float, default=0.0,
+                    help=">0 이면 과거 자차 변위(VO) 회귀 head 를 켠다")
     ap.add_argument("--n-hist", type=int, default=0, help="⑤-D 과거 프레임 수")
     ap.add_argument("--probe-a-n", type=int, default=810,
                     help="probe A 표본 수(진단용이라 B 보다 작게)")
@@ -297,6 +303,8 @@ def main():
         occ_aux=(args.w_occ > 0.0),
         offset_sample=bool(args.offset_sample),
         use_p1=bool(args.use_p1), n_hist=args.n_hist,
+        corridor=tuple(float(x) for x in str(args.corridor).split(",") if x != ""),
+        seq_head=args.seq_head, vo_head=(args.w_vo > 0.0),
         speed_head=(args.w_speed > 0.0),
         speed_gamma=args.speed_gamma).to(device)
     model.merge_encode = bool(args.merge_encode)
@@ -338,7 +346,8 @@ def main():
                                w_exp_set=args.w_exp_set,
                                alpha_kd=args.alpha_kd, tau_kd=args.tau_kd,
                                w_occ=args.w_occ, w_rank=args.w_rank,
-                               kd_mode=args.kd_mode, w_speed=args.w_speed)
+                               kd_mode=args.kd_mode, w_speed=args.w_speed,
+                               w_vo=args.w_vo)
     P(f"offset_sample={args.offset_sample} use_p1={args.use_p1} "
       f"w_occ={args.w_occ} w_rank={args.w_rank} "
       f"n_hist={args.n_hist} hist_scale={args.hist_scale} "
@@ -475,10 +484,16 @@ def main():
             if args.w_speed > 0.0:
                 gt5b = b["gt5"].to(device, non_blocking=True)
                 sp_lab = C.progress_labels(gt3, gt5b)
+            vo_lab = None
+            if args.w_vo > 0.0:
+                # 라벨 = hist_T 의 평행이동 성분(현재 ego 기준 과거 자차 위치).
+                # 학습 전용이며 추론 입력이 아니다.
+                vo_lab = b["hist_T"].to(device, non_blocking=True)[:, :, :2, 3]
             loss, comp = loss_fn(logits, D3, D5, teacher=tb, kd_mask=kdm,
                                  occ_logits=model._occ_logits, occ_lab=occ_lab,
                                  kd_idx=kd_idx, speed_pred=model._speed_pred,
-                                 speed_lab=sp_lab)
+                                 speed_lab=sp_lab, vo_pred=model._vo_pred,
+                                 vo_lab=vo_lab)
             scaler.scale(loss).backward()
             scaler.unscale_(opt)
             gn = torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
