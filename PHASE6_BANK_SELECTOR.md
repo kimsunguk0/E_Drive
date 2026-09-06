@@ -1,0 +1,155 @@
+# ETRI-ScoreDrive ⑥-C~F / ⑤-U~W — 계층 bank, 초기 종방향 scorer, e2e compliance
+
+2026-09-07 · DCTN B200×8 + RTX 3090 · 작업루트 /NHNHOME/data/sukim/adcl
+
+선행: `PHASE5EFG_SELECTOR.md`(learned selector 발견). 이 문서는 그에 대한 외부 감사
+지적을 반영한 재검증과, 그로부터 나온 bank/scorer 실험을 담는다.
+
+## 0. 한 줄 요약
+
+**후보를 늘리는 모든 경로가 selector 에서 막힌다.** 계층 bank 는 coverage 를
+0.0996 → 0.0554 로 낮췄지만 realized 는 오히려 나빠졌고, 완벽한 child fine-scorer 를
+가정해도 이득이 +0.0012 였다. scorer 쪽에서는 **공식 시간가중** 하나만 살아남았다
+(3/3 seed 짝승, −0.0028, ≈2.1σ).
+
+## 1. 표기 정정 (감사 지적 수용)
+
+| 이전 표기 | 정정 |
+|---|---|
+| "CV 0.2542 ± 0.0043 = 확정 일반화 성능" | **selector-only CV.** fold 를 selector 만 분리했고 upstream scorer/bank 는 train300 전체를 봤다. 가장 정직한 관측값은 val38 0.2522(그마저 반복 사용) |
+| "compliance 전 게이트 통과(⑤-R)" | **무효.** C-S3 은 `out=abs5[ids]` 를 `abs5[ids]` 와 비교해 항상 통과했고, C-S2 는 모델을 재실행하지 않고 복사된 NPZ 를 비교했다. §5 에서 재작성 |
+| "지연 46.56ms" | **selector 미포함.** 실측 재측정 §5 |
+| "r3 에서 포화" | **틀렸다.** 인용한 r4=0.2187 은 내가 CPU 확보하려 중간에 죽인 판의 미완 수치. 완주하면 r4=0.2137. 실제 포화는 r4~r5 |
+| "K8192 로 bank 병목 해결" | **아니다.** [K,6,2] center 뿐이었고 5초 tail/routing/realized/지연이 전부 없었다. §2~4 에서 실제로 만들고 재봤다 |
+| "VO 는 합법 우회" | **아니다.** 과거 프레임 feature 는 `lidar2img @ hist_T` 로 이미 pose 정렬돼 있어 거기서 pose 를 되뽑는 것은 순환이다 |
+
+## 2. ⑥-C 완성형 parent-child bank
+
+child 를 **실제 train 궤적의 medoid** 로 잡는다. 합성 center 가 아니므로 10-waypoint
+5초 경로가 실제 주행이고 **3→3.5초 불연속이 구조적으로 0** 이다.
+(내 연속성 검사는 `|step6−step5|` 로 가속도를 잰 오류였고 검사 자체가 불필요하다.)
+
+| bank | K | full D3 oracle | 지지도 중앙값 | 지지도1 child |
+|---|---:|---:|---:|---:|
+| A0 (현재) | 1,024 | 0.099634 | — | — |
+| hier | 3,624 | 0.072920 | 21 | 19 |
+| hier | 7,680 | 0.061486 | 9 | 151 |
+| hier | 14,279 | 0.055445 | 5 | 1,177 |
+
+parent 지지도 0 은 1개, 희소 좌/우회전 195개에 최소 2 child 보장,
+같은 parent 내 5초 endpoint 퍼짐 1.60m(K7680) → goal 로 child 분별 가능.
+평면 k-means 대비 손해(K≈8k 에서 0.0615 vs 0.0589)는 실제 tail·routing 의 대가.
+
+## 3. ⑥-D coarse-to-fine 은 **모델 parent 순위**로 재야 한다
+
+build 리포트의 top-t 표는 GT 정렬 상한이라 top-16 에서 이미 full 과 같다. 무의미하다.
+모델 정렬로 재면 완전히 다르다. 정답 child 의 parent 가 모델 순위 **중앙값 13위**,
+top16 60% / top32 79% / top64 93%.
+
+| bank | top-64 | **top-128** | top-256 | full |
+|---|---:|---:|---:|---:|
+| K7,680 | 0.072635 (504) | **0.063408 (979)** | 0.061805 (1923) | 0.061486 |
+| K14,279 | 0.066292 (912) | **0.057182 (1806)** | 0.055751 (3587) | 0.055445 |
+
+배포 가능한 bank floor ≈ **0.057 @ 추정 64ms**. 목표선 0.045~0.050 에는 미달.
+
+## 4. ⑥-E/F bank 확장은 realized 를 낮추지 못한다
+
+### E: 기존 selector 적용 (분포 이탈)
+
+| 구성 | 유효N | slOracle | inherit | 완벽 fine-scorer |
+|---|---:|---:|---:|---:|
+| **기준 A0 12행** | 12 | 0.1764 | — | **0.2522** |
+| P12×2 | 24 | 0.1595 | 0.2773 | 0.2510 |
+| P12×4 | 48 | 0.1424 | 0.3027 | 0.3636 |
+| P12×8 | 83 | 0.1335 | 0.3982 | 0.3643 |
+
+### F: 확장 후보로 selector 재학습 (공정 검정)
+
+| 구성 | N | slOracle | **inherit 재학습** |
+|---|---:|---:|---:|
+| 12×2 | 24 | 0.1595 | 0.2835 |
+| 12×4 | 48 | 0.1424 | 0.2794 |
+| 8×4 | 32 | 0.1763 | 0.2966 |
+
+**재학습해도 전부 기준 0.2522 보다 나쁘다.**
+
+⚠️ `oracle` 팔(child logit = −D3)은 상한이 아니라 **누설**이다. 재학습 후 slOracle 과
+소수 4자리까지 일치(0.1596 vs 0.1595)하는 것이 그 증거다. 특징이 곧 답이었다.
+fine-scorer 의 진짜 요구 사양은 잡음 주입 스윕으로 따로 잰다.
+
+## 5. ⑤-W 진짜 end-to-end compliance + 지연
+
+raw images → generator → shortlist → learned selector 전체를 **실제 forward 로 재실행**.
+
+| 게이트 | 결과 |
+|---|---|
+| generator 서명 `(images, img_hist, lidar2img, hist_T)` — goal/cmd/status 없음 | PASS |
+| goal 교란 ×3 → 후보 abs/inc/logits/ids **bitwise 불변** (selector 선택만 81~86% 변경) | PASS |
+| 최종 궤적 == **원본 bank 파일** 행 bitwise (자기비교 아님) | PASS |
+| 제출 6점 == `anchors_abs` 원본 bitwise, index ∈ 0..11 | PASS |
+| zero 이미지 → logits 전부 동일, 후보에 정지 후보 포함 | PASS |
+| 셔플 → 최종 궤적 **61.5% 변경**, logits 변경 | PASS |
+
+3090 실측 (selector 포함):
+
+| 구성 | median | p95 | p99 | penalty |
+|---|---:|---:|---:|---:|
+| T4 generator only | 46.353 | 46.502 | 46.730 | 1.000 |
+| **T4 + learned selector** | **46.997** | 47.035 | 47.044 | **1.000** |
+
+selector 추가 비용 **+0.644ms**.
+
+## 6. ⑤-U/V 초기 종방향 scorer 토너먼트
+
+`path_score` 가 10 waypoint 를 **균등 평균**해 왔는데 공식 D3 는 첫 1초 61% /
+첫 2초 89% 가중이다. 즉 채점 기준과 점수 산출이 불일치했다.
+
+| arm | tune slO@12 | val slO@12 |
+|---|---:|---:|
+| **u_offic** 공식 시간가중(첫2초 80%) | **0.2121** | **0.1746** |
+| u_ctrl 대조군 | 0.2137 | 0.1763 |
+| u_seq TCN sequence head | 0.2173 | 0.1759 |
+| u_hn 초기종방향 hard negative | 0.2176 | — |
+| u_all seq+early+hn | 0.2202 | — |
+| u_early D3 지지집합 가중(첫2초 89%) | 0.2226 | — |
+
+3-seed 반복:
+
+| 판 | s0 | s1 | s2 | 평균 |
+|---|---:|---:|---:|---:|
+| ctrl | 0.2137 | 0.2174 | 0.2178 | 0.2163 ± 0.0019 |
+| **offic** | 0.2121 | 0.2153 | 0.2130 | **0.2135 ± 0.0014** |
+
+차이 −0.0028, 평균차 SE 0.00136 → **≈2.1σ, 3/3 짝승**(부호검정 p=0.125).
+결정적이진 않으나 tune·val 방향이 일치해 **잠정 채택**. seq head·hard negative·
+early 가중은 대조군보다 나빠 기각.
+
+## 7. 라운드 포화 (정정)
+
+| 라운드 | tune slO@12 | val slO@12 |
+|---|---:|---:|
+| r1 | 0.2273 | 0.1873 |
+| r2 (3-seed) | 0.2235 ± 0.0010 | 0.1847 |
+| r3 | 0.2173 | 0.1788 |
+| **r4** | **0.2135 ± 0.0014 (offic)** | 0.1746 |
+| r5 | 0.2112(offic) / 0.2146(ctrl) | — |
+
+r5 는 r4 의 seed 편차 안. **r4~r5 에서 포화.**
+end-to-end: r3+selector 0.2580 → **u_ctrl+selector 0.2522**.
+
+## 8. 관통하는 사실 — selector 가 모든 곳의 벽
+
+| 측정 | 값 |
+|---|---|
+| oracle 후보의 visual 순위 (⑤-E2) | 중앙값 6 / 12 |
+| selector 특징 절제에서 visual 기여 (⑤-S) | +0.0374 (8개 중 6위) |
+| coarse-to-fine parent 순위 (⑥-D) | 중앙값 13 / 1024 |
+| bank 확장 + 재학습 selector (⑥-F) | 기준보다 전부 나쁨 |
+
+## 9. 아직 없는 것 (명시)
+
+- 계층 bank 의 child **fine-scorer 실제 구현·학습** (현재는 오프라인 평가만)
+- fine-scorer 요구 사양 (잡음 주입 스윕 진행 중)
+- **OOF stacking** — fold 마다 bank 생성 → scorer 학습 → held-out dump → selector 학습
+- 새 bank 의 3090 지연 실측 (현재는 샘플링 비용 비례 추정)
