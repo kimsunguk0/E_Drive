@@ -31,6 +31,31 @@ from sparse_scoredrive import SparseScoreDrive  # noqa: E402
 IMAGENET_R34 = os.path.join(A, "ckpt/backbones/resnet34-b627a593.pth")
 IMAGENET_R50 = os.path.join(A, "ckpt/backbones/resnet50-imagenet.pth")
 VAD_CKPT = os.path.join(A, "work_dirs/pa2_softceexp/epoch_2.pth")
+NUIM_CKPT = os.path.join(
+    A, "ckpt/backbones/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_"
+       "20201009_124951-40963960.pth")
+
+
+def load_nuim_backbone(backbone_fpn, path):
+    """nuImages(COCO->nuImages) Mask R-CNN R50 의 backbone 을 이식.
+    BEVFormer/VAD 계열의 표준 초기값이며 nuScenes 도메인에 가장 가깝다."""
+    sd = torch.load(path, map_location="cpu")
+    sd = sd.get("state_dict", sd)
+    remap = {}
+    for k, v in sd.items():
+        if not k.startswith("backbone."):
+            continue
+        kk = k[len("backbone."):]
+        if kk.startswith("conv1."):
+            remap["stem.0." + kk[len("conv1."):]] = v
+        elif kk.startswith("bn1."):
+            remap["stem.1." + kk[len("bn1."):]] = v
+        elif kk.startswith(("layer1.", "layer2.", "layer3.", "layer4.")):
+            remap[kk] = v
+    missing, unexpected = backbone_fpn.load_state_dict(remap, strict=False)
+    still = [m for m in missing if not m.startswith(("lat", "out"))]
+    return dict(injected=len(remap), unexpected=len(unexpected),
+                nonhead_missing=still)
 
 
 def load_vad_backbone(backbone_fpn, path):
@@ -180,7 +205,7 @@ def main():
     ap.add_argument("--teacher", default="", help="teacher logits npz (row->logits)")
     ap.add_argument("--tau-kd", type=float, default=1.0)
     ap.add_argument("--arch", default="resnet34", choices=["resnet34", "resnet50"])
-    ap.add_argument("--init", default="imagenet", choices=["imagenet", "vad", "none"],
+    ap.add_argument("--init", default="imagenet", choices=["imagenet", "vad", "nuim", "none"],
                     help="vad = dense champion img_backbone 이식 (resnet50 전용)")
     ap.add_argument("--w-occ", type=float, default=0.0, help="보조 점유 supervision 가중")
     ap.add_argument("--w-rank", type=float, default=1.0,
@@ -197,6 +222,16 @@ def main():
     ap.add_argument("--fuse-mul", type=int, default=1)
     ap.add_argument("--agent-labels",
                     default=os.path.join(A, "data/etri/agent_labels_train.npz"))
+    ap.add_argument("--kd-mode", default="full",
+                    choices=["full", "top64", "shortlist"])
+    ap.add_argument("--kd-topk", type=int, default=64)
+    ap.add_argument("--init-from", default="", help="학습된 student ckpt 에서 시작")
+    ap.add_argument("--w-speed", type=float, default=0.0,
+                    help="진행량 회귀 보조 가중 (설계 §4.5 라벨)")
+    ap.add_argument("--speed-gamma", type=float, default=0.0,
+                    help="logit 진행량 감점 계수 초기값(학습가능). 0=보조회귀만")
+    ap.add_argument("--freeze-trunk", type=int, default=0,
+                    help="1=backbone+FPN 동결, scorer 만 학습 (⑤-E1)")
     ap.add_argument("--kd-min-frame", type=int, default=30,
                     help="teacher 신뢰 구간: 이 frame 이상만 KD 적용")
     ap.add_argument("--bucket-sample", type=int, default=1,
@@ -261,11 +296,15 @@ def main():
         logit_norm=bool(args.logit_norm), arch=args.arch,
         occ_aux=(args.w_occ > 0.0),
         offset_sample=bool(args.offset_sample),
-        use_p1=bool(args.use_p1), n_hist=args.n_hist).to(device)
+        use_p1=bool(args.use_p1), n_hist=args.n_hist,
+        speed_head=(args.w_speed > 0.0),
+        speed_gamma=args.speed_gamma).to(device)
     model.merge_encode = bool(args.merge_encode)
     model.fuse_mul = bool(args.fuse_mul)
     if args.init == "vad":
         inj = load_vad_backbone(model.backbone_fpn, VAD_CKPT)
+    elif args.init == "nuim":
+        inj = load_nuim_backbone(model.backbone_fpn, NUIM_CKPT)
     elif args.init == "imagenet":
         inj = load_imagenet_resnet34(
             model.backbone_fpn,
@@ -298,10 +337,12 @@ def main():
                                objective=args.objective, set_k=args.set_k,
                                w_exp_set=args.w_exp_set,
                                alpha_kd=args.alpha_kd, tau_kd=args.tau_kd,
-                               w_occ=args.w_occ, w_rank=args.w_rank)
+                               w_occ=args.w_occ, w_rank=args.w_rank,
+                               kd_mode=args.kd_mode, w_speed=args.w_speed)
     P(f"offset_sample={args.offset_sample} use_p1={args.use_p1} "
       f"w_occ={args.w_occ} w_rank={args.w_rank} "
       f"n_hist={args.n_hist} hist_scale={args.hist_scale} "
+      f"w_speed={args.w_speed} speed_gamma={args.speed_gamma} "
       f"merge_encode={args.merge_encode}")
     P(f"objective={args.objective} set_k={args.set_k} w_exp_set={args.w_exp_set} "
       f"alpha_kd={args.alpha_kd} bucket_sample={args.bucket_sample} "
@@ -316,6 +357,16 @@ def main():
     P(f"probe A(same-scene unseen frame%5==4) n={len(probe_rows)} | "
       f"probe B(tuneval, new scenario) n={len(tune_rows)}")
 
+    if args.init_from:
+        _ck = torch.load(args.init_from, map_location="cpu")
+        _miss, _unx = model.load_state_dict(_ck["model"], strict=False)
+        P(f"init_from={args.init_from} missing={len(_miss)} unexpected={len(_unx)}")
+    if args.freeze_trunk:
+        # ⑤-E1: 동일 trunk 를 고정하고 ranker 만 비교(Phase A frozen-trunk tournament)
+        for p_ in model.backbone_fpn.parameters():
+            p_.requires_grad_(False)
+        n_tr = sum(p_.numel() for p_ in model.parameters() if p_.requires_grad)
+        P(f"freeze_trunk: backbone+FPN 동결, scorer 학습가능 {n_tr:,}")
     fz = apply_freeze(model, args.freeze_stages, bool(args.freeze_bn))
     P(f"freeze: stages={fz['frozen']} BN_frozen={fz['n_bn_frozen']}")
 
@@ -414,8 +465,20 @@ def main():
                     ar = torch.from_numpy(ag_rad[ai]).to(device)
                     am = torch.from_numpy(ag_msk[ai]).to(device)
                     occ_lab = C.occupancy_labels(cand6, ap, ar, am)
+            kd_idx = None
+            if tb is not None:
+                if args.kd_mode == "top64":
+                    kd_idx = tb.topk(min(args.kd_topk, tb.shape[-1]), dim=-1).indices
+                elif args.kd_mode == "shortlist":
+                    kd_idx = model._stable_score3_nms9(tb)
+            sp_lab = None
+            if args.w_speed > 0.0:
+                gt5b = b["gt5"].to(device, non_blocking=True)
+                sp_lab = C.progress_labels(gt3, gt5b)
             loss, comp = loss_fn(logits, D3, D5, teacher=tb, kd_mask=kdm,
-                                 occ_logits=model._occ_logits, occ_lab=occ_lab)
+                                 occ_logits=model._occ_logits, occ_lab=occ_lab,
+                                 kd_idx=kd_idx, speed_pred=model._speed_pred,
+                                 speed_lab=sp_lab)
             scaler.scale(loss).backward()
             scaler.unscale_(opt)
             gn = torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)

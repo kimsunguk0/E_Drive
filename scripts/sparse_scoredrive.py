@@ -186,6 +186,8 @@ class SparseScoreDrive(nn.Module):
         offset_sample: bool = False,
         use_p1: bool = False,
         n_hist: int = 0,
+        speed_head: bool = False,
+        speed_gamma: float = 0.0,
     ) -> None:
         super().__init__()
         bank = np.load(str(bank_path), allow_pickle=False)
@@ -253,6 +255,29 @@ class SparseScoreDrive(nn.Module):
         self.nms_pool = int(nms_pool)
         if (self.score_top, self.n_out, self.nms_pool) != (3, 12, 64):
             raise ValueError("Phase-5B canonical shortlist must be score3+nms9 from top64")
+
+        # ⑤-E3: 후보별 3초/5초 누적 이동거리(고정 bank 속성).
+        _a = torch.from_numpy(abs5)
+        _inc = torch.diff(_a, dim=1, prepend=torch.zeros_like(_a[:, :1]))
+        _step = torch.linalg.vector_norm(_inc, dim=-1)
+        self.register_buffer("cand_s3", _step[:, :6].sum(-1), persistent=True)
+        self.register_buffer("cand_s5", _step.sum(-1), persistent=True)
+        # 영상에서 자차 진행량을 회귀한다(설계 §4.5 권장 auxiliary label).
+        # 입력은 영상 융합 feature 뿐이고 ego status 는 들어가지 않는다.
+        self.speed_head_on = bool(speed_head)
+        # speed_gamma <= 0 이면 logit 감점을 아예 끄고 보조 회귀만 한다.
+        # 무작위 초기화된 head 의 난수 예측으로 감점하면 path_score([-2,2])가
+        # 통째로 덮여 학습이 붕괴한다(실측 slO 10.8). 2단계로 학습해야 한다:
+        #   A) gamma=0 으로 head 만 학습  B) 그 체크포인트에서 gamma 켜기
+        self.speed_pen_on = bool(speed_head) and float(speed_gamma) > 0.0
+        if self.speed_head_on:
+            self.speed_head = nn.Sequential(
+                nn.Linear(channels, channels), nn.ReLU(inplace=True),
+                nn.Linear(channels, 8))          # [S3, S5, r1..r6]
+            g0 = max(float(speed_gamma), 1e-3)
+            inv = math.log(math.expm1(g0))       # softplus^-1
+            self.gamma_raw = nn.Parameter(torch.tensor(inv, dtype=torch.float32))
+        self._speed_pred = None      # [B,8] stash (학습/평가 진단용)
 
         desc = self._kinematic_descriptors(torch.from_numpy(abs5))
         self.register_buffer("kinematic_desc", desc, persistent=True)
@@ -322,7 +347,16 @@ class SparseScoreDrive(nn.Module):
             levels, p4, lidar2img, image_hw, evidence))
 
     def combine_logits(self, path_score, g_term, ev):
-        """성분 -> 최종 logits. current-only 와 temporal 경로가 공유한다."""
+        """성분 -> 최종 logits. current-only 와 temporal 경로가 공유한다.
+
+        speed head 가 켜져 있으면 예측 진행량과 후보 진행량의 불일치를 감점한다.
+        예측은 영상에서만 나오고 goal/status 와 무관하므로 goal counterfactual
+        불변이 유지된다. 외부에 노출되는 것은 여전히 후보 12개와 logits 뿐이다.
+        """
+        if self.speed_pen_on and self._speed_pred is not None:
+            s3 = self._speed_pred[:, 0] * 30.0                  # [B] m
+            pen = (self.cand_s3.unsqueeze(0) - s3.unsqueeze(1)).abs() / 10.0
+            path_score = path_score - F.softplus(self.gamma_raw) * pen
         if self.logit_norm:
             logits = self.logit_scale.exp().clamp(max=100.0) * (path_score + g_term)
         else:
@@ -369,6 +403,10 @@ class SparseScoreDrive(nn.Module):
 
     def score_from_sampled(self, sampled, valid, p4, evidence):
         """표본이 주어진 뒤의 점수화. temporal 경로는 융합된 표본을 여기로 넘긴다."""
+        if self.speed_head_on:
+            # 후보·시점 평균 = 장면 수준 서술자. temporal 경로에서는 과거 정보가
+            # 이미 융합돼 있어 진행량 추정에 필요한 신호를 담는다.
+            self._speed_pred = self.speed_head(sampled.mean(dim=(1, 2)))
         if self.feature_norm:
             sampled = self.value_norm(sampled)
         if self.occ_aux and self.training:

@@ -22,15 +22,23 @@ sys.path.insert(0, os.path.join(A, "scripts"))
 import sparse_common as C  # noqa: E402
 from train_sparse_scoredrive import TrainableSparseScoreDrive  # noqa: E402
 
-LAMBDAS = (0.0, 0.05, 0.1, 0.25, 0.5)
+LAMBDAS = (0.0, 0.05, 0.1, 0.2, 0.3, 0.5, 0.8, 1.5, 3.0)
 
 
 def load_model(ckpt, device):
     ck = torch.load(ckpt, map_location="cpu")
     fn = bool(ck.get("args", {}).get("feature_norm", 0))
     ln = bool(ck.get("args", {}).get("logit_norm", 0))
-    m = TrainableSparseScoreDrive(C.BANK_A0, feature_norm=fn,
-                                  logit_norm=ln).to(device)
+    a = ck.get("args", {})
+    nh = int(a.get("n_hist", 0))
+    m = TrainableSparseScoreDrive(
+        C.BANK_A0, feature_norm=fn, logit_norm=ln, arch=a.get("arch", "resnet34"),
+        offset_sample=bool(a.get("offset_sample", 0)),
+        use_p1=bool(a.get("use_p1", 0)), n_hist=nh).to(device)
+    m.fuse_mul = bool(a.get("fuse_mul", 1))
+    m.merge_encode = bool(a.get("merge_encode", 0))
+    m._eval_nhist = nh
+    m._eval_hscale = float(a.get("hist_scale", 1.0))
     sd = ck["model"]
     m.load_state_dict(sd)
     m.eval()
@@ -57,38 +65,47 @@ def champion_reference(bank, arr):
 
 
 def eval_on_split(model, arr, bank, lidar2img_t, device, split, batch, dump_dir, tag):
+    """평가 대상 행을 먼저 거른 뒤 forward 한다.
+    (temporal 은 과거 프레임이 없는 행을 forward 하면 파일이 없어 죽는다)"""
+    nh = getattr(model, "_eval_nhist", 0)
+    hs = getattr(model, "_eval_hscale", 1.0)
     if split == "val":
         rows = arr["val_idx"]
         weight = arr["val_weight"]
-        frame = arr["frame"][rows]
-        sub = frame >= 30
-    else:  # tune
+        sub = arr["frame"][rows] >= 30
+    else:
         s = C.make_split(arr)
         rows = s["tune_rows"]
         weight = None
         sub = np.ones(len(rows), bool)
-    logits = C.run_logits(model, arr, rows, lidar2img_t, device, batch=batch, amp=True)
+    if nh:
+        sub = sub & C.history_available(arr, rows, nh)
+    rows = rows[sub]
+    weight = None if weight is None else weight[sub]
+    logits = C.run_logits(model, arr, rows, lidar2img_t, device, batch=batch,
+                          amp=True, n_hist=nh, hist_scale=hs)
     tgt = C.precompute_targets(arr, rows, bank, weight=weight)
-    rep = C.eval_logits(logits[sub], tgt["D3gt"][sub], tgt["goal_xy"][sub],
-                        tgt["cand_end5"], tgt["anchor_dist"], tgt["nms_tau"],
-                        tgt["weight"][sub], lambdas=LAMBDAS,
-                        buckets={k: np.asarray(b)[sub] for k, b in tgt["buckets"].items()})
+    rep = C.eval_logits(logits, tgt["D3gt"], tgt["goal_xy"], tgt["cand_end5"],
+                        tgt["anchor_dist"], tgt["nms_tau"], tgt["weight"],
+                        lambdas=LAMBDAS, buckets=tgt["buckets"])
     if dump_dir:
         os.makedirs(dump_dir, exist_ok=True)
         np.savez(os.path.join(dump_dir, f"logits_{tag}_{split}.npz"),
                  logits=logits.astype(np.float32), rows=rows,
-                 D3gt=tgt["D3gt"].astype(np.float32), sub=sub,
+                 D3gt=tgt["D3gt"].astype(np.float32),
                  goal_xy=tgt["goal_xy"], weight=tgt["weight"])
     return rep
 
 
 def fmt(rep):
     r = rep["realized"]
+    best = min(r, key=lambda k: r[k])
+    lam = "  ".join(f"{k}={v:.4f}" for k, v in r.items())
     return (f"n={rep['n']:5d} top1={rep['top1']:.4f} o@3={rep['oracle3']:.4f} "
             f"o@6={rep['oracle6']:.4f} o@12={rep['oracle12']:.4f} "
-            f"slO@12={rep['shortlist_oracle12']:.4f} | "
-            f"real λ0={r['0']:.4f} .05={r['0.05']:.4f} .1={r['0.1']:.4f} "
-            f".25={r['0.25']:.4f} .5={r['0.5']:.4f}")
+            f"slO@12={rep['shortlist_oracle12']:.4f}\n"
+            f"        realized λ: {lam}\n"
+            f"        best λ={best} -> {r[best]:.4f}")
 
 
 def main():
@@ -126,9 +143,13 @@ def main():
             rep = eval_on_split(model, arr, bank, lidar2img_t, device, sp,
                                 args.batch, dump_dir, tag)
             results[tag][sp] = rep
-            gate = ("KEEP" if rep["realized"]["0.1"] <= 0.25 else
-                    "WEAK" if rep["realized"]["0.1"] <= 0.27 else "FAIL")
-            strong = " STRONG" if rep["realized"]["0.1"] <= 0.24 else ""
+            rr = rep["realized"]
+            bl = min(rr, key=lambda k: rr[k])
+            sl = rep["shortlist_oracle12"]
+            gate = ("성공" if (sl <= 0.20 and rr[bl] <= 0.30) else
+                    "KEEP" if (sl <= 0.25 and rr[bl] <= 0.35) else
+                    "부분(slO만)" if sl <= 0.25 else "FAIL")
+            strong = ""
             print(f"[{tag:16s} {sp:4s}] {fmt(rep)}  -> {gate}{strong}")
             if sp == "val" and "buckets_lambda0.1" in rep:
                 bk = rep["buckets_lambda0.1"]
@@ -149,7 +170,8 @@ def main():
         if tag == "champion_val" or "val" not in r:
             continue
         base = tag.rsplit("_s", 1)[0]
-        arms.setdefault(base, []).append(r["val"]["realized"]["0.1"])
+        rr = r["val"]["realized"]
+        arms.setdefault(base, []).append(min(rr.values()))
     for base, vals in sorted(arms.items()):
         vals = np.array(vals)
         print(f"  {base:14s} n={len(vals)} mean={vals.mean():.4f} "

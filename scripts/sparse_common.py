@@ -328,6 +328,21 @@ def metric_d5(gt5_abs: torch.Tensor, mask5: torch.Tensor,
     return (d * w).sum(-1)
 
 
+def progress_labels(gt3_abs, gt5_abs):
+    """설계 §4.5 권장 auxiliary label: 자차 진행량.
+    반환 [B,8] = [S3/30, S5/30, r1..r6]  (r_i = i 스텝까지 누적거리 / S3).
+    train pose 에서 계산한 라벨이며 모델 입력이 아니다."""
+    def _arc(x):
+        z = torch.zeros_like(x[:, :1])
+        inc = torch.diff(torch.cat([z, x], 1), dim=1)
+        return torch.linalg.vector_norm(inc, dim=-1)            # [B,T]
+    st3 = _arc(gt3_abs)
+    s3 = st3.sum(-1, keepdim=True)
+    s5 = _arc(gt5_abs).sum(-1, keepdim=True)
+    r = torch.cumsum(st3, dim=1) / s3.clamp(min=1e-3)           # [B,6]
+    return torch.cat([s3 / 30.0, s5 / 30.0, r], dim=-1)
+
+
 def occupancy_labels(cand6, apos, arad, amask):
     """후보 waypoint 점유 라벨 [B,K,6].
 
@@ -356,7 +371,8 @@ class ScoreDriveLoss:
                  neg_topk=32, gt_near=16, eps_abs=0.05,
                  aux5=False, beta5=0.1,
                  objective="softce_exp", set_k=16, w_exp_set=0.1,
-                 alpha_kd=0.0, tau_kd=1.0, w_occ=0.0, w_rank=1.0):
+                 alpha_kd=0.0, tau_kd=1.0, w_occ=0.0, w_rank=1.0,
+                 kd_mode="full", w_speed=0.0):
         self.objective = objective      # softce_exp | set
         self.set_k = int(set_k)         # L_set 의 GT-근접 후보 수
         self.w_exp_set = float(w_exp_set)   # set 목적일 때의 작은 L_exp 가중
@@ -364,6 +380,8 @@ class ScoreDriveLoss:
         self.tau_kd = float(tau_kd)         # teacher/student 분포 온도
         self.w_occ = float(w_occ)           # 보조 perception(점유) 가중
         self.w_rank = float(w_rank)         # 0 = occ-only (점유 학습 상한 진단)
+        self.kd_mode = kd_mode              # full | top64 | shortlist
+        self.w_speed = float(w_speed)       # 진행량 회귀 보조 가중
         self.target_temp = target_temp
         self.tau_exp = tau_exp
         self.w_exp = w_exp
@@ -402,6 +420,27 @@ class ScoreDriveLoss:
         logp = torch.log_softmax(logits, dim=-1)
         return -(torch.logsumexp(logp.gather(1, P), dim=-1)).mean()
 
+    def _kd_subset(self, logits, teacher, idx, mask=None):
+        """teacher 상위 subset 안에서만 listwise KL. full-K 분포를 통째로 모방하는 대신
+        '어느 후보들이 상위권인가'의 순서만 옮긴다(⑤-E1 top64 rank distillation)."""
+        t = torch.log_softmax(teacher.float().gather(1, idx) / self.tau_kd, dim=-1)
+        q = torch.log_softmax(logits.gather(1, idx) / self.tau_kd, dim=-1)
+        per = (t.exp() * (t - q)).sum(-1)
+        if mask is None:
+            return per.mean()
+        w = mask.to(per.dtype)
+        return (per * w).sum() / w.sum().clamp(min=1.0)
+
+    def _kd_set(self, logits, set_idx, mask=None):
+        """teacher 의 score3+nms9 shortlist 를 positive set 으로 하는 집합 loss.
+        '좋은 후보군을 shortlist 에 남긴다'만 옮기고 그 안의 순서는 강요하지 않는다."""
+        logp = torch.log_softmax(logits, dim=-1)
+        per = -torch.logsumexp(logp.gather(1, set_idx), dim=-1)
+        if mask is None:
+            return per.mean()
+        w = mask.to(per.dtype)
+        return (per * w).sum() / w.sum().clamp(min=1.0)
+
     def _kd(self, logits, teacher, mask=None):
         """KL(teacher || student), per-sample. teacher 도 goal/cmd 미입력이라
         compliance 무관하고 추론 시 사용하지 않는다.
@@ -427,8 +466,13 @@ class ScoreDriveLoss:
         return torch.nn.functional.binary_cross_entropy_with_logits(
             z, occ_lab, pos_weight=pw)
 
+    def _speed(self, pred, lab):
+        """진행량 회귀 (smooth L1). S3/S5 는 /30 정규화, r 은 [0,1]."""
+        return torch.nn.functional.smooth_l1_loss(pred.float(), lab, beta=0.05)
+
     def __call__(self, logits, D3, D5=None, teacher=None, kd_mask=None,
-                 occ_logits=None, occ_lab=None):
+                 occ_logits=None, occ_lab=None, kd_idx=None,
+                 speed_pred=None, speed_lab=None):
         logits = logits.float()
         comp = {}
         if self.objective == "set":
@@ -442,13 +486,22 @@ class ScoreDriveLoss:
             loss = self.w_rank * (ts + self.w_exp * te)
             comp["softce"] = ts.detach(); comp["exp3"] = te.detach()
         if self.alpha_kd > 0.0 and teacher is not None:
-            tkd = self._kd(logits, teacher, kd_mask)
+            if self.kd_mode == "top64" and kd_idx is not None:
+                tkd = self._kd_subset(logits, teacher, kd_idx, kd_mask)
+            elif self.kd_mode == "shortlist" and kd_idx is not None:
+                tkd = self._kd_set(logits, kd_idx, kd_mask)
+            else:
+                tkd = self._kd(logits, teacher, kd_mask)
             loss = loss + self.alpha_kd * tkd
             comp["kd"] = tkd.detach()
         if self.w_occ > 0.0 and occ_logits is not None and occ_lab is not None:
             tocc = self._occ(occ_logits, occ_lab)
             loss = loss + self.w_occ * tocc
             comp["occ"] = tocc.detach()
+        if self.w_speed > 0.0 and speed_pred is not None and speed_lab is not None:
+            tsp = self._speed(speed_pred, speed_lab)
+            loss = loss + self.w_speed * tsp
+            comp["speed"] = tsp.detach()
         if self.aux5 and D5 is not None:
             te5 = self._exp(D5, logits)
             loss = loss + self.beta5 * te5
