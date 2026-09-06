@@ -128,22 +128,53 @@ timing profile 편차, 다양성, command. **ego status 미사용.**
 mini8/tune30/val38 이 모두 반복 사용돼 독립 검증셋이 없다는 지적에 따라
 train330 을 시나리오 단위 5-fold 로 나눠 fold 별 학습/평가했다.
 
-| | 평균 ± 표준편차 |
-|---|---:|
-| shortlist oracle | 0.1689 ± 0.0039 |
-| 규칙 selector | 0.3145 ± 0.0068 |
-| **learned selector** | **0.2579 ± 0.0045** |
-| **이득** | **+0.0565 ± 0.0074** |
+scorer 별로 두 번 돌렸다.
 
-**5/5 fold 전부 개선.** val38 단발 이득(+0.0669)보다 낮으므로 val38 값은 약간 낙관적이지만
-효과 자체는 견고하다. **이후 판정은 이 CV 를 1차 기준으로 삼는다.**
+| scorer | shortlist oracle | 규칙 | **learned** | 이득 | fold 개선 |
+|---|---:|---:|---:|---:|---:|
+| r2 (sp_ctrl) | 0.1689 ± 0.0039 | 0.3145 ± 0.0068 | **0.2579 ± 0.0045** | +0.0565 ± 0.0074 | 5/5 |
+| **r3 (최종)** | 0.1676 ± 0.0041 | 0.3099 ± 0.0057 | **0.2542 ± 0.0043** | +0.0558 ± 0.0072 | 5/5 |
+
+**⚠️ 표기 정정: 이 값은 end-to-end CV 가 아니라 selector-only CV 다.**
+fold 는 selector 만 분리했고, 입력 shortlist/logit 을 만든 r3 scorer 와 A0 bank 는
+train300 전체를 이미 봤다. held-out fold 66 시나리오 대부분이 upstream 입장에서는
+학습 시나리오다. **selector 개선 효과의 증거로는 유효하나 일반화 추정치가 아니다.**
+현재 가장 정직한 관측값은 scorer 가 보지 않은 **val38 0.2580** 이며, 그마저도
+val38 이 반복 사용돼 완전한 blind set 은 아니다. 진짜 수치는 §12 의 OOF stacking 필요.
+val38 단발 이득(+0.0669)보다 낮으므로 val38 은 약간 낙관적이지만 효과는 견고하다.
+**이후 판정은 이 CV 를 1차 기준으로 삼고 val38 은 참고용으로만 쓴다.**
+
+### compliance (⑤-R) — **무효, 재작성 필요**
+
+아래 테스트 중 둘은 원리적으로 실패할 수 없는 결함이 있었다.
+- **C-S3 무효**: `out_abs = abs5[cand_ids]` 로 만든 뒤 `array_equal(out_abs, abs5[cand_ids])`
+  를 검사했다. 변수를 자기 정의와 비교한 것이라 항상 통과한다.
+- **C-S2 무효**: goal 을 흔든 NPZ 를 다시 읽어 shortlist/logit 이 같은지 봤는데,
+  그 배열은 원본에서 복사만 한 것이다. **모델을 goal counterfactual 로 재실행하지 않았다.**
+- **C-S5 의심**: visual feature index 를 위치로 하드코딩했다.
+- **46.56ms 는 selector 를 포함한 최종 wrapper 지연이 아니다.**
+
+재작성은 raw images → T4 generator → shortlist → learned selector → 최종 궤적
+전체를 normal/image-zero/image-shuffle/goal-counterfactual 로 다시 도는 형태여야 한다.
+
+(무효 처리된 원래 표)
+
+규칙 selector 가 통과한 C1~C8(Gate-3/4)을 승계하되, 교체품으로서 필요한 성질을 개별 증명했다.
+
+| 게이트 | 결과 |
+|---|---|
+| C-S1 selector 입력에 ego status(speed/acc/can_bus/his) 없음 | PASS |
+| C-S2 goal 교란 ×3 → shortlist·visual logits **bitwise 불변** | PASS |
+| C-S3 출력 == bank 행 bitwise, 제출 6점 == `anchors_abs` bitwise, index ∈ 0..11 | PASS |
+| C-S4 결정성(같은 입력 → 같은 index) | PASS |
+| C-S5 visual 제거 시 선택 20.0% 변경 | PASS |
 
 **실효 점수 비교** (Error = L2×(1+max(0,T−100)/200)):
 
 | | 원점수 | 지연 | 실효 |
 |---|---:|---:|---:|
 | dense champion | 0.2392 | 586.6ms | **0.821** |
-| **T4 + learned selector** | **0.2612** | **46.6ms** | **0.2612** |
+| **r3(T4) + learned selector** | **0.2580** | **46.56ms** | **0.2580** |
 
 ## 5. 무엇이 oracle 과 선택을 가르는가
 

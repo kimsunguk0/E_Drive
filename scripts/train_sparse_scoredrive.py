@@ -216,6 +216,8 @@ def main():
                     help="경로 법선 방향 지면 오프셋(m), 콤마구분. 예 '0,0.75,-0.75,1.5,-1.5'")
     ap.add_argument("--seq-head", default="none", choices=["none", "tcn"],
                     help="waypoint 순서/곡률을 읽는 sequence head")
+    ap.add_argument("--vo-bins", type=int, default=0,
+                    help=">0 이면 VO 서술자를 지면 4x3 구간별로 만든다(전역 평균 대신)")
     ap.add_argument("--w-vo", type=float, default=0.0,
                     help=">0 이면 과거 자차 변위(VO) 회귀 head 를 켠다")
     ap.add_argument("--n-hist", type=int, default=0, help="⑤-D 과거 프레임 수")
@@ -305,6 +307,7 @@ def main():
         use_p1=bool(args.use_p1), n_hist=args.n_hist,
         corridor=tuple(float(x) for x in str(args.corridor).split(",") if x != ""),
         seq_head=args.seq_head, vo_head=(args.w_vo > 0.0),
+        vo_bins=args.vo_bins,
         speed_head=(args.w_speed > 0.0),
         speed_gamma=args.speed_gamma).to(device)
     model.merge_encode = bool(args.merge_encode)

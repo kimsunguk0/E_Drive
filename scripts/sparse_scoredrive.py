@@ -191,6 +191,7 @@ class SparseScoreDrive(nn.Module):
         corridor: Tuple[float, ...] = (0.0,),
         seq_head: str = "none",
         vo_head: bool = False,
+        vo_bins: int = 0,
     ) -> None:
         super().__init__()
         bank = np.load(str(bank_path), allow_pickle=False)
@@ -306,9 +307,18 @@ class SparseScoreDrive(nn.Module):
         # 출력은 logits 경로에 들어가지 않고 selector 로만 나간다 -> C4 불변식 무관.
         # 라벨은 hist_T 의 평행이동 성분(학습 시에만 사용, 추론 입력 아님).
         self.vo_head_on = bool(vo_head)
+        # vo_bins>0 이면 (후보,waypoint) 표본을 지면 위치로 구간화해 구간별로 평균낸다.
+        # 전역 평균(vo_bins=0)은 근/원거리 겉보기 운동의 **차이**를 없애버리는데,
+        # 그 차이가 바로 자차 병진을 인코딩한다(실측 sigma_v 0.974 로 사양 5배 미달).
+        self.vo_bins = int(vo_bins)
         if self.vo_head_on:
+            nb = self._vo_bin_count() if self.vo_bins else 1
+            if self.vo_bins:
+                self.register_buffer("vo_bin_id",
+                                     self._build_vo_bins(torch.from_numpy(abs5)),
+                                     persistent=False)
             self.vo_head = nn.Sequential(
-                nn.Linear(channels * max(int(n_hist), 1), channels),
+                nn.Linear(channels * nb * max(int(n_hist), 1), channels),
                 nn.GELU(), nn.LayerNorm(channels),
                 nn.Linear(channels, max(int(n_hist), 1) * 2))
         self._vo_pred = None          # [B,n_hist,2] stash
@@ -324,6 +334,36 @@ class SparseScoreDrive(nn.Module):
 
         desc = self._kinematic_descriptors(torch.from_numpy(abs5))
         self.register_buffer("kinematic_desc", desc, persistent=True)
+
+    XB = (8.0, 20.0, 40.0)      # 종방향 구간 경계
+    YB = (-2.0, 2.0)            # 횡방향 구간 경계
+
+    @classmethod
+    def _vo_bin_count(cls):
+        return (len(cls.XB) + 1) * (len(cls.YB) + 1)
+
+    @classmethod
+    def _build_vo_bins(cls, abs5: Tensor) -> Tensor:
+        """[K,T,2] 후보 waypoint -> 구간 id [K*T]. 지면 위치 기준 4x3 격자."""
+        xy = abs5.reshape(-1, 2)
+        xi = torch.bucketize(xy[:, 0], torch.tensor(cls.XB, dtype=xy.dtype))
+        yi = torch.bucketize(xy[:, 1], torch.tensor(cls.YB, dtype=xy.dtype))
+        return (xi * (len(cls.YB) + 1) + yi).long()
+
+    def _vo_descriptor(self, diff: Tensor) -> Tensor:
+        """diff [B,K,T,C] -> [B, nb*C]. vo_bins=0 이면 전역 평균([B,C])."""
+        if not self.vo_bins:
+            return diff.mean(dim=(1, 2))
+        b, k, t, c = diff.shape
+        nb = self._vo_bin_count()
+        flat = diff.reshape(b, k * t, c)
+        idx = self.vo_bin_id.view(1, -1, 1).expand(b, -1, c)
+        acc = torch.zeros(b, nb, c, dtype=flat.dtype, device=flat.device)
+        acc.scatter_add_(1, idx, flat)
+        cnt = torch.zeros(b, nb, 1, dtype=flat.dtype, device=flat.device)
+        cnt.scatter_add_(1, self.vo_bin_id.view(1, -1, 1).expand(b, -1, 1),
+                         torch.ones_like(flat[..., :1]))
+        return (acc / cnt.clamp_min(1.0)).reshape(b, nb * c)
 
     @staticmethod
     def _build_ribbon(abs5: Tensor, offsets: Tuple[float, ...]) -> Tensor:
@@ -584,7 +624,7 @@ class SparseScoreDrive(nn.Module):
             valid = valid | vk
         if self.vo_head_on:
             # 후보·waypoint 축으로 평균낸 시간차 = 장면 수준 겉보기 운동 서술자
-            mot = torch.cat([(f_now - fh).mean(dim=(1, 2)) for fh in f_hist], dim=-1)
+            mot = torch.cat([self._vo_descriptor(f_now - fh) for fh in f_hist], dim=-1)
             self._vo_pred = self.vo_head(mot).view(b, nh, 2)
         fused = self.fuse_temporal(f_now, f_hist)
         return self.combine_logits(
