@@ -192,6 +192,7 @@ class SparseScoreDrive(nn.Module):
         seq_head: str = "none",
         vo_head: bool = False,
         vo_bins: int = 0,
+        score_weight: str = "uniform",
     ) -> None:
         super().__init__()
         bank = np.load(str(bank_path), allow_pickle=False)
@@ -322,6 +323,21 @@ class SparseScoreDrive(nn.Module):
                 nn.GELU(), nn.LayerNorm(channels),
                 nn.Linear(channels, max(int(n_hist), 1) * 2))
         self._vo_pred = None          # [B,n_hist,2] stash
+
+        # ⑤-U: waypoint 시간가중. 공식 D3 는 [11,11,5,5,2,2]/36 으로 첫 1초에 61%,
+        # 첫 2초에 89% 가 실린다. 그런데 path_score 는 10개 waypoint 를 **균등 평균**
+        # 해왔다. 즉 채점 기준과 점수 산출이 불일치했다.
+        #   uniform  : 기존(전부 1)
+        #   official : 첫 6점에 D3 가중, 3.5~5초 꼬리에는 1 (shortlist 다양성용)
+        #   early    : 첫 6점만 (D3 지지집합에 정확히 대응)
+        self.score_weight_kind = str(score_weight)
+        _W = {"uniform": [1.] * 10,
+              "official": [11., 11., 5., 5., 2., 2., 1., 1., 1., 1.],
+              "early": [11., 11., 5., 5., 2., 2., 0., 0., 0., 0.]}
+        if self.score_weight_kind not in _W:
+            raise ValueError(f"unknown score_weight: {score_weight}")
+        _w = torch.tensor(_W[self.score_weight_kind], dtype=torch.float32)
+        self.register_buffer("score_time_w", _w / _w.sum(), persistent=False)
 
         self.seq_head_kind = str(seq_head)
         if self.seq_head_kind == "tcn":
@@ -536,8 +552,8 @@ class SparseScoreDrive(nn.Module):
         else:
             compatibility = (visual * kin[None]).sum(dim=-1) / math.sqrt(visual.shape[-1])
             compatibility = compatibility + self.local_score(sampled).squeeze(-1)
-        valid_f = valid.to(compatibility.dtype)
-        path_score = (compatibility * valid_f).sum(dim=-1) / valid_f.sum(dim=-1).clamp_min(1.0)
+        valid_f = valid.to(compatibility.dtype) * self.score_time_w.to(compatibility.dtype)
+        path_score = (compatibility * valid_f).sum(dim=-1) / valid_f.sum(dim=-1).clamp_min(1e-6)
 
         scene = p4.mean(dim=(1, 3, 4))
         if self.feature_norm:

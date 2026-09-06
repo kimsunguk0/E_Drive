@@ -37,6 +37,7 @@ def load_model(ckpt, device):
         use_p1=bool(a.get("use_p1", 0)), n_hist=nh,
         corridor=tuple(float(x) for x in str(a.get("corridor", "0")).split(",") if x != ""),
         seq_head=a.get("seq_head", "none"),
+        score_weight=a.get("score_weight", "uniform"),
         speed_head=bool(a.get("w_speed", 0) > 0), speed_gamma=0.0).to(device)
     m.fuse_mul = bool(a.get("fuse_mul", 1))
     m.merge_encode = bool(a.get("merge_encode", 0))

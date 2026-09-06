@@ -24,6 +24,7 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 import torch
+import torch.nn.functional as F
 from PIL import Image
 from torch.utils.data import Dataset
 
@@ -372,7 +373,8 @@ class ScoreDriveLoss:
                  aux5=False, beta5=0.1,
                  objective="softce_exp", set_k=16, w_exp_set=0.1,
                  alpha_kd=0.0, tau_kd=1.0, w_occ=0.0, w_rank=1.0,
-                 kd_mode="full", w_speed=0.0, w_vo=0.0):
+                 kd_mode="full", w_speed=0.0, w_vo=0.0,
+                 w_hardneg=0.0, hn_k=16, hn_margin=0.5):
         self.objective = objective      # softce_exp | set
         self.set_k = int(set_k)         # L_set 의 GT-근접 후보 수
         self.w_exp_set = float(w_exp_set)   # set 목적일 때의 작은 L_exp 가중
@@ -383,6 +385,9 @@ class ScoreDriveLoss:
         self.kd_mode = kd_mode              # full | top64 | shortlist
         self.w_speed = float(w_speed)       # 진행량 회귀 보조 가중
         self.w_vo = float(w_vo)             # 과거 변위(VO) 회귀 보조 가중
+        self.w_hardneg = float(w_hardneg)   # 초기 종방향 hard negative 가중
+        self.hn_k = int(hn_k)               # D5 상위 몇 개를 혼동 후보 풀로 볼지
+        self.hn_margin = float(hn_margin)
         self.target_temp = target_temp
         self.tau_exp = tau_exp
         self.w_exp = w_exp
@@ -467,6 +472,33 @@ class ScoreDriveLoss:
         return torch.nn.functional.binary_cross_entropy_with_logits(
             z, occ_lab, pos_weight=pw)
 
+    def _hardneg(self, logits, D3, D5):
+        """⑤-V: "5초 목적지는 맞는데 초기 타이밍이 틀린" 후보를 눌러준다.
+
+        ⑤-H 실측: regret 의 77% 가 endpoint 2m 이내 프레임에서 나오고,
+        5초 endpoint 를 완벽히 알아도 이득이 0 인 반면 1.5~2초 종방향 위치는
+        83% 를 회수한다. 즉 진짜 혼동은 **같은 목적지, 다른 초기 진행**이다.
+        그 후보는 정확히 'D5 는 낮고 D3 는 높은' 후보다.
+
+        D5 최저 hn_k 개를 혼동 풀로 잡고, 그 안에서 D3 가 가장 나쁜 것을 negative,
+        전체 D3 최저를 positive 로 두어 hinge margin 을 건다.
+        """
+        with torch.no_grad():
+            pos = D3.argmin(dim=1)                                  # [B]
+            pool = D5.topk(self.hn_k, dim=1, largest=False).indices  # [B,k] 목적지 근접
+            d3p = torch.gather(D3, 1, pool)                          # [B,k]
+            neg = torch.gather(pool, 1, d3p.argmax(dim=1, keepdim=True)).squeeze(1)
+            # positive 가 풀에 뽑혀 negative 와 같아지면 그 표본은 뺀다
+            valid = (neg != pos).float()
+        lp = torch.gather(logits, 1, pos[:, None]).squeeze(1)
+        ln = torch.gather(logits, 1, neg[:, None]).squeeze(1)
+        gap = torch.gather(D3, 1, neg[:, None]).squeeze(1) - \
+            torch.gather(D3, 1, pos[:, None]).squeeze(1)
+        # margin 은 실제 D3 격차에 비례시킨다(격차가 작으면 강하게 밀 이유가 없다)
+        m = self.hn_margin * torch.clamp(gap / 0.5, max=2.0)
+        loss = F.relu(m - (lp - ln)) * valid
+        return loss.sum() / valid.sum().clamp_min(1.0)
+
     def _speed(self, pred, lab):
         """진행량 회귀 (smooth L1). S3/S5 는 /30 정규화, r 은 [0,1]."""
         return torch.nn.functional.smooth_l1_loss(pred.float(), lab, beta=0.05)
@@ -509,6 +541,10 @@ class ScoreDriveLoss:
                 vo_pred.float() / 10.0, vo_lab / 10.0, beta=0.02)
             loss = loss + self.w_vo * tvo
             comp["vo"] = tvo.detach()
+        if self.w_hardneg > 0.0 and D5 is not None:
+            thn = self._hardneg(logits, D3, D5)
+            loss = loss + self.w_hardneg * thn
+            comp["hn"] = thn.detach()
         if self.aux5 and D5 is not None:
             te5 = self._exp(D5, logits)
             loss = loss + self.beta5 * te5

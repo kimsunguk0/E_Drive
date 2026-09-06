@@ -216,6 +216,13 @@ def main():
                     help="경로 법선 방향 지면 오프셋(m), 콤마구분. 예 '0,0.75,-0.75,1.5,-1.5'")
     ap.add_argument("--seq-head", default="none", choices=["none", "tcn"],
                     help="waypoint 순서/곡률을 읽는 sequence head")
+    ap.add_argument("--w-hardneg", type=float, default=0.0,
+                    help=">0 이면 '목적지 같고 초기 진행 다른' 후보에 margin 을 건다")
+    ap.add_argument("--hn-k", type=int, default=16)
+    ap.add_argument("--hn-margin", type=float, default=0.5)
+    ap.add_argument("--score-weight", default="uniform",
+                    choices=["uniform", "official", "early"],
+                    help="path_score 의 waypoint 시간가중. 공식 D3 는 첫 1초에 61%%")
     ap.add_argument("--vo-bins", type=int, default=0,
                     help=">0 이면 VO 서술자를 지면 4x3 구간별로 만든다(전역 평균 대신)")
     ap.add_argument("--w-vo", type=float, default=0.0,
@@ -307,7 +314,7 @@ def main():
         use_p1=bool(args.use_p1), n_hist=args.n_hist,
         corridor=tuple(float(x) for x in str(args.corridor).split(",") if x != ""),
         seq_head=args.seq_head, vo_head=(args.w_vo > 0.0),
-        vo_bins=args.vo_bins,
+        vo_bins=args.vo_bins, score_weight=args.score_weight,
         speed_head=(args.w_speed > 0.0),
         speed_gamma=args.speed_gamma).to(device)
     model.merge_encode = bool(args.merge_encode)
@@ -350,7 +357,8 @@ def main():
                                alpha_kd=args.alpha_kd, tau_kd=args.tau_kd,
                                w_occ=args.w_occ, w_rank=args.w_rank,
                                kd_mode=args.kd_mode, w_speed=args.w_speed,
-                               w_vo=args.w_vo)
+                               w_vo=args.w_vo, w_hardneg=args.w_hardneg,
+                               hn_k=args.hn_k, hn_margin=args.hn_margin)
     P(f"offset_sample={args.offset_sample} use_p1={args.use_p1} "
       f"w_occ={args.w_occ} w_rank={args.w_rank} "
       f"n_hist={args.n_hist} hist_scale={args.hist_scale} "
@@ -447,7 +455,7 @@ def main():
             l2ib = lidar2img_dev.unsqueeze(0).expand(img.shape[0], -1, -1, -1)
             D3 = C.metric_d3(gt3, anchors_abs, cw3)
             D5 = None
-            if args.aux5:
+            if args.aux5 or args.w_hardneg > 0.0:
                 gt5 = b["gt5"].to(device, non_blocking=True)
                 m5 = b["mask5"].to(device, non_blocking=True)
                 D5 = C.metric_d5(gt5, m5, cand_abs5, cw5)
