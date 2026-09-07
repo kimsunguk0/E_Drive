@@ -1,5 +1,11 @@
 # ETRI MotionDrive — 4908989 이후 재설계
 
+> 현재 실행 설계는 `ETRI_MOTIONDRIVE_V2_EXECUTION_SPEC.md`를 따른다.
+> 업데이트 OPEN_ISSUE 질문8은 goal을 실제 공통 BEV/scene 특징 형성에 쓰는 것도
+> 허용한다. 아래의 goal-blind 5초 후보/row-selector 주력안은 이제 백업 B다.
+> goal 불변성 검증과 goal/status 제한은 V2의 트랙별 규정표로 해석한다.
+> 본문은 이전 설계·감사 이력을 보존하기 위해 남긴다.
+
 작성: 2026-09-07. 근거 커밋: `490898943b267c22ae34141a930608494f99963e`.
 작업루트: `/NHNHOME/data/sukim/adcl`.
 
