@@ -9,10 +9,11 @@ from pathlib import Path
 
 import torch
 from torch import nn
+from torch.nn import functional as F
 
 from scripts.sparse_scoredrive import ResNet34FPN128
 
-from .config import MotionDriveV2Config
+from .config import MotionDriveV2Config, validated_plan_output_scale
 from .motion_encoder import MotionEncoder
 from .planner import DirectTrajectoryPlanner
 from .scene_encoder import SharedSceneEncoder
@@ -30,6 +31,35 @@ class MotionDriveV2(nn.Module):
         self.scene_encoder = SharedSceneEncoder(config)
         self.motion_encoder = MotionEncoder(config)
         self.planner = DirectTrajectoryPlanner(config)
+
+    @torch.no_grad()
+    def reparameterize_plan_output_scale(self, new_scale, preserve_function=True):
+        """Change XY head units, optionally preserving the current physical plan.
+
+        With preservation, W'/b' = (old_scale/new_scale) * W/b row-wise.
+        This is a coordinate-unit reparameterization INSIDE the neural head:
+        there is no goal, trajectory correction, or kinematic extrapolation.
+        It introduces no parameter/buffer keys, so legacy strict loads work.
+
+        Call after checkpoint loading and BEFORE creating the new optimizer.
+        Existing optimizer moments are not transformed by this method; using
+        them after a unit change would not be an equivalent optimizer restart.
+        """
+        scale = validated_plan_output_scale(new_scale)
+        old = validated_plan_output_scale(self.config.plan_output_scale)
+        head = self.planner.xy_head[-1]
+        if not isinstance(head, nn.Linear) or head.out_features != 2:
+            raise TypeError("Expected the final XY projection to be Linear(...,2)")
+        if preserve_function:
+            ratio = head.weight.new_tensor(old) / head.weight.new_tensor(scale)
+            head.weight.mul_(ratio[:, None])
+            if head.bias is not None:
+                head.bias.mul_(ratio)
+        self.config.plan_output_scale = scale
+        self.planner.config.plan_output_scale = scale
+        return {"old_scale": list(old), "new_scale": list(scale),
+                "preserve_function": bool(preserve_function),
+                "optimizer_state_transformed": False}
 
     def load_pretrained_backbone(self, path: str | Path):
         """Load public ResNet trunk only; random compact FPN stays explicit.
@@ -87,13 +117,30 @@ class MotionDriveV2(nn.Module):
         if time_offsets.shape != (b, self.config.n_history) or goal_xy.shape != (b, 2):
             raise ValueError("time_offsets or goal_xy shape mismatch")
         current_levels, current_p4 = self.backbone_fpn(images.flatten(0, 1))
-        history_levels, _ = self.backbone_fpn(history_images.flatten(0, 1))
         current_levels = tuple(f.reshape(b, 6, *f.shape[1:]) for f in current_levels)
-        history_levels = tuple(f.reshape(b, self.config.n_history, *f.shape[1:]) for f in history_levels)
         current_p4 = current_p4.reshape(b, 6, *current_p4.shape[1:])
+        if self.config.motion_input_mode == "legacy":
+            # Keep the original four-history-image BN and compute path intact.
+            history_levels, _ = self.backbone_fpn(history_images.flatten(0, 1))
+            history_levels = tuple(f.reshape(b, self.config.n_history, *f.shape[1:]) for f in history_levels)
+            motion_current = tuple(f[:, 0] for f in current_levels)
+        else:
+            # BOTH experimental arms execute exactly the same five-image pass.
+            # Thus the raw current-feature source is the only contrast, without
+            # confounding it with history BatchNorm statistics or compute cost.
+            current_front_small = F.interpolate(images[:, 0], size=history_images.shape[-2:],
+                                                mode="bilinear", align_corners=False,
+                                                antialias=True)
+            temporal_images = torch.cat([current_front_small[:, None], history_images], 1)
+            temporal_levels, _ = self.backbone_fpn(temporal_images.flatten(0, 1))
+            temporal_levels = tuple(f.reshape(b, self.config.n_history + 1, *f.shape[1:])
+                                    for f in temporal_levels)
+            history_levels = tuple(f[:, 1:] for f in temporal_levels)
+            motion_current = (tuple(f[:, 0] for f in current_levels)
+                              if self.config.motion_input_mode == "high_feature"
+                              else tuple(f[:, 0] for f in temporal_levels))
         # Raw motion branches BEFORE any use of goal or pose alignment.
-        motion = self.motion_encoder(tuple(f[:, 0] for f in current_levels), history_levels,
-                                     time_offsets)
+        motion = self.motion_encoder(motion_current, history_levels, time_offsets)
         scene = self.scene_encoder(current_levels, history_levels, current_p4, lidar2img,
                                    history_transforms, time_offsets, goal_xy,
                                    images.shape[-2:])

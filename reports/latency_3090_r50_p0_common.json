@@ -1,0 +1,416 @@
+{
+  "cuda": {
+    "median_ms": 32.12959861755371,
+    "mean_ms": 32.1292758178711,
+    "p90_ms": 32.163296127319335,
+    "p95_ms": 32.16906547546387,
+    "p99_ms": 32.1925545501709,
+    "std_ms": 0.02758388875993554,
+    "min_ms": 32.0634880065918,
+    "max_ms": 32.21424102783203
+  },
+  "wall": {
+    "median_ms": 32.148430502275005,
+    "mean_ms": 32.14842468500137,
+    "p90_ms": 32.18164167483337,
+    "p95_ms": 32.18837956083007,
+    "p99_ms": 32.21993195533287,
+    "std_ms": 0.028279990202837575,
+    "min_ms": 32.08171500591561,
+    "max_ms": 32.23271999740973
+  },
+  "cuda_samples_ms": [
+    32.169151306152344,
+    32.133888244628906,
+    32.154624938964844,
+    32.07340621948242,
+    32.105472564697266,
+    32.0634880065918,
+    32.11161422729492,
+    32.13004684448242,
+    32.12684631347656,
+    32.16559982299805,
+    32.16304016113281,
+    32.14438247680664,
+    32.14336013793945,
+    32.146305084228516,
+    32.127742767333984,
+    32.129150390625,
+    32.10639953613281,
+    32.133121490478516,
+    32.11369705200195,
+    32.1157112121582,
+    32.10115051269531,
+    32.117759704589844,
+    32.1157112121582,
+    32.09030532836914,
+    32.09811019897461,
+    32.21424102783203,
+    32.09414291381836,
+    32.120479583740234,
+    32.140289306640625,
+    32.16896057128906,
+    32.13017654418945,
+    32.14438247680664,
+    32.10371017456055,
+    32.148414611816406,
+    32.12684631347656,
+    32.1607666015625,
+    32.16998291015625,
+    32.15769577026367,
+    32.15052795410156,
+    32.11907196044922,
+    32.11897659301758,
+    32.102142333984375,
+    32.10636901855469,
+    32.13347244262695,
+    32.11542510986328,
+    32.13721466064453,
+    32.136417388916016,
+    32.087039947509766,
+    32.14643096923828,
+    32.15052795410156
+  ],
+  "wall_samples_ms": [
+    32.20662195235491,
+    32.152726023923606,
+    32.17377298278734,
+    32.091774977743626,
+    32.123996992595494,
+    32.08171500591561,
+    32.13149000657722,
+    32.14891301468015,
+    32.14601398212835,
+    32.18379901954904,
+    32.181401969864964,
+    32.162873016204685,
+    32.162901014089584,
+    32.16508298646659,
+    32.146001991350204,
+    32.14794798986986,
+    32.124944031238556,
+    32.15161903062835,
+    32.132218999322504,
+    32.134701032191515,
+    32.120493007823825,
+    32.136100984644145,
+    32.1346260025166,
+    32.10903098806739,
+    32.11543505312875,
+    32.23271999740973,
+    32.11289702448994,
+    32.1394870406948,
+    32.15963300317526,
+    32.18738897703588,
+    32.14962803758681,
+    32.16280497144908,
+    32.12311799870804,
+    32.16724697267637,
+    32.14566601673141,
+    32.17952401610091,
+    32.189190038479865,
+    32.17641799710691,
+    32.16985205654055,
+    32.13870001491159,
+    32.13732602307573,
+    32.12085698032752,
+    32.125013996846974,
+    32.152083003893495,
+    32.13377599604428,
+    32.15726901544258,
+    32.15547202853486,
+    32.10552502423525,
+    32.16449700994417,
+    32.1689389529638
+  ],
+  "warmup": 20,
+  "repeats": 50,
+  "peak_allocated_bytes": 422188032,
+  "peak_reserved_bytes": 522190848,
+  "output_checks": {
+    "output_plan_abs_present": true,
+    "output_plan_abs_finite": true,
+    "output_scene_features_present": true,
+    "output_scene_features_finite": true,
+    "output_motion_features_present": true,
+    "output_motion_features_finite": true,
+    "output_history_hat_present": true,
+    "output_history_hat_finite": true,
+    "output_state_hat_present": true,
+    "output_state_hat_finite": true,
+    "output_occ_logits_present": true,
+    "output_occ_logits_finite": true,
+    "output_lane_logits_present": true,
+    "output_lane_logits_finite": true,
+    "plan_abs_shape": true,
+    "plan_abs_fp32": true,
+    "history_hat_shape": true,
+    "history_hat_fp32": true,
+    "state_hat_shape": true,
+    "state_hat_fp32": true
+  },
+  "output_shapes": {
+    "scene_features": [
+      1,
+      3072,
+      128
+    ],
+    "occ_logits": [
+      1,
+      1,
+      64,
+      48
+    ],
+    "lane_logits": [
+      1,
+      1,
+      64,
+      48
+    ],
+    "scene_visible": [
+      1,
+      1,
+      64,
+      48
+    ],
+    "motion_features": [
+      1,
+      192,
+      128
+    ],
+    "history_hat": [
+      1,
+      4,
+      4
+    ],
+    "state_hat": [
+      1,
+      6
+    ],
+    "history_logvar": [
+      1,
+      4,
+      4
+    ],
+    "state_logvar": [
+      1,
+      5
+    ],
+    "plan_abs": [
+      1,
+      6,
+      2
+    ]
+  },
+  "output_dtypes": {
+    "scene_features": "torch.float32",
+    "occ_logits": "torch.float32",
+    "lane_logits": "torch.float32",
+    "scene_visible": "torch.bool",
+    "motion_features": "torch.float32",
+    "history_hat": "torch.float32",
+    "state_hat": "torch.float32",
+    "history_logvar": "torch.float32",
+    "state_logvar": "torch.float32",
+    "plan_abs": "torch.float32"
+  },
+  "all_output_checks_pass": true,
+  "input_source": {
+    "kind": "file",
+    "path": "/workspace/fixtures/real_batch.pt",
+    "sha256": "f287c518f5d94aaeef2a5a3bce6f623a7cebd3bbeb449751c850a4c8f5a8f765",
+    "sample_identity": {
+      "scenario": [
+        "20260112-105434"
+      ],
+      "session_id": [
+        "session_000_20260112-105434"
+      ],
+      "frame": [
+        30
+      ],
+      "row": [
+        30
+      ],
+      "scen_idx": [
+        0
+      ]
+    },
+    "notice": "File provenance must establish real imagery; loading a file is not proof."
+  },
+  "checkpoint": "checkpoints/best.pth",
+  "model_load": {
+    "checkpoint": "/workspace/checkpoints/best.pth",
+    "config_source": "manifest.model_config",
+    "checkpoint_load_policy": "trusted_user_local_pickle_weights_only_false",
+    "explicit_overrides": {},
+    "explicit_config_sources": [],
+    "evaluation_kind": "checkpoint_configuration",
+    "checkpoint_sha256": "767fbab49f6121be25015eb110ea95baca41b971d6551ec9bc4aa8684f172f98",
+    "checkpoint_model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": false,
+      "state_on": false
+    },
+    "effective_model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": false,
+      "state_on": false
+    }
+  },
+  "checkpoint_sha256": "767fbab49f6121be25015eb110ea95baca41b971d6551ec9bc4aa8684f172f98",
+  "weight_status": "checkpoint_loaded",
+  "device": "cuda:0",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.7.1+cu128",
+  "cuda_runtime": "12.8",
+  "torchvision": "0.22.1+cu128",
+  "cudnn": 90701,
+  "python": "3.10.20",
+  "precision": "bf16",
+  "tf32": false,
+  "config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 2,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": false,
+    "state_on": false
+  },
+  "nvidia_smi_after": "index, name, driver_version, memory.used [MiB], utilization.gpu [%]\n0, NVIDIA GeForce RTX 3090, 580.173.02, 955 MiB, 84 %",
+  "input_shapes": {
+    "images": [
+      1,
+      6,
+      3,
+      432,
+      768
+    ],
+    "history_images": [
+      1,
+      4,
+      3,
+      216,
+      384
+    ],
+    "lidar2img": [
+      1,
+      6,
+      4,
+      4
+    ],
+    "history_transforms": [
+      1,
+      4,
+      4,
+      4
+    ],
+    "time_offsets": [
+      1,
+      4
+    ],
+    "goal_xy": [
+      1,
+      2
+    ]
+  },
+  "source_sha256": {
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "215de3767de4d8392aa1289ed1c90119d6f0e6b8de7c2d5b8e76271fa9545a82",
+    "models/motiondrive_v2/model.py": "ff02fa9388ff4f41a569b0d8a52870db9a4212d902d2f892ccf39a4db727eea7",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "3bf1bd7ce232068713244d119353de26dd53533c1ff446b3c6808b8d08bb7df2",
+    "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/benchmark_motiondrive_v2.py": "cbce7e834c8c796c2272f76c78c4c7dec99962aeee4fc00d9eca154994226c4b",
+    "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b"
+  },
+  "included": "All current/history image forwards, scene, motion, state, occupancy/lane heads, planner.",
+  "excluded": "File loading, preprocessing outside the model, host-to-device transfer; no feature cache used.",
+  "production_latency_gate_final": false,
+  "notice": "Real-input provenance and deployment-equivalent wrapper must be validated before final acceptance."
+}

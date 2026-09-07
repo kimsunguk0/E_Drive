@@ -190,3 +190,116 @@ def test_public_backbone_mapping_does_not_load_compact_fpn(tmp_path):
     assert report["unexpected"] == []
     assert not report["fpn_initialized_from_checkpoint"]
     assert torch.equal(fpn_before, model.backbone_fpn.lat2.weight)
+
+
+def test_unit_reparameterization_preserves_initial_physical_plan_and_legacy_keys():
+    model = MotionDriveV2(tiny_config()).eval()
+    keys_before = set(model.state_dict())
+    param_count = sum(p.numel() for p in model.parameters())
+    with torch.no_grad():
+        # Test preservation at driving-scale metres, not only random tiny output.
+        model.planner.xy_head[-1].weight.mul_(100)
+        model.planner.xy_head[-1].bias.mul_(100)
+        with torch.autocast("cpu", dtype=torch.bfloat16):
+            before = model(**tiny_inputs())
+        report = model.reparameterize_plan_output_scale((20., 5.), preserve_function=True)
+        with torch.autocast("cpu", dtype=torch.bfloat16):
+            after = model(**tiny_inputs())
+    assert after["plan_abs"].dtype == torch.float32
+    assert (after["plan_abs"] - before["plan_abs"]).abs().max() < 1e-4
+    assert report["old_scale"] == [1., 1.]
+    assert report["new_scale"] == [20., 5.]
+    assert not report["optimizer_state_transformed"]
+    assert set(model.state_dict()) == keys_before
+    assert sum(p.numel() for p in model.parameters()) == param_count
+    # Old state dicts have no output-scale keys and remain strict-load compatible.
+    legacy = MotionDriveV2(tiny_config())
+    legacy.load_state_dict(model.state_dict(), strict=True)
+    # Correct metadata must still be saved/restored with the checkpoint.
+    restored = MotionDriveV2(model.config.to_dict()).eval()
+    restored.load_state_dict(model.state_dict(), strict=True)
+    with torch.no_grad(), torch.autocast("cpu", dtype=torch.bfloat16):
+        assert torch.equal(restored(**tiny_inputs())["plan_abs"], after["plan_abs"])
+
+
+@pytest.mark.parametrize("bad", [(0, 1), (-1, 1), (1,), (1, 2, 3),
+                                  (float("nan"), 1), (1, float("inf")), 2., "12"])
+def test_unit_scale_validation_happens_before_modifying_weights(bad):
+    with pytest.raises(ValueError):
+        tiny_config(plan_output_scale=bad)
+    model = MotionDriveV2(tiny_config())
+    before = model.planner.xy_head[-1].weight.detach().clone()
+    with pytest.raises(ValueError):
+        model.reparameterize_plan_output_scale(bad)
+    assert torch.equal(before, model.planner.xy_head[-1].weight)
+    assert model.config.plan_output_scale == (1., 1.)
+
+
+def test_units_without_preservation_only_change_fixed_head_scale():
+    model = MotionDriveV2(tiny_config()).eval()
+    with torch.no_grad():
+        before = model(**tiny_inputs())["plan_abs"]
+        old_weight = model.planner.xy_head[-1].weight.clone()
+        model.reparameterize_plan_output_scale((3., 2.), preserve_function=False)
+        after = model(**tiny_inputs())["plan_abs"]
+    torch.testing.assert_close(after, before * torch.tensor([3., 2.]))
+    assert torch.equal(old_weight, model.planner.xy_head[-1].weight)
+
+
+def test_high_low_motion_modes_have_identical_backbone_inputs_bn_and_scene():
+    high = MotionDriveV2(tiny_config(motion_input_mode="high_feature")).train()
+    low = MotionDriveV2(tiny_config(motion_input_mode="low_feature")).train()
+    low.load_state_dict(high.state_dict(), strict=True)
+    assert set(high.state_dict()) == set(low.state_dict())
+    calls = {"high": [], "low": []}
+    hooks = [high.backbone_fpn.register_forward_pre_hook(
+                 lambda _, args: calls["high"].append(args[0].detach().clone())),
+             low.backbone_fpn.register_forward_pre_hook(
+                 lambda _, args: calls["low"].append(args[0].detach().clone()))]
+    inp = tiny_inputs()
+    with torch.no_grad():
+        a, b = high(**inp), low(**inp)
+    for hook in hooks:
+        hook.remove()
+    assert [tuple(x.shape) for x in calls["high"]] == [(6, 3, 64, 96), (5, 3, 32, 48)]
+    assert len(calls["high"]) == len(calls["low"]) == 2
+    assert all(torch.equal(x, y) for x, y in zip(calls["high"], calls["low"]))
+    expected_small = torch.nn.functional.interpolate(inp["images"][:, 0], size=(32, 48),
+                                                    mode="bilinear", align_corners=False,
+                                                    antialias=True)
+    assert torch.equal(calls["high"][1][:1], expected_small)
+    assert torch.equal(calls["high"][1][1:], inp["history_images"].flatten(0, 1))
+    # Match scene history BN by using five frames in BOTH experimental arms.
+    assert torch.equal(a["scene_features"], b["scene_features"])
+    assert not torch.equal(a["motion_features"], b["motion_features"])
+    for (na, ba), (nb, bb) in zip(high.backbone_fpn.named_buffers(), low.backbone_fpn.named_buffers()):
+        assert na == nb
+        assert torch.equal(ba, bb), na
+    assert sum(p.numel() for p in high.parameters()) == sum(p.numel() for p in low.parameters())
+
+
+@pytest.mark.parametrize("mode", ["high_feature", "low_feature"])
+def test_new_motion_modes_do_not_read_goal_or_pose_and_keep_fp32_heads(mode):
+    model = MotionDriveV2(tiny_config(motion_input_mode=mode)).eval()
+    inp = tiny_inputs()
+    pose = inp["history_transforms"].clone()
+    pose[..., 2, 3] = .4
+    with torch.no_grad(), torch.autocast("cpu", dtype=torch.bfloat16):
+        a = model(**inp)
+        b = model(**{**inp, "goal_xy": inp["goal_xy"] * -4, "history_transforms": pose})
+    for key in ("motion_features", "state_hat", "history_hat"):
+        assert torch.equal(a[key], b[key]), key
+    assert a["plan_abs"].dtype == a["state_hat"].dtype == a["history_hat"].dtype == torch.float32
+    assert not torch.equal(a["scene_features"], b["scene_features"])
+
+
+def test_legacy_motion_mode_preserves_original_backbone_batch_shapes():
+    model = MotionDriveV2(tiny_config()).eval()
+    shapes = []
+    hook = model.backbone_fpn.register_forward_pre_hook(lambda _, args: shapes.append(tuple(args[0].shape)))
+    with torch.no_grad():
+        model(**tiny_inputs())
+    hook.remove()
+    assert shapes == [(6, 3, 64, 96), (4, 3, 32, 48)]
+    with pytest.raises(ValueError):
+        tiny_config(motion_input_mode="unknown")

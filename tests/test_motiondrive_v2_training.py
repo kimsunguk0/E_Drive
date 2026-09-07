@@ -7,7 +7,7 @@ from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from motiondrive_v2_training import (LossWeights, MODEL_INPUTS, balanced_raster_bce,
-                                     compute_loss, model_inputs, weighted_d3)
+                                     compute_loss, model_inputs, tensor_state_sha256, weighted_d3)
 
 
 def test_official_metric_matches_cumulative_definition():
@@ -80,3 +80,38 @@ def test_eval_rejects_explicit_checkpoint_flag_override():
              "arguments": {"phase": "joint"}}
     with pytest.raises(ValueError, match="incompatible explicit"):
         restore_run_configuration(args, saved, {"--goal-on"})
+
+
+def test_init_preserves_architecture_and_only_switches_gs():
+    from train_motiondrive_v2 import initialization_configuration
+    saved = {"model_config": {"goal_on": False, "state_on": False,
+             "backbone_arch": "resnet34", "channels": 32, "grid_size": [12, 8],
+             "plan_output_scale": [10., 5.], "motion_input_mode": "low_feature"}}
+    output = initialization_configuration(saved, goal_on=1, state_on=0)
+    assert output["goal_on"] is True and output["state_on"] is False
+    for key in ("backbone_arch", "channels", "grid_size", "plan_output_scale", "motion_input_mode"):
+        assert output[key] == saved["model_config"][key]
+    with pytest.raises(ValueError, match="backbone"):
+        initialization_configuration(saved, goal_on=1, state_on=0, explicit_arch="resnet50")
+
+
+def test_state_fingerprint_includes_scalar_bfloat_buffers_and_order_independent():
+    state = {"a": torch.tensor(1), "b": torch.randn(2, 3).bfloat16()}
+    original = tensor_state_sha256(state)
+    assert tensor_state_sha256(dict(reversed(list(state.items())))) == original
+    state["a"] += 1
+    assert tensor_state_sha256(state) != original
+
+
+def test_eval_restores_new_flags_and_rejects_implicit_mode_change():
+    from train_motiondrive_v2 import restore_run_configuration
+    args = SimpleNamespace(resume=None, goal_on=1, state_on=1, arch="resnet50", phase="joint",
+                           motion_input_mode=None, plan_output_scale=None)
+    saved = {"model_config": {"goal_on": True, "state_on": True, "backbone_arch": "resnet50",
+                             "plan_output_scale": [10., 5.], "motion_input_mode": "low_feature"},
+             "arguments": {"phase": "joint"}}
+    restore_run_configuration(args, saved, set())
+    assert args.motion_input_mode == "low_feature" and args.plan_output_scale == [10., 5.]
+    args.plan_output_scale = [1., 1.]
+    with pytest.raises(ValueError, match="incompatible explicit"):
+        restore_run_configuration(args, saved, {"--plan-output-scale"})

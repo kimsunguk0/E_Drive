@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 from motiondrive_v2_training import (LossWeights, compute_loss, model_inputs,
-                                     raster_counts, to_device, weighted_d3)
+                                     raster_counts, tensor_state_sha256, to_device, weighted_d3)
 ACTIVE_RUN_DIR = None
 
 
@@ -84,6 +84,10 @@ def restore_run_configuration(args, saved, explicit_options):
         raise ValueError("Checkpoint lacks model/phase configuration")
     settings = {"goal_on": int(config["goal_on"]), "state_on": int(config["state_on"]),
                 "arch": config["backbone_arch"], "phase": saved_args["phase"]}
+    if hasattr(args, "motion_input_mode"):
+        settings["motion_input_mode"] = config.get("motion_input_mode", "legacy")
+    if hasattr(args, "plan_output_scale"):
+        settings["plan_output_scale"] = list(config.get("plan_output_scale", (1., 1.)))
     if args.resume:
         for key in ("alpha_occ", "alpha_lane", "alpha_motion", "uncertainty", "lr",
                     "backbone_lr", "weight_decay", "warmup", "precision", "seed"):
@@ -95,6 +99,17 @@ def restore_run_configuration(args, saved, explicit_options):
         if flag in explicit_options and getattr(args, key) != value:
             raise ValueError(f"Checkpoint {key}={value}, incompatible explicit {flag}; use --init for a new experiment")
         setattr(args, key, value)
+    return config
+
+
+def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None):
+    """A fresh paired run inherits every architecture field, changing G/S only."""
+    config = dict(saved.get("model_config", {}))
+    if not config or "backbone_arch" not in config:
+        raise ValueError("Initialization lacks model configuration; do not guess defaults")
+    if explicit_arch is not None and explicit_arch != config["backbone_arch"]:
+        raise ValueError("--init cannot silently change backbone architecture")
+    config.update(goal_on=bool(goal_on), state_on=bool(state_on))
     return config
 
 
@@ -190,6 +205,9 @@ def arguments():
     p.add_argument("--init", help="Common fold-trained initialization; weights only")
     p.add_argument("--resume", help="Explicit full resume checkpoint")
     p.add_argument("--arch", choices=["resnet34", "resnet50"], default="resnet50")
+    p.add_argument("--motion-input-mode", choices=["legacy", "high_feature", "low_feature"])
+    p.add_argument("--plan-output-scale", type=float, nargs=2, metavar=("X", "Y"),
+                   help="Internal neural output units; inverse-rescale last Linear to preserve initial predictions")
     p.add_argument("--train-stride", type=int, default=1)
     p.add_argument("--eval-stride", type=int, default=5)
     p.add_argument("--max-train-samples", type=int, default=0)
@@ -206,6 +224,7 @@ def arguments():
 def main():
     global ACTIVE_RUN_DIR
     args = arguments()
+    explicit = {token.split("=", 1)[0] for token in sys.argv[1:] if token.startswith("--")}
     from motiondrive_v2_data import MotionDriveDataset
     from models.motiondrive_v2 import MotionDriveV2, MotionDriveV2Config
     if args.init and args.resume:
@@ -236,14 +255,23 @@ def main():
             raise ValueError("Initialization/resume split lineage mismatch or missing")
         load_report["common_checkpoint_sha256"] = sha256(args.resume or args.init)
     if common is not None and (args.resume or args.eval_only):
-        explicit = {token.split("=", 1)[0] for token in sys.argv[1:] if token.startswith("--")}
         config = MotionDriveV2Config(**restore_run_configuration(args, common["manifest"], explicit))
+    elif common is not None:
+        config = MotionDriveV2Config(**initialization_configuration(
+            common["manifest"], goal_on=args.goal_on, state_on=args.state_on,
+            explicit_arch=args.arch if "--arch" in explicit else None))
+        args.arch = config.backbone_arch
     else:
         config = MotionDriveV2Config(backbone_arch=args.arch, goal_on=bool(args.goal_on),
                                     state_on=bool(args.state_on))
-        if args.phase == "pretrain":
-            config.goal_on = False
-            config.state_on = False
+    if args.phase == "pretrain":
+        config.goal_on = False
+        config.state_on = False
+    if args.motion_input_mode is not None:
+        previous_mode = config.motion_input_mode
+        config.motion_input_mode = args.motion_input_mode
+        if previous_mode != config.motion_input_mode:
+            load_report["motion_input_mode_override"] = {"from": previous_mode, "to": config.motion_input_mode}
     model = MotionDriveV2(config)
     if args.pretrained:
         load_report["backbone"] = model.load_pretrained_backbone(args.pretrained)
@@ -251,6 +279,14 @@ def main():
             raise ValueError(f"Incomplete public backbone load: {load_report['backbone']}")
     if common is not None:
         model.load_state_dict(common["model"], strict=True)
+    if args.plan_output_scale is not None:
+        previous_scale = list(config.plan_output_scale)
+        model.reparameterize_plan_output_scale(args.plan_output_scale, preserve_function=True)
+        load_report["plan_output_unit_reparameterization"] = {
+            "from": previous_scale, "to": list(config.plan_output_scale),
+            "initial_function_preserved": True,
+            "note": "Inverse scale of final Linear rows; Adam parameterization changes, not target coordinates"}
+    initial_state_sha = tensor_state_sha256(model.state_dict())
     model.to(device)
     backbone, other = [], []
     for name, param in model.named_parameters():
@@ -273,6 +309,8 @@ def main():
         "gpu_name": torch.cuda.get_device_name(device) if device.type == "cuda" else "CPU",
         "pretrained_sha256": sha256(args.pretrained) if args.pretrained else None,
         "supervision_manifest_sha256": sha256(Path(args.supervision_root) / "supervision_manifest.json"),
+        "initial_model_state_sha256": initial_state_sha,
+        "initial_parameter_count": sum(p.numel() for p in model.parameters()),
         "status": "starting", "pid": os.getpid(),
     }
     atomic_json(run_dir / "manifest.json", manifest)
@@ -297,6 +335,11 @@ def main():
         return
     training = dataset("train", args.train_stride, args.max_train_samples, args.train_scenes)
     manifest["data_counts"] = {"train": len(training), "eval": len(evaluation)}
+    manifest["train_rows_sha256"] = hashlib.sha256(
+        np.asarray(training.rows, dtype="<i8").tobytes()).hexdigest()
+    manifest["eval_rows_sha256"] = hashlib.sha256(
+        np.asarray(evaluation.rows, dtype="<i8").tobytes()).hexdigest()
+    manifest["sample_order_policy"] = "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log"
     generator = torch.Generator().manual_seed(args.seed)
     train_loader = DataLoader(training, batch_size=args.batch, shuffle=True,
                               num_workers=args.workers, pin_memory=device.type == "cuda",
@@ -330,6 +373,7 @@ def main():
     if not args.resume:
         atomic_checkpoint(run_dir / "initial.pth", checkpoint())
     started = time.monotonic()
+    sample_order_digest = hashlib.sha256()
     manifest["status"] = "running"
     atomic_json(run_dir / "manifest.json", manifest)
     with (run_dir / "metrics.jsonl").open("a", buffering=1) as log:
@@ -345,6 +389,7 @@ def main():
                 if step >= args.steps or requested_stop[0]:
                     break
                 model.train()
+                sample_order_digest.update(np.asarray(raw["row"], dtype="<i8").tobytes())
                 batch = to_device(raw, device)
                 warm = min(1., (step + 1) / max(1, args.warmup))
                 progress = max(0., (step - args.warmup) / max(1, args.steps - args.warmup))
@@ -366,6 +411,7 @@ def main():
                     row = {"kind": "train", "step": step, "epoch": epoch,
                            "elapsed_seconds": time.monotonic() - started,
                            "grad_norm": float(norm), "lr": optimizer.param_groups[-1]["lr"],
+                           "sample_order_sha256": sample_order_digest.hexdigest(),
                            **{k: float(v.detach()) for k, v in parts.items()}}
                     log.write(json.dumps(row, allow_nan=False) + "\n")
                     print(json.dumps(row, allow_nan=False), flush=True)

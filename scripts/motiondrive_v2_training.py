@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
 from typing import Mapping
 
 import torch
@@ -15,6 +16,18 @@ MODEL_INPUTS = (
 TIME_WEIGHTS = (11 / 36, 11 / 36, 5 / 36, 5 / 36, 2 / 36, 2 / 36)
 HISTORY_SCALE = (10., 5., 1., 1.)
 STATE_SCALE = (10., 5., 3., 3., .5)
+
+
+def tensor_state_sha256(state: Mapping[str, Tensor]) -> str:
+    """Order-independent bitwise fingerprint; includes buffers and tensor metadata."""
+    digest = hashlib.sha256()
+    for name, tensor in sorted(state.items()):
+        if not isinstance(tensor, Tensor):
+            raise TypeError(f"Non-tensor state entry: {name}")
+        value = tensor.detach().cpu().contiguous()
+        digest.update((name + "\0" + str(value.dtype) + "\0" + str(tuple(value.shape)) + "\0").encode())
+        digest.update(value.reshape(-1).view(torch.uint8).numpy().tobytes())
+    return digest.hexdigest()
 
 
 @dataclass

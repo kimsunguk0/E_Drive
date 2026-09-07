@@ -1,0 +1,368 @@
+{
+  "checks": {
+    "planner_signature_no_direct_goal_or_supplied_state": true,
+    "output_plan_abs_present": true,
+    "output_plan_abs_finite": true,
+    "output_scene_features_present": true,
+    "output_scene_features_finite": true,
+    "output_motion_features_present": true,
+    "output_motion_features_finite": true,
+    "output_history_hat_present": true,
+    "output_history_hat_finite": true,
+    "output_state_hat_present": true,
+    "output_state_hat_finite": true,
+    "output_occ_logits_present": true,
+    "output_occ_logits_finite": true,
+    "output_lane_logits_present": true,
+    "output_lane_logits_finite": true,
+    "plan_abs_shape": true,
+    "plan_abs_fp32": true,
+    "history_hat_shape": true,
+    "history_hat_fp32": true,
+    "state_hat_shape": true,
+    "state_hat_fp32": true,
+    "calibration_has_visible_scene_cells": true,
+    "motion_encoder.history_head_input_fp32": true,
+    "motion_encoder.state_head_input_fp32": true,
+    "motion_encoder.history_uncertainty_head_input_fp32": true,
+    "motion_encoder.state_uncertainty_head_input_fp32": true,
+    "planner.xy_head_input_fp32": true,
+    "same_input_repeat_bitwise": true,
+    "goal_counterfactual_motion_features_bitwise": true,
+    "goal_counterfactual_history_hat_bitwise": true,
+    "goal_counterfactual_state_hat_bitwise": true,
+    "goal_off_whole_forward_bitwise": true,
+    "alignment_counterfactual_motion_features_bitwise": true,
+    "alignment_counterfactual_history_hat_bitwise": true,
+    "alignment_counterfactual_state_hat_bitwise": true,
+    "fixed_features_planner_goal_cache_invariant": true,
+    "planner_replay_matches_forward": true,
+    "actual_image_perturbation_changes_scene": true,
+    "actual_temporal_perturbation_changes_motion": true,
+    "plan_abs_uses_scene_features": true,
+    "plan_abs_uses_motion_features": true,
+    "occ_logits_uses_scene_features": true,
+    "lane_logits_uses_scene_features": true
+  },
+  "measurements": {
+    "normal_official_temporal_d3_frame_mean": 7.687127113342285,
+    "calibration_scene_visibility": {
+      "fraction": 1.0,
+      "visible_cells": 3072,
+      "total_cells": 3072
+    },
+    "final_head_input_dtypes": {
+      "motion_encoder.history_head": [
+        "torch.float32"
+      ],
+      "motion_encoder.state_head": [
+        "torch.float32"
+      ],
+      "motion_encoder.history_uncertainty_head": [
+        "torch.float32"
+      ],
+      "motion_encoder.state_uncertainty_head": [
+        "torch.float32"
+      ],
+      "planner.xy_head": [
+        "torch.float32"
+      ]
+    },
+    "goal_changes": {
+      "plan_abs": {
+        "bitwise_equal": true,
+        "max_abs": 0.0
+      },
+      "scene_features": {
+        "bitwise_equal": true,
+        "max_abs": 0.0
+      },
+      "motion_features": {
+        "bitwise_equal": true,
+        "max_abs": 0.0
+      },
+      "history_hat": {
+        "bitwise_equal": true,
+        "max_abs": 0.0
+      },
+      "state_hat": {
+        "bitwise_equal": true,
+        "max_abs": 0.0
+      },
+      "occ_logits": {
+        "bitwise_equal": true,
+        "max_abs": 0.0
+      },
+      "lane_logits": {
+        "bitwise_equal": true,
+        "max_abs": 0.0
+      }
+    },
+    "image_perturbations": {
+      "image_zero": {
+        "plan_abs": {
+          "bitwise_equal": false,
+          "max_abs": 0.06197482347488403
+        },
+        "scene_features": {
+          "bitwise_equal": false,
+          "max_abs": 4.269439697265625
+        },
+        "motion_features": {
+          "bitwise_equal": false,
+          "max_abs": 5.343533515930176
+        },
+        "history_hat": {
+          "bitwise_equal": false,
+          "max_abs": 8.170721054077148
+        },
+        "state_hat": {
+          "bitwise_equal": false,
+          "max_abs": 8.66745376586914
+        },
+        "occ_logits": {
+          "bitwise_equal": false,
+          "max_abs": 11.984375
+        },
+        "lane_logits": {
+          "bitwise_equal": false,
+          "max_abs": 7.83203125
+        },
+        "official_temporal_d3_frame_mean": 7.710114479064941
+      },
+      "image_constant": {
+        "plan_abs": {
+          "bitwise_equal": false,
+          "max_abs": 0.07428254187107086
+        },
+        "scene_features": {
+          "bitwise_equal": false,
+          "max_abs": 4.298579216003418
+        },
+        "motion_features": {
+          "bitwise_equal": false,
+          "max_abs": 4.765995502471924
+        },
+        "history_hat": {
+          "bitwise_equal": false,
+          "max_abs": 6.407256126403809
+        },
+        "state_hat": {
+          "bitwise_equal": false,
+          "max_abs": 6.645203590393066
+        },
+        "occ_logits": {
+          "bitwise_equal": false,
+          "max_abs": 11.8515625
+        },
+        "lane_logits": {
+          "bitwise_equal": false,
+          "max_abs": 8.1875
+        },
+        "official_temporal_d3_frame_mean": 7.64162540435791
+      },
+      "temporal_shuffle": {
+        "plan_abs": {
+          "bitwise_equal": false,
+          "max_abs": 0.002387106418609619
+        },
+        "scene_features": {
+          "bitwise_equal": false,
+          "max_abs": 1.3743603229522705
+        },
+        "motion_features": {
+          "bitwise_equal": false,
+          "max_abs": 0.28252923488616943
+        },
+        "history_hat": {
+          "bitwise_equal": false,
+          "max_abs": 0.18859946727752686
+        },
+        "state_hat": {
+          "bitwise_equal": false,
+          "max_abs": 0.07302570343017578
+        },
+        "occ_logits": {
+          "bitwise_equal": false,
+          "max_abs": 2.546875
+        },
+        "lane_logits": {
+          "bitwise_equal": false,
+          "max_abs": 2.4453125
+        },
+        "official_temporal_d3_frame_mean": 7.687206745147705
+      },
+      "image_mismatch": {
+        "plan_abs": {
+          "bitwise_equal": false,
+          "max_abs": 0.030684642493724823
+        },
+        "scene_features": {
+          "bitwise_equal": false,
+          "max_abs": 4.1357645988464355
+        },
+        "motion_features": {
+          "bitwise_equal": false,
+          "max_abs": 5.320034027099609
+        },
+        "history_hat": {
+          "bitwise_equal": false,
+          "max_abs": 2.8655779361724854
+        },
+        "state_hat": {
+          "bitwise_equal": false,
+          "max_abs": 0.9978962540626526
+        },
+        "occ_logits": {
+          "bitwise_equal": false,
+          "max_abs": 12.75
+        },
+        "lane_logits": {
+          "bitwise_equal": false,
+          "max_abs": 6.880859375
+        },
+        "official_temporal_d3_frame_mean": 7.662332057952881
+      }
+    },
+    "feature_gradients": {
+      "plan_abs_uses_scene_features": {
+        "connected": true,
+        "finite": true,
+        "gradient_l2": 0.0008097819518297911,
+        "nonzero": true,
+        "gradient_target": "shared_raster_verified_storage_alias"
+      },
+      "plan_abs_uses_motion_features": {
+        "connected": true,
+        "finite": true,
+        "gradient_l2": 0.00022987172997090966,
+        "nonzero": true,
+        "gradient_target": "returned_feature"
+      },
+      "occ_logits_uses_scene_features": {
+        "connected": true,
+        "finite": true,
+        "gradient_l2": 0.17165617644786835,
+        "nonzero": true,
+        "gradient_target": "shared_raster_verified_storage_alias"
+      },
+      "lane_logits_uses_scene_features": {
+        "connected": true,
+        "finite": true,
+        "gradient_l2": 0.17815539240837097,
+        "nonzero": true,
+        "gradient_target": "shared_raster_verified_storage_alias"
+      }
+    }
+  },
+  "all_executed_checks_pass": true,
+  "gradient_checks_executed": true,
+  "limitations": [
+    "Architecture/dataflow diagnostic, not organizer approval.",
+    "Image perturbation sensitivity does not establish heldout prediction quality.",
+    "Only the V2 direct planner is audited; legacy candidate-row audit is separate."
+  ],
+  "input_source": {
+    "kind": "file",
+    "path": "/workspace/fixtures/real_batch.pt",
+    "sha256": "f287c518f5d94aaeef2a5a3bce6f623a7cebd3bbeb449751c850a4c8f5a8f765",
+    "sample_identity": {
+      "scenario": [
+        "20260112-105434"
+      ],
+      "session_id": [
+        "session_000_20260112-105434"
+      ],
+      "frame": [
+        30
+      ],
+      "row": [
+        30
+      ],
+      "scen_idx": [
+        0
+      ]
+    },
+    "notice": "File provenance must establish real imagery; loading a file is not proof."
+  },
+  "checkpoint": "checkpoints/best.pth",
+  "model_load": {
+    "checkpoint": "/workspace/checkpoints/best.pth",
+    "config_source": "manifest.model_config",
+    "checkpoint_load_policy": "trusted_user_local_pickle_weights_only_false",
+    "explicit_overrides": {},
+    "explicit_config_sources": [],
+    "evaluation_kind": "checkpoint_configuration",
+    "checkpoint_sha256": "767fbab49f6121be25015eb110ea95baca41b971d6551ec9bc4aa8684f172f98",
+    "checkpoint_model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": false,
+      "state_on": false
+    },
+    "effective_model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": false,
+      "state_on": false
+    }
+  },
+  "precision": "bf16",
+  "torch_version": "2.7.1+cu128"
+}

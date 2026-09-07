@@ -45,4 +45,8 @@ class DirectTrajectoryPlanner(nn.Module):
             memory = torch.cat([scene, motion, state_token], 1)
             queries = self.waypoint_queries.float()[None].expand(b, -1, -1)
             decoded = self.decoder(queries, memory)
-            return self.xy_head(decoded.float())
+            normalized_xy = self.xy_head(decoded.float())
+            # Fixed neural-head unit conversion. It does not depend on goal,
+            # predicted state, or post-forward trajectory correction. Keep it
+            # as config metadata (not a buffer) for strict legacy checkpoint IO.
+            return normalized_xy * normalized_xy.new_tensor(self.config.plan_output_scale)
