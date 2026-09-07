@@ -85,16 +85,36 @@ nuScenes L2 avg **0.57** (SparseDrive-S 0.61), 공식 가중치 HuggingFace 공�
 질문4 답변 4: T_infer 는 **초기화 이후 과거 시점 처리부터 마지막 궤적 출력까지
 모든 model forward 의 누적**이다. streaming 모델은 프레임 수만큼 곱해 낸다.
 
-| 모델 | 구성 | 보고/실측 | ETRI 누적 환산 | penalty |
-|---|---|---|---|---:|
-| SparseDrive-S | R50 704×256 ×6cam, queue 4 | 9.0 FPS ≈ 111ms/frame (README, 환경 미기재) | 약 444ms | ×2.72 |
-| dense VAD 7-frame | — | **586.6ms (우리 3090 실측)** | 586.6ms | ×3.43 |
-| **우리 T4 + learned selector** | R34 768×432 ×6cam ×4frame | **46.997ms (3090 실측)** | 46.997ms | **×1.000** |
+**SparseDrive-S 를 실물 3090 에서 직접 측정했다** (86.1M params, 704×256 ×6cam,
+queue_length 4, `deformable_aggregation` CUDA op 을 sm_86 으로 컴파일한 공식 최적 경로).
 
-SparseDrive 를 그대로 쓰면 L2 가 0.20 이어도 실효 0.54 가 된다.
+| 누적 프레임 | median | 프레임당 | p99 | penalty |
+|---:|---:|---:|---:|---:|
+| 1 | 121.76ms | 121.76 | 123.05 | ×1.109 |
+| **4** (우리 T4 와 동일 조건) | **511.10ms** | 127.77 | 514.74 | **×3.055** |
+| 7 (VAD 베이스라인 조건) | 918.82ms | 131.26 | 931.96 | **×5.094** |
+
+| 모델 | 누적 지연 | penalty | L2 0.20 가정 실효 |
+|---|---:|---:|---:|
+| **우리 T4 + learned selector** | **46.997ms (실측)** | **×1.000** | 0.200 |
+| SparseDrive-S 4프레임 | 511.10ms (실측) | ×3.055 | 0.611 |
+| SparseDrive-S 7프레임 | 918.82ms (실측) | ×5.094 | 1.019 |
+| dense VAD 7프레임 | 586.6ms (실측) | ×3.433 | 0.687 |
+
+**SparseDrive 는 우리보다 10.9배 느리다. 1프레임만 써도 121.76ms 로 이미 100ms
+게이트를 넘는다**(×1.109) — 과거를 아예 안 쓰는 current-only 로 돌려도 예산 초과다.
+README 의 9.0 FPS(≈111ms)는 실측 121.76ms 와 대체로 일치했다. 즉 SparseDrive 는
+원래 이 속도이고, ETRI 의 **누적** T_infer 규칙이 이를 치명적으로 만든다.
+
+측정 조건: 가중치 무작위(지연은 가중치 무관), config 규격 합성 입력, 전처리/후처리 제외.
+수정한 것은 `attention.py` 의 `flash_attn` import 가드 한 곳뿐이며, config 가
+`MultiheadTorchAttention`(torch 폴백)을 쓰므로 측정 대상 연산 경로에 flash_attn 은
+등장하지 않는다. mmcv 1.4.0 / mmdet 2.14.0 환경(요구는 1.7.1 / 2.28.2)에서
+그 외 수정 없이 빌드·forward 성공했다.
+산출물: `results/public_e2e/sparsedrive_latency_3090.json`,
+`results/public_e2e/bench_sparsedrive_3090.py`.
+
 **약 47ms 라는 지연은 우리가 직접 만들어서 얻은 유일하고 대체 불가능한 자산이다.**
-
-(SparseDrive FPS 는 README 수치이고 측정 환경이 기재되지 않았다. 실측 전에는 추정이다.)
 
 ## 5. 권고
 
@@ -107,8 +127,9 @@ SparseDrive 를 그대로 쓰면 L2 가 0.20 이어도 실효 0.54 가 된다.
 3. **직접 만드는 것은 의미가 있다.** 다만 근거는 "성능 우위" 가 아니라
    (a) 47ms 지연, (b) 운영국이 권고한 두 형태 중 하나(후보 생성 + goal 선택)를 이미
    구현·검증했다는 점, (c) 어떤 공개 모델도 이 지연 예산 안에 들어오지 않는다는 점이다.
-4. **측정해야 할 것**: SparseDrive-S 의 실제 3090 누적 지연. README FPS 만으로
-   기각하지 않는다. 규정 준수 상태로 얼마나 빠른지가 이식 범위를 정한다.
+4. ~~측정해야 할 것: SparseDrive-S 의 실제 3090 누적 지연~~ **완료.** 511.10ms/4프레임,
+   1프레임만으로도 게이트 초과. 전체 교체는 불가하고 **부품 이식만 가능**하다는 것이
+   실측으로 확정됐다.
 
 ## 6. 부수 확인
 
