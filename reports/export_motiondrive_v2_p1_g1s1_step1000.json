@@ -1,0 +1,54 @@
+{
+  "purpose": "Intermediate P1 G1S1 step1000 checkpoint structure and complete-forward latency audit; not final accuracy evidence or organizer approval",
+  "source_git_sha": "fdd309d8ef23a6ea35131636551c51e51aa12b89",
+  "source_checkpoint": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth",
+    "path_is_mutable_training_last": true,
+    "sha256_at_export": "70e1d3eab0bea5b3a104bb11a5bf5b53b3737ace905975ff2c89a42a462c6d44",
+    "bytes_at_export": 317745565,
+    "step": 1000,
+    "epoch": 0,
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936"
+  },
+  "immutable_inference_bundle": {
+    "path": "/NHNHOME/data/sukim/adcl/checkpoints/motiondrive_v2/p1_g1s1_step1000_inference.pth",
+    "sha256": "87b91d8ceb449ada60a3d362778656815a6180dd386c92c06cabbb9572129319",
+    "bytes": 106193263,
+    "tensor_count": 456,
+    "optimizer_and_rng_excluded": true,
+    "complete_model_config_preserved": true,
+    "goal_on": true,
+    "state_on": true,
+    "motion_input_mode": "low_feature",
+    "plan_output_scale": [10.0, 5.0]
+  },
+  "export_guards": {
+    "same_open_file_descriptor_hashed_and_loaded": true,
+    "in_place_file_size_and_mtime_change_rejected": true,
+    "actual_loaded_step1000_required_before_publication": true,
+    "actual_loaded_g1s1_low_feature_scale10x5_required_before_publication": true,
+    "existing_output_rejected": true,
+    "b200_cuda_visible_devices": "",
+    "source_training_file_modified_by_this_task": false,
+    "committed_source_files_modified_by_this_task": false
+  },
+  "real_fixture": {
+    "sha256": "f287c518f5d94aaeef2a5a3bce6f623a7cebd3bbeb449751c850a4c8f5a8f765",
+    "scenario": "20260112-105434",
+    "frame": 30,
+    "row": 30
+  },
+  "measurement_directory_3090": "/home/intern/adcl_motiondrive_v2/measurements/p1_g1s1_step1000",
+  "audit_executed_checks": 42,
+  "audit_note": "G_OFF-only whole-forward invariance check is not applicable to original G1S1 configuration; no configuration override used",
+  "report_sha256": {
+    "audit_3090_r50_p1_g1s1_step1000.json": "346aee428e99e8819840924e5b38c99970661d3f4c59a71e934ff0927c8f48a3",
+    "latency_3090_r50_p1_g1s1_step1000.json": "2a3df2711decf6f93e782ea52140fd8572797e9bbf30b700e9df7a2a75e1940d"
+  },
+  "safety": {
+    "b200_additional_gpu_used": false,
+    "unrelated_processes_or_containers_stopped": false,
+    "existing_reports_overwritten": false,
+    "measurement_containers_exited_and_gpu_released": true
+  }
+}

@@ -143,3 +143,27 @@ GPU6 기존 작업은 보존했다. 시작 이후 GPU1/2에 짧게 보인 별도
 이 일시적 관찰은 실패 원인으로 단정하지 않으며 최종 latency는 별도3090 단독 측정한다.
 
 실험 진행 중이므로 P1 효과·경쟁력·규정 최종 적합성을 아직 선언하지 않는다.
+
+## P1 step1000 G1S1: 학습 중 3090 독립 감사
+
+실제 읽힌 checkpoint 객체의 step==1000과 G1S1/low_feature/scale=(10,5)를
+bundle 공개 전에 검사했다. 계속 갱신되는 B200 LAST 원파일은 수정하지 않았다.
+원본 SHA `70e1d3ea`로 시작하며 전체 SHA는 export 보고서에 있다.
+완전 config를 보존한 bundle SHA는
+`87b91d8ceb449ada60a3d362778656815a6180dd386c92c06cabbb9572129319`다.
+
+3090 실영상 batch1/원config/no override, warmup20·repeats50:
+CUDA median32.23058ms/p95 32.25929/p99 32.29329, wall median32.25712ms,
+allocated403/reserved500MiB. 현재/과거 영상 encoder·추가 저해상도 current front·
+motion·공통 scene·인지 head·planner를 모두 포함하며 feature cache는 없다.
+모델 밖 전처리/H2D는 제외했다. 4090 실측 또는 최종 제출 wrapper 수치가 아니다.
+
+감사42/42 통과: G1에서는 G0 전용 goal-OFF 전모델 불변성 검사를 적용하지 않는다.
+goal 변경 시 raw motion/history/state bitwise 불변, 고정 feature planner replay 일치,
+scene/motion에서 실제 planner gradient 연결을 확인했다. 이 검사는 full holdout에서
+영상의 실질적 기여를 입증하거나 운영국의 최종 코드 심사를 대신하지 않는다.
+
+보고서: `reports/audit_3090_r50_p1_g1s1_step1000.json`,
+`reports/latency_3090_r50_p1_g1s1_step1000.json`,
+`reports/export_motiondrive_v2_p1_g1s1_step1000.json`.
+측정 컨테이너 종료와3090 GPU 해제를 확인했다. B200 학습은 계속 진행 중이다.

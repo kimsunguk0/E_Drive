@@ -1,0 +1,431 @@
+{
+  "cuda": {
+    "median_ms": 32.23057556152344,
+    "mean_ms": 32.22940231323242,
+    "p90_ms": 32.25507354736328,
+    "p95_ms": 32.25929298400879,
+    "p99_ms": 32.29329093933106,
+    "std_ms": 0.022468883702063708,
+    "min_ms": 32.18422317504883,
+    "max_ms": 32.313377380371094
+  },
+  "wall": {
+    "median_ms": 32.257118000416085,
+    "mean_ms": 32.25643558194861,
+    "p90_ms": 32.281369395786896,
+    "p95_ms": 32.28641338646412,
+    "p99_ms": 32.33251072349958,
+    "std_ms": 0.024563063885623935,
+    "min_ms": 32.21033496083692,
+    "max_ms": 32.364126003813
+  },
+  "cuda_samples_ms": [
+    32.313377380371094,
+    32.23468780517578,
+    32.24147033691406,
+    32.2327995300293,
+    32.20479965209961,
+    32.21913528442383,
+    32.23961639404297,
+    32.27238464355469,
+    32.22230529785156,
+    32.257022857666016,
+    32.2341423034668,
+    32.26115036010742,
+    32.25395202636719,
+    32.22819137573242,
+    32.18422317504883,
+    32.2303352355957,
+    32.23040008544922,
+    32.21811294555664,
+    32.19180679321289,
+    32.19580841064453,
+    32.24576187133789,
+    32.19862365722656,
+    32.231422424316406,
+    32.21481704711914,
+    32.22297668457031,
+    32.190303802490234,
+    32.2334098815918,
+    32.20684814453125,
+    32.208961486816406,
+    32.2182731628418,
+    32.21401596069336,
+    32.25596618652344,
+    32.21712112426758,
+    32.232383728027344,
+    32.24067306518555,
+    32.204864501953125,
+    32.22732925415039,
+    32.23020935058594,
+    32.237728118896484,
+    32.2413444519043,
+    32.230751037597656,
+    32.23244857788086,
+    32.23654556274414,
+    32.230751037597656,
+    32.254974365234375,
+    32.22937774658203,
+    32.2468147277832,
+    32.22528076171875,
+    32.24371337890625,
+    32.20070266723633
+  ],
+  "wall_samples_ms": [
+    32.364126003813,
+    32.261840999126434,
+    32.26755402283743,
+    32.25921496050432,
+    32.23123901989311,
+    32.245268987026066,
+    32.266315014567226,
+    32.299605023581535,
+    32.24926703842357,
+    32.283317996189,
+    32.259533007163554,
+    32.2889459785074,
+    32.28063299320638,
+    32.25372498854995,
+    32.21033496083692,
+    32.25686197401956,
+    32.256671984214336,
+    32.244983012788,
+    32.21825498621911,
+    32.22242498304695,
+    32.27234096266329,
+    32.225124014075845,
+    32.25790901342407,
+    32.24155498901382,
+    32.248875009827316,
+    32.2155489702709,
+    32.260111009236425,
+    32.23363001598045,
+    32.23545802757144,
+    32.24621596746147,
+    32.240412023384124,
+    32.28284895885736,
+    32.243277004454285,
+    32.2592020384036,
+    32.267574046272784,
+    32.23214903846383,
+    32.25371800363064,
+    32.25667402148247,
+    32.26523398188874,
+    32.267539005260915,
+    32.25737402681261,
+    32.258666993584484,
+    32.263529021292925,
+    32.257874961942434,
+    32.28120499989018,
+    32.25554100936279,
+    32.27305901236832,
+    32.25203900365159,
+    32.27049100678414,
+    32.226485025603324
+  ],
+  "warmup": 20,
+  "repeats": 50,
+  "peak_allocated_bytes": 422581248,
+  "peak_reserved_bytes": 524288000,
+  "output_checks": {
+    "output_plan_abs_present": true,
+    "output_plan_abs_finite": true,
+    "output_scene_features_present": true,
+    "output_scene_features_finite": true,
+    "output_motion_features_present": true,
+    "output_motion_features_finite": true,
+    "output_history_hat_present": true,
+    "output_history_hat_finite": true,
+    "output_state_hat_present": true,
+    "output_state_hat_finite": true,
+    "output_occ_logits_present": true,
+    "output_occ_logits_finite": true,
+    "output_lane_logits_present": true,
+    "output_lane_logits_finite": true,
+    "plan_abs_shape": true,
+    "plan_abs_fp32": true,
+    "history_hat_shape": true,
+    "history_hat_fp32": true,
+    "state_hat_shape": true,
+    "state_hat_fp32": true
+  },
+  "output_shapes": {
+    "scene_features": [
+      1,
+      3072,
+      128
+    ],
+    "occ_logits": [
+      1,
+      1,
+      64,
+      48
+    ],
+    "lane_logits": [
+      1,
+      1,
+      64,
+      48
+    ],
+    "scene_visible": [
+      1,
+      1,
+      64,
+      48
+    ],
+    "motion_features": [
+      1,
+      192,
+      128
+    ],
+    "history_hat": [
+      1,
+      4,
+      4
+    ],
+    "state_hat": [
+      1,
+      6
+    ],
+    "history_logvar": [
+      1,
+      4,
+      4
+    ],
+    "state_logvar": [
+      1,
+      5
+    ],
+    "plan_abs": [
+      1,
+      6,
+      2
+    ]
+  },
+  "output_dtypes": {
+    "scene_features": "torch.float32",
+    "occ_logits": "torch.float32",
+    "lane_logits": "torch.float32",
+    "scene_visible": "torch.bool",
+    "motion_features": "torch.float32",
+    "history_hat": "torch.float32",
+    "state_hat": "torch.float32",
+    "history_logvar": "torch.float32",
+    "state_logvar": "torch.float32",
+    "plan_abs": "torch.float32"
+  },
+  "all_output_checks_pass": true,
+  "input_source": {
+    "kind": "file",
+    "path": "/workspace/fixtures/real_batch.pt",
+    "sha256": "f287c518f5d94aaeef2a5a3bce6f623a7cebd3bbeb449751c850a4c8f5a8f765",
+    "sample_identity": {
+      "scenario": [
+        "20260112-105434"
+      ],
+      "session_id": [
+        "session_000_20260112-105434"
+      ],
+      "frame": [
+        30
+      ],
+      "row": [
+        30
+      ],
+      "scen_idx": [
+        0
+      ]
+    },
+    "notice": "File provenance must establish real imagery; loading a file is not proof."
+  },
+  "checkpoint": "checkpoints/p1_g1s1_step1000_inference.pth",
+  "model_load": {
+    "checkpoint": "/workspace/checkpoints/p1_g1s1_step1000_inference.pth",
+    "config_source": "manifest.model_config",
+    "checkpoint_load_policy": "trusted_user_local_pickle_weights_only_false",
+    "explicit_overrides": {},
+    "explicit_config_sources": [],
+    "evaluation_kind": "checkpoint_configuration",
+    "checkpoint_sha256": "87b91d8ceb449ada60a3d362778656815a6180dd386c92c06cabbb9572129319",
+    "checkpoint_model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": true,
+      "state_on": true,
+      "plan_output_scale": [
+        10.0,
+        5.0
+      ],
+      "motion_input_mode": "low_feature"
+    },
+    "effective_model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": true,
+      "state_on": true,
+      "plan_output_scale": [
+        10.0,
+        5.0
+      ],
+      "motion_input_mode": "low_feature"
+    }
+  },
+  "checkpoint_sha256": "87b91d8ceb449ada60a3d362778656815a6180dd386c92c06cabbb9572129319",
+  "weight_status": "checkpoint_loaded",
+  "device": "cuda:0",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.7.1+cu128",
+  "cuda_runtime": "12.8",
+  "torchvision": "0.22.1+cu128",
+  "cudnn": 90701,
+  "python": "3.10.20",
+  "precision": "bf16",
+  "tf32": false,
+  "config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 2,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": true,
+    "state_on": true,
+    "plan_output_scale": [
+      10.0,
+      5.0
+    ],
+    "motion_input_mode": "low_feature"
+  },
+  "nvidia_smi_after": "index, name, driver_version, memory.used [MiB], utilization.gpu [%]\n0, NVIDIA GeForce RTX 3090, 580.173.02, 957 MiB, 87 %",
+  "input_shapes": {
+    "images": [
+      1,
+      6,
+      3,
+      432,
+      768
+    ],
+    "history_images": [
+      1,
+      4,
+      3,
+      216,
+      384
+    ],
+    "lidar2img": [
+      1,
+      6,
+      4,
+      4
+    ],
+    "history_transforms": [
+      1,
+      4,
+      4,
+      4
+    ],
+    "time_offsets": [
+      1,
+      4
+    ],
+    "goal_xy": [
+      1,
+      2
+    ]
+  },
+  "source_sha256": {
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+    "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/benchmark_motiondrive_v2.py": "cbce7e834c8c796c2272f76c78c4c7dec99962aeee4fc00d9eca154994226c4b",
+    "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b"
+  },
+  "included": "All current/history image forwards, scene, motion, state, occupancy/lane heads, planner.",
+  "excluded": "File loading, preprocessing outside the model, host-to-device transfer; no feature cache used.",
+  "production_latency_gate_final": false,
+  "notice": "Real-input provenance and deployment-equivalent wrapper must be validated before final acceptance."
+}
