@@ -1,12 +1,13 @@
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
 import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from evaluate_motiondrive_v2_aux import (Accumulator, confusion_report, correlation, donor_mapping,
+from evaluate_motiondrive_v2_aux import (Accumulator, confusion_report, correlation, donor_mapping, evaluate_checkpoint,
                                          fixed_frames, history_condition)
 
 
@@ -64,3 +65,9 @@ def test_empty_prediction_precision_is_not_invented():
     assert r["recall"] == 0.
     assert r["accuracy"] == .7
     assert correlation(np.full(370, .173, dtype=np.float32), np.arange(370)) is None
+
+
+def test_wrong_expected_step_fails_before_gpu(monkeypatch):
+    monkeypatch.setattr(torch, "load", lambda *args, **kwargs: {"step": 750})
+    with pytest.raises(ValueError, match="checkpoint step 불일치"):
+        evaluate_checkpoint(Path("last.pth"), None, SimpleNamespace(expected_step=1000), "split", "supervision")

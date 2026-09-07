@@ -195,7 +195,10 @@ class Accumulator:
         for scene in sorted(set(self.scene)):
             use = scene_arr == scene
             report["per_scene"][scene] = {"n": int(use.sum()), "vx_mae_m_s": float(np.abs(pred[use, 0] - gt[use, 0]).mean()),
-                                          "history_position_mae_mean4_m": float(xy_error[use].mean())}
+                                          "history_position_mae_mean4_m": float(xy_error[use].mean()),
+                                          "session_id": self.session[int(np.flatnonzero(use)[0])],
+                                          "frames": sorted(int(self.frame[i]) for i in np.flatnonzero(use)),
+                                          "history_position_mae_by_offset_m": xy_error[use].mean(0).tolist()}
         return report
 
 
@@ -221,6 +224,8 @@ def baseline_report(constants, dataset):
 def evaluate_checkpoint(path, dataset, args, split_sha, supervision_sha):
     from models.motiondrive_v2 import MotionDriveV2, MotionDriveV2Config
     checkpoint = torch.load(path, map_location="cpu", weights_only=False)
+    if args.expected_step is not None and checkpoint["step"] != args.expected_step:
+        raise ValueError(f"사전 고정 checkpoint step 불일치: {path}: {checkpoint['step']} != {args.expected_step}")
     manifest = checkpoint["manifest"]
     if manifest["split_sha256"] != split_sha or manifest["supervision_manifest_sha256"] != supervision_sha:
         raise ValueError("Checkpoint 분리 또는 supervision 계보 불일치")
@@ -243,6 +248,18 @@ def evaluate_checkpoint(path, dataset, args, split_sha, supervision_sha):
     report = {"path": str(path), "sha256": sha256(path), "step": checkpoint["step"],
               "model_config": manifest["model_config"], "elapsed_seconds": time.monotonic() - started,
               "conditions": {name: acc.finish() for name, acc in accumulators.items()}}
+    report["run_provenance"] = {k: manifest.get(k) for k in
+        ("git_sha", "arguments", "model_config", "loss_weights", "initial_model_state_sha256",
+         "initial_parameter_count", "train_rows_sha256", "eval_rows_sha256", "load_report")}
+    order_sha = None
+    metrics_path = Path(path).parent / "metrics.jsonl"
+    if metrics_path.exists():
+        with metrics_path.open() as stream:
+            for line in stream:
+                row = json.loads(line)
+                if row.get("kind") == "train" and row.get("step") == checkpoint["step"]:
+                    order_sha = row.get("sample_order_sha256")
+    report["run_provenance"]["sample_order_sha256_at_checkpoint"] = order_sha
     normal = report["conditions"]["normal"]
     report["paired_change_from_normal"] = {
         condition: {"vx_mae_m_s": result["state"]["vx_m_s"]["mae"] - normal["state"]["vx_m_s"]["mae"],
@@ -264,6 +281,10 @@ def main():
     p.add_argument("--output", default="reports/motiondrive_v2_p0_aux_audit.json")
     p.add_argument("--batch", type=int, default=4)
     p.add_argument("--workers", type=int, default=4)
+    p.add_argument("--checkpoint-names", nargs="+", choices=("initial", "best", "last"),
+                   default=["initial", "best", "last"], help="명시적으로 선택한 저장 파일만 감사")
+    p.add_argument("--expected-step", type=int, help="예: LAST1000 비교에서1000; 불일치하면 평가 전 중단")
+    p.add_argument("--skip-baselines", action="store_true", help="이미 고정한 학습상수 기준의 재계산만 생략")
     p.add_argument("--prepare-only", action="store_true", help="CPU 기준값만 계산·출력하며 GPU는 사용하지 않음")
     a = p.parse_args()
     with open(a.split_manifest) as f:
@@ -276,14 +297,14 @@ def main():
                                 frame_stride=5, frames=fixed_frames(), augment=False)
     if len(dataset) != len(manifest["splits"]["tune"]) * 10:
         raise ValueError("사전 고정한 scene당 10프레임 protocol 불일치")
-    constants = constants_from_train(a.supervision_root, manifest)
-    baselines = baseline_report(constants, dataset)
+    constants = constants_from_train(a.supervision_root, manifest) if not a.skip_baselines else {}
+    baselines = baseline_report(constants, dataset) if not a.skip_baselines else {}
     report = {"status": "CPU 준비 완료", "split_manifest_sha256": sha256(a.split_manifest),
               "supervision_manifest_sha256": sha256(Path(a.supervision_root) / "supervision_manifest.json"),
               "protocol": {"split": "tune", "n_scenes": len(manifest["splits"]["tune"]), "n": len(dataset),
                            "frames_per_scene": fixed_frames(), "sample_selection": "stride5 grid에서 scene당 균등10개, 결과 확인 전 고정",
-                           "checkpoints": ["initial.pth", "best.pth", "last.pth"],
-                           "selection": "기존 전체 tune1998의 history_position_mae로 저장된 best 사용; 이번370개 결과로 재선택하지 않음",
+                           "checkpoints": [f"{name}.pth" for name in a.checkpoint_names], "expected_step": a.expected_step,
+                           "selection": "명시한 저장파일과 실제 step을 기록; best는 기존 훈련 선택 기준, LAST는 고정된 종료step. 이번370개로 재선택하지 않음",
                            "perturbation": "현재 영상·goal·시간간격·정렬행렬 고정, 과거 영상만 변경",
                            "donor_mapping": donor_mapping(manifest["splits"]["tune"])},
               "limitations": ["영상 교란은 분포 밖 입력 진단이며 정보량 상한이나 인과 원인의 완전한 증명이 아님",
@@ -303,7 +324,7 @@ def main():
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     torch.backends.cuda.matmul.allow_tf32 = False
-    for name in ("initial", "best", "last"):
+    for name in a.checkpoint_names:
         result = evaluate_checkpoint(Path(a.run_dir) / f"{name}.pth", dataset, a,
                                      report["split_manifest_sha256"], report["supervision_manifest_sha256"])
         report["checkpoint_results"][name] = result
