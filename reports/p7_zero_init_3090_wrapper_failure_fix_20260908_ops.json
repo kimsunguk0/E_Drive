@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "scope": "P7 zero-init RTX3090 technical timing wrapper pre-forward failure and minimal fix",
+  "date_kst": "2026-09-08",
+  "original_attempt": {
+    "stage_root": "/home/intern/adcl_motiondrive_v2/measurements/p7_zero_init_3090.7uR03z",
+    "arm": "control_zero_slot",
+    "base_seed": 0,
+    "ssh_execution_handle": 9152,
+    "child_pid": 83462,
+    "actual_exit_code": 1,
+    "report": "reports/b0_control_zero_init_timing.json",
+    "report_sha256": "e9b3d22e941feabf12c54e3270a2061b53c41c0354bce2650dc7c2e51f1e60e5",
+    "status": "failed",
+    "error_type": "NameError",
+    "error": "name 'C1_SUPERVISION_SHA256' is not defined",
+    "failure_boundary": "pinned metadata construction before source validation, model load, CUDA model work, forward, or timing",
+    "remaining_prescribed_measurements_started": 0,
+    "latency_result_available": false
+  },
+  "earlier_cpu_preflight_observations": [
+    {
+      "result": "actual_rc127",
+      "cause": "generic image python entrypoint absent",
+      "forward_count": 0
+    },
+    {
+      "result": "actual_rc127",
+      "cause": "non-authoritative venv interpreter path absent in container",
+      "forward_count": 0
+    },
+    {
+      "result": "actual_rc125",
+      "cause": "docker command placed -B before the image name",
+      "forward_count": 0
+    },
+    {
+      "result": "ssh_connect_timeout",
+      "cause": "transient network observation; no remote process exit claim",
+      "forward_count": 0
+    },
+    {
+      "result": "actual_rc0_without_stdin_payload",
+      "cause": "docker invocation omitted -i; produced no assembly evidence",
+      "accepted_as_evidence": false,
+      "forward_count": 0
+    }
+  ],
+  "authoritative_cpu_preflight": {
+    "actual_exit_code": 0,
+    "image": "adcl-latency-runtime:cu128",
+    "image_id": "sha256:7c0f4aaf98f2f3391d30d426e6217f524c8717aaa6b7d431fcd6f71740aa15c7",
+    "interpreter": "/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10",
+    "python": "3.10.20",
+    "torch": "2.7.1+cu128",
+    "cuda_build": "12.8",
+    "cuda_available": false,
+    "cuda_initialized": false,
+    "assembled_rows": 4,
+    "base0_common_state_sha256": "fc51a847cc5532e8010454d2452ea8233e0d1e560053d2217f34580f464db1c7",
+    "base1_common_state_sha256": "4f480070eac81176b0a3945484186ccf79063806644be75c4afc41e3bff423a4"
+  },
+  "minimal_fix": {
+    "description": "Import the canonical C1 supervision SHA constant and add an actual main-to-run eight-pin regression that reaches the controlled source validator.",
+    "old_wrapper_sha256": "74e25593fec5f187e54f6ea5732aa4c120b81ad786b9089c88d09b503273eae3",
+    "new_wrapper_sha256": "cbd74a4bd722440a9917b94864bb61c02e303cfc676ed18f1c5cda62ec89f9cb",
+    "old_test_sha256": "6da672b0d6b891570d56935c9a78bf9cd5ba16ec76b06ec031e64152ab1509ff",
+    "new_test_sha256": "cf59a31e063dbb4f32a69012bb133abb3ceb5035c25352706b3176b922074cb8",
+    "model_runtime_recipe_or_tolerance_changed": false,
+    "implementation_tests": {
+      "dedicated_passed": 13,
+      "adjacent_passed": 241,
+      "exit_code": 0
+    },
+    "independent_review": {
+      "status": "PASS",
+      "blockers": 0,
+      "dedicated_passed": 13,
+      "exit_code": 0
+    }
+  },
+  "post_failure_gpu_observation": {
+    "gpu_uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+    "memory_used_mib": 130,
+    "memory_free_mib": 23986,
+    "utilization_percent": 0,
+    "compute_processes": 0
+  },
+  "claims": {
+    "original_failure_relabelled": false,
+    "measurement_completed": false,
+    "timing_gate_pass": false,
+    "accuracy_or_compliance_claim": false,
+    "final_holdout_accessed": false
+  }
+}

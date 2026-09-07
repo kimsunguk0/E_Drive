@@ -14,6 +14,76 @@ def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def test_geometry_contract_sha_is_bound_from_canonical_export_contract():
+    assert p7.C1_SUPERVISION_SHA256 == (
+        "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93")
+
+
+def test_cli_run_preflight_binds_geometry_before_source_validation(monkeypatch, tmp_path):
+    fixture_root = tmp_path / "fixture"
+    fixture_root.mkdir()
+    files = {
+        "init": tmp_path / "init.pth",
+        "run_manifest": tmp_path / "run.json",
+        "training_source_manifest": tmp_path / "training-source.json",
+        "validation_source_manifest": tmp_path / "validation-source.json",
+        "reference": tmp_path / "reference.pt",
+        "raw_manifest": fixture_root / "fixture_manifest.json",
+        "calibration": tmp_path / "calibration.npz",
+        "geometry_contract": tmp_path / "supervision_manifest.json",
+    }
+    for path in files.values():
+        path.write_bytes(b"preflight fixture")
+    output = tmp_path / "result.json"
+    expected = {
+        "init": "a" * 64,
+        "run_manifest": "b" * 64,
+        "training_source_manifest": "c" * 64,
+        "validation_source_manifest": "d" * 64,
+        "reference": p7.REFERENCE_SHA256,
+        "raw_manifest": p7.FIXTURE_MANIFEST_SHA256,
+        "calibration": p7.CALIBRATION_SHA256,
+        "geometry_contract": p7.C1_SUPERVISION_SHA256,
+    }
+    expected_by_path = {str(files[name]): digest for name, digest in expected.items()}
+    real_file_sha = p7.file_sha
+
+    def preflight_sha(path):
+        return expected_by_path.get(str(Path(path)), real_file_sha(path))
+
+    def controlled_source_gate(path, digest):
+        assert Path(path) == files["validation_source_manifest"]
+        assert digest == expected["validation_source_manifest"]
+        raise RuntimeError("controlled validation-source gate reached")
+
+    monkeypatch.setattr(p7, "file_sha", preflight_sha)
+    monkeypatch.setattr(p7, "validate_validation_source_manifest", controlled_source_gate)
+    argv = [
+        "--init", str(files["init"]),
+        "--expected-init-sha256", expected["init"],
+        "--run-manifest", str(files["run_manifest"]),
+        "--expected-run-manifest-sha256", expected["run_manifest"],
+        "--expected-initial-model-state-sha256", "e" * 64,
+        "--training-source-manifest", str(files["training_source_manifest"]),
+        "--expected-training-source-manifest-sha256", expected["training_source_manifest"],
+        "--validation-source-manifest", str(files["validation_source_manifest"]),
+        "--expected-validation-source-manifest-sha256", expected["validation_source_manifest"],
+        "--fixture-root", str(fixture_root),
+        "--reference", str(files["reference"]),
+        "--calibration", str(files["calibration"]),
+        "--geometry-contract", str(files["geometry_contract"]),
+        "--output", str(output),
+        "--expected-physical-gpu-uuid", p7.EXPECTED_GPU_UUID,
+        "--arm", "control_zero_slot",
+        "--base-seed", "0",
+    ]
+    assert p7.main(argv) == 1
+    report = json.loads(output.read_text())
+    assert report["error_type"] == "RuntimeError"
+    assert report["error"] == "controlled validation-source gate reached"
+    assert "NameError" not in report["traceback"]
+
+
 def test_canonical_gpu_uuid_allows_prefix_form_but_rejects_other_card():
     expected = p7.EXPECTED_GPU_UUID
     assert p7.canonical_gpu_uuid(expected) == p7.canonical_gpu_uuid(expected[4:])

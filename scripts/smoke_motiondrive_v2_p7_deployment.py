@@ -34,6 +34,7 @@ from scripts.audit_motiondrive_v2_deploy_inputs import (
     file_sha, make_reference_inputs, tree_sha, validate_identity, verify_raw_files,
 )
 from scripts.benchmark_motiondrive_v2 import summarize_ms
+from scripts.export_motiondrive_v2_inference import C1_SUPERVISION_SHA256
 from scripts.motiondrive_v2_training import tensor_state_sha256
 from scripts.run_motiondrive_v2_p7_goal_routing import (
     ARM_TO_MODE, _build_initialized_model, validate_p0,
