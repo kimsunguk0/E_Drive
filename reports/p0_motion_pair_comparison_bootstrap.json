@@ -1,0 +1,1170 @@
+{
+  "상태": "LAST1000 paired 분석 완료",
+  "expected_step": 1000,
+  "protocol": {
+    "n_scenes": 37,
+    "n_rawtime_sessions": 11,
+    "n_frames": 370,
+    "frames_per_scene": [
+      30,
+      55,
+      85,
+      115,
+      145,
+      175,
+      205,
+      235,
+      265,
+      295
+    ],
+    "bootstrap_repeats": 10000,
+    "seed": 20260907,
+    "primary_ci": "실제 rawtime 세션11개를 복원추출하는 paired percentile95%구간",
+    "secondary_ci": "scene37개 기준 보조 구간; 시간 인접성 때문에 주 구간으로 대체하지 않음",
+    "sampling": "각 세션 안 고정 표본 전체와 paired 차이를 함께 포함; 프레임 독립 bootstrap 금지",
+    "checkpoint": "각 팔 LAST1000만 사용; best 평가를 혼합하거나 이 분석으로 재선택하지 않음"
+  },
+  "fairness_checks": "초기 가중치/파라미터 수/행 목록/누적 표본 순서/일정/손실 및 mode 외 구조 일치",
+  "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "checkpoint_sha256": {
+    "high_feature_last": "14fc37dd2c28de05bb53c5c0b72ced387a3fef27bc805291174cadf7c01ab460",
+    "low_feature_last": "b7af30e12c7ba2d24f44c1039dff2aa68c3f63cd2117342d23365aa3ea5d8b89"
+  },
+  "normal_accuracy": {
+    "vx_mae_m_s": {
+      "high_feature": 1.3874649131620251,
+      "low_feature": 1.2394436203144692,
+      "sign": "low-high; 음수가 저해상도 경로 개선",
+      "primary_rawtime_session": {
+        "mean_difference": -0.14802129284755602,
+        "ci95_percentile": [
+          -0.30823250888536374,
+          0.018441582736086027
+        ],
+        "n_clusters": 11,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": false,
+        "bootstrap_fraction_above_zero": 0.0387,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      },
+      "secondary_scene": {
+        "mean_difference": -0.14802129284755602,
+        "ci95_percentile": [
+          -0.32909024722270064,
+          0.03673757729498103
+        ],
+        "n_clusters": 37,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": false,
+        "bootstrap_fraction_above_zero": 0.0566,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "high_feature": 0.6245044868540119,
+      "low_feature": 0.5929027449440312,
+      "sign": "low-high; 음수가 저해상도 경로 개선",
+      "primary_rawtime_session": {
+        "mean_difference": -0.031601741909980774,
+        "ci95_percentile": [
+          -0.10449222874961321,
+          0.04135422862189656
+        ],
+        "n_clusters": 11,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": false,
+        "bootstrap_fraction_above_zero": 0.1907,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      },
+      "secondary_scene": {
+        "mean_difference": -0.031601741909980774,
+        "ci95_percentile": [
+          -0.10821846520175804,
+          0.047484953087326635
+        ],
+        "n_clusters": 37,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": false,
+        "bootstrap_fraction_above_zero": 0.217,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      }
+    }
+  },
+  "temporal_controls": {
+    "vx_mae_m_s": {
+      "repeat_current": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": -0.031062060916745984,
+            "ci95_percentile": [
+              -0.06808929272535208,
+              0.017874894850707052
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.0961,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": -0.031062060916745984,
+            "ci95_percentile": [
+              -0.07453091049919257,
+              0.005830248646639487
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.0525,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.03240414648442655,
+            "ci95_percentile": [
+              -0.05933474005325466,
+              0.16123438598555426
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.7389,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.03240414648442655,
+            "ci95_percentile": [
+              -0.049187156215712825,
+              0.10589573268552083
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.795,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.06346620740117254,
+            "ci95_percentile": [
+              -0.0009439457598084865,
+              0.15258830737322568
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9717,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.06346620740117254,
+            "ci95_percentile": [
+              0.007902531668141083,
+              0.11845919886553608
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9869,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "reverse_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.009668567696133175,
+            "ci95_percentile": [
+              -0.002517684168961583,
+              0.027036998512416043
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9374,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.009668567696133175,
+            "ci95_percentile": [
+              -0.006640289643326321,
+              0.02557696007393501
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8734,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.030405151682931023,
+            "ci95_percentile": [
+              0.006247317980544097,
+              0.08001810767584372
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9974,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.030405151682931023,
+            "ci95_percentile": [
+              0.006145266040756896,
+              0.05516211195169266
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9942,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.020736583986797848,
+            "ci95_percentile": [
+              -9.33917857374282e-05,
+              0.05746178258033026
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9742,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.020736583986797848,
+            "ci95_percentile": [
+              3.92045120935183e-05,
+              0.041492651966777996
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9753,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "cross_scene_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.6584643947111594,
+            "ci95_percentile": [
+              0.36948127318017415,
+              0.8916450408607159
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.6584643947111594,
+            "ci95_percentile": [
+              0.3886476641168466,
+              0.9621791813421894
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 1.9037405260511346,
+            "ci95_percentile": [
+              1.4192672023211013,
+              2.297335907609335
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 1.9037405260511346,
+            "ci95_percentile": [
+              1.3752552096102688,
+              2.4935754617323744
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 1.2452761313399754,
+            "ci95_percentile": [
+              0.962358509335253,
+              1.4715023955566777
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 1.2452761313399754,
+            "ci95_percentile": [
+              0.8943006842724375,
+              1.619284209649305
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "repeat_current": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.0020981745139972583,
+            "ci95_percentile": [
+              -0.009938181464597856,
+              0.021115788973531925
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.6288,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.0020981745139972583,
+            "ci95_percentile": [
+              -0.013752619589905481,
+              0.016203797749570894
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.6136,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.010720552222148792,
+            "ci95_percentile": [
+              -0.01627015697730069,
+              0.049994994859610224
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.772,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.010720552222148792,
+            "ci95_percentile": [
+              -0.015748109759108442,
+              0.03381461953190533
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.7982,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.008622377708151534,
+            "ci95_percentile": [
+              -0.009401764436968399,
+              0.03173299612927026
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8186,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.008622377708151534,
+            "ci95_percentile": [
+              -0.009561957187346511,
+              0.025324257493421834
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8273,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "reverse_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.014693547745008726,
+            "ci95_percentile": [
+              0.006188345294107091,
+              0.025945597296798382
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.014693547745008726,
+            "ci95_percentile": [
+              0.005392156037929896,
+              0.023990058747900497
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9985,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.02435665235326097,
+            "ci95_percentile": [
+              0.012541525824503465,
+              0.04601914013993821
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.02435665235326097,
+            "ci95_percentile": [
+              0.011329206230269897,
+              0.037470332976128604
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9998,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.009663104608252242,
+            "ci95_percentile": [
+              0.002988350875863824,
+              0.02319079870188778
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9993,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.009663104608252242,
+            "ci95_percentile": [
+              -0.003098929502271317,
+              0.02182102618185248
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9302,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "cross_scene_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.28432891779654734,
+            "ci95_percentile": [
+              0.14820542386479,
+              0.407438532271221
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.28432891779654734,
+            "ci95_percentile": [
+              0.15705031609615763,
+              0.4366258577821222
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.7393806576728821,
+            "ci95_percentile": [
+              0.5382921356086929,
+              0.9084044251200698
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.7393806576728821,
+            "ci95_percentile": [
+              0.5117381451097694,
+              1.0039778040268936
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.45505173987633474,
+            "ci95_percentile": [
+              0.3553804018667766,
+              0.5443580608814954
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.45505173987633474,
+            "ci95_percentile": [
+              0.32160475745394423,
+              0.5956765169831547
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      }
+    }
+  },
+  "per_scene": {
+    "vx_mae_m_s": {
+      "20260113-102709": {
+        "session": "session_019_20260113-102709",
+        "high_normal": 1.1969839334487915,
+        "low_normal": 0.8787927627563477,
+        "normal_low_minus_high": -0.31819117069244385
+      },
+      "20260122-134906": {
+        "session": "session_026_20260122-134906",
+        "high_normal": 2.7344589233398438,
+        "low_normal": 1.7355213165283203,
+        "normal_low_minus_high": -0.9989376068115234
+      },
+      "20260122-134936": {
+        "session": "session_026_20260122-134906",
+        "high_normal": 1.3726128339767456,
+        "low_normal": 0.8675786852836609,
+        "normal_low_minus_high": -0.5050341486930847
+      },
+      "20260122-135506": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 2.0966250896453857,
+        "low_normal": 1.1589874029159546,
+        "normal_low_minus_high": -0.9376376867294312
+      },
+      "20260122-135546": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.8836842775344849,
+        "low_normal": 0.9446643590927124,
+        "normal_low_minus_high": 0.06098008155822754
+      },
+      "20260122-135616": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 1.8595771789550781,
+        "low_normal": 1.3899928331375122,
+        "normal_low_minus_high": -0.4695843458175659
+      },
+      "20260122-135646": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 1.1052998304367065,
+        "low_normal": 1.5500257015228271,
+        "normal_low_minus_high": 0.4447258710861206
+      },
+      "20260122-135800": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 1.2377277612686157,
+        "low_normal": 0.5430210828781128,
+        "normal_low_minus_high": -0.6947066783905029
+      },
+      "20260122-135830": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.73028963804245,
+        "low_normal": 0.5484161376953125,
+        "normal_low_minus_high": -0.18187350034713745
+      },
+      "20260122-135900": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 1.0897163152694702,
+        "low_normal": 0.5366665720939636,
+        "normal_low_minus_high": -0.5530497431755066
+      },
+      "20260209-153550": {
+        "session": "session_040_20260209-153550",
+        "high_normal": 0.605157732963562,
+        "low_normal": 1.063873052597046,
+        "normal_low_minus_high": 0.4587153196334839
+      },
+      "20260209-153620": {
+        "session": "session_040_20260209-153550",
+        "high_normal": 0.6275206804275513,
+        "low_normal": 0.577041506767273,
+        "normal_low_minus_high": -0.05047917366027832
+      },
+      "20260210-100504": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.9844143986701965,
+        "low_normal": 0.49136561155319214,
+        "normal_low_minus_high": -0.4930487871170044
+      },
+      "20260210-100534": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.5741057395935059,
+        "low_normal": 1.1007249355316162,
+        "normal_low_minus_high": -0.47338080406188965
+      },
+      "20260210-100614": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.3711857795715332,
+        "low_normal": 0.634835422039032,
+        "normal_low_minus_high": 0.2636496424674988
+      },
+      "20260210-100644": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.9836044311523438,
+        "low_normal": 0.3548482358455658,
+        "normal_low_minus_high": -0.628756195306778
+      },
+      "20260210-100754": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 2.1716723442077637,
+        "low_normal": 1.4515857696533203,
+        "normal_low_minus_high": -0.7200865745544434
+      },
+      "20260210-100854": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.4709417819976807,
+        "low_normal": 1.5424301624298096,
+        "normal_low_minus_high": 0.0714883804321289
+      },
+      "20260210-101004": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.2063051462173462,
+        "low_normal": 1.5948349237442017,
+        "normal_low_minus_high": 0.38852977752685547
+      },
+      "20260210-101034": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 3.349316358566284,
+        "low_normal": 3.304755687713623,
+        "normal_low_minus_high": -0.04456067085266113
+      },
+      "20260210-101114": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 2.848414897918701,
+        "low_normal": 3.317519426345825,
+        "normal_low_minus_high": 0.469104528427124
+      },
+      "20260210-101214": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 3.524071455001831,
+        "low_normal": 4.143661975860596,
+        "normal_low_minus_high": 0.6195905208587646
+      },
+      "20260213-134648": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.4101455807685852,
+        "low_normal": 1.0933908224105835,
+        "normal_low_minus_high": 0.6832452416419983
+      },
+      "20260213-134718": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.8879867792129517,
+        "low_normal": 0.695101261138916,
+        "normal_low_minus_high": -0.19288551807403564
+      },
+      "20260213-134758": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 1.4931294918060303,
+        "low_normal": 0.5338470339775085,
+        "normal_low_minus_high": -0.9592824578285217
+      },
+      "20260213-134828": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.9167436361312866,
+        "low_normal": 1.7387802600860596,
+        "normal_low_minus_high": 0.822036623954773
+      },
+      "20260213-134938": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.6964206695556641,
+        "low_normal": 0.8307913541793823,
+        "normal_low_minus_high": 0.13437068462371826
+      },
+      "20260213-135038": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 2.134438991546631,
+        "low_normal": 0.9911521077156067,
+        "normal_low_minus_high": -1.1432868838310242
+      },
+      "20260219-103747": {
+        "session": "session_092_20260219-103747",
+        "high_normal": 1.121185541152954,
+        "low_normal": 2.133949041366577,
+        "normal_low_minus_high": 1.012763500213623
+      },
+      "20260219-110038": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.7285373210906982,
+        "low_normal": 0.565632164478302,
+        "normal_low_minus_high": -0.16290515661239624
+      },
+      "20260219-110108": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 1.6580406427383423,
+        "low_normal": 0.8676466941833496,
+        "normal_low_minus_high": -0.7903939485549927
+      },
+      "20260219-110218": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.9461258053779602,
+        "low_normal": 1.0732210874557495,
+        "normal_low_minus_high": 0.1270952820777893
+      },
+      "20260219-90551": {
+        "session": "session_087_20260219-90551",
+        "high_normal": 0.7306121587753296,
+        "low_normal": 1.733940839767456,
+        "normal_low_minus_high": 1.0033286809921265
+      },
+      "20260219-90621": {
+        "session": "session_087_20260219-90551",
+        "high_normal": 1.0315446853637695,
+        "low_normal": 0.6701937913894653,
+        "normal_low_minus_high": -0.3613508939743042
+      },
+      "20260220-134317": {
+        "session": "session_108_20260220-134317",
+        "high_normal": 1.5817863941192627,
+        "low_normal": 0.8334385752677917,
+        "normal_low_minus_high": -0.748347818851471
+      },
+      "20260220-134347": {
+        "session": "session_108_20260220-134317",
+        "high_normal": 2.1288504600524902,
+        "low_normal": 1.744805932044983,
+        "normal_low_minus_high": -0.3840445280075073
+      },
+      "20260303-142827": {
+        "session": "session_112_20260303-142827",
+        "high_normal": 0.8469671010971069,
+        "low_normal": 0.6223794221878052,
+        "normal_low_minus_high": -0.22458767890930176
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "20260113-102709": {
+        "session": "session_019_20260113-102709",
+        "high_normal": 0.4658931791782379,
+        "low_normal": 0.4196850657463074,
+        "normal_low_minus_high": -0.04620811343193054
+      },
+      "20260122-134906": {
+        "session": "session_026_20260122-134906",
+        "high_normal": 1.2329962253570557,
+        "low_normal": 0.849223792552948,
+        "normal_low_minus_high": -0.38377243280410767
+      },
+      "20260122-134936": {
+        "session": "session_026_20260122-134906",
+        "high_normal": 0.6391023397445679,
+        "low_normal": 0.3893044888973236,
+        "normal_low_minus_high": -0.24979785084724426
+      },
+      "20260122-135506": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.8951247930526733,
+        "low_normal": 0.5902957916259766,
+        "normal_low_minus_high": -0.3048290014266968
+      },
+      "20260122-135546": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.35700637102127075,
+        "low_normal": 0.4268569350242615,
+        "normal_low_minus_high": 0.06985056400299072
+      },
+      "20260122-135616": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.8002582788467407,
+        "low_normal": 0.6462898850440979,
+        "normal_low_minus_high": -0.15396839380264282
+      },
+      "20260122-135646": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.54847252368927,
+        "low_normal": 0.7146939635276794,
+        "normal_low_minus_high": 0.16622143983840942
+      },
+      "20260122-135800": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.5677199959754944,
+        "low_normal": 0.26966768503189087,
+        "normal_low_minus_high": -0.2980523109436035
+      },
+      "20260122-135830": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.3598933219909668,
+        "low_normal": 0.26069724559783936,
+        "normal_low_minus_high": -0.09919607639312744
+      },
+      "20260122-135900": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.5166640281677246,
+        "low_normal": 0.32818660140037537,
+        "normal_low_minus_high": -0.18847742676734924
+      },
+      "20260209-153550": {
+        "session": "session_040_20260209-153550",
+        "high_normal": 0.2819485068321228,
+        "low_normal": 0.42624980211257935,
+        "normal_low_minus_high": 0.14430129528045654
+      },
+      "20260209-153620": {
+        "session": "session_040_20260209-153550",
+        "high_normal": 0.2957693040370941,
+        "low_normal": 0.26106399297714233,
+        "normal_low_minus_high": -0.03470531105995178
+      },
+      "20260210-100504": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.46412935853004456,
+        "low_normal": 0.24516963958740234,
+        "normal_low_minus_high": -0.2189597189426422
+      },
+      "20260210-100534": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.7581412196159363,
+        "low_normal": 0.5632166862487793,
+        "normal_low_minus_high": -0.19492453336715698
+      },
+      "20260210-100614": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.17362144589424133,
+        "low_normal": 0.30757784843444824,
+        "normal_low_minus_high": 0.1339564025402069
+      },
+      "20260210-100644": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.44016629457473755,
+        "low_normal": 0.2190782129764557,
+        "normal_low_minus_high": -0.22108808159828186
+      },
+      "20260210-100754": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.9721084833145142,
+        "low_normal": 0.7401347756385803,
+        "normal_low_minus_high": -0.23197370767593384
+      },
+      "20260210-100854": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.7058882713317871,
+        "low_normal": 0.6614800691604614,
+        "normal_low_minus_high": -0.044408202171325684
+      },
+      "20260210-101004": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.5526828169822693,
+        "low_normal": 0.707709789276123,
+        "normal_low_minus_high": 0.15502697229385376
+      },
+      "20260210-101034": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.4385640621185303,
+        "low_normal": 1.5026813745498657,
+        "normal_low_minus_high": 0.06411731243133545
+      },
+      "20260210-101114": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.1564576625823975,
+        "low_normal": 1.4866352081298828,
+        "normal_low_minus_high": 0.33017754554748535
+      },
+      "20260210-101214": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.5256826877593994,
+        "low_normal": 1.9927133321762085,
+        "normal_low_minus_high": 0.4670306444168091
+      },
+      "20260213-134648": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.21279950439929962,
+        "low_normal": 0.5202528834342957,
+        "normal_low_minus_high": 0.30745337903499603
+      },
+      "20260213-134718": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.41787606477737427,
+        "low_normal": 0.34951987862586975,
+        "normal_low_minus_high": -0.06835618615150452
+      },
+      "20260213-134758": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.6943507194519043,
+        "low_normal": 0.26595669984817505,
+        "normal_low_minus_high": -0.42839401960372925
+      },
+      "20260213-134828": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.41091370582580566,
+        "low_normal": 0.7861220240592957,
+        "normal_low_minus_high": 0.37520831823349
+      },
+      "20260213-134938": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.31732049584388733,
+        "low_normal": 0.4222024977207184,
+        "normal_low_minus_high": 0.10488200187683105
+      },
+      "20260213-135038": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.9927054643630981,
+        "low_normal": 0.5558120012283325,
+        "normal_low_minus_high": -0.4368934631347656
+      },
+      "20260219-103747": {
+        "session": "session_092_20260219-103747",
+        "high_normal": 0.5500600934028625,
+        "low_normal": 1.056695580482483,
+        "normal_low_minus_high": 0.5066354870796204
+      },
+      "20260219-110038": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.3214377462863922,
+        "low_normal": 0.318928062915802,
+        "normal_low_minus_high": -0.00250968337059021
+      },
+      "20260219-110108": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.7542020082473755,
+        "low_normal": 0.4464029371738434,
+        "normal_low_minus_high": -0.3077990710735321
+      },
+      "20260219-110218": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.49117183685302734,
+        "low_normal": 0.4732889235019684,
+        "normal_low_minus_high": -0.01788291335105896
+      },
+      "20260219-90551": {
+        "session": "session_087_20260219-90551",
+        "high_normal": 0.31391841173171997,
+        "low_normal": 0.6717010736465454,
+        "normal_low_minus_high": 0.35778266191482544
+      },
+      "20260219-90621": {
+        "session": "session_087_20260219-90551",
+        "high_normal": 0.4233589172363281,
+        "low_normal": 0.3957411050796509,
+        "normal_low_minus_high": -0.027617812156677246
+      },
+      "20260220-134317": {
+        "session": "session_108_20260220-134317",
+        "high_normal": 0.671427845954895,
+        "low_normal": 0.4104970097541809,
+        "normal_low_minus_high": -0.2609308362007141
+      },
+      "20260220-134347": {
+        "session": "session_108_20260220-134317",
+        "high_normal": 0.9961889386177063,
+        "low_normal": 0.8886240124702454,
+        "normal_low_minus_high": -0.10756492614746094
+      },
+      "20260303-142827": {
+        "session": "session_112_20260303-142827",
+        "high_normal": 0.39064309000968933,
+        "low_normal": 0.36704468727111816,
+        "normal_low_minus_high": -0.023598402738571167
+      }
+    }
+  },
+  "주의": [
+    "11세션의 작은 개발 표본이며 단일 seed 결과임",
+    "교란은 분포 밖 진단이므로 민감도 증가를 올바른 물리 운동 관측의 완전한 증명으로 해석하지 않음",
+    "정상 오차 감소와 시간 교란 효과를 분리하며, 다른scene 교란 악화만으로 시간 사용을 확정하지 않음",
+    "두 지표·여러 교란의 구간은 탐색적 진단이며 다중비교 보정을 거친 유의성 선언이 아님"
+  ],
+  "screening": {
+    "mean_vx_reduction_at_least_0p1_m_s": true,
+    "normal_vx_session_ci_entirely_below_zero": false,
+    "설명": "사전개발 screening 조건 일부만 기계적으로 표시; history 이점과 교란 결과 검토 없이 자동 채택하지 않음"
+  },
+  "input_sha256": {
+    "high_audit": "d1c0d32fd1f77569732e0b814745fa512c06b22027ff5e2b8018f7a6860ea007",
+    "low_audit": "b30f8c7f53f08731ab5898b87778247b0e9857dae72418ef652830754bbb9228"
+  }
+}

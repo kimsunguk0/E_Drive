@@ -1,0 +1,2381 @@
+{
+  "상태": "LAST1000 paired 분석 완료",
+  "expected_step": 1000,
+  "protocol": {
+    "n_scenes": 37,
+    "n_rawtime_sessions": 11,
+    "n_frames": 370,
+    "frames_per_scene": [
+      30,
+      55,
+      85,
+      115,
+      145,
+      175,
+      205,
+      235,
+      265,
+      295
+    ],
+    "bootstrap_repeats": 10000,
+    "seed": 20260907,
+    "primary_ci": "실제 rawtime 세션11개를 복원추출하는 paired percentile95%구간",
+    "secondary_ci": "scene37개 기준 보조 구간; 시간 인접성 때문에 주 구간으로 대체하지 않음",
+    "sampling": "각 세션 안 고정 표본 전체와 paired 차이를 함께 포함; 프레임 독립 bootstrap 금지",
+    "checkpoint": "각 팔 LAST1000만 사용; best 평가를 혼합하거나 이 분석으로 재선택하지 않음"
+  },
+  "fairness_checks": "초기 가중치/파라미터 수/행 목록/누적 표본 순서/일정/손실 및 mode 외 구조 일치",
+  "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "checkpoint_sha256": {
+    "high_feature_last": "14fc37dd2c28de05bb53c5c0b72ced387a3fef27bc805291174cadf7c01ab460",
+    "low_feature_last": "b7af30e12c7ba2d24f44c1039dff2aa68c3f63cd2117342d23365aa3ea5d8b89"
+  },
+  "normal_accuracy": {
+    "vx_mae_m_s": {
+      "high_feature": 1.3874649131620251,
+      "low_feature": 1.2394436203144692,
+      "sign": "low-high; 음수가 저해상도 경로 개선",
+      "primary_rawtime_session": {
+        "mean_difference": -0.14802129284755602,
+        "ci95_percentile": [
+          -0.30823250888536374,
+          0.018441582736086027
+        ],
+        "n_clusters": 11,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": false,
+        "bootstrap_fraction_above_zero": 0.0387,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      },
+      "secondary_scene": {
+        "mean_difference": -0.14802129284755602,
+        "ci95_percentile": [
+          -0.32909024722270064,
+          0.03673757729498103
+        ],
+        "n_clusters": 37,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": false,
+        "bootstrap_fraction_above_zero": 0.0566,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "high_feature": 0.6245044868540119,
+      "low_feature": 0.5929027449440312,
+      "sign": "low-high; 음수가 저해상도 경로 개선",
+      "primary_rawtime_session": {
+        "mean_difference": -0.031601741909980774,
+        "ci95_percentile": [
+          -0.10449222874961321,
+          0.04135422862189656
+        ],
+        "n_clusters": 11,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": false,
+        "bootstrap_fraction_above_zero": 0.1907,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      },
+      "secondary_scene": {
+        "mean_difference": -0.031601741909980774,
+        "ci95_percentile": [
+          -0.10821846520175804,
+          0.047484953087326635
+        ],
+        "n_clusters": 37,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": false,
+        "bootstrap_fraction_above_zero": 0.217,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      }
+    }
+  },
+  "temporal_controls": {
+    "vx_mae_m_s": {
+      "repeat_current": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": -0.031062060916745984,
+            "ci95_percentile": [
+              -0.06808929272535208,
+              0.017874894850707052
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.0961,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": -0.031062060916745984,
+            "ci95_percentile": [
+              -0.07453091049919257,
+              0.005830248646639487
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.0525,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.03240414648442655,
+            "ci95_percentile": [
+              -0.05933474005325466,
+              0.16123438598555426
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.7389,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.03240414648442655,
+            "ci95_percentile": [
+              -0.049187156215712825,
+              0.10589573268552083
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.795,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.06346620740117254,
+            "ci95_percentile": [
+              -0.0009439457598084865,
+              0.15258830737322568
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9717,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.06346620740117254,
+            "ci95_percentile": [
+              0.007902531668141083,
+              0.11845919886553608
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9869,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "reverse_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.009668567696133175,
+            "ci95_percentile": [
+              -0.002517684168961583,
+              0.027036998512416043
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9374,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.009668567696133175,
+            "ci95_percentile": [
+              -0.006640289643326321,
+              0.02557696007393501
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8734,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.030405151682931023,
+            "ci95_percentile": [
+              0.006247317980544097,
+              0.08001810767584372
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9974,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.030405151682931023,
+            "ci95_percentile": [
+              0.006145266040756896,
+              0.05516211195169266
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9942,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.020736583986797848,
+            "ci95_percentile": [
+              -9.33917857374282e-05,
+              0.05746178258033026
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9742,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.020736583986797848,
+            "ci95_percentile": [
+              3.92045120935183e-05,
+              0.041492651966777996
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9753,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "cross_scene_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.6584643947111594,
+            "ci95_percentile": [
+              0.36948127318017415,
+              0.8916450408607159
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.6584643947111594,
+            "ci95_percentile": [
+              0.3886476641168466,
+              0.9621791813421894
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 1.9037405260511346,
+            "ci95_percentile": [
+              1.4192672023211013,
+              2.297335907609335
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 1.9037405260511346,
+            "ci95_percentile": [
+              1.3752552096102688,
+              2.4935754617323744
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 1.2452761313399754,
+            "ci95_percentile": [
+              0.962358509335253,
+              1.4715023955566777
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 1.2452761313399754,
+            "ci95_percentile": [
+              0.8943006842724375,
+              1.619284209649305
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "repeat_current": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.0020981745139972583,
+            "ci95_percentile": [
+              -0.009938181464597856,
+              0.021115788973531925
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.6288,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.0020981745139972583,
+            "ci95_percentile": [
+              -0.013752619589905481,
+              0.016203797749570894
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.6136,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.010720552222148792,
+            "ci95_percentile": [
+              -0.01627015697730069,
+              0.049994994859610224
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.772,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.010720552222148792,
+            "ci95_percentile": [
+              -0.015748109759108442,
+              0.03381461953190533
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.7982,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.008622377708151534,
+            "ci95_percentile": [
+              -0.009401764436968399,
+              0.03173299612927026
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8186,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.008622377708151534,
+            "ci95_percentile": [
+              -0.009561957187346511,
+              0.025324257493421834
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8273,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "reverse_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.014693547745008726,
+            "ci95_percentile": [
+              0.006188345294107091,
+              0.025945597296798382
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.014693547745008726,
+            "ci95_percentile": [
+              0.005392156037929896,
+              0.023990058747900497
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9985,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.02435665235326097,
+            "ci95_percentile": [
+              0.012541525824503465,
+              0.04601914013993821
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.02435665235326097,
+            "ci95_percentile": [
+              0.011329206230269897,
+              0.037470332976128604
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9998,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.009663104608252242,
+            "ci95_percentile": [
+              0.002988350875863824,
+              0.02319079870188778
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9993,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.009663104608252242,
+            "ci95_percentile": [
+              -0.003098929502271317,
+              0.02182102618185248
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9302,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "cross_scene_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "high_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.28432891779654734,
+            "ci95_percentile": [
+              0.14820542386479,
+              0.407438532271221
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.28432891779654734,
+            "ci95_percentile": [
+              0.15705031609615763,
+              0.4366258577821222
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "low_feature_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.7393806576728821,
+            "ci95_percentile": [
+              0.5382921356086929,
+              0.9084044251200698
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.7393806576728821,
+            "ci95_percentile": [
+              0.5117381451097694,
+              1.0039778040268936
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_low_minus_high": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.45505173987633474,
+            "ci95_percentile": [
+              0.3553804018667766,
+              0.5443580608814954
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.45505173987633474,
+            "ci95_percentile": [
+              0.32160475745394423,
+              0.5956765169831547
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      }
+    }
+  },
+  "per_scene": {
+    "vx_mae_m_s": {
+      "20260113-102709": {
+        "session": "session_019_20260113-102709",
+        "high_normal": 1.1969839334487915,
+        "low_normal": 0.8787927627563477,
+        "normal_low_minus_high": -0.31819117069244385
+      },
+      "20260122-134906": {
+        "session": "session_026_20260122-134906",
+        "high_normal": 2.7344589233398438,
+        "low_normal": 1.7355213165283203,
+        "normal_low_minus_high": -0.9989376068115234
+      },
+      "20260122-134936": {
+        "session": "session_026_20260122-134906",
+        "high_normal": 1.3726128339767456,
+        "low_normal": 0.8675786852836609,
+        "normal_low_minus_high": -0.5050341486930847
+      },
+      "20260122-135506": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 2.0966250896453857,
+        "low_normal": 1.1589874029159546,
+        "normal_low_minus_high": -0.9376376867294312
+      },
+      "20260122-135546": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.8836842775344849,
+        "low_normal": 0.9446643590927124,
+        "normal_low_minus_high": 0.06098008155822754
+      },
+      "20260122-135616": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 1.8595771789550781,
+        "low_normal": 1.3899928331375122,
+        "normal_low_minus_high": -0.4695843458175659
+      },
+      "20260122-135646": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 1.1052998304367065,
+        "low_normal": 1.5500257015228271,
+        "normal_low_minus_high": 0.4447258710861206
+      },
+      "20260122-135800": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 1.2377277612686157,
+        "low_normal": 0.5430210828781128,
+        "normal_low_minus_high": -0.6947066783905029
+      },
+      "20260122-135830": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.73028963804245,
+        "low_normal": 0.5484161376953125,
+        "normal_low_minus_high": -0.18187350034713745
+      },
+      "20260122-135900": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 1.0897163152694702,
+        "low_normal": 0.5366665720939636,
+        "normal_low_minus_high": -0.5530497431755066
+      },
+      "20260209-153550": {
+        "session": "session_040_20260209-153550",
+        "high_normal": 0.605157732963562,
+        "low_normal": 1.063873052597046,
+        "normal_low_minus_high": 0.4587153196334839
+      },
+      "20260209-153620": {
+        "session": "session_040_20260209-153550",
+        "high_normal": 0.6275206804275513,
+        "low_normal": 0.577041506767273,
+        "normal_low_minus_high": -0.05047917366027832
+      },
+      "20260210-100504": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.9844143986701965,
+        "low_normal": 0.49136561155319214,
+        "normal_low_minus_high": -0.4930487871170044
+      },
+      "20260210-100534": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.5741057395935059,
+        "low_normal": 1.1007249355316162,
+        "normal_low_minus_high": -0.47338080406188965
+      },
+      "20260210-100614": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.3711857795715332,
+        "low_normal": 0.634835422039032,
+        "normal_low_minus_high": 0.2636496424674988
+      },
+      "20260210-100644": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.9836044311523438,
+        "low_normal": 0.3548482358455658,
+        "normal_low_minus_high": -0.628756195306778
+      },
+      "20260210-100754": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 2.1716723442077637,
+        "low_normal": 1.4515857696533203,
+        "normal_low_minus_high": -0.7200865745544434
+      },
+      "20260210-100854": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.4709417819976807,
+        "low_normal": 1.5424301624298096,
+        "normal_low_minus_high": 0.0714883804321289
+      },
+      "20260210-101004": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.2063051462173462,
+        "low_normal": 1.5948349237442017,
+        "normal_low_minus_high": 0.38852977752685547
+      },
+      "20260210-101034": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 3.349316358566284,
+        "low_normal": 3.304755687713623,
+        "normal_low_minus_high": -0.04456067085266113
+      },
+      "20260210-101114": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 2.848414897918701,
+        "low_normal": 3.317519426345825,
+        "normal_low_minus_high": 0.469104528427124
+      },
+      "20260210-101214": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 3.524071455001831,
+        "low_normal": 4.143661975860596,
+        "normal_low_minus_high": 0.6195905208587646
+      },
+      "20260213-134648": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.4101455807685852,
+        "low_normal": 1.0933908224105835,
+        "normal_low_minus_high": 0.6832452416419983
+      },
+      "20260213-134718": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.8879867792129517,
+        "low_normal": 0.695101261138916,
+        "normal_low_minus_high": -0.19288551807403564
+      },
+      "20260213-134758": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 1.4931294918060303,
+        "low_normal": 0.5338470339775085,
+        "normal_low_minus_high": -0.9592824578285217
+      },
+      "20260213-134828": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.9167436361312866,
+        "low_normal": 1.7387802600860596,
+        "normal_low_minus_high": 0.822036623954773
+      },
+      "20260213-134938": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.6964206695556641,
+        "low_normal": 0.8307913541793823,
+        "normal_low_minus_high": 0.13437068462371826
+      },
+      "20260213-135038": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 2.134438991546631,
+        "low_normal": 0.9911521077156067,
+        "normal_low_minus_high": -1.1432868838310242
+      },
+      "20260219-103747": {
+        "session": "session_092_20260219-103747",
+        "high_normal": 1.121185541152954,
+        "low_normal": 2.133949041366577,
+        "normal_low_minus_high": 1.012763500213623
+      },
+      "20260219-110038": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.7285373210906982,
+        "low_normal": 0.565632164478302,
+        "normal_low_minus_high": -0.16290515661239624
+      },
+      "20260219-110108": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 1.6580406427383423,
+        "low_normal": 0.8676466941833496,
+        "normal_low_minus_high": -0.7903939485549927
+      },
+      "20260219-110218": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.9461258053779602,
+        "low_normal": 1.0732210874557495,
+        "normal_low_minus_high": 0.1270952820777893
+      },
+      "20260219-90551": {
+        "session": "session_087_20260219-90551",
+        "high_normal": 0.7306121587753296,
+        "low_normal": 1.733940839767456,
+        "normal_low_minus_high": 1.0033286809921265
+      },
+      "20260219-90621": {
+        "session": "session_087_20260219-90551",
+        "high_normal": 1.0315446853637695,
+        "low_normal": 0.6701937913894653,
+        "normal_low_minus_high": -0.3613508939743042
+      },
+      "20260220-134317": {
+        "session": "session_108_20260220-134317",
+        "high_normal": 1.5817863941192627,
+        "low_normal": 0.8334385752677917,
+        "normal_low_minus_high": -0.748347818851471
+      },
+      "20260220-134347": {
+        "session": "session_108_20260220-134317",
+        "high_normal": 2.1288504600524902,
+        "low_normal": 1.744805932044983,
+        "normal_low_minus_high": -0.3840445280075073
+      },
+      "20260303-142827": {
+        "session": "session_112_20260303-142827",
+        "high_normal": 0.8469671010971069,
+        "low_normal": 0.6223794221878052,
+        "normal_low_minus_high": -0.22458767890930176
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "20260113-102709": {
+        "session": "session_019_20260113-102709",
+        "high_normal": 0.4658931791782379,
+        "low_normal": 0.4196850657463074,
+        "normal_low_minus_high": -0.04620811343193054
+      },
+      "20260122-134906": {
+        "session": "session_026_20260122-134906",
+        "high_normal": 1.2329962253570557,
+        "low_normal": 0.849223792552948,
+        "normal_low_minus_high": -0.38377243280410767
+      },
+      "20260122-134936": {
+        "session": "session_026_20260122-134906",
+        "high_normal": 0.6391023397445679,
+        "low_normal": 0.3893044888973236,
+        "normal_low_minus_high": -0.24979785084724426
+      },
+      "20260122-135506": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.8951247930526733,
+        "low_normal": 0.5902957916259766,
+        "normal_low_minus_high": -0.3048290014266968
+      },
+      "20260122-135546": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.35700637102127075,
+        "low_normal": 0.4268569350242615,
+        "normal_low_minus_high": 0.06985056400299072
+      },
+      "20260122-135616": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.8002582788467407,
+        "low_normal": 0.6462898850440979,
+        "normal_low_minus_high": -0.15396839380264282
+      },
+      "20260122-135646": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.54847252368927,
+        "low_normal": 0.7146939635276794,
+        "normal_low_minus_high": 0.16622143983840942
+      },
+      "20260122-135800": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.5677199959754944,
+        "low_normal": 0.26966768503189087,
+        "normal_low_minus_high": -0.2980523109436035
+      },
+      "20260122-135830": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.3598933219909668,
+        "low_normal": 0.26069724559783936,
+        "normal_low_minus_high": -0.09919607639312744
+      },
+      "20260122-135900": {
+        "session": "session_027_20260122-135506",
+        "high_normal": 0.5166640281677246,
+        "low_normal": 0.32818660140037537,
+        "normal_low_minus_high": -0.18847742676734924
+      },
+      "20260209-153550": {
+        "session": "session_040_20260209-153550",
+        "high_normal": 0.2819485068321228,
+        "low_normal": 0.42624980211257935,
+        "normal_low_minus_high": 0.14430129528045654
+      },
+      "20260209-153620": {
+        "session": "session_040_20260209-153550",
+        "high_normal": 0.2957693040370941,
+        "low_normal": 0.26106399297714233,
+        "normal_low_minus_high": -0.03470531105995178
+      },
+      "20260210-100504": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.46412935853004456,
+        "low_normal": 0.24516963958740234,
+        "normal_low_minus_high": -0.2189597189426422
+      },
+      "20260210-100534": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.7581412196159363,
+        "low_normal": 0.5632166862487793,
+        "normal_low_minus_high": -0.19492453336715698
+      },
+      "20260210-100614": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.17362144589424133,
+        "low_normal": 0.30757784843444824,
+        "normal_low_minus_high": 0.1339564025402069
+      },
+      "20260210-100644": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.44016629457473755,
+        "low_normal": 0.2190782129764557,
+        "normal_low_minus_high": -0.22108808159828186
+      },
+      "20260210-100754": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.9721084833145142,
+        "low_normal": 0.7401347756385803,
+        "normal_low_minus_high": -0.23197370767593384
+      },
+      "20260210-100854": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.7058882713317871,
+        "low_normal": 0.6614800691604614,
+        "normal_low_minus_high": -0.044408202171325684
+      },
+      "20260210-101004": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 0.5526828169822693,
+        "low_normal": 0.707709789276123,
+        "normal_low_minus_high": 0.15502697229385376
+      },
+      "20260210-101034": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.4385640621185303,
+        "low_normal": 1.5026813745498657,
+        "normal_low_minus_high": 0.06411731243133545
+      },
+      "20260210-101114": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.1564576625823975,
+        "low_normal": 1.4866352081298828,
+        "normal_low_minus_high": 0.33017754554748535
+      },
+      "20260210-101214": {
+        "session": "session_046_20260210-100504",
+        "high_normal": 1.5256826877593994,
+        "low_normal": 1.9927133321762085,
+        "normal_low_minus_high": 0.4670306444168091
+      },
+      "20260213-134648": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.21279950439929962,
+        "low_normal": 0.5202528834342957,
+        "normal_low_minus_high": 0.30745337903499603
+      },
+      "20260213-134718": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.41787606477737427,
+        "low_normal": 0.34951987862586975,
+        "normal_low_minus_high": -0.06835618615150452
+      },
+      "20260213-134758": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.6943507194519043,
+        "low_normal": 0.26595669984817505,
+        "normal_low_minus_high": -0.42839401960372925
+      },
+      "20260213-134828": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.41091370582580566,
+        "low_normal": 0.7861220240592957,
+        "normal_low_minus_high": 0.37520831823349
+      },
+      "20260213-134938": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.31732049584388733,
+        "low_normal": 0.4222024977207184,
+        "normal_low_minus_high": 0.10488200187683105
+      },
+      "20260213-135038": {
+        "session": "session_076_20260213-134648",
+        "high_normal": 0.9927054643630981,
+        "low_normal": 0.5558120012283325,
+        "normal_low_minus_high": -0.4368934631347656
+      },
+      "20260219-103747": {
+        "session": "session_092_20260219-103747",
+        "high_normal": 0.5500600934028625,
+        "low_normal": 1.056695580482483,
+        "normal_low_minus_high": 0.5066354870796204
+      },
+      "20260219-110038": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.3214377462863922,
+        "low_normal": 0.318928062915802,
+        "normal_low_minus_high": -0.00250968337059021
+      },
+      "20260219-110108": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.7542020082473755,
+        "low_normal": 0.4464029371738434,
+        "normal_low_minus_high": -0.3077990710735321
+      },
+      "20260219-110218": {
+        "session": "session_097_20260219-110038",
+        "high_normal": 0.49117183685302734,
+        "low_normal": 0.4732889235019684,
+        "normal_low_minus_high": -0.01788291335105896
+      },
+      "20260219-90551": {
+        "session": "session_087_20260219-90551",
+        "high_normal": 0.31391841173171997,
+        "low_normal": 0.6717010736465454,
+        "normal_low_minus_high": 0.35778266191482544
+      },
+      "20260219-90621": {
+        "session": "session_087_20260219-90551",
+        "high_normal": 0.4233589172363281,
+        "low_normal": 0.3957411050796509,
+        "normal_low_minus_high": -0.027617812156677246
+      },
+      "20260220-134317": {
+        "session": "session_108_20260220-134317",
+        "high_normal": 0.671427845954895,
+        "low_normal": 0.4104970097541809,
+        "normal_low_minus_high": -0.2609308362007141
+      },
+      "20260220-134347": {
+        "session": "session_108_20260220-134317",
+        "high_normal": 0.9961889386177063,
+        "low_normal": 0.8886240124702454,
+        "normal_low_minus_high": -0.10756492614746094
+      },
+      "20260303-142827": {
+        "session": "session_112_20260303-142827",
+        "high_normal": 0.39064309000968933,
+        "low_normal": 0.36704468727111816,
+        "normal_low_minus_high": -0.023598402738571167
+      }
+    }
+  },
+  "주의": [
+    "11세션의 작은 개발 표본이며 단일 seed 결과임",
+    "교란은 분포 밖 진단이므로 민감도 증가를 올바른 물리 운동 관측의 완전한 증명으로 해석하지 않음",
+    "정상 오차 감소와 시간 교란 효과를 분리하며, 다른scene 교란 악화만으로 시간 사용을 확정하지 않음",
+    "두 지표·여러 교란의 구간은 탐색적 진단이며 다중비교 보정을 거친 유의성 선언이 아님"
+  ],
+  "screening": {
+    "mean_vx_reduction_at_least_0p1_m_s": true,
+    "normal_vx_session_ci_entirely_below_zero": false,
+    "설명": "사전개발 screening 조건 일부만 기계적으로 표시; history 이점과 교란 결과 검토 없이 자동 채택하지 않음"
+  },
+  "input_sha256": {
+    "high_audit": "d1c0d32fd1f77569732e0b814745fa512c06b22027ff5e2b8018f7a6860ea007",
+    "low_audit": "b30f8c7f53f08731ab5898b87778247b0e9857dae72418ef652830754bbb9228"
+  },
+  "보고서": "P0 motion 입력 정합 수리: LAST1000 고정 비교",
+  "generated_at_utc": "2026-09-07T07:00:20.552520+00:00",
+  "augmentation": "OFF; tune37 고정 stride5 중 scene당10개 370표본, 동일 rawtime 세션",
+  "bootstrap_artifact": {
+    "path": "reports/p0_motion_pair_comparison_bootstrap.json",
+    "sha256": "ac5bfab8f1ffd73b19fff3560e039d854fe20c483c97ebbbc769d15ca0abac06"
+  },
+  "normal_full_tune1998": {
+    "설명": "각 학습 run metrics.jsonl에서 정확히 LAST step1000 정상 평가를 추출. 370 감사와 다른1998표본이며 best를 혼합하지 않음. P0의 planning loss는0이므로 미학습 planning 점수는 제외.",
+    "high_feature": {
+      "source": "work_dirs/motiondrive_v2/p0_motion_highfeature_s0/metrics.jsonl",
+      "source_sha256": "f472ace5e3045acde8c3c743e77bad53085bfc37e250acbc63d2b220233bf0a5",
+      "step": 1000,
+      "n": 1998,
+      "n_sessions": 11,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        1.3682371273979888,
+        0.041915191205668716,
+        0.2990000159347997,
+        0.1045022329053463,
+        0.011675222158917994
+      ],
+      "history_position_mae_by_offset_m": [
+        0.14868480996932606,
+        0.286390832669262,
+        0.6718654106166009,
+        1.3659118726463602
+      ],
+      "history_position_mae_mean4_m": 0.6182132314753873,
+      "occ_iou": 0.43623360411273115,
+      "lane_iou": 0.476244347637017
+    },
+    "low_feature": {
+      "source": "work_dirs/motiondrive_v2/p0_motion_lowfeature_s0/metrics.jsonl",
+      "source_sha256": "a60ed5615de1605b35ec9e298926cb3ab1e7ee2ec23a31f1cebfd4dc5b19a4d2",
+      "step": 1000,
+      "n": 1998,
+      "n_sessions": 11,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        1.2701769712175037,
+        0.04013570782388104,
+        0.2941496743887264,
+        0.09998378870062281,
+        0.011267587479970836
+      ],
+      "history_position_mae_by_offset_m": [
+        0.14730765893480866,
+        0.2861959559274735,
+        0.687193035397812,
+        1.2892075900726758
+      ],
+      "history_position_mae_mean4_m": 0.6024760600831924,
+      "occ_iou": 0.43385825566625347,
+      "lane_iou": 0.4751040136243509
+    },
+    "low_minus_high": {
+      "vx_mae_m_s": -0.09806015618048503,
+      "history_position_mae_mean4_m": -0.015737171392194882
+    }
+  },
+  "fixed370_auxiliary": {
+    "high_feature": {
+      "source": "reports/p0_motion_highfeature_last1000_aux.json",
+      "source_sha256": "d1c0d32fd1f77569732e0b814745fa512c06b22027ff5e2b8018f7a6860ea007",
+      "checkpoint_sha256": "14fc37dd2c28de05bb53c5c0b72ced387a3fef27bc805291174cadf7c01ab460",
+      "step": 1000,
+      "conditions": {
+        "normal": {
+          "n": 370,
+          "n_scenes": 37,
+          "n_sessions": 11,
+          "state": {
+            "vx_m_s": {
+              "n": 370,
+              "mae": 1.387465000152588,
+              "rmse": 1.7647067308425903,
+              "bias": -1.1242101192474365,
+              "p90_abs": 2.9670186042785645,
+              "pearson": 0.9724694847907404
+            },
+            "vy_m_s": {
+              "n": 370,
+              "mae": 0.04145776480436325,
+              "rmse": 0.05390949547290802,
+              "bias": 0.0279939416795969,
+              "p90_abs": 0.0886169970035553,
+              "pearson": 0.9356145368326708
+            },
+            "ax_m_s2": {
+              "n": 370,
+              "mae": 0.2945571839809418,
+              "rmse": 0.4264844059944153,
+              "bias": -0.019499216228723526,
+              "p90_abs": 0.7423161268234253,
+              "pearson": 0.2048067900232582
+            },
+            "ay_m_s2": {
+              "n": 370,
+              "mae": 0.10623899102210999,
+              "rmse": 0.1447192132472992,
+              "bias": 0.03436001017689705,
+              "p90_abs": 0.24222907423973083,
+              "pearson": 0.8712146126320831
+            },
+            "yaw_rate_rad_s": {
+              "n": 370,
+              "mae": 0.011888565495610237,
+              "rmse": 0.016363559290766716,
+              "bias": 0.004749845713376999,
+              "p90_abs": 0.02286056987941265,
+              "pearson": 0.9404002241044724
+            }
+          },
+          "stop": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 24,
+            "tn": 346,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "accuracy": 0.9351351351351351,
+            "balanced_accuracy": 0.5,
+            "brier": 0.033287663012742996,
+            "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+            "probability_threshold": 0.5
+          },
+          "history": [
+            {
+              "frame_offset": 1,
+              "n": 370,
+              "position_mae_m": 0.14934757351875305,
+              "position_rmse_m": 0.1896841824054718,
+              "xy_mae_m": [
+                0.14774547517299652,
+                0.012156933546066284
+              ],
+              "yaw_mae_rad": 0.0035698129795491695,
+              "predicted_sincos_norm_mean": 1.0006263256072998
+            },
+            {
+              "frame_offset": 2,
+              "n": 370,
+              "position_mae_m": 0.29115572571754456,
+              "position_rmse_m": 0.3691265285015106,
+              "xy_mae_m": [
+                0.2899141013622284,
+                0.01346552837640047
+              ],
+              "yaw_mae_rad": 0.004168406128883362,
+              "predicted_sincos_norm_mean": 1.0003259181976318
+            },
+            {
+              "frame_offset": 5,
+              "n": 370,
+              "position_mae_m": 0.6825974583625793,
+              "position_rmse_m": 0.8734238147735596,
+              "xy_mae_m": [
+                0.6808320879936218,
+                0.027287086471915245
+              ],
+              "yaw_mae_rad": 0.0069334921427071095,
+              "predicted_sincos_norm_mean": 0.998958170413971
+            },
+            {
+              "frame_offset": 10,
+              "n": 370,
+              "position_mae_m": 1.3749171495437622,
+              "position_rmse_m": 1.7408589124679565,
+              "xy_mae_m": [
+                1.3696072101593018,
+                0.06510988622903824
+              ],
+              "yaw_mae_rad": 0.011810148134827614,
+              "predicted_sincos_norm_mean": 0.9984773993492126
+            }
+          ],
+          "history_position_mae_mean4_m": 0.6245044767856598,
+          "raster": {
+            "occ": {
+              "tp": 26331,
+              "fp": 28210,
+              "fn": 5752,
+              "tn": 231408,
+              "iou": 0.43671736354137297,
+              "precision": 0.48277442657817055,
+              "recall": 0.8207150204157966,
+              "accuracy": 0.8835725623155217,
+              "balanced_accuracy": 0.8560276871601897,
+              "bce_valid_pixel_mean": 0.25212208697296645,
+              "threshold_probability": 0.5
+            },
+            "lane": {
+              "tp": 80060,
+              "fp": 74018,
+              "fn": 13596,
+              "tn": 282775,
+              "iou": 0.4774741462600045,
+              "precision": 0.5196069523228495,
+              "recall": 0.8548304433245068,
+              "accuracy": 0.8054962936980657,
+              "balanced_accuracy": 0.8236884108784095,
+              "bce_valid_pixel_mean": 0.3853659269787487,
+              "threshold_probability": 0.5
+            }
+          }
+        },
+        "repeat_current": {
+          "n": 370,
+          "n_scenes": 37,
+          "n_sessions": 11,
+          "state": {
+            "vx_m_s": {
+              "n": 370,
+              "mae": 1.35640287399292,
+              "rmse": 1.7344127893447876,
+              "bias": -1.0663368701934814,
+              "p90_abs": 2.80328369140625,
+              "pearson": 0.9698641708858482
+            },
+            "vy_m_s": {
+              "n": 370,
+              "mae": 0.04473090171813965,
+              "rmse": 0.05804375931620598,
+              "bias": 0.031051650643348694,
+              "p90_abs": 0.09503573924303055,
+              "pearson": 0.9249231028196269
+            },
+            "ax_m_s2": {
+              "n": 370,
+              "mae": 0.29495495557785034,
+              "rmse": 0.4281460642814636,
+              "bias": -0.014740160666406155,
+              "p90_abs": 0.7506526112556458,
+              "pearson": 0.18700670879423104
+            },
+            "ay_m_s2": {
+              "n": 370,
+              "mae": 0.11772355437278748,
+              "rmse": 0.16298440098762512,
+              "bias": 0.03268597647547722,
+              "p90_abs": 0.24520651996135712,
+              "pearson": 0.8246434267343179
+            },
+            "yaw_rate_rad_s": {
+              "n": 370,
+              "mae": 0.012777267023921013,
+              "rmse": 0.017414871603250504,
+              "bias": 0.00468816515058279,
+              "p90_abs": 0.025527432560920715,
+              "pearson": 0.9290863591002692
+            }
+          },
+          "stop": {
+            "tp": 0,
+            "fp": 1,
+            "fn": 24,
+            "tn": 345,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "accuracy": 0.9324324324324325,
+            "balanced_accuracy": 0.4985549132947977,
+            "brier": 0.033286795020103455,
+            "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+            "probability_threshold": 0.5
+          },
+          "history": [
+            {
+              "frame_offset": 1,
+              "n": 370,
+              "position_mae_m": 0.1468433290719986,
+              "position_rmse_m": 0.18579521775245667,
+              "xy_mae_m": [
+                0.1452968865633011,
+                0.011739387176930904
+              ],
+              "yaw_mae_rad": 0.0035008194390684366,
+              "predicted_sincos_norm_mean": 1.00082528591156
+            },
+            {
+              "frame_offset": 2,
+              "n": 370,
+              "position_mae_m": 0.287203848361969,
+              "position_rmse_m": 0.362969309091568,
+              "xy_mae_m": [
+                0.2858482897281647,
+                0.013077964074909687
+              ],
+              "yaw_mae_rad": 0.00419692462310195,
+              "predicted_sincos_norm_mean": 1.0003553628921509
+            },
+            {
+              "frame_offset": 5,
+              "n": 370,
+              "position_mae_m": 0.6804128885269165,
+              "position_rmse_m": 0.8686652779579163,
+              "xy_mae_m": [
+                0.6782804131507874,
+                0.02835847996175289
+              ],
+              "yaw_mae_rad": 0.007375007029622793,
+              "predicted_sincos_norm_mean": 0.9987563490867615
+            },
+            {
+              "frame_offset": 10,
+              "n": 370,
+              "position_mae_m": 1.3919506072998047,
+              "position_rmse_m": 1.7597612142562866,
+              "xy_mae_m": [
+                1.3851330280303955,
+                0.071546770632267
+              ],
+              "yaw_mae_rad": 0.014046827331185341,
+              "predicted_sincos_norm_mean": 0.9979652762413025
+            }
+          ],
+          "history_position_mae_mean4_m": 0.6266026683151722,
+          "raster": {
+            "occ": {
+              "tp": 26314,
+              "fp": 28389,
+              "fn": 5769,
+              "tn": 231229,
+              "iou": 0.435143537504961,
+              "precision": 0.48103394694989304,
+              "recall": 0.820185144780725,
+              "accuracy": 0.8829006414102112,
+              "balanced_accuracy": 0.855418012074822,
+              "bce_valid_pixel_mean": 0.2529563156973333,
+              "threshold_probability": 0.5
+            },
+            "lane": {
+              "tp": 79762,
+              "fp": 74506,
+              "fn": 13894,
+              "tn": 282287,
+              "iou": 0.4743164329634519,
+              "precision": 0.5170352892369123,
+              "recall": 0.8516485863158794,
+              "accuracy": 0.8037513680794052,
+              "balanced_accuracy": 0.8214136124551232,
+              "bce_valid_pixel_mean": 0.3885288773532683,
+              "threshold_probability": 0.5
+            }
+          }
+        },
+        "reverse_history": {
+          "n": 370,
+          "n_scenes": 37,
+          "n_sessions": 11,
+          "state": {
+            "vx_m_s": {
+              "n": 370,
+              "mae": 1.3971333503723145,
+              "rmse": 1.7871854305267334,
+              "bias": -1.1234745979309082,
+              "p90_abs": 3.0224223136901855,
+              "pearson": 0.9703193974051754
+            },
+            "vy_m_s": {
+              "n": 370,
+              "mae": 0.04232770577073097,
+              "rmse": 0.05517836660146713,
+              "bias": 0.029013363644480705,
+              "p90_abs": 0.09098774939775467,
+              "pearson": 0.9306036898292677
+            },
+            "ax_m_s2": {
+              "n": 370,
+              "mae": 0.29511967301368713,
+              "rmse": 0.42760956287384033,
+              "bias": -0.021441366523504257,
+              "p90_abs": 0.7414074540138245,
+              "pearson": 0.19452048316321732
+            },
+            "ay_m_s2": {
+              "n": 370,
+              "mae": 0.11255793273448944,
+              "rmse": 0.15387316048145294,
+              "bias": 0.033722203224897385,
+              "p90_abs": 0.23482854664325714,
+              "pearson": 0.8491216679624816
+            },
+            "yaw_rate_rad_s": {
+              "n": 370,
+              "mae": 0.012411607429385185,
+              "rmse": 0.016929570585489273,
+              "bias": 0.004881564993411303,
+              "p90_abs": 0.023394819349050522,
+              "pearson": 0.935136314476118
+            }
+          },
+          "stop": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 24,
+            "tn": 346,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "accuracy": 0.9351351351351351,
+            "balanced_accuracy": 0.5,
+            "brier": 0.03333014249801636,
+            "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+            "probability_threshold": 0.5
+          },
+          "history": [
+            {
+              "frame_offset": 1,
+              "n": 370,
+              "position_mae_m": 0.14152836799621582,
+              "position_rmse_m": 0.17918355762958527,
+              "xy_mae_m": [
+                0.13947585225105286,
+                0.01266629621386528
+              ],
+              "yaw_mae_rad": 0.0034745712764561176,
+              "predicted_sincos_norm_mean": 1.0004481077194214
+            },
+            {
+              "frame_offset": 2,
+              "n": 370,
+              "position_mae_m": 0.28331559896469116,
+              "position_rmse_m": 0.35952237248420715,
+              "xy_mae_m": [
+                0.2819414436817169,
+                0.01347447745501995
+              ],
+              "yaw_mae_rad": 0.004055500496178865,
+              "predicted_sincos_norm_mean": 1.0001875162124634
+            },
+            {
+              "frame_offset": 5,
+              "n": 370,
+              "position_mae_m": 0.6949737668037415,
+              "position_rmse_m": 0.8903398513793945,
+              "xy_mae_m": [
+                0.6929925680160522,
+                0.027841737493872643
+              ],
+              "yaw_mae_rad": 0.007249176036566496,
+              "predicted_sincos_norm_mean": 0.9990911483764648
+            },
+            {
+              "frame_offset": 10,
+              "n": 370,
+              "position_mae_m": 1.4369744062423706,
+              "position_rmse_m": 1.8319242000579834,
+              "xy_mae_m": [
+                1.4302188158035278,
+                0.07109367102384567
+              ],
+              "yaw_mae_rad": 0.01409502699971199,
+              "predicted_sincos_norm_mean": 0.9983423352241516
+            }
+          ],
+          "history_position_mae_mean4_m": 0.6391980350017548,
+          "raster": {
+            "occ": {
+              "tp": 25988,
+              "fp": 27131,
+              "fn": 6095,
+              "tn": 232487,
+              "iou": 0.43888269665957375,
+              "precision": 0.4892411378226247,
+              "recall": 0.8100240002493533,
+              "accuracy": 0.8860956938783207,
+              "balanced_accuracy": 0.8527602302165809,
+              "bce_valid_pixel_mean": 0.2488401250794018,
+              "threshold_probability": 0.5
+            },
+            "lane": {
+              "tp": 80270,
+              "fp": 74657,
+              "fn": 13386,
+              "tn": 282136,
+              "iou": 0.4769090919893294,
+              "precision": 0.5181149831856293,
+              "recall": 0.8570726915520629,
+              "accuracy": 0.8045439106313922,
+              "balanced_accuracy": 0.8239140577827132,
+              "bce_valid_pixel_mean": 0.3861714437814972,
+              "threshold_probability": 0.5
+            }
+          }
+        },
+        "cross_scene_history": {
+          "n": 370,
+          "n_scenes": 37,
+          "n_sessions": 11,
+          "state": {
+            "vx_m_s": {
+              "n": 370,
+              "mae": 2.045929193496704,
+              "rmse": 2.5943849086761475,
+              "bias": -1.1745513677597046,
+              "p90_abs": 4.122377395629883,
+              "pearson": 0.9234146346185231
+            },
+            "vy_m_s": {
+              "n": 370,
+              "mae": 0.07084470987319946,
+              "rmse": 0.105169877409935,
+              "bias": 0.008238885551691055,
+              "p90_abs": 0.1761014610528946,
+              "pearson": 0.538092817550006
+            },
+            "ax_m_s2": {
+              "n": 370,
+              "mae": 0.30143025517463684,
+              "rmse": 0.4399382472038269,
+              "bias": 0.014097414910793304,
+              "p90_abs": 0.7862932682037354,
+              "pearson": 0.05387787051244068
+            },
+            "ay_m_s2": {
+              "n": 370,
+              "mae": 0.1956958919763565,
+              "rmse": 0.2810196578502655,
+              "bias": 0.05400090664625168,
+              "p90_abs": 0.4315362274646759,
+              "pearson": 0.3940655647839935
+            },
+            "yaw_rate_rad_s": {
+              "n": 370,
+              "mae": 0.01787734590470791,
+              "rmse": 0.02975427731871605,
+              "bias": 0.0053673493675887585,
+              "p90_abs": 0.03387250378727913,
+              "pearson": 0.7865005323035421
+            }
+          },
+          "stop": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 24,
+            "tn": 346,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "accuracy": 0.9351351351351351,
+            "balanced_accuracy": 0.5,
+            "brier": 0.042029157280921936,
+            "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+            "probability_threshold": 0.5
+          },
+          "history": [
+            {
+              "frame_offset": 1,
+              "n": 370,
+              "position_mae_m": 0.1978495568037033,
+              "position_rmse_m": 0.2501106560230255,
+              "xy_mae_m": [
+                0.19452588260173798,
+                0.019279344007372856
+              ],
+              "yaw_mae_rad": 0.005310193635523319,
+              "predicted_sincos_norm_mean": 0.9994208812713623
+            },
+            {
+              "frame_offset": 2,
+              "n": 370,
+              "position_mae_m": 0.4048626124858856,
+              "position_rmse_m": 0.5168569087982178,
+              "xy_mae_m": [
+                0.40246260166168213,
+                0.022989291697740555
+              ],
+              "yaw_mae_rad": 0.0056521836668252945,
+              "predicted_sincos_norm_mean": 0.9991511702537537
+            },
+            {
+              "frame_offset": 5,
+              "n": 370,
+              "position_mae_m": 0.9886784553527832,
+              "position_rmse_m": 1.266209363937378,
+              "xy_mae_m": [
+                0.9827296137809753,
+                0.05315591022372246
+              ],
+              "yaw_mae_rad": 0.010674534365534782,
+              "predicted_sincos_norm_mean": 0.9973708987236023
+            },
+            {
+              "frame_offset": 10,
+              "n": 370,
+              "position_mae_m": 2.043942928314209,
+              "position_rmse_m": 2.6163833141326904,
+              "xy_mae_m": [
+                2.0323805809020996,
+                0.1269475817680359
+              ],
+              "yaw_mae_rad": 0.022496117278933525,
+              "predicted_sincos_norm_mean": 0.9932577610015869
+            }
+          ],
+          "history_position_mae_mean4_m": 0.9088333882391453,
+          "raster": {
+            "occ": {
+              "tp": 23628,
+              "fp": 23985,
+              "fn": 8455,
+              "tn": 235633,
+              "iou": 0.4214168509666833,
+              "precision": 0.4962510238800328,
+              "recall": 0.7364647944394227,
+              "accuracy": 0.8887902338353314,
+              "balanced_accuracy": 0.8220395292367517,
+              "bce_valid_pixel_mean": 0.26081927503726354,
+              "threshold_probability": 0.5
+            },
+            "lane": {
+              "tp": 72729,
+              "fp": 83175,
+              "fn": 20927,
+              "tn": 273618,
+              "iou": 0.411291006667383,
+              "precision": 0.4664986145320197,
+              "recall": 0.7765546254377723,
+              "accuracy": 0.768892815834867,
+              "balanced_accuracy": 0.771718131344812,
+              "bce_valid_pixel_mean": 0.4675574695841243,
+              "threshold_probability": 0.5
+            }
+          }
+        }
+      }
+    },
+    "low_feature": {
+      "source": "reports/p0_motion_lowfeature_last1000_aux.json",
+      "source_sha256": "b30f8c7f53f08731ab5898b87778247b0e9857dae72418ef652830754bbb9228",
+      "checkpoint_sha256": "b7af30e12c7ba2d24f44c1039dff2aa68c3f63cd2117342d23365aa3ea5d8b89",
+      "step": 1000,
+      "conditions": {
+        "normal": {
+          "n": 370,
+          "n_scenes": 37,
+          "n_sessions": 11,
+          "state": {
+            "vx_m_s": {
+              "n": 370,
+              "mae": 1.2394435405731201,
+              "rmse": 1.6821620464324951,
+              "bias": -0.26861679553985596,
+              "p90_abs": 2.7238786220550537,
+              "pearson": 0.9571176761382542
+            },
+            "vy_m_s": {
+              "n": 370,
+              "mae": 0.040577955543994904,
+              "rmse": 0.05114616081118584,
+              "bias": -0.004841329529881477,
+              "p90_abs": 0.08323165774345398,
+              "pearson": 0.9120420963933055
+            },
+            "ax_m_s2": {
+              "n": 370,
+              "mae": 0.289945125579834,
+              "rmse": 0.4229394197463989,
+              "bias": -0.018606066703796387,
+              "p90_abs": 0.7145117521286011,
+              "pearson": 0.24776612456572758
+            },
+            "ay_m_s2": {
+              "n": 370,
+              "mae": 0.10198525339365005,
+              "rmse": 0.14717794954776764,
+              "bias": 0.012959054671227932,
+              "p90_abs": 0.22833757102489471,
+              "pearson": 0.8595784952864105
+            },
+            "yaw_rate_rad_s": {
+              "n": 370,
+              "mae": 0.01154942624270916,
+              "rmse": 0.019109264016151428,
+              "bias": 0.0010557763744145632,
+              "p90_abs": 0.0217585526406765,
+              "pearson": 0.9264052703547692
+            }
+          },
+          "stop": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 24,
+            "tn": 346,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "accuracy": 0.9351351351351351,
+            "balanced_accuracy": 0.5,
+            "brier": 0.03476424887776375,
+            "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+            "probability_threshold": 0.5
+          },
+          "history": [
+            {
+              "frame_offset": 1,
+              "n": 370,
+              "position_mae_m": 0.14548762142658234,
+              "position_rmse_m": 0.19280125200748444,
+              "xy_mae_m": [
+                0.14391875267028809,
+                0.01103332918137312
+              ],
+              "yaw_mae_rad": 0.003627178492024541,
+              "predicted_sincos_norm_mean": 0.9992154240608215
+            },
+            {
+              "frame_offset": 2,
+              "n": 370,
+              "position_mae_m": 0.282575786113739,
+              "position_rmse_m": 0.376395583152771,
+              "xy_mae_m": [
+                0.28135985136032104,
+                0.012850170955061913
+              ],
+              "yaw_mae_rad": 0.0034665216226130724,
+              "predicted_sincos_norm_mean": 0.999698281288147
+            },
+            {
+              "frame_offset": 5,
+              "n": 370,
+              "position_mae_m": 0.6768747568130493,
+              "position_rmse_m": 0.9086431860923767,
+              "xy_mae_m": [
+                0.6747860908508301,
+                0.026639705523848534
+              ],
+              "yaw_mae_rad": 0.006548152305185795,
+              "predicted_sincos_norm_mean": 1.0008364915847778
+            },
+            {
+              "frame_offset": 10,
+              "n": 370,
+              "position_mae_m": 1.2666728496551514,
+              "position_rmse_m": 1.690418004989624,
+              "xy_mae_m": [
+                1.2599875926971436,
+                0.0660344585776329
+              ],
+              "yaw_mae_rad": 0.012352040968835354,
+              "predicted_sincos_norm_mean": 0.9992836713790894
+            }
+          ],
+          "history_position_mae_mean4_m": 0.5929027535021305,
+          "raster": {
+            "occ": {
+              "tp": 26295,
+              "fp": 28584,
+              "fn": 5788,
+              "tn": 231034,
+              "iou": 0.43343168444129426,
+              "precision": 0.4791450281528454,
+              "recall": 0.819592930835645,
+              "accuracy": 0.8821670134829843,
+              "balanced_accuracy": 0.8547463533300628,
+              "bce_valid_pixel_mean": 0.25305959932609606,
+              "threshold_probability": 0.5
+            },
+            "lane": {
+              "tp": 79931,
+              "fp": 74078,
+              "fn": 13725,
+              "tn": 282715,
+              "iou": 0.47653427450606317,
+              "precision": 0.5190021362387912,
+              "recall": 0.8534530622704365,
+              "accuracy": 0.8050767123470137,
+              "balanced_accuracy": 0.8229156379842876,
+              "bce_valid_pixel_mean": 0.3876382696710584,
+              "threshold_probability": 0.5
+            }
+          }
+        },
+        "repeat_current": {
+          "n": 370,
+          "n_scenes": 37,
+          "n_sessions": 11,
+          "state": {
+            "vx_m_s": {
+              "n": 370,
+              "mae": 1.2718477249145508,
+              "rmse": 1.6944048404693604,
+              "bias": -0.13039113581180573,
+              "p90_abs": 2.8708770275115967,
+              "pearson": 0.9496492540283875
+            },
+            "vy_m_s": {
+              "n": 370,
+              "mae": 0.0406213141977787,
+              "rmse": 0.0528501495718956,
+              "bias": -0.004862093832343817,
+              "p90_abs": 0.08676405251026154,
+              "pearson": 0.9037849010387665
+            },
+            "ax_m_s2": {
+              "n": 370,
+              "mae": 0.2917490005493164,
+              "rmse": 0.42625924944877625,
+              "bias": -0.022555453702807426,
+              "p90_abs": 0.7374926805496216,
+              "pearson": 0.20996163795229156
+            },
+            "ay_m_s2": {
+              "n": 370,
+              "mae": 0.12086639553308487,
+              "rmse": 0.17566291987895966,
+              "bias": 0.007565289735794067,
+              "p90_abs": 0.2533845603466034,
+              "pearson": 0.7827115097846339
+            },
+            "yaw_rate_rad_s": {
+              "n": 370,
+              "mae": 0.01298232190310955,
+              "rmse": 0.019802983850240707,
+              "bias": 0.0006653278833255172,
+              "p90_abs": 0.025024961680173874,
+              "pearson": 0.9101435988256765
+            }
+          },
+          "stop": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 24,
+            "tn": 346,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "accuracy": 0.9351351351351351,
+            "balanced_accuracy": 0.5,
+            "brier": 0.03535809367895126,
+            "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+            "probability_threshold": 0.5
+          },
+          "history": [
+            {
+              "frame_offset": 1,
+              "n": 370,
+              "position_mae_m": 0.14357461035251617,
+              "position_rmse_m": 0.18929283320903778,
+              "xy_mae_m": [
+                0.14200381934642792,
+                0.010989708825945854
+              ],
+              "yaw_mae_rad": 0.0035892119631171227,
+              "predicted_sincos_norm_mean": 0.999067485332489
+            },
+            {
+              "frame_offset": 2,
+              "n": 370,
+              "position_mae_m": 0.2814306318759918,
+              "position_rmse_m": 0.37401992082595825,
+              "xy_mae_m": [
+                0.28030288219451904,
+                0.01268494687974453
+              ],
+              "yaw_mae_rad": 0.0034222500398755074,
+              "predicted_sincos_norm_mean": 0.999422550201416
+            },
+            {
+              "frame_offset": 5,
+              "n": 370,
+              "position_mae_m": 0.6827859282493591,
+              "position_rmse_m": 0.9077425599098206,
+              "xy_mae_m": [
+                0.680268406867981,
+                0.028134256601333618
+              ],
+              "yaw_mae_rad": 0.007134775165468454,
+              "predicted_sincos_norm_mean": 1.0005090236663818
+            },
+            {
+              "frame_offset": 10,
+              "n": 370,
+              "position_mae_m": 1.3067020177841187,
+              "position_rmse_m": 1.7227156162261963,
+              "xy_mae_m": [
+                1.298294186592102,
+                0.07534439116716385
+              ],
+              "yaw_mae_rad": 0.014795665629208088,
+              "predicted_sincos_norm_mean": 0.9997413158416748
+            }
+          ],
+          "history_position_mae_mean4_m": 0.6036232970654964,
+          "raster": {
+            "occ": {
+              "tp": 26243,
+              "fp": 28745,
+              "fn": 5840,
+              "tn": 230873,
+              "iou": 0.431429604787269,
+              "precision": 0.4772495817269222,
+              "recall": 0.8179721347754262,
+              "accuracy": 0.8814368137236417,
+              "balanced_accuracy": 0.853625884349557,
+              "bce_valid_pixel_mean": 0.25403196352061835,
+              "threshold_probability": 0.5
+            },
+            "lane": {
+              "tp": 79666,
+              "fp": 74929,
+              "fn": 13990,
+              "tn": 281864,
+              "iou": 0.4725568704214491,
+              "precision": 0.5153206766066173,
+              "recall": 0.8506235585547108,
+              "accuracy": 0.8025991843693737,
+              "balanced_accuracy": 0.820308317886577,
+              "bce_valid_pixel_mean": 0.39142513493849507,
+              "threshold_probability": 0.5
+            }
+          }
+        },
+        "reverse_history": {
+          "n": 370,
+          "n_scenes": 37,
+          "n_sessions": 11,
+          "state": {
+            "vx_m_s": {
+              "n": 370,
+              "mae": 1.2698488235473633,
+              "rmse": 1.7082858085632324,
+              "bias": -0.2860909402370453,
+              "p90_abs": 2.858151435852051,
+              "pearson": 0.954252160414751
+            },
+            "vy_m_s": {
+              "n": 370,
+              "mae": 0.04022064059972763,
+              "rmse": 0.052162740379571915,
+              "bias": -0.004835532978177071,
+              "p90_abs": 0.0851830393075943,
+              "pearson": 0.907056030337603
+            },
+            "ax_m_s2": {
+              "n": 370,
+              "mae": 0.290304034948349,
+              "rmse": 0.42451974749565125,
+              "bias": -0.023745568469166756,
+              "p90_abs": 0.7260044813156128,
+              "pearson": 0.23246602723752835
+            },
+            "ay_m_s2": {
+              "n": 370,
+              "mae": 0.10995887219905853,
+              "rmse": 0.1593131572008133,
+              "bias": 0.01160166971385479,
+              "p90_abs": 0.2438391000032425,
+              "pearson": 0.8306029840104014
+            },
+            "yaw_rate_rad_s": {
+              "n": 370,
+              "mae": 0.011974159628152847,
+              "rmse": 0.018848732113838196,
+              "bias": 0.0008399541256949306,
+              "p90_abs": 0.023953594267368317,
+              "pearson": 0.9268462198385977
+            }
+          },
+          "stop": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 24,
+            "tn": 346,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "accuracy": 0.9351351351351351,
+            "balanced_accuracy": 0.5,
+            "brier": 0.03482352942228317,
+            "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+            "probability_threshold": 0.5
+          },
+          "history": [
+            {
+              "frame_offset": 1,
+              "n": 370,
+              "position_mae_m": 0.1434057205915451,
+              "position_rmse_m": 0.18623872101306915,
+              "xy_mae_m": [
+                0.1415850967168808,
+                0.012158998288214207
+              ],
+              "yaw_mae_rad": 0.003783800406381488,
+              "predicted_sincos_norm_mean": 0.9990148544311523
+            },
+            {
+              "frame_offset": 2,
+              "n": 370,
+              "position_mae_m": 0.27481865882873535,
+              "position_rmse_m": 0.3680642247200012,
+              "xy_mae_m": [
+                0.27343159914016724,
+                0.0129069983959198
+              ],
+              "yaw_mae_rad": 0.0034379223361611366,
+              "predicted_sincos_norm_mean": 0.9997224807739258
+            },
+            {
+              "frame_offset": 5,
+              "n": 370,
+              "position_mae_m": 0.6945335865020752,
+              "position_rmse_m": 0.9223008751869202,
+              "xy_mae_m": [
+                0.6924814581871033,
+                0.02775496616959572
+              ],
+              "yaw_mae_rad": 0.006812813691794872,
+              "predicted_sincos_norm_mean": 1.0008445978164673
+            },
+            {
+              "frame_offset": 10,
+              "n": 370,
+              "position_mae_m": 1.356279730796814,
+              "position_rmse_m": 1.781266689300537,
+              "xy_mae_m": [
+                1.3489634990692139,
+                0.0753515213727951
+              ],
+              "yaw_mae_rad": 0.014572098851203918,
+              "predicted_sincos_norm_mean": 0.9997086524963379
+            }
+          ],
+          "history_position_mae_mean4_m": 0.6172594241797924,
+          "raster": {
+            "occ": {
+              "tp": 25974,
+              "fp": 27610,
+              "fn": 6109,
+              "tn": 232008,
+              "iou": 0.4351263967299348,
+              "precision": 0.4847342490295611,
+              "recall": 0.8095876320792943,
+              "accuracy": 0.8844056071113915,
+              "balanced_accuracy": 0.8516195369064592,
+              "bce_valid_pixel_mean": 0.2498000429954768,
+              "threshold_probability": 0.5
+            },
+            "lane": {
+              "tp": 80163,
+              "fp": 74694,
+              "fn": 13493,
+              "tn": 282099,
+              "iou": 0.47616869616869617,
+              "precision": 0.5176582266219802,
+              "recall": 0.8559302126932604,
+              "accuracy": 0.8042242296020193,
+              "balanced_accuracy": 0.8232909675602751,
+              "bce_valid_pixel_mean": 0.3882030935399622,
+              "threshold_probability": 0.5
+            }
+          }
+        },
+        "cross_scene_history": {
+          "n": 370,
+          "n_scenes": 37,
+          "n_sessions": 11,
+          "state": {
+            "vx_m_s": {
+              "n": 370,
+              "mae": 3.143184185028076,
+              "rmse": 4.15726375579834,
+              "bias": -0.14828145503997803,
+              "p90_abs": 7.09866189956665,
+              "pearson": 0.5603353497116783
+            },
+            "vy_m_s": {
+              "n": 370,
+              "mae": 0.09879954904317856,
+              "rmse": 0.13661545515060425,
+              "bias": -0.014516525901854038,
+              "p90_abs": 0.2556423842906952,
+              "pearson": 0.21245648319512483
+            },
+            "ax_m_s2": {
+              "n": 370,
+              "mae": 0.3089868426322937,
+              "rmse": 0.445946604013443,
+              "bias": 0.023384572938084602,
+              "p90_abs": 0.7829504609107971,
+              "pearson": 0.01514452900665701
+            },
+            "ay_m_s2": {
+              "n": 370,
+              "mae": 0.25039687752723694,
+              "rmse": 0.37292394042015076,
+              "bias": 0.023797104135155678,
+              "p90_abs": 0.5816717147827148,
+              "pearson": 0.025159678997880807
+            },
+            "yaw_rate_rad_s": {
+              "n": 370,
+              "mae": 0.022630082443356514,
+              "rmse": 0.04445037618279457,
+              "bias": 0.003161839209496975,
+              "p90_abs": 0.04743465408682823,
+              "pearson": 0.2606874161240549
+            }
+          },
+          "stop": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 24,
+            "tn": 346,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "accuracy": 0.9351351351351351,
+            "balanced_accuracy": 0.5,
+            "brier": 0.05643205717206001,
+            "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+            "probability_threshold": 0.5
+          },
+          "history": [
+            {
+              "frame_offset": 1,
+              "n": 370,
+              "position_mae_m": 0.29878202080726624,
+              "position_rmse_m": 0.38936686515808105,
+              "xy_mae_m": [
+                0.296336829662323,
+                0.02146228216588497
+              ],
+              "yaw_mae_rad": 0.008135005831718445,
+              "predicted_sincos_norm_mean": 0.9978040456771851
+            },
+            {
+              "frame_offset": 2,
+              "n": 370,
+              "position_mae_m": 0.5864800214767456,
+              "position_rmse_m": 0.7764321565628052,
+              "xy_mae_m": [
+                0.5844336152076721,
+                0.02823249250650406
+              ],
+              "yaw_mae_rad": 0.00913691520690918,
+              "predicted_sincos_norm_mean": 0.99948650598526
+            },
+            {
+              "frame_offset": 5,
+              "n": 370,
+              "position_mae_m": 1.4730405807495117,
+              "position_rmse_m": 1.972190260887146,
+              "xy_mae_m": [
+                1.468793272972107,
+                0.06373759359121323
+              ],
+              "yaw_mae_rad": 0.013919701799750328,
+              "predicted_sincos_norm_mean": 1.0018761157989502
+            },
+            {
+              "frame_offset": 10,
+              "n": 370,
+              "position_mae_m": 2.9708311557769775,
+              "position_rmse_m": 3.997575521469116,
+              "xy_mae_m": [
+                2.958556890487671,
+                0.1509142518043518
+              ],
+              "yaw_mae_rad": 0.02390354312956333,
+              "predicted_sincos_norm_mean": 0.9976873397827148
+            }
+          ],
+          "history_position_mae_mean4_m": 1.3322834447026253,
+          "raster": {
+            "occ": {
+              "tp": 23622,
+              "fp": 24092,
+              "fn": 8461,
+              "tn": 235526,
+              "iou": 0.42050734312416554,
+              "precision": 0.49507482080731025,
+              "recall": 0.7362777795093975,
+              "accuracy": 0.8884028508644125,
+              "balanced_accuracy": 0.8217399497736497,
+              "bce_valid_pixel_mean": 0.25986605577266403,
+              "threshold_probability": 0.5
+            },
+            "lane": {
+              "tp": 72868,
+              "fp": 83934,
+              "fn": 20788,
+              "tn": 272859,
+              "iou": 0.4103158961653246,
+              "precision": 0.4647134602874963,
+              "recall": 0.7780387802169642,
+              "accuracy": 0.7675164114028448,
+              "balanced_accuracy": 0.7713965667907601,
+              "bce_valid_pixel_mean": 0.4680283753216322,
+              "threshold_probability": 0.5
+            }
+          }
+        }
+      }
+    }
+  },
+  "판정": {
+    "정상정확도": "저해상도 경로의 평균 vx/history는 개선되지만, 사전 고정370의11세션95%구간은 두 지표 모두0을 포함한다. 단일 seed에서 견고한 개선을 확정하지 않는다.",
+    "시간사용": "reverse_history는 저해상도 경로의 vx와 history를 악화시키며 정상 시간순서의 관측상 이점을 보인다. history의 팔간 교란효과 차이도 양의 구간이지만, repeat_current의 이점은 확정적이지 않다. 강한 cross_scene 악화만으로 정밀 운동 추정이 해결됐다고 주장하지 않는다.",
+    "정지": "양쪽 모두 사전 고정 stop 확률0.5에서 TP0/FN24/FP0/TN346. stop recall0이므로 정지 판별 성공으로 승인하지 않는다.",
+    "범위": "영상 교란은 분포 밖 진단이다. 입력 정보량 상한, 완전한 인과 증명, planning 개선 또는 수상 성능을 입증하지 않는다.",
+    "다음판단": "평균 개선과 정합 원리의 근거는 있으나, 추가 seed 통제 재현 및 실제 planning 검증 없이 최종 채택을 단정하지 않는다."
+  },
+  "실행제약": "완료 manifest step1000 및 두 학습 PID 종료 후 GPU0만 사용. 감사 종료 및 GPU0 반환 확인. GPU1~7 사용, 새 학습, 원본 데이터 변경, 코드 수정, 커밋 없음.",
+  "source_sha256": {
+    "scripts/evaluate_motiondrive_v2_aux.py": "356bfa1fe051ed63ea3467e44ad4b5f3f89f09c105765ead6839b7ac977fd44b",
+    "scripts/analyze_motiondrive_v2_motion_pair.py": "01e41e4bb02ae24d343cc76d575322344064689e7486400d954e3c76177b9e69",
+    "MOTIONDRIVE_V2_P0_REPAIR_PROTOCOL.md": "0a42e5b75a1e976d8474de2b86cfd1822d6679ecec1873f53077ecb99796c2e1"
+  }
+}
