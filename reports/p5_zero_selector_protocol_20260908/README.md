@@ -306,11 +306,30 @@ changing the preregistration above.
   and its receipt SHA-256 is
   `878ea66da6ad0ecf6f167d9f4576479e6ee98024510eb6a5460d368b971a98f0`.
 - The frozen cache and head tests passed together on CPU: 52 tests, actual
-  exit 0.  No selector-head training has run.  The two strict pilot failures
-  are currently localized to the cache-specific numerical path, but the exact
-  cause remains under diagnosis.  No tolerance was introduced, no ensemble
-  was adopted, and full train54,810/tune1,998 cache extraction, head training,
-  deployment, and final-validation access remain unauthorized.
+  exit 0.  A separately authorized base-0/GPU4 seven-forward diagnostic then
+  exited 0.  Its evaluator `requires_grad=True` plain-hook-plain path was
+  repeatable and bitwise exact to the immutable report.  Its
+  `requires_grad=False` hook-plain-hook path was internally repeatable but
+  differed from the immutable report in 37 plan elements (maximum absolute
+  difference `5.7220458984375e-6`) and all four D3 values (maximum absolute
+  difference `8.940696716308594e-7`); GT remained exact.  The direct cache
+  hooked-first output and 790-value selector feature were bitwise exact to the
+  evaluator's `requires_grad=False` hooked output.  Inputs and model
+  construction/state/config/parameter/buffer contracts were exact.  This
+  identifies `requires_grad_(False)` as the repeatable cache-specific numerical
+  branch in this run; hook presence, hook order, input loading, and model
+  construction were not the differing branch.  The immutable diagnostic is
+  `reports/p5_zero_selector_forward_delta_b0_20260908_ops/diagnostic.json`
+  (SHA-256 `2f659d3d860904aa780e500c5abeac64ec610cc3767c84372ed8898f571cc8c5`),
+  with execution receipt SHA-256
+  `0257e26efd597860561e1eef01316519e113fba8938060172340bb684e9c3217`
+  and child receipt SHA-256
+  `315a752517c59895017f98bd5958f04e9c5d535eeec76c8f4e58a918909e19b9`.
+  Independent review rechecked the exact seven-forward count and all pinned
+  pre/post, state, input, and constructor evidence.  No selector-head training
+  has run.  No tolerance was introduced, no ensemble was adopted, and full
+  train54,810/tune1,998 cache extraction, head training, deployment, and
+  final-validation access remain unauthorized.
 
 Throughout these diagnostics the exact runtime-22 contract, P4 checkpoints,
 sidecars, data artifacts, and immutable evaluation reports remained pinned;
