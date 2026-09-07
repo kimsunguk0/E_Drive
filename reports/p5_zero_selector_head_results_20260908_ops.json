@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "date_kst": "2026-09-08",
+  "purpose": "P5-Z offline diagnostic zero-versus-move head; all six preregistered LAST1000 runs",
+  "interpretation": {
+    "root_provisional_decision": "no significant improvement under the fixed recipe; adoption zero",
+    "selection_performed": false,
+    "final_val_accessed": false,
+    "production_or_deployment_changed": false,
+    "follow_on_training_or_gpu_run_started": false,
+    "caveat": "Repeatedly used tune data and only 11 session clusters; this is not final-holdout, production, latency, or compliance evidence."
+  },
+  "execution": {
+    "source_git_sha": "79ec0d1f1e988967b03782667badbedb18f9cc68",
+    "head_trainer_sha256": "fe4d6c2765cee6a092ba59418c1705aaa155747314dc80aa6b22e13a6e929eb1",
+    "head_trainer_test_sha256": "54da2550423d9d4b08ac40759b3fd6a94a3e7093ab7dc38fa23a2713fa5f8ab8",
+    "cache_producer_sha256": "d54bbdc761fba99ed1cd98b5658f80b1b097aac361bdcb60e326f2e6226999c8",
+    "contract_path": "reports/p5_zero_selector_head_execution_contract_20260908_ops.json",
+    "contract_sha256": "9d63551cdfe9dfe21a4d84a91b1fffb7bf02c42218bd30a4f16463c935edfd27",
+    "python": "/usr/bin/python",
+    "device": "cpu",
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "all_six_actual_ssh_returncode": 0,
+    "remote_pid_observation": null,
+    "remote_pid_limitation": "All six short CPU jobs terminated before the first post-launch /proc sample; handles and actual SSH return codes were captured. Runs were not repeated to manufacture PID evidence."
+  },
+  "inputs": {
+    "base0": {
+      "train_cache_path": "work_dirs/motiondrive_v2/p5_zero_selector_full_b0_train54810.pt",
+      "train_cache_sha256": "1f2184ad544cb43e0e5ca1a72ef2534165cd67a927c21a0cd653e37ebbcb92ab",
+      "train_manifest_path": "work_dirs/motiondrive_v2/p5_zero_selector_full_b0_train54810.pt.manifest.json",
+      "train_manifest_sha256": "8a4f5b4230e8f1a263b572ee70b425104e4e1745892587aa17f2063ef32a2a58",
+      "tune_cache_path": "work_dirs/motiondrive_v2/p5_zero_selector_full_b0_tune1998.pt",
+      "tune_cache_sha256": "e2d82afef7851c9496fb8f6e8ff7885d426af81ccf5d9da10ecae9bc852610a5",
+      "tune_manifest_path": "work_dirs/motiondrive_v2/p5_zero_selector_full_b0_tune1998.pt.manifest.json",
+      "tune_manifest_sha256": "dbc26cb794f4b83ff744f4f2f17cae7379ba69b320ca7d6cdabaa1028230805e"
+    },
+    "base1": {
+      "train_cache_path": "work_dirs/motiondrive_v2/p5_zero_selector_full_b1_train54810.pt",
+      "train_cache_sha256": "99c873a710a3cb36c23f5a67f8840c81b277c18702651815923e3caf0e39a292",
+      "train_manifest_path": "work_dirs/motiondrive_v2/p5_zero_selector_full_b1_train54810.pt.manifest.json",
+      "train_manifest_sha256": "49b5f8489a97e80b46afc5be0d0e656ad6e658fbd404071f3edc050f73463903",
+      "tune_cache_path": "work_dirs/motiondrive_v2/p5_zero_selector_full_b1_tune1998.pt",
+      "tune_cache_sha256": "67b1f81029728d9de8417c1c4c968a26e3ed67271d277a7abda969ebf71aff14",
+      "tune_manifest_path": "work_dirs/motiondrive_v2/p5_zero_selector_full_b1_tune1998.pt.manifest.json",
+      "tune_manifest_sha256": "caf6b64cedfa1bd0b08c321f92f5b32c1a7dbaf502bbebeac7c5719681ec475e"
+    },
+    "validation": "Every run manifest records inputs_sha256_after exactly equal to the four pinned inputs; all source and input hashes were also rechecked after all six jobs."
+  },
+  "runs": [
+    {
+      "base_seed": 0,
+      "head_seed": 0,
+      "ssh_handle": 43970,
+      "actual_ssh_returncode": 0,
+      "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b0_h0_last1000",
+      "last_sha256": "27b43f1ff5c95c6914b70659a77bd7a87db60bf9addfb3714cdcb5cf39a4b3f4",
+      "manifest_sha256": "e051ae1af82b1461ca559f0bd9507cc73366142bb90681f1838587b8ec95830b",
+      "original_p4_d3": 0.37222161742712223,
+      "selected_d3": 0.37222161742712223,
+      "delta_vs_original_p4": 0.0,
+      "selected_zero": 0,
+      "excluding_session_046_delta": 0.0,
+      "session_cluster_ci95": [0.0, 0.0]
+    },
+    {
+      "base_seed": 0,
+      "head_seed": 1,
+      "ssh_handle": 56398,
+      "actual_ssh_returncode": 0,
+      "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b0_h1_last1000",
+      "last_sha256": "ee27882ef85c63e4ee59ed9291a56c71c8303e9963a1d97d9e0f861d01541c1f",
+      "manifest_sha256": "6628b01f372aad167c70b9dd955a605aecf6579eda2a097b35f52b922f2d6d2b",
+      "original_p4_d3": 0.37222161742712223,
+      "selected_d3": 0.37222161742712223,
+      "delta_vs_original_p4": 0.0,
+      "selected_zero": 0,
+      "excluding_session_046_delta": 0.0,
+      "session_cluster_ci95": [0.0, 0.0]
+    },
+    {
+      "base_seed": 0,
+      "head_seed": 2,
+      "ssh_handle": 66275,
+      "actual_ssh_returncode": 0,
+      "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b0_h2_last1000",
+      "last_sha256": "b3a12eea860bff4089f2358bb92003b20414646c30c70437eef5bc543759c169",
+      "manifest_sha256": "52f13f4e89de395a0f07bf276961b099f063087c5831a9ae2a2c58bc7bfa4122",
+      "original_p4_d3": 0.37222161742712223,
+      "selected_d3": 0.37222161742712223,
+      "delta_vs_original_p4": 0.0,
+      "selected_zero": 0,
+      "excluding_session_046_delta": 0.0,
+      "session_cluster_ci95": [0.0, 0.0]
+    },
+    {
+      "base_seed": 1,
+      "head_seed": 0,
+      "ssh_handle": 98105,
+      "actual_ssh_returncode": 0,
+      "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b1_h0_last1000",
+      "last_sha256": "4f0f6a9bcf52e614522ebd6a6c293e74a45becb9bb0f6d8192183c694132b318",
+      "manifest_sha256": "e0ce08a5cbe3b6313a99434d804ba8c8bed4379da056ca2010ae904475776037",
+      "original_p4_d3": 0.3669574755338115,
+      "selected_d3": 0.3668790650446209,
+      "delta_vs_original_p4": -0.00007841048919054138,
+      "selected_zero": 5,
+      "excluding_session_046_delta": -0.00010745141111296412,
+      "session_cluster_ci95": [-0.00027916942881395614, 0.00010071839033453553]
+    },
+    {
+      "base_seed": 1,
+      "head_seed": 1,
+      "ssh_handle": 86804,
+      "actual_ssh_returncode": 0,
+      "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b1_h1_last1000",
+      "last_sha256": "f5f90f333a9a0e6a8fc7da36c16d2de11aeea4d22814574055d3973ec780469a",
+      "manifest_sha256": "cfbcf3c8a7c17576dc5806a0acaa2bf2bd65ad534e95e876aec72deaf8371c4a",
+      "original_p4_d3": 0.3669574755338115,
+      "selected_d3": 0.3668790650446209,
+      "delta_vs_original_p4": -0.00007841048919054138,
+      "selected_zero": 5,
+      "excluding_session_046_delta": -0.00010745141111296412,
+      "session_cluster_ci95": [-0.00027916942881395614, 0.00010071839033453553]
+    },
+    {
+      "base_seed": 1,
+      "head_seed": 2,
+      "ssh_handle": 31347,
+      "actual_ssh_returncode": 0,
+      "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b1_h2_last1000",
+      "last_sha256": "f2d8eb7fbc1f58f0e2836e9fa024afcbdee9467951ed2e571d43061bf7498784",
+      "manifest_sha256": "d1c94d7e86a43f46cfa83a10fdf0600e680990b09a8a32ddabb9f5b9c0b0a41b",
+      "original_p4_d3": 0.3669574755338115,
+      "selected_d3": 0.3668542185851775,
+      "delta_vs_original_p4": -0.0001032569486339268,
+      "selected_zero": 4,
+      "excluding_session_046_delta": -0.00014150026294278858,
+      "session_cluster_ci95": [-0.0002961381077514351, 0.000008786490394009484]
+    }
+  ],
+  "common_validation": {
+    "runs": 6,
+    "step": 1000,
+    "last_is_primary": true,
+    "all_traces_finite": true,
+    "all_inputs_unchanged": true,
+    "all_trainer_source_exact": true,
+    "all_best_run_selection_performed": false,
+    "all_final_val_accessed": false,
+    "all_session_cluster_count": 11,
+    "all_ci95_include_zero": true
+  }
+}
