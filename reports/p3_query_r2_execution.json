@@ -1,0 +1,200 @@
+{
+  "status": "P3 r2 completed cleanly; prespecified improvement-magnitude gate not met",
+  "observed_at_utc": "2026-09-07T13:29:40.116388+00:00",
+  "git_sha": "e4a1c24ca6046f824e5c5b3bdb2a683c7b4cce19",
+  "pair_report": "/NHNHOME/data/sukim/adcl/reports/p3_query_r2_last1000_pair.json",
+  "pair_report_sha256": "05fc105d248e0e48fb4e1b85b9a528f0656f7d30201e0b7936ca11410637f8ee",
+  "primary": {
+    "control_official_d3": 0.4459774155454995,
+    "state_official_d3": 0.4379407064933274,
+    "state_over_control": 0.981979560461953,
+    "state_minus_control": {
+      "delta": -0.008036709052172152,
+      "ci95": [
+        -0.013903542693235335,
+        -0.0027244106992217036
+      ],
+      "repeats": 10000,
+      "seed": 20260907,
+      "clusters": 11,
+      "method": "세션 uniform 복원추출; 선택된 모든 프레임의 오차 합/프레임 수. frame IID 아님"
+    }
+  },
+  "screening": {
+    "criterion": "delta<=-0.01 and ci95.upper<0",
+    "passed": false,
+    "meaning": "seed 복제 검토 기준일 뿐 최종 모델 채택 또는 수상 성능 증명 아님"
+  },
+  "arms": {
+    "control": {
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p3_query_control_s0_r2",
+      "supervisor_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p3_query_control_s0_r2.supervisor.json",
+      "supervisor_sha256": "9cca1cc5a3d204726ee44ad33c05c983c5e7b884e5d505d521a5e642f18d0222",
+      "actual_returncode": 0,
+      "supervisor_exit_code": 0,
+      "parent_pid": 2065871,
+      "child_pid": 2065978,
+      "both_pids_absent": true,
+      "started_at": "2026-09-07T13:18:23.243951+00:00",
+      "ended_at": "2026-09-07T13:26:52.941292+00:00",
+      "pressure_event": null,
+      "received_signals": [],
+      "minimum_free_mib": 179984,
+      "device_mapping": {
+        "cuda_visible_devices": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+        "logical_device": "cuda:0",
+        "physical_gpu": 4,
+        "observed_uuid_raw": "4b804d68-fd61-af14-393a-573c533d5006",
+        "observed_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006"
+      },
+      "memory": {
+        "allocated_bytes": 132330496,
+        "reserved_bytes": 1843396608,
+        "peak_allocated_bytes": 1145764864,
+        "peak_reserved_bytes": 1843396608,
+        "device_free_bytes": 188726837248,
+        "device_total_bytes": 191503138816
+      },
+      "nonfinite_count": 0,
+      "initial_metric_gate": {
+        "passed": true,
+        "expected_official_d3": 0.4454619773599255,
+        "observed_official_d3": 0.4454619773599255,
+        "absolute_tolerance": 0,
+        "reference_sha256": "f32680b3f13f5f85045e27120c63db7afa1e24d3c566dc756ce8ac4c7e3158e1",
+        "unfrozen_legacy_d3_not_comparison_target": 0.4454620049779748,
+        "scope": "동일 tune1998/11세션/batch4/bf16/nominal full-forward 집계 정확 일치; 표본별 출력 일치 검증은 별도"
+      },
+      "initial_model_sha": "29b1d73ca472e8f71847ccaaf032eb7ccf9665664917678f50c815540ea2e2d8",
+      "frozen_initial_sha256": "430e2525772ba62f7955ecf854e5d31cbf416b147e606c2b9641b3c829924fd4",
+      "frozen_final_sha256": "430e2525772ba62f7955ecf854e5d31cbf416b147e606c2b9641b3c829924fd4",
+      "sample_order_sha256": "c58d41163bb610b8abc3f1ed481976f529bcfe335e0f646a4471935c02f165eb",
+      "source_unchanged": true,
+      "prior_failed_attempt_preserved": {
+        "record": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p3_query_control_s0.supervisor.json",
+        "record_sha256": "2b845cc4f4572ebae34ea29532ce278b73244d0156d9ae8adda8fce653364e4c",
+        "manifest": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p3_query_control_s0/manifest.json",
+        "manifest_sha256": "278e5dc0a0354d630c656e5b6d25eb6467c2f32c0058910b1d67250954f0ea45",
+        "actual_returncode": 1,
+        "optimizer_steps": 0
+      },
+      "completion_evidence": {
+        "manifest_sha256": "99ac685090f4d4d864df7640534e612c133795b62e88f572fbdbb1c1531bed04",
+        "last_sha256": "0e1a2303925d9cf3c8da3c04ae2e59adad2b1081ee24b89b2fbb0a4629ddbfa4",
+        "frozen_state_sha256": "430e2525772ba62f7955ecf854e5d31cbf416b147e606c2b9641b3c829924fd4"
+      },
+      "evaluations": [
+        {
+          "step": 0,
+          "official_d3": 0.4454619773599255
+        },
+        {
+          "step": 250,
+          "official_d3": 0.49842590495134825
+        },
+        {
+          "step": 500,
+          "official_d3": 0.4483847929266383
+        },
+        {
+          "step": 750,
+          "official_d3": 0.4475107641589527
+        },
+        {
+          "step": 1000,
+          "official_d3": 0.4459774155454995
+        }
+      ]
+    },
+    "state": {
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p3_query_state_s0_r2",
+      "supervisor_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p3_query_state_s0_r2.supervisor.json",
+      "supervisor_sha256": "dba793252c67ddcb3a3e09ebae19a130ab01bea9278d9c513474a5e186f47e11",
+      "actual_returncode": 0,
+      "supervisor_exit_code": 0,
+      "parent_pid": 2065881,
+      "child_pid": 2065979,
+      "both_pids_absent": true,
+      "started_at": "2026-09-07T13:18:23.245201+00:00",
+      "ended_at": "2026-09-07T13:26:53.932759+00:00",
+      "pressure_event": null,
+      "received_signals": [],
+      "minimum_free_mib": 179984,
+      "device_mapping": {
+        "cuda_visible_devices": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+        "logical_device": "cuda:0",
+        "physical_gpu": 5,
+        "observed_uuid_raw": "1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+        "observed_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8"
+      },
+      "memory": {
+        "allocated_bytes": 132330496,
+        "reserved_bytes": 1843396608,
+        "peak_allocated_bytes": 1145764864,
+        "peak_reserved_bytes": 1843396608,
+        "device_free_bytes": 188726837248,
+        "device_total_bytes": 191503138816
+      },
+      "nonfinite_count": 0,
+      "initial_metric_gate": {
+        "passed": true,
+        "expected_official_d3": 0.4454619773599255,
+        "observed_official_d3": 0.4454619773599255,
+        "absolute_tolerance": 0,
+        "reference_sha256": "f32680b3f13f5f85045e27120c63db7afa1e24d3c566dc756ce8ac4c7e3158e1",
+        "unfrozen_legacy_d3_not_comparison_target": 0.4454620049779748,
+        "scope": "동일 tune1998/11세션/batch4/bf16/nominal full-forward 집계 정확 일치; 표본별 출력 일치 검증은 별도"
+      },
+      "initial_model_sha": "29b1d73ca472e8f71847ccaaf032eb7ccf9665664917678f50c815540ea2e2d8",
+      "frozen_initial_sha256": "430e2525772ba62f7955ecf854e5d31cbf416b147e606c2b9641b3c829924fd4",
+      "frozen_final_sha256": "430e2525772ba62f7955ecf854e5d31cbf416b147e606c2b9641b3c829924fd4",
+      "sample_order_sha256": "c58d41163bb610b8abc3f1ed481976f529bcfe335e0f646a4471935c02f165eb",
+      "source_unchanged": true,
+      "prior_failed_attempt_preserved": {
+        "record": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p3_query_state_s0.supervisor.json",
+        "record_sha256": "faacc462ae4712fd937a477bdbc74dc061f5a33600db3815cf6578e57f92ba63",
+        "manifest": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p3_query_state_s0/manifest.json",
+        "manifest_sha256": "68a49a866cfa6f009b005f35e4042088da310ace8ddc29218a4a84837dcc65da",
+        "actual_returncode": 1,
+        "optimizer_steps": 0
+      },
+      "completion_evidence": {
+        "manifest_sha256": "94722d2b6f1cf57bdc4296315773ab1b07ffe8669a4b819479bf9ac61e3e8d7e",
+        "last_sha256": "802b0525eb15545d5f23b5c714e81b450a6f08526b4f2f19ae50ebd0cbd5d2d2",
+        "frozen_state_sha256": "430e2525772ba62f7955ecf854e5d31cbf416b147e606c2b9641b3c829924fd4"
+      },
+      "evaluations": [
+        {
+          "step": 0,
+          "official_d3": 0.4454619773599255
+        },
+        {
+          "step": 250,
+          "official_d3": 0.5074006238685654
+        },
+        {
+          "step": 500,
+          "official_d3": 0.46502508536038045
+        },
+        {
+          "step": 750,
+          "official_d3": 0.4442932558790394
+        },
+        {
+          "step": 1000,
+          "official_d3": 0.4379407064933274
+        }
+      ]
+    }
+  },
+  "all_101_logged_sample_order_hashes_equal": true,
+  "all_101_logged_frozen_aux_losses_equal": true,
+  "gpu4_5_end_state": [
+    "4, GPU-4b804d68-fd61-af14-393a-573c533d5006, 0, 182632",
+    "5, GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8, 0, 182632"
+  ],
+  "gpu4_5_compute_processes": [],
+  "original_P2_full_four_arm_gate": "FAIL remains; C1T0 native SIGSEGV is not reclassified",
+  "final_val_or_official_submission_performed": false,
+  "latency_or_rank_claim": false
+}
