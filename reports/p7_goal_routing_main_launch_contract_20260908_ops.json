@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "status": "main6000_launch_pending_root_approval",
+  "source": {
+    "production_git_sha": "64e92694ccbe0a3c5a581e421e16a884b9c5a088",
+    "source_manifest": "reports/p7_goal_routing_source_manifest_20260908_ops.json",
+    "source_manifest_sha256": "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4",
+    "preflight_head": "e7a595475af218e8230dfc291942f705e15b2af8",
+    "whole_head_equality_is_not_runtime_guard": true
+  },
+  "runtime": {
+    "working_directory": "/NHNHOME/data/sukim/adcl",
+    "python": "/usr/bin/python",
+    "python_version": "3.12.3",
+    "torch_version": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "torch_cuda_version": "13.1",
+    "environment": {
+      "PYTHONPATH": ".",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "logical_gpu": 0,
+    "workers": 4,
+    "cuda_memory_limit_mib": 12000,
+    "cuda_min_free_mib": 8192
+  },
+  "common_argv": [
+    "scripts/run_motiondrive_v2_p7_goal_routing.py",
+    "--source-manifest", "reports/p7_goal_routing_source_manifest_20260908_ops.json",
+    "--expected-source-manifest-sha256", "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4",
+    "--data-root", "/NHNHOME/data/sukim/adcl",
+    "--split-manifest", "data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "--supervision-root", "data/etri/motiondrive_v2/train_tune_geometry_v2",
+    "--gpu", "0",
+    "--workers", "4",
+    "--cuda-memory-limit-mib", "12000",
+    "--cuda-min-free-mib", "8192"
+  ],
+  "rows": [
+    {
+      "wave": 1,
+      "physical_gpu_index": 4,
+      "cuda_visible_devices": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "expected_physical_gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "arm": "control_zero_slot",
+      "base_seed": 0,
+      "init": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth",
+      "expected_init_sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+      "run_manifest": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/manifest.json",
+      "expected_run_manifest_sha256": "9e5ba7ce89c0c1a9e4fe49476ff72c63b451f2658766e74e84c7336a4591fd98",
+      "expected_p0_model_state_sha256": "f69e1c52ccd4b9908130ffe02170c0f08bff21712c634fee064517009a6c2c7d",
+      "expected_initial_model_state_sha256": "fc51a847cc5532e8010454d2452ea8233e0d1e560053d2217f34580f464db1c7",
+      "run_dir": "work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000"
+    },
+    {
+      "wave": 1,
+      "physical_gpu_index": 5,
+      "cuda_visible_devices": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "expected_physical_gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "arm": "goal_real_slot",
+      "base_seed": 0,
+      "init": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth",
+      "expected_init_sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+      "run_manifest": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/manifest.json",
+      "expected_run_manifest_sha256": "9e5ba7ce89c0c1a9e4fe49476ff72c63b451f2658766e74e84c7336a4591fd98",
+      "expected_p0_model_state_sha256": "f69e1c52ccd4b9908130ffe02170c0f08bff21712c634fee064517009a6c2c7d",
+      "expected_initial_model_state_sha256": "fc51a847cc5532e8010454d2452ea8233e0d1e560053d2217f34580f464db1c7",
+      "run_dir": "work_dirs/motiondrive_v2/p7_goal_routing_b0_goal_last6000"
+    },
+    {
+      "wave": 2,
+      "physical_gpu_index": 4,
+      "cuda_visible_devices": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "expected_physical_gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "arm": "control_zero_slot",
+      "base_seed": 1,
+      "init": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/last.pth",
+      "expected_init_sha256": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5",
+      "run_manifest": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/manifest.json",
+      "expected_run_manifest_sha256": "385ea53269e96d73c7d66f4196bc2e1205b0c6b7e9c7db537f983bc7aa37c421",
+      "expected_p0_model_state_sha256": "d595f0788fbb5ae31ea2eaa2f3344ac300028756dcfe8f313ec1dbb761673e0d",
+      "expected_initial_model_state_sha256": "4f480070eac81176b0a3945484186ccf79063806644be75c4afc41e3bff423a4",
+      "run_dir": "work_dirs/motiondrive_v2/p7_goal_routing_b1_control_last6000"
+    },
+    {
+      "wave": 2,
+      "physical_gpu_index": 5,
+      "cuda_visible_devices": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "expected_physical_gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "arm": "goal_real_slot",
+      "base_seed": 1,
+      "init": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/last.pth",
+      "expected_init_sha256": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5",
+      "run_manifest": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/manifest.json",
+      "expected_run_manifest_sha256": "385ea53269e96d73c7d66f4196bc2e1205b0c6b7e9c7db537f983bc7aa37c421",
+      "expected_p0_model_state_sha256": "d595f0788fbb5ae31ea2eaa2f3344ac300028756dcfe8f313ec1dbb761673e0d",
+      "expected_initial_model_state_sha256": "4f480070eac81176b0a3945484186ccf79063806644be75c4afc41e3bff423a4",
+      "run_dir": "work_dirs/motiondrive_v2/p7_goal_routing_b1_goal_last6000"
+    }
+  ],
+  "preflight": {
+    "all_four_exact_run_dirs_absent": true,
+    "all_four_cpu_preflight_exit_code": 0,
+    "all_four_cuda_initialized": false,
+    "same_base_control_goal_initial_state_exact": true,
+    "base0_three_update_plumbing_independent_review_pass": true,
+    "base0_smoke_execution_receipt_sha256": "c07e51b6cb09791a26273256a241f3b4992db8be1872757fec631b7fcb27e68b"
+  },
+  "scientific_contract": {
+    "all_four_runs_required_unless_technical_failure": true,
+    "steps": 6000,
+    "terminal_tune_evaluations": 1,
+    "intermediate_tune": false,
+    "best_checkpoint": false,
+    "final_holdout_access": false,
+    "schedule_extension": false,
+    "main_launch_authorized_by_this_record": false,
+    "rtx3090_execution_authorized_by_this_record": false
+  }
+}
