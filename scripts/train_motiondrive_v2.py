@@ -28,7 +28,7 @@ from torch.utils.data import DataLoader
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
-from motiondrive_v2_training import (LossWeights, compute_loss, model_inputs,
+from motiondrive_v2_training import (LossWeights, compute_loss, global_binary_class_weights, model_inputs,
                                      raster_counts, set_training_mode, tensor_state_sha256,
                                      time_input_policy, TIME_INPUT_MODES, to_device, weighted_d3)
 ACTIVE_RUN_DIR = None
@@ -195,7 +195,8 @@ def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None
 
 
 @torch.inference_mode()
-def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0):
+def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0,
+             detailed_records=False):
     time_input_policy(time_input)
     model.eval()
     records, state_errors, history_errors = [], [], []
@@ -214,10 +215,37 @@ def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0)
         sessions = raw["session_id"]
         frames = raw["frame"].tolist()
         proxy = raw.get("proxy_weight", torch.ones(len(d3))).tolist()
+        if detailed_records:
+            detailed_pred = out["plan_abs"].float().cpu()
+            detailed_gt = batch["gt_plan"].float().cpu()
+            detailed_pred_state = out["state_hat"].float().cpu()
+            detailed_gt_state = batch["state_target"].float().cpu()
+            detailed_gt_state_valid = batch["state_valid"].bool().cpu()
+            detailed_stop_valid = batch["state_valid"][:, 5].bool().cpu()
+            detailed_stop_target = batch["state_target"][:, 5].float().cpu()
+            detailed_max_displacement = torch.linalg.vector_norm(detailed_gt, dim=-1).max(-1).values
         for i, value in enumerate(d3):
-            records.append({"scenario": scenarios[i], "session": sessions[i],
-                            "frame": int(frames[i]), "d3": float(value),
-                            "proxy": float(proxy[i])})
+            record = {"scenario": scenarios[i], "session": sessions[i],
+                      "frame": int(frames[i]), "d3": float(value),
+                      "proxy": float(proxy[i])}
+            if detailed_records:
+                valid_stop = bool(detailed_stop_valid[i])
+                stop_target = float(detailed_stop_target[i]) if valid_stop else None
+                gt = detailed_gt[i]
+                max_displacement = float(detailed_max_displacement[i])
+                bucket = ("invalid_stop" if not valid_stop else
+                          "nonstop" if stop_target < .5 else
+                          "steady" if max_displacement <= .2 else "depart")
+                record.update(row=int(raw["row"][i]),
+                              pred_abs_xy=detailed_pred[i].tolist(),
+                              gt_abs_xy=gt.tolist(), stop_valid=valid_stop,
+                              stop_target=stop_target, bucket=bucket,
+                              stop_bucket=bucket,
+                              max_gt_displacement_m=max_displacement,
+                              pred_state=detailed_pred_state[i].tolist(),
+                              gt_state=detailed_gt_state[i].tolist(),
+                              gt_state_valid=detailed_gt_state_valid[i].tolist())
+            records.append(record)
         err = (out["state_hat"][:, :5] - batch["state_target"][:, :5]).abs()
         mask = batch["state_valid"][:, :5].bool()
         state_errors.extend(torch.where(mask, err, float("nan")).cpu().tolist())
@@ -315,10 +343,90 @@ def arguments(argv=None):
     return p.parse_args(argv)
 
 
+def _validate_experimental_protocol(experiment):
+    if experiment is None:
+        return None
+    required = {"schema_version", "name", "arm", "last_only_final_eval", "stop_class_weights",
+                "expected_initial_model_state_sha256", "expected_optimizer_groups",
+                "train_label_counts", "source", "fresh_optimizer_step_zero",
+                "all_model_parameters_joint_trainable", "stop_target_definition",
+                "balanced_output_is_calibrated_posterior", "raw_stop_logit_is_planner_input"}
+    if not isinstance(experiment, dict) or set(experiment) != required:
+        raise ValueError("Experimental protocol must be a complete changed-configuration manifest")
+    if (experiment["schema_version"] != 1 or experiment["name"] != "p6_global_stop_class_balance"
+            or experiment["arm"] not in ("control_unweighted", "balanced_global_train")
+            or experiment["last_only_final_eval"] is not True
+            or experiment["fresh_optimizer_step_zero"] is not True
+            or experiment["all_model_parameters_joint_trainable"] is not True
+            or experiment["balanced_output_is_calibrated_posterior"] is not False
+            or experiment["raw_stop_logit_is_planner_input"] is not True):
+        raise ValueError("Unsupported experimental protocol")
+    expected_weights = None if experiment["arm"] == "control_unweighted" else experiment["stop_class_weights"]
+    if experiment["arm"] == "control_unweighted" and experiment["stop_class_weights"] is not None:
+        raise ValueError("Control arm must use the exact unweighted stop BCE")
+    if expected_weights is not None:
+        if (not isinstance(expected_weights, list) or len(expected_weights) != 2
+                or any(type(x) is not float or not math.isfinite(x) or x <= 0 for x in expected_weights)):
+            raise ValueError("Treatment stop class weights must be finite positive [negative, positive]")
+        expected_weights = tuple(expected_weights)
+    if (not isinstance(experiment["expected_initial_model_state_sha256"], str)
+            or len(experiment["expected_initial_model_state_sha256"]) != 64):
+        raise ValueError("Expected initial state SHA is required")
+    groups = experiment["expected_optimizer_groups"]
+    if groups != [{"name": "backbone", "base_lr": 5e-6}, {"name": "head", "base_lr": 5e-5}]:
+        raise ValueError("P6 optimizer group contract mismatch")
+    counts = experiment["train_label_counts"]
+    if (not isinstance(counts, dict)
+            or set(counts) != {"rows", "rows_sha256", "labels_sha256", "valid", "negative", "positive"}
+            or any(type(counts[k]) is not int or counts[k] <= 0
+                   for k in ("rows", "valid", "negative", "positive"))
+            or any(not isinstance(counts[k], str) or len(counts[k]) != 64
+                   for k in ("rows_sha256", "labels_sha256"))
+            or counts["valid"] != counts["negative"] + counts["positive"]):
+        raise ValueError("P6 train stop-label counts are incomplete")
+    formula = global_binary_class_weights(counts["negative"], counts["positive"])
+    if expected_weights is not None and expected_weights != tuple(formula):
+        raise ValueError("Treatment stop class weights do not equal pinned global train formula")
+    if not isinstance(experiment["source"], dict) or not experiment["source"]:
+        raise ValueError("P6 source/count provenance is required")
+    return expected_weights
+
+
+def _validate_experimental_runtime_args(args):
+    expected = {"phase": "joint", "goal_on": 1, "state_on": 1, "steps": 1000,
+                "batch": 16, "microbatch": 2, "eval_batch": 4, "eval_every": 1000,
+                "save_every": 1000, "lr": 5e-5, "backbone_lr": 5e-6,
+                "weight_decay": .01, "warmup": 100, "grad_clip": 5.,
+                "alpha_occ": .2, "alpha_lane": .2, "alpha_motion": .2,
+                "uncertainty": 1, "precision": "bf16", "time_input": "nominal",
+                "bn_policy": "fixed", "arch": "resnet50", "motion_input_mode": "low_feature",
+                "train_stride": 1, "eval_stride": 5, "max_train_samples": 0,
+                "max_eval_samples": 0, "eval_split": "tune"}
+    if any(getattr(args, key) != value for key, value in expected.items()):
+        raise ValueError("P6 fixed continuation recipe mismatch")
+    if not args.init or args.resume or args.pretrained or args.eval_only or args.train_scenes or args.eval_scenes:
+        raise ValueError("P6 requires full train+tune, weights-only init, and fresh optimizer")
+
+
+def _training_schedule_actions(step, args, experiment):
+    """Return evaluation/periodic-save decisions without changing default policy."""
+    evaluate_now = step == args.steps or (experiment is None and step % args.eval_every == 0)
+    periodic_save = experiment is None and step % args.save_every == 0
+    return evaluate_now, periodic_save
+
+
 def main():
+    return run_training()
+
+
+def run_training(argv=None, *, experiment=None):
     global ACTIVE_RUN_DIR
-    args = arguments()
-    explicit = {token.split("=", 1)[0] for token in sys.argv[1:] if token.startswith("--")}
+    args = arguments(argv)
+    command = list(sys.argv[1:] if argv is None else argv)
+    explicit = {token.split("=", 1)[0] for token in command if token.startswith("--")}
+    stop_class_weights = _validate_experimental_protocol(experiment)
+    if experiment is not None:
+        _validate_experimental_runtime_args(args)
     from motiondrive_v2_data import MotionDriveDataset
     from models.motiondrive_v2 import MotionDriveV2, MotionDriveV2Config
     if args.init and args.resume:
@@ -401,6 +509,17 @@ def main():
         {"params": backbone, "lr": args.backbone_lr, "base_lr": args.backbone_lr},
         {"params": other, "lr": args.lr, "base_lr": args.lr},
     ], weight_decay=args.weight_decay)
+    if experiment is not None:
+        if initial_state_sha != experiment["expected_initial_model_state_sha256"]:
+            raise ValueError("P6 same-base initial state SHA mismatch")
+        actual_groups = [{"name": "backbone", "base_lr": optimizer.param_groups[0]["base_lr"]},
+                         {"name": "head", "base_lr": optimizer.param_groups[1]["base_lr"]}]
+        if actual_groups != experiment["expected_optimizer_groups"]:
+            raise ValueError("P6 optimizer group LR mismatch")
+        if args.resume:
+            raise ValueError("P6 continuation uses weights-only --init and a fresh optimizer")
+        if optimizer.state or not all(param.requires_grad for param in model.parameters()):
+            raise ValueError("P6 must begin at optimizer step0 with every model parameter trainable")
     weights = LossWeights(plan=0. if args.phase == "pretrain" else 1.,
                           occupancy=args.alpha_occ, lane=args.alpha_lane,
                           motion=args.alpha_motion, uncertainty=bool(args.uncertainty))
@@ -426,6 +545,8 @@ def main():
                         "inference_policy": "eval running statistics for both arms"},
         "status": "starting", "pid": os.getpid(),
     }
+    if experiment is not None:
+        manifest["experimental_protocol"] = experiment
     atomic_json(run_dir / "manifest.json", manifest)
     ACTIVE_RUN_DIR = run_dir
     def dataset(split, stride, maximum, scenes):
@@ -454,6 +575,10 @@ def main():
     manifest["eval_rows_sha256"] = hashlib.sha256(
         np.asarray(evaluation.rows, dtype="<i8").tobytes()).hexdigest()
     manifest["sample_order_policy"] = "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log"
+    if experiment is not None:
+        declared = experiment["train_label_counts"]
+        if len(training) != declared["rows"] or manifest["train_rows_sha256"] != declared["rows_sha256"]:
+            raise ValueError("P6 counted train rows differ from actual trainer rows")
     generator = torch.Generator().manual_seed(args.seed)
     train_loader = DataLoader(training, batch_size=args.batch, shuffle=True,
                               num_workers=args.workers, pin_memory=device.type == "cuda",
@@ -484,14 +609,14 @@ def main():
         return {"model": model.state_dict(), "optimizer": optimizer.state_dict(),
                 "step": step, "epoch": epoch, "best_metric": best,
                 "manifest": manifest, "rng": rng}
-    if not args.resume:
+    if not args.resume and experiment is None:
         atomic_checkpoint(run_dir / "initial.pth", checkpoint())
     started = time.monotonic()
     sample_order_digest = hashlib.sha256()
     manifest["status"] = "running"
     atomic_json(run_dir / "manifest.json", manifest)
     with (run_dir / "metrics.jsonl").open("a", buffering=1) as log:
-        if not args.resume:
+        if not args.resume and experiment is None:
             initial_report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input,
                                           min_free_mib=args.cuda_min_free_mib)
             atomic_json(run_dir / "initial_eval.json", initial_report)
@@ -523,7 +648,8 @@ def main():
                         batch = to_device(slice_batch(raw, start, start + args.microbatch), device)
                         with autocast(device, args.precision):
                             output = model(**model_inputs(batch, time_input=args.time_input))
-                        loss, micro_parts = compute_loss(output, batch, weights, normalizers=normalizers)
+                        loss, micro_parts = compute_loss(output, batch, weights, normalizers=normalizers,
+                                                         stop_class_weights=stop_class_weights)
                         if not bool(torch.isfinite(loss)):
                             raise FloatingPointError(f"Nonfinite microbatch loss at step {step}; no silent NaN skip")
                         loss.backward()
@@ -535,7 +661,8 @@ def main():
                     batch = to_device(raw, device)
                     with autocast(device, args.precision):
                         output = model(**model_inputs(batch, time_input=args.time_input))
-                    loss, parts = compute_loss(output, batch, weights)
+                    loss, parts = compute_loss(output, batch, weights,
+                                               stop_class_weights=stop_class_weights)
                     if not bool(torch.isfinite(loss)):
                         raise FloatingPointError(f"Nonfinite loss at step {step}; no silent NaN skip")
                     loss.backward()
@@ -552,9 +679,12 @@ def main():
                            **{k: float(v.detach()) for k, v in parts.items()}}
                     log.write(json.dumps(row, allow_nan=False) + "\n")
                     print(json.dumps(row, allow_nan=False), flush=True)
-                if step % args.eval_every == 0 or step == args.steps:
-                    report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input,
-                                         min_free_mib=args.cuda_min_free_mib)
+                evaluate_now, periodic_save = _training_schedule_actions(step, args, experiment)
+                if evaluate_now:
+                    report, eval_records = evaluate(model, eval_loader, device, args.precision,
+                                                    time_input=args.time_input,
+                                                    min_free_mib=args.cuda_min_free_mib,
+                                                    detailed_records=experiment is not None)
                     # Pretrain selection is task quality, not an untrained planner's D3.
                     if args.phase == "pretrain":
                         motion_value = report["history_position_mae_by_offset"]
@@ -570,10 +700,13 @@ def main():
                     log.write(json.dumps(row, allow_nan=False) + "\n")
                     print(json.dumps(row, allow_nan=False), flush=True)
                     atomic_json(run_dir / "latest_eval.json", row)
-                    if score < best:
+                    if experiment is not None:
+                        best = score
+                        atomic_json(run_dir / "final_eval.json", {"report": row, "records": eval_records})
+                    elif score < best:
                         best = score
                         atomic_checkpoint(run_dir / "best.pth", checkpoint())
-                if step % args.save_every == 0:
+                if periodic_save:
                     atomic_checkpoint(run_dir / "last.pth", checkpoint())
             epoch += 1
         atomic_checkpoint(run_dir / "last.pth", checkpoint())

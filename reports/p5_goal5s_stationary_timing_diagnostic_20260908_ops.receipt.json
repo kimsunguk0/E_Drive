@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "date_kst": "2026-09-08",
+  "report": "reports/p5_goal5s_stationary_timing_diagnostic_20260908_ops.json",
+  "report_sha256": "fc9e58bb2a51518b6f50dd35a94d38fd447472f1f5b006e895cb3278ef7484e9",
+  "execution": {
+    "kind": "remote inline Python read-only join followed by local apply_patch report transcription",
+    "python": "/usr/bin/python",
+    "cuda_visible_devices": "",
+    "torch_imported": false,
+    "gpu_or_model_forward_count": 0,
+    "successful_pid": 2208965,
+    "successful_actual_exit": 0,
+    "first_attempt_actual_exit": 1,
+    "first_attempt_output_created": false,
+    "first_attempt_reason": "It incorrectly compared the evaluator planning-behavior bucket field with the future-motion diagnostic buckets and failed an assertion. The corrected command used manifest diagnostic_buckets after exact row alignment.",
+    "remote_files_written": false,
+    "final_val_accessed": false
+  },
+  "inputs_sha256_before_after": {
+    "reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "reports/p4_joint_full_tune_eval_s1_20260908_ops/normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137",
+    "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "work_dirs/motiondrive_v2/p5_zero_selector_full_b0_tune1998.pt.manifest.json": "dbc26cb794f4b83ff744f4f2f17cae7379ba69b320ca7d6cdabaa1028230805e",
+    "work_dirs/motiondrive_v2/p5_zero_selector_full_b1_tune1998.pt.manifest.json": "caf6b64cedfa1bd0b08c321f92f5b32c1a7dbaf502bbebeac7c5719681ec475e",
+    "all_equal_before_after": true
+  },
+  "scope": {
+    "tune_rows": 1998,
+    "future_motion_groups": {"steady": 99, "depart": 24, "nonstop": 1875},
+    "selector_created": false,
+    "threshold_fit_or_recommended": false,
+    "model_source_cache_or_data_modified": false
+  }
+}

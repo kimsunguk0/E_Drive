@@ -1,8 +1,9 @@
 """V2 losses, exact metric and deploy-input boundary (no dataset I/O at import)."""
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
+import math
+from dataclasses import dataclass
 from typing import Mapping
 
 import torch
@@ -219,8 +220,31 @@ def _validate_loss_normalizers(normalizers: Mapping[str, Tensor], device: torch.
             raise ValueError(f"Loss normalizer {name} must be nonnegative")
 
 
+def global_binary_class_weights(negative_count: int, positive_count: int) -> tuple[float, float]:
+    """Return fixed inverse-frequency weights as (negative, positive).
+
+    Counts must cover the complete train split.  They are deliberately not
+    inferred from a minibatch, where either class can be absent.
+    """
+    if (type(negative_count) is not int or type(positive_count) is not int
+            or negative_count <= 0 or positive_count <= 0):
+        raise ValueError("Global binary class counts must be positive integers")
+    total = negative_count + positive_count
+    return total / (2. * negative_count), total / (2. * positive_count)
+
+
+def _stop_sample_weights(target: Tensor, class_weights: tuple[float, float]) -> Tensor:
+    if (not isinstance(class_weights, tuple) or len(class_weights) != 2
+            or any(type(x) is not float or not math.isfinite(x) or x <= 0
+                   for x in class_weights)):
+        raise ValueError("Stop class weights must be finite and positive")
+    value = target.new_tensor(class_weights)
+    return torch.where(target >= .5, value[1], value[0])
+
+
 def compute_loss(outputs: Mapping[str, Tensor], batch: Mapping[str, Tensor],
-                 weights: LossWeights, *, normalizers: Mapping[str, Tensor] | None = None
+                 weights: LossWeights, *, normalizers: Mapping[str, Tensor] | None = None,
+                 stop_class_weights: tuple[float, float] | None = None
                  ) -> tuple[Tensor, dict[str, Tensor]]:
     pred = outputs["plan_abs"].float()
     if normalizers is not None:
@@ -247,8 +271,11 @@ def compute_loss(outputs: Mapping[str, Tensor], batch: Mapping[str, Tensor],
                             normalizer=None if normalizers is None else normalizers["state_valid"])
     stop_target = torch.where(state_valid[..., 5].bool(), batch["state_target"][..., 5].float(),
                               torch.zeros_like(batch["state_target"][..., 5].float()))
-    stop = masked_mean(F.binary_cross_entropy_with_logits(
-        outputs["state_hat"][..., 5].float(), stop_target, reduction="none"), state_valid[..., 5],
+    stop_values = F.binary_cross_entropy_with_logits(
+        outputs["state_hat"][..., 5].float(), stop_target, reduction="none")
+    if stop_class_weights is not None:
+        stop_values = stop_values * _stop_sample_weights(stop_target, stop_class_weights)
+    stop = masked_mean(stop_values, state_valid[..., 5],
         normalizer=None if normalizers is None else normalizers["stop_valid"])
     motion = history + state + .2 * stop
     loss = (weights.plan * plan_loss + weights.occupancy * occ +

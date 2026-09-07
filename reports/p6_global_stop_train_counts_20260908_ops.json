@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "purpose": "Independent read-only count of the P6 global train-valid stop labels; this is not an additional experiment.",
+  "execution": {
+    "host_role": "B200 data host",
+    "python": "/usr/bin/python",
+    "pid": 2215774,
+    "actual_returncode": 0,
+    "cuda_visible_devices": "",
+    "gpu_used": false,
+    "images_read": 0,
+    "tune_rows_read": 0,
+    "final_rows_read": 0,
+    "files_written_remotely": 0
+  },
+  "scope": {
+    "split": "train",
+    "scenes": 203,
+    "sessions": 72,
+    "rows": 54810,
+    "min_frame": 30,
+    "frame_stride": 1
+  },
+  "label_contract": {
+    "state_target_order": [
+      "vx",
+      "vy",
+      "ax",
+      "ay",
+      "yaw_rate",
+      "stop_binary"
+    ],
+    "target": "state_target[:,5] (stop_binary)",
+    "valid_mask": "state_valid[:,5]",
+    "positive_value": 1.0,
+    "negative_value": 0.0,
+    "weight_formula": "w_class = Nvalid / (2 * Nclass)",
+    "per_batch_balance": false
+  },
+  "counts": {
+    "n_rows": 54810,
+    "n_valid": 54810,
+    "n_invalid": 0,
+    "n_plus": 3981,
+    "n_minus": 50829
+  },
+  "class_weights": {
+    "w_plus": 6.883948756593821,
+    "w_minus": 0.5391607153396683
+  },
+  "canonical_digests": {
+    "definition": "For each lexicographically sorted train scene: SHA256(scene UTF-8 || NUL || row int64 little-endian bytes || state_target[:,5] float32 little-endian bytes || state_valid[:,5] uint8 bytes). The aggregate hashes scene UTF-8 || NUL || lowercase per-scene digest || newline in that same order.",
+    "scene_count": 203,
+    "aggregate_scene_row_target5_valid5_sha256": "d587ff2c8cbab445434123c1b3b194295d7c8e30513ba2c62aa538c82098a475",
+    "ordered_train_rows_int64le_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "ordered_target5_float32le_sha256": "fa635fd1f251b24db7678aa37372952a795626033c503aaf2939319d309c2123",
+    "ordered_valid5_uint8_sha256": "3e755a03d0f3d3aea0fe4a619beeded168bb0ea4d0c06243f3052d7c58293d78",
+    "ordered_valid_rows_int64le_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "ordered_valid_targets_float32le_sha256": "fa635fd1f251b24db7678aa37372952a795626033c503aaf2939319d309c2123"
+  },
+  "input_sha256_before_and_after": {
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "/NHNHOME/data/sukim/adcl/scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1"
+  },
+  "inputs_unchanged": true,
+  "method": [
+    "Reproduced the dataset row selection from the grouped train split, ego scenario index, min_frame=30, and stride=1.",
+    "Read only row, frame, state_target, and state_valid arrays from each of the 203 C1 supervision NPZ files; image, occupancy, and lane arrays were not loaded.",
+    "Validated every scene sidecar against the split and ego-cache SHA, and validated row/frame/scene identity against the ego cache.",
+    "Counted only exact binary target values among valid stop entries and computed one global class-weight pair."
+  ]
+}

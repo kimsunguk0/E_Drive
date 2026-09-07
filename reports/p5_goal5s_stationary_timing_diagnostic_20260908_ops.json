@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "status": "completed_cpu_read_only",
+  "date_kst": "2026-09-08",
+  "purpose": "Describe whether the 5-second provided goal-distance distribution differs from the 3-second future-stationary definition; no selector or threshold is constructed or recommended.",
+  "execution": {
+    "python": "/usr/bin/python",
+    "cuda_visible_devices": "",
+    "successful_pid": 2208965,
+    "successful_actual_exit": 0,
+    "attempts": [
+      {
+        "actual_exit": 1,
+        "output_created": false,
+        "reason": "The first inline analysis incorrectly asserted equality between the evaluator's planning-behavior bucket field and the cache manifest's future-motion diagnostic buckets. It stopped before producing results."
+      },
+      {
+        "actual_exit": 0,
+        "output_created": false,
+        "reason": "The corrected read-only analysis used the cache manifest diagnostic_buckets aligned by exact row identity. This checked the inputs and emitted the measured JSON to stdout; this file records that output."
+      }
+    ]
+  },
+  "inputs_sha256_before_after": {
+    "reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "reports/p4_joint_full_tune_eval_s1_20260908_ops/normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137",
+    "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "work_dirs/motiondrive_v2/p5_zero_selector_full_b0_tune1998.pt.manifest.json": "dbc26cb794f4b83ff744f4f2f17cae7379ba69b320ca7d6cdabaa1028230805e",
+    "work_dirs/motiondrive_v2/p5_zero_selector_full_b1_tune1998.pt.manifest.json": "caf6b64cedfa1bd0b08c321f92f5b32c1a7dbaf502bbebeac7c5719681ec475e",
+    "all_equal_before_after": true
+  },
+  "alignment": {
+    "records_each": 1998,
+    "row_scenario_frame_session_s0_s1_exact": true,
+    "cache_manifest_row_scenario_frame_session_exact": true,
+    "ego_cache_scenario_frame_exact": true,
+    "gt_abs_xy_s0_s1_bitwise_exact": true,
+    "diagnostic_bucket_counts": {
+      "steady": 99,
+      "depart": 24,
+      "nonstop": 1875
+    },
+    "note": "The evaluator record field named bucket is a different planning-behavior grouping and was not used for these future-motion groups."
+  },
+  "method": {
+    "goal_distance_m": "Euclidean norm of ego_cache.goal for each exactly aligned tune row; the cache contract identifies this as the provided 5-second goal endpoint.",
+    "stationary_definition": "diagnostic_buckets == steady, independently verified to have max Euclidean norm of all six GT cumulative points through 3 seconds <= 0.2 m for all 99 rows",
+    "percentile_method": "NumPy linear",
+    "threshold_counts": "inclusive <= threshold",
+    "goal_distance_bins_m": ["[0,0.2]", "(0.2,1]", "(1,2]", "(2,5]", "(5,inf)"]
+  },
+  "goal_norm_by_group_m": {
+    "stationary": {
+      "count": 99,
+      "p10": 0.0004504213644203954,
+      "p50": 0.002183402954417068,
+      "p90": 0.5229343463393974,
+      "max": 5.860612128215343,
+      "le_0p2": 87,
+      "le_1": 91,
+      "le_2": 95,
+      "le_5": 98
+    },
+    "departing": {
+      "count": 24,
+      "p10": 5.759941581357075,
+      "p50": 9.630052508936346,
+      "p90": 17.139993511012353,
+      "max": 21.8718733622688,
+      "le_0p2": 0,
+      "le_1": 0,
+      "le_2": 0,
+      "le_5": 2
+    },
+    "nonstop": {
+      "count": 1875,
+      "p10": 27.172077482919505,
+      "p50": 57.25917569444334,
+      "p90": 78.30071203532772,
+      "max": 108.0911601518857,
+      "le_0p2": 4,
+      "le_1": 10,
+      "le_2": 13,
+      "le_5": 33
+    }
+  },
+  "stationary_3s_vs_goal5s": {
+    "stationary_count": 99,
+    "max_gt_3s_le_0p2_count": 99,
+    "goal_5s_gt_0p2_count": 12,
+    "goal_5s_gt_1_count": 8,
+    "goal_5s_gt_2_count": 4,
+    "goal_5s_gt_5_count": 1
+  },
+  "stationary_goal_bins_and_p4_d3": [
+    {
+      "goal_norm_bin_m": "[0,0.2]",
+      "count": 87,
+      "fraction_of_stationary": 0.8787878787878788,
+      "base0_p4_d3": {"mean": 1.1774066847631302, "p50": 1.348772644996643, "sum": 102.43438157439232, "share_of_stationary_d3_sum": 0.8533586287984215},
+      "base1_p4_d3": {"mean": 1.038424517231426, "p50": 1.2614734172821045, "sum": 90.34293299913406, "share_of_stationary_d3_sum": 0.8384347578281258}
+    },
+    {
+      "goal_norm_bin_m": "(0.2,1]",
+      "count": 4,
+      "fraction_of_stationary": 0.04040404040404041,
+      "base0_p4_d3": {"mean": 1.2431780099868774, "p50": 1.2113240957260132, "sum": 4.97271203994751, "share_of_stationary_d3_sum": 0.04142658609928922},
+      "base1_p4_d3": {"mean": 1.23689404129982, "p50": 1.2104401588439941, "sum": 4.94757616519928, "share_of_stationary_d3_sum": 0.04591637315942384}
+    },
+    {
+      "goal_norm_bin_m": "(1,2]",
+      "count": 4,
+      "fraction_of_stationary": 0.04040404040404041,
+      "base0_p4_d3": {"mean": 1.5487412214279175, "p50": 1.7632306218147278, "sum": 6.19496488571167, "share_of_stationary_d3_sum": 0.05160890961679672},
+      "base1_p4_d3": {"mean": 1.544503092765808, "p50": 1.7622444033622742, "sum": 6.178012371063232, "share_of_stationary_d3_sum": 0.0573355339951296}
+    },
+    {
+      "goal_norm_bin_m": "(2,5]",
+      "count": 3,
+      "fraction_of_stationary": 0.030303030303030304,
+      "base0_p4_d3": {"mean": 1.492721398671468, "p50": 1.8358577489852905, "sum": 4.478164196014404, "share_of_stationary_d3_sum": 0.03730661521170713},
+      "base1_p4_d3": {"mean": 1.4658777713775635, "p50": 1.7646483182907104, "sum": 4.39763331413269, "share_of_stationary_d3_sum": 0.04081258489567836}
+    },
+    {
+      "goal_norm_bin_m": "(5,inf)",
+      "count": 1,
+      "fraction_of_stationary": 0.010101010101010102,
+      "base0_p4_d3": {"mean": 1.9565099477767944, "p50": 1.9565099477767944, "sum": 1.9565099477767944, "share_of_stationary_d3_sum": 0.016299260273785483},
+      "base1_p4_d3": {"mean": 1.8857389688491821, "p50": 1.8857389688491821, "sum": 1.8857389688491821, "share_of_stationary_d3_sum": 0.01750075012164237}
+    }
+  ],
+  "descriptive_conclusion": "Twelve of 99 rows stationary through 3 seconds have a provided 5-second goal farther than 0.2 m, including eight farther than 1 m. However, 87 of 99 stationary rows remain in the <=0.2 m goal bin, which also contains 83.8-85.3% of stationary P4 D3 sum. Thus a 3-second-versus-5-second timing mismatch exists for a minority but does not by itself account for most stationary-row D3 mass.",
+  "boundary": "Read-only descriptive distribution only. No threshold was fit, no selector was made, no model forward or training was run, final data were not accessed, and no recommendation or causal conclusion is made."
+}

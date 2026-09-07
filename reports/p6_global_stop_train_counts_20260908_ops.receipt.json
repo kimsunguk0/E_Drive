@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "pass_after_two_pre_output_contract_corrections",
+  "successful_result": {
+    "report": "reports/p6_global_stop_train_counts_20260908_ops.json",
+    "remote_actual_returncode": 0,
+    "remote_pid": 2215774,
+    "cuda_visible_devices": "",
+    "remote_files_written": 0
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "actual_returncode": 1,
+      "output_created": false,
+      "failure": "Pre-read contract assertion used an incorrect state_target_order literal. The authoritative supervision manifest reports [vx, vy, ax, ay, yaw_rate, stop_binary].",
+      "data_mutated": false
+    },
+    {
+      "attempt": 2,
+      "actual_returncode": 1,
+      "output_created": false,
+      "failure": "Pre-read split lookup assumed a top-level train key. The authoritative schema stores membership at splits.train.",
+      "data_mutated": false
+    },
+    {
+      "attempt": 3,
+      "actual_returncode": 0,
+      "output_created": false,
+      "failure": null,
+      "data_mutated": false,
+      "checks": {
+        "row_identity": "pass",
+        "scene_frame_identity": "pass",
+        "sidecar_split_and_ego_sha": "pass",
+        "binary_valid_targets": "pass",
+        "input_sha_before_after": "pass"
+      }
+    }
+  ],
+  "boundaries": {
+    "train_only": true,
+    "label_only": true,
+    "gpu_used": false,
+    "images_read": false,
+    "tune_or_final_used_for_weights": false,
+    "threshold_tuned": false,
+    "training_run": false
+  }
+}
