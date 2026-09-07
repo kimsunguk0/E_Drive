@@ -17,7 +17,7 @@ from build_scene_supervision_v2 import (camera_visible, object_corners_world,
                                         transform_points)
 from motiondrive_v2_data import (CAMERA_ORDER, GRID_SHAPE, MotionDriveDataset,
                                  calibration_from_info, full_pose_matrices,
-                                 grid_centers, motion_targets)
+                                 grid_centers, motion_targets, verify_canonical_calibration)
 
 
 def test_end_to_start_gap_and_quarantine():
@@ -129,6 +129,28 @@ def test_calibration_inverse_convention_and_front_crop():
     expected = .4 * (raw[:2] / raw[2] - [0, 456])
     proj = got[0] @ point
     np.testing.assert_allclose(proj[:2] / proj[2], expected, atol=1e-4)
+    rear = got[CAMERA_ORDER.index("camera_rear_wide")] @ point
+    np.testing.assert_allclose(rear[:2] / rear[2], expected, atol=1e-4)
+    side = got[CAMERA_ORDER.index("camera_front_left")] @ point
+    np.testing.assert_allclose(side[:2] / side[2], .4 * raw[:2] / raw[2], atol=1e-4)
+
+
+def test_derived_canonical_calibration_sha_is_required_and_verified(tmp_path):
+    path = tmp_path / "calibration.npz"
+    np.savez_compressed(path, lidar2img=np.tile(np.eye(4, dtype=np.float32), (6, 1, 1)))
+    verify_canonical_calibration({"schema_version": 1}, path)
+    verify_canonical_calibration({}, path)
+    valid = {"schema_version": 2, "canonical_calibration_sha256": sha256(path)}
+    verify_canonical_calibration(valid, path)
+    with pytest.raises(ValueError, match="lacks canonical"):
+        verify_canonical_calibration({"schema_version": 2}, path)
+    for version in (1, 2):
+        with pytest.raises(ValueError, match="provenance SHA mismatch"):
+            verify_canonical_calibration({"schema_version": version,
+                                          "canonical_calibration_sha256": "bad"}, path)
+    np.savez_compressed(path, lidar2img=np.zeros((6, 4, 4), np.float32))
+    with pytest.raises(ValueError, match="provenance SHA mismatch"):
+        verify_canonical_calibration(valid, path)
 
 
 def test_dataset_shapes_and_no_gt_state_alias(tmp_path):

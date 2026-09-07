@@ -33,7 +33,11 @@ def grid_centers(shape=GRID_SHAPE, extent=GRID_EXTENT):
 
 
 def calibration_from_info(info):
-    """Match legacy CachedImageGeometry(scale=.4), no raw intrinsics fallback."""
+    """Match actual etri_768 cache: front/rear_wide bottom, four side views top.
+
+    Archived canonical NPZs remain unchanged; this conversion does not repair
+    an old on-disk edition. New versions must verify actual cache metadata.
+    """
     out = []
     for name in CAMERA_ORDER:
         cam = info["cams"][name]
@@ -45,7 +49,7 @@ def calibration_from_info(info):
         k = np.eye(4)
         k[:3, :3] = cam["cam_intrinsic"]
         ox = (int(cam["image_width"]) - 1920) // 2
-        oy = int(cam["image_height"]) - 1080 if name == "camera_front" else 0
+        oy = int(cam["image_height"]) - 1080 if name in ("camera_front", "camera_rear_wide") else 0
         crop = np.eye(4)
         crop[0, 2], crop[1, 2] = -ox, -oy
         resize = np.diag([.4, .4, 1., 1.])
@@ -67,6 +71,18 @@ def load_calibration(path):
     if arr.shape != (6, 4, 4) or not np.isfinite(arr).all():
         raise ValueError("Invalid canonical calibration")
     return arr.astype(np.float32)
+
+
+def verify_canonical_calibration(contract, path):
+    """Derived geometry must pin the actual NPZ, not only its source PKL."""
+    from build_grouped_split_v2 import sha256
+    expected = contract.get("canonical_calibration_sha256")
+    if contract.get("schema_version", 1) >= 2 and expected is None:
+        raise ValueError("Derived supervision lacks canonical calibration SHA")
+    # Older schema1 editions were recorded without a derived-file checksum.
+    # Preserve historical loading, but verify any checksum that is declared.
+    if expected is not None and (not isinstance(expected, str) or sha256(path) != expected):
+        raise ValueError("Canonical calibration provenance SHA mismatch")
 
 
 def full_pose_matrices(xyz, rpy):
@@ -172,6 +188,8 @@ class MotionDriveDataset(Dataset):
             raise ValueError("Supervision history offsets mismatch")
         self.augment, self.seed, self.epoch = bool(augment), int(seed), 0
         self.allow_missing_supervision = allow_missing_supervision
+        canonical_path = self.supervision_root / "calibration.npz"
+        verify_canonical_calibration(contract, canonical_path)
         cp = Path(calibration_path) if calibration_path else self.supervision_root / "calibration.npz"
         self.lidar2img = load_calibration(cp)
         if not np.array_equal(self.lidar2img, load_calibration(self.supervision_root / "calibration.npz")):

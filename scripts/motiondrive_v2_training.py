@@ -16,6 +16,8 @@ MODEL_INPUTS = (
 TIME_WEIGHTS = (11 / 36, 11 / 36, 5 / 36, 5 / 36, 2 / 36, 2 / 36)
 HISTORY_SCALE = (10., 5., 1., 1.)
 STATE_SCALE = (10., 5., 3., 3., .5)
+TIME_INPUT_MODES = ("raw", "nominal")
+NOMINAL_HISTORY_SECONDS = (.1, .2, .5, 1.)
 
 
 def set_training_mode(model: torch.nn.Module, bn_policy: str = "adaptive") -> int:
@@ -57,12 +59,30 @@ class LossWeights:
     uncertainty: bool = True
 
 
-def model_inputs(batch: Mapping[str, object]) -> dict[str, Tensor]:
-    """Whitelist only inference inputs; never forward labels or supplied status."""
+def time_input_policy(mode: str) -> dict:
+    if mode not in TIME_INPUT_MODES:
+        raise ValueError("time_input must be raw or nominal")
+    return {"mode": mode, "scope": "model input time_offsets only; same for training and every evaluation",
+            "source": "dataset-provided raw offsets, unchanged" if mode == "raw" else "fixed nominal frame-offset seconds",
+            "nominal_history_seconds": list(NOMINAL_HISTORY_SECONDS), "nominal_dtype": "float32",
+            "supervision_and_dataset_modified": False}
+
+
+def model_inputs(batch: Mapping[str, object], time_input: str = "raw") -> dict[str, Tensor]:
+    """Whitelist inputs; raw preserves tensor identity/RNG and never edits GT."""
+    if time_input not in TIME_INPUT_MODES:
+        raise ValueError("time_input must be raw or nominal")
     missing = set(MODEL_INPUTS).difference(batch)
     if missing:
         raise KeyError(f"Missing model inputs: {sorted(missing)}")
-    return {key: batch[key] for key in MODEL_INPUTS}
+    inputs = {key: batch[key] for key in MODEL_INPUTS}
+    if time_input == "nominal":
+        raw = inputs["time_offsets"]
+        if not isinstance(raw, Tensor) or raw.ndim != 2 or raw.shape != (len(inputs["images"]), 4):
+            raise ValueError("Nominal timing requires exactly four historical offsets [B,4]")
+        inputs["time_offsets"] = torch.tensor(NOMINAL_HISTORY_SECONDS, dtype=torch.float32,
+                                               device=raw.device).expand(raw.shape[0], -1)
+    return inputs
 
 
 def to_device(batch: Mapping, device: torch.device) -> dict:

@@ -30,7 +30,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 from motiondrive_v2_training import (LossWeights, compute_loss, model_inputs,
                                      raster_counts, set_training_mode, tensor_state_sha256,
-                                     to_device, weighted_d3)
+                                     time_input_policy, TIME_INPUT_MODES, to_device, weighted_d3)
 ACTIVE_RUN_DIR = None
 
 
@@ -91,6 +91,16 @@ def restore_run_configuration(args, saved, explicit_options):
         settings["plan_output_scale"] = list(config.get("plan_output_scale", (1., 1.)))
     if hasattr(args, "bn_policy"):
         settings["bn_policy"] = saved_args.get("bn_policy", "adaptive")
+    if hasattr(args, "time_input"):
+        settings["time_input"] = saved_args.get("time_input", "raw")
+        time_input_policy(settings["time_input"])
+        saved_time_policy = saved.get("time_input_policy", {})
+        if not isinstance(saved_time_policy, dict):
+            raise ValueError("Checkpoint time_input_policy must be a mapping")
+        for declaration in (saved.get("time_input", settings["time_input"]),
+                            saved_time_policy.get("mode", settings["time_input"])):
+            if declaration != settings["time_input"]:
+                raise ValueError("Checkpoint time_input declarations conflict")
     if args.resume:
         for key in ("alpha_occ", "alpha_lane", "alpha_motion", "uncertainty", "lr",
                     "backbone_lr", "weight_decay", "warmup", "precision", "seed"):
@@ -117,14 +127,15 @@ def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None
 
 
 @torch.inference_mode()
-def evaluate(model, loader, device, precision):
+def evaluate(model, loader, device, precision, time_input="raw"):
+    time_input_policy(time_input)
     model.eval()
     records, state_errors, history_errors = [], [], []
     iou_counts = {"occ": [0, 0], "lane": [0, 0]}
     for raw in loader:
         batch = to_device(raw, device)
         with autocast(device, precision):
-            out = model(**model_inputs(batch))
+            out = model(**model_inputs(batch, time_input=time_input))
         if not torch.isfinite(out["plan_abs"]).all():
             raise FloatingPointError("Nonfinite validation prediction")
         d3 = weighted_d3(out["plan_abs"], batch["gt_plan"]).cpu().numpy()
@@ -161,6 +172,7 @@ def evaluate(model, loader, device, precision):
         result = np.nansum(values, axis=axis) / np.maximum(count, 1)
         return [float(v) if n else None for v, n in zip(np.ravel(result), np.ravel(count))]
     report = {
+        "time_input": time_input,
         "n": len(records), "official_d3": float(d3.mean()),
         "session_mean_d3": float(np.mean([np.mean(v) for v in by_session.values()])),
         "n_sessions": len(by_session),
@@ -175,8 +187,8 @@ def evaluate(model, loader, device, precision):
     return report, records
 
 
-def arguments():
-    p = argparse.ArgumentParser(description=__doc__)
+def arguments(argv=None):
+    p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
     p.add_argument("--data-root", default=str(ROOT))
     p.add_argument("--split-manifest", required=True)
     p.add_argument("--supervision-root", required=True)
@@ -204,6 +216,8 @@ def arguments():
     p.add_argument("--alpha-motion", type=float, default=.2)
     p.add_argument("--uncertainty", type=int, choices=[0, 1], default=1)
     p.add_argument("--precision", choices=["bf16", "fp32"], default="bf16")
+    p.add_argument("--time-input", choices=TIME_INPUT_MODES, default="raw",
+                   help="Only model time_offsets: raw preserves P1, nominal fixes [.1,.2,.5,1.] seconds; GT is unchanged")
     p.add_argument("--bn-policy", choices=["adaptive", "fixed"], default="adaptive",
                    help="Training only: adaptive batch statistics, or fixed running statistics; all weights still train")
     p.add_argument("--pretrained", help="Public backbone only; never a holdout-trained checkpoint")
@@ -223,7 +237,7 @@ def arguments():
                    help="train is diagnostic eval-only; only tune may select checkpoints")
     p.add_argument("--eval-only", action="store_true")
     p.add_argument("--allow-unpretrained", action="store_true", help="Explicit diagnostic only")
-    return p.parse_args()
+    return p.parse_args(argv)
 
 
 def main():
@@ -309,6 +323,7 @@ def main():
     manifest = {
         "schema_version": 1, "git_sha": source_sha(), "arguments": vars(args),
         "model_config": dataclasses.asdict(config), "loss_weights": dataclasses.asdict(weights),
+        "time_input": args.time_input, "time_input_policy": time_input_policy(args.time_input),
         "split_sha256": sha256(args.split_manifest), "load_report": load_report,
         "torch": torch.__version__, "numpy": np.__version__,
         "device": str(device), "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
@@ -336,7 +351,7 @@ def main():
     eval_loader = DataLoader(evaluation, batch_size=args.eval_batch, shuffle=False,
                              num_workers=args.workers, pin_memory=device.type == "cuda")
     if args.eval_only:
-        report, records = evaluate(model, eval_loader, device, args.precision)
+        report, records = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input)
         atomic_json(run_dir / "evaluation.json", {"report": report, "records": records})
         print(json.dumps(report), flush=True)
         manifest.update(status="completed", evaluation=report)
@@ -387,7 +402,7 @@ def main():
     atomic_json(run_dir / "manifest.json", manifest)
     with (run_dir / "metrics.jsonl").open("a", buffering=1) as log:
         if not args.resume:
-            initial_report, _ = evaluate(model, eval_loader, device, args.precision)
+            initial_report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input)
             atomic_json(run_dir / "initial_eval.json", initial_report)
             log.write(json.dumps({"kind": "initial_eval", "step": 0, **initial_report}, allow_nan=False) + "\n")
             print(json.dumps({"kind": "initial_eval", "step": 0, **initial_report}), flush=True)
@@ -407,7 +422,7 @@ def main():
                     group["lr"] = group["base_lr"] * factor
                 optimizer.zero_grad(set_to_none=True)
                 with autocast(device, args.precision):
-                    output = model(**model_inputs(batch))
+                    output = model(**model_inputs(batch, time_input=args.time_input))
                 loss, parts = compute_loss(output, batch, weights)
                 if not bool(torch.isfinite(loss)):
                     raise FloatingPointError(f"Nonfinite loss at step {step}; no silent NaN skip")
@@ -425,7 +440,7 @@ def main():
                     log.write(json.dumps(row, allow_nan=False) + "\n")
                     print(json.dumps(row, allow_nan=False), flush=True)
                 if step % args.eval_every == 0 or step == args.steps:
-                    report, _ = evaluate(model, eval_loader, device, args.precision)
+                    report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input)
                     # Pretrain selection is task quality, not an untrained planner's D3.
                     if args.phase == "pretrain":
                         motion_value = report["history_position_mae_by_offset"]

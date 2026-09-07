@@ -3,11 +3,14 @@
 작성: 2026-09-07. 설계 기준 코드: `7f2752c` / 실험 근거: `4908989`까지.
 작업루트: `/NHNHOME/data/sukim/adcl`.
 
-현재 상태(2026-09-07 16:45 KST): **P0 보완 완료, 공통 초기값에서 P1 G×S 4판 실행 중.**
+현재 상태(2026-09-07 17:40 KST): **P1 G×S 4판 정상 종료·독립 raw 재평가 완료, 정합 수정 P2 준비 중.**
 P1 실행 소스 `fdd309d`, 분석/진행 기록 `940253b`. 정확한 실행 조건은
 `MOTIONDRIVE_V2_P1_PROTOCOL.md`, P0 근거와 현재 상태는
 `MOTIONDRIVE_V2_PROGRESS_20260907.md`를 따른다. 아래 "아직 미실행" 문장은 최초 설계 시점 기록이며
 현재 실행 상태를 뜻하지 않는다. 사용자 장기 실행 요청으로 GPU0–3 작업을 진행한다.
+P1 LAST6000은 G0S0 .747844 / G1S0 .381652 / G0S1 .785360 / G1S1 .372043이며
+11세션 paired 분석을 완료했다. 반복tune·단일seed·오류기하 조건이라는 한계를 유지한다.
+P2의 기하/nominal 입력 통제 수정 계획은 `MOTIONDRIVE_V2_P2_REPAIR_PROTOCOL.md`를 따른다.
 17:28 KST 추가: 실제 캐시 rear_wide crop과 투영행렬의182.4px 불일치 및 테스트 원 timestamp
 미제공을 확인했다. 기존 P1은 원 조건으로 완주/분석하고 새 geometry edition과 nominal
 시간 입력을 별도로 검증한다. `MOTIONDRIVE_V2_DEPLOYMENT_CONTRACT_AUDIT.md`가 수정 범위를 정한다.

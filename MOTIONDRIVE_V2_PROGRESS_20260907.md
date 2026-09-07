@@ -187,3 +187,75 @@ history logvar의93.75%는 loss clamp −6 아래였고, state는50%였다.
 status 무효 또는 Adam 실제 update 크기를 단정하지 않는다. 파라미터/BN/.grad는 불변이었다.
 음수 Gaussian NLL(상수 생략)은 그 자체로 오류가 아니다.
 원본: `reports/p1_g1s1_step1000_train8_loss_gradients_3090*.json`.
+
+## 17:38 KST: P1 LAST6000 독립 재평가와 요인효과 확인
+
+네 trainer 모두 실제 OS 종료0/completed_cleanly, PID 부재·GPU 해제 확인.
+별도 raw-time planning 평가의 전체 tune1998 D3는 원 학습 로그와 네 팔 모두 exact 일치했다.
+비유한 값0, 공통 초기 tensor/데이터 노출·sample-order 계보 검사도 통과했다.
+
+| G: 공통 영상특징 goal | S: 영상추론 상태 전달 | LAST6000 D3 | BEST 보조 D3 |
+|---|---|---:|---:|
+| OFF | OFF | .747844 | .735553 |
+| ON | OFF | .381652 | .381381 |
+| OFF | ON | .785360 | .769845 |
+| ON | ON | .372043 | .367913 |
+
+11 rawtime 세션 paired bootstrap10000, ON−OFF의 frame가중 효과:
+
+- G 효과(S OFF): −.366192, CI95%[−.45756,−.25604].
+- G 효과(S ON): −.413317, CI95%[−.51226,−.28359].
+- S 효과(G OFF): +.037516, CI95%[+.01063,+.06825].
+- S 효과(G ON): −.009609, CI95%[−.01592,−.00333].
+
+G 효과는 크며 S는 G ON에서만 소폭 개선했다. S의 평균개선 .01m 사전 screening 기준은
+.000391m 차이로 미달이며, CI가0을 제외한다고 기준을 바꾸지 않는다.
+단일seed·반복tune·기존 rear 기하 오류 조건의 결과다. 기존val38 점수와 직접 비교하거나
+1등 성능·구조 상한으로 선언하지 않는다. 다음은 같은 G1S1 LAST의 nominal/영상 교란 진단이다.
+
+원본: `reports/p1_last6000_raw_gs_analysis.json`,
+`reports/p1_g*s*_last6000_raw_planning*.json`.
+
+## 17:40 KST: 독립 geometry edition 생성 완료
+
+`data/etri/motiondrive_v2/train_tune_geometry_v2`에 train203+tune37/240scene/64800행을
+독립 inode로 복사했다. 14종 모든 배열·scene JSON byte SHA와 기존 원본 SHA 보존을 확인했다.
+감독 visibility3064셀은 XOR0이며 모든 occ/lane valid가 불변이다.
+다른5개 카메라는 bitwise 보존, rear 행렬과 전역 provenance만 수정했다.
+
+새 canonical SHA `8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961`,
+새 manifest SHA `ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93`.
+schema2는 source PKL과 실제 canonical SHA를 구분한다.
+preflight의 최초 float64 곱셈순서 차이1.42e-14는 실제 캐시 builder와 같은 순서로 맞췄고
+허용오차를 넓히지 않았다. 본 생성 전 전240scene 공통성을 다시 검증했다.
+
+검증 원본: `reports/motiondrive_v2_geometry_preflight.json`,
+`reports/motiondrive_v2_geometry_created.json`. 실제 dataset 입력 parity를 추가 검사한다.
+P2는 같은 P1 G1S1 LAST6000에서 C(기하)×T(시간입력)의 추가3000step 통제 수정을 준비한다.
+새 정책의 trainer/loader 테스트와 P1 nominal 진단이 끝나기 전에는 발사하지 않는다.
+실행 계획은 `MOTIONDRIVE_V2_P2_REPAIR_PROTOCOL.md`에 별도로 고정했다.
+
+## P1 배포 시간 입력 및 영상 기여 진단 완료
+
+같은 G1S1 LAST6000/원 geometry/전체 tune1998의 nominal 네 조건은 실제 OS 종료0이다.
+
+| 조건 | D3 | nominal 정상 대비 |
+|---|---:|---:|
+| raw 정상(원 주표) | .372043182 | 비교 기준 별도 |
+| nominal 정상 | .372059222 | — |
+| 다른 scene의 같은 frame 영상으로 교체 | 2.183526 | +1.811467 |
+| 과거 영상을 현재 front 반복으로 교체 | .395318 | +.023259 |
+| 과거 영상 순서 반전 | .373696 | +.001637 |
+
+nominal−raw는+.00001604m, CI[+.00000200,+.00002842]로 실제 시간 차이의 영향은 작다.
+shuffle/repeat의11세션 frame가중 paired CI는 각각[+1.23792,+2.33517],
+[+.01741,+.03312]다. reverse의 주 CI[−.000105,+.005135]는0을 포함한다.
+세션 동일가중 보조 추정은 reverse+.00360, CI[+.00136,+.00599]로 주 추정과 구분한다.
+따라서 영상 의존은 강하고 history 사용도 있지만, 정확한 순서 민감도까지 해결했다고
+주장하지 않는다. 영상 교란은 geometry와 불일치를 만들므로 규정 승인의 자동 증명도 아니다.
+원본은 `reports/p1_g1s1_last6000_nominal_comparisons.json` 및 조건별 보고서에 있다.
+
+실제 old/new dataset10샘플(train8+tune2) 비교에서도 rear 투영행렬 외 **모든 반환값**의
+bitwise 일치를 확인했다. 영상100개 출처 SHA와 schema2 canonical SHA 검사도 통과했다.
+수정된 loader/trainer 및 관련 B200 CPU tests179개가 통과했다.
+GPU0–3 평가 작업은 모두 해제됐고 GPU6 기존 작업은 그대로다.
