@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "created_utc": "2026-09-08T04:25:32+09:00",
+  "report": "reports/p5_zero_selector_headseed0_posthoc_20260908.json",
+  "report_sha256": "5861c4554638dc43780835542c0084a0c8ce1514d945dc1bbf8bd8f6b2ae5a85",
+  "execution": {
+    "kind": "single local inline Python CPU diagnostic over externally SHA-pinned immutable artifacts",
+    "actual_exit": 0,
+    "pid": 2403684,
+    "python": "/usr/bin/python3",
+    "torch": "2.8.0+cu128",
+    "cuda_visible_devices": "",
+    "cuda_initialized": false,
+    "omp_num_threads": 1,
+    "openblas_num_threads": 1
+  },
+  "source_sha256": {
+    "scripts/train_motiondrive_v2_zero_selector_probe.py": "fe4d6c2765cee6a092ba59418c1705aaa155747314dc80aa6b22e13a6e929eb1",
+    "scripts/cache_motiondrive_v2_zero_selector_features.py": "d54bbdc761fba99ed1cd98b5658f80b1b097aac361bdcb60e326f2e6226999c8",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd"
+  },
+  "checks": {
+    "head_seed_only": 0,
+    "base_seeds": [0, 1],
+    "train_rows_each": 54810,
+    "tune_rows_each": 1998,
+    "head_last_step": 1000,
+    "optimizer_steps_all_1000": true,
+    "optimizer_tensors_finite": true,
+    "head_state_strict_load": true,
+    "initial_and_last_state_hashes_match_manifests": true,
+    "all_input_sha256_before_after_exact": true,
+    "stored_gpu_cost_labels_preserved": true,
+    "cpu_gpu_cost_argmin_differences": 0,
+    "threshold_or_training_changed": false,
+    "final_val_accessed": false
+  },
+  "note": "The report stores measured summaries from the successful stdout result; no model, cache, threshold, source, or remote artifact was modified."
+}

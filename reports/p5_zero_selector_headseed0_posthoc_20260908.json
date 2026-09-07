@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "status": "completed_cpu_posthoc",
+  "created_utc": "2026-09-08T04:25:32+09:00",
+  "purpose": "Distinguish train fit from tune generalization for preregistered head seed 0 only",
+  "scope": {
+    "base_seeds": [0, 1],
+    "head_seed": 0,
+    "retraining": false,
+    "threshold_lr_steps_or_seed_sweep": false,
+    "final_val_accessed": false
+  },
+  "environment": {
+    "pid": 2403684,
+    "python": "/usr/bin/python3",
+    "torch": "2.8.0+cu128",
+    "cuda_visible_devices": "",
+    "cuda_initialized": false,
+    "actual_cpu_exit": 0
+  },
+  "feature_stop_contract": {
+    "column": 773,
+    "derivation": "planner decoded[0:768], predicted state_hat[768:774]; state_hat index 5 is the raw stop logit",
+    "source": "motion_encoder state_head emits 6 values; training applies BCEWithLogits to state_hat[...,5]",
+    "probability_transform_applied": false
+  },
+  "inputs_sha256_before_after_exact": {
+    "b0_last": "27b43f1ff5c95c6914b70659a77bd7a87db60bf9addfb3714cdcb5cf39a4b3f4",
+    "b0_head_manifest": "e051ae1af82b1461ca559f0bd9507cc73366142bb90681f1838587b8ec95830b",
+    "b0_train_cache": "1f2184ad544cb43e0e5ca1a72ef2534165cd67a927c21a0cd653e37ebbcb92ab",
+    "b0_train_manifest": "8a4f5b4230e8f1a263b572ee70b425104e4e1745892587aa17f2063ef32a2a58",
+    "b0_tune_cache": "e2d82afef7851c9496fb8f6e8ff7885d426af81ccf5d9da10ecae9bc852610a5",
+    "b0_tune_manifest": "dbc26cb794f4b83ff744f4f2f17cae7379ba69b320ca7d6cdabaa1028230805e",
+    "b1_last": "4f0f6a9bcf52e614522ebd6a6c293e74a45becb9bb0f6d8192183c694132b318",
+    "b1_head_manifest": "e0ce08a5cbe3b6313a99434d804ba8c8bed4379da056ca2010ae904475776037",
+    "b1_train_cache": "99c873a710a3cb36c23f5a67f8840c81b277c18702651815923e3caf0e39a292",
+    "b1_train_manifest": "49b5f8489a97e80b46afc5be0d0e656ad6e658fbd404071f3edc050f73463903",
+    "b1_tune_cache": "67b1f81029728d9de8417c1c4c968a26e3ed67271d277a7abda969ebf71aff14",
+    "b1_tune_manifest": "caf6b64cedfa1bd0b08c321f92f5b32c1a7dbaf502bbebeac7c5719681ec475e"
+  },
+  "results": [
+    {
+      "base_seed": 0,
+      "head_state": {
+        "initial_sha256": "8f139081aad5250dd87aec8703348e28f4c1910333f72c957e8261a4fb67d722",
+        "last_sha256": "7ccae84a1c6e6e4cc18ea4c0d8f56f7c624d7fc9492cb8c9695a9f032429a01e",
+        "manifest_hashes_match_reconstruction": true,
+        "all_six_parameter_tensors_changed": true,
+        "linear_790x64_changed_elements": 50560,
+        "linear_790x64_l2_delta": 7.245038032531738,
+        "final_linear_weight_changed_elements": 128,
+        "final_linear_weight_l2_delta": 0.27298498153686523,
+        "final_bias_changed_elements": 2
+      },
+      "optimizer": {"state_entries": 6, "unique_steps": [1000.0], "all_finite": true},
+      "train": {
+        "n": 54810,
+        "costwinner_zero": 3486,
+        "strict_zero_selected": 3734,
+        "strict_accuracy": 0.9929574728012085,
+        "zero_precision": 0.915104445634708,
+        "zero_recall": 0.9802065404475043,
+        "p_zero_auc": 0.9987795772644895,
+        "ce": 0.01947382092475891,
+        "expected_d3": 0.1776973307132721,
+        "objective": 0.022689011048604723,
+        "realized_d3": 0.17739409015502045,
+        "original_move_d3": 0.17858858996811255,
+        "oracle2_d3": 0.1770635150465435,
+        "realized_delta_vs_move": -0.0011944998137257304,
+        "p_zero_quantiles_q05_q25_q50_q75_q95": {
+          "costwinner_zero": [0.7371875643730164, 0.895892396569252, 0.9427603483200073, 0.9623773545026779, 0.9806598126888275],
+          "costwinner_move": [2.162773555811282e-15, 4.251814015882732e-15, 1.079552046308373e-14, 3.1331339432616456e-13, 2.0373762623648807e-07]
+        },
+        "stop_logit": {
+          "costwinner_auc": 0.9968843526012933,
+          "winner_zero_q05_q25_q50_q75_q95": [1.3617777228355408, 1.812568187713623, 2.1315096616744995, 2.301541030406952, 2.5225006341934204],
+          "winner_move_q05_q25_q50_q75_q95": [-10.218678903579711, -8.479013204574585, -7.5931737422943115, -6.18254292011261, -3.3982416272163425]
+        }
+      },
+      "tune": {
+        "n": 1998,
+        "costwinner_zero": 129,
+        "strict_zero_selected": 0,
+        "strict_accuracy": 0.93543541431427,
+        "zero_precision": null,
+        "zero_recall": 0.0,
+        "p_zero_auc": 0.9933471864488327,
+        "ce": 0.42398473620414734,
+        "expected_d3": 0.37184420228004456,
+        "objective_using_train_c_scale": 0.4307127483919569,
+        "realized_d3": 0.37222161742712223,
+        "original_move_d3": 0.37222161742712223,
+        "oracle2_d3": 0.3001864003227666,
+        "realized_delta_vs_move": 0.0,
+        "p_zero_quantiles_q05_q25_q50_q75_q95": {
+          "costwinner_zero": [8.288867866212969e-06, 0.00042209262028336525, 0.002121818019077182, 0.014295876957476139, 0.045792736113071414],
+          "costwinner_move": [1.4585390661621227e-15, 3.572814194155319e-15, 9.765970550420968e-15, 6.871156340302123e-14, 2.6984926293494024e-09]
+        },
+        "stop_logit": {
+          "costwinner_auc": 0.9878017926097362,
+          "winner_zero_q05_q25_q50_q75_q95": [-2.9470479011535646, -1.5171973705291748, -1.2401219606399536, 0.37387779355049133, 1.0685912847518921],
+          "winner_move_q05_q25_q50_q75_q95": [-9.642256927490234, -7.990893363952637, -7.4588117599487305, -6.72914981842041, -4.2560589790344245]
+        }
+      }
+    },
+    {
+      "base_seed": 1,
+      "head_state": {
+        "initial_sha256": "8f139081aad5250dd87aec8703348e28f4c1910333f72c957e8261a4fb67d722",
+        "last_sha256": "de04b6016b25094b6e34b913c732f60a8e40eaf99ae0b9a8a26e4f6f43c28483",
+        "manifest_hashes_match_reconstruction": true,
+        "all_six_parameter_tensors_changed": true,
+        "linear_790x64_changed_elements": 50560,
+        "linear_790x64_l2_delta": 7.639871597290039,
+        "final_linear_weight_changed_elements": 128,
+        "final_linear_weight_l2_delta": 0.26500460505485535,
+        "final_bias_changed_elements": 2
+      },
+      "optimizer": {"state_entries": 6, "unique_steps": [1000.0], "all_finite": true},
+      "train": {
+        "n": 54810,
+        "costwinner_zero": 3461,
+        "strict_zero_selected": 3733,
+        "strict_accuracy": 0.9927385449409485,
+        "zero_precision": 0.9102598446289847,
+        "zero_recall": 0.9817971684484254,
+        "p_zero_auc": 0.9989829330972241,
+        "ce": 0.01906004175543785,
+        "expected_d3": 0.17932815849781036,
+        "objective": 0.022304739477205893,
+        "realized_d3": 0.1790584618843906,
+        "original_move_d3": 0.18025964331977806,
+        "oracle2_d3": 0.17873267814217458,
+        "realized_delta_vs_move": -0.001201181436072076,
+        "p_zero_quantiles_q05_q25_q50_q75_q95": {
+          "costwinner_zero": [0.7717899680137634, 0.9002626538276672, 0.9398700594902039, 0.9562889933586121, 0.9707062840461731],
+          "costwinner_move": [7.262779787298168e-14, 1.215631734814357e-13, 2.412330589191686e-13, 4.637712523042348e-12, 2.9135237866739598e-08]
+        },
+        "stop_logit": {
+          "costwinner_auc": 0.9967374711643623,
+          "winner_zero_q05_q25_q50_q75_q95": [1.2679469585418701, 1.857969880104065, 2.1388449668884277, 2.4087119102478027, 2.6717801094055176],
+          "winner_move_q05_q25_q50_q75_q95": [-9.833235549926759, -8.275869369506836, -7.417196273803711, -6.043648719787598, -3.4595083236694357]
+        }
+      },
+      "tune": {
+        "n": 1998,
+        "costwinner_zero": 130,
+        "strict_zero_selected": 5,
+        "strict_accuracy": 0.93543541431427,
+        "zero_precision": 0.6,
+        "zero_recall": 0.023076923076923078,
+        "p_zero_auc": 0.9930530390380498,
+        "ce": 0.5157542824745178,
+        "expected_d3": 0.3662111163139343,
+        "objective_using_train_c_scale": 0.5223803716773714,
+        "realized_d3": 0.3668790650446209,
+        "original_move_d3": 0.3669574755338115,
+        "oracle2_d3": 0.2998886883219097,
+        "realized_delta_vs_move": -0.00007841048820002063,
+        "p_zero_quantiles_q05_q25_q50_q75_q95": {
+          "costwinner_zero": [2.387581855600729e-06, 0.000030008084195287665, 0.00011688956510624848, 0.0047909056302160025, 0.3662837237119675],
+          "costwinner_move": [4.268149774718866e-14, 9.42019103374785e-14, 2.2043492384085997e-13, 1.3916416033866313e-12, 2.4385173214014214e-09]
+        },
+        "stop_logit": {
+          "costwinner_auc": 0.9882103442595948,
+          "winner_zero_q05_q25_q50_q75_q95": [-3.1756726264953614, -1.9796248078346252, -1.6838068962097168, 0.1558935046195984, 1.3225734770298003],
+          "winner_move_q05_q25_q50_q75_q95": [-9.272275686264038, -7.797376990318298, -7.290526390075684, -6.595898747444153, -4.398572754859925]
+        }
+      }
+    }
+  ],
+  "cost_audit": {
+    "stored_gpu_costs_authoritative": true,
+    "cpu_argmin_difference_count_all_four_splits": 0,
+    "fixed_rtol_atol": 9.5367431640625e-07,
+    "maximum_cpu_gpu_cost_abs_difference": 3.814697265625e-06
+  },
+  "interpretation": "Both heads fit train strongly (AUC about 0.999, accuracy about 0.993, zero recall about 0.98). Tune ranking AUC remains about 0.993, but positive p_zero medians collapse from about 0.94 on train to 0.00212/0.000117 on tune, yielding 0/5 strict ZERO decisions. The image-predicted stop logit also retains high tune AUC but shifts substantially. This supports a train-to-tune score-distribution/calibration shift rather than failure to fit train, but does not identify its cause or authorize threshold fitting.",
+  "interpretation_boundary": "Post-hoc diagnostic only; no retraining, threshold fitting, seed selection, deployment decision, or final-holdout access."
+}
