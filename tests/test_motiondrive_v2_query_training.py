@@ -264,6 +264,7 @@ def test_source_snapshot_keeps_new_files_inside_hash_mapping():
 
 def test_existing_run_refused_before_any_cuda_or_checkpoint_migration(tmp_path,monkeypatch):
     monkeypatch.setattr(training,"validate_data_paths",lambda _: {})
+    monkeypatch.setattr(training,"validate_initial_reference",lambda: {})
     monkeypatch.setattr(training,"source_snapshot",lambda: {})
     monkeypatch.setattr(training,"validate_cuda_namespace",lambda _:pytest.fail("기존 run 실행 금지"))
     run=tmp_path/"existing"; run.mkdir(); marker=run/"keep.txt"; marker.write_text("preserved")
@@ -289,6 +290,21 @@ def test_initial_metric_gate_has_no_tolerance_or_score_repair(field,value):
     assert training.initial_metric_gate(report)["passed"]
     report[field]=value
     with pytest.raises(ValueError):training.initial_metric_gate(report)
+
+
+def test_unfrozen_old_baseline_is_not_substituted_for_frozen_context():
+    with pytest.raises(ValueError):
+        training.initial_metric_gate({"n":1998,"n_sessions":11,"time_input":"nominal",
+                                      "official_d3":training.UNFROZEN_INITIAL_D3})
+
+
+def test_frozen_reference_is_sha_pinned_before_read(tmp_path,monkeypatch):
+    monkeypatch.setattr(training,"ROOT",tmp_path)
+    path=tmp_path/"reports/p3_query_frozen_full_tune_gpu5.json"
+    path.parent.mkdir()
+    path.write_text("{}")
+    with pytest.raises(ValueError,match="SHA"):
+        training.validate_initial_reference()
 
 
 def test_dataset_inventory_requires_original_rows_and_session_count():

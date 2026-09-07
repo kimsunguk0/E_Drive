@@ -1,0 +1,224 @@
+{
+  "status": "initial_train8_full_forward_parity_pass",
+  "pid": 2055030,
+  "source": {
+    "git_sha": "a4ca60d635fc98c04b84074fe17c4845d2aff8ae",
+    "file_sha256": {
+      "scripts/evaluate_motiondrive_v2_planning.py": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/train_motiondrive_v2.py": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+      "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+      "scripts/run_motiondrive_v2_query_trial.py": "9f064659287f3c28248ee439fae9d456243b4068d35ec9f8af2281d3fdbae70b",
+      "scripts/train_motiondrive_v2_query_adapter.py": "663ab93aa5603aa73496e9cb40d8a805cf4ea4ef2f55b6b15b26baad76961543",
+      "models/motiondrive_v2_query_adapter.py": "49eef489ac20f35f2884bcfbb2315d1328f182932b709f964e2baae6e270eab2",
+      "scripts/evaluate_motiondrive_v2_shared.py": "7b49e8f5c3a5b0169e039627953a7ce22b961d9e3d3c86aacb29afe768e6c5ba",
+      "scripts/supervise_motiondrive_v2_job.py": "4a970d80fe2cdc4116f6aebf4848f416478ddcbcaf57765e3d4e5788f9d87218",
+      "scripts/launch_motiondrive_v2_trials.py": "8590f231e14985eac100e13b47b00832fb4a8e5a26e05717411ace637ff10826"
+    }
+  },
+  "probe_source_sha256": "4365e1b0cc665d58f9f88ace8e631cbd0f6a75ddf6105c75f781ed792048dc1e",
+  "source_checkpoint_sha256": "5cd98d28157abf169f0f2378c3d0ab29d43f4d6382e9c03ee611e7fc5d864c20",
+  "migration": {
+    "schema_version": 1,
+    "architecture": "motiondrive_v2_image_state_query_v1",
+    "query_adapter_on": false,
+    "source_checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t1_s0/last.pth",
+    "source_checkpoint_sha256": "5cd98d28157abf169f0f2378c3d0ab29d43f4d6382e9c03ee611e7fc5d864c20",
+    "source_checkpoint_step": 3000,
+    "source_model_state_sha256": "fa56f6bb8e96ec5f2ede7bbfd679dde3491d2be9435919964f6a051826a4beb6",
+    "initial_model_state_sha256": "29b1d73ca472e8f71847ccaaf032eb7ccf9665664917678f50c815540ea2e2d8",
+    "adapter_state_sha256": "69f73833ef700e82121add44741e295d2b1c6b89369696936455c1f741a127cd",
+    "added_state_keys": [
+      "planner.query_adapter.0.bias",
+      "planner.query_adapter.0.weight",
+      "planner.query_adapter.2.bias",
+      "planner.query_adapter.2.weight"
+    ],
+    "adapter_parameter_count": 35840,
+    "adapter_seed": 0,
+    "legacy_tensors_bitwise_preserved": true,
+    "final_adapter_projection_exact_zero": true,
+    "source_module_sha256": "49eef489ac20f35f2884bcfbb2315d1328f182932b709f964e2baae6e270eab2",
+    "optimizer_state_loaded": false,
+    "run_or_os_exit_lineage_verified": false,
+    "initial_prediction_parity_verified": false,
+    "scope": "strict tensor migration only; caller must verify physical predictions and run lineage"
+  },
+  "initial_query_state_sha256": "29b1d73ca472e8f71847ccaaf032eb7ccf9665664917678f50c815540ea2e2d8",
+  "device_mapping": {
+    "cuda_visible_devices": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+    "logical_device": "cuda:0",
+    "physical_gpu": 5,
+    "observed_uuid_raw": "1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+    "observed_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8"
+  },
+  "data": {
+    "split": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936"
+    },
+    "supervision": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json",
+      "sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93"
+    },
+    "calibration": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz",
+      "sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961"
+    },
+    "init": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t1_s0/last.pth",
+      "sha256": "5cd98d28157abf169f0f2378c3d0ab29d43f4d6382e9c03ee611e7fc5d864c20"
+    }
+  },
+  "comparison": "equal dtype, shape and contiguous uint8 bytes for all seven outputs",
+  "cuda_memory_policy": {
+    "enabled": true,
+    "allocator_limit_mib": 12000,
+    "min_free_mib": 8192,
+    "allocator_fraction": 0.0657060353046741,
+    "initial_free_bytes": 190847057920,
+    "device_total_bytes": 191503138816,
+    "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+  },
+  "cuda_memory": {
+    "allocated_bytes": 258543616,
+    "reserved_bytes": 801112064,
+    "peak_allocated_bytes": 591220736,
+    "peak_reserved_bytes": 801112064,
+    "device_free_bytes": 189850910720,
+    "device_total_bytes": 191503138816
+  },
+  "precision": "bf16 encoders / FP32 planner",
+  "full_forward_count": 24,
+  "records": [
+    {
+      "scenario": "20260112-105434",
+      "frame": 30,
+      "row": 30,
+      "outputs_bitwise_equal": [
+        "plan_abs",
+        "scene_features",
+        "motion_features",
+        "state_hat",
+        "history_hat",
+        "occ_logits",
+        "lane_logits"
+      ]
+    },
+    {
+      "scenario": "20260112-105434",
+      "frame": 180,
+      "row": 180,
+      "outputs_bitwise_equal": [
+        "plan_abs",
+        "scene_features",
+        "motion_features",
+        "state_hat",
+        "history_hat",
+        "occ_logits",
+        "lane_logits"
+      ]
+    },
+    {
+      "scenario": "20260112-105504",
+      "frame": 30,
+      "row": 330,
+      "outputs_bitwise_equal": [
+        "plan_abs",
+        "scene_features",
+        "motion_features",
+        "state_hat",
+        "history_hat",
+        "occ_logits",
+        "lane_logits"
+      ]
+    },
+    {
+      "scenario": "20260112-105504",
+      "frame": 180,
+      "row": 480,
+      "outputs_bitwise_equal": [
+        "plan_abs",
+        "scene_features",
+        "motion_features",
+        "state_hat",
+        "history_hat",
+        "occ_logits",
+        "lane_logits"
+      ]
+    },
+    {
+      "scenario": "20260112-111049",
+      "frame": 30,
+      "row": 630,
+      "outputs_bitwise_equal": [
+        "plan_abs",
+        "scene_features",
+        "motion_features",
+        "state_hat",
+        "history_hat",
+        "occ_logits",
+        "lane_logits"
+      ]
+    },
+    {
+      "scenario": "20260112-111049",
+      "frame": 180,
+      "row": 780,
+      "outputs_bitwise_equal": [
+        "plan_abs",
+        "scene_features",
+        "motion_features",
+        "state_hat",
+        "history_hat",
+        "occ_logits",
+        "lane_logits"
+      ]
+    },
+    {
+      "scenario": "20260112-111149",
+      "frame": 30,
+      "row": 930,
+      "outputs_bitwise_equal": [
+        "plan_abs",
+        "scene_features",
+        "motion_features",
+        "state_hat",
+        "history_hat",
+        "occ_logits",
+        "lane_logits"
+      ]
+    },
+    {
+      "scenario": "20260112-111149",
+      "frame": 180,
+      "row": 1080,
+      "outputs_bitwise_equal": [
+        "plan_abs",
+        "scene_features",
+        "motion_features",
+        "state_hat",
+        "history_hat",
+        "occ_logits",
+        "lane_logits"
+      ]
+    }
+  ],
+  "split": "train",
+  "training_or_optimizer_steps": 0,
+  "labels_used_as_model_inputs": false,
+  "accuracy_or_latency_claim": false,
+  "final_val_accessed": false,
+  "max_abs_output_difference": 0.0,
+  "source_and_checkpoint_unchanged": true
+}

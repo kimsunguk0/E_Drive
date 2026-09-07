@@ -45,7 +45,9 @@ control도 동일 MLP를 실행하며 query-only 적응은 가능하다. stop은
 
 두 팔의 공통 adapter seed는0이다. initial 전체 tensor SHA가 같아야 한다.
 실제 train8에서 legacy/control/state의 full forward를 비교하고, 각 팔 초기 full
-tune D3도 원값0.4454620049779748과 정확히 같아야 학습한다. train8 검사는
+tune D3도 동결 조건의 실증값0.4454619773599255와 정확히 같아야 학습한다.
+최초 r1은 비동결 조건 값0.4454620049779748을 요구해 step0에서 실패했다.
+아래 r2 정정 기록은 이를 숨기거나 허용오차로 완화하지 않는다. train8 검사는
 초기 함수 동등성 검사이지 성능·일반화 평가가 아니다.
 
 backbone/FPN/scene/perception/motion/state/history estimator를 모두 동결한다.
@@ -87,3 +89,22 @@ state−control 차이의95% 구간을 계산한다. 같은 세션의 모든 프
 P2 원4판의 clean-exit gate 실패는 그대로 남으며 이 새 P3로 소급해서 바꾸지 않는다.
 또한 오류 기하 P1에서 warm-start한 가중치의 한계가 남는다. 올바른 기하를 공개
 nuImages R50 초기값부터 학습하는 별도 대조는 아직 실행한 것으로 주장하지 않는다.
+
+## r2 — 학습 시작 전 수치 실행 조건 정정
+
+`a4ca60d`의 두 r1은 실제 rc1/step0이다. `requires_grad=False`로 동결하면
+같은 기존 모델의 bf16 motion 특징/상태 출력에도 작은 차이가 생기는 것을
+B4/B2 동일 프로세스 비교로 분리했다. 특정 CUDA 커널이나 캐시가 원인이라고
+추정 확정하지 않는다. query 변경 또는 무작위 CUDA nondeterminism으로 보고하지 않는다.
+
+GPU5 전체 tune 검증의 동결 legacy/control/state는 모든1998프레임·7개 출력의
+dtype/shape/bytes가 동일했고, 양 r1의 초기 per-frame D3 기록도 전부 재현했다.
+원 보고서 SHA는 `f32680b3f13f5f85045e27120c63db7afa1e24d3c566dc756ce8ac4c7e3158e1`이며
+`reports/p3_query_frozen_full_tune_gpu5.json`에 보존한다. 실제 프로세스 rc0/PID부재도 확인했다.
+
+따라서 r2는 공통 동결 초기값0.4454619773599255를 **허용오차0**으로 검사한다.
+모델 가중치·seed·입력·손실·1000step·주평가·통계 기준은 변경하지 않는다.
+새 경로 `p3_query_control_s0_r2`/`p3_query_state_s0_r2`와 별도 supervisor/log만 사용한다.
+이전 실제 종료/step0 실패를 확인하고 그 파일 SHA를 시작·종료에 보존한다.
+훈련기는 실제 full-tune 동결 검증 파일 SHA와 모델 파일 SHA를 학습 전후 확인한다.
+실패 기록/수치 원인 증거는 `MOTIONDRIVE_V2_P3_INITIAL_CONTEXT_20260907.md`를 참조한다.

@@ -43,7 +43,27 @@ STEPS, BATCH, MICRO, EVAL_BATCH, WORKERS = 1000, 16, 2, 4, 4
 SEED, ADAPTER_SEED, WARMUP = 0, 0, 50
 LR, WEIGHT_DECAY, GRAD_CLIP = 5e-5, .01, 5.
 CAP_MIB, RESERVE_MIB = 12000, 8192
-INITIAL_D3 = 0.4454620049779748
+# Frozen requires_grad changes the bf16 runtime path. The full-tune legacy/
+# control/state byte-parity probe establishes the initializer for THIS context.
+INITIAL_D3 = 0.4454619773599255
+UNFROZEN_INITIAL_D3 = 0.4454620049779748
+INITIAL_REFERENCE_SHA = "f32680b3f13f5f85045e27120c63db7afa1e24d3c566dc756ce8ac4c7e3158e1"
+
+
+def validate_initial_reference():
+    path = ROOT / "reports/p3_query_frozen_full_tune_gpu5.json"
+    if sha256(path) != INITIAL_REFERENCE_SHA:
+        raise ValueError("동결 초기 함수의 실제 full-tune 검증 SHA가 다릅니다")
+    proof = json.loads(path.read_text())
+    if (proof.get("status") != "frozen_legacy_control_state_full_tune_bitwise_pass" or
+            proof.get("official_d3") != INITIAL_D3 or proof.get("n") != 1998 or
+            proof.get("n_sessions") != 11 or proof.get("full_forward_count") != 1500 or
+            proof.get("optimizer_steps") != 0 or proof.get("final_val_accessed") is not False or
+            proof["source"]["file_sha256"].get("models/motiondrive_v2_query_adapter.py") !=
+            sha256(ROOT / "models/motiondrive_v2_query_adapter.py")):
+        raise ValueError("동결 초기 함수 검증의 모델/평가 계약이 다릅니다")
+    return {"path": str(path), "sha256": INITIAL_REFERENCE_SHA,
+            "official_d3": INITIAL_D3, "scope": "frozen legacy/control/state all-output byte parity on tune1998"}
 
 
 def arguments(argv=None):
@@ -169,6 +189,7 @@ def initial_metric_gate(report):
         raise ValueError(f"초기 full-tune 재현 실패: 기대 D3={INITIAL_D3!r}, 실제={report!r}")
     return {"passed": True, "expected_official_d3": INITIAL_D3,
             "observed_official_d3": report["official_d3"], "absolute_tolerance": 0.,
+            "reference_sha256": INITIAL_REFERENCE_SHA, "unfrozen_legacy_d3_not_comparison_target": UNFROZEN_INITIAL_D3,
             "scope": "동일 tune1998/11세션/batch4/bf16/nominal full-forward 집계 정확 일치; 표본별 출력 일치 검증은 별도"}
 
 
@@ -260,13 +281,14 @@ def validate_cuda_namespace(device):
 def main(argv=None):
     args = arguments(argv)
     data = validate_data_paths(args)
+    initial_reference = validate_initial_reference()
     sources = source_snapshot()
     run_dir = Path(args.run_dir).resolve()
     # 공통 초기값/감독 원본 또는 기존 run을 덮어쓰지 않는다.
     run_dir.mkdir(parents=True, exist_ok=False)
     manifest = {"status": "preparing", "pid": os.getpid(), "run_dir": str(run_dir),
                 "arguments": vars(args), "git_sha": source_sha(), "source": sources,
-                "data": data, "step": 0, "nonfinite_count": 0}
+                "data": data, "initial_reference": initial_reference, "step": 0, "nonfinite_count": 0}
     atomic_json(run_dir / "manifest.json", manifest)
     old_handlers, stop = {}, {"signal": None}
     try:
@@ -411,6 +433,8 @@ def main(argv=None):
                 epoch += 1
         assert_frozen(model, frozen_sha)
         verify_inputs_unchanged(data, sources)
+        if validate_initial_reference() != initial_reference:
+            raise RuntimeError("학습 중 초기 함수 증거가 바뀌었습니다")
         manifest.update(status="completed" if step == STEPS and stop["signal"] is None else "stopped",
                         step=step, best_metric=best, best_step=best_step, received_signal=stop["signal"],
                         elapsed_seconds=time.monotonic()-started, source_unchanged=True,

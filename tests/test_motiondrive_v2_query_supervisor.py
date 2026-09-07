@@ -322,6 +322,36 @@ def test_real_prepare_pins_fixed_paths_original_exit_and_initializer(prepared_re
     assert not Path(req["run_dir"]).exists() and not Path(req["record"]).exists()
 
 
+def test_repaired_attempt_requires_prior_actual_step_zero_failure_and_preserves_it(prepared_repository):
+    f=prepared_repository
+    old_run=f["root"]/"work_dirs/motiondrive_v2/p3_query_control_s0"
+    old_run.mkdir()
+    manifest=old_run/"manifest.json"
+    manifest.write_text(json.dumps({"step":0,"status":"failed","nonfinite_count":0,
+        "error_type":"ValueError","error":"초기 full-tune 재현 실패: numeric context"}))
+    record=f["root"]/"logs/motiondrive_v2/p3_query_control_s0.supervisor.json"
+    old={"actual_returncode":1,"supervisor_exit_code":1,"outcome":"failed","pressure_event":None,
+         "parent_pid":2147483646,"child_pid":2147483645}
+    record.write_text(json.dumps(old))
+    before=(manifest.read_bytes(),record.read_bytes())
+    req=runner.prepare(f["root"],"control",4,f["commit"],attempt=2)
+    assert req["run_dir"].endswith("p3_query_control_s0_r2")
+    assert req["record"].endswith("p3_query_control_s0_r2.supervisor.json")
+    assert req["preserved_prior_failure"]["record_sha256"]==runner.sha256(record)
+    assert (manifest.read_bytes(),record.read_bytes())==before
+    old["actual_returncode"]=0
+    record.write_text(json.dumps(old))
+    with pytest.raises(ValueError,match="step-zero"):
+        runner.prepare(f["root"],"control",4,f["commit"],attempt=2)
+
+
+@pytest.mark.parametrize("attempt",[0,3,True,"2"])
+def test_invalid_attempt_is_not_a_run_path_escape(prepared_repository,attempt):
+    f=prepared_repository
+    with pytest.raises(ValueError,match="attempts"):
+        runner.prepare(f["root"],"control",4,f["commit"],attempt=attempt)
+
+
 @pytest.mark.parametrize("mutation", ["init", "exit", "pressure", "pid", "pid_type", "source", "outside_root", "gpu6"])
 def test_real_prepare_rejects_wrong_lineage_or_scope(prepared_repository, mutation):
     f = prepared_repository

@@ -65,13 +65,33 @@ def source_snapshot(root, expected_commit):
     return {"git_sha": expected_commit, "file_sha256": files}
 
 
-def prepare(root, arm, physical_gpu, expected_commit):
+def prepare(root, arm, physical_gpu, expected_commit, attempt=1):
     root = Path(root).resolve()
     require(root == ROOT and arm in ("control", "state"), "Fixed repository and P3 arm required")
     require(type(physical_gpu) is int and physical_gpu in (4, 5), "Only explicitly authorized physical GPU4/5")
-    run = root / f"work_dirs/motiondrive_v2/p3_query_{arm}_s0"
-    record = root / f"logs/motiondrive_v2/p3_query_{arm}_s0.supervisor.json"
-    log = root / f"logs/motiondrive_v2/p3_query_{arm}_s0.log"
+    require(type(attempt) is int and attempt in (1, 2), "Only explicitly identified first/repaired attempts")
+    suffix = "" if attempt == 1 else "_r2"
+    run = root / f"work_dirs/motiondrive_v2/p3_query_{arm}_s0{suffix}"
+    record = root / f"logs/motiondrive_v2/p3_query_{arm}_s0{suffix}.supervisor.json"
+    log = root / f"logs/motiondrive_v2/p3_query_{arm}_s0{suffix}.log"
+    prior = None
+    if attempt == 2:
+        prior_path = root / f"logs/motiondrive_v2/p3_query_{arm}_s0.supervisor.json"
+        prior_manifest = root / f"work_dirs/motiondrive_v2/p3_query_{arm}_s0/manifest.json"
+        old = json.loads(prior_path.read_text())
+        old_m = json.loads(prior_manifest.read_text())
+        require(old.get("actual_returncode") == 1 and old.get("supervisor_exit_code") == 1
+                and old.get("outcome") == "failed" and old.get("pressure_event") is None
+                and old_m.get("step") == 0 and old_m.get("status") == "failed"
+                and old_m.get("nonfinite_count") == 0 and old_m.get("error_type") == "ValueError"
+                and str(old_m.get("error", "")).startswith("초기 full-tune 재현 실패"),
+                "r2 requires the preserved step-zero numeric-context failure")
+        require(all(type(old.get(k)) is int and old[k] > 0
+                    and not Path(f"/proc/{old[k]}").exists() for k in ("parent_pid", "child_pid")),
+                "Previous P3 processes must have actually exited")
+        prior = {"record": str(prior_path), "record_sha256": sha256(prior_path),
+                 "manifest": str(prior_manifest), "manifest_sha256": sha256(prior_manifest),
+                 "actual_returncode": 1, "optimizer_steps": 0}
     for p in (run, record, log):
         require(not os.path.lexists(p), f"Refusing existing P3 output: {p}")
         require(p.parent.is_dir() and p.resolve().is_relative_to(root), "Invalid P3 output parent")
@@ -87,6 +107,7 @@ def prepare(root, arm, physical_gpu, expected_commit):
     require(all(not Path(f"/proc/{original[k]}").exists() for k in ("child_pid", "supervisor_pid")),
             "Original trainer processes must be absent")
     return {"root": str(root), "arm": arm, "adapter_on": arm == "state", "physical_gpu": physical_gpu,
+            "attempt": attempt, "preserved_prior_failure": prior,
             "run_dir": str(run), "manifest_path": str(run / "manifest.json"), "record": str(record), "log": str(log),
             "sources": source_snapshot(root, expected_commit), "expected_commit": expected_commit,
             "initializer": str(root / INIT), "initializer_sha256": INIT_SHA,
@@ -144,6 +165,10 @@ def validate_completion(request, child_pid):
             and device.get("cuda_visible_devices") == request["gpu_uuid"], "Actual CUDA identity mismatch")
     require(sha256(request["initializer"]) == request["initializer_sha256"], "Source checkpoint changed")
     require(source_snapshot(request["root"], request["expected_commit"]) == request["sources"], "P3 sources changed")
+    prior = request.get("preserved_prior_failure")
+    if prior is not None:
+        require(sha256(prior["record"]) == prior["record_sha256"]
+                and sha256(prior["manifest"]) == prior["manifest_sha256"], "Prior failed attempt was altered")
     last = Path(request["run_dir"]) / "last.pth"
     require(last.is_file() and not last.is_symlink(), "Missing or symlinked LAST checkpoint")
     return {"manifest_sha256": sha256(request["manifest_path"]), "last_sha256": sha256(last),
@@ -307,8 +332,9 @@ def main(argv=None):
     p.add_argument("--arm", choices=("control", "state"), required=True)
     p.add_argument("--physical-gpu", type=int, choices=(4, 5), required=True)
     p.add_argument("--expected-git-sha", required=True)
+    p.add_argument("--attempt", type=int, choices=(1, 2), default=1)
     args = p.parse_args(argv)
-    request = prepare(args.root, args.arm, args.physical_gpu, args.expected_git_sha)
+    request = prepare(args.root, args.arm, args.physical_gpu, args.expected_git_sha, args.attempt)
     result = supervise(request)
     print(json.dumps({"outcome": result["outcome"], "actual_returncode": result["actual_returncode"],
                       "record": request["record"]}))
