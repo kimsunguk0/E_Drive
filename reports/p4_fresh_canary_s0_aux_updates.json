@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "primary_aux_update_gate_passed": true,
+  "primary_gate_definition": "each of occupancy/lane/history/state has >=1 changed parameter and >=1 finite nonzero Adam exp_avg",
+  "primary_auxiliaries": {
+    "occupancy": {
+      "prefixes": [
+        "scene_encoder.occ_head."
+      ],
+      "parameter_count": 4,
+      "parameters_with_optimizer_state": 4,
+      "actual_delta_count": 4,
+      "finite_nonzero_exp_avg_count": 4,
+      "all_tensors_and_exp_avg_finite": true,
+      "delta_l2_norm": 0.038683740149502426,
+      "exp_avg_l2_norm": 0.000190903894498748,
+      "changed_parameters": [
+        "scene_encoder.occ_head.0.bias",
+        "scene_encoder.occ_head.0.weight",
+        "scene_encoder.occ_head.2.bias",
+        "scene_encoder.occ_head.2.weight"
+      ],
+      "nonzero_exp_avg_parameters": [
+        "scene_encoder.occ_head.0.bias",
+        "scene_encoder.occ_head.0.weight",
+        "scene_encoder.occ_head.2.bias",
+        "scene_encoder.occ_head.2.weight"
+      ],
+      "changed_with_nonzero_exp_avg_parameters": [
+        "scene_encoder.occ_head.0.bias",
+        "scene_encoder.occ_head.0.weight",
+        "scene_encoder.occ_head.2.bias",
+        "scene_encoder.occ_head.2.weight"
+      ],
+      "actual_gradient_update_observed": true
+    },
+    "lane": {
+      "prefixes": [
+        "scene_encoder.lane_head."
+      ],
+      "parameter_count": 4,
+      "parameters_with_optimizer_state": 4,
+      "actual_delta_count": 4,
+      "finite_nonzero_exp_avg_count": 4,
+      "all_tensors_and_exp_avg_finite": true,
+      "delta_l2_norm": 0.03601712101195275,
+      "exp_avg_l2_norm": 0.0001697737757833471,
+      "changed_parameters": [
+        "scene_encoder.lane_head.0.bias",
+        "scene_encoder.lane_head.0.weight",
+        "scene_encoder.lane_head.2.bias",
+        "scene_encoder.lane_head.2.weight"
+      ],
+      "nonzero_exp_avg_parameters": [
+        "scene_encoder.lane_head.0.bias",
+        "scene_encoder.lane_head.0.weight",
+        "scene_encoder.lane_head.2.bias",
+        "scene_encoder.lane_head.2.weight"
+      ],
+      "changed_with_nonzero_exp_avg_parameters": [
+        "scene_encoder.lane_head.0.bias",
+        "scene_encoder.lane_head.0.weight",
+        "scene_encoder.lane_head.2.bias",
+        "scene_encoder.lane_head.2.weight"
+      ],
+      "actual_gradient_update_observed": true
+    },
+    "history": {
+      "prefixes": [
+        "motion_encoder.history_head."
+      ],
+      "parameter_count": 4,
+      "parameters_with_optimizer_state": 4,
+      "actual_delta_count": 4,
+      "finite_nonzero_exp_avg_count": 4,
+      "all_tensors_and_exp_avg_finite": true,
+      "delta_l2_norm": 0.06372189123904609,
+      "exp_avg_l2_norm": 0.0015122804434044073,
+      "changed_parameters": [
+        "motion_encoder.history_head.0.bias",
+        "motion_encoder.history_head.0.weight",
+        "motion_encoder.history_head.2.bias",
+        "motion_encoder.history_head.2.weight"
+      ],
+      "nonzero_exp_avg_parameters": [
+        "motion_encoder.history_head.0.bias",
+        "motion_encoder.history_head.0.weight",
+        "motion_encoder.history_head.2.bias",
+        "motion_encoder.history_head.2.weight"
+      ],
+      "changed_with_nonzero_exp_avg_parameters": [
+        "motion_encoder.history_head.0.bias",
+        "motion_encoder.history_head.0.weight",
+        "motion_encoder.history_head.2.bias",
+        "motion_encoder.history_head.2.weight"
+      ],
+      "actual_gradient_update_observed": true
+    },
+    "state": {
+      "prefixes": [
+        "motion_encoder.state_head."
+      ],
+      "parameter_count": 4,
+      "parameters_with_optimizer_state": 4,
+      "actual_delta_count": 4,
+      "finite_nonzero_exp_avg_count": 4,
+      "all_tensors_and_exp_avg_finite": true,
+      "delta_l2_norm": 0.06311259244958896,
+      "exp_avg_l2_norm": 0.003619668770759188,
+      "changed_parameters": [
+        "motion_encoder.state_head.0.bias",
+        "motion_encoder.state_head.0.weight",
+        "motion_encoder.state_head.2.bias",
+        "motion_encoder.state_head.2.weight"
+      ],
+      "nonzero_exp_avg_parameters": [
+        "motion_encoder.state_head.0.bias",
+        "motion_encoder.state_head.0.weight",
+        "motion_encoder.state_head.2.bias",
+        "motion_encoder.state_head.2.weight"
+      ],
+      "changed_with_nonzero_exp_avg_parameters": [
+        "motion_encoder.state_head.0.bias",
+        "motion_encoder.state_head.0.weight",
+        "motion_encoder.state_head.2.bias",
+        "motion_encoder.state_head.2.weight"
+      ],
+      "actual_gradient_update_observed": true
+    }
+  },
+  "uncertainty_paths_report_only": {
+    "history_uncertainty": {
+      "prefixes": [
+        "motion_encoder.history_uncertainty_head."
+      ],
+      "parameter_count": 4,
+      "parameters_with_optimizer_state": 4,
+      "actual_delta_count": 4,
+      "finite_nonzero_exp_avg_count": 4,
+      "all_tensors_and_exp_avg_finite": true,
+      "delta_l2_norm": 0.06409628916013091,
+      "exp_avg_l2_norm": 0.003279547073538113,
+      "changed_parameters": [
+        "motion_encoder.history_uncertainty_head.0.bias",
+        "motion_encoder.history_uncertainty_head.0.weight",
+        "motion_encoder.history_uncertainty_head.2.bias",
+        "motion_encoder.history_uncertainty_head.2.weight"
+      ],
+      "nonzero_exp_avg_parameters": [
+        "motion_encoder.history_uncertainty_head.0.bias",
+        "motion_encoder.history_uncertainty_head.0.weight",
+        "motion_encoder.history_uncertainty_head.2.bias",
+        "motion_encoder.history_uncertainty_head.2.weight"
+      ],
+      "changed_with_nonzero_exp_avg_parameters": [
+        "motion_encoder.history_uncertainty_head.0.bias",
+        "motion_encoder.history_uncertainty_head.0.weight",
+        "motion_encoder.history_uncertainty_head.2.bias",
+        "motion_encoder.history_uncertainty_head.2.weight"
+      ],
+      "actual_gradient_update_observed": true
+    },
+    "state_uncertainty": {
+      "prefixes": [
+        "motion_encoder.state_uncertainty_head."
+      ],
+      "parameter_count": 4,
+      "parameters_with_optimizer_state": 4,
+      "actual_delta_count": 4,
+      "finite_nonzero_exp_avg_count": 4,
+      "all_tensors_and_exp_avg_finite": true,
+      "delta_l2_norm": 0.06265571288521248,
+      "exp_avg_l2_norm": 0.0027806531369861756,
+      "changed_parameters": [
+        "motion_encoder.state_uncertainty_head.0.bias",
+        "motion_encoder.state_uncertainty_head.0.weight",
+        "motion_encoder.state_uncertainty_head.2.bias",
+        "motion_encoder.state_uncertainty_head.2.weight"
+      ],
+      "nonzero_exp_avg_parameters": [
+        "motion_encoder.state_uncertainty_head.0.bias",
+        "motion_encoder.state_uncertainty_head.0.weight",
+        "motion_encoder.state_uncertainty_head.2.bias",
+        "motion_encoder.state_uncertainty_head.2.weight"
+      ],
+      "changed_with_nonzero_exp_avg_parameters": [
+        "motion_encoder.state_uncertainty_head.0.bias",
+        "motion_encoder.state_uncertainty_head.0.weight",
+        "motion_encoder.state_uncertainty_head.2.bias",
+        "motion_encoder.state_uncertainty_head.2.weight"
+      ],
+      "actual_gradient_update_observed": true
+    }
+  },
+  "stop_path_report_only": {
+    "definition": "state_head final output row 5; isolated stop-logit path",
+    "rows": [
+      {
+        "parameter": "motion_encoder.state_head.2.weight",
+        "output_index": 5,
+        "actual_delta": true,
+        "finite_nonzero_exp_avg": true
+      },
+      {
+        "parameter": "motion_encoder.state_head.2.bias",
+        "output_index": 5,
+        "actual_delta": true,
+        "finite_nonzero_exp_avg": true
+      }
+    ],
+    "actual_delta_count": 2,
+    "finite_nonzero_exp_avg_count": 2,
+    "all_tensors_and_exp_avg_finite": true,
+    "delta_l2_norm": 0.0016019507269007859,
+    "exp_avg_l2_norm": 0.00036528550713726314,
+    "actual_gradient_update_observed": true
+  },
+  "optimizer_mapping": {
+    "source": "train_motiondrive_v2.py named_parameters backbone/other predicate and order",
+    "groups": [
+      {
+        "index": 0,
+        "role": "backbone",
+        "parameter_count": 159,
+        "ordered_names_sha256": "b7979e49b0ba48936546cdead76f3d0d77bb71bac26df3a0d02967377fead4ee"
+      },
+      {
+        "index": 1,
+        "role": "other",
+        "parameter_count": 130,
+        "ordered_names_sha256": "daa4f8c8523bd30696c135f30e255ccee27bd9694406101564ccc34868f922a2"
+      }
+    ],
+    "mapped_parameter_count": 289
+  },
+  "lineage": {
+    "initial_step": 0,
+    "last_step": 2,
+    "sidecar_step": 2,
+    "git_sha": "1947cb33134dba9559c14f1e8c47301c6ef52c7e",
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "initial_model_state_sha256": "7ac28a8f26dc796be70ddb78edff1e1c128c64f43b5982747ba419d5d5200683",
+    "last_model_state_sha256": "0ad2b9aac10b228ff4d751634e4a4fddee2800c881f4258c9fb2737e02f4441f"
+  },
+  "inputs": {
+    "initial_checkpoint": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_public_init_s0.pth",
+      "sha256_before": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a",
+      "sha256_after": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a"
+    },
+    "last_checkpoint": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_canary_s0/last.pth",
+      "sha256_before": "46be490fa98efd01f600c3425b9d8b7b1ebb6a6e7ee1d1f207a08bac6ae1af66",
+      "sha256_after": "46be490fa98efd01f600c3425b9d8b7b1ebb6a6e7ee1d1f207a08bac6ae1af66"
+    },
+    "manifest": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_canary_s0/manifest.json",
+      "sha256_before": "c824f55f56b7af983fc19175e81d02806d29cd6e2b3a48af1048bb74ba6dced1",
+      "sha256_after": "c824f55f56b7af983fc19175e81d02806d29cd6e2b3a48af1048bb74ba6dced1"
+    }
+  },
+  "scope": {
+    "cpu_only": true,
+    "cuda_initialized": false,
+    "model_forward_performed": false,
+    "dataset_or_labels_read": false,
+    "global_grad_norm_audited": false,
+    "os_exit_audited": false,
+    "uncertainty_and_stop_are_not_primary_gate_terms": true
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "status": "completed_cleanly",
+  "stage": "canary",
+  "seed": 0,
+  "purpose": "two-update GPU plumbing and finite-backward validation only",
+  "accuracy_claim": false,
+  "source_git_sha": "1947cb33134dba9559c14f1e8c47301c6ef52c7e",
+  "initializer": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_public_init_s0.pth",
+    "sha256": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a",
+    "model_state_sha256": "7ac28a8f26dc796be70ddb78edff1e1c128c64f43b5982747ba419d5d5200683",
+    "report_path": "/NHNHOME/data/sukim/adcl/reports/p4_public_init_s0.json",
+    "report_sha256": "10accd7aefb6fea93d7bfc458632db3dd5b9345b932fd3788a384665d4b829d7"
+  },
+  "data_sha256": {
+    "data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961"
+  },
+  "launch": {
+    "command": [
+      "/usr/bin/python",
+      "scripts/run_motiondrive_v2_fresh_trial.py",
+      "--stage",
+      "canary",
+      "--seed",
+      "0",
+      "--physical-gpu",
+      "5",
+      "--expected-git-sha",
+      "1947cb33134dba9559c14f1e8c47301c6ef52c7e",
+      "--expected-init-sha256",
+      "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a"
+    ],
+    "unified_ssh_session_handle": 25498,
+    "same_handle_polled_to_exit": true,
+    "ssh_exit_code": 0,
+    "parent_pid": 2082221,
+    "child_pid": 2082343,
+    "started_at": "2026-09-07T14:06:36.819497+00:00",
+    "ended_at": "2026-09-07T14:07:00.558870+00:00",
+    "supervised_actual_returncode": 0,
+    "supervisor_exit_code": 0,
+    "received_signals": [],
+    "termination_signal": null,
+    "pressure_event": null
+  },
+  "device": {
+    "physical_gpu": 5,
+    "physical_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+    "child_logical_device": "cuda:0",
+    "gpu_name": "NVIDIA B200",
+    "allocator_limit_mib": 12000,
+    "reserve_mib": 8192,
+    "preflight_free_mib": 182632.0,
+    "minimum_observed_free_mib": 176094.0,
+    "peak_allocated_bytes": 5322124800,
+    "peak_reserved_bytes": 5943328768,
+    "post_exit_checked_at": "2026-09-07T23:10:28+09:00",
+    "post_exit_used_mib": 0,
+    "post_exit_free_mib": 182632,
+    "post_exit_compute_pid_present": false
+  },
+  "artifacts": {
+    "stdout_log": {
+      "path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_canary_s0.log",
+      "sha256": "689a095aff829029dee45c924e37d925c77bdaa328c7c526944b00fb6075df2b"
+    },
+    "supervisor_record": {
+      "path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_canary_s0.supervisor.json",
+      "sha256": "cf88376da2e9ec6b8b76d6098b1a2cc0e84190024d28574e9cc100812691e996"
+    },
+    "child_receipt": {
+      "path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_canary_s0.child.json",
+      "sha256": "121f282d4844affe2c75bb88b56d96868bbda94bdc316ec498b044e975e84982"
+    },
+    "manifest": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_canary_s0/manifest.json",
+      "sha256": "c824f55f56b7af983fc19175e81d02806d29cd6e2b3a48af1048bb74ba6dced1"
+    },
+    "last": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_canary_s0/last.pth",
+      "sha256": "46be490fa98efd01f600c3425b9d8b7b1ebb6a6e7ee1d1f207a08bac6ae1af66",
+      "model_state_sha256": "0ad2b9aac10b228ff4d751634e4a4fddee2800c881f4258c9fb2737e02f4441f"
+    },
+    "initial_eval": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_canary_s0/initial_eval.json",
+      "sha256": "327f97801812a702e518ed2937269249ea278a3a9cb36374ce8728a5b85b08f2"
+    },
+    "latest_eval": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_canary_s0/latest_eval.json",
+      "sha256": "0a04cccd4c4e289dc65fc9a0ec3bb37c24e01f442892874531a2796a3bce88e0"
+    }
+  },
+  "completion_validation": {
+    "manifest_status": "completed",
+    "manifest_step": 2,
+    "manifest_pid": 2082343,
+    "data_counts": {
+      "train": 16,
+      "eval": 8
+    },
+    "nonfinite_count": 0,
+    "full_model_strict_cpu_load": true,
+    "optimizer_tensors_finite": true,
+    "optimizer_steps": 2,
+    "fixed_bn_running_state_matches_initializer": true,
+    "fixed_bn_state_sha256": "15f7b2ea977aedbe202fc42669e687692d779de4fe501cf342a30454b86dfc99",
+    "validation_model_forward_performed": false,
+    "parent_pid_absent_after_exit": true,
+    "child_pid_absent_after_exit": true
+  },
+  "observed_logs_not_accuracy_results": {
+    "initial_eval_step_0": {
+      "n": 8,
+      "official_d3": 13.170994818210602,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        11.33547556400299,
+        0.14613941125571728,
+        0.5900556426495314,
+        0.28407477494329214,
+        0.12096988596022129
+      ],
+      "history_position_mae_by_offset": [
+        1.670070357620716,
+        2.3924520611763,
+        5.049447596073151,
+        9.791108310222626
+      ],
+      "occ_iou": 0.026030368763557483,
+      "lane_iou": 0.21127995324371712
+    },
+    "last_eval_step_2": {
+      "n": 8,
+      "official_d3": 7.108093470335007,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        8.60705178976059,
+        0.35425190813839436,
+        0.5338361887261271,
+        0.5473021417856216,
+        0.1274869628250599
+      ],
+      "history_position_mae_by_offset": [
+        1.606915932148695,
+        1.1682161912322044,
+        2.1027490869164467,
+        6.673571944236755
+      ],
+      "occ_iou": 0.027128157156220765,
+      "lane_iou": 0.21148595943837753
+    },
+    "train_step_1": {
+      "grad_norm": 144.5513458251953,
+      "total": 14.354151725769043,
+      "plan_d3": 13.9921875,
+      "occ_bce": 0.6949964165687561,
+      "lane_bce": 0.6965959072113037,
+      "history": 0.07395830005407333,
+      "state": 0.20899975299835205,
+      "motion": 0.4182303249835968,
+      "peak_allocated_bytes": 5104299008,
+      "peak_reserved_bytes": 5897191424
+    }
+  },
+  "posthoc_cpu_aux_update_audit": {
+    "status": "passed",
+    "primary_aux_update_gate_passed": true,
+    "script_sha256": "28aa6d7fcf0aff6f254990935cd51e3a55f19d65560e872abf03e8b81aa620e6",
+    "test_sha256": "7f1def079ff1a0af556701cf35a5830663f535f52d9b33ac65b90fe0d9e7a2ec",
+    "remote_tests": {
+      "passed": 10,
+      "exit_code": 0
+    },
+    "cli_pid": 2085232,
+    "cli_exit_code": 0,
+    "cli_pid_absent_after_exit": true,
+    "report_path": "/NHNHOME/data/sukim/adcl/reports/p4_fresh_canary_s0_aux_updates.json",
+    "report_sha256": "a3099b75b369ff9a96a986e3cb34b9280f546c96e2377921dc88407be88cf31e",
+    "scope": {
+      "cpu_only": true,
+      "cuda_initialized": false,
+      "dataset_or_labels_read": false,
+      "model_forward_performed": false,
+      "global_grad_norm_audited": false,
+      "os_exit_from_supervisor_record_used_separately": true
+    },
+    "primary_auxiliaries": {
+      "occupancy": {
+        "changed_parameters": 4,
+        "finite_nonzero_exp_avg_parameters": 4,
+        "delta_l2_norm": 0.038683740149502426,
+        "exp_avg_l2_norm": 0.000190903894498748
+      },
+      "lane": {
+        "changed_parameters": 4,
+        "finite_nonzero_exp_avg_parameters": 4,
+        "delta_l2_norm": 0.03601712101195275,
+        "exp_avg_l2_norm": 0.0001697737757833471
+      },
+      "history": {
+        "changed_parameters": 4,
+        "finite_nonzero_exp_avg_parameters": 4,
+        "delta_l2_norm": 0.06372189123904609,
+        "exp_avg_l2_norm": 0.0015122804434044073
+      },
+      "state": {
+        "changed_parameters": 4,
+        "finite_nonzero_exp_avg_parameters": 4,
+        "delta_l2_norm": 0.06311259244958896,
+        "exp_avg_l2_norm": 0.003619668770759188
+      }
+    },
+    "stop_and_uncertainty_paths_report_only": true,
+    "input_sha256_unchanged_before_after": true
+  },
+  "preservation": {
+    "restart_performed": false,
+    "foreign_gpu_0_to_3_jobs_touched": false,
+    "gpu_6_or_7_used": false,
+    "source_or_git_head_changed_during_run": false,
+    "prior_failure_records_modified_or_deleted": false,
+    "p0_or_main_training_started": false
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "status": "public_cpu_initialization_complete",
+  "checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_public_init_s0.pth",
+  "checkpoint_sha256": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a",
+  "checkpoint_bytes": 106193519,
+  "initial_model_state_sha256": "7ac28a8f26dc796be70ddb78edff1e1c128c64f43b5982747ba419d5d5200683",
+  "public_checkpoint_sha256": "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e",
+  "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "source": {
+    "git_sha": "1947cb33134dba9559c14f1e8c47301c6ef52c7e",
+    "file_sha256": {
+      "scripts/initialize_motiondrive_v2_public.py": "673750b051d4ee20fd0792275b281c757e43b5dbb90d01c06547c2f7a83452cc",
+      "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a"
+    }
+  },
+  "manifest": {
+    "schema_version": 1,
+    "git_sha": "1947cb33134dba9559c14f1e8c47301c6ef52c7e",
+    "source": {
+      "git_sha": "1947cb33134dba9559c14f1e8c47301c6ef52c7e",
+      "file_sha256": {
+        "scripts/initialize_motiondrive_v2_public.py": "673750b051d4ee20fd0792275b281c757e43b5dbb90d01c06547c2f7a83452cc",
+        "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+        "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+        "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+        "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+        "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+        "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+        "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+        "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+        "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+        "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a"
+      }
+    },
+    "model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": false,
+      "state_on": false,
+      "plan_output_scale": [
+        10.0,
+        5.0
+      ],
+      "motion_input_mode": "low_feature"
+    },
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "arguments": {
+      "phase": "pretrain",
+      "goal_on": 0,
+      "state_on": 0,
+      "arch": "resnet50",
+      "motion_input_mode": "low_feature",
+      "plan_output_scale": [
+        10.0,
+        5.0
+      ],
+      "bn_policy": "fixed",
+      "time_input": "nominal",
+      "seed": 0,
+      "pretrained": "/NHNHOME/data/sukim/adcl/ckpt/backbones/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth",
+      "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "init": null,
+      "resume": null,
+      "allow_unpretrained": false
+    },
+    "time_input": "nominal",
+    "time_input_policy": {
+      "mode": "nominal",
+      "scope": "model input time_offsets only; same for training and every evaluation",
+      "source": "fixed nominal frame-offset seconds",
+      "nominal_history_seconds": [
+        0.1,
+        0.2,
+        0.5,
+        1.0
+      ],
+      "nominal_dtype": "float32",
+      "supervision_and_dataset_modified": false
+    },
+    "pretrained_sha256": "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e",
+    "public_checkpoint_sha256": "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e",
+    "public_source": {
+      "path": "/NHNHOME/data/sukim/adcl/ckpt/backbones/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth",
+      "sha256": "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e",
+      "bytes": 308515644,
+      "scope": "public nuImages R50 backbone only"
+    },
+    "load_report": {
+      "backbone": {
+        "injected": 318,
+        "unexpected": [],
+        "nonhead_missing": [],
+        "fpn_initialized_from_checkpoint": false
+      }
+    },
+    "initialization_seed": 0,
+    "seed": 0,
+    "initial_model_state_sha256": "7ac28a8f26dc796be70ddb78edff1e1c128c64f43b5982747ba419d5d5200683",
+    "initial_parameter_count": 26409112,
+    "nonbackbone_initial_state_sha256": "63601f0527b06e17633d380ab99ba897a1a02d3559b3dfeda0a39ca276aa9b1c",
+    "nonbackbone_seed_initialization_preserved": true,
+    "bn_training": {
+      "policy": "fixed",
+      "modules": 53,
+      "affine_and_backbone_weights_trainable": true,
+      "running_statistics_source": "public pretrained checkpoint; zero ETRI updates"
+    },
+    "loss_weights": {
+      "plan": 0.0,
+      "occupancy": 0.2,
+      "lane": 0.2,
+      "motion": 0.2,
+      "uncertainty": true
+    },
+    "step": 0,
+    "status": "public_initialization_only",
+    "etri_optimizer_updates": 0,
+    "etri_optimizer_steps": 0,
+    "etri_samples_seen": 0,
+    "labels_read": false,
+    "image_data_read": false,
+    "split_file_usage": "SHA-only lineage check; no scene/label selection",
+    "plan_output_scale_origin": "constructor config (10,5), no inverse reparameterization",
+    "optimizer_state_initialized": false,
+    "compatible_usage": "weights-only --init, NOT --resume",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "device": "cpu",
+    "cuda_initialized": false,
+    "source_files_unchanged": true
+  },
+  "strict_full_model_load_verified": true,
+  "safe_cpu_roundtrip_verified": true,
+  "all_source_sha_before_after_equal": true,
+  "etri_optimizer_updates": 0,
+  "gpu_used": false,
+  "pid": 2080620,
+  "argv": [
+    "scripts/initialize_motiondrive_v2_public.py",
+    "--public-checkpoint",
+    "ckpt/backbones/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth",
+    "--split-manifest",
+    "data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "--output",
+    "work_dirs/motiondrive_v2/p4_public_init_s0.pth",
+    "--report",
+    "reports/p4_public_init_s0.json",
+    "--expected-git-sha",
+    "1947cb33134dba9559c14f1e8c47301c6ef52c7e"
+  ],
+  "accuracy_or_deployment_claim": false
+}
