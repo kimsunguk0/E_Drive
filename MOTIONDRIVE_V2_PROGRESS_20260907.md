@@ -365,3 +365,28 @@ GPU0–3 네 장 모두 메모리<1000MiB·compute PID 없음·기존 coordinato
 supervised launcher를 통해 원4판을 시작한다. 코드/계획이 바뀌거나 다른 gate가
 실패하면 자동 우회하지 않고 보고한다. GPU4–7 또는 타 작업 중지는 허용하지 않는다.
 대기 시간 제한이 끝났다는 사실은 학습 완료·목표 달성·영구 장애를 뜻하지 않는다.
+
+## 19:26 KST: 3090 입력·flow 비용 근거 반영, P2는 자원 대기
+
+3090 기존 런타임에서도 실제 raw train8 입력6종48개가 학습 export와 모두 bitwise
+일치했고 Q95 JPEG80개 SHA도 재현됐다. 이 검증은 CPU 전용이며 최종 모델 속도가 아니다.
+별도 RAFT-small FP32 비용 측정은384×216에서1pair/4pair,갱신4/8/12의6조건을 실행했다.
+4pair CUDA median은9.55/14.89/20.22ms, 전체 forward·warmup20·반복50·synchronize 조건이다.
+모델의 영상 대응을 강화할 후보로 검토할 여지는 있지만, 전체 V2 Tinfer·정확도·대회
+사용 승인으로 해석하지 않는다. 자세한 출처/라이선스 한계는
+`MOTIONDRIVE_V2_FLOW_FEASIBILITY_20260907.md`에 기록했다.
+
+기존 P1 tune1998에 대한 시간 형태 분석을 재현 가능한 CPU 분석기로 보존했다.
+예측 y2차 계수 표준편차가 GT의4.48%라는 관찰은 원인/회수량을 증명하지 않는다.
+실제 image-derived state의 정확도와 planner 사용 문제를 분리하기 위해 평가기에
+opt-in `--include-motion-predictions`를 추가했다. 같은 forward 출력의 FP32
+state/history를 추가 저장할 뿐 기본 off의 점수·records·forward/RNG 경로는 보존한다.
+local planning-eval+P2 tests101개, flow 비용 도우미6개, 시간형태+기존오차25개를 확인했다.
+B200 system Python에서도 GPU를 비활성화한 동일132개 CPU 테스트가 통과했다.
+이 옵션으로 실제 P2 평가를 수행한 적은 아직 없다.
+
+Git 반영을 위해19:24:36에 **우리 전용 감시만** 종료했고 발사 권한을 회수했다.
+P2 발사0개, 해당 run/log/supervisor/launch 아티팩트 없음, 직전 HEAD cab53b1
+tracked-clean을 확인했다. 별도 alpamayo coordinator1963557/children1963560–1963563은
+중지하지 않았으며 GPU4–7도 사용하지 않았다. 학습기/모델/기하데이터/원4판 계획/초기
+가중치는 보존한다. 새 HEAD의 동일성 검증 후 재감시하며, 자원 대기를 결과로 보고하지 않는다.

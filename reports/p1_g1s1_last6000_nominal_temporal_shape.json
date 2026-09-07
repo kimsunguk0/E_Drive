@@ -1,0 +1,2101 @@
+{
+  "status": "complete_descriptive_temporal_shape",
+  "schema_version": 1,
+  "time_input": "nominal",
+  "checkpoint_step": 6000,
+  "checkpoint_sha256": "e2a0e2dc9f3320f5e9744e3e4ef0b77bf9dffffee33aed1274b610bd6faac80e",
+  "data_provenance": {
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "receiver_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "receiver_count": 1998,
+    "donor_rows_sha256": null,
+    "image_root": "/NHNHOME/data/sukim/adcl/cache/etri_768",
+    "supervision_sha256": {
+      "supervision_manifest.json": "073d9d2eb89956cac5c3d78b91622f5e397cfa116b1ed8f9a9f639ec3003a8d0",
+      "calibration.npz": "a6e29e9ecdf596560161b5c68806445e0d9139dded7c7bb403842af5a8a93cbb",
+      "20260113-102709.npz": "c3ed650793d417ecc4568dd515b18190b1f9059e37a4435a6f03162cb1613a7d",
+      "20260113-102709.json": "fc5dfc1d432a7ceb3d80b5b0fee89d72a67e9287d31d2c7c128646f5cde1b1c1",
+      "20260122-134906.npz": "4c3097b2e3b0d030a912f788fa77fc3019408b11c6fa61317e34fb15e903f19a",
+      "20260122-134906.json": "8089694be33285c5b62efa9631e9a3e85a6afeae50c9ccc53b8793c072da2683",
+      "20260122-134936.npz": "d9093ab8f980624ffa50293eab91c9d32d7128376bce4de3ee4047d2d3952514",
+      "20260122-134936.json": "3cb2abc39241f8eff7e474f2cc9a72c18a1a330a3a89b60fb35a12ede26aaffb",
+      "20260122-135506.npz": "47de17a58d870f55db996ad4d797d7f7abf465fb2116288b5cdaa4b40908a7f2",
+      "20260122-135506.json": "5fa22d4a87111ed7bcce39dd8624de143bc554e5b1d153faf4ba1ab747ae5c84",
+      "20260122-135546.npz": "c7d6b6bdd63898cf47ea04581d49081378c0a9d5efa40035b19efb8aabc28531",
+      "20260122-135546.json": "017477fb28bc5d48d4a72aecf7d311e6d70149ed3b3f011a3a03cc32684e0eae",
+      "20260122-135616.npz": "4414257d516e3211039f30625b90e1c1b3410c9e5c68b09726f2c0e13859a3e7",
+      "20260122-135616.json": "9e393cfc511197c6a40fac2ac057b4d8f6d2abddcc6c069c0f3b55979be0e5f8",
+      "20260122-135646.npz": "8c110478d1c3e80287fda606382cb607b53c1cafd83158618ed575bb5e36225a",
+      "20260122-135646.json": "e0ac5ec09290f4c2cf6fd81118b9012c506a8bdd1eb89000fc68a522506980f5",
+      "20260122-135800.npz": "b16cdda7e847a4d52e48a6b69d0a2ae5dda05a45ab5cd42af25f007050e364b5",
+      "20260122-135800.json": "e719a06b71732463e0fb893d34d041820d8329ee0fd37318f074a73c507cb706",
+      "20260122-135830.npz": "b63acb0b0a2ffdca1b0fa56f3282e4d2ebbdcb8d8c76e6e749fc2b234de4fa61",
+      "20260122-135830.json": "e340dfcb7a7a6d4d0222dfa56f9ab4f29025d70cd1dbed84a70e8d2f4ecad78c",
+      "20260122-135900.npz": "471c5242bf40db4c9a2686f2dfed9743c221cbff88e466441fb765e1511e0807",
+      "20260122-135900.json": "0cc8dcd17762fc729058c37ec47ba197d14273bc073f7f98a19af446b3979330",
+      "20260209-153550.npz": "aa4d314d9934b4b91bb5807389c6fcf70f594d5cf3fdd61a36b8c48f882b4721",
+      "20260209-153550.json": "a17fb34469a87a7f263cbaff0703d2efcdcafa82e1b699300b58dff352f85795",
+      "20260209-153620.npz": "19c0d50a03427c234ad23de31a7037905f7039ac0edbb9bef6209a7cbf1317a3",
+      "20260209-153620.json": "1498fb8c2fcd404d3adf8de28284aa4dedc7c38962f6bdfe095fbcc80870e75c",
+      "20260210-100504.npz": "c92a447a4c37ca6f010626ddb00383ed89e4649c9b1cfaa9167a676973d6afc2",
+      "20260210-100504.json": "f410e5548a86f94d8446ac7a98c0fade0f1708a681200ce0bdb6d7b03745db10",
+      "20260210-100534.npz": "7e155d386b643ab71d0c494a5d07d2f8bf23b75eea7b0ad183753f8c286624c3",
+      "20260210-100534.json": "6bc8382b9eccb95d7e1df7b4575cd31570be4d99b83fb79172eb69452160559b",
+      "20260210-100614.npz": "588d781bd71b82d1a160d240ebb56ed1b3e267588f291599de8ce4d01c9ab2b4",
+      "20260210-100614.json": "09f53032f7b95cb12f60c78339a4ca83b9ba3f6e149a1a3d046268848bfa6743",
+      "20260210-100644.npz": "716d3805b1211a2ccc54aff48ebc33fedac332c221e4c7453b32513d6c7f38f9",
+      "20260210-100644.json": "3ca72479febf0e4a38f0e2d788a46510fc356e9188287396344beabcb581736e",
+      "20260210-100754.npz": "ae47fbafe4f1bc71f78e863462725d6a367ec582140ea5d06c6a95ab57041dcb",
+      "20260210-100754.json": "43856e316cd5ef7798ca11562075bb327e997e8093d5a576ac6298a363eb8769",
+      "20260210-100854.npz": "7ddbcd8898785522fed04101c49b6f7ba193433f3f697f4c9e9ff6d73bebbfa5",
+      "20260210-100854.json": "30b0ee46e36b7a9038db50bf28c25fa4d82914d9d942faed7f765aadcc3b5f75",
+      "20260210-101004.npz": "d134218ebebfb7e06f2bc5b27c859c1d4a5172a402ad60d1ff228a049e201d07",
+      "20260210-101004.json": "911c651020d69ab2dbff17c23e2950b35ee6f1d01880f7127a9b5f738fefb9a7",
+      "20260210-101034.npz": "eecb1e26468198b7b5da391768e8daae85e392759d0d1cd075286842559ea914",
+      "20260210-101034.json": "06bbb7d2df84b96e97c1fd3e5d0043bc1ce0d16e73799fe68543a347ec93bb4d",
+      "20260210-101114.npz": "f9bbb187c37602aa60f760ed10c22bd625256dc534d118a654691b8804574b2c",
+      "20260210-101114.json": "cec37eaddae2f26042b3317881ac51c45455bfa27b4711218a1fd5bb028a7052",
+      "20260210-101214.npz": "1a18a76717525ef00ed786329a0532a1405f5d67f8480d6c79a67b23115ebe6d",
+      "20260210-101214.json": "2109799aec926d7ad06598e86a4fa7b02f3d0cee01275774d35e97beabc8f59f",
+      "20260213-134648.npz": "6b5156f95eef695fc96438f9f6a1e8af0bc23906797efa46bb11474f2ec0ea1a",
+      "20260213-134648.json": "bfbbda804ec651dc622c643ddf1492a8fe47314bd47bf9f645f0a6ad668c67b9",
+      "20260213-134718.npz": "5a638e07874a7ed909e938b1fde7c67ff8afab52a08db13ede98f8d350cd1b66",
+      "20260213-134718.json": "9fae204931657f2956821ae6a16f7859b0e7f34afd3a76ccbcfea62a5fcb28cf",
+      "20260213-134758.npz": "e65eaa08c2f902cf1a10a9197afaa8a286691b3428c9d30f171e4a362a0c4088",
+      "20260213-134758.json": "57ca16b65350b146f2b47ab4168cac8ba00081ed5d6c49c984ab976f90fe75b3",
+      "20260213-134828.npz": "ebccead7f6b95f298f3d91c1ac0e9094fa9085a66e5f4306269c3827a75b6630",
+      "20260213-134828.json": "802a9381d137eadce3abdb540685accf9c16b7154393d3a52d7185f63a45ecb9",
+      "20260213-134938.npz": "6ee35e7b60e040cdec94d509f59dd55782d4f077b178095755552f69122bc134",
+      "20260213-134938.json": "da6e594ee9c337863d8cd8575dbe3372ecd0ca64727f60eaad6cc3720133c3ff",
+      "20260213-135038.npz": "ff13a323191acac7dd85830339ad21b48231fe47f78bddbdd53fbd109f09e41b",
+      "20260213-135038.json": "9420829e3ace29ee5ed7dca489de29fa9006c35fe5d44e9cb1d0639b7d30eb38",
+      "20260219-103747.npz": "a522e0ee51d3237a4dce0dc55a481241acdd31d975c2db25b19d5d6a8c493165",
+      "20260219-103747.json": "fb1552d9d421fc41d1a6387257d9a6f1f4f0d96012876b11c6973f5580b74a6c",
+      "20260219-110038.npz": "fedb7daeb164e3a803d0ed2e9aa15d8d774aa9ef9d5bc17f3a34206d7b02c8ee",
+      "20260219-110038.json": "df5eac7c7cf53269af86586b4a5bce1907ae71b75f5f1a911ea4e27cdfaa7bd2",
+      "20260219-110108.npz": "1d3f3dc8cf057137c87830ddbd6fc931c8e6a71abb94b5f3afe022b6eaf315ce",
+      "20260219-110108.json": "f7a4a64921b262280f5892bfed3bd4dd51361cf3920f6484a37dc61711a60197",
+      "20260219-110218.npz": "efd1e17ec5eba46f72dccd654298121e47cf958f0d01b12e58f7b08253fb9be1",
+      "20260219-110218.json": "fcd430e73514a89ea72dfb9ab6614c6d9486f45632a3e1b54561052ea010f618",
+      "20260219-90551.npz": "28f962d4a73ba0b3f2a0fbfc6acfc89a91bbc90778df00759aefb97e47293a49",
+      "20260219-90551.json": "985c9068bd3c9c11f096c23cef55a3c2c1feb0ad924fd84305f006fc11f1d7f8",
+      "20260219-90621.npz": "8176396528a7b9c5b057ccf1830198a86d3de63faf158bf212400d048f7d525b",
+      "20260219-90621.json": "8987d21564425765b254e4fd8a49233e11e27bfeb550bc8594c50867b03f2d7c",
+      "20260220-134317.npz": "ce7a403cc72fd3ccf306ae5e48dadf27fd591de4c3481665de76cfcbfc75b09d",
+      "20260220-134317.json": "e7bf71a6c17a318136b953066253137a12d755cf9dd92a303e6e9f827b8d5ecb",
+      "20260220-134347.npz": "727d5d9f48b1185dba59e79098dc1027d9517b3a26578dcbcfd910c724b40f5a",
+      "20260220-134347.json": "8e10d85d82ccbb8ea4955905c6cae7cff0519466b7dd6ad45bb006ff658bbb4a",
+      "20260303-142827.npz": "2f1de9831fc42fc128133817c988e99abd70dfea1417fd3d661bebd0b8f4321e",
+      "20260303-142827.json": "52764fc5ebf728b2657c9abd3bf5a7bafdf1db18e7ee48a30eaf0f411f598e74"
+    }
+  },
+  "source_supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime",
+  "d3_float64_reconstruction_max_abs_difference": 2.0047586701821274e-07,
+  "definitions": {
+    "times_seconds": [
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0
+    ],
+    "axes": "현재 ego축 x전방/y좌. 경로 접선 좌표가 아님",
+    "fit": "각 표본·각 좌표의 q(t)=a*t+b*t². intercept 없음. 6개 점 비가중 OLS",
+    "quadratic_coefficient_unit": "m/s²; 적합 곡선의 시간 2차 미분은 2*b. 실제 가속도나 공간 곡률의 직접 측정값이 아님",
+    "std": "표본 간 population std(ddof=0). 시간 가중이나 D3 가중을 적용하지 않음",
+    "energy_fraction": "sum(residual²)/sum(original_coordinate²). 좌표·집단별 비가중 합, sample별 R² 평균 아님",
+    "rmse": "sqrt(sum(residual²)/(집단 표본 수*6)); 큰 위치 에너지에 의한 설명률 과장을 피하도록 maxabs도 병기",
+    "zero_denominator": "GT 계수 분산/좌표 에너지가 0이면 해당 비율·Pearson은 null; NaN을 출력하지 않음",
+    "gt_sign_partition": "GT b의 정확한 수치 부호. 추가 임계값 없음; near-zero 수치 오차도 포함 가능",
+    "official_d3_weights": [
+      0.3055555555555556,
+      0.3055555555555556,
+      0.1388888888888889,
+      0.1388888888888889,
+      0.05555555555555555,
+      0.05555555555555555
+    ],
+    "official_d3": "mean cumulative ADE@1/2/3s. 표본별 L2에 공식 시간 가중 후 집단 표본 평균",
+    "d3_contribution": "집단 D3 합 / 전체 normal D3 합. 곡률의 인과 기여나 회수 가능한 개선량이 아님",
+    "axis_absolute_error": "공식 시간 가중을 적용한 좌표별 MAE이며 두 축을 더해 D3로 취급하지 않음"
+  },
+  "all": {
+    "n": 1998,
+    "scene_n": 37,
+    "session_n": 11,
+    "official_d3": 0.37205922214250947,
+    "fraction_total_d3_sum": 1.0,
+    "axes": {
+      "x": {
+        "quadratic_coefficient_b": {
+          "n": 1998,
+          "pred_mean": -0.014977874966912198,
+          "gt_mean": -0.004460655594771081,
+          "pred_std": 0.19408590892159922,
+          "gt_std": 0.21397417582586103,
+          "std_ratio_pred_gt": 0.9070529570799818,
+          "variance_ratio_pred_gt": 0.8227450669475392,
+          "mae": 0.08056280289144185,
+          "pearson": 0.8457153832762594,
+          "sign_agreement": 0.7322322322322322
+        },
+        "pred_fit_residuals": {
+          "t_only": {
+            "coordinate_rmse_m": 0.23597876038852206,
+            "coordinate_max_abs_m": 1.5663875590313925,
+            "residual_sse_m2": 667.563472549788,
+            "original_energy_m2": 6147415.625216257,
+            "residual_uncentered_energy_fraction": 0.00010859253924714162,
+            "explained_uncentered_energy_fraction": 0.9998914074607529,
+            "rmse_denominator_coordinate_count": 11988
+          },
+          "t_plus_t_squared": {
+            "coordinate_rmse_m": 0.03570072868629387,
+            "coordinate_max_abs_m": 0.2610716851694299,
+            "residual_sse_m2": 15.279209840443603,
+            "original_energy_m2": 6147415.625216257,
+            "residual_uncentered_energy_fraction": 2.4854688168096823e-06,
+            "explained_uncentered_energy_fraction": 0.9999975145311832,
+            "rmse_denominator_coordinate_count": 11988
+          }
+        },
+        "gt_fit_residuals": {
+          "t_only": {
+            "coordinate_rmse_m": 0.2579144894046446,
+            "coordinate_max_abs_m": 1.8165138317988472,
+            "residual_sse_m2": 797.4403675321643,
+            "original_energy_m2": 6171096.972386986,
+            "residual_uncentered_energy_fraction": 0.00012922181762827065,
+            "explained_uncentered_energy_fraction": 0.9998707781823717,
+            "rmse_denominator_coordinate_count": 11988
+          },
+          "t_plus_t_squared": {
+            "coordinate_rmse_m": 0.02736464559017066,
+            "coordinate_max_abs_m": 0.2935935314744712,
+            "residual_sse_m2": 8.97690005336845,
+            "original_energy_m2": 6171096.972386986,
+            "residual_uncentered_energy_fraction": 1.454668447690294e-06,
+            "explained_uncentered_energy_fraction": 0.9999985453315523,
+            "rmse_denominator_coordinate_count": 11988
+          }
+        },
+        "official_weights_absolute_error_m": 0.2835129994748593,
+        "last_3s_absolute_error_m": 0.4901476597734018
+      },
+      "y": {
+        "quadratic_coefficient_b": {
+          "n": 1998,
+          "pred_mean": -0.0011417073547606079,
+          "gt_mean": 0.009333900481068953,
+          "pred_std": 0.006336401998283447,
+          "gt_std": 0.141560162052103,
+          "std_ratio_pred_gt": 0.04476119486180904,
+          "variance_ratio_pred_gt": 0.00200356456545684,
+          "mae": 0.06843136847459566,
+          "pearson": -0.08473136208675217,
+          "sign_agreement": 0.539039039039039
+        },
+        "pred_fit_residuals": {
+          "t_only": {
+            "coordinate_rmse_m": 0.009385746625499423,
+            "coordinate_max_abs_m": 0.04364054101509052,
+            "residual_sse_m2": 1.0560497697402689,
+            "original_energy_m2": 3472.10669443776,
+            "residual_uncentered_energy_fraction": 0.00030415245344621403,
+            "explained_uncentered_energy_fraction": 0.9996958475465538,
+            "rmse_denominator_coordinate_count": 11988
+          },
+          "t_plus_t_squared": {
+            "coordinate_rmse_m": 0.0053450243692568745,
+            "coordinate_max_abs_m": 0.020421996047454316,
+            "residual_sse_m2": 0.3424885946693028,
+            "original_energy_m2": 3472.10669443776,
+            "residual_uncentered_energy_fraction": 9.863999721493644e-05,
+            "explained_uncentered_energy_fraction": 0.9999013600027851,
+            "rmse_denominator_coordinate_count": 11988
+          }
+        },
+        "gt_fit_residuals": {
+          "t_only": {
+            "coordinate_rmse_m": 0.17062778676722487,
+            "coordinate_max_abs_m": 1.9395529470600916,
+            "residual_sse_m2": 349.01673330557367,
+            "original_energy_m2": 8135.1022905135715,
+            "residual_uncentered_energy_fraction": 0.042902562357767245,
+            "explained_uncentered_energy_fraction": 0.9570974376422328,
+            "rmse_denominator_coordinate_count": 11988
+          },
+          "t_plus_t_squared": {
+            "coordinate_rmse_m": 0.014642191474029573,
+            "coordinate_max_abs_m": 0.1294490114918776,
+            "residual_sse_m2": 2.5701525286917866,
+            "original_energy_m2": 8135.1022905135715,
+            "residual_uncentered_energy_fraction": 0.0003159336461803152,
+            "explained_uncentered_energy_fraction": 0.9996840663538197,
+            "rmse_denominator_coordinate_count": 11988
+          }
+        },
+        "official_weights_absolute_error_m": 0.14268777990831502,
+        "last_3s_absolute_error_m": 0.5968521046220052
+      }
+    }
+  },
+  "gt_b_sign_partitions": {
+    "x": {
+      "negative": {
+        "n": 995,
+        "scene_n": 36,
+        "session_n": 11,
+        "official_d3": 0.3901984190315607,
+        "fraction_total_d3_sum": 0.5222771535690405,
+        "axes": {
+          "x": {
+            "quadratic_coefficient_b": {
+              "n": 995,
+              "pred_mean": -0.11609545487063691,
+              "gt_mean": -0.14738282838027517,
+              "pred_std": 0.18121167387656437,
+              "gt_std": 0.1582885817842704,
+              "std_ratio_pred_gt": 1.144818355398089,
+              "variance_ratio_pred_gt": 1.3106090668563855,
+              "mae": 0.08199667157193187,
+              "pearson": 0.8211134308155162,
+              "sign_agreement": 0.7296482412060301
+            },
+            "pred_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.26056020845412764,
+                "coordinate_max_abs_m": 1.5663875590313925,
+                "residual_sse_m2": 405.312984711061,
+                "original_energy_m2": 2935308.0543070394,
+                "residual_uncentered_energy_fraction": 0.00013808192435418718,
+                "explained_uncentered_energy_fraction": 0.9998619180756458,
+                "rmse_denominator_coordinate_count": 5970
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.03724039889130435,
+                "coordinate_max_abs_m": 0.22540970359530377,
+                "residual_sse_m2": 8.279478438213271,
+                "original_energy_m2": 2935308.0543070394,
+                "residual_uncentered_energy_fraction": 2.8206506046493544e-06,
+                "explained_uncentered_energy_fraction": 0.9999971793493954,
+                "rmse_denominator_coordinate_count": 5970
+              }
+            },
+            "gt_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.2607225108428212,
+                "coordinate_max_abs_m": 1.8165138317988472,
+                "residual_sse_m2": 405.8180791313046,
+                "original_energy_m2": 2978633.1091165068,
+                "residual_uncentered_energy_fraction": 0.00013624305655142416,
+                "explained_uncentered_energy_fraction": 0.9998637569434485,
+                "rmse_denominator_coordinate_count": 5970
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.028448053498852495,
+                "coordinate_max_abs_m": 0.2935935314744712,
+                "residual_sse_m2": 4.831471734805235,
+                "original_energy_m2": 2978633.1091165068,
+                "residual_uncentered_energy_fraction": 1.6220432519929583e-06,
+                "explained_uncentered_energy_fraction": 0.999998377956748,
+                "rmse_denominator_coordinate_count": 5970
+              }
+            },
+            "official_weights_absolute_error_m": 0.28383057981690507,
+            "last_3s_absolute_error_m": 0.5096598362586117
+          },
+          "y": {
+            "quadratic_coefficient_b": {
+              "n": 995,
+              "pred_mean": 0.0010437879861128895,
+              "gt_mean": 0.011784107919268035,
+              "pred_std": 0.005706736533237717,
+              "gt_std": 0.1621514893501568,
+              "std_ratio_pred_gt": 0.035193858262469284,
+              "variance_ratio_pred_gt": 0.0012386076593987774,
+              "mae": 0.07933154540408872,
+              "pearson": -0.17920616383613688,
+              "sign_agreement": 0.5437185929648242
+            },
+            "pred_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.008886488580894383,
+                "coordinate_max_abs_m": 0.040663814806676135,
+                "residual_sse_m2": 0.4714489854112466,
+                "original_energy_m2": 1647.2220217731945,
+                "residual_uncentered_energy_fraction": 0.00028620852512871534,
+                "explained_uncentered_energy_fraction": 0.9997137914748713,
+                "rmse_denominator_coordinate_count": 5970
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.005535578908716934,
+                "coordinate_max_abs_m": 0.020421996047454316,
+                "residual_sse_m2": 0.18293652411215167,
+                "original_energy_m2": 1647.2220217731945,
+                "residual_uncentered_energy_fraction": 0.00011105759982204764,
+                "explained_uncentered_energy_fraction": 0.999888942400178,
+                "rmse_denominator_coordinate_count": 5970
+              }
+            },
+            "gt_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.19544242284398977,
+                "coordinate_max_abs_m": 1.917712152004242,
+                "residual_sse_m2": 228.04051166335952,
+                "original_energy_m2": 4852.603675769909,
+                "residual_uncentered_energy_fraction": 0.046993434226251504,
+                "explained_uncentered_energy_fraction": 0.9530065657737485,
+                "rmse_denominator_coordinate_count": 5970
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.015625034280263694,
+                "coordinate_max_abs_m": 0.1294490114918776,
+                "residual_sse_m2": 1.457525926668711,
+                "original_energy_m2": 4852.603675769909,
+                "residual_uncentered_energy_fraction": 0.0003003595644842068,
+                "explained_uncentered_energy_fraction": 0.9996996404355158,
+                "rmse_denominator_coordinate_count": 5970
+              }
+            },
+            "official_weights_absolute_error_m": 0.167717117106098,
+            "last_3s_absolute_error_m": 0.6995796159069284
+          }
+        }
+      },
+      "exact_zero": {
+        "n": 0,
+        "scene_n": 0,
+        "session_n": 0,
+        "official_d3": null,
+        "fraction_total_d3_sum": 0.0,
+        "axes": {}
+      },
+      "positive": {
+        "n": 1003,
+        "scene_n": 37,
+        "session_n": 11,
+        "official_d3": 0.35406470478996116,
+        "fraction_total_d3_sum": 0.4777228464309595,
+        "axes": {
+          "x": {
+            "quadratic_coefficient_b": {
+              "n": 1003,
+              "pred_mean": 0.08533318386081074,
+              "gt_mean": 0.13732155968097823,
+              "pred_std": 0.14918763877816096,
+              "gt_std": 0.16119323968791147,
+              "std_ratio_pred_gt": 0.925520444076968,
+              "variance_ratio_pred_gt": 0.856588092404428,
+              "mae": 0.07914037085047718,
+              "pearson": 0.7501725158306618,
+              "sign_agreement": 0.7347956131605184
+            },
+            "pred_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.2087526804498635,
+                "coordinate_max_abs_m": 1.0267443342523244,
+                "residual_sse_m2": 262.250487838727,
+                "original_energy_m2": 3212107.570909218,
+                "residual_uncentered_energy_fraction": 8.164436652552532e-05,
+                "explained_uncentered_energy_fraction": 0.9999183556334744,
+                "rmse_denominator_coordinate_count": 6018
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.03410472845315049,
+                "coordinate_max_abs_m": 0.2610716851694299,
+                "residual_sse_m2": 6.999731402230331,
+                "original_energy_m2": 3212107.570909218,
+                "residual_uncentered_energy_fraction": 2.179170917445019e-06,
+                "explained_uncentered_energy_fraction": 0.9999978208290825,
+                "rmse_denominator_coordinate_count": 6018
+              }
+            },
+            "gt_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.25509832600851423,
+                "coordinate_max_abs_m": 1.6905303348551737,
+                "residual_sse_m2": 391.62228840085953,
+                "original_energy_m2": 3192463.86327048,
+                "residual_uncentered_energy_fraction": 0.00012267086024261742,
+                "explained_uncentered_energy_fraction": 0.9998773291397574,
+                "rmse_denominator_coordinate_count": 6018
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.026245727369328148,
+                "coordinate_max_abs_m": 0.28520070348531573,
+                "residual_sse_m2": 4.145428318563215,
+                "original_energy_m2": 3192463.86327048,
+                "residual_uncentered_energy_fraction": 1.2985043828550911e-06,
+                "explained_uncentered_energy_fraction": 0.9999987014956171,
+                "rmse_denominator_coordinate_count": 6018
+              }
+            },
+            "official_weights_absolute_error_m": 0.2831979521764191,
+            "last_3s_absolute_error_m": 0.47079111380851263
+          },
+          "y": {
+            "quadratic_coefficient_b": {
+              "n": 1003,
+              "pred_mean": -0.003309771027910289,
+              "gt_mean": 0.006903236073284219,
+              "pred_std": 0.0061833536066207605,
+              "gt_std": 0.11757325659237573,
+              "std_ratio_pred_gt": 0.05259149729992026,
+              "variance_ratio_pred_gt": 0.0027658655882475203,
+              "mae": 0.0576181321387576,
+              "pearson": 0.0034744734534506976,
+              "sign_agreement": 0.5343968095712861
+            },
+            "pred_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.00985606604792267,
+                "coordinate_max_abs_m": 0.04364054101509052,
+                "residual_sse_m2": 0.5846007843290223,
+                "original_energy_m2": 1824.8846726645656,
+                "residual_uncentered_energy_fraction": 0.0003203494407542095,
+                "explained_uncentered_energy_fraction": 0.9996796505592458,
+                "rmse_denominator_coordinate_count": 6018
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.005149026542611297,
+                "coordinate_max_abs_m": 0.01983033280287505,
+                "residual_sse_m2": 0.1595520705571512,
+                "original_energy_m2": 1824.8846726645656,
+                "residual_uncentered_energy_fraction": 8.743131713862483e-05,
+                "explained_uncentered_energy_fraction": 0.9999125686828614,
+                "rmse_denominator_coordinate_count": 6018
+              }
+            },
+            "gt_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.14178292004956855,
+                "coordinate_max_abs_m": 1.9395529470600916,
+                "residual_sse_m2": 120.97622164221414,
+                "original_energy_m2": 3282.4986147436634,
+                "residual_uncentered_energy_fraction": 0.03685491932847667,
+                "explained_uncentered_energy_fraction": 0.9631450806715234,
+                "rmse_denominator_coordinate_count": 6018
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.013597173149257654,
+                "coordinate_max_abs_m": 0.11394537967862556,
+                "residual_sse_m2": 1.112626602023076,
+                "original_energy_m2": 3282.4986147436634,
+                "residual_uncentered_energy_fraction": 0.0003389572190603843,
+                "explained_uncentered_energy_fraction": 0.9996610427809396,
+                "rmse_denominator_coordinate_count": 6018
+              }
+            },
+            "official_weights_absolute_error_m": 0.11785807850074369,
+            "last_3s_absolute_error_m": 0.4949439553413488
+          }
+        }
+      }
+    },
+    "y": {
+      "negative": {
+        "n": 977,
+        "scene_n": 37,
+        "session_n": 11,
+        "official_d3": 0.38286518464255753,
+        "fraction_total_d3_sum": 0.5031910201804843,
+        "axes": {
+          "x": {
+            "quadratic_coefficient_b": {
+              "n": 977,
+              "pred_mean": 0.022248605392417204,
+              "gt_mean": 0.0459788351177105,
+              "pred_std": 0.18343027717529414,
+              "gt_std": 0.2120945970675299,
+              "std_ratio_pred_gt": 0.8648512489777891,
+              "variance_ratio_pred_gt": 0.7479676828584417,
+              "mae": 0.08772550547638057,
+              "pearson": 0.7992091149789893,
+              "sign_agreement": 0.7134083930399181
+            },
+            "pred_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.22423248220224976,
+                "coordinate_max_abs_m": 1.4799053904774446,
+                "residual_sse_m2": 294.7425680092012,
+                "original_energy_m2": 3119420.3263297053,
+                "residual_uncentered_energy_fraction": 9.448632668108368e-05,
+                "explained_uncentered_energy_fraction": 0.9999055136733189,
+                "rmse_denominator_coordinate_count": 5862
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.03544395482940138,
+                "coordinate_max_abs_m": 0.2610716851694299,
+                "residual_sse_m2": 7.36427780080696,
+                "original_energy_m2": 3119420.3263297053,
+                "residual_uncentered_energy_fraction": 2.3607840657599783e-06,
+                "explained_uncentered_energy_fraction": 0.9999976392159342,
+                "rmse_denominator_coordinate_count": 5862
+              }
+            },
+            "gt_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.2614748446228563,
+                "coordinate_max_abs_m": 1.6905303348551737,
+                "residual_sse_m2": 400.7796312001456,
+                "original_energy_m2": 3138257.0964346183,
+                "residual_uncentered_energy_fraction": 0.00012770771128199545,
+                "explained_uncentered_energy_fraction": 0.999872292288718,
+                "rmse_denominator_coordinate_count": 5862
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.027220412281509464,
+                "coordinate_max_abs_m": 0.28520070348531573,
+                "residual_sse_m2": 4.343453852073109,
+                "original_energy_m2": 3138257.0964346183,
+                "residual_uncentered_energy_fraction": 1.3840337864631034e-06,
+                "explained_uncentered_energy_fraction": 0.9999986159662135,
+                "rmse_denominator_coordinate_count": 5862
+              }
+            },
+            "official_weights_absolute_error_m": 0.31316289246719936,
+            "last_3s_absolute_error_m": 0.5091100094912042
+          },
+          "y": {
+            "quadratic_coefficient_b": {
+              "n": 977,
+              "pred_mean": -0.0019241705688715235,
+              "gt_mean": -0.060280336506114786,
+              "pred_std": 0.006395338126809287,
+              "gt_std": 0.12209714557619201,
+              "std_ratio_pred_gt": 0.05237909614208317,
+              "variance_ratio_pred_gt": 0.002743569712661592,
+              "mae": 0.059654428448784415,
+              "pearson": -0.058833516307300125,
+              "sign_agreement": 0.5997952917093142
+            },
+            "pred_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.009796736638349493,
+                "coordinate_max_abs_m": 0.04364054101509052,
+                "residual_sse_m2": 0.5626115978380333,
+                "original_energy_m2": 1766.5752588021458,
+                "residual_uncentered_energy_fraction": 0.0003184758730400883,
+                "explained_uncentered_energy_fraction": 0.9996815241269599,
+                "rmse_denominator_coordinate_count": 5862
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.005650754662927802,
+                "coordinate_max_abs_m": 0.020421996047454316,
+                "residual_sse_m2": 0.18717968766363896,
+                "original_energy_m2": 1766.5752588021458,
+                "residual_uncentered_energy_fraction": 0.00010595624881023133,
+                "explained_uncentered_energy_fraction": 0.9998940437511897,
+                "rmse_denominator_coordinate_count": 5862
+              }
+            },
+            "gt_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.16367925592965485,
+                "coordinate_max_abs_m": 1.9395529470600916,
+                "residual_sse_m2": 157.04824889272015,
+                "original_energy_m2": 5529.99285306411,
+                "residual_uncentered_energy_fraction": 0.028399358383564888,
+                "explained_uncentered_energy_fraction": 0.9716006416164351,
+                "rmse_denominator_coordinate_count": 5862
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.012934614784838766,
+                "coordinate_max_abs_m": 0.1294490114918776,
+                "residual_sse_m2": 0.9807375699637781,
+                "original_energy_m2": 5529.99285306411,
+                "residual_uncentered_energy_fraction": 0.00017734879520149143,
+                "explained_uncentered_energy_fraction": 0.9998226512047985,
+                "rmse_denominator_coordinate_count": 5862
+              }
+            },
+            "official_weights_absolute_error_m": 0.12684564809527044,
+            "last_3s_absolute_error_m": 0.522161438121075
+          }
+        }
+      },
+      "exact_zero": {
+        "n": 0,
+        "scene_n": 0,
+        "session_n": 0,
+        "official_d3": null,
+        "fraction_total_d3_sum": 0.0,
+        "axes": {}
+      },
+      "positive": {
+        "n": 1021,
+        "scene_n": 37,
+        "session_n": 11,
+        "official_d3": 0.36171894264931953,
+        "fraction_total_d3_sum": 0.49680897981951566,
+        "axes": {
+          "x": {
+            "quadratic_coefficient_b": {
+              "n": 1021,
+              "pred_mean": -0.05060007997285228,
+              "gt_mean": -0.052726456207988034,
+              "pred_std": 0.19729071332022635,
+              "gt_std": 0.20441911862659798,
+              "std_ratio_pred_gt": 0.9651284803776464,
+              "variance_ratio_pred_gt": 0.931472983636065,
+              "mae": 0.07370877700947796,
+              "pearson": 0.8792819283368886,
+              "sign_agreement": 0.7502448579823702
+            },
+            "pred_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.24669572955532415,
+                "coordinate_max_abs_m": 1.5663875590313925,
+                "residual_sse_m2": 372.8209045405868,
+                "original_energy_m2": 3027995.2988865515,
+                "residual_uncentered_energy_fraction": 0.00012312466425482224,
+                "explained_uncentered_energy_fraction": 0.9998768753357452,
+                "rmse_denominator_coordinate_count": 6126
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.035944719499280006,
+                "coordinate_max_abs_m": 0.21160653233528848,
+                "residual_sse_m2": 7.914932039636643,
+                "original_energy_m2": 3027995.2988865515,
+                "residual_uncentered_energy_fraction": 2.6139182060642913e-06,
+                "explained_uncentered_energy_fraction": 0.9999973860817939,
+                "rmse_denominator_coordinate_count": 6126
+              }
+            },
+            "gt_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.2544609303131439,
+                "coordinate_max_abs_m": 1.8165138317988472,
+                "residual_sse_m2": 396.6607363320186,
+                "original_energy_m2": 3032839.8759523686,
+                "residual_uncentered_energy_fraction": 0.00013078855216761475,
+                "explained_uncentered_energy_fraction": 0.9998692114478324,
+                "rmse_denominator_coordinate_count": 6126
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.027501954939848205,
+                "coordinate_max_abs_m": 0.2935935314744712,
+                "residual_sse_m2": 4.63344620129534,
+                "original_energy_m2": 3032839.8759523686,
+                "residual_uncentered_energy_fraction": 1.5277582697439147e-06,
+                "explained_uncentered_energy_fraction": 0.9999984722417302,
+                "rmse_denominator_coordinate_count": 6126
+              }
+            },
+            "official_weights_absolute_error_m": 0.2551408687662243,
+            "last_3s_absolute_error_m": 0.47200249260954974
+          },
+          "y": {
+            "quadratic_coefficient_b": {
+              "n": 1021,
+              "pred_mean": -0.00039296439669364954,
+              "gt_mean": 0.07594811158437796,
+              "pred_std": 0.006187526785222832,
+              "gt_std": 0.12599583532321165,
+              "std_ratio_pred_gt": 0.04910897863687508,
+              "variance_ratio_pred_gt": 0.002411691782757053,
+              "mae": 0.0768300662270125,
+              "pearson": -0.2652239582240167,
+              "sign_agreement": 0.48090107737512244
+            },
+            "pred_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.008974863980266732,
+                "coordinate_max_abs_m": 0.040663814806676135,
+                "residual_sse_m2": 0.4934381719022356,
+                "original_energy_m2": 1705.5314356356143,
+                "residual_uncentered_energy_fraction": 0.0002893163747042528,
+                "explained_uncentered_energy_fraction": 0.9997106836252957,
+                "rmse_denominator_coordinate_count": 6126
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.005035118377524789,
+                "coordinate_max_abs_m": 0.020393561970975194,
+                "residual_sse_m2": 0.15530890700566388,
+                "original_energy_m2": 1705.5314356356143,
+                "residual_uncentered_energy_fraction": 9.106188473611079e-05,
+                "explained_uncentered_energy_fraction": 0.9999089381152639,
+                "rmse_denominator_coordinate_count": 6126
+              }
+            },
+            "gt_fit_residuals": {
+              "t_only": {
+                "coordinate_rmse_m": 0.17702168562448567,
+                "coordinate_max_abs_m": 1.4100399154883165,
+                "residual_sse_m2": 191.9684844128535,
+                "original_energy_m2": 2605.1094374494633,
+                "residual_uncentered_energy_fraction": 0.07368922074951315,
+                "explained_uncentered_energy_fraction": 0.9263107792504869,
+                "rmse_denominator_coordinate_count": 6126
+              },
+              "t_plus_t_squared": {
+                "coordinate_rmse_m": 0.01610757461451382,
+                "coordinate_max_abs_m": 0.11394537967862556,
+                "residual_sse_m2": 1.5894149587280089,
+                "original_energy_m2": 2605.1094374494633,
+                "residual_uncentered_energy_fraction": 0.000610114468083202,
+                "explained_uncentered_energy_fraction": 0.9993898855319168,
+                "rmse_denominator_coordinate_count": 6126
+              }
+            },
+            "official_weights_absolute_error_m": 0.157847194973295,
+            "last_3s_absolute_error_m": 0.6683239764843059
+          }
+        }
+      }
+    }
+  },
+  "sessions": {
+    "session_019_20260113-102709": {
+      "n": 54,
+      "scene_n": 1,
+      "session_n": 1,
+      "official_d3": 0.3473699601987998,
+      "fraction_total_d3_sum": 0.025233556229589286,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 54,
+            "pred_mean": 0.0925742197564993,
+            "gt_mean": 0.1040756984677903,
+            "pred_std": 0.1380061901539239,
+            "gt_std": 0.1880706683729577,
+            "std_ratio_pred_gt": 0.7337996474827626,
+            "variance_ratio_pred_gt": 0.5384619226458267,
+            "mae": 0.06663439357801097,
+            "pearson": 0.9327064037508722,
+            "sign_agreement": 0.7592592592592593
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.20122099578950836,
+              "coordinate_max_abs_m": 0.5804271069201761,
+              "residual_sse_m2": 13.118724083472912,
+              "original_energy_m2": 159613.4307591142,
+              "residual_uncentered_energy_fraction": 8.219060276494815e-05,
+              "explained_uncentered_energy_fraction": 0.9999178093972351,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.028923761144980364,
+              "coordinate_max_abs_m": 0.09382039095673989,
+              "residual_sse_m2": 0.27105320264208776,
+              "original_energy_m2": 159613.4307591142,
+              "residual_uncentered_energy_fraction": 1.6981854305929711e-06,
+              "explained_uncentered_energy_fraction": 0.9999983018145694,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.2600839974132839,
+              "coordinate_max_abs_m": 0.6906724238133712,
+              "residual_sse_m2": 21.916554170193272,
+              "original_energy_m2": 155531.11171348713,
+              "residual_uncentered_energy_fraction": 0.00014091427707767578,
+              "explained_uncentered_energy_fraction": 0.9998590857229224,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.03608160733781453,
+              "coordinate_max_abs_m": 0.12785424504961274,
+              "residual_sse_m2": 0.42180989373799493,
+              "original_energy_m2": 155531.11171348713,
+              "residual_uncentered_energy_fraction": 2.712061201716576e-06,
+              "explained_uncentered_energy_fraction": 0.9999972879387983,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "official_weights_absolute_error_m": 0.3082476426299216,
+          "last_3s_absolute_error_m": 0.6903796372590242
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 54,
+            "pred_mean": -0.002555372906730544,
+            "gt_mean": -0.003971416823795114,
+            "pred_std": 0.005330811640994648,
+            "gt_std": 0.06840813599906952,
+            "std_ratio_pred_gt": 0.07792657354480698,
+            "variance_ratio_pred_gt": 0.00607255086443421,
+            "mae": 0.04150403041125242,
+            "pearson": 0.05876447174560784,
+            "sign_agreement": 0.5370370370370371
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.007603812147402182,
+              "coordinate_max_abs_m": 0.02652736974286518,
+              "residual_sse_m2": 0.01873301877204584,
+              "original_energy_m2": 95.03150495795353,
+              "residual_uncentered_energy_fraction": 0.00019712429872950263,
+              "explained_uncentered_energy_fraction": 0.9998028757012705,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.0027635045330815745,
+              "coordinate_max_abs_m": 0.006045605854264224,
+              "residual_sse_m2": 0.0024743741666134215,
+              "original_energy_m2": 95.03150495795353,
+              "residual_uncentered_energy_fraction": 2.6037409043539852e-05,
+              "explained_uncentered_energy_fraction": 0.9999739625909565,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.08338022554572286,
+              "coordinate_max_abs_m": 0.3554156353840461,
+              "residual_sse_m2": 2.2525328919060192,
+              "original_energy_m2": 121.37589271816148,
+              "residual_uncentered_energy_fraction": 0.01855832193248184,
+              "explained_uncentered_energy_fraction": 0.9814416780675181,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.014494283588190101,
+              "coordinate_max_abs_m": 0.051731360708280195,
+              "residual_sse_m2": 0.06806729918210012,
+              "original_energy_m2": 121.37589271816148,
+              "residual_uncentered_energy_fraction": 0.0005607975163581657,
+              "explained_uncentered_energy_fraction": 0.9994392024836418,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "official_weights_absolute_error_m": 0.09531565886584908,
+          "last_3s_absolute_error_m": 0.37165328194559727
+        }
+      }
+    },
+    "session_026_20260122-134906": {
+      "n": 108,
+      "scene_n": 2,
+      "session_n": 1,
+      "official_d3": 0.5294826709561877,
+      "fraction_total_d3_sum": 0.07692507862521988,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 108,
+            "pred_mean": -0.0646159655841679,
+            "gt_mean": -0.10988018525118753,
+            "pred_std": 0.1560730205341712,
+            "gt_std": 0.20429926811419546,
+            "std_ratio_pred_gt": 0.7639431211615126,
+            "variance_ratio_pred_gt": 0.5836090923699936,
+            "mae": 0.07669759213461828,
+            "pearson": 0.8735094526211326,
+            "sign_agreement": 0.75
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.20361434493968403,
+              "coordinate_max_abs_m": 0.962084434844634,
+              "residual_sse_m2": 26.865303349460373,
+              "original_energy_m2": 317091.69605303835,
+              "residual_uncentered_energy_fraction": 8.472408355016255e-05,
+              "explained_uncentered_energy_fraction": 0.9999152759164498,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.022065552285865063,
+              "coordinate_max_abs_m": 0.09287782971349046,
+              "residual_sse_m2": 0.3155038112967987,
+              "original_energy_m2": 317091.69605303835,
+              "residual_uncentered_energy_fraction": 9.949923483459056e-07,
+              "explained_uncentered_energy_fraction": 0.9999990050076517,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.2789938361849903,
+              "coordinate_max_abs_m": 0.9894116815629896,
+              "residual_sse_m2": 50.43873928773275,
+              "original_energy_m2": 325787.35109641415,
+              "residual_uncentered_energy_fraction": 0.00015482104850904972,
+              "explained_uncentered_energy_fraction": 0.9998451789514909,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.02385935553803197,
+              "coordinate_max_abs_m": 0.13729499014360558,
+              "residual_sse_m2": 0.3688862126552605,
+              "original_energy_m2": 325787.35109641415,
+              "residual_uncentered_energy_fraction": 1.1322913901162835e-06,
+              "explained_uncentered_energy_fraction": 0.9999988677086099,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "official_weights_absolute_error_m": 0.3433118259971156,
+          "last_3s_absolute_error_m": 0.599705105992379
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 108,
+            "pred_mean": 0.0014872467182473282,
+            "gt_mean": -0.03951121095397632,
+            "pred_std": 0.0029237393596410386,
+            "gt_std": 0.1790946772180238,
+            "std_ratio_pred_gt": 0.0163251047158804,
+            "variance_ratio_pred_gt": 0.0002665090439844605,
+            "mae": 0.14160953328929576,
+            "pearson": -0.3742123974959668,
+            "sign_agreement": 0.4074074074074074
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.0055122387429641295,
+              "coordinate_max_abs_m": 0.015157470356795807,
+              "residual_sse_m2": 0.01968933482171373,
+              "original_energy_m2": 183.61017467374873,
+              "residual_uncentered_energy_fraction": 0.00010723444306231452,
+              "explained_uncentered_energy_fraction": 0.9998927655569377,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.003864491880723915,
+              "coordinate_max_abs_m": 0.008597711633358679,
+              "residual_sse_m2": 0.00967742477752533,
+              "original_energy_m2": 183.61017467374873,
+              "residual_uncentered_energy_fraction": 5.270636441973245e-05,
+              "explained_uncentered_energy_fraction": 0.9999472936355802,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.22017409032918975,
+              "coordinate_max_abs_m": 0.6518962825392629,
+              "residual_sse_m2": 31.412856273881463,
+              "original_energy_m2": 830.11730232414,
+              "residual_uncentered_energy_fraction": 0.03784146672516353,
+              "explained_uncentered_energy_fraction": 0.9621585332748365,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.01336890469978778,
+              "coordinate_max_abs_m": 0.056689558330357895,
+              "residual_sse_m2": 0.11581549314106106,
+              "original_energy_m2": 830.11730232414,
+              "residual_uncentered_energy_fraction": 0.00013951702104847587,
+              "explained_uncentered_energy_fraction": 0.9998604829789515,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "official_weights_absolute_error_m": 0.30331693029297885,
+          "last_3s_absolute_error_m": 1.2836165062100109
+        }
+      }
+    },
+    "session_027_20260122-135506": {
+      "n": 378,
+      "scene_n": 7,
+      "session_n": 1,
+      "official_d3": 0.31171685917470504,
+      "fraction_total_d3_sum": 0.15850557205453322,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 378,
+            "pred_mean": -0.07237114586512898,
+            "gt_mean": -0.05449513673361212,
+            "pred_std": 0.2051986378058803,
+            "gt_std": 0.2237202623893818,
+            "std_ratio_pred_gt": 0.9172107864272709,
+            "variance_ratio_pred_gt": 0.8412756267385328,
+            "mae": 0.06753642882761547,
+            "pearson": 0.9100965331589645,
+            "sign_agreement": 0.8306878306878307
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.26224386242837594,
+              "coordinate_max_abs_m": 1.1995222070714933,
+              "residual_sse_m2": 155.97454078890854,
+              "original_energy_m2": 920314.5610240365,
+              "residual_uncentered_energy_fraction": 0.0001694795968623546,
+              "explained_uncentered_energy_fraction": 0.9998305204031377,
+              "rmse_denominator_coordinate_count": 2268
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.028118031464637247,
+              "coordinate_max_abs_m": 0.16092097413327022,
+              "residual_sse_m2": 1.7931345367362768,
+              "original_energy_m2": 920314.5610240365,
+              "residual_uncentered_energy_fraction": 1.948393095879143e-06,
+              "explained_uncentered_energy_fraction": 0.9999980516069041,
+              "rmse_denominator_coordinate_count": 2268
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.27684851239784036,
+              "coordinate_max_abs_m": 1.1114179590246174,
+              "residual_sse_m2": 173.83108411672276,
+              "original_energy_m2": 928063.6610270019,
+              "residual_uncentered_energy_fraction": 0.00018730512939636062,
+              "explained_uncentered_energy_fraction": 0.9998126948706036,
+              "rmse_denominator_coordinate_count": 2268
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.022652453827800824,
+              "coordinate_max_abs_m": 0.14534282957070635,
+              "residual_sse_m2": 1.16378715090603,
+              "original_energy_m2": 928063.6610270019,
+              "residual_uncentered_energy_fraction": 1.2539949572189635e-06,
+              "explained_uncentered_energy_fraction": 0.9999987460050428,
+              "rmse_denominator_coordinate_count": 2268
+            }
+          },
+          "official_weights_absolute_error_m": 0.2520197997600516,
+          "last_3s_absolute_error_m": 0.4583599038078559
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 378,
+            "pred_mean": 0.0014292891822605684,
+            "gt_mean": 0.025888471281409763,
+            "pred_std": 0.006131599906911023,
+            "gt_std": 0.0908611339287261,
+            "std_ratio_pred_gt": 0.06748319817052705,
+            "variance_ratio_pred_gt": 0.004553982035322625,
+            "mae": 0.05122241190809109,
+            "pearson": 0.04958080884010175,
+            "sign_agreement": 0.6031746031746031
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.008326719571549065,
+              "coordinate_max_abs_m": 0.04364054101509052,
+              "residual_sse_m2": 0.15725009901105896,
+              "original_energy_m2": 530.5858360041314,
+              "residual_uncentered_energy_fraction": 0.0002963707063786651,
+              "explained_uncentered_energy_fraction": 0.9997036292936213,
+              "rmse_denominator_coordinate_count": 2268
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.0035236582641858397,
+              "coordinate_max_abs_m": 0.012215824920401373,
+              "residual_sse_m2": 0.028159868032351397,
+              "original_energy_m2": 530.5858360041314,
+              "residual_uncentered_energy_fraction": 5.307316200602862e-05,
+              "explained_uncentered_energy_fraction": 0.999946926837994,
+              "rmse_denominator_coordinate_count": 2268
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.11356257470554112,
+              "coordinate_max_abs_m": 0.794835552573204,
+              "residual_sse_m2": 29.249167591668648,
+              "original_energy_m2": 697.7858043542308,
+              "residual_uncentered_energy_fraction": 0.04191711469214744,
+              "explained_uncentered_energy_fraction": 0.9580828853078526,
+              "rmse_denominator_coordinate_count": 2268
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.00892733449549657,
+              "coordinate_max_abs_m": 0.05223524693532727,
+              "residual_sse_m2": 0.1807534791090874,
+              "original_energy_m2": 697.7858043542308,
+              "residual_uncentered_energy_fraction": 0.00025903863045245897,
+              "explained_uncentered_energy_fraction": 0.9997409613695475,
+              "rmse_denominator_coordinate_count": 2268
+            }
+          },
+          "official_weights_absolute_error_m": 0.10429832706860773,
+          "last_3s_absolute_error_m": 0.44174790774178246
+        }
+      }
+    },
+    "session_040_20260209-153550": {
+      "n": 108,
+      "scene_n": 2,
+      "session_n": 1,
+      "official_d3": 0.3799870979403042,
+      "fraction_total_d3_sum": 0.05520584334297452,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 108,
+            "pred_mean": -0.11681636572333759,
+            "gt_mean": -0.08250580214701271,
+            "pred_std": 0.20346415385697159,
+            "gt_std": 0.20460368600043743,
+            "std_ratio_pred_gt": 0.9944305395189048,
+            "variance_ratio_pred_gt": 0.9888920979278601,
+            "mae": 0.06599900669434934,
+            "pearson": 0.9172721316840131,
+            "sign_agreement": 0.8333333333333334
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.2838443881317401,
+              "coordinate_max_abs_m": 1.256885227266249,
+              "residual_sse_m2": 52.207828564675495,
+              "original_energy_m2": 101565.56452017497,
+              "residual_uncentered_energy_fraction": 0.0005140308017911419,
+              "explained_uncentered_energy_fraction": 0.9994859691982089,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.039121513122590344,
+              "coordinate_max_abs_m": 0.2610716851694299,
+              "residual_sse_m2": 0.9917593272726536,
+              "original_energy_m2": 101565.56452017497,
+              "residual_uncentered_energy_fraction": 9.764720276582035e-06,
+              "explained_uncentered_energy_fraction": 0.9999902352797234,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.26610069751856624,
+              "coordinate_max_abs_m": 0.9439260461828205,
+              "residual_sse_m2": 45.884608630474126,
+              "original_energy_m2": 102405.17265703922,
+              "residual_uncentered_energy_fraction": 0.00044806924728445414,
+              "explained_uncentered_energy_fraction": 0.9995519307527155,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.030407753588274442,
+              "coordinate_max_abs_m": 0.16587114227669586,
+              "residual_sse_m2": 0.5991611979288208,
+              "original_energy_m2": 102405.17265703922,
+              "residual_uncentered_energy_fraction": 5.850888020426917e-06,
+              "explained_uncentered_energy_fraction": 0.9999941491119796,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "official_weights_absolute_error_m": 0.24689490215744106,
+          "last_3s_absolute_error_m": 0.5372772000291325
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 108,
+            "pred_mean": 0.0006577419119980268,
+            "gt_mean": -0.0839513050015051,
+            "pred_std": 0.005740298481307283,
+            "gt_std": 0.13096722358009738,
+            "std_ratio_pred_gt": 0.043830038725655746,
+            "variance_ratio_pred_gt": 0.0019210722946924822,
+            "mae": 0.09584277521378767,
+            "pearson": 0.07467711390865883,
+            "sign_agreement": 0.6018518518518519
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.007828471719265286,
+              "coordinate_max_abs_m": 0.035368674076520445,
+              "residual_sse_m2": 0.03971266020964998,
+              "original_energy_m2": 62.73524613547218,
+              "residual_uncentered_energy_fraction": 0.0006330199155335008,
+              "explained_uncentered_energy_fraction": 0.9993669800844664,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.003653692717860962,
+              "coordinate_max_abs_m": 0.012986691103183845,
+              "residual_sse_m2": 0.008650456868804546,
+              "original_energy_m2": 62.73524613547218,
+              "residual_uncentered_energy_fraction": 0.00013788830683989853,
+              "explained_uncentered_energy_fraction": 0.9998621116931601,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.18681351070993651,
+              "coordinate_max_abs_m": 0.6305568309930654,
+              "residual_sse_m2": 22.614738483883972,
+              "original_energy_m2": 611.5138557438553,
+              "residual_uncentered_energy_fraction": 0.03698156349437911,
+              "explained_uncentered_energy_fraction": 0.9630184365056209,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.012256917249448883,
+              "coordinate_max_abs_m": 0.04077825133156554,
+              "residual_sse_m2": 0.09735034925797473,
+              "original_energy_m2": 611.5138557438553,
+              "residual_uncentered_energy_fraction": 0.00015919565573793286,
+              "explained_uncentered_energy_fraction": 0.999840804344262,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "official_weights_absolute_error_m": 0.20929544424972224,
+          "last_3s_absolute_error_m": 0.8710118694099476
+        }
+      }
+    },
+    "session_046_20260210-100504": {
+      "n": 540,
+      "scene_n": 10,
+      "session_n": 1,
+      "official_d3": 0.4195330522471556,
+      "fraction_total_d3_sum": 0.30475608362885714,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 540,
+            "pred_mean": -0.01304693682157357,
+            "gt_mean": -0.015851078287894477,
+            "pred_std": 0.210377692400869,
+            "gt_std": 0.23615417753301932,
+            "std_ratio_pred_gt": 0.8908489131912722,
+            "variance_ratio_pred_gt": 0.7936117861340709,
+            "mae": 0.1026520192265417,
+            "pearson": 0.8156287203952083,
+            "sign_agreement": 0.7185185185185186
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.2562958297055619,
+              "coordinate_max_abs_m": 1.5663875590313925,
+              "residual_sse_m2": 212.82766953125812,
+              "original_energy_m2": 2504585.8016506373,
+              "residual_uncentered_energy_fraction": 8.497519605477077e-05,
+              "explained_uncentered_energy_fraction": 0.9999150248039452,
+              "rmse_denominator_coordinate_count": 3240
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.04349794086342168,
+              "coordinate_max_abs_m": 0.22540970359530377,
+              "residual_sse_m2": 6.130309584319043,
+              "original_energy_m2": 2504585.8016506373,
+              "residual_uncentered_energy_fraction": 2.447634087951344e-06,
+              "explained_uncentered_energy_fraction": 0.999997552365912,
+              "rmse_denominator_coordinate_count": 3240
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.28567490942951607,
+              "coordinate_max_abs_m": 1.8165138317988472,
+              "residual_sse_m2": 264.4168985633015,
+              "original_energy_m2": 2524057.766588801,
+              "residual_uncentered_energy_fraction": 0.00010475865571042541,
+              "explained_uncentered_energy_fraction": 0.9998952413442895,
+              "rmse_denominator_coordinate_count": 3240
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.0342214040348427,
+              "coordinate_max_abs_m": 0.2935935314744712,
+              "residual_sse_m2": 3.7943785609356735,
+              "original_energy_m2": 2524057.766588801,
+              "residual_uncentered_energy_fraction": 1.5032851510620052e-06,
+              "explained_uncentered_energy_fraction": 0.999998496714849,
+              "rmse_denominator_coordinate_count": 3240
+            }
+          },
+          "official_weights_absolute_error_m": 0.323744356841682,
+          "last_3s_absolute_error_m": 0.5002559709311619
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 540,
+            "pred_mean": -0.0013857324912105826,
+            "gt_mean": 0.006807549143686396,
+            "pred_std": 0.0064232459033587465,
+            "gt_std": 0.1558010036299138,
+            "std_ratio_pred_gt": 0.04122724343044914,
+            "variance_ratio_pred_gt": 0.0016996856008735116,
+            "mae": 0.07541638670682305,
+            "pearson": 0.09981258599579557,
+            "sign_agreement": 0.5518518518518518
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.011167112285725188,
+              "coordinate_max_abs_m": 0.04117410916548503,
+              "residual_sse_m2": 0.404042245638462,
+              "original_energy_m2": 1374.3453575018154,
+              "residual_uncentered_energy_fraction": 0.0002939888750909746,
+              "explained_uncentered_energy_fraction": 0.999706011124909,
+              "rmse_denominator_coordinate_count": 3240
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.007918631545907698,
+              "coordinate_max_abs_m": 0.020421996047454316,
+              "residual_sse_m2": 0.2031633108138963,
+              "original_energy_m2": 1374.3453575018154,
+              "residual_uncentered_energy_fraction": 0.00014782551540261447,
+              "explained_uncentered_energy_fraction": 0.9998521744845974,
+              "rmse_denominator_coordinate_count": 3240
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.18764704614656325,
+              "coordinate_max_abs_m": 1.9395529470600916,
+              "residual_sse_m2": 114.0849811251986,
+              "original_energy_m2": 2764.4904288577955,
+              "residual_uncentered_energy_fraction": 0.041267996421436366,
+              "explained_uncentered_energy_fraction": 0.9587320035785636,
+              "rmse_denominator_coordinate_count": 3240
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.01702833050934772,
+              "coordinate_max_abs_m": 0.12507730579402823,
+              "residual_sse_m2": 0.9394834893912872,
+              "original_energy_m2": 2764.4904288577955,
+              "residual_uncentered_energy_fraction": 0.0003398396607144173,
+              "explained_uncentered_energy_fraction": 0.9996601603392856,
+              "rmse_denominator_coordinate_count": 3240
+            }
+          },
+          "official_weights_absolute_error_m": 0.15488525992825197,
+          "last_3s_absolute_error_m": 0.6521103324966673
+        }
+      }
+    },
+    "session_076_20260213-134648": {
+      "n": 324,
+      "scene_n": 6,
+      "session_n": 1,
+      "official_d3": 0.30339556205787777,
+      "fraction_total_d3_sum": 0.13223507819640917,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 324,
+            "pred_mean": 0.061886103704286585,
+            "gt_mean": 0.03847972639689226,
+            "pred_std": 0.1359191995423968,
+            "gt_std": 0.12942292646060813,
+            "std_ratio_pred_gt": 1.0501941445727232,
+            "variance_ratio_pred_gt": 1.1029077412948338,
+            "mae": 0.06676869243230471,
+            "pearson": 0.8160526752008889,
+            "sign_agreement": 0.6697530864197531
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.18287586454687232,
+              "coordinate_max_abs_m": 1.0147732849959503,
+              "residual_sse_m2": 65.0143230848411,
+              "original_energy_m2": 781175.5217729703,
+              "residual_uncentered_energy_fraction": 8.322626768601683e-05,
+              "explained_uncentered_energy_fraction": 0.999916773732314,
+              "rmse_denominator_coordinate_count": 1944
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.037648934300317544,
+              "coordinate_max_abs_m": 0.20862635783851324,
+              "residual_sse_m2": 2.755507741678074,
+              "original_energy_m2": 781175.5217729703,
+              "residual_uncentered_energy_fraction": 3.527386182588163e-06,
+              "explained_uncentered_energy_fraction": 0.9999964726138174,
+              "rmse_denominator_coordinate_count": 1944
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.1626469036214225,
+              "coordinate_max_abs_m": 0.8635929154825739,
+              "residual_sse_m2": 51.42660566084497,
+              "original_energy_m2": 778774.6970640307,
+              "residual_uncentered_energy_fraction": 6.603528062059864e-05,
+              "explained_uncentered_energy_fraction": 0.9999339647193795,
+              "rmse_denominator_coordinate_count": 1944
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.016619060546273667,
+              "coordinate_max_abs_m": 0.11912013567858327,
+              "residual_sse_m2": 0.5369195291687403,
+              "original_energy_m2": 778774.6970640307,
+              "residual_uncentered_energy_fraction": 6.894414150753988e-07,
+              "explained_uncentered_energy_fraction": 0.9999993105585849,
+              "rmse_denominator_coordinate_count": 1944
+            }
+          },
+          "official_weights_absolute_error_m": 0.24392500764972957,
+          "last_3s_absolute_error_m": 0.4460172186117582
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 324,
+            "pred_mean": -0.004920989387313278,
+            "gt_mean": 0.026185936999067617,
+            "pred_std": 0.005123358478037451,
+            "gt_std": 0.08057825777473288,
+            "std_ratio_pred_gt": 0.06358239330962547,
+            "variance_ratio_pred_gt": 0.004042720738979905,
+            "mae": 0.046043940620602415,
+            "pearson": 0.04499804549501862,
+            "sign_agreement": 0.5401234567901234
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.009422453725519638,
+              "coordinate_max_abs_m": 0.036850211875779276,
+              "residual_sse_m2": 0.1725934409033825,
+              "original_energy_m2": 446.3985242710294,
+              "residual_uncentered_energy_fraction": 0.0003866353303591859,
+              "explained_uncentered_energy_fraction": 0.9996133646696408,
+              "rmse_denominator_coordinate_count": 1944
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.004039821556351181,
+              "coordinate_max_abs_m": 0.015073866749714518,
+              "residual_sse_m2": 0.03172638755471842,
+              "original_energy_m2": 446.3985242710294,
+              "residual_uncentered_energy_fraction": 7.10718916612185e-05,
+              "explained_uncentered_energy_fraction": 0.9999289281083388,
+              "rmse_denominator_coordinate_count": 1944
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.10200927234613,
+              "coordinate_max_abs_m": 0.4787444803085956,
+              "residual_sse_m2": 20.229053357076978,
+              "original_energy_m2": 506.71101330169523,
+              "residual_uncentered_energy_fraction": 0.039922268958130225,
+              "explained_uncentered_energy_fraction": 0.9600777310418698,
+              "rmse_denominator_coordinate_count": 1944
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.009910463878487421,
+              "coordinate_max_abs_m": 0.07084444368125073,
+              "residual_sse_m2": 0.19093442009354689,
+              "original_energy_m2": 506.71101330169523,
+              "residual_uncentered_energy_fraction": 0.00037681126930601115,
+              "explained_uncentered_energy_fraction": 0.999623188730694,
+              "rmse_denominator_coordinate_count": 1944
+            }
+          },
+          "official_weights_absolute_error_m": 0.09814154514509733,
+          "last_3s_absolute_error_m": 0.39774679719261663
+        }
+      }
+    },
+    "session_087_20260219-90551": {
+      "n": 108,
+      "scene_n": 2,
+      "session_n": 1,
+      "official_d3": 0.31617269164848105,
+      "fraction_total_d3_sum": 0.04593466509543106,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 108,
+            "pred_mean": -0.04175054680595412,
+            "gt_mean": 0.017729052681249868,
+            "pred_std": 0.2574816933444322,
+            "gt_std": 0.2773432129779535,
+            "std_ratio_pred_gt": 0.928386494768487,
+            "variance_ratio_pred_gt": 0.8619014836685179,
+            "mae": 0.08358738214028849,
+            "pearson": 0.9069358792325436,
+            "sign_agreement": 0.7685185185185185
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.31421036740360503,
+              "coordinate_max_abs_m": 0.993163923640827,
+              "residual_sse_m2": 63.97584442957269,
+              "original_energy_m2": 280951.67638022825,
+              "residual_uncentered_energy_fraction": 0.00022771120376940002,
+              "explained_uncentered_energy_fraction": 0.9997722887962306,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.03209039023427505,
+              "coordinate_max_abs_m": 0.11203788753066135,
+              "residual_sse_m2": 0.66730595821146,
+              "original_energy_m2": 280951.67638022825,
+              "residual_uncentered_energy_fraction": 2.3751627568449032e-06,
+              "explained_uncentered_energy_fraction": 0.9999976248372432,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.3339764454914453,
+              "coordinate_max_abs_m": 0.9593425478254041,
+              "residual_sse_m2": 72.278092460729,
+              "original_energy_m2": 277981.616267445,
+              "residual_uncentered_energy_fraction": 0.0002600103324501522,
+              "explained_uncentered_energy_fraction": 0.9997399896675498,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.025313451538055153,
+              "coordinate_max_abs_m": 0.13182884295071867,
+              "residual_sse_m2": 0.4152194970426144,
+              "original_energy_m2": 277981.616267445,
+              "residual_uncentered_energy_fraction": 1.4936940889038266e-06,
+              "explained_uncentered_energy_fraction": 0.9999985063059111,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "official_weights_absolute_error_m": 0.2935871407926205,
+          "last_3s_absolute_error_m": 0.4688601714593393
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 108,
+            "pred_mean": -0.00038652584860170467,
+            "gt_mean": -0.0017130148674864485,
+            "pred_std": 0.008140900225189566,
+            "gt_std": 0.03881655981993847,
+            "std_ratio_pred_gt": 0.20972750452264244,
+            "variance_ratio_pred_gt": 0.043985626153295,
+            "mae": 0.025970479902849383,
+            "pearson": -0.048277693513736675,
+            "sign_agreement": 0.5370370370370371
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.010578756011526688,
+              "coordinate_max_abs_m": 0.042743205041675725,
+              "residual_sse_m2": 0.072517731030915,
+              "original_energy_m2": 156.10828795369025,
+              "residual_uncentered_energy_fraction": 0.0004645347917237263,
+              "explained_uncentered_energy_fraction": 0.9995354652082763,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.004066019863390174,
+              "coordinate_max_abs_m": 0.010641094829354936,
+              "residual_sse_m2": 0.010713071359105274,
+              "original_energy_m2": 156.10828795369025,
+              "residual_uncentered_energy_fraction": 6.862589744295525e-05,
+              "explained_uncentered_energy_fraction": 0.9999313741025571,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.04731863737812357,
+              "coordinate_max_abs_m": 0.24919272230549172,
+              "residual_sse_m2": 1.4509066312728849,
+              "original_energy_m2": 172.49460491236277,
+              "residual_uncentered_energy_fraction": 0.008411316006144245,
+              "explained_uncentered_energy_fraction": 0.9915886839938558,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.008446117394872376,
+              "coordinate_max_abs_m": 0.04759776302047872,
+              "residual_sse_m2": 0.04622631058308179,
+              "original_energy_m2": 172.49460491236277,
+              "residual_uncentered_energy_fraction": 0.0002679869936023067,
+              "explained_uncentered_energy_fraction": 0.9997320130063977,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "official_weights_absolute_error_m": 0.05710358380969066,
+          "last_3s_absolute_error_m": 0.20785398981361478
+        }
+      }
+    },
+    "session_092_20260219-103747": {
+      "n": 54,
+      "scene_n": 1,
+      "session_n": 1,
+      "official_d3": 1.0061322867318436,
+      "fraction_total_d3_sum": 0.07308719388724202,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 54,
+            "pred_mean": -0.18219039774938361,
+            "gt_mean": -0.026690192156525683,
+            "pred_std": 0.16170566963168032,
+            "gt_std": 0.2632654767926372,
+            "std_ratio_pred_gt": 0.6142304399412342,
+            "variance_ratio_pred_gt": 0.3772790333504021,
+            "mae": 0.19992751933125716,
+            "pearson": 0.6135661240049822,
+            "sign_agreement": 0.6851851851851852
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.2958592590578799,
+              "coordinate_max_abs_m": 1.0539544074089982,
+              "residual_sse_m2": 28.360595179169977,
+              "original_energy_m2": 20251.655388080326,
+              "residual_uncentered_energy_fraction": 0.0014004087387277187,
+              "explained_uncentered_energy_fraction": 0.9985995912612723,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.04820355523294688,
+              "coordinate_max_abs_m": 0.14902645349502563,
+              "residual_sse_m2": 0.7528408068190264,
+              "original_energy_m2": 20251.655388080326,
+              "residual_uncentered_energy_fraction": 3.7174284886465716e-05,
+              "explained_uncentered_energy_fraction": 0.9999628257151135,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.3200622816468946,
+              "coordinate_max_abs_m": 0.860006633040669,
+              "residual_sse_m2": 33.19051597909721,
+              "original_energy_m2": 20784.84266795491,
+              "residual_uncentered_energy_fraction": 0.0015968615451811329,
+              "explained_uncentered_energy_fraction": 0.9984031384548189,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.04355201841359925,
+              "coordinate_max_abs_m": 0.14725826042039047,
+              "residual_sse_m2": 0.6145561717591103,
+              "original_energy_m2": 20784.84266795491,
+              "residual_uncentered_energy_fraction": 2.9567516174014826e-05,
+              "explained_uncentered_energy_fraction": 0.999970432483826,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "official_weights_absolute_error_m": 0.5110701585968348,
+          "last_3s_absolute_error_m": 0.7736832494976826
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 54,
+            "pred_mean": -0.0021845536498524194,
+            "gt_mean": 0.11381330774225935,
+            "pred_std": 0.006853805295009135,
+            "gt_std": 0.4297529108756111,
+            "std_ratio_pred_gt": 0.01594824635636481,
+            "variance_ratio_pred_gt": 0.0002543465618433034,
+            "mae": 0.31315897220459693,
+            "pearson": -0.6173552541444348,
+            "sign_agreement": 0.18518518518518517
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.01002130715170658,
+              "coordinate_max_abs_m": 0.03763346378128607,
+              "residual_sse_m2": 0.032538217437345925,
+              "original_energy_m2": 10.160508869576837,
+              "residual_uncentered_energy_fraction": 0.003202420061339021,
+              "explained_uncentered_energy_fraction": 0.996797579938661,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.005111098207420946,
+              "coordinate_max_abs_m": 0.016384369581438872,
+              "residual_sse_m2": 0.008463957263032123,
+              "original_energy_m2": 10.160508869576837,
+              "residual_uncentered_energy_fraction": 0.0008330249372032317,
+              "explained_uncentered_energy_fraction": 0.9991669750627967,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.5344671448711968,
+              "coordinate_max_abs_m": 1.4100399154883165,
+              "residual_sse_m2": 92.5522617787531,
+              "original_energy_m2": 1396.5925498706088,
+              "residual_uncentered_energy_fraction": 0.06627005262725186,
+              "explained_uncentered_energy_fraction": 0.9337299473727482,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.04316104520592703,
+              "coordinate_max_abs_m": 0.1294490114918776,
+              "residual_sse_m2": 0.6035717667388568,
+              "original_energy_m2": 1396.5925498706088,
+              "residual_uncentered_energy_fraction": 0.00043217455713534807,
+              "explained_uncentered_energy_fraction": 0.9995678254428646,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "official_weights_absolute_error_m": 0.6120460373364772,
+          "last_3s_absolute_error_m": 2.704043029188984
+        }
+      }
+    },
+    "session_097_20260219-110038": {
+      "n": 162,
+      "scene_n": 3,
+      "session_n": 1,
+      "official_d3": 0.2237293551572495,
+      "fraction_total_d3_sum": 0.04875626487972042,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 162,
+            "pred_mean": 0.001422856653494214,
+            "gt_mean": 0.0312692444620422,
+            "pred_std": 0.0752987855348564,
+            "gt_std": 0.0854185955775572,
+            "std_ratio_pred_gt": 0.8815268505145071,
+            "variance_ratio_pred_gt": 0.7770895881780261,
+            "mae": 0.06084534902342417,
+            "pearson": 0.6606310982695506,
+            "sign_agreement": 0.5493827160493827
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.09473915720083217,
+              "coordinate_max_abs_m": 0.4877561684493177,
+              "residual_sse_m2": 8.724193685724519,
+              "original_energy_m2": 458294.2013074766,
+              "residual_uncentered_energy_fraction": 1.9036229698815943e-05,
+              "explained_uncentered_energy_fraction": 0.9999809637703012,
+              "rmse_denominator_coordinate_count": 972
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.028830467070807768,
+              "coordinate_max_abs_m": 0.1363270037940616,
+              "residual_sse_m2": 0.8079223482383449,
+              "original_energy_m2": 458294.2013074766,
+              "residual_uncentered_energy_fraction": 1.7628901826237538e-06,
+              "explained_uncentered_energy_fraction": 0.9999982371098174,
+              "rmse_denominator_coordinate_count": 972
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.1095904002394932,
+              "coordinate_max_abs_m": 0.5617001449668813,
+              "residual_sse_m2": 11.673774261562045,
+              "original_energy_m2": 452705.00490175193,
+              "residual_uncentered_energy_fraction": 2.578671350031913e-05,
+              "explained_uncentered_energy_fraction": 0.9999742132864997,
+              "rmse_denominator_coordinate_count": 972
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.011370743452640724,
+              "coordinate_max_abs_m": 0.04498667536037315,
+              "residual_sse_m2": 0.12567358007913026,
+              "original_energy_m2": 452705.00490175193,
+              "residual_uncentered_energy_fraction": 2.776058994673684e-07,
+              "explained_uncentered_energy_fraction": 0.9999997223941005,
+              "rmse_denominator_coordinate_count": 972
+            }
+          },
+          "official_weights_absolute_error_m": 0.21022270944873983,
+          "last_3s_absolute_error_m": 0.3510743600350839
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 162,
+            "pred_mean": -0.002979733980370858,
+            "gt_mean": -0.005051224172553494,
+            "pred_std": 0.005377651941369258,
+            "gt_std": 0.021791948567585446,
+            "std_ratio_pred_gt": 0.24677242260787438,
+            "variance_ratio_pred_gt": 0.06089662855975935,
+            "mae": 0.016362631390484318,
+            "pearson": 0.02297552828391467,
+            "sign_agreement": 0.5555555555555556
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.008690978761843382,
+              "coordinate_max_abs_m": 0.029132645208756996,
+              "residual_sse_m2": 0.07341818470732597,
+              "original_energy_m2": 257.809067739109,
+              "residual_uncentered_energy_fraction": 0.00028477735616972875,
+              "explained_uncentered_energy_fraction": 0.9997152226438303,
+              "rmse_denominator_coordinate_count": 972
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.004610761886876652,
+              "coordinate_max_abs_m": 0.015424588661906977,
+              "residual_sse_m2": 0.02066386967250506,
+              "original_energy_m2": 257.809067739109,
+              "residual_uncentered_energy_fraction": 8.015183427689189e-05,
+              "explained_uncentered_energy_fraction": 0.9999198481657231,
+              "rmse_denominator_coordinate_count": 972
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.027852868908719228,
+              "coordinate_max_abs_m": 0.13453976793603584,
+              "residual_sse_m2": 0.7540604018658019,
+              "original_energy_m2": 290.76563862585033,
+              "residual_uncentered_energy_fraction": 0.002593361462618034,
+              "explained_uncentered_energy_fraction": 0.997406638537382,
+              "rmse_denominator_coordinate_count": 972
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.00756661395436232,
+              "coordinate_max_abs_m": 0.06243910846699563,
+              "residual_sse_m2": 0.055650544625788764,
+              "original_energy_m2": 290.76563862585033,
+              "residual_uncentered_energy_fraction": 0.00019139312639826207,
+              "explained_uncentered_energy_fraction": 0.9998086068736017,
+              "rmse_denominator_coordinate_count": 972
+            }
+          },
+          "official_weights_absolute_error_m": 0.04105311845536554,
+          "last_3s_absolute_error_m": 0.145165839496954
+        }
+      }
+    },
+    "session_108_20260220-134317": {
+      "n": 108,
+      "scene_n": 2,
+      "session_n": 1,
+      "official_d3": 0.26963203697016946,
+      "fraction_total_d3_sum": 0.039173077385803126,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 108,
+            "pred_mean": 0.033242553866730314,
+            "gt_mean": 0.04462860177749152,
+            "pred_std": 0.09527291160747713,
+            "gt_std": 0.11926951199462801,
+            "std_ratio_pred_gt": 0.7988035669314073,
+            "variance_ratio_pred_gt": 0.6380871385423393,
+            "mae": 0.040186948877163,
+            "pearson": 0.9021509370720295,
+            "sign_agreement": 0.6574074074074074
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.12370335608774434,
+              "coordinate_max_abs_m": 0.7318730721106874,
+              "residual_sse_m2": 9.916033159176587,
+              "original_energy_m2": 461139.6251141923,
+              "residual_uncentered_energy_fraction": 2.150332051105145e-05,
+              "explained_uncentered_energy_fraction": 0.9999784966794889,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.02611933553242467,
+              "coordinate_max_abs_m": 0.07850200895751946,
+              "residual_sse_m2": 0.4420783582486876,
+              "original_energy_m2": 461139.6251141923,
+              "residual_uncentered_energy_fraction": 9.586648688869785e-07,
+              "explained_uncentered_energy_fraction": 0.9999990413351311,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.15391906521263402,
+              "coordinate_max_abs_m": 0.7286465508597217,
+              "residual_sse_m2": 15.35181895608334,
+              "original_energy_m2": 462419.8976221924,
+              "residual_uncentered_energy_fraction": 3.319887192359989e-05,
+              "explained_uncentered_energy_fraction": 0.9999668011280765,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.020130386439844886,
+              "coordinate_max_abs_m": 0.08704709261655896,
+              "residual_sse_m2": 0.2625906329249341,
+              "original_energy_m2": 462419.8976221924,
+              "residual_uncentered_energy_fraction": 5.678618811067612e-07,
+              "explained_uncentered_energy_fraction": 0.9999994321381189,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "official_weights_absolute_error_m": 0.2431547712887266,
+          "last_3s_absolute_error_m": 0.49677548585114656
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 108,
+            "pred_mean": 0.0018131155825574638,
+            "gt_mean": -0.017877702237533124,
+            "pred_std": 0.003690959893317651,
+            "gt_std": 0.049016112302148106,
+            "std_ratio_pred_gt": 0.07530095146195216,
+            "variance_ratio_pred_gt": 0.005670233291075275,
+            "mae": 0.03293146638608681,
+            "pearson": 0.3922765086173127,
+            "sign_agreement": 0.5277777777777778
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.006946462839502543,
+              "coordinate_max_abs_m": 0.017821160810334358,
+              "residual_sse_m2": 0.03126816819542214,
+              "original_energy_m2": 268.8263623790045,
+              "residual_uncentered_energy_fraction": 0.00011631362310865465,
+              "explained_uncentered_energy_fraction": 0.9998836863768914,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.004896069597017265,
+              "coordinate_max_abs_m": 0.012632520869374164,
+              "residual_sse_m2": 0.01553353037924625,
+              "original_energy_m2": 268.8263623790045,
+              "residual_uncentered_energy_fraction": 5.7782764464693097e-05,
+              "explained_uncentered_energy_fraction": 0.9999422172355353,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.06313194499601137,
+              "coordinate_max_abs_m": 0.3289733908988617,
+              "residual_sse_m2": 2.582696326378654,
+              "original_energy_m2": 369.60075407336603,
+              "residual_uncentered_energy_fraction": 0.006987800479070416,
+              "explained_uncentered_energy_fraction": 0.9930121995209296,
+              "rmse_denominator_coordinate_count": 648
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.008766680130044469,
+              "coordinate_max_abs_m": 0.03513479552098686,
+              "residual_sse_m2": 0.04980183296563069,
+              "original_energy_m2": 369.60075407336603,
+              "residual_uncentered_energy_fraction": 0.0001347449441505874,
+              "explained_uncentered_energy_fraction": 0.9998652550558494,
+              "rmse_denominator_coordinate_count": 648
+            }
+          },
+          "official_weights_absolute_error_m": 0.0700828339138026,
+          "last_3s_absolute_error_m": 0.28095464160044986
+        }
+      }
+    },
+    "session_112_20260303-142827": {
+      "n": 54,
+      "scene_n": 1,
+      "session_n": 1,
+      "official_d3": 0.5532300027984159,
+      "fraction_total_d3_sum": 0.04018758667422014,
+      "axes": {
+        "x": {
+          "quadratic_coefficient_b": {
+            "n": 54,
+            "pred_mean": 0.176797649796028,
+            "gt_mean": 0.23291755080787252,
+            "pred_std": 0.183613279860155,
+            "gt_std": 0.25862864287902504,
+            "std_ratio_pred_gt": 0.7099495160945538,
+            "variance_ratio_pred_gt": 0.5040283154028912,
+            "mae": 0.09889653865841624,
+            "pearson": 0.8056471715903731,
+            "sign_agreement": 0.9629629629629629
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.30720974805661916,
+              "coordinate_max_abs_m": 0.8308021629249644,
+              "residual_sse_m2": 30.578416693527704,
+              "original_energy_m2": 142431.89124630755,
+              "residual_uncentered_energy_fraction": 0.0002146879917549394,
+              "explained_uncentered_energy_fraction": 0.999785312008245,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.03295124367635261,
+              "coordinate_max_abs_m": 0.1259207947046621,
+              "residual_sse_m2": 0.35179416498115124,
+              "original_energy_m2": 142431.89124630755,
+              "residual_uncentered_energy_fraction": 2.4699114917514742e-06,
+              "explained_uncentered_energy_fraction": 0.9999975300885082,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.4195517723075042,
+              "coordinate_max_abs_m": 1.4082301678238327,
+              "residual_sse_m2": 57.031675445423176,
+              "original_energy_m2": 142585.8507808686,
+              "residual_uncentered_energy_fraction": 0.0003999813104392219,
+              "explained_uncentered_energy_fraction": 0.9996000186895608,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.0456069366823712,
+              "coordinate_max_abs_m": 0.21492340199522772,
+              "residual_sse_m2": 0.6739176262301404,
+              "original_energy_m2": 142585.8507808686,
+              "residual_uncentered_energy_fraction": 4.72639902584614e-06,
+              "explained_uncentered_energy_fraction": 0.9999952736009742,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "official_weights_absolute_error_m": 0.3209655578894506,
+          "last_3s_absolute_error_m": 0.5257591704527537
+        },
+        "y": {
+          "quadratic_coefficient_b": {
+            "n": 54,
+            "pred_mean": -0.00232896339668766,
+            "gt_mean": 0.1303621531186115,
+            "pred_std": 0.007826992638146185,
+            "gt_std": 0.22572680962336103,
+            "std_ratio_pred_gt": 0.034674625717724894,
+            "variance_ratio_pred_gt": 0.0012023296686643086,
+            "mae": 0.14651683304021537,
+            "pearson": -0.6543761442096334,
+            "sign_agreement": 0.42592592592592593
+          },
+          "pred_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.01028703322193017,
+              "coordinate_max_abs_m": 0.030344708607747073,
+              "residual_sse_m2": 0.03428666901294678,
+              "original_energy_m2": 86.49582395222879,
+              "residual_uncentered_energy_fraction": 0.0003963968136991577,
+              "explained_uncentered_energy_fraction": 0.9996036031863008,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.003173162821002859,
+              "coordinate_max_abs_m": 0.0077929658416125425,
+              "residual_sse_m2": 0.0032623437815047225,
+              "original_energy_m2": 86.49582395222879,
+              "residual_uncentered_energy_fraction": 3.771677790255514e-05,
+              "explained_uncentered_energy_fraction": 0.9999622832220975,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "gt_fit_residuals": {
+            "t_only": {
+              "coordinate_rmse_m": 0.3134509158992011,
+              "coordinate_max_abs_m": 1.2560834052389138,
+              "residual_sse_m2": 31.83347844368756,
+              "original_energy_m2": 373.65444573150694,
+              "residual_uncentered_energy_fraction": 0.08519496772309734,
+              "explained_uncentered_energy_fraction": 0.9148050322769027,
+              "rmse_denominator_coordinate_count": 324
+            },
+            "t_plus_t_squared": {
+              "coordinate_rmse_m": 0.02620535849002359,
+              "coordinate_max_abs_m": 0.1029980594259021,
+              "residual_sse_m2": 0.2224975436033711,
+              "original_energy_m2": 373.65444573150694,
+              "residual_uncentered_energy_fraction": 0.0005954633917650451,
+              "explained_uncentered_energy_fraction": 0.9994045366082349,
+              "rmse_denominator_coordinate_count": 324
+            }
+          },
+          "official_weights_absolute_error_m": 0.30153906087348653,
+          "last_3s_absolute_error_m": 1.2856405650058553
+        }
+      }
+    }
+  },
+  "limitations": [
+    "미래 GT를 사용하는 사후 기술통계이며 배포 보정이나 개선 상한이 아님",
+    "시간 y의 2차 성분은 공간 곡률과 다름",
+    "분산 축소만으로 구조·손실·다중모드 평균화 등 원인을 확정할 수 없음",
+    "높은 다항 적합도는 GT 합성의 증거가 아니며 큰 위치 에너지 분모의 영향을 받음",
+    "동일한 반복 tune 자료의 관찰이며 표본 간 독립성이나 새로운 heldout 검증을 주장하지 않음",
+    "P1 관찰을 geometry/time이 다른 P2 결과에 그대로 일반화하지 않음"
+  ],
+  "future_gt_descriptive_only": true,
+  "deployment_correction_allowed": false,
+  "per_sample_coefficients_or_fitted_paths_exported": false,
+  "raw_or_additional_val_access": false,
+  "gpu_used": false,
+  "tuning_or_selection_performed": false,
+  "source_report": "/home/a/adcl_motiondrive_v2/reports/p1_g1s1_last6000_nominal_normal.json",
+  "source_report_sha256": "72a300168b99126d2502b546069771866b535f6e17d20b84f9e9336fb4affd0c",
+  "analysis_script_sha256": "ae2924c8293c28f8f3e266075db48c47889221a80859c6114ab53638332fad49"
+}

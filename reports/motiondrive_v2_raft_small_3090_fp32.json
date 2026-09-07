@@ -1,0 +1,680 @@
+{
+  "status": "completed",
+  "research_only": true,
+  "not_v2_tinfer": true,
+  "not_velocity_or_planning_accuracy": true,
+  "license_review_complete": false,
+  "argv": {
+    "reference": "/reference/p1_gradient_train8.pt",
+    "weights": "/weights/raft_small_C_T_V2-01064c6d.pth",
+    "output": "/reports/motiondrive_v2_raft_small_3090_fp32.json"
+  },
+  "pid": 72040,
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+    "name": "NVIDIA GeForce RTX 3090",
+    "memory_used_mib": 130,
+    "driver": "580.173.02"
+  },
+  "initial_compute_pids": [],
+  "after_cuda_init_compute_pids": [
+    72040
+  ],
+  "final_compute_pids": [
+    72040
+  ],
+  "compute_monitor": {
+    "interval_seconds": 0.5,
+    "observations": [
+      {
+        "unix_time": 1788776223.6425197,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776224.1580188,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776224.6737413,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776225.1895537,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776225.7050564,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776226.221037,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776226.737034,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776227.2533462,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776227.7693834,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776228.2858694,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776228.802396,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776229.3191514,
+        "pids": [
+          72040
+        ]
+      },
+      {
+        "unix_time": 1788776229.8350036,
+        "pids": [
+          72040
+        ]
+      }
+    ],
+    "errors": [],
+    "signals_sent": false
+  },
+  "reference_clip_identity": {
+    "scenario": "20260112-105434",
+    "frame": 30,
+    "row": 30,
+    "scen_idx": 0,
+    "session_id": "session_000_20260112-105434"
+  },
+  "image_keys_only": [
+    "images[:,0]",
+    "history_images"
+  ],
+  "forward_inputs": [
+    "current_front_rgb",
+    "historical_front_rgb"
+  ],
+  "provided_goal_pose_status_labels_forwarded": false,
+  "pair_direction": "current t0 -> past [-1,-2,-5,-10]; one-pair uses -1",
+  "weights_url": "https://download.pytorch.org/models/raft_small_C_T_V2-01064c6d.pth",
+  "weight_sha256": "01064c6dba73b0fc9fc8edf772248560a00a3acfd62ac6677e9eeebad9680e27",
+  "strict_load": {
+    "missing": [],
+    "unexpected": []
+  },
+  "parameter_count": 990162,
+  "source_sha256_before": {
+    "/source/benchmark_motiondrive_v2_flow_candidate.py": "8937da911dc685f11523fb05a604ae5c6c22a4ac97a99656a41a9907bc88457d",
+    "/reference/p1_gradient_train8.pt": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "/weights/raft_small_C_T_V2-01064c6d.pth": "01064c6dba73b0fc9fc8edf772248560a00a3acfd62ac6677e9eeebad9680e27",
+    "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/raft.py": "a3a8c898eedbdb539cb2573f915a7165faa882afdab8bcfab755adb369bb4f83",
+    "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/_utils.py": "bfeb5027362662e92b0f5b10004fb98f98f1caf0a89b017551d1a4cf9b554cbc",
+    "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/transforms/_presets.py": "4408c3e8382953842737157431f677b87833b8045ff9c7710f7568fca28861e6"
+  },
+  "source_sha256_after": {
+    "/source/benchmark_motiondrive_v2_flow_candidate.py": "8937da911dc685f11523fb05a604ae5c6c22a4ac97a99656a41a9907bc88457d",
+    "/reference/p1_gradient_train8.pt": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "/weights/raft_small_C_T_V2-01064c6d.pth": "01064c6dba73b0fc9fc8edf772248560a00a3acfd62ac6677e9eeebad9680e27",
+    "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/raft.py": "a3a8c898eedbdb539cb2573f915a7165faa882afdab8bcfab755adb369bb4f83",
+    "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/_utils.py": "bfeb5027362662e92b0f5b10004fb98f98f1caf0a89b017551d1a4cf9b554cbc",
+    "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/transforms/_presets.py": "4408c3e8382953842737157431f677b87833b8045ff9c7710f7568fca28861e6"
+  },
+  "environment": {
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 90701
+  },
+  "pytorch_flags_initial": {
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "float32_matmul_precision": "highest",
+    "deterministic_algorithms": false
+  },
+  "pytorch_flags_effective": {
+    "cudnn_benchmark": false,
+    "cudnn_allow_tf32": false,
+    "matmul_allow_tf32": false,
+    "autocast": false
+  },
+  "precision": "float32 with TF32 disabled",
+  "warmup_per_condition": 20,
+  "repeats_per_condition": 50,
+  "conditions": [
+    {
+      "pair_count": 1,
+      "num_flow_updates": 4,
+      "median_ms": 8.56006383895874,
+      "p90_ms": 8.619382381439209,
+      "p95_ms": 9.080798578262328,
+      "max_ms": 9.506239891052246,
+      "std_population_ms": 0.19247296100931408,
+      "repeats": 50,
+      "event_ms": [
+        8.561663627624512,
+        9.029952049255371,
+        8.612128257751465,
+        8.562623977661133,
+        8.579936027526855,
+        8.619071960449219,
+        8.561792373657227,
+        8.577312469482422,
+        8.570367813110352,
+        8.559295654296875,
+        8.559904098510742,
+        9.303808212280273,
+        9.506239891052246,
+        9.122400283813477,
+        8.622176170349121,
+        8.5862398147583,
+        8.571711540222168,
+        8.574784278869629,
+        8.560223579406738,
+        8.562047958374023,
+        8.56163215637207,
+        8.548128128051758,
+        8.548704147338867,
+        8.547552108764648,
+        8.546527862548828,
+        8.544639587402344,
+        8.552127838134766,
+        8.553088188171387,
+        8.553600311279297,
+        8.54412841796875,
+        8.541952133178711,
+        8.54969596862793,
+        8.561216354370117,
+        8.568351745605469,
+        8.564672470092773,
+        8.563136100769043,
+        8.589823722839355,
+        8.5447359085083,
+        8.543519973754883,
+        8.54691219329834,
+        8.545215606689453,
+        8.539199829101562,
+        8.6046724319458,
+        8.533632278442383,
+        8.543135643005371,
+        8.55891227722168,
+        8.550239562988281,
+        8.541791915893555,
+        8.543840408325195,
+        8.534144401550293
+      ],
+      "output_validation": {
+        "list_length": 4,
+        "shape": [
+          1,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -16.475645065307617,
+        "final_max_pixels": 18.00174331665039
+      },
+      "memory_allocated_before_bytes": 31257088,
+      "memory_reserved_before_bytes": 81788928,
+      "peak_allocated_bytes": 56690688,
+      "peak_reserved_bytes": 81788928,
+      "memory_allocated_after_bytes": 31257088,
+      "memory_reserved_after_bytes": 81788928
+    },
+    {
+      "pair_count": 1,
+      "num_flow_updates": 8,
+      "median_ms": 13.540015697479248,
+      "p90_ms": 13.602755069732666,
+      "p95_ms": 13.718401575088501,
+      "max_ms": 14.535679817199707,
+      "std_population_ms": 0.19613186103876978,
+      "repeats": 50,
+      "event_ms": [
+        13.61689567565918,
+        13.57033634185791,
+        13.565279960632324,
+        13.510880470275879,
+        13.530464172363281,
+        13.540767669677734,
+        13.5513916015625,
+        13.593567848205566,
+        13.520319938659668,
+        13.535776138305664,
+        13.525471687316895,
+        13.535712242126465,
+        13.553824424743652,
+        13.51193618774414,
+        13.510815620422363,
+        13.554495811462402,
+        13.601183891296387,
+        13.540255546569824,
+        13.576224327087402,
+        13.561152458190918,
+        13.539775848388672,
+        13.53593635559082,
+        13.539551734924316,
+        13.52774429321289,
+        13.52569580078125,
+        13.50499153137207,
+        13.498175621032715,
+        13.520480155944824,
+        13.527968406677246,
+        14.516223907470703,
+        14.535679817199707,
+        13.74073600769043,
+        13.579392433166504,
+        13.5764799118042,
+        13.556063652038574,
+        13.560511589050293,
+        13.53286361694336,
+        13.504096031188965,
+        13.527872085571289,
+        13.597023963928223,
+        13.558976173400879,
+        13.506239891052246,
+        13.6911039352417,
+        13.587488174438477,
+        13.51961612701416,
+        13.531519889831543,
+        13.522944450378418,
+        13.553567886352539,
+        13.545151710510254,
+        13.500896453857422
+      ],
+      "output_validation": {
+        "list_length": 8,
+        "shape": [
+          1,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -17.4014892578125,
+        "final_max_pixels": 18.43361473083496
+      },
+      "memory_allocated_before_bytes": 31257088,
+      "memory_reserved_before_bytes": 83886080,
+      "peak_allocated_bytes": 56690688,
+      "peak_reserved_bytes": 83886080,
+      "memory_allocated_after_bytes": 31257088,
+      "memory_reserved_after_bytes": 83886080
+    },
+    {
+      "pair_count": 1,
+      "num_flow_updates": 12,
+      "median_ms": 18.520575523376465,
+      "p90_ms": 18.746041107177735,
+      "p95_ms": 19.325058555603025,
+      "max_ms": 20.20684814453125,
+      "std_population_ms": 0.34659159623106467,
+      "repeats": 50,
+      "event_ms": [
+        18.567264556884766,
+        18.52899169921875,
+        18.4835205078125,
+        18.494495391845703,
+        18.489887237548828,
+        18.64361572265625,
+        18.51759910583496,
+        18.512096405029297,
+        18.702688217163086,
+        18.53875160217285,
+        18.533855438232422,
+        18.57356834411621,
+        18.484352111816406,
+        18.50115203857422,
+        18.507776260375977,
+        18.505823135375977,
+        18.477951049804688,
+        18.53171157836914,
+        19.16169548034668,
+        20.20684814453125,
+        19.06048011779785,
+        18.52355194091797,
+        18.516704559326172,
+        18.49465560913086,
+        18.57423973083496,
+        18.561983108520508,
+        18.48102378845215,
+        18.50374412536621,
+        18.57187271118164,
+        18.684736251831055,
+        18.6180477142334,
+        18.54364776611328,
+        18.489343643188477,
+        18.547391891479492,
+        18.57142448425293,
+        18.535423278808594,
+        18.49065589904785,
+        18.566207885742188,
+        18.5034236907959,
+        18.489408493041992,
+        18.49238395690918,
+        18.48633575439453,
+        18.469823837280273,
+        18.51465606689453,
+        18.511072158813477,
+        19.45871925354004,
+        19.975648880004883,
+        18.711103439331055,
+        18.517311096191406,
+        18.495712280273438
+      ],
+      "output_validation": {
+        "list_length": 12,
+        "shape": [
+          1,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -17.04931640625,
+        "final_max_pixels": 17.52783966064453
+      },
+      "memory_allocated_before_bytes": 31257088,
+      "memory_reserved_before_bytes": 88080384,
+      "peak_allocated_bytes": 56690688,
+      "peak_reserved_bytes": 88080384,
+      "memory_allocated_after_bytes": 31257088,
+      "memory_reserved_after_bytes": 88080384
+    },
+    {
+      "pair_count": 4,
+      "num_flow_updates": 4,
+      "median_ms": 9.548543930053711,
+      "p90_ms": 9.561859130859375,
+      "p95_ms": 9.660174322128295,
+      "max_ms": 9.888799667358398,
+      "std_population_ms": 0.06534001862030013,
+      "repeats": 50,
+      "event_ms": [
+        9.560064315795898,
+        9.55942440032959,
+        9.554847717285156,
+        9.548543930053711,
+        9.557120323181152,
+        9.718912124633789,
+        9.55241584777832,
+        9.538399696350098,
+        9.550432205200195,
+        9.55622386932373,
+        9.547552108764648,
+        9.549280166625977,
+        9.545472145080566,
+        9.542271614074707,
+        9.546431541442871,
+        9.548064231872559,
+        9.54201602935791,
+        9.561311721801758,
+        9.561471939086914,
+        9.823424339294434,
+        9.888799667358398,
+        9.588383674621582,
+        9.546048164367676,
+        9.535743713378906,
+        9.538496017456055,
+        9.548543930053711,
+        9.548352241516113,
+        9.554816246032715,
+        9.5480318069458,
+        9.54800033569336,
+        9.565343856811523,
+        9.538944244384766,
+        9.54150390625,
+        9.54969596862793,
+        9.549504280090332,
+        9.54377555847168,
+        9.539872169494629,
+        9.54150390625,
+        9.53321647644043,
+        9.534463882446289,
+        9.526623725891113,
+        9.552895545959473,
+        9.52678394317627,
+        9.540863990783691,
+        9.560576438903809,
+        9.553119659423828,
+        9.553791999816895,
+        9.548640251159668,
+        9.540863990783691,
+        9.55344009399414
+      ],
+      "output_validation": {
+        "list_length": 4,
+        "shape": [
+          4,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -32.07136154174805,
+        "final_max_pixels": 57.507774353027344
+      },
+      "memory_allocated_before_bytes": 58053120,
+      "memory_reserved_before_bytes": 262144000,
+      "peak_allocated_bytes": 156260864,
+      "peak_reserved_bytes": 262144000,
+      "memory_allocated_after_bytes": 58053120,
+      "memory_reserved_after_bytes": 262144000
+    },
+    {
+      "pair_count": 4,
+      "num_flow_updates": 8,
+      "median_ms": 14.893439769744873,
+      "p90_ms": 14.920227527618408,
+      "p95_ms": 15.013340473175049,
+      "max_ms": 15.686592102050781,
+      "std_population_ms": 0.13808102598539268,
+      "repeats": 50,
+      "event_ms": [
+        14.873760223388672,
+        14.875136375427246,
+        14.901823997497559,
+        14.881024360656738,
+        14.87657642364502,
+        14.887264251708984,
+        14.872672080993652,
+        14.884223937988281,
+        14.882464408874512,
+        14.890975952148438,
+        14.910304069519043,
+        14.900896072387695,
+        14.899231910705566,
+        14.881216049194336,
+        14.884160041809082,
+        14.900735855102539,
+        14.89907169342041,
+        14.884639739990234,
+        14.894783973693848,
+        14.885024070739746,
+        14.885663986206055,
+        14.893631935119629,
+        14.918944358825684,
+        14.889663696289062,
+        14.890463829040527,
+        14.908255577087402,
+        14.87945556640625,
+        15.467007637023926,
+        15.686592102050781,
+        15.081279754638672,
+        14.898880004882812,
+        14.901984214782715,
+        14.900128364562988,
+        14.890496253967285,
+        14.918463706970215,
+        14.879199981689453,
+        14.900480270385742,
+        14.923999786376953,
+        14.893247604370117,
+        14.897695541381836,
+        14.904255867004395,
+        14.866559982299805,
+        14.878047943115234,
+        14.930303573608398,
+        14.885120391845703,
+        14.88428783416748,
+        14.893088340759277,
+        14.919808387756348,
+        14.903583526611328,
+        14.910079956054688
+      ],
+      "output_validation": {
+        "list_length": 8,
+        "shape": [
+          4,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -34.82186508178711,
+        "final_max_pixels": 69.97247314453125
+      },
+      "memory_allocated_before_bytes": 58053120,
+      "memory_reserved_before_bytes": 262144000,
+      "peak_allocated_bytes": 156260864,
+      "peak_reserved_bytes": 262144000,
+      "memory_allocated_after_bytes": 58053120,
+      "memory_reserved_after_bytes": 262144000
+    },
+    {
+      "pair_count": 4,
+      "num_flow_updates": 12,
+      "median_ms": 20.215248107910156,
+      "p90_ms": 20.276173210144044,
+      "p95_ms": 20.59402847290039,
+      "max_ms": 20.902591705322266,
+      "std_population_ms": 0.14784875259556404,
+      "repeats": 50,
+      "event_ms": [
+        20.214527130126953,
+        20.19500732421875,
+        20.215551376342773,
+        20.183679580688477,
+        20.21392059326172,
+        20.198047637939453,
+        20.1977596282959,
+        20.235584259033203,
+        20.236736297607422,
+        20.2106876373291,
+        20.22208023071289,
+        20.21494483947754,
+        20.18659210205078,
+        20.902591705322266,
+        20.673919677734375,
+        20.204608917236328,
+        20.248767852783203,
+        20.23209571838379,
+        20.212671279907227,
+        20.20809555053711,
+        20.203935623168945,
+        20.18003273010254,
+        20.219776153564453,
+        20.20310401916504,
+        20.206592559814453,
+        20.198368072509766,
+        20.20297622680664,
+        20.214143753051758,
+        20.2063045501709,
+        20.2159366607666,
+        20.211200714111328,
+        20.226015090942383,
+        20.241024017333984,
+        20.256864547729492,
+        20.220191955566406,
+        20.205888748168945,
+        20.22323226928711,
+        20.214303970336914,
+        20.82067108154297,
+        20.496383666992188,
+        20.188447952270508,
+        20.449951171875,
+        20.253408432006836,
+        20.24185562133789,
+        20.22377586364746,
+        20.237375259399414,
+        20.239328384399414,
+        20.232576370239258,
+        20.193344116210938,
+        20.22550392150879
+      ],
+      "output_validation": {
+        "list_length": 12,
+        "shape": [
+          4,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -33.879390716552734,
+        "final_max_pixels": 70.97980499267578
+      },
+      "memory_allocated_before_bytes": 58053120,
+      "memory_reserved_before_bytes": 262144000,
+      "peak_allocated_bytes": 156260864,
+      "peak_reserved_bytes": 262144000,
+      "memory_allocated_after_bytes": 58053120,
+      "memory_reserved_after_bytes": 262144000
+    }
+  ],
+  "measurement_scope": "Every full torchvision RAFT forward: both image feature encodings, full all-pairs correlation pyramid, context encoder, all recurrent updates and all output upsampling. No feature cache or warm-start flow.",
+  "excluded": [
+    "CPU preprocessing",
+    "H2D transfers",
+    "model/weights load",
+    "output validation"
+  ],
+  "preprocessing": "current768 -> history384 F.interpolate bilinear align_corners=False antialias=True; inverse ImageNet normalization; map RGB[0,1] to [-1,1]; no further crop/pad/resize/clamp",
+  "wall_start_unix": 1788776222.042202,
+  "wall_finish_unix": 1788776230.4610822,
+  "limitations": [
+    "Component timing on one fixed training clip, not full V2 inference.",
+    "No optical-flow GT, metric velocity, planning, or generalization evaluation.",
+    "GPU occupancy is sampled every 0.5 s; shorter external processes could escape observation.",
+    "Memory includes model/input/correlation buffers and allocator history across conditions.",
+    "Public weight license review is not complete; research-only and not an adoption decision."
+  ]
+}

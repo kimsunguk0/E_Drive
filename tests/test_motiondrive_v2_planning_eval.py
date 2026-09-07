@@ -250,6 +250,8 @@ def test_cli_is_tune_only_default_normal_and_has_no_config_override_switch():
     args = evaluator.arguments(argv)
     assert args.split == "tune" and args.conditions == ["normal"] and args.device == "cpu"
     assert args.time_input == "raw"
+    assert args.include_motion_predictions is False
+    assert evaluator.arguments(argv + ["--include-motion-predictions"]).include_motion_predictions is True
     assert evaluator.arguments(argv + ["--time-input", "nominal"]).time_input == "nominal"
     for option in (["--split", "val"], ["--split", "historical_val"], ["--goal-on", "1"],
                    ["--config-json", "override.json"], ["--device", "cuda:6"], ["--time-input", "rawtime"]):
@@ -288,7 +290,8 @@ def test_publication_race_does_not_replace_existing_report(tmp_path, monkeypatch
 
 
 @pytest.mark.parametrize("time_input", ["raw", "nominal"])
-def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp_path, monkeypatch, time_input):
+@pytest.mark.parametrize("include_motion", [False, True])
+def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp_path, monkeypatch, time_input, include_motion):
     split = tmp_path / "split.json"
     split.write_text("{}")
     for name in ["supervision_manifest.json", "calibration.npz", *[f"{s}{suffix}" for s in "abc" for suffix in (".npz", ".json")]]:
@@ -310,6 +313,10 @@ def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp
             assert frozen["time_input"] == frozen["arguments"]["time_input"] == time_input
             assert frozen["time_input_policy"]["mode"] == time_input
             assert not frozen["time_input_policy"]["dataset_and_labels_modified"]
+            assert frozen["arguments"]["include_motion_predictions"] is include_motion
+            assert ("motion_prediction_contract" in frozen) is include_motion
+            if include_motion:
+                assert frozen["motion_prediction_contract"] == evaluator.motion_prediction_contract()
             assert not report.exists()
         model = ImageOnlyModel(before_forward)
         model.audit_load_metadata = {"explicit_overrides": {}, "checkpoint_sha256": "f" * 64}
@@ -318,6 +325,8 @@ def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp
     argv = ["--checkpoint", str(checkpoint), "--split-manifest", str(split), "--supervision-root", str(tmp_path),
             "--out", str(report), "--conditions", "normal", "image_shuffle", "repeat_current", "reverse_history",
             "--workers", "0", "--batch", "2", "--device", "cpu", "--time-input", time_input]
+    if include_motion:
+        argv.append("--include-motion-predictions")
     assert evaluator.main(argv) == 0
     result = json.loads(report.read_text())
     assert set(result["conditions"]) == set(evaluator.CONDITIONS)
@@ -327,6 +336,10 @@ def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp
     assert result["precision"] == "fp32" and result["precision_requested"] == "bf16"
     assert result["protocol"]["data"]["receiver_rows_sha256"] == evaluator.rows_sha256(np.arange(6))
     assert result["conditions"]["image_shuffle"]["records"][0]["donor"]["frame"] == 30
+    for condition in result["conditions"].values():
+        for record in condition["records"]:
+            assert ("pred_state" in record) is include_motion
+            assert ("pred_history" in record) is include_motion
     with pytest.raises(FileExistsError):
         evaluator.main(argv)
 
@@ -345,3 +358,97 @@ def test_checkpoint_header_requires_complete_config_and_matching_split(tmp_path)
     torch.save({"manifest": {"model_config": config, "split_sha256": "a" * 64}}, path)
     with pytest.raises(ValueError, match="missing"):
         evaluator.checkpoint_manifest(path, "a" * 64)
+
+
+class MotionCaptureModel(ImageOnlyModel):
+    """Distinct, non-unit sin/cos and out-of-[0,1] logits expose silent repair."""
+    def forward(self, **inputs):
+        out = super().forward(**inputs)
+        value = inputs["images"].mean((1, 2, 3, 4))
+        out["state_hat"] = torch.arange(6.).reshape(1, 6) + value[:, None]
+        out["state_hat"][:, 5] = -3.25
+        out["history_hat"] = torch.arange(16.).reshape(1, 4, 4) + value[:, None, None]
+        self.last_state, self.last_history = out["state_hat"].clone(), out["history_hat"].clone()
+        return out
+
+
+@pytest.mark.parametrize("condition", evaluator.CONDITIONS)
+@pytest.mark.parametrize("time_input", ["raw", "nominal"])
+def test_motion_capture_preserves_old_records_metric_forward_count_and_rng(condition, time_input):
+    data = FakeDataset()
+    mapping = evaluator.scene_derangement(data.manifest["splits"]["tune"], 0)
+    wrapped = evaluator.ImageCounterfactualDataset(data, condition, data, evaluator.donor_indices(data, data, mapping))
+    # Replay materialized batches: no DataLoader iterator RNG is included in the
+    # capture comparison. Model itself deliberately consumes RNG on each forward.
+    batches = list(DataLoader(wrapped, batch_size=2, shuffle=False))
+    originals = [{k: v.clone() for k, v in b.items() if isinstance(v, torch.Tensor)} for b in batches]
+    def consume_rng():
+        torch.rand(1)
+        np.random.random()
+    plain, explicit_off, enabled = [MotionCaptureModel(consume_rng) for _ in range(3)]
+    def run(model, **kwargs):
+        torch.manual_seed(901)
+        np.random.seed(901)
+        report = evaluator.evaluate_planning(model, batches, torch.device("cpu"), time_input=time_input, **kwargs)
+        return report, torch.get_rng_state().clone(), np.random.get_state()
+    before, before_rng, before_numpy = run(plain)
+    off, off_rng, off_numpy = run(explicit_off, include_motion_predictions=False)
+    after, after_rng, after_numpy = run(enabled, include_motion_predictions=True)
+    assert before == off
+    assert torch.equal(before_rng, off_rng) and torch.equal(before_rng, after_rng)
+    assert all(np.array_equal(a, b) for a, b in zip(before_numpy, off_numpy))
+    assert all(np.array_equal(a, b) for a, b in zip(before_numpy, after_numpy))
+    assert len(plain.seen) == len(explicit_off.seen) == len(enabled.seen) == len(batches)
+    assert before["summary"] == after["summary"] and before["buckets"] == after["buckets"]
+    for old, new in zip(before["records"], after["records"]):
+        assert {k: v for k, v in new.items() if k not in ("pred_state", "pred_history")} == old
+        assert new["pred_state"][5] == -3.25  # NOT sigmoid/thresholded.
+        assert np.shape(new["pred_history"]) == (4, 4)
+        assert max(np.ravel(new["pred_history"])) > 1  # raw sin/cos preserved.
+        if condition == "image_shuffle":
+            assert new["donor"]["scenario"] != new["scenario"]
+    # Final batch's raw neural FP32 tensors survive JSON-compatible conversion exactly.
+    assert torch.equal(torch.tensor([r["pred_state"] for r in after["records"][-2:]]), enabled.last_state)
+    assert torch.equal(torch.tensor([r["pred_history"] for r in after["records"][-2:]]), enabled.last_history)
+    for batch, original in zip(batches, originals):
+        assert all(torch.equal(batch[key], value) for key, value in original.items())
+    json.dumps(after, allow_nan=False)
+
+
+@pytest.mark.parametrize("source", ["state_hat", "history_hat"])
+@pytest.mark.parametrize("bad", ["missing", "not_tensor", "wrong_shape", "wrong_batch", "wrong_dtype", "nan", "inf"])
+def test_opt_in_motion_capture_fails_closed_on_invalid_outputs(source, bad):
+    class InvalidMotion(ImageOnlyModel):
+        def forward(self, **inputs):
+            out = super().forward(**inputs)
+            if bad == "missing": del out[source]
+            elif bad == "not_tensor": out[source] = out[source].tolist()
+            elif bad == "wrong_shape": out[source] = out[source][..., :-1]
+            elif bad == "wrong_batch": out[source] = out[source][:1]
+            elif bad == "wrong_dtype": out[source] = out[source].bfloat16()
+            else: out[source].reshape(-1)[0] = float(bad)
+            return out
+    batches = list(DataLoader(FakeDataset(), batch_size=2))
+    # OFF must not inspect auxiliary keys, matching legacy plan-only evaluation.
+    legacy = evaluator.evaluate_planning(InvalidMotion(), batches, torch.device("cpu"))
+    assert len(legacy["records"]) == 6 and "pred_state" not in legacy["records"][0]
+    model = InvalidMotion()
+    with pytest.raises((ValueError, FloatingPointError), match=source):
+        evaluator.evaluate_planning(model, batches, torch.device("cpu"), include_motion_predictions=True)
+    assert len(model.seen) == 1
+
+
+def test_motion_protocol_orders_units_and_logit_are_explicit():
+    contract = evaluator.motion_prediction_contract()
+    assert contract["pred_state"]["order"] == ["vx", "vy", "ax", "ay", "yaw_rate", "stop_logit"]
+    assert contract["pred_state"]["units"] == ["m/s", "m/s", "m/s^2", "m/s^2", "rad/s", "logit"]
+    assert contract["pred_history"]["frame_offsets"] == [-1, -2, -5, -10]
+    assert contract["pred_history"]["component_order"] == ["dx", "dy", "sin_delta_yaw", "cos_delta_yaw"]
+    assert contract["additional_forward_calls"] == 0
+    assert not contract["trajectory_or_gt_modified"] and not contract["used_for_metric_or_bucket_or_selection"]
+    assert "NOT probability" in contract["pred_state"]["stop_semantics"]
+
+
+def test_motion_capture_flag_requires_a_real_boolean():
+    with pytest.raises(ValueError, match="boolean"):
+        evaluator.evaluate_planning(ImageOnlyModel(), [], torch.device("cpu"), include_motion_predictions=1)

@@ -13,6 +13,9 @@ with the receiver. Independently, --time-input nominal replaces only the model's
 time_offsets tensor with float32 [.1,.2,.5,1.], consistently for all conditions.
 The raw default preserves the original P1 comparison. Protocol and donor map are
 published before any forward; dataset labels, poses, and caches are never changed.
+With --include-motion-predictions, the SAME full forward's FP32 state/history
+outputs are also recorded for diagnosis. This adds no forward, coordinate
+correction, state replacement or score-based selection. The default is off.
 """
 from __future__ import annotations
 
@@ -55,6 +58,43 @@ BUCKET_DEFINITION = {
     "priority": "stop first; mutually exclusive and exhaustive",
     "axes": "current ego x=longitudinal, y=lateral; not a trajectory-tangent frame",
 }
+
+
+def motion_prediction_contract():
+    """Raw neural outputs in physical units; stop remains an unbounded logit."""
+    return {
+        "enabled": True, "source": "same complete model forward as plan_abs",
+        "additional_forward_calls": 0, "prediction_dtype": "float32",
+        "pred_state": {
+            "source_key": "state_hat", "shape_per_record": [6],
+            "order": ["vx", "vy", "ax", "ay", "yaw_rate", "stop_logit"],
+            "units": ["m/s", "m/s", "m/s^2", "m/s^2", "rad/s", "logit"],
+            "stop_semantics": "raw neural stop logit, NOT probability or binary decision; no sigmoid/threshold applied"},
+        "pred_history": {
+            "source_key": "history_hat", "shape_per_record": [4, 4],
+            "frame_offsets": [-1, -2, -5, -10],
+            "component_order": ["dx", "dy", "sin_delta_yaw", "cos_delta_yaw"],
+            "units": ["m", "m", "dimensionless", "dimensionless"],
+            "pose_semantics": "historical ego pose expressed relative to current ego; x forward/y left",
+            "orientation_semantics": "raw predicted sin/cos components; no angle conversion or unit normalization"},
+        "condition_semantics": "prediction follows the named image condition; GT state/history and receiver identity stay unchanged",
+        "used_for_metric_or_bucket_or_selection": False,
+        "trajectory_or_gt_modified": False,
+    }
+
+
+def serialize_motion_predictions(output, batch_size):
+    """Validate before serialization; never cast, normalize, or repair outputs."""
+    result = {}
+    for source, target, shape in (("state_hat", "pred_state", (batch_size, 6)),
+                                  ("history_hat", "pred_history", (batch_size, 4, 4))):
+        value = output.get(source)
+        if not isinstance(value, torch.Tensor) or value.shape != shape or value.dtype != torch.float32:
+            raise ValueError(f"Motion prediction {source} must already be FP32 {shape}")
+        if not torch.isfinite(value).all():
+            raise FloatingPointError(f"Nonfinite motion prediction: {source}")
+        result[target] = value.detach().cpu().tolist()
+    return result
 
 
 def normalize_conditions(conditions):
@@ -216,9 +256,12 @@ def summarize_records(records):
 
 
 @torch.inference_mode()
-def evaluate_planning(model, loader, device, precision="bf16", time_input="raw"):
+def evaluate_planning(model, loader, device, precision="bf16", time_input="raw",
+                      include_motion_predictions=False):
     """Exact trainer metric/AMP path; no GT field can enter model(**inputs)."""
     time_input_policy(time_input)
+    if type(include_motion_predictions) is not bool:
+        raise ValueError("include_motion_predictions must be an explicit boolean")
     model.eval()
     records = []
     for raw in loader:
@@ -233,6 +276,7 @@ def evaluate_planning(model, loader, device, precision="bf16", time_input="raw")
         errors = {k: v.cpu().tolist() for k, v in per_frame_errors(pred, gt).items()}
         pred, gt = pred.cpu().tolist(), gt.cpu().tolist()
         states, valid = raw["state_target"].cpu().tolist(), raw["state_valid"].cpu().tolist()
+        motion = serialize_motion_predictions(output, len(pred)) if include_motion_predictions else None
         for i in range(len(pred)):
             record = {"scenario": raw["scenario"][i], "session": raw["session_id"][i],
                       "frame": int(raw["frame"][i]), "row": int(raw["row"][i]),
@@ -241,6 +285,8 @@ def evaluate_planning(model, loader, device, precision="bf16", time_input="raw")
                       "gt_state": [float(v) if ok and np.isfinite(v) else None for v, ok in zip(states[i], valid[i])],
                       "gt_state_valid": [bool(v) for v in valid[i]],
                       "bucket": state_bucket(states[i], valid[i])}
+            if motion is not None:
+                record.update(pred_state=motion["pred_state"][i], pred_history=motion["pred_history"][i])
             if raw.get("donor_scenario", [""] * len(pred))[i]:
                 record["donor"] = {"scenario": raw["donor_scenario"][i],
                                    "session": raw["donor_session"][i],
@@ -341,6 +387,8 @@ def arguments(argv=None):
     parser.add_argument("--precision", choices=("bf16", "fp32"), default="bf16")
     parser.add_argument("--time-input", choices=TIME_INPUTS, default="raw",
                         help="raw preserves P1; nominal replaces only model time_offsets by float32 [.1,.2,.5,1.]")
+    parser.add_argument("--include-motion-predictions", action="store_true", default=False,
+                        help="Record same-forward FP32 state_hat/history_hat; raw stop logit, no extra forward or corrections")
     args = parser.parse_args(argv)
     require_tune(args.split)
     args.conditions = normalize_conditions(args.conditions)
@@ -392,6 +440,8 @@ def main(argv=None):
                 "caveats": ["Image counterfactuals break image/geometry consistency and are diagnostics, not automatic compliance proof.",
                             "Repeatedly used tune is not an untouched holdout; this evaluator performs no checkpoint/condition selection."],
                 "selection_performed": False, "final_val_accessed": False}
+    if args.include_motion_predictions:
+        protocol["motion_prediction_contract"] = motion_prediction_contract()
     write_new_json(protocol_path, protocol)
     torch.manual_seed(args.seed)
     device = torch.device(args.device)
@@ -413,7 +463,8 @@ def main(argv=None):
         wrapped = ImageCounterfactualDataset(receiver, condition, donors, indices)
         loader = DataLoader(wrapped, batch_size=args.batch, shuffle=False, num_workers=args.workers,
                             pin_memory=device.type == "cuda")
-        results[condition] = evaluate_planning(model, loader, device, args.precision, time_input=args.time_input)
+        results[condition] = evaluate_planning(model, loader, device, args.precision, time_input=args.time_input,
+                                               include_motion_predictions=args.include_motion_predictions)
         observed_rows = [r["row"] for r in results[condition]["records"]]
         if rows_sha256(observed_rows) != data_provenance["receiver_rows_sha256"]:
             raise ValueError("Observed evaluation rows differ from preregistration")

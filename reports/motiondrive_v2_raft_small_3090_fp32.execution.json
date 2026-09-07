@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "research_only": true,
+  "not_an_adoption_or_regulatory_approval": true,
+  "scope": "RAFT-small FP32 component timing only; not V2 total Tinfer, ETRI optical-flow/metric velocity accuracy, or planning accuracy",
+  "remote_host": "intern@192.168.10.182",
+  "remote_stage": "/home/intern/adcl_motiondrive_v2/measurements/raft_small_fp32.UIZiGPNu",
+  "source": {
+    "local_script": "/home/a/adcl_motiondrive_v2/scripts/benchmark_motiondrive_v2_flow_candidate.py",
+    "script_sha256": "8937da911dc685f11523fb05a604ae5c6c22a4ac97a99656a41a9907bc88457d",
+    "test_path": "/home/a/adcl_motiondrive_v2/tests/test_motiondrive_v2_flow_candidate.py",
+    "test_sha256": "9782414be2bb57164bf1b1a74fba7e005e58049ab23dee23539a30ed198213c6",
+    "local_cpu_tests": "6 passed",
+    "root_independent_review_and_cpu_tests": "6 passed",
+    "existing_repository_source_modified": false,
+    "b200_access_or_writes": false,
+    "p2_changed": false
+  },
+  "weight": {
+    "url": "https://download.pytorch.org/models/raft_small_C_T_V2-01064c6d.pth",
+    "sha256": "01064c6dba73b0fc9fc8edf772248560a00a3acfd62ac6677e9eeebad9680e27",
+    "required_prefix": "01064c6d",
+    "prefix_verified": true,
+    "downloaded_only_to_new_stage": true,
+    "torch_load_weights_only": true,
+    "load_state_dict_strict": true,
+    "license_review_complete": false
+  },
+  "reference": {
+    "path": "/home/intern/adcl_motiondrive_v2/measurements/p1_g1s1_step1000/fixtures/p1_gradient_train8.pt",
+    "sha256": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "copied": false,
+    "replaced": false,
+    "readonly_bind": true,
+    "first_fixed_clip_identity": {
+      "scenario": "20260112-105434",
+      "frame": 30,
+      "row": 30,
+      "scen_idx": 0,
+      "session_id": "session_000_20260112-105434"
+    },
+    "model_received_only_images": true,
+    "goal_pose_status_labels_not_forwarded": true
+  },
+  "execution": {
+    "docker_argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "motiondrive-raft-small-fp32-uizigpnu",
+      "--gpus",
+      "device=0",
+      "--pid",
+      "host",
+      "--network",
+      "none",
+      "--read-only",
+      "--user",
+      "1000:1000",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,size=256m",
+      "--env",
+      "NVIDIA_VISIBLE_DEVICES=0",
+      "--env",
+      "CUDA_VISIBLE_DEVICES=0",
+      "--env",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "--env",
+      "OMP_NUM_THREADS=2",
+      "--env",
+      "MKL_NUM_THREADS=2",
+      "--env",
+      "PYTHONPATH=/runtime/venv_dev/lib/python3.10/site-packages",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_latency/runtime,dst=/runtime,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/raft_small_fp32.UIZiGPNu/source,dst=/source,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/raft_small_fp32.UIZiGPNu/weights,dst=/weights,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/p1_g1s1_step1000/fixtures/p1_gradient_train8.pt,dst=/reference/p1_gradient_train8.pt,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/raft_small_fp32.UIZiGPNu/reports,dst=/reports",
+      "--entrypoint",
+      "/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10",
+      "adcl-latency-runtime:cu128",
+      "-B",
+      "/source/benchmark_motiondrive_v2_flow_candidate.py",
+      "--reference",
+      "/reference/p1_gradient_train8.pt",
+      "--weights",
+      "/weights/raft_small_C_T_V2-01064c6d.pth",
+      "--output",
+      "/reports/motiondrive_v2_raft_small_3090_fp32.json"
+    ],
+    "ssh_command": "ssh -o BatchMode=yes -o ConnectTimeout=15 intern@192.168.10.182 ''\\''docker'\\'' '\\''run'\\'' '\\''--rm'\\'' '\\''--name'\\'' '\\''motiondrive-raft-small-fp32-uizigpnu'\\'' '\\''--gpus'\\'' '\\''device=0'\\'' '\\''--pid'\\'' '\\''host'\\'' '\\''--network'\\'' '\\''none'\\'' '\\''--read-only'\\'' '\\''--user'\\'' '\\''1000:1000'\\'' '\\''--tmpfs'\\'' '\\''/tmp:rw,nosuid,nodev,size=256m'\\'' '\\''--env'\\'' '\\''NVIDIA_VISIBLE_DEVICES=0'\\'' '\\''--env'\\'' '\\''CUDA_VISIBLE_DEVICES=0'\\'' '\\''--env'\\'' '\\''PYTHONDONTWRITEBYTECODE=1'\\'' '\\''--env'\\'' '\\''OMP_NUM_THREADS=2'\\'' '\\''--env'\\'' '\\''MKL_NUM_THREADS=2'\\'' '\\''--env'\\'' '\\''PYTHONPATH=/runtime/venv_dev/lib/python3.10/site-packages'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_latency/runtime,dst=/runtime,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/raft_small_fp32.UIZiGPNu/source,dst=/source,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/raft_small_fp32.UIZiGPNu/weights,dst=/weights,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/p1_g1s1_step1000/fixtures/p1_gradient_train8.pt,dst=/reference/p1_gradient_train8.pt,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/raft_small_fp32.UIZiGPNu/reports,dst=/reports'\\'' '\\''--entrypoint'\\'' '\\''/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10'\\'' '\\''adcl-latency-runtime:cu128'\\'' '\\''-B'\\'' '\\''/source/benchmark_motiondrive_v2_flow_candidate.py'\\'' '\\''--reference'\\'' '\\''/reference/p1_gradient_train8.pt'\\'' '\\''--weights'\\'' '\\''/weights/raft_small_C_T_V2-01064c6d.pth'\\'' '\\''--output'\\'' '\\''/reports/motiondrive_v2_raft_small_3090_fp32.json'\\'''",
+    "actual_returncode": 0,
+    "returncode_source": "Completed PTY process return code: SSH's sole remote command Docker run, propagating Python exit status; not inferred from log text.",
+    "gpu_python_host_pid": 72040,
+    "transport_start_observed_utc": "2026-09-07 10:17:00 UTC",
+    "transport_completion_observed_utc": "2026-09-07 10:18:06 UTC",
+    "benchmark_process_start_utc": "2026-09-07T10:17:02.042Z",
+    "benchmark_process_finish_utc": "2026-09-07T10:17:10.461Z",
+    "docker_image": "adcl-latency-runtime:cu128",
+    "docker_image_id": "sha256:7c0f4aaf98f2f3391d30d426e6217f524c8717aaa6b7d431fcd6f71740aa15c7",
+    "network": "none",
+    "rootfs_readonly": true,
+    "pid_namespace": "host; used solely to distinguish own compute PID from unrelated work",
+    "runtime_bind_readonly": true,
+    "source_bind_readonly": true,
+    "weights_bind_readonly": true,
+    "reference_bind_readonly": true,
+    "reports_only_persistent_writable_bind": true,
+    "other_containers_stopped": false,
+    "process_signals_sent": false,
+    "packages_installed": false,
+    "container_removed": true
+  },
+  "gpu": {
+    "before": {
+      "index": 0,
+      "uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+      "name": "NVIDIA GeForce RTX 3090",
+      "memory_used_mib": 130,
+      "driver": "580.173.02"
+    },
+    "before_compute_pids": [],
+    "during_unique_compute_pids": [
+      72040
+    ],
+    "monitor_observations": 13,
+    "monitor_interval_s": 0.5,
+    "monitor_errors": [],
+    "after": {
+      "index": 0,
+      "uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+      "memory_used_mib": 130,
+      "compute_pids": []
+    },
+    "docker_ps_after_empty": true,
+    "limitations": "Occupancy is sampled; very short external processes between samples are not ruled out."
+  },
+  "environment": {
+    "python": "3.10.20 (main, Jun 23 2026, 15:20:26) [Clang 22.1.3 ]",
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 90701,
+    "pytorch_flags_initial": {
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false,
+      "cudnn_allow_tf32": true,
+      "matmul_allow_tf32": false,
+      "float32_matmul_precision": "highest",
+      "deterministic_algorithms": false
+    },
+    "pytorch_flags_effective": {
+      "cudnn_benchmark": false,
+      "cudnn_allow_tf32": false,
+      "matmul_allow_tf32": false,
+      "autocast": false
+    },
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/runtime/venv_dev/lib/python3.10/site-packages"
+  },
+  "integrity": {
+    "before": {
+      "/source/benchmark_motiondrive_v2_flow_candidate.py": "8937da911dc685f11523fb05a604ae5c6c22a4ac97a99656a41a9907bc88457d",
+      "/reference/p1_gradient_train8.pt": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+      "/weights/raft_small_C_T_V2-01064c6d.pth": "01064c6dba73b0fc9fc8edf772248560a00a3acfd62ac6677e9eeebad9680e27",
+      "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/raft.py": "a3a8c898eedbdb539cb2573f915a7165faa882afdab8bcfab755adb369bb4f83",
+      "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/_utils.py": "bfeb5027362662e92b0f5b10004fb98f98f1caf0a89b017551d1a4cf9b554cbc",
+      "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/transforms/_presets.py": "4408c3e8382953842737157431f677b87833b8045ff9c7710f7568fca28861e6"
+    },
+    "after": {
+      "/source/benchmark_motiondrive_v2_flow_candidate.py": "8937da911dc685f11523fb05a604ae5c6c22a4ac97a99656a41a9907bc88457d",
+      "/reference/p1_gradient_train8.pt": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+      "/weights/raft_small_C_T_V2-01064c6d.pth": "01064c6dba73b0fc9fc8edf772248560a00a3acfd62ac6677e9eeebad9680e27",
+      "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/raft.py": "a3a8c898eedbdb539cb2573f915a7165faa882afdab8bcfab755adb369bb4f83",
+      "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/_utils.py": "bfeb5027362662e92b0f5b10004fb98f98f1caf0a89b017551d1a4cf9b554cbc",
+      "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/transforms/_presets.py": "4408c3e8382953842737157431f677b87833b8045ff9c7710f7568fca28861e6"
+    },
+    "before_after_equal": true,
+    "source_reference_weights_after_hashes_rechecked_by_host_sha256sum": true,
+    "existing_runtime_mounted_readonly": true,
+    "full_runtime_tree_hash_computed": false,
+    "description": "Relevant RAFT/optical-flow utility/preprocessing source files, benchmark source, immutable reference, and official weights were SHA checked before/after. Runtime immutability is enforced by its read-only mount; no claim of hashing every runtime file."
+  },
+  "full_forward_evidence": {
+    "python": "3.10.20 (main, Jun 23 2026, 15:20:26) [Clang 22.1.3 ]",
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "runtime_raft_source_sha256": "a3a8c898eedbdb539cb2573f915a7165faa882afdab8bcfab755adb369bb4f83",
+    "forward": {
+      "file": "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/raft.py",
+      "first_line": 484,
+      "source": "    def forward(self, image1, image2, num_flow_updates: int = 12):\n\n        batch_size, _, h, w = image1.shape\n        if (h, w) != image2.shape[-2:]:\n            raise ValueError(f\"input images should have the same shape, instead got ({h}, {w}) != {image2.shape[-2:]}\")\n        if not ((h % 8 == 0) and (w % 8 == 0)):\n            raise ValueError(f\"input image H and W should be divisible by 8, instead got {h} (h) and {w} (w)\")\n\n        fmaps = self.feature_encoder(torch.cat([image1, image2], dim=0))\n        fmap1, fmap2 = torch.chunk(fmaps, chunks=2, dim=0)\n        if fmap1.shape[-2:] != (h // 8, w // 8):\n            raise ValueError(\"The feature encoder should downsample H and W by 8\")\n\n        self.corr_block.build_pyramid(fmap1, fmap2)\n\n        context_out = self.context_encoder(image1)\n        if context_out.shape[-2:] != (h // 8, w // 8):\n            raise ValueError(\"The context encoder should downsample H and W by 8\")\n\n        # As in the original paper, the actual output of the context encoder is split in 2 parts:\n        # - one part is used to initialize the hidden state of the recurent units of the update block\n        # - the rest is the \"actual\" context.\n        hidden_state_size = self.update_block.hidden_state_size\n        out_channels_context = context_out.shape[1] - hidden_state_size\n        if out_channels_context <= 0:\n            raise ValueError(\n                f\"The context encoder outputs {context_out.shape[1]} channels, but it should have at strictly more than hidden_state={hidden_state_size} channels\"\n            )\n        hidden_state, context = torch.split(context_out, [hidden_state_size, out_channels_context], dim=1)\n        hidden_state = torch.tanh(hidden_state)\n        context = F.relu(context)\n\n        coords0 = make_coords_grid(batch_size, h // 8, w // 8).to(fmap1.device)\n        coords1 = make_coords_grid(batch_size, h // 8, w // 8).to(fmap1.device)\n\n        flow_predictions = []\n        for _ in range(num_flow_updates):\n            coords1 = coords1.detach()  # Don't backpropagate gradients through this branch, see paper\n            corr_features = self.corr_block.index_pyramid(centroids_coords=coords1)\n\n            flow = coords1 - coords0\n            hidden_state, delta_flow = self.update_block(hidden_state, context, corr_features, flow)\n\n            coords1 = coords1 + delta_flow\n\n            up_mask = None if self.mask_predictor is None else self.mask_predictor(hidden_state)\n            upsampled_flow = upsample_flow(flow=(coords1 - coords0), up_mask=up_mask)\n            flow_predictions.append(upsampled_flow)\n\n        return flow_predictions\n"
+    },
+    "build_pyramid": {
+      "file": "/runtime/venv_dev/lib/python3.10/site-packages/torchvision/models/optical_flow/raft.py",
+      "first_line": 360,
+      "source": "    def build_pyramid(self, fmap1, fmap2):\n        \"\"\"Build the correlation pyramid from two feature maps.\n\n        The correlation volume is first computed as the dot product of each pair (pixel_in_fmap1, pixel_in_fmap2)\n        The last 2 dimensions of the correlation volume are then pooled num_levels times at different resolutions\n        to build the correlation pyramid.\n        \"\"\"\n\n        if fmap1.shape != fmap2.shape:\n            raise ValueError(\n                f\"Input feature maps should have the same shape, instead got {fmap1.shape} (fmap1.shape) != {fmap2.shape} (fmap2.shape)\"\n            )\n\n        # Explaining min_fmap_size below: the fmaps are down-sampled (num_levels - 1) times by a factor of 2.\n        # The last corr_volume most have at least 2 values (hence the 2* factor), otherwise grid_sample() would\n        # produce nans in its output.\n        min_fmap_size = 2 * (2 ** (self.num_levels - 1))\n        if any(fmap_size < min_fmap_size for fmap_size in fmap1.shape[-2:]):\n            raise ValueError(\n                \"Feature maps are too small to be down-sampled by the correlation pyramid. \"\n                f\"H and W of feature maps should be at least {min_fmap_size}; got: {fmap1.shape[-2:]}. \"\n                \"Remember that input images to the model are downsampled by 8, so that means their \"\n                f\"dimensions should be at least 8 * {min_fmap_size} = {8 * min_fmap_size}.\"\n            )\n\n        corr_volume = self._compute_corr_volume(fmap1, fmap2)\n\n        batch_size, h, w, num_channels, _, _ = corr_volume.shape  # _, _ = h, w\n        corr_volume = corr_volume.reshape(batch_size * h * w, num_channels, h, w)\n        self.corr_pyramid = [corr_volume]\n        for _ in range(self.num_levels - 1):\n            corr_volume = F.avg_pool2d(corr_volume, kernel_size=2, stride=2)\n            self.corr_pyramid.append(corr_volume)\n"
+    },
+    "source_inspection_only": true,
+    "hooks_added": false,
+    "cuda_initialized": false,
+    "inspection_docker_argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--runtime",
+      "runc",
+      "--network",
+      "none",
+      "--read-only",
+      "--user",
+      "1000:1000",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,size=256m",
+      "--env",
+      "NVIDIA_VISIBLE_DEVICES=void",
+      "--env",
+      "CUDA_VISIBLE_DEVICES=",
+      "--env",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "--env",
+      "OMP_NUM_THREADS=2",
+      "--env",
+      "MKL_NUM_THREADS=2",
+      "--env",
+      "PYTHONPATH=/runtime/venv_dev/lib/python3.10/site-packages",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_latency/runtime,dst=/runtime,readonly",
+      "--entrypoint",
+      "/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10",
+      "adcl-latency-runtime:cu128",
+      "-B",
+      "-c",
+      "import json, inspect, hashlib, sys, torch, torchvision\nfrom torchvision.models.optical_flow.raft import RAFT, CorrBlock\nimport torchvision.models.optical_flow.raft as module\ndef code_info(fn):\n    lines,start=inspect.getsourcelines(fn)\n    return {\"file\":inspect.getfile(fn),\"first_line\":start,\"source\":\"\".join(lines)}\np=inspect.getfile(module)\nforward=code_info(RAFT.forward)\npyramid=code_info(CorrBlock.build_pyramid)\nassert all(s in forward[\"source\"] for s in [\"self.feature_encoder(torch.cat([image1, image2], dim=0))\",\"self.context_encoder(image1)\",\"self.corr_block.build_pyramid(fmap1, fmap2)\",\"for _ in range(num_flow_updates):\",\"upsample_flow(flow=(coords1 - coords0), up_mask=up_mask)\"])\nassert \"self.corr_pyramid = [corr_volume]\" in pyramid[\"source\"]\nassert not torch.cuda.is_initialized()\nprint(json.dumps({\"python\":sys.version,\"torch\":torch.__version__,\"torchvision\":torchvision.__version__,\"runtime_raft_source_sha256\":hashlib.sha256(open(p,\"rb\").read()).hexdigest(),\"forward\":forward,\"build_pyramid\":pyramid,\"source_inspection_only\":True,\"hooks_added\":False,\"cuda_initialized\":False}))\n"
+    ],
+    "matches_measured_runtime_source_sha": true,
+    "per_call_operations": [
+      "feature_encoder(torch.cat([image1,image2],dim=0))",
+      "context_encoder(image1)",
+      "corr_block.build_pyramid(fmap1,fmap2)",
+      "correlation pyramid assigned afresh for every forward",
+      "num_flow_updates recurrent iterations",
+      "upsample_flow invoked for every iteration"
+    ],
+    "timing_hooks_added": false,
+    "feature_cache_enabled": false,
+    "warm_start_flow_used": false
+  },
+  "measurement_contract": {
+    "pairs": [
+      1,
+      4
+    ],
+    "updates": [
+      4,
+      8,
+      12
+    ],
+    "image_wh": [
+      384,
+      216
+    ],
+    "warmup": 20,
+    "repeats": 50,
+    "precision": "FP32; autocast disabled; CUDA matmul and cuDNN TF32 disabled",
+    "synchronization": "torch.cuda.synchronize before event start and after event end; elapsed CUDA events encompass complete model(...) call",
+    "preprocessing": "current768 -> history384 F.interpolate bilinear align_corners=False antialias=True; inverse ImageNet normalization; map RGB[0,1] to [-1,1]; no further crop/pad/resize/clamp",
+    "excluded": [
+      "CPU preprocessing",
+      "H2D transfers",
+      "model/weights load",
+      "output validation"
+    ]
+  },
+  "summary": [
+    {
+      "pair_count": 1,
+      "updates": 4,
+      "median_ms": 8.56006383895874,
+      "p90_ms": 8.619382381439209,
+      "p95_ms": 9.080798578262328,
+      "max_ms": 9.506239891052246,
+      "std_population_ms": 0.19247296100931408,
+      "peak_allocated_MiB": 54.064453125,
+      "peak_reserved_MiB": 78,
+      "output_validation": {
+        "list_length": 4,
+        "shape": [
+          1,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -16.475645065307617,
+        "final_max_pixels": 18.00174331665039
+      }
+    },
+    {
+      "pair_count": 1,
+      "updates": 8,
+      "median_ms": 13.540015697479248,
+      "p90_ms": 13.602755069732666,
+      "p95_ms": 13.718401575088501,
+      "max_ms": 14.535679817199707,
+      "std_population_ms": 0.19613186103876978,
+      "peak_allocated_MiB": 54.064453125,
+      "peak_reserved_MiB": 80,
+      "output_validation": {
+        "list_length": 8,
+        "shape": [
+          1,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -17.4014892578125,
+        "final_max_pixels": 18.43361473083496
+      }
+    },
+    {
+      "pair_count": 1,
+      "updates": 12,
+      "median_ms": 18.520575523376465,
+      "p90_ms": 18.746041107177735,
+      "p95_ms": 19.325058555603025,
+      "max_ms": 20.20684814453125,
+      "std_population_ms": 0.34659159623106467,
+      "peak_allocated_MiB": 54.064453125,
+      "peak_reserved_MiB": 84,
+      "output_validation": {
+        "list_length": 12,
+        "shape": [
+          1,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -17.04931640625,
+        "final_max_pixels": 17.52783966064453
+      }
+    },
+    {
+      "pair_count": 4,
+      "updates": 4,
+      "median_ms": 9.548543930053711,
+      "p90_ms": 9.561859130859375,
+      "p95_ms": 9.660174322128295,
+      "max_ms": 9.888799667358398,
+      "std_population_ms": 0.06534001862030013,
+      "peak_allocated_MiB": 149.02197265625,
+      "peak_reserved_MiB": 250,
+      "output_validation": {
+        "list_length": 4,
+        "shape": [
+          4,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -32.07136154174805,
+        "final_max_pixels": 57.507774353027344
+      }
+    },
+    {
+      "pair_count": 4,
+      "updates": 8,
+      "median_ms": 14.893439769744873,
+      "p90_ms": 14.920227527618408,
+      "p95_ms": 15.013340473175049,
+      "max_ms": 15.686592102050781,
+      "std_population_ms": 0.13808102598539268,
+      "peak_allocated_MiB": 149.02197265625,
+      "peak_reserved_MiB": 250,
+      "output_validation": {
+        "list_length": 8,
+        "shape": [
+          4,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -34.82186508178711,
+        "final_max_pixels": 69.97247314453125
+      }
+    },
+    {
+      "pair_count": 4,
+      "updates": 12,
+      "median_ms": 20.215248107910156,
+      "p90_ms": 20.276173210144044,
+      "p95_ms": 20.59402847290039,
+      "max_ms": 20.902591705322266,
+      "std_population_ms": 0.14784875259556404,
+      "peak_allocated_MiB": 149.02197265625,
+      "peak_reserved_MiB": 250,
+      "output_validation": {
+        "list_length": 12,
+        "shape": [
+          4,
+          2,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "all_updates_finite": true,
+        "final_min_pixels": -33.879390716552734,
+        "final_max_pixels": 70.97980499267578
+      }
+    }
+  ],
+  "report": {
+    "local_path": "/home/a/adcl_motiondrive_v2/reports/motiondrive_v2_raft_small_3090_fp32.json",
+    "remote_path": "/home/intern/adcl_motiondrive_v2/measurements/raft_small_fp32.UIZiGPNu/reports/motiondrive_v2_raft_small_3090_fp32.json",
+    "sha256": "ddcb0e940c7ef9616dd5d26826902acb0ac39ca592179a4faaacb82359a54d0f",
+    "local_remote_sha_match": true
+  },
+  "limitations": [
+    "Component timing on one fixed training clip, not full V2 inference.",
+    "No optical-flow GT, metric velocity, planning, or generalization evaluation.",
+    "GPU occupancy is sampled every 0.5 s; shorter external processes could escape observation.",
+    "Memory includes model/input/correlation buffers and allocator history across conditions.",
+    "Public weight license review is not complete; research-only and not an adoption decision."
+  ]
+}
