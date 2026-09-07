@@ -123,3 +123,23 @@ P1은 planning 미학습 공통 BN-fixed best1000에서 G×S 네 판을 같은60
 LAST6000 2×2 비교를 주표, 팔별 tune-BEST를 보조표로 사전 고정했다.
 정확한 계보·손익·실행/평가 조건은 `MOTIONDRIVE_V2_P1_PROTOCOL.md`에 고정했다.
 이 문단 작성 시 P1은 아직 미실행이며 최종val136과 과거val38을 열지 않았다.
+
+## 16:45 KST: P1 네 팔 발사
+
+소스/계획 커밋 `fdd309d8ef23a6ea35131636551c51e51aa12b89`, B200194 tests 통과.
+실행 manifest: `logs/motiondrive_v2/launch_p1_gs_r1_s0.json`.
+실제 시작은16:45:17 KST, GPU0–3에 G0S0/G1S0/G0S1/G1S1 순서다.
+supervisor PID1921374–1921377, 실제 trainer PID1921378–1921381.
+
+공통 초기 tensor state SHA `30324570835ad3895322c596c1666ee983b46dd8f331be7b8d9e972dc9de86c0`,
+parameter26,409,112개, train/eval row SHA가 네 팔 모두 같다.
+step1–210의 공통22개 로그에서 누적 샘플 순서 SHA가 모두 일치했다.
+모델 설정 차이는 G/S뿐이다. 영상에서 추론한 motion/history/state auxiliary는 모두 유지한다.
+초기 정상 tune D3는 약13.1m이며 planning 미학습 초기값이므로 성공/실패 판정 값이 아니다.
+
+GPU6 기존 작업은 보존했다. 시작 이후 GPU1/2에 짧게 보인 별도 프로세스는
+추가 신원 조회 전에 종료되어 소유/작업을 확인하지 못했다. 어떤 signal도 보내지 않았다.
+16:47경에는 GPU0–3 각각 우리 trainer만 남았고 VRAM은 각약43,844MiB(42.8GiB)였다.
+이 일시적 관찰은 실패 원인으로 단정하지 않으며 최종 latency는 별도3090 단독 측정한다.
+
+실험 진행 중이므로 P1 효과·경쟁력·규정 최종 적합성을 아직 선언하지 않는다.
