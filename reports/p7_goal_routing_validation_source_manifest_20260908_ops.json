@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "git_sha": "3a675d2a351869880d70067eed5a2aea8861060f",
+  "file_sha256": {
+    "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "a3c54cfd4016bb91c1325d6799ea0cffc36c60e7363ee1a88f33536f84ac24b3",
+    "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+    "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+    "models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+    "models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+    "models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+    "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+    "scripts/audit_motiondrive_v2_deploy_inputs.py": "6153d53d2cff7d494cba3b965ebed27f7f7e6d6c02153b1ef21fe7b2807546ec",
+    "scripts/benchmark_motiondrive_v2.py": "cbce7e834c8c796c2272f76c78c4c7dec99962aeee4fc00d9eca154994226c4b",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+    "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "scripts/motiondrive_v2_training.py": "3929538dcc58c786b242680e84ca768ecb3674ec7bfbbd784a8143fd7d1aed70",
+    "scripts/run_motiondrive_v2_p7_goal_routing.py": "75b6908715a9181309ec586a18f3026518b419c922d1ec67b2a9f729d5a4c8cc",
+    "scripts/smoke_motiondrive_v2_deployment.py": "769bfc77a9f0d399e3b440b71087cfaa0d14215b14f8c1a2bc18974d209ab506",
+    "scripts/smoke_motiondrive_v2_p4_deployment.py": "18006bea19e7f131a4319e95aafbf7725b6fd45755b58fd0f1723ded77083d1a",
+    "scripts/smoke_motiondrive_v2_p7_deployment.py": "cbd74a4bd722440a9917b94864bb61c02e303cfc676ed18f1c5cda62ec89f9cb",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/train_motiondrive_v2.py": "52eac2a28ba12f4724b7f18a3c2d6889241a58ec5b665ef44bd0e2f5966268d2"
+  }
+}

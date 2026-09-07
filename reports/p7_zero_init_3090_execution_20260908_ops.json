@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "status": "completed_measurements",
+  "purpose": "P7 zero-initialized graph execution and full-forward latency canary; not learned-model evaluation",
+  "date_kst": "2026-09-08",
+  "remote_stage_root": "/home/intern/adcl_motiondrive_v2/measurements/p7_zero_init_3090_retry1.RSaC0F",
+  "local_report_mirror": "reports/p7_zero_init_3090_20260908_ops",
+  "source": {
+    "b200_fix_commit": "3a675d2a351869880d70067eed5a2aea8861060f",
+    "wrapper_sha256": "cbd74a4bd722440a9917b94864bb61c02e303cfc676ed18f1c5cda62ec89f9cb",
+    "test_sha256": "cf59a31e063dbb4f32a69012bb133abb3ceb5035c25352706b3176b922074cb8",
+    "training_manifest_sha256": "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4",
+    "training_runtime_git_sha": "64e92694ccbe0a3c5a581e421e16a884b9c5a088",
+    "validation_manifest_sha256": "949571ec9e0b2456d9d3e750704dd0880a5894eeba687f47809a1071465ed4ed",
+    "validation_git_sha": "3a675d2a351869880d70067eed5a2aea8861060f",
+    "validation_file_count": 24,
+    "pre_and_post_exact": true
+  },
+  "runtime": {
+    "image": "adcl-latency-runtime:cu128",
+    "image_id": "sha256:7c0f4aaf98f2f3391d30d426e6217f524c8717aaa6b7d431fcd6f71740aa15c7",
+    "interpreter": "/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10",
+    "python": "3.10.20",
+    "torch": "2.7.1+cu128",
+    "cuda_build": "12.8",
+    "gpu_uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+    "gpu_name": "NVIDIA GeForce RTX 3090",
+    "network": "none",
+    "root_filesystem": "read_only",
+    "source_and_inputs": "read_only_mounts",
+    "timing_protocol": "batch1, all 11 image encodings, no cache, warmup20 and repeat50 for each of 8 fixed train clips, CUDA events with synchronization; H2D/preparation/postprocessing excluded"
+  },
+  "inputs": {
+    "fixture_manifest_sha256": "da1e36a8b45815a8fb9b4f1053c7695cb754cdfa9eb4f2b6602fc0ff6ef67d27",
+    "reference_sha256": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "calibration_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "base0_p0_file_sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+    "base0_p0_sidecar_sha256": "9e5ba7ce89c0c1a9e4fe49476ff72c63b451f2658766e74e84c7336a4591fd98",
+    "base0_assembled_state_sha256": "fc51a847cc5532e8010454d2452ea8233e0d1e560053d2217f34580f464db1c7",
+    "base1_p0_file_sha256": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5",
+    "base1_p0_sidecar_sha256": "385ea53269e96d73c7d66f4196bc2e1205b0c6b7e9c7db537f983bc7aa37c421",
+    "base1_assembled_state_sha256": "4f480070eac81176b0a3945484186ccf79063806644be75c4afc41e3bff423a4",
+    "cpu_assembly_rows": 4,
+    "cpu_assembly_actual_exit_code": 0,
+    "cpu_assembly_cuda_initialized": false,
+    "pre_and_post_exact": true,
+    "final_holdout_accessed": false
+  },
+  "measurements": [
+    {
+      "base_seed": 0,
+      "arm": "control_zero_slot",
+      "ssh_execution_handle": 19364,
+      "child_pid": 84020,
+      "actual_exit_code": 0,
+      "report": "reports/b0_control_zero_init_timing.json",
+      "report_sha256": "5d1a9e30e1dafff42d83c397eefb5310f56c9f3c93ccb932163f4586696df5ca",
+      "cuda_median_ms": 38.75507164001465,
+      "cuda_p95_ms": 38.834376907348634,
+      "timing_gate_pass": true
+    },
+    {
+      "base_seed": 0,
+      "arm": "goal_real_slot",
+      "ssh_execution_handle": 16020,
+      "child_pid": 84303,
+      "actual_exit_code": 0,
+      "report": "reports/b0_goal_zero_init_timing.json",
+      "report_sha256": "8c0f844846c8ab354a436c1268c6e803cee5fa38008eeba86eccd2b87c68370f",
+      "cuda_median_ms": 38.62638473510742,
+      "cuda_p95_ms": 38.7205171585083,
+      "timing_gate_pass": true
+    },
+    {
+      "base_seed": 1,
+      "arm": "control_zero_slot",
+      "ssh_execution_handle": 34903,
+      "child_pid": 84682,
+      "actual_exit_code": 0,
+      "report": "reports/b1_control_zero_init_timing.json",
+      "report_sha256": "9cab12d6134af06256c46c3d9eb54381317d5ef81f5a30760791d9563d483fb6",
+      "cuda_median_ms": 38.720943450927734,
+      "cuda_p95_ms": 38.793267822265626,
+      "timing_gate_pass": true
+    },
+    {
+      "base_seed": 1,
+      "arm": "goal_real_slot",
+      "ssh_execution_handle": 36960,
+      "child_pid": 84969,
+      "actual_exit_code": 0,
+      "report": "reports/b1_goal_zero_init_timing.json",
+      "report_sha256": "8a350b2d30f54b453e14d8ea86856cde04a6fe59cd26af364da6a57a92cfb1ca",
+      "cuda_median_ms": 38.63302421569824,
+      "cuda_p95_ms": 38.71967697143555,
+      "timing_gate_pass": true
+    }
+  ],
+  "common_measurement_checks": {
+    "full_forward_image_encoding_count": 11,
+    "actual_fp32_projection_dtype_observed": true,
+    "actual_fp32_two_contraction_dtypes_observed": true,
+    "actual_fp32_score_and_masked_softmax_dtypes_observed": true,
+    "instrumentation_removed_before_timing": true,
+    "raw_reference_parity_pass": true,
+    "aba_stateless_pass": true,
+    "model_state_before_after_equal": true,
+    "peak_allocated_bytes": 447730688,
+    "peak_reserved_bytes": 543162368,
+    "all_four_process_exit_zero": true,
+    "all_four_timing_gate_pass": true
+  },
+  "post_cleanup": {
+    "gpu_memory_used_mib": 130,
+    "gpu_memory_free_mib": 23986,
+    "gpu_utilization_percent": 0,
+    "compute_processes": 0
+  },
+  "preserved_failed_attempt": {
+    "report": "/home/intern/adcl_motiondrive_v2/measurements/p7_zero_init_3090.7uR03z/reports/b0_control_zero_init_timing.json",
+    "report_sha256": "e9b3d22e941feabf12c54e3270a2061b53c41c0354bce2650dc7c2e51f1e60e5",
+    "actual_exit_code": 1,
+    "relabelled": false
+  },
+  "claims": {
+    "measurement_exit_zero_is_distinct_from_timing_gate_pass": true,
+    "learned_p7_checkpoint_measured": false,
+    "learned_goal_use_or_accuracy_proven": false,
+    "deployment_or_compliance_pass_claimed": false,
+    "official_submission_performed": false
+  }
+}
