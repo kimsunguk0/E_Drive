@@ -8,6 +8,9 @@ P1 실행 소스 `fdd309d`, 분석/진행 기록 `940253b`. 정확한 실행 조
 `MOTIONDRIVE_V2_P1_PROTOCOL.md`, P0 근거와 현재 상태는
 `MOTIONDRIVE_V2_PROGRESS_20260907.md`를 따른다. 아래 "아직 미실행" 문장은 최초 설계 시점 기록이며
 현재 실행 상태를 뜻하지 않는다. 사용자 장기 실행 요청으로 GPU0–3 작업을 진행한다.
+17:28 KST 추가: 실제 캐시 rear_wide crop과 투영행렬의182.4px 불일치 및 테스트 원 timestamp
+미제공을 확인했다. 기존 P1은 원 조건으로 완주/분석하고 새 geometry edition과 nominal
+시간 입력을 별도로 검증한다. `MOTIONDRIVE_V2_DEPLOYMENT_CONTRACT_AUDIT.md`가 수정 범위를 정한다.
 확정은 실행할 구조와 검정 순서를 뜻하며, 성능 달성이나 운영국의 개별 코드 승인이 아니다.
 이 문서는 이전 `ETRI_MOTIONDRIVE_REDESIGN_20260907.md`의 주력 구조·실험 순서를 대체한다.
 기존 데이터/기하/통계 감사와 제출 백업은 유지한다.

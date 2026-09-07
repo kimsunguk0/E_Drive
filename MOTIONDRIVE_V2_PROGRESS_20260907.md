@@ -167,3 +167,23 @@ scene/motion에서 실제 planner gradient 연결을 확인했다. 이 검사는
 `reports/latency_3090_r50_p1_g1s1_step1000.json`,
 `reports/export_motiondrive_v2_p1_g1s1_step1000.json`.
 측정 컨테이너 종료와3090 GPU 해제를 확인했다. B200 학습은 계속 진행 중이다.
+
+## 17:28 KST: 배포 정합 오류 발견, P1은 원 조건으로 보존
+
+P1 네 판은 약5310/6000step 진행 중이다. G1S1의 중간 BEST D3는.367913이다.
+LAST6000 주 분석을 기다리며 이 값을 최종 성능으로 선언하지 않는다.
+
+실제 train 원본 JPEG 대조로 rear_wide의182.4px 투영 오차를 확인했다.
+캐시는 bottom crop인데 V2 canonical projection은 top crop이었다.
+별도 수정 geometry edition을 준비하며 현재 학습의 파일/조건은 바꾸지 않는다.
+공식 테스트에는 원 timestamp가 없으므로 nominal time-input 평가도 분리한다.
+자세한 출처와 변경 제한은 `MOTIONDRIVE_V2_DEPLOYMENT_CONTRACT_AUDIT.md`에 기록했다.
+
+3090의 immutable train8/2세션, step1000 G1S1/B4×2 loss-gradient 진단에서는
+가중 plan gradient norm127.7/136.8, motion14.9/11.4였다. 따라서 이 두 배치에서는
+“NLL motion이 전체 gradient norm을 지배한다”는 가설이 지지되지 않았다.
+history logvar의93.75%는 loss clamp −6 아래였고, state는50%였다.
+작은 state-projection gradient나 일부 음의 shared-gradient cosine만으로
+status 무효 또는 Adam 실제 update 크기를 단정하지 않는다. 파라미터/BN/.grad는 불변이었다.
+음수 Gaussian NLL(상수 생략)은 그 자체로 오류가 아니다.
+원본: `reports/p1_g1s1_step1000_train8_loss_gradients_3090*.json`.

@@ -6,10 +6,13 @@ and audit checkpoint loader without configuration overrides. GT plans are six
 cumulative positions in the current ego frame, NOT six displacement increments.
 Final/historical validation is intentionally unavailable in this CLI.
 
-Counterfactuals change images only. image_mismatch is an alias of image_shuffle:
+Image counterfactuals change images only. image_mismatch is an alias of image_shuffle:
 a fixed scene derangement at the SAME frame replaces all six current cameras
 and all four historical front images. Goal, calibration, poses and times stay
-with the receiver. The protocol and donor map are published before any forward.
+with the receiver. Independently, --time-input nominal replaces only the model's
+time_offsets tensor with float32 [.1,.2,.5,1.], consistently for all conditions.
+The raw default preserves the original P1 comparison. Protocol and donor map are
+published before any forward; dataset labels, poses, and caches are never changed.
 """
 from __future__ import annotations
 
@@ -39,6 +42,8 @@ from motiondrive_v2_training import MODEL_INPUTS, TIME_WEIGHTS, model_inputs, to
 from train_motiondrive_v2 import autocast as training_autocast
 
 CONDITIONS = ("normal", "image_shuffle", "repeat_current", "reverse_history")
+TIME_INPUTS = ("raw", "nominal")
+NOMINAL_HISTORY_SECONDS = (.1, .2, .5, 1.)
 BUCKET_NAMES = ("stop", "accel", "decel", "cruise", "unknown")
 BUCKET_DEFINITION = {
     "version": 1, "source": "GT state_target only; never model-predicted state",
@@ -62,6 +67,31 @@ def normalize_conditions(conditions):
 def require_tune(split):
     if split != "tune":
         raise ValueError("Only tune is authorized; final/historical val requires a separately reviewed change")
+
+
+def time_input_policy(mode):
+    if mode not in TIME_INPUTS:
+        raise ValueError("time_input must be raw or nominal")
+    return {"mode": mode, "scope": "model input time_offsets only; identical policy for every condition",
+            "source": "dataset-provided offsets, unchanged" if mode == "raw" else "fixed nominal frame-offset seconds",
+            "nominal_history_seconds": list(NOMINAL_HISTORY_SECONDS),
+            "nominal_dtype": "float32", "dataset_and_labels_modified": False,
+            "preserved": ["images within each image condition", "poses", "calibration", "goal", "GT", "valid masks", "sample order"]}
+
+
+def planning_model_inputs(batch, time_input="raw"):
+    """Copy the inference whitelist, replacing ONLY time_offsets when requested."""
+    time_input_policy(time_input)
+    inputs = model_inputs(batch)
+    if time_input == "nominal":
+        raw = inputs["time_offsets"]
+        if not isinstance(raw, torch.Tensor) or raw.ndim != 2 or raw.shape != (len(inputs["images"]), 4):
+            raise ValueError("Nominal timing requires exactly four historical offsets [B,4]")
+        # Construct from fixed seconds in FP32, never inherit a bf16/float64 dtype
+        # or modify the original batch/dataset tensor in place.
+        inputs["time_offsets"] = torch.tensor(NOMINAL_HISTORY_SECONDS, dtype=torch.float32,
+                                               device=raw.device).expand(raw.shape[0], -1)
+    return inputs
 
 
 def rows_sha256(rows):
@@ -186,8 +216,9 @@ def summarize_records(records):
 
 
 @torch.inference_mode()
-def evaluate_planning(model, loader, device, precision="bf16"):
+def evaluate_planning(model, loader, device, precision="bf16", time_input="raw"):
     """Exact trainer metric/AMP path; no GT field can enter model(**inputs)."""
+    time_input_policy(time_input)
     model.eval()
     records = []
     for raw in loader:
@@ -195,7 +226,7 @@ def evaluate_planning(model, loader, device, precision="bf16"):
         if batch["plan_valid"].shape != batch["gt_plan"].shape[:-1] or not batch["plan_valid"].bool().all():
             raise ValueError("Invalid six-point GT; refusing to change the official metric")
         with training_autocast(device, precision):
-            output = model(**model_inputs(batch))
+            output = model(**planning_model_inputs(batch, time_input))
         pred, gt = output["plan_abs"], batch["gt_plan"]
         if pred.dtype != torch.float32:
             raise ValueError("plan_abs must already be FP32; evaluator will not repair output precision")
@@ -220,7 +251,7 @@ def evaluate_planning(model, loader, device, precision="bf16"):
     identities = [(r["scenario"], r["frame"]) for r in records]
     if len(set(identities)) != len(identities):
         raise ValueError("Duplicate scene/frame evaluation rows")
-    return {"summary": summarize_records(records),
+    return {"time_input": time_input, "summary": summarize_records(records),
             "buckets": {name: summarize_records([r for r in records if r["bucket"] == name]) for name in BUCKET_NAMES},
             "records": records}
 
@@ -308,6 +339,8 @@ def arguments(argv=None):
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--device", choices=("cpu", "cuda:0", "cuda:1", "cuda:2", "cuda:3"), default="cpu")
     parser.add_argument("--precision", choices=("bf16", "fp32"), default="bf16")
+    parser.add_argument("--time-input", choices=TIME_INPUTS, default="raw",
+                        help="raw preserves P1; nominal replaces only model time_offsets by float32 [.1,.2,.5,1.]")
     args = parser.parse_args(argv)
     require_tune(args.split)
     args.conditions = normalize_conditions(args.conditions)
@@ -351,6 +384,7 @@ def main(argv=None):
                 **header, "data": data_provenance, "source": source_manifest(),
                 "donor_scene_map": mapping, "donor_policy": "full tune split Sattolo scene permutation; same frame; image tensors only",
                 "bucket_definition": BUCKET_DEFINITION, "model_input_whitelist": list(MODEL_INPUTS),
+                "time_input": args.time_input, "time_input_policy": time_input_policy(args.time_input),
                 "nominal_waypoint_seconds": [.5, 1., 1.5, 2., 2.5, 3.],
                 "target_time_semantics": "Official cached frame-offset targets preserved; actual raw timestamps can differ from nominal 0.5-second spacing",
                 "metric": "mean cumulative ADE@1/2/3s; [11,11,5,5,2,2]/36; equal frame weights",
@@ -379,12 +413,13 @@ def main(argv=None):
         wrapped = ImageCounterfactualDataset(receiver, condition, donors, indices)
         loader = DataLoader(wrapped, batch_size=args.batch, shuffle=False, num_workers=args.workers,
                             pin_memory=device.type == "cuda")
-        results[condition] = evaluate_planning(model, loader, device, args.precision)
+        results[condition] = evaluate_planning(model, loader, device, args.precision, time_input=args.time_input)
         observed_rows = [r["row"] for r in results[condition]["records"]]
         if rows_sha256(observed_rows) != data_provenance["receiver_rows_sha256"]:
             raise ValueError("Observed evaluation rows differ from preregistration")
     report = {"status": "completed", "protocol_path": str(protocol_path), "protocol_sha256": sha256(protocol_path),
               "protocol": protocol, "model_load": model.audit_load_metadata,
+              "time_input": args.time_input,
               "precision": args.precision if device.type == "cuda" else "fp32",
               "precision_requested": args.precision, "torch": str(torch.__version__),
               "cuda_runtime": torch.version.cuda, "conditions": results,

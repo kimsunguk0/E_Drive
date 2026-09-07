@@ -7,6 +7,8 @@ evaluate_motiondrive_v2_planning.py의 protocol/conditions.normal 출력에 직�
 split_manifest_sha256, supervision_manifest_sha256, report, records도 지원한다.
 프레임별 metric은 d3 또는 동일 의미의 official_d3이며 둘 다 있으면 일치해야 한다.
 팔별 BEST는 실제 best.pth와 기존 선택 로그의 보조표이며 LAST 효과에 섞지 않는다.
+주 분석의 시간 입력은 raw만 허용한다. 시간 정책 flag가 없는 옛 보고서는 raw로
+해석하지만, nominal 또는 서로 모순되는 명시적 선언은 섞지 않고 거부한다.
 """
 from __future__ import annotations
 
@@ -53,11 +55,41 @@ def normalize_record(record):
     return row
 
 
+def require_raw_time_input(evidence):
+    """중첩/단순 export 모두 검사한다. flag 없는 옛 보고서만 raw로 간주한다."""
+    declarations = []
+    def collect(node, location):
+        if not isinstance(node, dict):
+            return
+        if "time_input" in node:
+            declarations.append((location + ".time_input", node["time_input"]))
+        if "time_input_policy" in node:
+            policy = node["time_input_policy"]
+            declarations.append((location + ".time_input_policy.mode",
+                                 policy.get("mode") if isinstance(policy, dict) else None))
+    collect(evidence, "report")
+    protocol = evidence.get("protocol", {})
+    collect(protocol, "protocol")
+    if isinstance(protocol, dict):
+        collect(protocol.get("arguments", {}), "protocol.arguments")
+    collect(evidence.get("arguments", {}), "arguments")
+    conditions = evidence.get("conditions", {})
+    if isinstance(conditions, dict):
+        for condition, result in conditions.items():
+            collect(result, f"conditions.{condition}")
+    invalid = [(where, value) for where, value in declarations if value != "raw"]
+    if invalid:
+        raise ValueError(f"LAST6000 주 분석에는 time_input=raw만 허용합니다. nominal/상충 정책: {invalid}")
+    return "raw"
+
+
 def normalize_evaluation(evidence):
     """실제 planning evaluator의 중첩 출력을 명시적으로 변환한다."""
+    time_input = require_raw_time_input(evidence)
     if "protocol" not in evidence or "conditions" not in evidence:
         result = dict(evidence)
         result["records"] = [normalize_record(row) for row in evidence["records"]]
+        result["time_input"] = time_input
         return result
     protocol = evidence["protocol"]
     args, data = protocol["arguments"], protocol["data"]
@@ -74,7 +106,7 @@ def normalize_evaluation(evidence):
             or evidence["model_load"].get("checkpoint_sha256") != protocol["checkpoint_sha256"]):
         raise ValueError("planning 평가의 모델 설정 override 또는 SHA 불일치")
     normal = evidence["conditions"]["normal"]
-    return {"checkpoint_path": args["checkpoint"], "checkpoint_sha256": protocol["checkpoint_sha256"],
+    return {"time_input": time_input, "checkpoint_path": args["checkpoint"], "checkpoint_sha256": protocol["checkpoint_sha256"],
             "checkpoint_step": protocol["checkpoint_step"], "split_manifest_sha256": data["split_sha256"],
             "supervision_manifest_sha256": data["supervision_sha256"]["supervision_manifest.json"],
             "evaluation_rows_sha256": data["receiver_rows_sha256"],
@@ -214,6 +246,7 @@ def validate_experiment(arms, split_manifest, split_sha, *, expected_common_sha=
     aligned, normalized_configs, normalized_args, label_rows = [], [], [], []
     for arm, (goal_on, state_on) in zip(ARMS, GS):
         data = arms[arm]
+        require_raw_time_input(data)
         if data["checkpoint_step"] != EXPECTED_STEP or Path(data["checkpoint_path"]).name != "last.pth":
             raise ValueError("주 분석에는 동일 LAST6000만 사용할 수 있습니다")
         if data["split_manifest_sha256"] != split_sha:
@@ -332,6 +365,7 @@ def analyze_gs(arms, split_manifest, split_sha, *, expected_common_sha=COMMON_SH
     statistics = joint_session_bootstrap(matrix, sessions, repeats=repeats, seed=seed)
     result = {"상태": "동일 LAST6000 G×S 분석 완료", "arm_order": list(ARMS),
               "protocol": {"checkpoint": "LAST6000 주 분석 / 팔별 BEST 별도 보조표", "n_frames": 1998,
+                           "time_input": "raw", "legacy_time_input_default": "flag 없는 옛 평가 보고서만 raw로 해석",
                            "n_scenes": 37, "n_rawtime_sessions": 11, "augmentation": False,
                            "metric": "sum([11,11,5,5,2,2]/36 × 6점 L2)의 프레임 평균",
                            "primary": "프레임 가중 평균; 재표집 세션 안 모든 프레임 수 보존",

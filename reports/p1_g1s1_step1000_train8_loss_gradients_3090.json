@@ -1,0 +1,4279 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-07T08:11:09.107712+00:00",
+  "checkpoint": "/workspace/checkpoints/p1_g1s1_step1000_inference.pth",
+  "fixture": "/workspace/fixtures/p1_gradient_train8.pt",
+  "checkpoint_sha256": "87b91d8ceb449ada60a3d362778656815a6180dd386c92c06cabbb9572129319",
+  "fixture_sha256": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+  "input_files_unchanged": true,
+  "source": {
+    "git_sha": null,
+    "files_sha256": {
+      "scripts/probe_motiondrive_v2_loss_gradients.py": "b76888eb25c32898f553d655969f52940a2582e17ea83f809c83d16deff27a59",
+      "scripts/motiondrive_v2_training.py": "08da8baad9c60598d92055de4301b2a94186439c9d2ec7c5322f9841927dd540",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d"
+    }
+  },
+  "load_report": {
+    "checkpoint_step": 1000,
+    "manifest": {
+      "schema_version": 1,
+      "git_sha": "fdd309d8ef23a6ea35131636551c51e51aa12b89",
+      "arguments": {
+        "data_root": "/NHNHOME/data/sukim/adcl",
+        "split_manifest": "data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "supervision_root": "data/etri/motiondrive_v2/train_tune_rawtime",
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0",
+        "phase": "joint",
+        "goal_on": 1,
+        "state_on": 1,
+        "gpu": 3,
+        "cpu": false,
+        "seed": 0,
+        "steps": 6000,
+        "batch": 16,
+        "eval_batch": 4,
+        "workers": 4,
+        "eval_every": 250,
+        "save_every": 1000,
+        "log_every": 10,
+        "lr": 0.0001,
+        "backbone_lr": 1e-05,
+        "weight_decay": 0.01,
+        "warmup": 200,
+        "grad_clip": 5.0,
+        "alpha_occ": 0.2,
+        "alpha_lane": 0.2,
+        "alpha_motion": 0.2,
+        "uncertainty": 1,
+        "precision": "bf16",
+        "bn_policy": "fixed",
+        "pretrained": null,
+        "init": "work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/best.pth",
+        "resume": null,
+        "arch": "resnet50",
+        "motion_input_mode": "low_feature",
+        "plan_output_scale": [
+          10.0,
+          5.0
+        ],
+        "train_stride": 1,
+        "eval_stride": 5,
+        "max_train_samples": 0,
+        "max_eval_samples": 0,
+        "train_scenes": null,
+        "eval_scenes": null,
+        "eval_split": "tune",
+        "eval_only": false,
+        "allow_unpretrained": false
+      },
+      "model_config": {
+        "channels": 128,
+        "backbone_arch": "resnet50",
+        "grid_size": [
+          64,
+          48
+        ],
+        "x_range": [
+          -10.0,
+          70.0
+        ],
+        "y_range": [
+          -32.0,
+          32.0
+        ],
+        "heights": [
+          0.0,
+          1.0,
+          2.0
+        ],
+        "n_history": 4,
+        "motion_grid": [
+          12,
+          16
+        ],
+        "correlation_channels": 32,
+        "correlation_radius": 2,
+        "scene_attention_channels": 32,
+        "scene_chunk_size": 512,
+        "planner_layers": 2,
+        "planner_heads": 4,
+        "goal_on": true,
+        "state_on": true,
+        "plan_output_scale": [
+          10.0,
+          5.0
+        ],
+        "motion_input_mode": "low_feature"
+      },
+      "loss_weights": {
+        "plan": 1.0,
+        "occupancy": 0.2,
+        "lane": 0.2,
+        "motion": 0.2,
+        "uncertainty": true
+      },
+      "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "load_report": {
+        "common_checkpoint_sha256": "a9d64f41e66a6549a98882c04fe471eb0830e064f23b06f032d8f7f3c202879c",
+        "plan_output_unit_reparameterization": {
+          "from": [
+            1.0,
+            1.0
+          ],
+          "to": [
+            10.0,
+            5.0
+          ],
+          "initial_function_preserved": true,
+          "note": "Inverse scale of final Linear rows; Adam parameterization changes, not target coordinates"
+        }
+      },
+      "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+      "numpy": "2.1.0",
+      "device": "cuda:3",
+      "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+      "gpu_name": "NVIDIA B200",
+      "pretrained_sha256": null,
+      "supervision_manifest_sha256": "073d9d2eb89956cac5c3d78b91622f5e397cfa116b1ed8f9a9f639ec3003a8d0",
+      "initial_model_state_sha256": "30324570835ad3895322c596c1666ee983b46dd8f331be7b8d9e972dc9de86c0",
+      "initial_parameter_count": 26409112,
+      "bn_training": {
+        "policy": "fixed",
+        "modules": 53,
+        "affine_and_backbone_weights_trainable": true,
+        "inference_policy": "eval running statistics for both arms"
+      },
+      "status": "running",
+      "pid": 1921381,
+      "data_counts": {
+        "train": 54810,
+        "eval": 1998
+      },
+      "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log"
+    },
+    "effective_model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": true,
+      "state_on": true,
+      "plan_output_scale": [
+        10.0,
+        5.0
+      ],
+      "motion_input_mode": "low_feature"
+    },
+    "load_state_dict_strict": true,
+    "actual_parameter_count": 26409112,
+    "actual_trainable_parameter_count": 26409112,
+    "configuration_overrides": {},
+    "checkpoint_trust": "trusted local pickle weights_only=False"
+  },
+  "fixture_metadata": {
+    "schema_version": 1,
+    "purpose": "P1\uc758 loss\ubcc4 gradient \uae30\uc5ec \uc9c4\ub2e8\uc6a9. \ud559\uc2b5\u00b7\ubaa8\ub378 \uc120\ud0dd\u00b7heldout \ud3c9\uac00 \uc5c6\uc74c",
+    "created_at_utc": "2026-09-07T08:00:14.762106+00:00",
+    "split": "train",
+    "train_only": true,
+    "selection": "rawtime train203\uc758 scene \uc774\ub984\uc21c \uccab4\uac1c \u00d7 frame30/180; \uacb0\uacfc\ub97c \ubcf4\uae30 \uc804\uc5d0 \uace0\uc815",
+    "n_train_scenes_in_manifest": 203,
+    "n_samples": 8,
+    "batch_size": 4,
+    "batch_slices": [
+      [
+        0,
+        4
+      ],
+      [
+        4,
+        8
+      ]
+    ],
+    "batch_note": "\ub450 \ubc30\uce58\uc758 gradient\ub97c \ubcc4\ub3c4 \ubcf4\uace0\ud558\uba70 \uc804\uccb48 \ub2e8\uc77c\ubc30\uce58 gradient\ub85c \uac04\uc8fc\ud558\uc9c0 \uc54a\uc74c",
+    "augment": false,
+    "seed": 0,
+    "samples": [
+      {
+        "scenario": "20260112-105434",
+        "frame": 30,
+        "row": 30,
+        "scen_idx": 0,
+        "session_id": "session_000_20260112-105434"
+      },
+      {
+        "scenario": "20260112-105434",
+        "frame": 180,
+        "row": 180,
+        "scen_idx": 0,
+        "session_id": "session_000_20260112-105434"
+      },
+      {
+        "scenario": "20260112-105504",
+        "frame": 30,
+        "row": 330,
+        "scen_idx": 1,
+        "session_id": "session_000_20260112-105434"
+      },
+      {
+        "scenario": "20260112-105504",
+        "frame": 180,
+        "row": 480,
+        "scen_idx": 1,
+        "session_id": "session_000_20260112-105434"
+      },
+      {
+        "scenario": "20260112-111049",
+        "frame": 30,
+        "row": 630,
+        "scen_idx": 2,
+        "session_id": "session_001_20260112-111049"
+      },
+      {
+        "scenario": "20260112-111049",
+        "frame": 180,
+        "row": 780,
+        "scen_idx": 2,
+        "session_id": "session_001_20260112-111049"
+      },
+      {
+        "scenario": "20260112-111149",
+        "frame": 30,
+        "row": 930,
+        "scen_idx": 3,
+        "session_id": "session_001_20260112-111049"
+      },
+      {
+        "scenario": "20260112-111149",
+        "frame": 180,
+        "row": 1080,
+        "scen_idx": 3,
+        "session_id": "session_001_20260112-111049"
+      }
+    ],
+    "model_input_keys": [
+      "images",
+      "history_images",
+      "lidar2img",
+      "history_transforms",
+      "time_offsets",
+      "goal_xy"
+    ],
+    "source_sha256": {
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/supervision_manifest.json": "073d9d2eb89956cac5c3d78b91622f5e397cfa116b1ed8f9a9f639ec3003a8d0",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/calibration.npz": "a6e29e9ecdf596560161b5c68806445e0d9139dded7c7bb403842af5a8a93cbb",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105434.npz": "ab508a9d992cca127789f6720a979148a17f866a30f59fc39887ab070fc7df39",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105434.json": "453fffe0a9b50bc720ffb8e68a21c3566b9584e898c7a1b8db2ff09c60af4aa3",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105504.npz": "b2a586d976612045b27f25f6107883dd292894a227761d14a07102694732785e",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105504.json": "c30dfb8f54967475979003fcb600862004742f363442fa4403b77a0dbaca3293",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111049.npz": "ea693061118976e12e925f03c0c86e8da4b2bc2428eb349b6f02d86e27bb6cb2",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111049.json": "3b15e908fd6f6e21a6962dd56f32c9548afa76602190882cfd158f06498bc01c",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111149.npz": "7de89b7806749d5b4f2ba4a3660726e6566fbf9084b248e64dbcbf0fc63710d8",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111149.json": "e5e0f34af19a788e21d37b6c153cdd7b9ecaefa3dcbdec20092d5a415ad9bb7b"
+    },
+    "image_source_sha256": {
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000030.jpg": "8bf70ff69af33477c89f69720f44aac4558298b6c51894aec8f279f1be08a069",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_right/00000030.jpg": "7a204aab2511613d4929ffa8ed208753b7acb2b89f57f4006b4055292ae67f06",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_left/00000030.jpg": "c71453f02851a6c7909d609a6f5f2908eee6917ef814791a44b3030fbf1ec162",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_wide/00000030.jpg": "8e24097e16f0b403bfc00556364d57db590b7c900aaef1e0898faa025d39f97e",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_left/00000030.jpg": "e6e3ed547ce9b90b2f704d054edcf29334554159af0a2684032b97ff6f4e1150",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_right/00000030.jpg": "e9485eafe078086e2ff4454ff46fcab6a2e5c4cd17b18189e8a17e8c01ccb99c",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000029.jpg": "2476cefee30c9118c95698cc48a69e5fb1dd39412ec74dc1d6e7fc0d22d90e7c",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000028.jpg": "1f7dbcee5ff3fbea48bcc26237b735419b2eb475ad51cb798b453effa1f16be7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000025.jpg": "deeefe90250dc0c01e4db27e1a71ccdbcf4a23f261056c92b73ec326ccd3219c",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000020.jpg": "162cae9564a98873c31283a428cb276fbc855cb431b9a54ce9ad2261412f0786",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000180.jpg": "718699091d6dfdcfe9042be138664c3b856ad355918176a4cefc02485ea66d02",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_right/00000180.jpg": "eb35a400fc9c48594f2ac4a84e8bcf61129ed5fba947339819146e9a993814af",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_left/00000180.jpg": "99ba895476af11861ba0817e1ba0df280281420672605e6f5d1c927417750adf",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_wide/00000180.jpg": "34a4f7263b109aa284b490906ba5dc918cb01605dad0362d02c6b144a7b4fc89",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_left/00000180.jpg": "1e286c51737df98f5de58edcf176b9c45c25a44739bd53fd6e30d1ab095f1bf7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_right/00000180.jpg": "f25c775007df6b1a6d167ae402f7c8d5a075f7deaee6523898d212fccce94c15",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000179.jpg": "d72e1a2dd8746365c124ee5cc5a7debecf8d4348e80415ee50a6dbd59d684ca9",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000178.jpg": "480e262d15ccdec452257ec3d84a2059c512a15bc5058f7745cccf3c13c02d17",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000175.jpg": "8d5a0cbe9e50a977e3a1c1870eca9b98c20d222466f169c222c64dc114768953",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000170.jpg": "3da2ad38b75f247b1536d904337cf901e85d1bfee01d9659ab51348f6326a95f",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000030.jpg": "8ee70fc77685ab5ea8a1579cb2f60fd2b59152cace018ec22884f5197cd8ac03",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_right/00000030.jpg": "2317b98c09394209121c4daf682c83e98a05ebcd963b182faf606b94b8241c6b",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_left/00000030.jpg": "f5eeeb042b5690e174a821573c5fb1acca41bf8f8e479e50d0c4223151ffceb9",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_wide/00000030.jpg": "3d2611b87c19c69e700267a41b158db8059c0c68f317b5c837fc367bec0ce7b6",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_left/00000030.jpg": "83a44b711f7ca851d6ed4c8b58d488bc0b5fdfdb3b287387914b684920346126",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_right/00000030.jpg": "52dfeb597d2cb1c696d40517db3084ec4c0bbc4c78c53d3f1d2ae855393cdbcf",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000029.jpg": "e5c1377eeb23d3ef874dd4c499fef92e2f45d73092b406403aa133eea63f015a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000028.jpg": "0cf79bcda09877a96983ba95514e800fa1f3307eccc473f8036021baed68bf77",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000025.jpg": "5dd1cf9bd9c76180a6136c6f66235df90a019933c57ed2817d69fe9b8e24a839",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000020.jpg": "821784c70aa2a08c619ec5e847e0f7036ebf61dcec127f86e5495e72c34dd7f8",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000180.jpg": "9d241ac7ce97364175870b0aaac8006e86bd1f70c6d63fa842f37993720ee03a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_right/00000180.jpg": "96152635c63ad92edb58ec06568bb9da573bb7417ad3f5aba944bf5be0d2af83",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_left/00000180.jpg": "20c960f7605dad25db68083a8ccbcb26e6cd8a3d9b9899fead42129f004224e6",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_wide/00000180.jpg": "e8dc13184443e6aa7c24c179b917140d95ef77cd1ce66f7774c3eca2f752c4bb",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_left/00000180.jpg": "1e92ee079745d4ab770b53d730b64a3a8524f6d35b95f4b64c62e79eb185e797",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_right/00000180.jpg": "0aa084c5fcd3025d6ecc5886ddc4d4454e7a4ef6a0881396d93bbd8e1b4e43cb",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000179.jpg": "7a354d70c32949d30d6888dfce51f7b2a9c1a406780a99c2746d80cf2a3dfac7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000178.jpg": "c6bdf048012c5e472ba498235604f15f46b21935aaa0567902a0d4a85f690424",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000175.jpg": "f53a32df4a94bde3238f7734a455b1367058b8e1e34dc5258a7aba904f926fb7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000170.jpg": "1c904360d1b0799bef0fcd2317e82118996c7b0dfedf05d1ca46de4ceac1709f",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000030.jpg": "7ed2125c631e2ff24ddbdc2a7343e9b2fc5161d416c9538270964dcaae5c0d1c",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_right/00000030.jpg": "81a0e9e1676a9d6febda35ae2945cfac943d913bfdd323bc27320a329bf1df92",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_left/00000030.jpg": "9ae2d7ad38f3910f79a90957dc698aa319db6e0006a04745425bd881de29becf",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_wide/00000030.jpg": "eea9f0a21e346f7a66a2b54bc14eaa90e8eb6119d060e8e8e1b74ef774cac333",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_left/00000030.jpg": "1e998a0abd50954c92493142f879735da02f8dd2ae792bab98d0bd6422ceaa48",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_right/00000030.jpg": "4d75a3389ad3654d5a50885c7acf1a3ceb1861d298cc94201df0ff49fb56b424",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000029.jpg": "3d6e897ec4bf1da4dd617081db940f74821ce5a888fb385955d9c1488b49b712",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000028.jpg": "48d07626704a5ee73a670854ecb50f70118ba471c14bddd31d3577153f35d531",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000025.jpg": "5110ecd5c413cec32190e654c24f0c78aaeb2a04dbc731ccfc9637cd70f75a7f",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000020.jpg": "d6dcc28436b55cbb7a1429baba502f84bc914dda024b396eed2afef58088c921",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000180.jpg": "a366fb6a5cbc8f6ce921ac1ac6c5374329e3301555b91d9d36ca5a3a87efe4ba",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_right/00000180.jpg": "02e55b39d1361be05fc2e627273c279234e4977e009afe3240fb45ea2b1a5ddf",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_left/00000180.jpg": "4dca91a39dd2e2228fc20da4828ac196268024805ec8f578eea52e4c9c8876f1",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_wide/00000180.jpg": "82357d3c57f748937c6b9c4f1d64563282af027e615eacbbe726fd7d1755571f",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_left/00000180.jpg": "25424198cff5fbc0ecca67bfc0d8ee60f2426c4ebdaa6a2aea4398d61c2f1535",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_right/00000180.jpg": "09f0253de02351eca587440e559a4081ae14e5d68b24baa1d26e10901132f2a0",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000179.jpg": "0a4324e9d2e5bc21904e95ab9e8b196a486c4260713b7fee77828861d757f082",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000178.jpg": "de530340db4b51e7ef5875ed2bf195e1e60f4e1105bc664b9bbbaaea8b326f95",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000175.jpg": "eaac20e01ccee08f17fe5a1b87ef72cd002d728353f2a4f6d1701cf1394d87a3",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000170.jpg": "244cfba81458cd82855a290e95e9de43a87ce36d385a4a68a9c468cca57d9b7a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000030.jpg": "21467c88d44d702865f992b19c5fb6050d3414e57a5186acc036dd9094ddd15a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_right/00000030.jpg": "a255f9a87ec446762fc5ed281e9a2baf32b54d7063e93d06271c305d76e40592",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_left/00000030.jpg": "01e4c527669740f73cce2184c7c124997014ee95d0e2364f77a9ff1e0694870e",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_wide/00000030.jpg": "975be776daf014231c1a007e787d35864a4d7838285e6ef49aa2816305e85e5d",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_left/00000030.jpg": "f9da0629a80d8ab333bd4152990e92f59e40ee2b85b346cd3dfbff65b9083fc7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_right/00000030.jpg": "97eeeaf96a75b1e2a4497c60b471fa0eb360dfcb9e11a1ca16a9de3c1b4944f7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000029.jpg": "e0cc1a87fe881c68add94a3ce66a201e0ebe50de0b6d7fef331b32e55db56744",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000028.jpg": "8d19e3b9d960a57ac695214f2d912301ec948dc56f0d94950da134c24ad77fbb",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000025.jpg": "4bfcdea00ecc4cc5a0a7c76868fcd5aa091212913b71b8b0cb1952bf98e119e3",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000020.jpg": "dcfb8b82ecfbf07c6d35392ad1761283fff8198e9ec8e8904e61cd193162ac16",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000180.jpg": "af690bbf4b737ebb3559862d6fc4451bbf7e4f465537bff3d787a11f7f5f9921",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_right/00000180.jpg": "26bb90f12cf94d61e30434152e6485c5213b31e28d015030af7493c764c086b5",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_left/00000180.jpg": "00c842e5145c5ab2fcfd4159cf5ecc3b437664180b8c9371ae435b6e2532b83e",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_wide/00000180.jpg": "c192945c49741b62a0c41fefa7e0b0829beac65bccf001194a94e0ab9b5b6014",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_left/00000180.jpg": "94fc3f7b311870a54202e6bda2f7ec88be205c076a3263d4fcd639dc47563e57",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_right/00000180.jpg": "11ae67a323a6473799b32f9ec6098060922c736d30f9a399afc48d271a0f2662",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000179.jpg": "c3870c5c376f2394b851971b9bcb9f63109f9520fe3607ca4945d6038fca116a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000178.jpg": "18b712b0382337499fdd723b9f747acbbabcb619039de641311b9bf112a62313",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000175.jpg": "8d69f757cf870c134e6a0ac4ee1f781b85c50dd55f71f4da7eaae6d8dbd9c716",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000170.jpg": "6b3e695137522bd0f659c078b2879eb08d989e51965da973a0e33410f9d55215"
+    },
+    "split_manifest_path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache_path": "/tmp/pm97/data/etri/ego_cache.npz",
+    "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime",
+    "supervision_manifest_sha256": "073d9d2eb89956cac5c3d78b91622f5e397cfa116b1ed8f9a9f639ec3003a8d0",
+    "image_cache_root": "/NHNHOME/data/sukim/adcl/cache/etri_768",
+    "camera_order": [
+      "camera_front",
+      "camera_front_right",
+      "camera_front_left",
+      "camera_rear_wide",
+      "camera_rear_left",
+      "camera_rear_right"
+    ],
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "image_normalization": {
+      "mean": [
+        0.48500001430511475,
+        0.4560000002384186,
+        0.4059999883174896
+      ],
+      "std": [
+        0.2290000021457672,
+        0.2240000069141388,
+        0.22499999403953552
+      ]
+    },
+    "history_resize": "dataset\uc758 PIL BILINEAR 768\u00d7432\u2192384\u00d7216 \uc6d0\ucd9c\ub825",
+    "dataset_access": "\ud45c\ubcf8\u00b7\uc601\uc0c1\u00b7scene supervision\uc740 \uc120\ud0dd\ud55c train4 scene\ub9cc \uc0ac\uc6a9. \ud45c\uc900 loader\uc758 \uacf5\uc720 ego_cache\uc5d0\uc11c \uc2e4\uc81c \ud589/\uacc4\ubcf4\ub97c \ud655\uc778\ud568",
+    "code_sha256": {
+      "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_gradient_fixture.py": "46adea0cc32b7af35f6b2cb470f1bf9b7fdfb7d4c7833e468216a5934e908573",
+      "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py": "8d6a7360cdbf09c29a68bce2fcc3ddd4d124672b1c967651e22be0addfcc4054"
+    },
+    "tensor_schema": {
+      "images": {
+        "shape": [
+          8,
+          6,
+          3,
+          432,
+          768
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "history_images": {
+        "shape": [
+          8,
+          4,
+          3,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "lidar2img": {
+        "shape": [
+          8,
+          6,
+          4,
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "goal_xy": {
+        "shape": [
+          8,
+          2
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "gt_plan": {
+        "shape": [
+          8,
+          6,
+          2
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "plan_valid": {
+        "shape": [
+          8,
+          6
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "row": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.int64",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "scen_idx": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.int64",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "frame": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.int64",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "proxy_weight": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "history_transforms": {
+        "shape": [
+          8,
+          4,
+          4,
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "time_offsets": {
+        "shape": [
+          8,
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "history_target": {
+        "shape": [
+          8,
+          4,
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "history_valid": {
+        "shape": [
+          8,
+          4,
+          4
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "state_target": {
+        "shape": [
+          8,
+          6
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "state_valid": {
+        "shape": [
+          8,
+          6
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "occ_target": {
+        "shape": [
+          8,
+          1,
+          64,
+          48
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "lane_target": {
+        "shape": [
+          8,
+          1,
+          64,
+          48
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "occ_valid": {
+        "shape": [
+          8,
+          1,
+          64,
+          48
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "lane_valid": {
+        "shape": [
+          8,
+          1,
+          64,
+          48
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      }
+    },
+    "valid_counts": {
+      "plan_valid": {
+        "valid": 48,
+        "total": 48
+      },
+      "history_valid": {
+        "valid": 128,
+        "total": 128
+      },
+      "state_valid": {
+        "valid": 48,
+        "total": 48
+      },
+      "occ_valid": {
+        "valid": 6102,
+        "total": 24576
+      },
+      "lane_valid": {
+        "valid": 8855,
+        "total": 24576
+      }
+    },
+    "gpu_initialized": false
+  },
+  "device": "cuda:0",
+  "batch_size": 4,
+  "fixture_samples": 8,
+  "probed_samples": 8,
+  "batches": [
+    {
+      "batch_size": 4,
+      "forward_count": 1,
+      "model_mode": "eval; all BN running statistics fixed",
+      "bn_training_modules_during_probe": 0,
+      "backbone_precision": "bf16 autocast",
+      "loss_precision": "float32",
+      "perception_head_precision": "Existing graph preserved: raster conv autocast, FP32 returned logits; no head precision override",
+      "coordinate_state_head_input_dtypes": {
+        "motion_encoder.history_head": [
+          "torch.float32"
+        ],
+        "motion_encoder.state_head": [
+          "torch.float32"
+        ],
+        "motion_encoder.history_uncertainty_head": [
+          "torch.float32"
+        ],
+        "motion_encoder.state_uncertainty_head": [
+          "torch.float32"
+        ],
+        "planner.xy_head": [
+          "torch.float32"
+        ]
+      },
+      "loss_values": {
+        "plan": 0.9011979103088379,
+        "occ": 0.2749217450618744,
+        "lane": 0.4132954478263855,
+        "history": -2.815830945968628,
+        "state": -2.0065860748291016,
+        "stop": 0.028469324111938477,
+        "motion": -4.816723346710205,
+        "total": 0.07549667358398438
+      },
+      "coefficients_in_total": {
+        "plan": 1.0,
+        "occ": 0.2,
+        "lane": 0.2,
+        "history": 0.2,
+        "state": 0.2,
+        "stop": 0.04000000000000001,
+        "motion": 0.2,
+        "total": 1.0
+      },
+      "gradient_norms": {
+        "plan": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 77.70680111744205,
+            "weighted_contribution_l2_norm": 77.70680111744205
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 24.41220963127102,
+            "weighted_contribution_l2_norm": 24.41220963127102
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 31,
+            "connected_numel": 198848,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 38.917617911027605,
+            "weighted_contribution_l2_norm": 38.917617911027605
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 5.613194641202824,
+            "weighted_contribution_l2_norm": 5.613194641202824
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0075552337191774335,
+            "weighted_contribution_l2_norm": 0.0075552337191774335
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.06505370192630706,
+            "weighted_contribution_l2_norm": 0.06505370192630706
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 2,
+            "connected_numel": 896,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 40.61981323269877,
+            "weighted_contribution_l2_norm": 40.61981323269877
+          },
+          "planner.scene_position": {
+            "connected_tensors": 1,
+            "connected_numel": 256,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 1.0906465852342722,
+            "weighted_contribution_l2_norm": 1.0906465852342722
+          },
+          "planner.state_projection": {
+            "connected_tensors": 4,
+            "connected_numel": 19456,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.02514579609817136,
+            "weighted_contribution_l2_norm": 0.02514579609817136
+          },
+          "planner.decoder": {
+            "connected_tensors": 36,
+            "connected_numel": 529152,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 43.01083636872424,
+            "weighted_contribution_l2_norm": 43.01083636872424
+          },
+          "planner.xy_head": {
+            "connected_tensors": 6,
+            "connected_numel": 17026,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 67.95701189929741,
+            "weighted_contribution_l2_norm": 67.95701189929741
+          },
+          "all_parameters": {
+            "connected_tensors": 273,
+            "connected_numel": 25866765,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 127.67005532529531,
+            "weighted_contribution_l2_norm": 127.67005532529531
+          }
+        },
+        "occ": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 4.9655947143923145,
+            "weighted_contribution_l2_norm": 0.9931189428784629
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 3.0265018984875223,
+            "weighted_contribution_l2_norm": 0.6053003796975045
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 31,
+            "connected_numel": 198848,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 2.4467308820781986,
+            "weighted_contribution_l2_norm": 0.4893461764156397
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 4,
+            "connected_numel": 73857,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.3718331479907495,
+            "weighted_contribution_l2_norm": 0.07436662959814991
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 199,
+            "connected_numel": 24534401,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 6.3199364323076335,
+            "weighted_contribution_l2_norm": 1.2639872864615267
+          }
+        },
+        "lane": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 2.635726349632538,
+            "weighted_contribution_l2_norm": 0.5271452699265077
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 1.396121432116702,
+            "weighted_contribution_l2_norm": 0.2792242864233404
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 31,
+            "connected_numel": 198848,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 1.2371973455268068,
+            "weighted_contribution_l2_norm": 0.24743946910536138
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 4,
+            "connected_numel": 73857,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.4474417876217595,
+            "weighted_contribution_l2_norm": 0.08948835752435191
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 199,
+            "connected_numel": 24534401,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 3.2599186904663107,
+            "weighted_contribution_l2_norm": 0.6519837380932622
+          }
+        },
+        "history": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 16.52000436399853,
+            "weighted_contribution_l2_norm": 3.3040008727997066
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 1.7712250923813107,
+            "weighted_contribution_l2_norm": 0.35424501847626216
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 15,
+            "connected_numel": 378624,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 2.4510852489443127,
+            "weighted_contribution_l2_norm": 0.49021704978886255
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 6.884459416226352,
+            "weighted_contribution_l2_norm": 1.3768918832452703
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.9585382231158672,
+            "weighted_contribution_l2_norm": 0.19170764462317347
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 187,
+            "connected_numel": 25034824,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 18.17608809372484,
+            "weighted_contribution_l2_norm": 3.635217618744968
+          }
+        },
+        "state": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 53.88279860985204,
+            "weighted_contribution_l2_norm": 10.776559721970408
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 4.631615080928701,
+            "weighted_contribution_l2_norm": 0.9263230161857403
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 8.149036389198933,
+            "weighted_contribution_l2_norm": 1.6298072778397867
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 25.259669462275944,
+            "weighted_contribution_l2_norm": 5.051933892455189
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197381,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 6.574456391235856,
+            "weighted_contribution_l2_norm": 1.3148912782471713
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 193,
+            "connected_numel": 25101260,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 60.60106448358762,
+            "weighted_contribution_l2_norm": 12.120212896717526
+          }
+        },
+        "stop": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 2.6731830535667864,
+            "weighted_contribution_l2_norm": 0.10692732214267148
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 0.2543224736203271,
+            "weighted_contribution_l2_norm": 0.010172898944813087
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 0.33567318028886745,
+            "weighted_contribution_l2_norm": 0.0134269272115547
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.5732454476959433,
+            "weighted_contribution_l2_norm": 0.022929817907837737
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 189,
+            "connected_numel": 24903879,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 2.7662021592310233,
+            "weighted_contribution_l2_norm": 0.11064808636924095
+          }
+        },
+        "motion": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 68.25347165163004,
+            "weighted_contribution_l2_norm": 13.650694330326008
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 6.123317696907246,
+            "weighted_contribution_l2_norm": 1.2246635393814493
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 9.320994633738724,
+            "weighted_contribution_l2_norm": 1.864198926747745
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 6.884459416226352,
+            "weighted_contribution_l2_norm": 1.3768918832452703
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.9585382231158672,
+            "weighted_contribution_l2_norm": 0.19170764462317347
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 25.267999442731725,
+            "weighted_contribution_l2_norm": 5.053599888546345
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197381,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 6.574456391235856,
+            "weighted_contribution_l2_norm": 1.3148912782471713
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 201,
+            "connected_numel": 25495764,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 74.24905523127082,
+            "weighted_contribution_l2_norm": 14.849811046254164
+          }
+        },
+        "total": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 76.75458741311401,
+            "weighted_contribution_l2_norm": 76.75458741311401
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 24.54493177792842,
+            "weighted_contribution_l2_norm": 24.54493177792842
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 31,
+            "connected_numel": 198848,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 38.97562375905337,
+            "weighted_contribution_l2_norm": 38.97562375905337
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 4,
+            "connected_numel": 73857,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.07431383237671862,
+            "weighted_contribution_l2_norm": 0.07431383237671862
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 4,
+            "connected_numel": 73857,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.08952787990837802,
+            "weighted_contribution_l2_norm": 0.08952787990837802
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 5.851264152325055,
+            "weighted_contribution_l2_norm": 5.851264152325055
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 1.3724567113646864,
+            "weighted_contribution_l2_norm": 1.3724567113646864
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.1917076411949964,
+            "weighted_contribution_l2_norm": 0.1917076411949964
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 5.051838214483959,
+            "weighted_contribution_l2_norm": 5.051838214483959
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197381,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 1.3148913377335019,
+            "weighted_contribution_l2_norm": 1.3148913377335019
+          },
+          "planner.other": {
+            "connected_tensors": 2,
+            "connected_numel": 896,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 40.61981393269835,
+            "weighted_contribution_l2_norm": 40.61981393269835
+          },
+          "planner.scene_position": {
+            "connected_tensors": 1,
+            "connected_numel": 256,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 1.0906466054332997,
+            "weighted_contribution_l2_norm": 1.0906466054332997
+          },
+          "planner.state_projection": {
+            "connected_tensors": 4,
+            "connected_numel": 19456,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.02514579625957155,
+            "weighted_contribution_l2_norm": 0.02514579625957155
+          },
+          "planner.decoder": {
+            "connected_tensors": 36,
+            "connected_numel": 529152,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 43.01083658308667,
+            "weighted_contribution_l2_norm": 43.01083658308667
+          },
+          "planner.xy_head": {
+            "connected_tensors": 6,
+            "connected_numel": 17026,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 67.95701189929741,
+            "weighted_contribution_l2_norm": 67.95701189929741
+          },
+          "all_parameters": {
+            "connected_tensors": 289,
+            "connected_numel": 26409112,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 127.26149376873182,
+            "weighted_contribution_l2_norm": 127.26149376873182
+          }
+        }
+      },
+      "shared_gradient_pairs": {
+        "plan__vs__occ": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 77.70680111744205,
+            "raw_b_norm": 4.9655947143923145,
+            "raw_dot": 19.198445966987634,
+            "raw_cosine": 0.049754890477908625,
+            "weighted_a_norm": 77.70680111744205,
+            "weighted_b_norm": 0.9931189428784629,
+            "weighted_dot": 3.8396891933975272,
+            "weighted_cosine": 0.049754890477908625
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 24.41220963127102,
+            "raw_b_norm": 3.0265018984875223,
+            "raw_dot": 10.293461967929922,
+            "raw_cosine": 0.139319986245477,
+            "weighted_a_norm": 24.41220963127102,
+            "weighted_b_norm": 0.6053003796975045,
+            "weighted_dot": 2.0586923935859844,
+            "weighted_cosine": 0.139319986245477
+          },
+          "scene_encoder.shared": {
+            "connected_parameter_tensors": 31,
+            "connected_parameter_numel": 198848,
+            "raw_a_norm": 38.917617911027605,
+            "raw_b_norm": 2.4467308820781986,
+            "raw_dot": 8.635619337972294,
+            "raw_cosine": 0.0906903413854605,
+            "weighted_a_norm": 38.917617911027605,
+            "weighted_b_norm": 0.4893461764156397,
+            "weighted_dot": 1.727123867594459,
+            "weighted_cosine": 0.0906903413854605
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 195,
+            "connected_parameter_numel": 24460544,
+            "raw_a_norm": 90.271168724325,
+            "raw_b_norm": 6.308988557484046,
+            "raw_dot": 38.12752727288985,
+            "raw_cosine": 0.06694680192735578,
+            "weighted_a_norm": 90.271168724325,
+            "weighted_b_norm": 1.2617977114968093,
+            "weighted_dot": 7.62550545457797,
+            "weighted_cosine": 0.06694680192735578
+          }
+        },
+        "plan__vs__lane": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 77.70680111744205,
+            "raw_b_norm": 2.635726349632538,
+            "raw_dot": 116.10119761098491,
+            "raw_cosine": 0.5668620071325974,
+            "weighted_a_norm": 77.70680111744205,
+            "weighted_b_norm": 0.5271452699265077,
+            "weighted_dot": 23.220239522196984,
+            "weighted_cosine": 0.5668620071325974
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 24.41220963127102,
+            "raw_b_norm": 1.396121432116702,
+            "raw_dot": 4.510647394713217,
+            "raw_cosine": 0.13234532175365904,
+            "weighted_a_norm": 24.41220963127102,
+            "weighted_b_norm": 0.2792242864233404,
+            "weighted_dot": 0.9021294789426435,
+            "weighted_cosine": 0.13234532175365904
+          },
+          "scene_encoder.shared": {
+            "connected_parameter_tensors": 31,
+            "connected_parameter_numel": 198848,
+            "raw_a_norm": 38.917617911027605,
+            "raw_b_norm": 1.2371973455268068,
+            "raw_dot": -0.1010630740033349,
+            "raw_cosine": -0.002098975041358754,
+            "weighted_a_norm": 38.917617911027605,
+            "weighted_b_norm": 0.24743946910536138,
+            "weighted_dot": -0.02021261480066698,
+            "weighted_cosine": -0.002098975041358754
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 195,
+            "connected_parameter_numel": 24460544,
+            "raw_a_norm": 90.271168724325,
+            "raw_b_norm": 3.2290657650691217,
+            "raw_dot": 120.5107819316948,
+            "raw_cosine": 0.41342805943793637,
+            "weighted_a_norm": 90.271168724325,
+            "weighted_b_norm": 0.6458131530138244,
+            "weighted_dot": 24.10215638633896,
+            "weighted_cosine": 0.41342805943793637
+          }
+        },
+        "plan__vs__history": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 77.70680111744205,
+            "raw_b_norm": 16.52000436399853,
+            "raw_dot": -586.7551445372741,
+            "raw_cosine": -0.4570752623808052,
+            "weighted_a_norm": 77.70680111744205,
+            "weighted_b_norm": 3.3040008727997066,
+            "weighted_dot": -117.35102890745482,
+            "weighted_cosine": -0.4570752623808052
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 24.41220963127102,
+            "raw_b_norm": 1.7712250923813107,
+            "raw_dot": -0.36496602079953533,
+            "raw_cosine": -0.008440566303496303,
+            "weighted_a_norm": 24.41220963127102,
+            "weighted_b_norm": 0.35424501847626216,
+            "weighted_dot": -0.07299320415990707,
+            "weighted_cosine": -0.008440566303496303
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 15,
+            "connected_parameter_numel": 378624,
+            "raw_a_norm": 5.358375649967038,
+            "raw_b_norm": 2.4510852489443127,
+            "raw_dot": -0.9251530031357751,
+            "raw_cosine": -0.07044042862833746,
+            "weighted_a_norm": 5.358375649967038,
+            "weighted_b_norm": 0.49021704978886255,
+            "weighted_dot": -0.18503060062715504,
+            "weighted_cosine": -0.07044042862833746
+          },
+          "motion_encoder.history_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197252,
+            "raw_a_norm": 0.0075552337191774335,
+            "raw_b_norm": 6.884459416226352,
+            "raw_dot": -0.030627221341180334,
+            "raw_cosine": -0.5888298926708758,
+            "weighted_a_norm": 0.0075552337191774335,
+            "weighted_b_norm": 1.3768918832452703,
+            "weighted_dot": -0.006125444268236067,
+            "weighted_cosine": -0.5888298926708758
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 183,
+            "connected_parameter_numel": 24837572,
+            "raw_a_norm": 81.62729424447762,
+            "raw_b_norm": 18.150795653790823,
+            "raw_dot": -588.0758907825506,
+            "raw_cosine": -0.396919382276748,
+            "weighted_a_norm": 81.62729424447762,
+            "weighted_b_norm": 3.6301591307581647,
+            "weighted_dot": -117.61517815651013,
+            "weighted_cosine": -0.396919382276748
+          }
+        },
+        "plan__vs__state": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 77.70680111744205,
+            "raw_b_norm": 53.88279860985204,
+            "raw_dot": -408.0972563379033,
+            "raw_cosine": -0.09746630442372899,
+            "weighted_a_norm": 77.70680111744205,
+            "weighted_b_norm": 10.776559721970408,
+            "weighted_dot": -81.61945126758066,
+            "weighted_cosine": -0.09746630442372899
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 24.41220963127102,
+            "raw_b_norm": 4.631615080928701,
+            "raw_dot": -3.43347272304816,
+            "raw_cosine": -0.030366451955675725,
+            "weighted_a_norm": 24.41220963127102,
+            "weighted_b_norm": 0.9263230161857403,
+            "weighted_dot": -0.6866945446096321,
+            "weighted_cosine": -0.030366451955675725
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 21,
+            "connected_parameter_numel": 444673,
+            "raw_a_norm": 5.613194641202824,
+            "raw_b_norm": 8.149036389198933,
+            "raw_dot": -1.0477983865717602,
+            "raw_cosine": -0.022906638723193335,
+            "weighted_a_norm": 5.613194641202824,
+            "weighted_b_norm": 1.6298072778397867,
+            "weighted_dot": -0.20955967731435204,
+            "weighted_cosine": -0.022906638723193335
+          },
+          "motion_encoder.state_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197510,
+            "raw_a_norm": 0.06505370192630706,
+            "raw_b_norm": 25.259669462275944,
+            "raw_dot": -0.06117289356506552,
+            "raw_cosine": -0.03722711192792805,
+            "weighted_a_norm": 0.06505370192630706,
+            "weighted_b_norm": 5.051933892455189,
+            "weighted_dot": -0.012234578713013105,
+            "weighted_cosine": -0.03722711192792805
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 189,
+            "connected_parameter_numel": 24903879,
+            "raw_a_norm": 81.64444319762967,
+            "raw_b_norm": 60.24338585856279,
+            "raw_dot": -412.63970034108826,
+            "raw_cosine": -0.08389479271054538,
+            "weighted_a_norm": 81.64444319762967,
+            "weighted_b_norm": 12.048677171712558,
+            "weighted_dot": -82.52794006821766,
+            "weighted_cosine": -0.08389479271054538
+          }
+        },
+        "plan__vs__stop": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 77.70680111744205,
+            "raw_b_norm": 2.6731830535667864,
+            "raw_dot": 126.86396446118889,
+            "raw_cosine": 0.6107318206710349,
+            "weighted_a_norm": 77.70680111744205,
+            "weighted_b_norm": 0.10692732214267148,
+            "weighted_dot": 5.074558578447556,
+            "weighted_cosine": 0.6107318206710349
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 24.41220963127102,
+            "raw_b_norm": 0.2543224736203271,
+            "raw_dot": 0.6054118211997546,
+            "raw_cosine": 0.09751222520002238,
+            "weighted_a_norm": 24.41220963127102,
+            "weighted_b_norm": 0.010172898944813087,
+            "weighted_dot": 0.024216472847990188,
+            "weighted_cosine": 0.09751222520002238
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 21,
+            "connected_parameter_numel": 444673,
+            "raw_a_norm": 5.613194641202824,
+            "raw_b_norm": 0.33567318028886745,
+            "raw_dot": 0.5482387292579839,
+            "raw_cosine": 0.29096648458457286,
+            "weighted_a_norm": 5.613194641202824,
+            "weighted_b_norm": 0.0134269272115547,
+            "weighted_dot": 0.02192954917031936,
+            "weighted_cosine": 0.29096648458457286
+          },
+          "motion_encoder.state_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197510,
+            "raw_a_norm": 0.06505370192630706,
+            "raw_b_norm": 0.5732454476959433,
+            "raw_dot": 0.030512498268375637,
+            "raw_cosine": 0.8182106683127385,
+            "weighted_a_norm": 0.06505370192630706,
+            "weighted_b_norm": 0.022929817907837737,
+            "weighted_dot": 0.0012204999307350256,
+            "weighted_cosine": 0.8182106683127385
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 189,
+            "connected_parameter_numel": 24903879,
+            "raw_a_norm": 81.64444319762967,
+            "raw_b_norm": 2.7662021592310233,
+            "raw_dot": 128.048127509915,
+            "raw_cosine": 0.5669734004755977,
+            "weighted_a_norm": 81.64444319762967,
+            "weighted_b_norm": 0.11064808636924095,
+            "weighted_dot": 5.1219251003966,
+            "weighted_cosine": 0.5669734004755977
+          }
+        },
+        "plan__vs__motion": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 77.70680111744205,
+            "raw_b_norm": 68.25347165163004,
+            "raw_dot": -975.7599453602595,
+            "raw_cosine": -0.1839751683801324,
+            "weighted_a_norm": 77.70680111744205,
+            "weighted_b_norm": 13.650694330326008,
+            "weighted_dot": -195.15198907205192,
+            "weighted_cosine": -0.1839751683801324
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 24.41220963127102,
+            "raw_b_norm": 6.123317696907246,
+            "raw_dot": -3.6809580111942983,
+            "raw_cosine": -0.02462447501318832,
+            "weighted_a_norm": 24.41220963127102,
+            "weighted_b_norm": 1.2246635393814493,
+            "weighted_dot": -0.7361916022388597,
+            "weighted_cosine": -0.02462447501318832
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 21,
+            "connected_parameter_numel": 444673,
+            "raw_a_norm": 5.613194641202824,
+            "raw_b_norm": 9.320994633738724,
+            "raw_dot": -1.8639677186683972,
+            "raw_cosine": -0.03562591495500331,
+            "weighted_a_norm": 5.613194641202824,
+            "weighted_b_norm": 1.864198926747745,
+            "weighted_dot": -0.37279354373367946,
+            "weighted_cosine": -0.03562591495500331
+          },
+          "motion_encoder.history_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197252,
+            "raw_a_norm": 0.0075552337191774335,
+            "raw_b_norm": 6.884459416226352,
+            "raw_dot": -0.030627221341180334,
+            "raw_cosine": -0.5888298926708758,
+            "weighted_a_norm": 0.0075552337191774335,
+            "weighted_b_norm": 1.3768918832452703,
+            "weighted_dot": -0.006125444268236067,
+            "weighted_cosine": -0.5888298926708758
+          },
+          "motion_encoder.state_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197510,
+            "raw_a_norm": 0.06505370192630706,
+            "raw_b_norm": 25.267999442731725,
+            "raw_dot": -0.05507037248565902,
+            "raw_cosine": -0.03350233985580845,
+            "weighted_a_norm": 0.06505370192630706,
+            "weighted_b_norm": 5.053599888546345,
+            "weighted_dot": -0.011014074497131805,
+            "weighted_cosine": -0.03350233985580845
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 193,
+            "connected_parameter_numel": 25101131,
+            "raw_a_norm": 81.64444354720371,
+            "raw_b_norm": 73.95119965471059,
+            "raw_dot": -981.3905686839491,
+            "raw_cosine": -0.1625436556716548,
+            "weighted_a_norm": 81.64444354720371,
+            "weighted_b_norm": 14.79023993094212,
+            "weighted_dot": -196.27811373678983,
+            "weighted_cosine": -0.1625436556716548
+          }
+        },
+        "plan__vs__total": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 77.70680111744205,
+            "raw_b_norm": 76.75458741311401,
+            "raw_dot": 5871.794726832151,
+            "raw_cosine": 0.9844813469277313,
+            "weighted_a_norm": 77.70680111744205,
+            "weighted_b_norm": 76.75458741311401,
+            "weighted_dot": 5871.794726832151,
+            "weighted_cosine": 0.9844813469277313
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 24.41220963127102,
+            "raw_b_norm": 24.54493177792842,
+            "raw_dot": 598.161254916391,
+            "raw_cosine": 0.9982730775953204,
+            "weighted_a_norm": 24.41220963127102,
+            "weighted_b_norm": 24.54493177792842,
+            "weighted_dot": 598.161254916391,
+            "weighted_cosine": 0.9982730775953204
+          },
+          "scene_encoder.shared": {
+            "connected_parameter_tensors": 31,
+            "connected_parameter_numel": 198848,
+            "raw_a_norm": 38.917617911027605,
+            "raw_b_norm": 38.97562375905337,
+            "raw_dot": 1516.6796088213182,
+            "raw_cosine": 0.9998952924227106,
+            "weighted_a_norm": 38.917617911027605,
+            "weighted_b_norm": 38.97562375905337,
+            "weighted_dot": 1516.6796088213182,
+            "weighted_cosine": 0.9998952924227106
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 21,
+            "connected_parameter_numel": 444673,
+            "raw_a_norm": 5.613194641202824,
+            "raw_b_norm": 5.851264152325055,
+            "raw_dot": 31.134901596878166,
+            "raw_cosine": 0.9479549331379593,
+            "weighted_a_norm": 5.613194641202824,
+            "weighted_b_norm": 5.851264152325055,
+            "weighted_dot": 31.134901596878166,
+            "weighted_cosine": 0.9479549331379593
+          },
+          "motion_encoder.history_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197252,
+            "raw_a_norm": 0.0075552337191774335,
+            "raw_b_norm": 1.3724567113646864,
+            "raw_dot": -0.00606836280842045,
+            "raw_cosine": -0.585227841624741,
+            "weighted_a_norm": 0.0075552337191774335,
+            "weighted_b_norm": 1.3724567113646864,
+            "weighted_dot": -0.00606836280842045,
+            "weighted_cosine": -0.585227841624741
+          },
+          "motion_encoder.state_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197510,
+            "raw_a_norm": 0.06505370192630706,
+            "raw_b_norm": 5.051838214483959,
+            "raw_dot": -0.00678209620168614,
+            "raw_cosine": -0.020636806715381078,
+            "weighted_a_norm": 0.06505370192630706,
+            "weighted_b_norm": 5.051838214483959,
+            "weighted_dot": -0.00678209620168614,
+            "weighted_cosine": -0.020636806715381078
+          },
+          "planner.other": {
+            "connected_parameter_tensors": 2,
+            "connected_parameter_numel": 896,
+            "raw_a_norm": 40.61981323269877,
+            "raw_b_norm": 40.61981393269835,
+            "raw_dot": 1649.969255493167,
+            "raw_cosine": 0.9999999999999909,
+            "weighted_a_norm": 40.61981323269877,
+            "weighted_b_norm": 40.61981393269835,
+            "weighted_dot": 1649.969255493167,
+            "weighted_cosine": 0.9999999999999909
+          },
+          "planner.scene_position": {
+            "connected_parameter_tensors": 1,
+            "connected_parameter_numel": 256,
+            "raw_a_norm": 1.0906465852342722,
+            "raw_b_norm": 1.0906466054332997,
+            "raw_dot": 1.1895099959131779,
+            "raw_cosine": 0.9999999999999991,
+            "weighted_a_norm": 1.0906465852342722,
+            "weighted_b_norm": 1.0906466054332997,
+            "weighted_dot": 1.1895099959131779,
+            "weighted_cosine": 0.9999999999999991
+          },
+          "planner.state_projection": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 19456,
+            "raw_a_norm": 0.02514579609817136,
+            "raw_b_norm": 0.02514579625957155,
+            "raw_dot": 0.0006323110654693444,
+            "raw_cosine": 0.9999999999999971,
+            "weighted_a_norm": 0.02514579609817136,
+            "weighted_b_norm": 0.02514579625957155,
+            "weighted_dot": 0.0006323110654693444,
+            "weighted_cosine": 0.9999999999999971
+          },
+          "planner.decoder": {
+            "connected_parameter_tensors": 36,
+            "connected_parameter_numel": 529152,
+            "raw_a_norm": 43.01083636872424,
+            "raw_b_norm": 43.01083658308667,
+            "raw_dot": 1849.9320543570745,
+            "raw_cosine": 0.9999999999999974,
+            "weighted_a_norm": 43.01083636872424,
+            "weighted_b_norm": 43.01083658308667,
+            "weighted_dot": 1849.9320543570745,
+            "weighted_cosine": 0.9999999999999974
+          },
+          "planner.xy_head": {
+            "connected_parameter_tensors": 6,
+            "connected_parameter_numel": 17026,
+            "raw_a_norm": 67.95701189929741,
+            "raw_b_norm": 67.95701189929741,
+            "raw_dot": 4618.1554662812505,
+            "raw_cosine": 1.0,
+            "weighted_a_norm": 67.95701189929741,
+            "weighted_b_norm": 67.95701189929741,
+            "weighted_dot": 4618.1554662812505,
+            "weighted_cosine": 1.0
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 273,
+            "connected_parameter_numel": 25866765,
+            "raw_a_norm": 127.67005532529531,
+            "raw_b_norm": 127.25450313215744,
+            "raw_dot": 16137.004560146199,
+            "raw_cosine": 0.9932548984861729,
+            "weighted_a_norm": 127.67005532529531,
+            "weighted_b_norm": 127.25450313215744,
+            "weighted_dot": 16137.004560146199,
+            "weighted_cosine": 0.9932548984861729
+          }
+        },
+        "history__vs__state": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 16.52000436399853,
+            "raw_b_norm": 53.88279860985204,
+            "raw_dot": 729.4332291105084,
+            "raw_cosine": 0.8194552490840776,
+            "weighted_a_norm": 3.3040008727997066,
+            "weighted_b_norm": 10.776559721970408,
+            "weighted_dot": 29.17732916442034,
+            "weighted_cosine": 0.8194552490840776
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 1.7712250923813107,
+            "raw_b_norm": 4.631615080928701,
+            "raw_dot": 6.345590904385601,
+            "raw_cosine": 0.7735098609027488,
+            "weighted_a_norm": 0.35424501847626216,
+            "weighted_b_norm": 0.9263230161857403,
+            "weighted_dot": 0.2538236361754241,
+            "weighted_cosine": 0.7735098609027488
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 15,
+            "connected_parameter_numel": 378624,
+            "raw_a_norm": 2.4510852489443127,
+            "raw_b_norm": 7.730216988719757,
+            "raw_dot": 7.201684913497666,
+            "raw_cosine": 0.3800878746126092,
+            "weighted_a_norm": 0.49021704978886255,
+            "weighted_b_norm": 1.5460433977439516,
+            "weighted_dot": 0.2880673965399067,
+            "weighted_cosine": 0.3800878746126092
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 179,
+            "connected_parameter_numel": 24640320,
+            "raw_a_norm": 16.794511050102177,
+            "raw_b_norm": 54.63116417376121,
+            "raw_dot": 742.9805049283916,
+            "raw_cosine": 0.809784759130039,
+            "weighted_a_norm": 3.3589022100204353,
+            "weighted_b_norm": 10.926232834752243,
+            "weighted_dot": 29.71922019713567,
+            "weighted_cosine": 0.809784759130039
+          }
+        }
+      },
+      "logvar": {
+        "history": {
+          "all_valid": {
+            "n_valid": 64,
+            "min": -8.0,
+            "mean": -7.664308547973633,
+            "max": -4.878358840942383,
+            "p05_p50_p95": [
+              -8.0,
+              -8.0,
+              -5.316049575805664
+            ],
+            "loss_clamp_below_minus6_fraction": 0.9375,
+            "loss_clamp_above_plus6_fraction": 0.0,
+            "at_or_beyond_loss_lower_fraction": 0.9375,
+            "at_or_beyond_loss_upper_fraction": 0.0,
+            "at_or_beyond_model_minus8_fraction": 0.640625,
+            "at_or_beyond_model_plus8_fraction": 0.0,
+            "loss_precision_min_max": [
+              131.41481018066406,
+              403.4288024902344
+            ]
+          },
+          "by_component": [
+            {
+              "n_valid": 16,
+              "min": -8.0,
+              "mean": -6.920074462890625,
+              "max": -4.878358840942383,
+              "p05_p50_p95": [
+                -8.0,
+                -7.440057277679443,
+                -4.966062545776367
+              ],
+              "loss_clamp_below_minus6_fraction": 0.75,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 0.75,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.5,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                131.41481018066406,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 16,
+              "min": -8.0,
+              "mean": -7.96058988571167,
+              "max": -7.6687493324279785,
+              "p05_p50_p95": [
+                -8.0,
+                -8.0,
+                -7.820723533630371
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.75,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 16,
+              "min": -8.0,
+              "mean": -7.8599958419799805,
+              "max": -7.316596984863281,
+              "p05_p50_p95": [
+                -8.0,
+                -8.0,
+                -7.400137901306152
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.6875,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 16,
+              "min": -8.0,
+              "mean": -7.916574001312256,
+              "max": -7.558283805847168,
+              "p05_p50_p95": [
+                -8.0,
+                -8.0,
+                -7.624355316162109
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.625,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            }
+          ],
+          "definition": "Model output logvar before loss clamp; normalized physical units. Strictly outside +/-6 has zero clamp derivative; equality is reported separately."
+        },
+        "state": {
+          "all_valid": {
+            "n_valid": 20,
+            "min": -7.5947442054748535,
+            "mean": -5.867365837097168,
+            "max": -2.6034996509552,
+            "p05_p50_p95": [
+              -7.525389671325684,
+              -6.021071910858154,
+              -3.6759743690490723
+            ],
+            "loss_clamp_below_minus6_fraction": 0.5,
+            "loss_clamp_above_plus6_fraction": 0.0,
+            "at_or_beyond_loss_lower_fraction": 0.5,
+            "at_or_beyond_loss_upper_fraction": 0.0,
+            "at_or_beyond_model_minus8_fraction": 0.0,
+            "at_or_beyond_model_plus8_fraction": 0.0,
+            "loss_precision_min_max": [
+              13.51093864440918,
+              403.4288024902344
+            ]
+          },
+          "by_component": [
+            {
+              "n_valid": 4,
+              "min": -5.489255428314209,
+              "mean": -5.336472511291504,
+              "max": -5.0983567237854,
+              "p05_p50_p95": [
+                -5.4758195877075195,
+                -5.379138469696045,
+                -5.137392520904541
+              ],
+              "loss_clamp_below_minus6_fraction": 0.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 0.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                163.75259399414062,
+                242.07688903808594
+              ]
+            },
+            {
+              "n_valid": 4,
+              "min": -7.5947442054748535,
+              "mean": -7.435384273529053,
+              "max": -7.165958881378174,
+              "p05_p50_p95": [
+                -7.583793640136719,
+                -7.490416526794434,
+                -7.2099289894104
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 4,
+              "min": -4.665894031524658,
+              "mean": -3.7885775566101074,
+              "max": -2.6034996509552,
+              "p05_p50_p95": [
+                -4.5888848304748535,
+                -3.9424588680267334,
+                -2.7728376388549805
+              ],
+              "loss_clamp_below_minus6_fraction": 0.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 0.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                13.51093864440918,
+                106.26054382324219
+              ]
+            },
+            {
+              "n_valid": 4,
+              "min": -6.593602657318115,
+              "mean": -6.16693639755249,
+              "max": -5.614950180053711,
+              "p05_p50_p95": [
+                -6.576010227203369,
+                -6.229597091674805,
+                -5.670138835906982
+              ],
+              "loss_clamp_below_minus6_fraction": 0.5,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 0.5,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                274.49969482421875,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 4,
+              "min": -7.111814975738525,
+              "mean": -6.609458923339844,
+              "max": -6.059270858764648,
+              "p05_p50_p95": [
+                -7.102440357208252,
+                -6.63337516784668,
+                -6.082995414733887
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            }
+          ],
+          "definition": "Model output logvar before loss clamp; normalized physical units. Strictly outside +/-6 has zero clamp derivative; equality is reported separately."
+        }
+      },
+      "interpretation_limit": "One small eval-mode batch, not training-BN gradients or a generalization/causal result. Norms are not additive; Adam updates cannot be inferred by multiplying LR by clip5/norm. Motion duplicates history+state+0.2*stop and must not be added again to those terms. Separately backpropagated bf16 component gradients may differ slightly from a summed-loss backward due to rounding.",
+      "immutability": {
+        "before": {
+          "parameters_sha256": "e0ce195b43797d07b2a12ea49d5338bedbec046b0bb996631a7b93ec37ddc30f",
+          "buffers_sha256": "ed2c2b42f741b67f80a099c9915f1189772bbfdf83db51ca347be30caf48167e",
+          "parameter_grads_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parameters_with_grad": []
+        },
+        "after": {
+          "parameters_sha256": "e0ce195b43797d07b2a12ea49d5338bedbec046b0bb996631a7b93ec37ddc30f",
+          "buffers_sha256": "ed2c2b42f741b67f80a099c9915f1189772bbfdf83db51ca347be30caf48167e",
+          "parameter_grads_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parameters_with_grad": []
+        },
+        "bitwise_unchanged": true
+      },
+      "fixture_slice": [
+        0,
+        4
+      ],
+      "sample_identity": {
+        "row": [
+          30,
+          180,
+          330,
+          480
+        ],
+        "frame": [
+          30,
+          180,
+          30,
+          180
+        ],
+        "scenario": [
+          "20260112-105434",
+          "20260112-105434",
+          "20260112-105504",
+          "20260112-105504"
+        ],
+        "session_id": [
+          "session_000_20260112-105434",
+          "session_000_20260112-105434",
+          "session_000_20260112-105434",
+          "session_000_20260112-105434"
+        ]
+      }
+    },
+    {
+      "batch_size": 4,
+      "forward_count": 1,
+      "model_mode": "eval; all BN running statistics fixed",
+      "bn_training_modules_during_probe": 0,
+      "backbone_precision": "bf16 autocast",
+      "loss_precision": "float32",
+      "perception_head_precision": "Existing graph preserved: raster conv autocast, FP32 returned logits; no head precision override",
+      "coordinate_state_head_input_dtypes": {
+        "motion_encoder.history_head": [
+          "torch.float32"
+        ],
+        "motion_encoder.state_head": [
+          "torch.float32"
+        ],
+        "motion_encoder.history_uncertainty_head": [
+          "torch.float32"
+        ],
+        "motion_encoder.state_uncertainty_head": [
+          "torch.float32"
+        ],
+        "planner.xy_head": [
+          "torch.float32"
+        ]
+      },
+      "loss_values": {
+        "plan": 0.5973681211471558,
+        "occ": 0.38969987630844116,
+        "lane": 0.35795921087265015,
+        "history": -2.9371910095214844,
+        "state": -2.704770088195801,
+        "stop": 0.00200808048248291,
+        "motion": -5.641559600830078,
+        "total": -0.3814120292663574
+      },
+      "coefficients_in_total": {
+        "plan": 1.0,
+        "occ": 0.2,
+        "lane": 0.2,
+        "history": 0.2,
+        "state": 0.2,
+        "stop": 0.04000000000000001,
+        "motion": 0.2,
+        "total": 1.0
+      },
+      "gradient_norms": {
+        "plan": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 69.80097940496228,
+            "weighted_contribution_l2_norm": 69.80097940496228
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 27.410834155478838,
+            "weighted_contribution_l2_norm": 27.410834155478838
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 31,
+            "connected_numel": 198848,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 45.8543080024113,
+            "weighted_contribution_l2_norm": 45.8543080024113
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 7.080396343059415,
+            "weighted_contribution_l2_norm": 7.080396343059415
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.012875938565092778,
+            "weighted_contribution_l2_norm": 0.012875938565092778
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.09751783325839707,
+            "weighted_contribution_l2_norm": 0.09751783325839707
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 2,
+            "connected_numel": 896,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 48.00969445596706,
+            "weighted_contribution_l2_norm": 48.00969445596706
+          },
+          "planner.scene_position": {
+            "connected_tensors": 1,
+            "connected_numel": 256,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 1.28938532773511,
+            "weighted_contribution_l2_norm": 1.28938532773511
+          },
+          "planner.state_projection": {
+            "connected_tensors": 4,
+            "connected_numel": 19456,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.04290396892733557,
+            "weighted_contribution_l2_norm": 0.04290396892733557
+          },
+          "planner.decoder": {
+            "connected_tensors": 36,
+            "connected_numel": 529152,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 47.205279092960964,
+            "weighted_contribution_l2_norm": 47.205279092960964
+          },
+          "planner.xy_head": {
+            "connected_tensors": 6,
+            "connected_numel": 17026,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 80.04652664913522,
+            "weighted_contribution_l2_norm": 80.04652664913522
+          },
+          "all_parameters": {
+            "connected_tensors": 273,
+            "connected_numel": 25866765,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 136.81618955784376,
+            "weighted_contribution_l2_norm": 136.81618955784376
+          }
+        },
+        "occ": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 4.652497823537174,
+            "weighted_contribution_l2_norm": 0.9304995647074348
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 2.8597561871096966,
+            "weighted_contribution_l2_norm": 0.5719512374219393
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 31,
+            "connected_numel": 198848,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 2.0170818870681404,
+            "weighted_contribution_l2_norm": 0.4034163774136281
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 4,
+            "connected_numel": 73857,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.2859791453283252,
+            "weighted_contribution_l2_norm": 0.05719582906566504
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 199,
+            "connected_numel": 24534401,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 5.828751569455626,
+            "weighted_contribution_l2_norm": 1.1657503138911254
+          }
+        },
+        "lane": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 2.941428138526362,
+            "weighted_contribution_l2_norm": 0.5882856277052725
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 1.6056536289890015,
+            "weighted_contribution_l2_norm": 0.32113072579780033
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 31,
+            "connected_numel": 198848,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 1.3224426108399567,
+            "weighted_contribution_l2_norm": 0.26448852216799135
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 4,
+            "connected_numel": 73857,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.22504743960123016,
+            "weighted_contribution_l2_norm": 0.04500948792024603
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 199,
+            "connected_numel": 24534401,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 3.6096570307214066,
+            "weighted_contribution_l2_norm": 0.7219314061442814
+          }
+        },
+        "history": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 17.20959501952521,
+            "weighted_contribution_l2_norm": 3.441919003905042
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 1.3332075779609562,
+            "weighted_contribution_l2_norm": 0.26664151559219124
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 15,
+            "connected_numel": 378624,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 2.7912896215206056,
+            "weighted_contribution_l2_norm": 0.5582579243041211
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 8.093851174298443,
+            "weighted_contribution_l2_norm": 1.6187702348596886
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.5921039842804022,
+            "weighted_contribution_l2_norm": 0.11842079685608045
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 187,
+            "connected_numel": 25034824,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 19.276927008553546,
+            "weighted_contribution_l2_norm": 3.855385401710709
+          }
+        },
+        "state": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 33.90089507590668,
+            "weighted_contribution_l2_norm": 6.780179015181337
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 2.202154563298399,
+            "weighted_contribution_l2_norm": 0.4404309126596799
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 4.275510520626383,
+            "weighted_contribution_l2_norm": 0.8551021041252765
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 24.287197971249142,
+            "weighted_contribution_l2_norm": 4.857439594249829
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197381,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 2.6390186886643723,
+            "weighted_contribution_l2_norm": 0.5278037377328745
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 193,
+            "connected_numel": 25101260,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 42.062246335806236,
+            "weighted_contribution_l2_norm": 8.412449267161248
+          }
+        },
+        "stop": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 0.1487758299529545,
+            "weighted_contribution_l2_norm": 0.00595103319811818
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 0.011298659940590622,
+            "weighted_contribution_l2_norm": 0.00045194639762362494
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 0.020666988832234962,
+            "weighted_contribution_l2_norm": 0.0008266795532893986
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 0.04582334358490734,
+            "weighted_contribution_l2_norm": 0.0018329337433962939
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 189,
+            "connected_numel": 24903879,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 0.15744462689890604,
+            "weighted_contribution_l2_norm": 0.006297785075956242
+          }
+        },
+        "motion": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 50.453932185445886,
+            "weighted_contribution_l2_norm": 10.090786437089179
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 3.376882465797828,
+            "weighted_contribution_l2_norm": 0.6753764931595656
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 5.303366356615111,
+            "weighted_contribution_l2_norm": 1.0606732713230222
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 8.093851174298443,
+            "weighted_contribution_l2_norm": 1.6187702348596886
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.5921039842804022,
+            "weighted_contribution_l2_norm": 0.11842079685608045
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 24.285014246161012,
+            "weighted_contribution_l2_norm": 4.857002849232202
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197381,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 2.6390186886643723,
+            "weighted_contribution_l2_norm": 0.5278037377328745
+          },
+          "planner.other": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.scene_position": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.state_projection": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.decoder": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "planner.xy_head": {
+            "connected_tensors": 0,
+            "connected_numel": 0,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 0.0,
+            "weighted_contribution_l2_norm": 0.0
+          },
+          "all_parameters": {
+            "connected_tensors": 201,
+            "connected_numel": 25495764,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 56.988732688217574,
+            "weighted_contribution_l2_norm": 11.397746537643515
+          }
+        },
+        "total": {
+          "backbone": {
+            "connected_tensors": 159,
+            "connected_numel": 23508032,
+            "group_parameter_numel": 23508032,
+            "raw_l2_norm": 61.58687653132382,
+            "weighted_contribution_l2_norm": 61.58687653132382
+          },
+          "fpn": {
+            "connected_tensors": 5,
+            "connected_numel": 753664,
+            "group_parameter_numel": 753664,
+            "raw_l2_norm": 27.392429989935977,
+            "weighted_contribution_l2_norm": 27.392429989935977
+          },
+          "scene_encoder.shared": {
+            "connected_tensors": 31,
+            "connected_numel": 198848,
+            "group_parameter_numel": 198848,
+            "raw_l2_norm": 45.87408209347317,
+            "weighted_contribution_l2_norm": 45.87408209347317
+          },
+          "scene_encoder.occ_head": {
+            "connected_tensors": 4,
+            "connected_numel": 73857,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.05724298421165803,
+            "weighted_contribution_l2_norm": 0.05724298421165803
+          },
+          "scene_encoder.lane_head": {
+            "connected_tensors": 4,
+            "connected_numel": 73857,
+            "group_parameter_numel": 73857,
+            "raw_l2_norm": 0.044995856507683694,
+            "weighted_contribution_l2_norm": 0.044995856507683694
+          },
+          "motion_encoder.shared": {
+            "connected_tensors": 21,
+            "connected_numel": 444673,
+            "group_parameter_numel": 444673,
+            "raw_l2_norm": 6.910880797191997,
+            "weighted_contribution_l2_norm": 6.910880797191997
+          },
+          "motion_encoder.history_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 1.6082237898476046,
+            "weighted_contribution_l2_norm": 1.6082237898476046
+          },
+          "motion_encoder.history_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197252,
+            "group_parameter_numel": 197252,
+            "raw_l2_norm": 0.11842079731968105,
+            "weighted_contribution_l2_norm": 0.11842079731968105
+          },
+          "motion_encoder.state_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197510,
+            "group_parameter_numel": 197510,
+            "raw_l2_norm": 4.81794523770169,
+            "weighted_contribution_l2_norm": 4.81794523770169
+          },
+          "motion_encoder.state_uncertainty_head": {
+            "connected_tensors": 4,
+            "connected_numel": 197381,
+            "group_parameter_numel": 197381,
+            "raw_l2_norm": 0.5278037127343275,
+            "weighted_contribution_l2_norm": 0.5278037127343275
+          },
+          "planner.other": {
+            "connected_tensors": 2,
+            "connected_numel": 896,
+            "group_parameter_numel": 896,
+            "raw_l2_norm": 48.009693903729314,
+            "weighted_contribution_l2_norm": 48.009693903729314
+          },
+          "planner.scene_position": {
+            "connected_tensors": 1,
+            "connected_numel": 256,
+            "group_parameter_numel": 256,
+            "raw_l2_norm": 1.2893853112221612,
+            "weighted_contribution_l2_norm": 1.2893853112221612
+          },
+          "planner.state_projection": {
+            "connected_tensors": 4,
+            "connected_numel": 19456,
+            "group_parameter_numel": 19456,
+            "raw_l2_norm": 0.04290396834471177,
+            "weighted_contribution_l2_norm": 0.04290396834471177
+          },
+          "planner.decoder": {
+            "connected_tensors": 36,
+            "connected_numel": 529152,
+            "group_parameter_numel": 529152,
+            "raw_l2_norm": 47.20527899218615,
+            "weighted_contribution_l2_norm": 47.20527899218615
+          },
+          "planner.xy_head": {
+            "connected_tensors": 6,
+            "connected_numel": 17026,
+            "group_parameter_numel": 17026,
+            "raw_l2_norm": 80.04652664913522,
+            "weighted_contribution_l2_norm": 80.04652664913522
+          },
+          "all_parameters": {
+            "connected_tensors": 289,
+            "connected_numel": 26409112,
+            "group_parameter_numel": 26409112,
+            "raw_l2_norm": 132.9058200453772,
+            "weighted_contribution_l2_norm": 132.9058200453772
+          }
+        }
+      },
+      "shared_gradient_pairs": {
+        "plan__vs__occ": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 69.80097940496228,
+            "raw_b_norm": 4.652497823537174,
+            "raw_dot": 119.24481183111172,
+            "raw_cosine": 0.3671908052111048,
+            "weighted_a_norm": 69.80097940496228,
+            "weighted_b_norm": 0.9304995647074348,
+            "weighted_dot": 23.848962366222345,
+            "weighted_cosine": 0.3671908052111048
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 27.410834155478838,
+            "raw_b_norm": 2.8597561871096966,
+            "raw_dot": 5.287527586203115,
+            "raw_cosine": 0.06745301802502401,
+            "weighted_a_norm": 27.410834155478838,
+            "weighted_b_norm": 0.5719512374219393,
+            "weighted_dot": 1.0575055172406231,
+            "weighted_cosine": 0.06745301802502401
+          },
+          "scene_encoder.shared": {
+            "connected_parameter_tensors": 31,
+            "connected_parameter_numel": 198848,
+            "raw_a_norm": 45.8543080024113,
+            "raw_b_norm": 2.0170818870681404,
+            "raw_dot": -7.9376206147974795,
+            "raw_cosine": -0.08581963523060196,
+            "weighted_a_norm": 45.8543080024113,
+            "weighted_b_norm": 0.4034163774136281,
+            "weighted_dot": -1.587524122959496,
+            "weighted_cosine": -0.08581963523060196
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 195,
+            "connected_parameter_numel": 24460544,
+            "raw_a_norm": 87.89851032509672,
+            "raw_b_norm": 5.821731768715276,
+            "raw_dot": 116.59471880251735,
+            "raw_cosine": 0.22784797475606772,
+            "weighted_a_norm": 87.89851032509672,
+            "weighted_b_norm": 1.1643463537430552,
+            "weighted_dot": 23.318943760503473,
+            "weighted_cosine": 0.22784797475606772
+          }
+        },
+        "plan__vs__lane": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 69.80097940496228,
+            "raw_b_norm": 2.941428138526362,
+            "raw_dot": -72.56928513956109,
+            "raw_cosine": -0.3534541505537294,
+            "weighted_a_norm": 69.80097940496228,
+            "weighted_b_norm": 0.5882856277052725,
+            "weighted_dot": -14.513857027912218,
+            "weighted_cosine": -0.3534541505537294
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 27.410834155478838,
+            "raw_b_norm": 1.6056536289890015,
+            "raw_dot": -0.4391475810825298,
+            "raw_cosine": -0.009977836374085837,
+            "weighted_a_norm": 27.410834155478838,
+            "weighted_b_norm": 0.32113072579780033,
+            "weighted_dot": -0.08782951621650598,
+            "weighted_cosine": -0.009977836374085837
+          },
+          "scene_encoder.shared": {
+            "connected_parameter_tensors": 31,
+            "connected_parameter_numel": 198848,
+            "raw_a_norm": 45.8543080024113,
+            "raw_b_norm": 1.3224426108399567,
+            "raw_dot": 11.677686274500793,
+            "raw_cosine": 0.19257496405068936,
+            "weighted_a_norm": 45.8543080024113,
+            "weighted_b_norm": 0.26448852216799135,
+            "weighted_dot": 2.3355372549001587,
+            "weighted_cosine": 0.19257496405068936
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 195,
+            "connected_parameter_numel": 24460544,
+            "raw_a_norm": 87.89851032509672,
+            "raw_b_norm": 3.602634803774234,
+            "raw_dot": -61.33074644614282,
+            "raw_cosine": -0.19367630695105462,
+            "weighted_a_norm": 87.89851032509672,
+            "weighted_b_norm": 0.7205269607548468,
+            "weighted_dot": -12.266149289228565,
+            "weighted_cosine": -0.19367630695105462
+          }
+        },
+        "plan__vs__history": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 69.80097940496228,
+            "raw_b_norm": 17.20959501952521,
+            "raw_dot": -1040.6051769413643,
+            "raw_cosine": -0.8662710785175655,
+            "weighted_a_norm": 69.80097940496228,
+            "weighted_b_norm": 3.441919003905042,
+            "weighted_dot": -208.12103538827287,
+            "weighted_cosine": -0.8662710785175655
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 27.410834155478838,
+            "raw_b_norm": 1.3332075779609562,
+            "raw_dot": -2.617315581644635,
+            "raw_cosine": -0.07162028833755725,
+            "weighted_a_norm": 27.410834155478838,
+            "weighted_b_norm": 0.26664151559219124,
+            "weighted_dot": -0.5234631163289271,
+            "weighted_cosine": -0.07162028833755725
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 15,
+            "connected_parameter_numel": 378624,
+            "raw_a_norm": 6.651530482486048,
+            "raw_b_norm": 2.7912896215206056,
+            "raw_dot": -2.9374608901546537,
+            "raw_cosine": -0.15821425353448051,
+            "weighted_a_norm": 6.651530482486048,
+            "weighted_b_norm": 0.5582579243041211,
+            "weighted_dot": -0.5874921780309308,
+            "weighted_cosine": -0.15821425353448051
+          },
+          "motion_encoder.history_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197252,
+            "raw_a_norm": 0.012875938565092778,
+            "raw_b_norm": 8.093851174298443,
+            "raw_dot": -0.08549737620497194,
+            "raw_cosine": -0.8203868239247689,
+            "weighted_a_norm": 0.012875938565092778,
+            "weighted_b_norm": 1.6187702348596886,
+            "weighted_dot": -0.01709947524099439,
+            "weighted_cosine": -0.8203868239247689
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 183,
+            "connected_parameter_numel": 24837572,
+            "raw_a_norm": 75.28461714414418,
+            "raw_b_norm": 19.26783142351262,
+            "raw_dot": -1046.2454507893685,
+            "raw_cosine": -0.7212644026488175,
+            "weighted_a_norm": 75.28461714414418,
+            "weighted_b_norm": 3.8535662847025245,
+            "weighted_dot": -209.24909015787372,
+            "weighted_cosine": -0.7212644026488175
+          }
+        },
+        "plan__vs__state": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 69.80097940496228,
+            "raw_b_norm": 33.90089507590668,
+            "raw_dot": -1961.7441168415796,
+            "raw_cosine": -0.8290289137026712,
+            "weighted_a_norm": 69.80097940496228,
+            "weighted_b_norm": 6.780179015181337,
+            "weighted_dot": -392.34882336831595,
+            "weighted_cosine": -0.8290289137026712
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 27.410834155478838,
+            "raw_b_norm": 2.202154563298399,
+            "raw_dot": -7.146110310386209,
+            "raw_cosine": -0.1183858144258934,
+            "weighted_a_norm": 27.410834155478838,
+            "weighted_b_norm": 0.4404309126596799,
+            "weighted_dot": -1.429222062077242,
+            "weighted_cosine": -0.1183858144258934
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 21,
+            "connected_parameter_numel": 444673,
+            "raw_a_norm": 7.080396343059415,
+            "raw_b_norm": 4.275510520626383,
+            "raw_dot": -5.805946558394298,
+            "raw_cosine": -0.19179067403990965,
+            "weighted_a_norm": 7.080396343059415,
+            "weighted_b_norm": 0.8551021041252765,
+            "weighted_dot": -1.1611893116788596,
+            "weighted_cosine": -0.19179067403990965
+          },
+          "motion_encoder.state_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197510,
+            "raw_a_norm": 0.09751783325839707,
+            "raw_b_norm": 24.287197971249142,
+            "raw_dot": -0.9693378049435667,
+            "raw_cosine": -0.4092735653866953,
+            "weighted_a_norm": 0.09751783325839707,
+            "weighted_b_norm": 4.857439594249829,
+            "weighted_dot": -0.19386756098871336,
+            "weighted_cosine": -0.4092735653866953
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 189,
+            "connected_parameter_numel": 24903879,
+            "raw_a_norm": 75.32378161705469,
+            "raw_b_norm": 41.97937764158641,
+            "raw_dot": -1975.6655115153035,
+            "raw_cosine": -0.6248061667126679,
+            "weighted_a_norm": 75.32378161705469,
+            "weighted_b_norm": 8.395875528317282,
+            "weighted_dot": -395.1331023030607,
+            "weighted_cosine": -0.6248061667126679
+          }
+        },
+        "plan__vs__stop": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 69.80097940496228,
+            "raw_b_norm": 0.1487758299529545,
+            "raw_dot": 8.577248282678088,
+            "raw_cosine": 0.8259506200375665,
+            "weighted_a_norm": 69.80097940496228,
+            "weighted_b_norm": 0.00595103319811818,
+            "weighted_dot": 0.34308993130712356,
+            "weighted_cosine": 0.8259506200375665
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 27.410834155478838,
+            "raw_b_norm": 0.011298659940590622,
+            "raw_dot": 0.0384762385674488,
+            "raw_cosine": 0.12423484403541092,
+            "weighted_a_norm": 27.410834155478838,
+            "weighted_b_norm": 0.00045194639762362494,
+            "weighted_dot": 0.0015390495426979523,
+            "weighted_cosine": 0.12423484403541092
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 21,
+            "connected_parameter_numel": 444673,
+            "raw_a_norm": 7.080396343059415,
+            "raw_b_norm": 0.020666988832234962,
+            "raw_dot": 0.045845884910421006,
+            "raw_cosine": 0.31330374485149043,
+            "weighted_a_norm": 7.080396343059415,
+            "weighted_b_norm": 0.0008266795532893986,
+            "weighted_dot": 0.0018338353964168406,
+            "weighted_cosine": 0.31330374485149043
+          },
+          "motion_encoder.state_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197510,
+            "raw_a_norm": 0.09751783325839707,
+            "raw_b_norm": 0.04582334358490734,
+            "raw_dot": 0.004346648708246897,
+            "raw_cosine": 0.9727107691566323,
+            "weighted_a_norm": 0.09751783325839707,
+            "weighted_b_norm": 0.0018329337433962939,
+            "weighted_dot": 0.0001738659483298759,
+            "weighted_cosine": 0.9727107691566323
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 189,
+            "connected_parameter_numel": 24903879,
+            "raw_a_norm": 75.32378161705469,
+            "raw_b_norm": 0.15744462689890604,
+            "raw_dot": 8.665917054864204,
+            "raw_cosine": 0.7307260134087911,
+            "weighted_a_norm": 75.32378161705469,
+            "weighted_b_norm": 0.006297785075956242,
+            "weighted_dot": 0.3466366821945682,
+            "weighted_cosine": 0.7307260134087911
+          }
+        },
+        "plan__vs__motion": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 69.80097940496228,
+            "raw_b_norm": 50.453932185445886,
+            "raw_dot": -3000.3051175455253,
+            "raw_cosine": -0.8519397599609474,
+            "weighted_a_norm": 69.80097940496228,
+            "weighted_b_norm": 10.090786437089179,
+            "weighted_dot": -600.0610235091051,
+            "weighted_cosine": -0.8519397599609474
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 27.410834155478838,
+            "raw_b_norm": 3.376882465797828,
+            "raw_dot": -9.758554333697738,
+            "raw_cosine": -0.1054258927855718,
+            "weighted_a_norm": 27.410834155478838,
+            "weighted_b_norm": 0.6753764931595656,
+            "weighted_dot": -1.9517108667395477,
+            "weighted_cosine": -0.1054258927855718
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 21,
+            "connected_parameter_numel": 444673,
+            "raw_a_norm": 7.080396343059415,
+            "raw_b_norm": 5.303366356615111,
+            "raw_dot": -8.734647766767003,
+            "raw_cosine": -0.23261418669865805,
+            "weighted_a_norm": 7.080396343059415,
+            "weighted_b_norm": 1.0606732713230222,
+            "weighted_dot": -1.7469295533534006,
+            "weighted_cosine": -0.23261418669865805
+          },
+          "motion_encoder.history_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197252,
+            "raw_a_norm": 0.012875938565092778,
+            "raw_b_norm": 8.093851174298443,
+            "raw_dot": -0.08549737620497194,
+            "raw_cosine": -0.8203868239247689,
+            "weighted_a_norm": 0.012875938565092778,
+            "weighted_b_norm": 1.6187702348596886,
+            "weighted_dot": -0.01709947524099439,
+            "weighted_cosine": -0.8203868239247689
+          },
+          "motion_encoder.state_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197510,
+            "raw_a_norm": 0.09751783325839707,
+            "raw_b_norm": 24.285014246161012,
+            "raw_dot": -0.9684684672314428,
+            "raw_cosine": -0.4089432829888214,
+            "weighted_a_norm": 0.09751783325839707,
+            "weighted_b_norm": 4.857002849232202,
+            "weighted_dot": -0.19369369344628856,
+            "weighted_cosine": -0.4089432829888214
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 193,
+            "connected_parameter_numel": 25101131,
+            "raw_a_norm": 75.32378271756896,
+            "raw_b_norm": 56.92451709625474,
+            "raw_dot": -3019.8522854894263,
+            "raw_cosine": -0.704294380466126,
+            "weighted_a_norm": 75.32378271756896,
+            "weighted_b_norm": 11.384903419250948,
+            "weighted_dot": -603.9704570978853,
+            "weighted_cosine": -0.704294380466126
+          }
+        },
+        "plan__vs__total": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 69.80097940496228,
+            "raw_b_norm": 61.58687653132382,
+            "raw_dot": 4282.341126605111,
+            "raw_cosine": 0.9961656553927256,
+            "weighted_a_norm": 69.80097940496228,
+            "weighted_b_norm": 61.58687653132382,
+            "weighted_dot": 4282.341126605111,
+            "weighted_cosine": 0.9961656553927256
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 27.410834155478838,
+            "raw_b_norm": 27.392429989935977,
+            "raw_dot": 750.4074430443131,
+            "raw_cosine": 0.9994114498173186,
+            "weighted_a_norm": 27.410834155478838,
+            "weighted_b_norm": 27.392429989935977,
+            "weighted_dot": 750.4074430443131,
+            "weighted_cosine": 0.9994114498173186
+          },
+          "scene_encoder.shared": {
+            "connected_parameter_tensors": 31,
+            "connected_parameter_numel": 198848,
+            "raw_a_norm": 45.8543080024113,
+            "raw_b_norm": 45.87408209347317,
+            "raw_dot": 2103.3883927077322,
+            "raw_cosine": 0.9999353955954031,
+            "weighted_a_norm": 45.8543080024113,
+            "weighted_b_norm": 45.87408209347317,
+            "weighted_dot": 2103.3883927077322,
+            "weighted_cosine": 0.9999353955954031
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 21,
+            "connected_parameter_numel": 444673,
+            "raw_a_norm": 7.080396343059415,
+            "raw_b_norm": 6.910880797191997,
+            "raw_dot": 48.38353290255847,
+            "raw_cosine": 0.9887957831120439,
+            "weighted_a_norm": 7.080396343059415,
+            "weighted_b_norm": 6.910880797191997,
+            "weighted_dot": 48.38353290255847,
+            "weighted_cosine": 0.9887957831120439
+          },
+          "motion_encoder.history_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197252,
+            "raw_a_norm": 0.012875938565092778,
+            "raw_b_norm": 1.6082237898476046,
+            "raw_dot": -0.016933685082131656,
+            "raw_cosine": -0.817760446671391,
+            "weighted_a_norm": 0.012875938565092778,
+            "weighted_b_norm": 1.6082237898476046,
+            "weighted_dot": -0.016933685082131656,
+            "weighted_cosine": -0.817760446671391
+          },
+          "motion_encoder.state_head": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 197510,
+            "raw_a_norm": 0.09751783325839707,
+            "raw_b_norm": 4.81794523770169,
+            "raw_dot": -0.1841839571507813,
+            "raw_cosine": -0.39201789915137725,
+            "weighted_a_norm": 0.09751783325839707,
+            "weighted_b_norm": 4.81794523770169,
+            "weighted_dot": -0.1841839571507813,
+            "weighted_cosine": -0.39201789915137725
+          },
+          "planner.other": {
+            "connected_parameter_tensors": 2,
+            "connected_parameter_numel": 896,
+            "raw_a_norm": 48.00969445596706,
+            "raw_b_norm": 48.009693903729314,
+            "raw_dot": 2304.9307352425244,
+            "raw_cosine": 0.9999999999999896,
+            "weighted_a_norm": 48.00969445596706,
+            "weighted_b_norm": 48.009693903729314,
+            "weighted_dot": 2304.9307352425244,
+            "weighted_cosine": 0.9999999999999896
+          },
+          "planner.scene_position": {
+            "connected_parameter_tensors": 1,
+            "connected_parameter_numel": 256,
+            "raw_a_norm": 1.28938532773511,
+            "raw_b_norm": 1.2893853112221612,
+            "raw_dot": 1.6625145020870191,
+            "raw_cosine": 0.9999999999999978,
+            "weighted_a_norm": 1.28938532773511,
+            "weighted_b_norm": 1.2893853112221612,
+            "weighted_dot": 1.6625145020870191,
+            "weighted_cosine": 0.9999999999999978
+          },
+          "planner.state_projection": {
+            "connected_parameter_tensors": 4,
+            "connected_parameter_numel": 19456,
+            "raw_a_norm": 0.04290396892733557,
+            "raw_b_norm": 0.04290396834471177,
+            "raw_dot": 0.001840750524720897,
+            "raw_cosine": 0.999999999999997,
+            "weighted_a_norm": 0.04290396892733557,
+            "weighted_b_norm": 0.04290396834471177,
+            "weighted_dot": 0.001840750524720897,
+            "weighted_cosine": 0.999999999999997
+          },
+          "planner.decoder": {
+            "connected_parameter_tensors": 36,
+            "connected_parameter_numel": 529152,
+            "raw_a_norm": 47.205279092960964,
+            "raw_b_norm": 47.20527899218615,
+            "raw_dot": 2228.3383694872286,
+            "raw_cosine": 0.9999999999999973,
+            "weighted_a_norm": 47.205279092960964,
+            "weighted_b_norm": 47.20527899218615,
+            "weighted_dot": 2228.3383694872286,
+            "weighted_cosine": 0.9999999999999973
+          },
+          "planner.xy_head": {
+            "connected_parameter_tensors": 6,
+            "connected_parameter_numel": 17026,
+            "raw_a_norm": 80.04652664913522,
+            "raw_b_norm": 80.04652664913522,
+            "raw_dot": 6407.446428590713,
+            "raw_cosine": 0.9999999999999999,
+            "weighted_a_norm": 80.04652664913522,
+            "weighted_b_norm": 80.04652664913522,
+            "weighted_dot": 6407.446428590713,
+            "weighted_cosine": 0.9999999999999999
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 273,
+            "connected_parameter_numel": 25866765,
+            "raw_a_norm": 136.81618955784376,
+            "raw_b_norm": 132.90469931610178,
+            "raw_dot": 18126.69926619056,
+            "raw_cosine": 0.9968754517471945,
+            "weighted_a_norm": 136.81618955784376,
+            "weighted_b_norm": 132.90469931610178,
+            "weighted_dot": 18126.69926619056,
+            "weighted_cosine": 0.9968754517471945
+          }
+        },
+        "history__vs__state": {
+          "backbone": {
+            "connected_parameter_tensors": 159,
+            "connected_parameter_numel": 23508032,
+            "raw_a_norm": 17.20959501952521,
+            "raw_b_norm": 33.90089507590668,
+            "raw_dot": 551.789313594618,
+            "raw_cosine": 0.9457829267738433,
+            "weighted_a_norm": 3.441919003905042,
+            "weighted_b_norm": 6.780179015181337,
+            "weighted_dot": 22.071572543784722,
+            "weighted_cosine": 0.9457829267738433
+          },
+          "fpn": {
+            "connected_parameter_tensors": 5,
+            "connected_parameter_numel": 753664,
+            "raw_a_norm": 1.3332075779609562,
+            "raw_b_norm": 2.202154563298399,
+            "raw_dot": 2.394180140170605,
+            "raw_cosine": 0.8154761291977317,
+            "weighted_a_norm": 0.26664151559219124,
+            "weighted_b_norm": 0.4404309126596799,
+            "weighted_dot": 0.09576720560682421,
+            "weighted_cosine": 0.8154761291977317
+          },
+          "motion_encoder.shared": {
+            "connected_parameter_tensors": 15,
+            "connected_parameter_numel": 378624,
+            "raw_a_norm": 2.7912896215206056,
+            "raw_b_norm": 3.9703280589643137,
+            "raw_dot": 1.036933511455048,
+            "raw_cosine": 0.09356633454973687,
+            "weighted_a_norm": 0.5582579243041211,
+            "weighted_b_norm": 0.7940656117928628,
+            "weighted_dot": 0.04147734045820193,
+            "weighted_cosine": 0.09356633454973687
+          },
+          "all_shared_parameters": {
+            "connected_parameter_tensors": 179,
+            "connected_parameter_numel": 24640320,
+            "raw_a_norm": 17.485391071783557,
+            "raw_b_norm": 34.20356233733687,
+            "raw_dot": 555.2204272462436,
+            "raw_cosine": 0.9283649709575299,
+            "weighted_a_norm": 3.4970782143567116,
+            "weighted_b_norm": 6.840712467467374,
+            "weighted_dot": 22.20881708984975,
+            "weighted_cosine": 0.9283649709575299
+          }
+        }
+      },
+      "logvar": {
+        "history": {
+          "all_valid": {
+            "n_valid": 64,
+            "min": -8.0,
+            "mean": -7.666985511779785,
+            "max": -4.746862888336182,
+            "p05_p50_p95": [
+              -8.0,
+              -8.0,
+              -5.3814167976379395
+            ],
+            "loss_clamp_below_minus6_fraction": 0.9375,
+            "loss_clamp_above_plus6_fraction": 0.0,
+            "at_or_beyond_loss_lower_fraction": 0.9375,
+            "at_or_beyond_loss_upper_fraction": 0.0,
+            "at_or_beyond_model_minus8_fraction": 0.703125,
+            "at_or_beyond_model_plus8_fraction": 0.0,
+            "loss_precision_min_max": [
+              115.22225189208984,
+              403.4288024902344
+            ]
+          },
+          "by_component": [
+            {
+              "n_valid": 16,
+              "min": -8.0,
+              "mean": -6.872920036315918,
+              "max": -4.746862888336182,
+              "p05_p50_p95": [
+                -8.0,
+                -7.3463287353515625,
+                -4.779867172241211
+              ],
+              "loss_clamp_below_minus6_fraction": 0.75,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 0.75,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.5,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                115.22225189208984,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 16,
+              "min": -8.0,
+              "mean": -7.974736213684082,
+              "max": -7.7137017250061035,
+              "p05_p50_p95": [
+                -8.0,
+                -8.0,
+                -7.8399858474731445
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.875,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 16,
+              "min": -8.0,
+              "mean": -7.863592624664307,
+              "max": -7.134945392608643,
+              "p05_p50_p95": [
+                -8.0,
+                -8.0,
+                -7.4064507484436035
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.6875,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 16,
+              "min": -8.0,
+              "mean": -7.956690788269043,
+              "max": -7.624781608581543,
+              "p05_p50_p95": [
+                -8.0,
+                -8.0,
+                -7.728703022003174
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.75,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            }
+          ],
+          "definition": "Model output logvar before loss clamp; normalized physical units. Strictly outside +/-6 has zero clamp derivative; equality is reported separately."
+        },
+        "state": {
+          "all_valid": {
+            "n_valid": 20,
+            "min": -7.719994068145752,
+            "mean": -6.13899040222168,
+            "max": -3.9468178749084473,
+            "p05_p50_p95": [
+              -7.6688127517700195,
+              -6.005917549133301,
+              -4.975545883178711
+            ],
+            "loss_clamp_below_minus6_fraction": 0.5,
+            "loss_clamp_above_plus6_fraction": 0.0,
+            "at_or_beyond_loss_lower_fraction": 0.5,
+            "at_or_beyond_loss_upper_fraction": 0.0,
+            "at_or_beyond_model_minus8_fraction": 0.0,
+            "at_or_beyond_model_plus8_fraction": 0.0,
+            "loss_precision_min_max": [
+              51.770362854003906,
+              403.4288024902344
+            ]
+          },
+          "by_component": [
+            {
+              "n_valid": 4,
+              "min": -5.4319868087768555,
+              "mean": -5.231626510620117,
+              "max": -5.029688835144043,
+              "p05_p50_p95": [
+                -5.428171157836914,
+                -5.232415199279785,
+                -5.03397798538208
+              ],
+              "loss_clamp_below_minus6_fraction": 0.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 0.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                152.88543701171875,
+                228.6029815673828
+              ]
+            },
+            {
+              "n_valid": 4,
+              "min": -7.719994068145752,
+              "mean": -7.529934883117676,
+              "max": -7.280696392059326,
+              "p05_p50_p95": [
+                -7.711912631988525,
+                -7.5595245361328125,
+                -7.3065314292907715
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 4,
+              "min": -5.698154926300049,
+              "mean": -5.051628112792969,
+              "max": -3.9468178749084473,
+              "p05_p50_p95": [
+                -5.667218208312988,
+                -5.280770301818848,
+                -4.115240097045898
+              ],
+              "loss_clamp_below_minus6_fraction": 0.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 0.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                51.770362854003906,
+                298.31646728515625
+              ]
+            },
+            {
+              "n_valid": 4,
+              "min": -6.411872386932373,
+              "mean": -6.078949451446533,
+              "max": -5.892090797424316,
+              "p05_p50_p95": [
+                -6.352697849273682,
+                -6.005917549133301,
+                -5.907445907592773
+              ],
+              "loss_clamp_below_minus6_fraction": 0.5,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 0.5,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                362.1617126464844,
+                403.4288024902344
+              ]
+            },
+            {
+              "n_valid": 4,
+              "min": -6.977407455444336,
+              "mean": -6.802814483642578,
+              "max": -6.557272434234619,
+              "p05_p50_p95": [
+                -6.964998245239258,
+                -6.838289260864258,
+                -6.590966701507568
+              ],
+              "loss_clamp_below_minus6_fraction": 1.0,
+              "loss_clamp_above_plus6_fraction": 0.0,
+              "at_or_beyond_loss_lower_fraction": 1.0,
+              "at_or_beyond_loss_upper_fraction": 0.0,
+              "at_or_beyond_model_minus8_fraction": 0.0,
+              "at_or_beyond_model_plus8_fraction": 0.0,
+              "loss_precision_min_max": [
+                403.4288024902344,
+                403.4288024902344
+              ]
+            }
+          ],
+          "definition": "Model output logvar before loss clamp; normalized physical units. Strictly outside +/-6 has zero clamp derivative; equality is reported separately."
+        }
+      },
+      "interpretation_limit": "One small eval-mode batch, not training-BN gradients or a generalization/causal result. Norms are not additive; Adam updates cannot be inferred by multiplying LR by clip5/norm. Motion duplicates history+state+0.2*stop and must not be added again to those terms. Separately backpropagated bf16 component gradients may differ slightly from a summed-loss backward due to rounding.",
+      "immutability": {
+        "before": {
+          "parameters_sha256": "e0ce195b43797d07b2a12ea49d5338bedbec046b0bb996631a7b93ec37ddc30f",
+          "buffers_sha256": "ed2c2b42f741b67f80a099c9915f1189772bbfdf83db51ca347be30caf48167e",
+          "parameter_grads_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parameters_with_grad": []
+        },
+        "after": {
+          "parameters_sha256": "e0ce195b43797d07b2a12ea49d5338bedbec046b0bb996631a7b93ec37ddc30f",
+          "buffers_sha256": "ed2c2b42f741b67f80a099c9915f1189772bbfdf83db51ca347be30caf48167e",
+          "parameter_grads_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parameters_with_grad": []
+        },
+        "bitwise_unchanged": true
+      },
+      "fixture_slice": [
+        4,
+        8
+      ],
+      "sample_identity": {
+        "row": [
+          630,
+          780,
+          930,
+          1080
+        ],
+        "frame": [
+          30,
+          180,
+          30,
+          180
+        ],
+        "scenario": [
+          "20260112-111049",
+          "20260112-111049",
+          "20260112-111149",
+          "20260112-111149"
+        ],
+        "session_id": [
+          "session_001_20260112-111049",
+          "session_001_20260112-111049",
+          "session_001_20260112-111049",
+          "session_001_20260112-111049"
+        ]
+      }
+    }
+  ],
+  "aggregation_policy": "Batches remain separate; their norms/cosines are not a full-fixture gradient.",
+  "optimizer_created": false,
+  "optimizer_steps": 0,
+  "bn_adaptive_passes": 0
+}

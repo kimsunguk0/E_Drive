@@ -98,6 +98,7 @@ def test_real_planning_evaluator_envelope_and_metric_alias():
     normalized = normalize_evaluation(raw)
     assert normalized["records"] == source["records"]
     assert normalized["checkpoint_step"] == 6000
+    assert normalized["time_input"] == "raw"  # legacy envelope has no time flag
     assert normalized["planning_diagnostics"]["normal_buckets"] == {"stop": {"n": 1}}
     assert normalize_record({"official_d3": .2})["d3"] == .2
     with pytest.raises(ValueError, match="충돌"):
@@ -105,6 +106,44 @@ def test_real_planning_evaluator_envelope_and_metric_alias():
     raw["protocol"]["arguments"]["max_samples"] = 370
     with pytest.raises(ValueError, match="1998"):
         normalize_evaluation(raw)
+
+
+@pytest.mark.parametrize("location", ["top", "top_policy", "protocol", "protocol_args", "protocol_policy",
+                                      "condition", "conflicting"])
+def test_nominal_evaluation_is_rejected_from_every_declared_location(location):
+    evidence = {"records": []}
+    if location == "top":
+        evidence["time_input"] = "nominal"
+    elif location == "top_policy":
+        evidence["time_input_policy"] = {"mode": "nominal"}
+    elif location == "protocol":
+        evidence["protocol"] = {"time_input": "nominal"}
+    elif location == "protocol_args":
+        evidence["protocol"] = {"arguments": {"time_input": "nominal"}}
+    elif location == "protocol_policy":
+        evidence["protocol"] = {"time_input_policy": {"mode": "nominal"}}
+    elif location == "condition":
+        evidence["conditions"] = {"normal": {"time_input": "nominal"}}
+    else:
+        evidence["time_input"] = "raw"
+        evidence["protocol"] = {"arguments": {"time_input": "nominal"}}
+    with pytest.raises(ValueError, match="time_input=raw"):
+        normalize_evaluation(evidence)
+
+
+def test_legacy_and_explicit_raw_reports_have_identical_primary_gs_results():
+    arms, split = fake_arms()
+    legacy = analyze_gs(arms, split, "split", repeats=100)
+    for arm in arms.values():
+        arm["time_input"] = "raw"
+    explicit = analyze_gs(arms, split, "split", repeats=100)
+    assert explicit == legacy
+    assert explicit["protocol"]["time_input"] == "raw"
+    assert normalize_evaluation({"records": []})["time_input"] == "raw"
+    assert normalize_evaluation({"records": [], "time_input": "raw"})["time_input"] == "raw"
+    arms["g1s1"]["time_input"] = "nominal"
+    with pytest.raises(ValueError, match="time_input=raw"):
+        validate_experiment(arms, split, "split")
 
 
 def test_only_session_aggregation_rounding_is_distinguished_from_forward_mismatch():

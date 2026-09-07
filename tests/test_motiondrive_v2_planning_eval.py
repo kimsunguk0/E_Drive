@@ -99,6 +99,65 @@ def test_normal_matches_train_evaluation_including_session_mean_without_proxy_we
     assert model.seen and all(v == set(MODEL_INPUTS) for v in model.seen)
 
 
+def test_nominal_replaces_only_time_offsets_without_mutating_the_labeled_batch():
+    batch = next(iter(DataLoader(FakeDataset(), batch_size=2)))
+    batch["time_offsets"] = torch.tensor([[.097, .194, .487, .978], [.101, .207, .507, 1.02]], dtype=torch.float64)
+    original = {k: v.clone() if torch.is_tensor(v) else v for k, v in batch.items()}
+    raw = evaluator.planning_model_inputs(batch)
+    explicit_raw = evaluator.planning_model_inputs(batch, "raw")
+    nominal = evaluator.planning_model_inputs(batch, "nominal")
+    assert set(nominal) == set(MODEL_INPUTS)
+    for key in MODEL_INPUTS:
+        assert raw[key] is batch[key] and explicit_raw[key] is batch[key]
+        if key != "time_offsets":
+            assert nominal[key] is batch[key]
+    assert nominal["time_offsets"].dtype == torch.float32
+    assert nominal["time_offsets"].device == batch["time_offsets"].device
+    assert torch.equal(nominal["time_offsets"], torch.tensor([[.1, .2, .5, 1.]]).repeat(2, 1))
+    for key, value in original.items():
+        assert torch.equal(batch[key], value) if torch.is_tensor(value) else batch[key] == value
+    with pytest.raises(ValueError, match="four historical"):
+        evaluator.planning_model_inputs({**batch, "time_offsets": torch.zeros(2, 3)}, "nominal")
+    with pytest.raises(ValueError, match="raw or nominal"):
+        evaluator.planning_model_inputs(batch, "unknown")
+
+
+@pytest.mark.parametrize("condition", evaluator.CONDITIONS)
+def test_time_policy_applies_to_every_image_condition_without_changing_other_inputs_or_labels(condition):
+    class RawOffsetsDataset(FakeDataset):
+        def __getitem__(self, index):
+            sample = super().__getitem__(index)
+            sample["time_offsets"] = torch.tensor([.097, .195, .489, .975], dtype=torch.float64) + index * .001
+            return sample
+    class CaptureModel(ImageOnlyModel):
+        def __init__(self):
+            super().__init__()
+            self.captured = []
+        def forward(self, **inputs):
+            self.captured.append({k: v.clone() for k, v in inputs.items()})
+            return super().forward(**inputs)
+    data = RawOffsetsDataset()
+    mapping = evaluator.scene_derangement(data.manifest["splits"]["tune"], 0)
+    wrapped = evaluator.ImageCounterfactualDataset(data, condition, data, evaluator.donor_indices(data, data, mapping))
+    loader = DataLoader(wrapped, batch_size=2, shuffle=False)
+    raw_model, nominal_model = CaptureModel(), CaptureModel()
+    raw = evaluator.evaluate_planning(raw_model, loader, torch.device("cpu"))
+    nominal = evaluator.evaluate_planning(nominal_model, loader, torch.device("cpu"), time_input="nominal")
+    assert raw["time_input"] == "raw" and nominal["time_input"] == "nominal"
+    # This image-only mock ignores time; equal records verify unchanged GT,
+    # masks, receiver order and donor identities through the full evaluator.
+    assert raw["records"] == nominal["records"]
+    assert [r["row"] for r in nominal["records"]] == list(range(6))
+    for index, (before, after) in enumerate(zip(raw_model.captured, nominal_model.captured)):
+        expected_raw = torch.stack([data[i]["time_offsets"] for i in range(index * 2, index * 2 + 2)])
+        assert torch.equal(before["time_offsets"], expected_raw)
+        for key in MODEL_INPUTS:
+            if key != "time_offsets":
+                assert torch.equal(before[key], after[key])
+        assert after["time_offsets"].dtype == torch.float32
+        assert torch.equal(after["time_offsets"], torch.tensor([[.1, .2, .5, 1.]]).repeat(2, 1))
+
+
 @pytest.mark.parametrize("speed,ax,expected", [(0., 1., "stop"), (.199, -1., "stop"),
                                               (.2, .5, "accel"), (1., -.5, "decel"),
                                               (1., .499, "cruise"), (1., -.499, "cruise")])
@@ -190,8 +249,10 @@ def test_cli_is_tune_only_default_normal_and_has_no_config_override_switch():
             "--supervision-root", "supervision", "--out", "result.json"]
     args = evaluator.arguments(argv)
     assert args.split == "tune" and args.conditions == ["normal"] and args.device == "cpu"
+    assert args.time_input == "raw"
+    assert evaluator.arguments(argv + ["--time-input", "nominal"]).time_input == "nominal"
     for option in (["--split", "val"], ["--split", "historical_val"], ["--goal-on", "1"],
-                   ["--config-json", "override.json"], ["--device", "cuda:6"]):
+                   ["--config-json", "override.json"], ["--device", "cuda:6"], ["--time-input", "rawtime"]):
         with pytest.raises(SystemExit):
             evaluator.arguments(argv + option)
     with pytest.raises(ValueError):
@@ -226,7 +287,8 @@ def test_publication_race_does_not_replace_existing_report(tmp_path, monkeypatch
     assert list(tmp_path.glob(".*.tmp")) == []
 
 
-def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp_path, monkeypatch):
+@pytest.mark.parametrize("time_input", ["raw", "nominal"])
+def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp_path, monkeypatch, time_input):
     split = tmp_path / "split.json"
     split.write_text("{}")
     for name in ["supervision_manifest.json", "calibration.npz", *[f"{s}{suffix}" for s in "abc" for suffix in (".npz", ".json")]]:
@@ -245,6 +307,9 @@ def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp
             frozen = json.loads(protocol.read_text())
             assert frozen["status"] == "preregistered_before_any_forward"
             assert frozen["donor_scene_map"] is not None
+            assert frozen["time_input"] == frozen["arguments"]["time_input"] == time_input
+            assert frozen["time_input_policy"]["mode"] == time_input
+            assert not frozen["time_input_policy"]["dataset_and_labels_modified"]
             assert not report.exists()
         model = ImageOnlyModel(before_forward)
         model.audit_load_metadata = {"explicit_overrides": {}, "checkpoint_sha256": "f" * 64}
@@ -252,10 +317,12 @@ def test_main_preregisters_before_any_forward_and_never_overrides_checkpoint(tmp
     monkeypatch.setattr(evaluator, "construct_model", load)
     argv = ["--checkpoint", str(checkpoint), "--split-manifest", str(split), "--supervision-root", str(tmp_path),
             "--out", str(report), "--conditions", "normal", "image_shuffle", "repeat_current", "reverse_history",
-            "--workers", "0", "--batch", "2", "--device", "cpu"]
+            "--workers", "0", "--batch", "2", "--device", "cpu", "--time-input", time_input]
     assert evaluator.main(argv) == 0
     result = json.loads(report.read_text())
     assert set(result["conditions"]) == set(evaluator.CONDITIONS)
+    assert result["time_input"] == time_input
+    assert all(item["time_input"] == time_input for item in result["conditions"].values())
     assert not result["selection_performed"] and not result["final_val_accessed"]
     assert result["precision"] == "fp32" and result["precision_requested"] == "bf16"
     assert result["protocol"]["data"]["receiver_rows_sha256"] == evaluator.rows_sha256(np.arange(6))
