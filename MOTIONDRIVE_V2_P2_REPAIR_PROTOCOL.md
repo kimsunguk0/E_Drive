@@ -63,3 +63,16 @@ manifest SHA `ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93`.
 P1의 독립 정상 replay를 먼저 마치고 그동안 공유 model/trainer/data 소스는 바꾸지 않는다.
 GPU0–3만 사용하며 final-val136/test/기존 타인 작업은 계속 보존한다.
 점수 하락을 기대한다는 것과 1등 경쟁력을 입증했다는 것은 별개다.
+
+## 17:50 KST 운영상 분리 — 결과 관측 전
+
+4판 발사 전 사전 검사에서 GPU0의 별도 `alpamayo` 벤치마크(PID1962093,
+17:48 시작, 약138GB)를 확인했다. 이 프로세스에는 signal을 보내지 않았고
+launcher는 학습/출력 디렉터리 생성 전에 원4판 발사를 거절했다.
+
+비어 있는 GPU1–3은 `p2_geometry_time_r1_s0_gpus123.json`으로 먼저 시작하고,
+GPU0 조건은 유휴 확인 후 `p2_geometry_time_r1_s0_gpu0.json`으로 시작한다.
+두 JSON은 원 계획 jobs의 **그대로인 부분집합**이며 이름/GPU/학습 인자는 바꾸지 않는다.
+초기 가중치·데이터 순서·노출 수·평가 기준은 동일하고 시작 시각만 다르다.
+소스가 바뀐 경우 후발 조건을 조용히 섞지 않고 core file SHA를 다시 검토한다.
+GPU 간 wall-clock 학습 시간은 이 결과에서 모델 효율 지표로 비교하지 않는다.
