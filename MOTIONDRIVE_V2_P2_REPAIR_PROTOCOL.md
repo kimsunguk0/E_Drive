@@ -83,3 +83,20 @@ GPU 간 wall-clock 학습 시간은 이 결과에서 모델 효율 지표로 비
 GPU0 자동 발사도 취소했고, 가용 자원은 읽기 전용으로 관찰한다.
 네 조건 모두 미실행이므로 전체 유휴 확인 후 원4판 계획으로 발사할 수 있다.
 타 작업 중지나 GPU4 이상 사용을 임의로 결정하지 않는다. 그동안 CPU 배포 입력 검증을 진행한다.
+
+## 결과 분석기 — 결과 관측 전에 구현
+
+`scripts/analyze_motiondrive_v2_p2.py`는 네 팔의 원 run/체크포인트/로그/실제 OS 종료
+기록과 독립 planning-eval JSON을 받는다. C/T별 정책 차이는 허용하되 나머지 조건,
+동일 초기 텐서·데이터 노출·sample order·GT와 각각의 SOURCE를 검증한다.
+학습4판의 SOURCE 동일성과 평가4판의 SOURCE 동일성은 서로 별개로 검사한다.
+
+기하판별 manifest/canonical SHA 및 train/tune240scene NPZ/JSON480파일의 원본 동일성을
+직접 대조한다. 내부 protocol뿐 아니라 원 sidecar 내용/SHA도 일치해야 한다.
+좌표로 재계산한 point-L2/D3/cumulative-ADE/signed·absolute 축 오차와 저장 지표를
+고정 atol1e-5/rtol0으로 교차 검증하며 점수나 허용오차를 자동 수정하지 않는다.
+
+LAST3000의 네 조건부 효과와 교호작용을11세션 공동bootstrap10000/seed20260907로
+계산한다. frame가중 주표와 session동일가중 보조표를 분리한다. BEST는 원 로그의
+기술적 보조표이며 LAST 효과에 넣지 않는다. 다중비교 보정 없는 탐색적 CI임을 명시한다.
+이 분석기는 아직 P2 결과로 실행되지 않았으며 mock tests와 기존 P1 좌표의 지표 검증만 했다.

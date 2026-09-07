@@ -348,3 +348,20 @@ weights_only=True/완전 config/strict weights로 로드한다. 원 B200 파일�
 export+serving CPU tests는 로컬/B200 모두122개 통과했다. OpenCV 없는 systemPython에서
 검증했으며 실제 배포 checkpoint export·GPU forward·공식 제출은 아직 하지 않았다.
 CLI 전체 제출 파일 생성기는 아직 없고 실제 C1/T1 checkpoint와3090 검증이 남아 있다.
+
+## 18:36 KST: P2 분석 검증 완료, 유휴 시 실행 대기
+
+P2 전용 C×T 분석기의 mock CPU tests47개가 로컬/B200에서 통과했다. 고정 atol1e-5의
+좌표→지표 정합 검사만 기존 P1 nominal1998행에 따로 적용해 전부 통과했다.
+이는 P2 결과 분석이 아니며 **P2 학습은 여전히0개 실행**이다.
+
+18:18–18:33의 추가15분 read-only 감시에서도 GPU0–3 전체 유휴는 관측되지 않았다.
+마지막 메모리154784/156162/154784/160296MiB, alpamayo coordinator1963557 및
+children1963560–1963563은 생존했다. 타 작업에는 signal을 보내지 않았다.
+
+검증 코드를 커밋한 단일 HEAD/원4판 plan SHA로60분 한정 대기 작업을 넘긴다.
+GPU0–3 네 장 모두 메모리<1000MiB·compute PID 없음·기존 coordinator 없음이
+연속 두 번 확인되고, pinned HEAD 및 tracked-clean 조건이 유지될 때만 기존
+supervised launcher를 통해 원4판을 시작한다. 코드/계획이 바뀌거나 다른 gate가
+실패하면 자동 우회하지 않고 보고한다. GPU4–7 또는 타 작업 중지는 허용하지 않는다.
+대기 시간 제한이 끝났다는 사실은 학습 완료·목표 달성·영구 장애를 뜻하지 않는다.
