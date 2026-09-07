@@ -142,6 +142,40 @@ def test_every_explicit_gpu_uses_logical_zero_and_cpu_mock_verifies_uuid(eval_re
         shared.verify_child_device(request, torch.device("cuda:1"))
 
 
+@pytest.mark.parametrize("physical", [4, 5])
+@pytest.mark.parametrize("prefix", ["GPU-", ""])
+@pytest.mark.parametrize("different_uuid", [False, True])
+def test_real_cuda_uuid_formats_preserve_raw_and_reject_different_device(
+        eval_request, monkeypatch, physical, prefix, different_uuid):
+    request = opt_in_request(eval_request, physical)
+    expected_body = "4b804d68-fd61-af14-393a-573c533d5006"
+    expected = "GPU-" + expected_body
+    observed_raw = prefix + ("4b804d68-fd61-af14-393a-573c533d5007" if different_uuid else expected_body)
+    request["gpu_uuid_mapping"] = {str(physical): expected}
+    monkeypatch.setenv("CUDA_VISIBLE_DEVICES", expected)
+    monkeypatch.setenv("CUDA_DEVICE_ORDER", "PCI_BUS_ID")
+    monkeypatch.setattr(torch.cuda, "device_count", lambda: 1)
+    monkeypatch.setattr(torch.cuda, "set_device", lambda _: None)
+    monkeypatch.setattr(torch.cuda, "get_device_properties", lambda _:
+                        type("Properties", (), {"uuid": observed_raw})())
+    if different_uuid:
+        with pytest.raises(ValueError, match="parent 물리 GPU"):
+            shared.verify_child_device(request, torch.device("cuda:0"))
+        return
+    receipt = shared.execute_evaluation(request,
+        configure=lambda *_: {"enabled": True, "allocator_limit_mib": 12000, "min_free_mib": 8192},
+        snapshot=lambda *_: {}, evaluate=lambda _: 0)
+    recorded = json.loads(json.dumps(receipt))["device_mapping"]
+    assert recorded["observed_uuid_raw"] == observed_raw
+    assert recorded["observed_uuid"] == expected
+    assert recorded["physical_gpu"] == physical and recorded["logical_device"] == "cuda:0"
+
+
+@pytest.mark.parametrize("raw", [" GPU-abc", "gpu-abc", "GPU-GPU-abc", "abc "])
+def test_cuda_uuid_normalization_does_not_strip_or_casefold(raw):
+    assert shared.canonical_cuda_uuid(raw) != "GPU-abc"
+
+
 @pytest.mark.parametrize("physical", [6, 7, -1, True, 4., "4"])
 def test_invalid_physical_gpu_rejected_before_query_or_namespace(eval_request, physical):
     with pytest.raises(ValueError):
@@ -472,6 +506,21 @@ def test_actual_receipt_and_report_contract_before_success(eval_request, monkeyp
     else:
         with pytest.raises(ValueError):
             shared.inspect_result(eval_request, FakeChild.pid, shared.json_digest(eval_request))
+
+
+@pytest.mark.parametrize("prefix", ["GPU-", ""])
+@pytest.mark.parametrize("tampered", [False, True])
+def test_parent_receipt_checks_raw_uuid_against_canonical(eval_request, monkeypatch, prefix, tampered):
+    _, receipt = make_result(eval_request)
+    monkeypatch.setattr(shared, "recheck_files", lambda *_: None)
+    receipt["device_mapping"]["observed_uuid_raw"] = prefix + ("synthetic-1" if tampered else "synthetic-0")
+    Path(eval_request["child_receipt"]).write_text(json.dumps(receipt))
+    if tampered:
+        with pytest.raises(ValueError, match="UUID 원문과 표준형"):
+            shared.inspect_result(eval_request, FakeChild.pid, shared.json_digest(eval_request))
+    else:
+        result = shared.inspect_result(eval_request, FakeChild.pid, shared.json_digest(eval_request))
+        assert result["normal_summary"]["n"] == 1998
 
 
 @pytest.mark.parametrize("status,step,nonfinite,git_sha", [("running", 3000, 0, shared.TRAINING_GIT_SHA),

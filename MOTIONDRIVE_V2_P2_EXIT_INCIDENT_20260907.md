@@ -49,3 +49,13 @@ LAST3000/BEST2250/INITIAL/P1 초기화의 ZIP CRC·CPU load·전체 tensor finit
 초기 모델 tensor 및 네 팔의301개 sample-order 기록도 일치했다.
 이는 저장 무결성 검사이며 새로운 forward·정확도 재평가가 아니다.
 actual rc-11/SIGSEGV/supervisor139와 원4팔 gate FAIL은 그대로 남는다.
+
+## GPU4·5 평가 첫 시도: UUID 표기 차이로 사전 검사 실패
+
+`8d3e2ab`에서 GPU4 C1/T1과 GPU5 C0/T1을 발사했으나 둘 다 실제 rc1로 종료했다.
+Torch2.10 `_CUuuid` 문자열은 `GPU-` 접두사를 생략하고 NVML은 포함하여,
+동일 UUID에 대한 기존 문자열 검사에서 차단됐다. 모델 forward 전이며 결과/protocol은
+생성되지 않았다. 정확한 두 parent/child의 부재와 pressure 없음도 확인했다.
+원 실행 기록을 보존하며 `reports/p2_gpu45_uuid_preflight_failure.json`에 근거를 남긴다.
+접두사만 표준화하고 UUID 내용의 정확 일치 검사는 유지하는 수정 후 새 `_r2` 실행
+기록으로 재시도한다. 실패 기록을 덮어쓰거나 첫 시도를 성공으로 정정하지 않는다.

@@ -333,6 +333,12 @@ def validate_request(request):
                 and len(set(mapping.values())) == len(indices), "선택 정책에 맞는 고유 GPU UUID 매핑이 필요합니다")
 
 
+def canonical_cuda_uuid(value):
+    """PyTorch _CUuuid may omit exactly the GPU- prefix used by nvidia-smi."""
+    require(isinstance(value, str) and bool(value), "CUDA UUID 원문이 유효하지 않습니다")
+    return value if value.startswith("GPU-") else "GPU-" + value
+
+
 def verify_child_device(request, device):
     import torch
     selection = request_gpu_selection(request)
@@ -345,9 +351,10 @@ def verify_child_device(request, device):
             and os.environ.get("CUDA_DEVICE_ORDER") == "PCI_BUS_ID", "child CUDA 환경의 UUID 순서가 요청과 다릅니다")
     require(torch.cuda.device_count() == len(indices), "child CUDA namespace 크기가 선택 정책과 다릅니다")
     torch.cuda.set_device(device)
-    observed = str(torch.cuda.get_device_properties(device).uuid)
+    observed_raw = str(torch.cuda.get_device_properties(device).uuid)
+    observed = canonical_cuda_uuid(observed_raw)
     require(observed == mapping[str(selection["physical_gpu"])], "child CUDA 장치 UUID와 parent 물리 GPU가 다릅니다")
-    return {**selection, "observed_uuid": observed,
+    return {**selection, "observed_uuid": observed, "observed_uuid_raw": observed_raw,
             "cuda_visible_devices": expected, "cuda_device_order": "PCI_BUS_ID"}
 
 
@@ -407,8 +414,15 @@ def inspect_result(request, child_pid, request_sha):
     require(policy.get("enabled") is True and policy.get("allocator_limit_mib") == CAP_MIB
             and policy.get("min_free_mib") == RESERVE_MIB, "child allocator cap 적용값 불일치")
     selection = request_gpu_selection(request)
-    require(receipt.get("device_mapping", {}).get("observed_uuid") == request["gpu_uuid_mapping"][str(selection["physical_gpu"])],
+    device_mapping = receipt.get("device_mapping", {})
+    observed_uuid = device_mapping.get("observed_uuid")
+    require(observed_uuid == request["gpu_uuid_mapping"][str(selection["physical_gpu"])],
             "child의 실제 CUDA UUID 증거 불일치")
+    # Old receipts have only observed_uuid; new receipts also preserve the exact
+    # runtime representation and must agree after prefix-only normalization.
+    if "observed_uuid_raw" in device_mapping:
+        require(canonical_cuda_uuid(device_mapping["observed_uuid_raw"]) == observed_uuid,
+                "child의 CUDA UUID 원문과 표준형 증거 불일치")
     if selection["physical_gpu_explicit"]:
         require(all(receipt["device_mapping"].get(key) == value for key, value in selection.items()),
                 "child의 opt-in 물리/논리 GPU 적용 증거 불일치")

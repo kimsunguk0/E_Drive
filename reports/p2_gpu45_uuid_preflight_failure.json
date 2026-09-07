@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "first_attempt_failed_before_model_forward",
+  "source_git_sha": "8d3e2ab7266a2175c61fa815e6ffe73bfe7395a7",
+  "gpu_permission": "User explicitly authorized idle physical GPUs 4 and 5",
+  "attempts": {
+    "c1t1": {
+      "physical_gpu": 4,
+      "execution_record": "logs/motiondrive_v2/p2_c1t1_diag_eval.execution.json",
+      "execution_sha256": "bf4f2283c30f38e366e9f6dae581201f7ae4cdf918414ec30c98aa62ebe4d192",
+      "parent_pid": 2041007,
+      "child_pid": 2041108,
+      "actual_returncode": 1,
+      "parent_and_child_absent": true,
+      "pressure_event": null,
+      "result_and_protocol_created": false
+    },
+    "c0t1": {
+      "physical_gpu": 5,
+      "execution_record": "logs/motiondrive_v2/p2_c0t1_diag_eval.execution.json",
+      "execution_sha256": "051cf7a02a7b35b1ca1c9bf65584630a5cb271bc2832733a782e90e5d8bc4cfd",
+      "parent_pid": 2041067,
+      "child_pid": 2041135,
+      "actual_returncode": 1,
+      "parent_and_child_absent": true,
+      "pressure_event": null,
+      "result_and_protocol_created": false
+    }
+  },
+  "common_error": "ValueError: child CUDA 장치 UUID와 parent 물리 GPU가 다릅니다",
+  "read_only_gpu4_probe": {
+    "actual_returncode": 0,
+    "cuda_visible_devices": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+    "cuda_device_order": "PCI_BUS_ID",
+    "torch_device_count": 1,
+    "torch_uuid_str": "4b804d68-fd61-af14-393a-573c533d5006",
+    "torch_uuid_type": "torch._C._CUuuid",
+    "nvml_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+    "name": "NVIDIA B200",
+    "total_memory_bytes": 191503138816,
+    "model_loaded_or_forwarded": false
+  },
+  "finding": "Observed Torch UUID omits GPU- prefix. Device count and UUID payload identify the requested physical GPU4. Existing string equality rejects this representation.",
+  "planned_fix": "Preserve raw Torch UUID and canonicalize only optional GPU- prefix, then require exact full UUID equality. Different UUIDs must still fail.",
+  "failed_records_preserved": true,
+  "accuracy_result_available": false,
+  "training_gate_relaxed": false,
+  "retry_record_suffix": "_r2",
+  "final_val_or_test_accessed": false
+}
