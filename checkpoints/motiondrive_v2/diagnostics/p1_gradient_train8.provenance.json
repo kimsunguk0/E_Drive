@@ -1,0 +1,455 @@
+{
+  "status": "CPU train8 fixture 생성 및 weights_only roundtrip 검증 완료",
+  "metadata": {
+    "schema_version": 1,
+    "purpose": "P1의 loss별 gradient 기여 진단용. 학습·모델 선택·heldout 평가 없음",
+    "created_at_utc": "2026-09-07T08:00:14.762106+00:00",
+    "split": "train",
+    "train_only": true,
+    "selection": "rawtime train203의 scene 이름순 첫4개 × frame30/180; 결과를 보기 전에 고정",
+    "n_train_scenes_in_manifest": 203,
+    "n_samples": 8,
+    "batch_size": 4,
+    "batch_slices": [
+      [
+        0,
+        4
+      ],
+      [
+        4,
+        8
+      ]
+    ],
+    "batch_note": "두 배치의 gradient를 별도 보고하며 전체8 단일배치 gradient로 간주하지 않음",
+    "augment": false,
+    "seed": 0,
+    "samples": [
+      {
+        "scenario": "20260112-105434",
+        "frame": 30,
+        "row": 30,
+        "scen_idx": 0,
+        "session_id": "session_000_20260112-105434"
+      },
+      {
+        "scenario": "20260112-105434",
+        "frame": 180,
+        "row": 180,
+        "scen_idx": 0,
+        "session_id": "session_000_20260112-105434"
+      },
+      {
+        "scenario": "20260112-105504",
+        "frame": 30,
+        "row": 330,
+        "scen_idx": 1,
+        "session_id": "session_000_20260112-105434"
+      },
+      {
+        "scenario": "20260112-105504",
+        "frame": 180,
+        "row": 480,
+        "scen_idx": 1,
+        "session_id": "session_000_20260112-105434"
+      },
+      {
+        "scenario": "20260112-111049",
+        "frame": 30,
+        "row": 630,
+        "scen_idx": 2,
+        "session_id": "session_001_20260112-111049"
+      },
+      {
+        "scenario": "20260112-111049",
+        "frame": 180,
+        "row": 780,
+        "scen_idx": 2,
+        "session_id": "session_001_20260112-111049"
+      },
+      {
+        "scenario": "20260112-111149",
+        "frame": 30,
+        "row": 930,
+        "scen_idx": 3,
+        "session_id": "session_001_20260112-111049"
+      },
+      {
+        "scenario": "20260112-111149",
+        "frame": 180,
+        "row": 1080,
+        "scen_idx": 3,
+        "session_id": "session_001_20260112-111049"
+      }
+    ],
+    "model_input_keys": [
+      "images",
+      "history_images",
+      "lidar2img",
+      "history_transforms",
+      "time_offsets",
+      "goal_xy"
+    ],
+    "source_sha256": {
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/supervision_manifest.json": "073d9d2eb89956cac5c3d78b91622f5e397cfa116b1ed8f9a9f639ec3003a8d0",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/calibration.npz": "a6e29e9ecdf596560161b5c68806445e0d9139dded7c7bb403842af5a8a93cbb",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105434.npz": "ab508a9d992cca127789f6720a979148a17f866a30f59fc39887ab070fc7df39",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105434.json": "453fffe0a9b50bc720ffb8e68a21c3566b9584e898c7a1b8db2ff09c60af4aa3",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105504.npz": "b2a586d976612045b27f25f6107883dd292894a227761d14a07102694732785e",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105504.json": "c30dfb8f54967475979003fcb600862004742f363442fa4403b77a0dbaca3293",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111049.npz": "ea693061118976e12e925f03c0c86e8da4b2bc2428eb349b6f02d86e27bb6cb2",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111049.json": "3b15e908fd6f6e21a6962dd56f32c9548afa76602190882cfd158f06498bc01c",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111149.npz": "7de89b7806749d5b4f2ba4a3660726e6566fbf9084b248e64dbcbf0fc63710d8",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111149.json": "e5e0f34af19a788e21d37b6c153cdd7b9ecaefa3dcbdec20092d5a415ad9bb7b"
+    },
+    "image_source_sha256": {
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000030.jpg": "8bf70ff69af33477c89f69720f44aac4558298b6c51894aec8f279f1be08a069",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_right/00000030.jpg": "7a204aab2511613d4929ffa8ed208753b7acb2b89f57f4006b4055292ae67f06",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_left/00000030.jpg": "c71453f02851a6c7909d609a6f5f2908eee6917ef814791a44b3030fbf1ec162",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_wide/00000030.jpg": "8e24097e16f0b403bfc00556364d57db590b7c900aaef1e0898faa025d39f97e",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_left/00000030.jpg": "e6e3ed547ce9b90b2f704d054edcf29334554159af0a2684032b97ff6f4e1150",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_right/00000030.jpg": "e9485eafe078086e2ff4454ff46fcab6a2e5c4cd17b18189e8a17e8c01ccb99c",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000029.jpg": "2476cefee30c9118c95698cc48a69e5fb1dd39412ec74dc1d6e7fc0d22d90e7c",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000028.jpg": "1f7dbcee5ff3fbea48bcc26237b735419b2eb475ad51cb798b453effa1f16be7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000025.jpg": "deeefe90250dc0c01e4db27e1a71ccdbcf4a23f261056c92b73ec326ccd3219c",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000020.jpg": "162cae9564a98873c31283a428cb276fbc855cb431b9a54ce9ad2261412f0786",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000180.jpg": "718699091d6dfdcfe9042be138664c3b856ad355918176a4cefc02485ea66d02",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_right/00000180.jpg": "eb35a400fc9c48594f2ac4a84e8bcf61129ed5fba947339819146e9a993814af",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_left/00000180.jpg": "99ba895476af11861ba0817e1ba0df280281420672605e6f5d1c927417750adf",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_wide/00000180.jpg": "34a4f7263b109aa284b490906ba5dc918cb01605dad0362d02c6b144a7b4fc89",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_left/00000180.jpg": "1e286c51737df98f5de58edcf176b9c45c25a44739bd53fd6e30d1ab095f1bf7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_right/00000180.jpg": "f25c775007df6b1a6d167ae402f7c8d5a075f7deaee6523898d212fccce94c15",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000179.jpg": "d72e1a2dd8746365c124ee5cc5a7debecf8d4348e80415ee50a6dbd59d684ca9",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000178.jpg": "480e262d15ccdec452257ec3d84a2059c512a15bc5058f7745cccf3c13c02d17",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000175.jpg": "8d5a0cbe9e50a977e3a1c1870eca9b98c20d222466f169c222c64dc114768953",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000170.jpg": "3da2ad38b75f247b1536d904337cf901e85d1bfee01d9659ab51348f6326a95f",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000030.jpg": "8ee70fc77685ab5ea8a1579cb2f60fd2b59152cace018ec22884f5197cd8ac03",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_right/00000030.jpg": "2317b98c09394209121c4daf682c83e98a05ebcd963b182faf606b94b8241c6b",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_left/00000030.jpg": "f5eeeb042b5690e174a821573c5fb1acca41bf8f8e479e50d0c4223151ffceb9",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_wide/00000030.jpg": "3d2611b87c19c69e700267a41b158db8059c0c68f317b5c837fc367bec0ce7b6",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_left/00000030.jpg": "83a44b711f7ca851d6ed4c8b58d488bc0b5fdfdb3b287387914b684920346126",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_right/00000030.jpg": "52dfeb597d2cb1c696d40517db3084ec4c0bbc4c78c53d3f1d2ae855393cdbcf",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000029.jpg": "e5c1377eeb23d3ef874dd4c499fef92e2f45d73092b406403aa133eea63f015a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000028.jpg": "0cf79bcda09877a96983ba95514e800fa1f3307eccc473f8036021baed68bf77",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000025.jpg": "5dd1cf9bd9c76180a6136c6f66235df90a019933c57ed2817d69fe9b8e24a839",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000020.jpg": "821784c70aa2a08c619ec5e847e0f7036ebf61dcec127f86e5495e72c34dd7f8",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000180.jpg": "9d241ac7ce97364175870b0aaac8006e86bd1f70c6d63fa842f37993720ee03a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_right/00000180.jpg": "96152635c63ad92edb58ec06568bb9da573bb7417ad3f5aba944bf5be0d2af83",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_left/00000180.jpg": "20c960f7605dad25db68083a8ccbcb26e6cd8a3d9b9899fead42129f004224e6",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_wide/00000180.jpg": "e8dc13184443e6aa7c24c179b917140d95ef77cd1ce66f7774c3eca2f752c4bb",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_left/00000180.jpg": "1e92ee079745d4ab770b53d730b64a3a8524f6d35b95f4b64c62e79eb185e797",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_right/00000180.jpg": "0aa084c5fcd3025d6ecc5886ddc4d4454e7a4ef6a0881396d93bbd8e1b4e43cb",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000179.jpg": "7a354d70c32949d30d6888dfce51f7b2a9c1a406780a99c2746d80cf2a3dfac7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000178.jpg": "c6bdf048012c5e472ba498235604f15f46b21935aaa0567902a0d4a85f690424",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000175.jpg": "f53a32df4a94bde3238f7734a455b1367058b8e1e34dc5258a7aba904f926fb7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000170.jpg": "1c904360d1b0799bef0fcd2317e82118996c7b0dfedf05d1ca46de4ceac1709f",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000030.jpg": "7ed2125c631e2ff24ddbdc2a7343e9b2fc5161d416c9538270964dcaae5c0d1c",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_right/00000030.jpg": "81a0e9e1676a9d6febda35ae2945cfac943d913bfdd323bc27320a329bf1df92",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_left/00000030.jpg": "9ae2d7ad38f3910f79a90957dc698aa319db6e0006a04745425bd881de29becf",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_wide/00000030.jpg": "eea9f0a21e346f7a66a2b54bc14eaa90e8eb6119d060e8e8e1b74ef774cac333",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_left/00000030.jpg": "1e998a0abd50954c92493142f879735da02f8dd2ae792bab98d0bd6422ceaa48",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_right/00000030.jpg": "4d75a3389ad3654d5a50885c7acf1a3ceb1861d298cc94201df0ff49fb56b424",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000029.jpg": "3d6e897ec4bf1da4dd617081db940f74821ce5a888fb385955d9c1488b49b712",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000028.jpg": "48d07626704a5ee73a670854ecb50f70118ba471c14bddd31d3577153f35d531",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000025.jpg": "5110ecd5c413cec32190e654c24f0c78aaeb2a04dbc731ccfc9637cd70f75a7f",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000020.jpg": "d6dcc28436b55cbb7a1429baba502f84bc914dda024b396eed2afef58088c921",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000180.jpg": "a366fb6a5cbc8f6ce921ac1ac6c5374329e3301555b91d9d36ca5a3a87efe4ba",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_right/00000180.jpg": "02e55b39d1361be05fc2e627273c279234e4977e009afe3240fb45ea2b1a5ddf",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_left/00000180.jpg": "4dca91a39dd2e2228fc20da4828ac196268024805ec8f578eea52e4c9c8876f1",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_wide/00000180.jpg": "82357d3c57f748937c6b9c4f1d64563282af027e615eacbbe726fd7d1755571f",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_left/00000180.jpg": "25424198cff5fbc0ecca67bfc0d8ee60f2426c4ebdaa6a2aea4398d61c2f1535",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_right/00000180.jpg": "09f0253de02351eca587440e559a4081ae14e5d68b24baa1d26e10901132f2a0",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000179.jpg": "0a4324e9d2e5bc21904e95ab9e8b196a486c4260713b7fee77828861d757f082",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000178.jpg": "de530340db4b51e7ef5875ed2bf195e1e60f4e1105bc664b9bbbaaea8b326f95",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000175.jpg": "eaac20e01ccee08f17fe5a1b87ef72cd002d728353f2a4f6d1701cf1394d87a3",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000170.jpg": "244cfba81458cd82855a290e95e9de43a87ce36d385a4a68a9c468cca57d9b7a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000030.jpg": "21467c88d44d702865f992b19c5fb6050d3414e57a5186acc036dd9094ddd15a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_right/00000030.jpg": "a255f9a87ec446762fc5ed281e9a2baf32b54d7063e93d06271c305d76e40592",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_left/00000030.jpg": "01e4c527669740f73cce2184c7c124997014ee95d0e2364f77a9ff1e0694870e",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_wide/00000030.jpg": "975be776daf014231c1a007e787d35864a4d7838285e6ef49aa2816305e85e5d",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_left/00000030.jpg": "f9da0629a80d8ab333bd4152990e92f59e40ee2b85b346cd3dfbff65b9083fc7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_right/00000030.jpg": "97eeeaf96a75b1e2a4497c60b471fa0eb360dfcb9e11a1ca16a9de3c1b4944f7",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000029.jpg": "e0cc1a87fe881c68add94a3ce66a201e0ebe50de0b6d7fef331b32e55db56744",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000028.jpg": "8d19e3b9d960a57ac695214f2d912301ec948dc56f0d94950da134c24ad77fbb",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000025.jpg": "4bfcdea00ecc4cc5a0a7c76868fcd5aa091212913b71b8b0cb1952bf98e119e3",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000020.jpg": "dcfb8b82ecfbf07c6d35392ad1761283fff8198e9ec8e8904e61cd193162ac16",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000180.jpg": "af690bbf4b737ebb3559862d6fc4451bbf7e4f465537bff3d787a11f7f5f9921",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_right/00000180.jpg": "26bb90f12cf94d61e30434152e6485c5213b31e28d015030af7493c764c086b5",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_left/00000180.jpg": "00c842e5145c5ab2fcfd4159cf5ecc3b437664180b8c9371ae435b6e2532b83e",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_wide/00000180.jpg": "c192945c49741b62a0c41fefa7e0b0829beac65bccf001194a94e0ab9b5b6014",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_left/00000180.jpg": "94fc3f7b311870a54202e6bda2f7ec88be205c076a3263d4fcd639dc47563e57",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_right/00000180.jpg": "11ae67a323a6473799b32f9ec6098060922c736d30f9a399afc48d271a0f2662",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000179.jpg": "c3870c5c376f2394b851971b9bcb9f63109f9520fe3607ca4945d6038fca116a",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000178.jpg": "18b712b0382337499fdd723b9f747acbbabcb619039de641311b9bf112a62313",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000175.jpg": "8d69f757cf870c134e6a0ac4ee1f781b85c50dd55f71f4da7eaae6d8dbd9c716",
+      "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000170.jpg": "6b3e695137522bd0f659c078b2879eb08d989e51965da973a0e33410f9d55215"
+    },
+    "split_manifest_path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache_path": "/tmp/pm97/data/etri/ego_cache.npz",
+    "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime",
+    "supervision_manifest_sha256": "073d9d2eb89956cac5c3d78b91622f5e397cfa116b1ed8f9a9f639ec3003a8d0",
+    "image_cache_root": "/NHNHOME/data/sukim/adcl/cache/etri_768",
+    "camera_order": [
+      "camera_front",
+      "camera_front_right",
+      "camera_front_left",
+      "camera_rear_wide",
+      "camera_rear_left",
+      "camera_rear_right"
+    ],
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "image_normalization": {
+      "mean": [
+        0.48500001430511475,
+        0.4560000002384186,
+        0.4059999883174896
+      ],
+      "std": [
+        0.2290000021457672,
+        0.2240000069141388,
+        0.22499999403953552
+      ]
+    },
+    "history_resize": "dataset의 PIL BILINEAR 768×432→384×216 원출력",
+    "dataset_access": "표본·영상·scene supervision은 선택한 train4 scene만 사용. 표준 loader의 공유 ego_cache에서 실제 행/계보를 확인함",
+    "code_sha256": {
+      "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_gradient_fixture.py": "46adea0cc32b7af35f6b2cb470f1bf9b7fdfb7d4c7833e468216a5934e908573",
+      "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py": "8d6a7360cdbf09c29a68bce2fcc3ddd4d124672b1c967651e22be0addfcc4054"
+    },
+    "tensor_schema": {
+      "images": {
+        "shape": [
+          8,
+          6,
+          3,
+          432,
+          768
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "history_images": {
+        "shape": [
+          8,
+          4,
+          3,
+          216,
+          384
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "lidar2img": {
+        "shape": [
+          8,
+          6,
+          4,
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "goal_xy": {
+        "shape": [
+          8,
+          2
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "gt_plan": {
+        "shape": [
+          8,
+          6,
+          2
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "plan_valid": {
+        "shape": [
+          8,
+          6
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "row": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.int64",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "scen_idx": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.int64",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "frame": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.int64",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "proxy_weight": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "history_transforms": {
+        "shape": [
+          8,
+          4,
+          4,
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "time_offsets": {
+        "shape": [
+          8,
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "history_target": {
+        "shape": [
+          8,
+          4,
+          4
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "history_valid": {
+        "shape": [
+          8,
+          4,
+          4
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "state_target": {
+        "shape": [
+          8,
+          6
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "state_valid": {
+        "shape": [
+          8,
+          6
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "occ_target": {
+        "shape": [
+          8,
+          1,
+          64,
+          48
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "lane_target": {
+        "shape": [
+          8,
+          1,
+          64,
+          48
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "occ_valid": {
+        "shape": [
+          8,
+          1,
+          64,
+          48
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      },
+      "lane_valid": {
+        "shape": [
+          8,
+          1,
+          64,
+          48
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu",
+        "requires_grad": false
+      }
+    },
+    "valid_counts": {
+      "plan_valid": {
+        "valid": 48,
+        "total": 48
+      },
+      "history_valid": {
+        "valid": 128,
+        "total": 128
+      },
+      "state_valid": {
+        "valid": 48,
+        "total": 48
+      },
+      "occ_valid": {
+        "valid": 6102,
+        "total": 24576
+      },
+      "lane_valid": {
+        "valid": 8855,
+        "total": 24576
+      }
+    },
+    "gpu_initialized": false
+  },
+  "artifact": {
+    "path": "/NHNHOME/data/sukim/adcl/checkpoints/motiondrive_v2/diagnostics/p1_gradient_train8.pt",
+    "sha256": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "size_bytes": 223232359
+  }
+}
