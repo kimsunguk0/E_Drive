@@ -259,3 +259,48 @@ shuffle/repeat의11세션 frame가중 paired CI는 각각[+1.23792,+2.33517],
 bitwise 일치를 확인했다. 영상100개 출처 SHA와 schema2 canonical SHA 검사도 통과했다.
 수정된 loader/trainer 및 관련 B200 CPU tests179개가 통과했다.
 GPU0–3 평가 작업은 모두 해제됐고 GPU6 기존 작업은 그대로다.
+
+## 17:52 KST: P2 자원 대기, CPU 배포 검증 계속
+
+`547fcdc`에 P1 원본 평가/geometry 근거, `0cb3a29`에 입력정책·보호검사/P2계획,
+`77cf862`에 다른 작업을 보존하는 분리 실행 계획을 커밋했다.
+하지만 별도 alpamayo 벤치마크가GPU0–3을 다시 점유하여 원4판·분리3판 모두
+launcher preflight에서 안전하게 거절됐다. **P2 학습은0개 실행**이다.
+실제 새 데이터/코드는 준비됐지만 자원 대기 상태이며 이를 학습 시작으로 보고하지 않는다.
+다른 project의 coordinator/worker를 중지하지 않고, GPU4–7로 범위를 넓히지 않았다.
+
+기다리는 동안 GT-free raw-clip 입력 adapter와 train8 test-shaped fixture를 작성했다.
+OpenCV가 있는 기존 `env/venv`에서 관련30 CPU tests 통과. 학습용 systemPython은
+OpenCV가 없으므로 그 환경을 변경하지 않았다. 실제 학습환경의 기존 immutable train8
+tensor export를 reference로 사용해 Python/PIL 환경 차이까지 별도 대조한다.
+fixture clip에는 JPEG10개/calibration/과거31행+제공goal1행 pose만 두며 timestamp,
+status, 미래 중간 궤적·object/map 라벨은 넣지 않는다.
+
+## 18:12 KST: 실제 raw-clip 배포 입력 parity 완료
+
+기존 systemPython이 저장한 immutable train8 tensor export(SHA `4fb192ff…`)를
+다른 환경에서 다시 디코딩하지 않고 기준으로 사용했다. 기준의 calibration과 time만
+명시적으로 geometry_v2/nominal로 교체했으며 영상·history·goal·GT는 보존했다.
+기존 `env/venv`의 OpenCV4.8.1/Pillow12.2.0에서 원본 JPEG와 공식형 pose/calibration
+파일로 다시 만든 결과, **6종 입력 전부8/8 bitwise 동일, 최대 절대오차0**이다.
+재구성 캐시 JPEG80/80개 SHA도 기존 export 출처와 일치했다. 행렬 허용오차로
+차이를 숨긴 결과가 아니며 모든 행렬과 goal도 실제 bitwise 동일했다.
+
+실제 비교 전 B200 CPU tests55개 통과. 비교 자체는 CUDA 초기화·model forward 없이
+끝났고 원본 reference/라벨/fixture96파일/코드/계약 SHA가 전후 불변이었다.
+raw fixture는 train4scene×frame30/180뿐이며 test/final-val을 읽지 않았다.
+이8개 입력의 정합 증거이지 전체 clip 일반화·최종 모델 출력·운영국 승인 증거는 아니다.
+
+원본: `reports/motiondrive_v2_deploy_input_parity_train8.json`,
+SHA `5f60c0f6dbaaadb0774a2596f1c1f2e2be920b25f17bdd9e166ff323c7c00fa7`.
+raw fixture 계보: `reports/motiondrive_v2_deploy_fixture_train8_manifest.json`.
+배포 adapter는 `models/motiondrive_v2_inputs.py`이며 아직 제출 실행기/JSON writer는 아니다.
+
+18:10 확인에도 GPU0–3은 별도 alpamayo 작업이 점유 중이었다. P2 실행0개이며
+타 작업 중지/추가 GPU 사용 없이 대기한다. 다음 단계는 C×T 통제 학습과
+그 C1/T1 checkpoint의 계약 보존 export·전체 forward 검증이다.
+
+계약 정의를 OpenCV/Torch를 import하지 않는 `models/motiondrive_v2_input_contract.py`로
+분리해 학습환경의 export에서도 같은 계약을 사용할 수 있게 했다. 값/픽셀 처리 변경은
+없으며 분리 후 actual train8 parity를 새 보고서로 재실행해6종 모두 bitwise를 재확인했다.
+원 보고서를 덮어쓰지 않았다: `motiondrive_v2_deploy_input_parity_train8_contract_replay.json`.

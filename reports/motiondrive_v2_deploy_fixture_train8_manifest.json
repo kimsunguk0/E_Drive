@@ -1,0 +1,1133 @@
+{
+  "status": "created_verified",
+  "purpose": "train-only 공식 테스트형 GT-free adapter 입력 검증",
+  "selection": "train 이름순 첫4scene×frame30/180, 성능 기반 선택 없음",
+  "clip_count": 8,
+  "jpeg_count": 80,
+  "pose_rows_per_clip": 32,
+  "camera_order": [
+    "camera_front",
+    "camera_front_right",
+    "camera_front_left",
+    "camera_rear_wide",
+    "camera_rear_left",
+    "camera_rear_right"
+  ],
+  "history_frames": [
+    -1,
+    -2,
+    -5,
+    -10
+  ],
+  "pose_columns": [
+    "frame",
+    "x",
+    "y",
+    "z",
+    "roll",
+    "pitch",
+    "yaw"
+  ],
+  "pose_relative_frames": [
+    -30,
+    -29,
+    -28,
+    -27,
+    -26,
+    -25,
+    -24,
+    -23,
+    -22,
+    -21,
+    -20,
+    -19,
+    -18,
+    -17,
+    -16,
+    -15,
+    -14,
+    -13,
+    -12,
+    -11,
+    -10,
+    -9,
+    -8,
+    -7,
+    -6,
+    -5,
+    -4,
+    -3,
+    -2,
+    -1,
+    0,
+    50
+  ],
+  "time_offsets_contract": "nominal seconds [0.1,0.2,0.5,1.0]; no raw timestamp supplied",
+  "intended_geometry": "geometry_v2: 실제 cached crop에 맞춘 투영행렬",
+  "source_split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+  "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "sources": {
+    "20260112-105434": {
+      "archive": "/NHNHOME/data/sukim/adcl/train/20260112-105434.tar",
+      "archive_sha256_before": "c1127b1a6985736a3e1b6abfe4790866e9b744ecd77933b4de38563ef77fc816",
+      "archive_sha256_after_preparation": "c1127b1a6985736a3e1b6abfe4790866e9b744ecd77933b4de38563ef77fc816",
+      "metadata_members": {
+        "calibration": {
+          "member": "20260112-105434/calibration/calibration.parquet",
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "timestamps": {
+          "member": "20260112-105434/meta/timestamps.parquet",
+          "sha256": "9b117d46426ca4f832ad6bd19ef084051a1c5d87dc90b986ed85d2a3f7f60d1c",
+          "bytes": 8433
+        },
+        "ego_pose": {
+          "member": "20260112-105434/annotation/ego_pose.parquet",
+          "sha256": "8adfd4c446cfe8888a65f2980c7bc44b11eafe93b020588f9c1449a3978b822d",
+          "bytes": 26967
+        }
+      },
+      "archive_sha256_after_write": "c1127b1a6985736a3e1b6abfe4790866e9b744ecd77933b4de38563ef77fc816"
+    },
+    "20260112-105504": {
+      "archive": "/NHNHOME/data/sukim/adcl/train/20260112-105504.tar",
+      "archive_sha256_before": "d9b0e69b283ea1879c2f801b4dcbe1905eb0add39f9217bdef27e208a2ad61dc",
+      "archive_sha256_after_preparation": "d9b0e69b283ea1879c2f801b4dcbe1905eb0add39f9217bdef27e208a2ad61dc",
+      "metadata_members": {
+        "calibration": {
+          "member": "20260112-105504/calibration/calibration.parquet",
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "timestamps": {
+          "member": "20260112-105504/meta/timestamps.parquet",
+          "sha256": "d9056d13ffcfa5c757ff904285f2d32cd3c23ea4a4be3efb1d6a0b3487738b48",
+          "bytes": 8468
+        },
+        "ego_pose": {
+          "member": "20260112-105504/annotation/ego_pose.parquet",
+          "sha256": "fabbb41cb5c1c381b3f0159cbc17dae3c462842641769e264d3a91d3a1b983ec",
+          "bytes": 26966
+        }
+      },
+      "archive_sha256_after_write": "d9b0e69b283ea1879c2f801b4dcbe1905eb0add39f9217bdef27e208a2ad61dc"
+    },
+    "20260112-111049": {
+      "archive": "/NHNHOME/data/sukim/adcl/train/20260112-111049.tar",
+      "archive_sha256_before": "5b5712f7852eda43a9708fbd0aef000356a2bccfb8c7b92fff57c475336fdaf0",
+      "archive_sha256_after_preparation": "5b5712f7852eda43a9708fbd0aef000356a2bccfb8c7b92fff57c475336fdaf0",
+      "metadata_members": {
+        "calibration": {
+          "member": "20260112-111049/calibration/calibration.parquet",
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "timestamps": {
+          "member": "20260112-111049/meta/timestamps.parquet",
+          "sha256": "d742ba2805a8ff0e3de2023a50576767cfde357a8ea6fd35f217494b3983f975",
+          "bytes": 8468
+        },
+        "ego_pose": {
+          "member": "20260112-111049/annotation/ego_pose.parquet",
+          "sha256": "b2aa53501d662340b040af653d11147800dd27ffe83b43c9bc3424bf302ba534",
+          "bytes": 26969
+        }
+      },
+      "archive_sha256_after_write": "5b5712f7852eda43a9708fbd0aef000356a2bccfb8c7b92fff57c475336fdaf0"
+    },
+    "20260112-111149": {
+      "archive": "/NHNHOME/data/sukim/adcl/train/20260112-111149.tar",
+      "archive_sha256_before": "84748f40791ec609343363df192e464693082be4c1dbd74737da73941db7edfe",
+      "archive_sha256_after_preparation": "84748f40791ec609343363df192e464693082be4c1dbd74737da73941db7edfe",
+      "metadata_members": {
+        "calibration": {
+          "member": "20260112-111149/calibration/calibration.parquet",
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "timestamps": {
+          "member": "20260112-111149/meta/timestamps.parquet",
+          "sha256": "c0f2064b37f8f7aac0979c3b6e3d5df9c642d3cd9e17a1d99413576940d74272",
+          "bytes": 8474
+        },
+        "ego_pose": {
+          "member": "20260112-111149/annotation/ego_pose.parquet",
+          "sha256": "908883814df9e35238075c0cb76b72ebae4d9d826c63692dedfcb9e17ffb4ca9",
+          "bytes": 26969
+        }
+      },
+      "archive_sha256_after_write": "84748f40791ec609343363df192e464693082be4c1dbd74737da73941db7edfe"
+    }
+  },
+  "clips": [
+    {
+      "clip_id": "fixture_000",
+      "clip_directory": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_000",
+      "source_split": "train",
+      "source_scene": "20260112-105434",
+      "source_frame": 30,
+      "model_must_not_receive_source_mapping": true,
+      "jpeg_sources": [
+        {
+          "archive_member": "20260112-105434/camera_front/00000030.jpg",
+          "output_relative_path": "camera_front/frame_0.jpg",
+          "sha256": "a900a033a744797bd4773b4c5bc73096198186520c859885849efa90b5a7b9df",
+          "bytes": 276357
+        },
+        {
+          "archive_member": "20260112-105434/camera_front_right/00000030.jpg",
+          "output_relative_path": "camera_front_right/frame_0.jpg",
+          "sha256": "68205ec8ae9ebd6f2662ebb310697171ec2f85fdf4f444e6c3697c81d09df6aa",
+          "bytes": 388462
+        },
+        {
+          "archive_member": "20260112-105434/camera_front_left/00000030.jpg",
+          "output_relative_path": "camera_front_left/frame_0.jpg",
+          "sha256": "bc477d30301bbf8b60a9318d85435207b4688de5c9361fbdc2e7e091000743b5",
+          "bytes": 286006
+        },
+        {
+          "archive_member": "20260112-105434/camera_rear_wide/00000030.jpg",
+          "output_relative_path": "camera_rear_wide/frame_0.jpg",
+          "sha256": "741f4ad891ac25e5b771ea30c355a0c0bec05260be1861dd4ecd0a4eff8292f7",
+          "bytes": 390546
+        },
+        {
+          "archive_member": "20260112-105434/camera_rear_left/00000030.jpg",
+          "output_relative_path": "camera_rear_left/frame_0.jpg",
+          "sha256": "4bca6d553f2e809d69fa801032a9be6dc231b8ea802c21a7e296b298cc79b8e5",
+          "bytes": 275170
+        },
+        {
+          "archive_member": "20260112-105434/camera_rear_right/00000030.jpg",
+          "output_relative_path": "camera_rear_right/frame_0.jpg",
+          "sha256": "97e830b02eb4e0531f3cb19c8c763b5ec487c2217acd6c568c08394e0c3bd53d",
+          "bytes": 415473
+        },
+        {
+          "archive_member": "20260112-105434/camera_front/00000029.jpg",
+          "output_relative_path": "camera_front/frame_-1.jpg",
+          "sha256": "e13b350ef4839adb744cc62544790918b01b2efd06757dcb471b10d09a88c0e7",
+          "bytes": 277372
+        },
+        {
+          "archive_member": "20260112-105434/camera_front/00000028.jpg",
+          "output_relative_path": "camera_front/frame_-2.jpg",
+          "sha256": "9c599df6b49d37410277370e2cf280da58a08dd9f79806cc8dd392ac999a556d",
+          "bytes": 279865
+        },
+        {
+          "archive_member": "20260112-105434/camera_front/00000025.jpg",
+          "output_relative_path": "camera_front/frame_-5.jpg",
+          "sha256": "555340b0b2ba066938d3d0cf51063ba72c048c8a4955a5bb1408d4b6a559f519",
+          "bytes": 300308
+        },
+        {
+          "archive_member": "20260112-105434/camera_front/00000020.jpg",
+          "output_relative_path": "camera_front/frame_-10.jpg",
+          "sha256": "39b6f7eccbd1cec9c5f409e5d70b053205b64065a0269a363b1fbc6babe866d1",
+          "bytes": 314118
+        }
+      ],
+      "outputs": {
+        "camera_front/frame_0.jpg": {
+          "sha256": "a900a033a744797bd4773b4c5bc73096198186520c859885849efa90b5a7b9df",
+          "bytes": 276357
+        },
+        "camera_front_right/frame_0.jpg": {
+          "sha256": "68205ec8ae9ebd6f2662ebb310697171ec2f85fdf4f444e6c3697c81d09df6aa",
+          "bytes": 388462
+        },
+        "camera_front_left/frame_0.jpg": {
+          "sha256": "bc477d30301bbf8b60a9318d85435207b4688de5c9361fbdc2e7e091000743b5",
+          "bytes": 286006
+        },
+        "camera_rear_wide/frame_0.jpg": {
+          "sha256": "741f4ad891ac25e5b771ea30c355a0c0bec05260be1861dd4ecd0a4eff8292f7",
+          "bytes": 390546
+        },
+        "camera_rear_left/frame_0.jpg": {
+          "sha256": "4bca6d553f2e809d69fa801032a9be6dc231b8ea802c21a7e296b298cc79b8e5",
+          "bytes": 275170
+        },
+        "camera_rear_right/frame_0.jpg": {
+          "sha256": "97e830b02eb4e0531f3cb19c8c763b5ec487c2217acd6c568c08394e0c3bd53d",
+          "bytes": 415473
+        },
+        "camera_front/frame_-1.jpg": {
+          "sha256": "e13b350ef4839adb744cc62544790918b01b2efd06757dcb471b10d09a88c0e7",
+          "bytes": 277372
+        },
+        "camera_front/frame_-2.jpg": {
+          "sha256": "9c599df6b49d37410277370e2cf280da58a08dd9f79806cc8dd392ac999a556d",
+          "bytes": 279865
+        },
+        "camera_front/frame_-5.jpg": {
+          "sha256": "555340b0b2ba066938d3d0cf51063ba72c048c8a4955a5bb1408d4b6a559f519",
+          "bytes": 300308
+        },
+        "camera_front/frame_-10.jpg": {
+          "sha256": "39b6f7eccbd1cec9c5f409e5d70b053205b64065a0269a363b1fbc6babe866d1",
+          "bytes": 314118
+        },
+        "calibration.parquet": {
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "ego_pose.parquet": {
+          "sha256": "3403f8f5cf521b09b3c4936a0e1425d6afd5b5caad5533bb80949a2fb56ba2c0",
+          "bytes": 3914
+        }
+      }
+    },
+    {
+      "clip_id": "fixture_001",
+      "clip_directory": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_001",
+      "source_split": "train",
+      "source_scene": "20260112-105434",
+      "source_frame": 180,
+      "model_must_not_receive_source_mapping": true,
+      "jpeg_sources": [
+        {
+          "archive_member": "20260112-105434/camera_front/00000180.jpg",
+          "output_relative_path": "camera_front/frame_0.jpg",
+          "sha256": "b615bf4425676e37cc00537ad43006502c12abcef6348f77911f650c6ede3be9",
+          "bytes": 381473
+        },
+        {
+          "archive_member": "20260112-105434/camera_front_right/00000180.jpg",
+          "output_relative_path": "camera_front_right/frame_0.jpg",
+          "sha256": "15eb58f16708037b98afdfd4b8ef90f5a5720d493eb94dba1d7ace7a07c900f6",
+          "bytes": 419263
+        },
+        {
+          "archive_member": "20260112-105434/camera_front_left/00000180.jpg",
+          "output_relative_path": "camera_front_left/frame_0.jpg",
+          "sha256": "a1d2aaf14b916ddb4858b546a075264d30f4276d0863633b86c77c04ce1211f4",
+          "bytes": 363235
+        },
+        {
+          "archive_member": "20260112-105434/camera_rear_wide/00000180.jpg",
+          "output_relative_path": "camera_rear_wide/frame_0.jpg",
+          "sha256": "88bca731d34a27697a653dfdcad982ee60158d2d572c130f6e61b2020e2dcb9a",
+          "bytes": 358786
+        },
+        {
+          "archive_member": "20260112-105434/camera_rear_left/00000180.jpg",
+          "output_relative_path": "camera_rear_left/frame_0.jpg",
+          "sha256": "28857d589596ee1e6dbde28e7700cfedd515822db15299233a4cbf186457ccf4",
+          "bytes": 257552
+        },
+        {
+          "archive_member": "20260112-105434/camera_rear_right/00000180.jpg",
+          "output_relative_path": "camera_rear_right/frame_0.jpg",
+          "sha256": "50dfcea96104e6be4c692e3ec0d0b3e77b5f4b44125fa97dcef82ed57380f232",
+          "bytes": 464214
+        },
+        {
+          "archive_member": "20260112-105434/camera_front/00000179.jpg",
+          "output_relative_path": "camera_front/frame_-1.jpg",
+          "sha256": "50b309c430828e6b010f2d661f5dcbf12e0b760ec5b0b436132fe8fc49119e2c",
+          "bytes": 384642
+        },
+        {
+          "archive_member": "20260112-105434/camera_front/00000178.jpg",
+          "output_relative_path": "camera_front/frame_-2.jpg",
+          "sha256": "bfb786caf2f36a5810a13013182edb90f24ba47684965de7d791820b5eb6f3d3",
+          "bytes": 383799
+        },
+        {
+          "archive_member": "20260112-105434/camera_front/00000175.jpg",
+          "output_relative_path": "camera_front/frame_-5.jpg",
+          "sha256": "262e04ccdd34cdaf66f5e5ed58a499f0517b66d55c0ae018ecebd37721b20f2d",
+          "bytes": 380898
+        },
+        {
+          "archive_member": "20260112-105434/camera_front/00000170.jpg",
+          "output_relative_path": "camera_front/frame_-10.jpg",
+          "sha256": "9b6a2d2eab22c600bd7eaaacb48e5752b02a992f25c7db31fabac2ec5ecaa085",
+          "bytes": 379714
+        }
+      ],
+      "outputs": {
+        "camera_front/frame_0.jpg": {
+          "sha256": "b615bf4425676e37cc00537ad43006502c12abcef6348f77911f650c6ede3be9",
+          "bytes": 381473
+        },
+        "camera_front_right/frame_0.jpg": {
+          "sha256": "15eb58f16708037b98afdfd4b8ef90f5a5720d493eb94dba1d7ace7a07c900f6",
+          "bytes": 419263
+        },
+        "camera_front_left/frame_0.jpg": {
+          "sha256": "a1d2aaf14b916ddb4858b546a075264d30f4276d0863633b86c77c04ce1211f4",
+          "bytes": 363235
+        },
+        "camera_rear_wide/frame_0.jpg": {
+          "sha256": "88bca731d34a27697a653dfdcad982ee60158d2d572c130f6e61b2020e2dcb9a",
+          "bytes": 358786
+        },
+        "camera_rear_left/frame_0.jpg": {
+          "sha256": "28857d589596ee1e6dbde28e7700cfedd515822db15299233a4cbf186457ccf4",
+          "bytes": 257552
+        },
+        "camera_rear_right/frame_0.jpg": {
+          "sha256": "50dfcea96104e6be4c692e3ec0d0b3e77b5f4b44125fa97dcef82ed57380f232",
+          "bytes": 464214
+        },
+        "camera_front/frame_-1.jpg": {
+          "sha256": "50b309c430828e6b010f2d661f5dcbf12e0b760ec5b0b436132fe8fc49119e2c",
+          "bytes": 384642
+        },
+        "camera_front/frame_-2.jpg": {
+          "sha256": "bfb786caf2f36a5810a13013182edb90f24ba47684965de7d791820b5eb6f3d3",
+          "bytes": 383799
+        },
+        "camera_front/frame_-5.jpg": {
+          "sha256": "262e04ccdd34cdaf66f5e5ed58a499f0517b66d55c0ae018ecebd37721b20f2d",
+          "bytes": 380898
+        },
+        "camera_front/frame_-10.jpg": {
+          "sha256": "9b6a2d2eab22c600bd7eaaacb48e5752b02a992f25c7db31fabac2ec5ecaa085",
+          "bytes": 379714
+        },
+        "calibration.parquet": {
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "ego_pose.parquet": {
+          "sha256": "ab502d484f66eef8b2c3d6a54231fe53057e7c995b6b8dd08311a4350f67e6bf",
+          "bytes": 3925
+        }
+      }
+    },
+    {
+      "clip_id": "fixture_002",
+      "clip_directory": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_002",
+      "source_split": "train",
+      "source_scene": "20260112-105504",
+      "source_frame": 30,
+      "model_must_not_receive_source_mapping": true,
+      "jpeg_sources": [
+        {
+          "archive_member": "20260112-105504/camera_front/00000030.jpg",
+          "output_relative_path": "camera_front/frame_0.jpg",
+          "sha256": "a4f1fbe2b5afe813267e2e54e94ce986f070c41d30fe058df55832f471b5442f",
+          "bytes": 376836
+        },
+        {
+          "archive_member": "20260112-105504/camera_front_right/00000030.jpg",
+          "output_relative_path": "camera_front_right/frame_0.jpg",
+          "sha256": "16a10f25e5a10bfcf0c4ffb50192b984352a839dda93a565b6f03d1e40a80668",
+          "bytes": 400104
+        },
+        {
+          "archive_member": "20260112-105504/camera_front_left/00000030.jpg",
+          "output_relative_path": "camera_front_left/frame_0.jpg",
+          "sha256": "972bd2c33ae8d280396a88a793edcca95f0e3caa5fa22c437d6ed61f64917368",
+          "bytes": 355567
+        },
+        {
+          "archive_member": "20260112-105504/camera_rear_wide/00000030.jpg",
+          "output_relative_path": "camera_rear_wide/frame_0.jpg",
+          "sha256": "1ebe248ac027f872906eb2e55728e81e5eec3eb6aa7e4f49120261549c18a8b9",
+          "bytes": 390804
+        },
+        {
+          "archive_member": "20260112-105504/camera_rear_left/00000030.jpg",
+          "output_relative_path": "camera_rear_left/frame_0.jpg",
+          "sha256": "06bf9d786b019f0b929282d9b86b2f557ceb8e2ad8cb651000b216a9218749ca",
+          "bytes": 288843
+        },
+        {
+          "archive_member": "20260112-105504/camera_rear_right/00000030.jpg",
+          "output_relative_path": "camera_rear_right/frame_0.jpg",
+          "sha256": "6610203b0ee4138564a04f871f9a32d11e4e61308538c99e09cd006d565ab94c",
+          "bytes": 429803
+        },
+        {
+          "archive_member": "20260112-105504/camera_front/00000029.jpg",
+          "output_relative_path": "camera_front/frame_-1.jpg",
+          "sha256": "3a2b7447b8d3f0d897f93c376569fbc10b7f799b3d439417a95e67ec6e460f4f",
+          "bytes": 379901
+        },
+        {
+          "archive_member": "20260112-105504/camera_front/00000028.jpg",
+          "output_relative_path": "camera_front/frame_-2.jpg",
+          "sha256": "61f303e53b31e4e42ca4582298f7c51cbd23c38a3f3558e6e6528d8e3d7bc976",
+          "bytes": 379120
+        },
+        {
+          "archive_member": "20260112-105504/camera_front/00000025.jpg",
+          "output_relative_path": "camera_front/frame_-5.jpg",
+          "sha256": "c9878956f27d44fc136b1a36bcbfe1ae57c4590d8a7ac2c72b46036402f33432",
+          "bytes": 387176
+        },
+        {
+          "archive_member": "20260112-105504/camera_front/00000020.jpg",
+          "output_relative_path": "camera_front/frame_-10.jpg",
+          "sha256": "ba6bbe41552459679c9a52bc8fdbdbd2915d42d82be1600403e91f8054a395b9",
+          "bytes": 376116
+        }
+      ],
+      "outputs": {
+        "camera_front/frame_0.jpg": {
+          "sha256": "a4f1fbe2b5afe813267e2e54e94ce986f070c41d30fe058df55832f471b5442f",
+          "bytes": 376836
+        },
+        "camera_front_right/frame_0.jpg": {
+          "sha256": "16a10f25e5a10bfcf0c4ffb50192b984352a839dda93a565b6f03d1e40a80668",
+          "bytes": 400104
+        },
+        "camera_front_left/frame_0.jpg": {
+          "sha256": "972bd2c33ae8d280396a88a793edcca95f0e3caa5fa22c437d6ed61f64917368",
+          "bytes": 355567
+        },
+        "camera_rear_wide/frame_0.jpg": {
+          "sha256": "1ebe248ac027f872906eb2e55728e81e5eec3eb6aa7e4f49120261549c18a8b9",
+          "bytes": 390804
+        },
+        "camera_rear_left/frame_0.jpg": {
+          "sha256": "06bf9d786b019f0b929282d9b86b2f557ceb8e2ad8cb651000b216a9218749ca",
+          "bytes": 288843
+        },
+        "camera_rear_right/frame_0.jpg": {
+          "sha256": "6610203b0ee4138564a04f871f9a32d11e4e61308538c99e09cd006d565ab94c",
+          "bytes": 429803
+        },
+        "camera_front/frame_-1.jpg": {
+          "sha256": "3a2b7447b8d3f0d897f93c376569fbc10b7f799b3d439417a95e67ec6e460f4f",
+          "bytes": 379901
+        },
+        "camera_front/frame_-2.jpg": {
+          "sha256": "61f303e53b31e4e42ca4582298f7c51cbd23c38a3f3558e6e6528d8e3d7bc976",
+          "bytes": 379120
+        },
+        "camera_front/frame_-5.jpg": {
+          "sha256": "c9878956f27d44fc136b1a36bcbfe1ae57c4590d8a7ac2c72b46036402f33432",
+          "bytes": 387176
+        },
+        "camera_front/frame_-10.jpg": {
+          "sha256": "ba6bbe41552459679c9a52bc8fdbdbd2915d42d82be1600403e91f8054a395b9",
+          "bytes": 376116
+        },
+        "calibration.parquet": {
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "ego_pose.parquet": {
+          "sha256": "434180b8625e9cd37919ed5e9837d3ccaa8449e2777fb73bc735168b163a7dce",
+          "bytes": 3908
+        }
+      }
+    },
+    {
+      "clip_id": "fixture_003",
+      "clip_directory": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_003",
+      "source_split": "train",
+      "source_scene": "20260112-105504",
+      "source_frame": 180,
+      "model_must_not_receive_source_mapping": true,
+      "jpeg_sources": [
+        {
+          "archive_member": "20260112-105504/camera_front/00000180.jpg",
+          "output_relative_path": "camera_front/frame_0.jpg",
+          "sha256": "835ca73d5ac0f805edd97f9f50555629f039949bca2c16643421ce8e25c0394e",
+          "bytes": 267825
+        },
+        {
+          "archive_member": "20260112-105504/camera_front_right/00000180.jpg",
+          "output_relative_path": "camera_front_right/frame_0.jpg",
+          "sha256": "334ec4693a46187f4587afed8c278bbcbd0b2815190539e6a258a0fd2ca2a9f1",
+          "bytes": 349962
+        },
+        {
+          "archive_member": "20260112-105504/camera_front_left/00000180.jpg",
+          "output_relative_path": "camera_front_left/frame_0.jpg",
+          "sha256": "c8f2405b99c3c8727eeaa48ba50d8be890248caeccbc58c31595d04b359046d3",
+          "bytes": 361201
+        },
+        {
+          "archive_member": "20260112-105504/camera_rear_wide/00000180.jpg",
+          "output_relative_path": "camera_rear_wide/frame_0.jpg",
+          "sha256": "3b8d1a6c04b43b68a6102b14d3cdd8e5288ed26ca2b21a487184a48273bd37d2",
+          "bytes": 394117
+        },
+        {
+          "archive_member": "20260112-105504/camera_rear_left/00000180.jpg",
+          "output_relative_path": "camera_rear_left/frame_0.jpg",
+          "sha256": "c8c0bbf4362f4d1e21a48422d2978ef6fb7c62f5784e6049e098e6409af4324a",
+          "bytes": 307563
+        },
+        {
+          "archive_member": "20260112-105504/camera_rear_right/00000180.jpg",
+          "output_relative_path": "camera_rear_right/frame_0.jpg",
+          "sha256": "49ce20a490a19bc81141e2b41c3e68e193311e9abb4db03a5ef67f8dcae267e6",
+          "bytes": 337222
+        },
+        {
+          "archive_member": "20260112-105504/camera_front/00000179.jpg",
+          "output_relative_path": "camera_front/frame_-1.jpg",
+          "sha256": "3ea9b18898281ec3bff30a84c50bb70f35f31ffb5f508a3f1b2b27d3f80a37c5",
+          "bytes": 268158
+        },
+        {
+          "archive_member": "20260112-105504/camera_front/00000178.jpg",
+          "output_relative_path": "camera_front/frame_-2.jpg",
+          "sha256": "a22de78edc9760f51a9667d5cf5d02024f6fdbb8e01be89b70e097fcafbec332",
+          "bytes": 269763
+        },
+        {
+          "archive_member": "20260112-105504/camera_front/00000175.jpg",
+          "output_relative_path": "camera_front/frame_-5.jpg",
+          "sha256": "4a48d7e98213f314a66f5856ef946c5f635079b482eba238e265780a475ba487",
+          "bytes": 283341
+        },
+        {
+          "archive_member": "20260112-105504/camera_front/00000170.jpg",
+          "output_relative_path": "camera_front/frame_-10.jpg",
+          "sha256": "37e9d20eff0925a86f79f91ca5f10ef60baf23665262fa24f10a542e289f1bc3",
+          "bytes": 303214
+        }
+      ],
+      "outputs": {
+        "camera_front/frame_0.jpg": {
+          "sha256": "835ca73d5ac0f805edd97f9f50555629f039949bca2c16643421ce8e25c0394e",
+          "bytes": 267825
+        },
+        "camera_front_right/frame_0.jpg": {
+          "sha256": "334ec4693a46187f4587afed8c278bbcbd0b2815190539e6a258a0fd2ca2a9f1",
+          "bytes": 349962
+        },
+        "camera_front_left/frame_0.jpg": {
+          "sha256": "c8f2405b99c3c8727eeaa48ba50d8be890248caeccbc58c31595d04b359046d3",
+          "bytes": 361201
+        },
+        "camera_rear_wide/frame_0.jpg": {
+          "sha256": "3b8d1a6c04b43b68a6102b14d3cdd8e5288ed26ca2b21a487184a48273bd37d2",
+          "bytes": 394117
+        },
+        "camera_rear_left/frame_0.jpg": {
+          "sha256": "c8c0bbf4362f4d1e21a48422d2978ef6fb7c62f5784e6049e098e6409af4324a",
+          "bytes": 307563
+        },
+        "camera_rear_right/frame_0.jpg": {
+          "sha256": "49ce20a490a19bc81141e2b41c3e68e193311e9abb4db03a5ef67f8dcae267e6",
+          "bytes": 337222
+        },
+        "camera_front/frame_-1.jpg": {
+          "sha256": "3ea9b18898281ec3bff30a84c50bb70f35f31ffb5f508a3f1b2b27d3f80a37c5",
+          "bytes": 268158
+        },
+        "camera_front/frame_-2.jpg": {
+          "sha256": "a22de78edc9760f51a9667d5cf5d02024f6fdbb8e01be89b70e097fcafbec332",
+          "bytes": 269763
+        },
+        "camera_front/frame_-5.jpg": {
+          "sha256": "4a48d7e98213f314a66f5856ef946c5f635079b482eba238e265780a475ba487",
+          "bytes": 283341
+        },
+        "camera_front/frame_-10.jpg": {
+          "sha256": "37e9d20eff0925a86f79f91ca5f10ef60baf23665262fa24f10a542e289f1bc3",
+          "bytes": 303214
+        },
+        "calibration.parquet": {
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "ego_pose.parquet": {
+          "sha256": "2122713c00480763e7f8aedc38e97a3244d8bbdcaea5cdb8b119fc0a0c660cc6",
+          "bytes": 3925
+        }
+      }
+    },
+    {
+      "clip_id": "fixture_004",
+      "clip_directory": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_004",
+      "source_split": "train",
+      "source_scene": "20260112-111049",
+      "source_frame": 30,
+      "model_must_not_receive_source_mapping": true,
+      "jpeg_sources": [
+        {
+          "archive_member": "20260112-111049/camera_front/00000030.jpg",
+          "output_relative_path": "camera_front/frame_0.jpg",
+          "sha256": "b7440dd39b797a0ed7d01740728c620ed5aeaae0341354c1d152b9d93772f777",
+          "bytes": 198483
+        },
+        {
+          "archive_member": "20260112-111049/camera_front_right/00000030.jpg",
+          "output_relative_path": "camera_front_right/frame_0.jpg",
+          "sha256": "ae052bc39575cf32b8205f0c574455b130e5693791033668a33d4baaeef99239",
+          "bytes": 291287
+        },
+        {
+          "archive_member": "20260112-111049/camera_front_left/00000030.jpg",
+          "output_relative_path": "camera_front_left/frame_0.jpg",
+          "sha256": "896f6362f8ec7f0853284fbadc60af9d7f0cb7bfd9c28dac7cbbeeee01a71663",
+          "bytes": 318742
+        },
+        {
+          "archive_member": "20260112-111049/camera_rear_wide/00000030.jpg",
+          "output_relative_path": "camera_rear_wide/frame_0.jpg",
+          "sha256": "37915abd4121078cba8f583b335d2d7d6b1b2081b5b493f5f3aefedc6a3c6116",
+          "bytes": 384087
+        },
+        {
+          "archive_member": "20260112-111049/camera_rear_left/00000030.jpg",
+          "output_relative_path": "camera_rear_left/frame_0.jpg",
+          "sha256": "3e67f27fc84d617a750ca8b77b4ffb12d0ce4314d7be9f1e8e7e15a121819f74",
+          "bytes": 345087
+        },
+        {
+          "archive_member": "20260112-111049/camera_rear_right/00000030.jpg",
+          "output_relative_path": "camera_rear_right/frame_0.jpg",
+          "sha256": "627baedb5a34132f3415127dcb9dd133566e8ac4995c2d383f80f27ee6e89be4",
+          "bytes": 358392
+        },
+        {
+          "archive_member": "20260112-111049/camera_front/00000029.jpg",
+          "output_relative_path": "camera_front/frame_-1.jpg",
+          "sha256": "e195f39be7d37fa26df93cc5d1c0e9d96f11784867ef0f3f14d97bd905620eed",
+          "bytes": 200415
+        },
+        {
+          "archive_member": "20260112-111049/camera_front/00000028.jpg",
+          "output_relative_path": "camera_front/frame_-2.jpg",
+          "sha256": "cec0b759ca46edd175d1ec489e502a4b5b23bfdd89b4a65831212b88721ac4e6",
+          "bytes": 200636
+        },
+        {
+          "archive_member": "20260112-111049/camera_front/00000025.jpg",
+          "output_relative_path": "camera_front/frame_-5.jpg",
+          "sha256": "e4492a52a8c4d61d59398f725bc03417ed699d327e9e0920c34045ca66e5a6a2",
+          "bytes": 203509
+        },
+        {
+          "archive_member": "20260112-111049/camera_front/00000020.jpg",
+          "output_relative_path": "camera_front/frame_-10.jpg",
+          "sha256": "822881541ddaaf987be976f33af2ff15482d9c6d9798385563a8c1546288fe21",
+          "bytes": 206186
+        }
+      ],
+      "outputs": {
+        "camera_front/frame_0.jpg": {
+          "sha256": "b7440dd39b797a0ed7d01740728c620ed5aeaae0341354c1d152b9d93772f777",
+          "bytes": 198483
+        },
+        "camera_front_right/frame_0.jpg": {
+          "sha256": "ae052bc39575cf32b8205f0c574455b130e5693791033668a33d4baaeef99239",
+          "bytes": 291287
+        },
+        "camera_front_left/frame_0.jpg": {
+          "sha256": "896f6362f8ec7f0853284fbadc60af9d7f0cb7bfd9c28dac7cbbeeee01a71663",
+          "bytes": 318742
+        },
+        "camera_rear_wide/frame_0.jpg": {
+          "sha256": "37915abd4121078cba8f583b335d2d7d6b1b2081b5b493f5f3aefedc6a3c6116",
+          "bytes": 384087
+        },
+        "camera_rear_left/frame_0.jpg": {
+          "sha256": "3e67f27fc84d617a750ca8b77b4ffb12d0ce4314d7be9f1e8e7e15a121819f74",
+          "bytes": 345087
+        },
+        "camera_rear_right/frame_0.jpg": {
+          "sha256": "627baedb5a34132f3415127dcb9dd133566e8ac4995c2d383f80f27ee6e89be4",
+          "bytes": 358392
+        },
+        "camera_front/frame_-1.jpg": {
+          "sha256": "e195f39be7d37fa26df93cc5d1c0e9d96f11784867ef0f3f14d97bd905620eed",
+          "bytes": 200415
+        },
+        "camera_front/frame_-2.jpg": {
+          "sha256": "cec0b759ca46edd175d1ec489e502a4b5b23bfdd89b4a65831212b88721ac4e6",
+          "bytes": 200636
+        },
+        "camera_front/frame_-5.jpg": {
+          "sha256": "e4492a52a8c4d61d59398f725bc03417ed699d327e9e0920c34045ca66e5a6a2",
+          "bytes": 203509
+        },
+        "camera_front/frame_-10.jpg": {
+          "sha256": "822881541ddaaf987be976f33af2ff15482d9c6d9798385563a8c1546288fe21",
+          "bytes": 206186
+        },
+        "calibration.parquet": {
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "ego_pose.parquet": {
+          "sha256": "f7130d36504fa87fab6ae04cd811280e34dd244251524fb17f9501d655b4a844",
+          "bytes": 3910
+        }
+      }
+    },
+    {
+      "clip_id": "fixture_005",
+      "clip_directory": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_005",
+      "source_split": "train",
+      "source_scene": "20260112-111049",
+      "source_frame": 180,
+      "model_must_not_receive_source_mapping": true,
+      "jpeg_sources": [
+        {
+          "archive_member": "20260112-111049/camera_front/00000180.jpg",
+          "output_relative_path": "camera_front/frame_0.jpg",
+          "sha256": "8aa5f535539117eaa37f71d2a9dfd17a178e17ba36e90cbc98eb964a78d80d1d",
+          "bytes": 258049
+        },
+        {
+          "archive_member": "20260112-111049/camera_front_right/00000180.jpg",
+          "output_relative_path": "camera_front_right/frame_0.jpg",
+          "sha256": "e50275a784af416b480ac1544756d31aec354716abc0178b0b1dd5c13c1dcc40",
+          "bytes": 369913
+        },
+        {
+          "archive_member": "20260112-111049/camera_front_left/00000180.jpg",
+          "output_relative_path": "camera_front_left/frame_0.jpg",
+          "sha256": "ef4452dc0517f534b21cfc87501b6f0d99bbd022c195df4be2db42a2cce9b3a9",
+          "bytes": 334262
+        },
+        {
+          "archive_member": "20260112-111049/camera_rear_wide/00000180.jpg",
+          "output_relative_path": "camera_rear_wide/frame_0.jpg",
+          "sha256": "cdf1058563874eda9bf72180742b67011f19aa973b6af81183c29f2af6d6f3d8",
+          "bytes": 368087
+        },
+        {
+          "archive_member": "20260112-111049/camera_rear_left/00000180.jpg",
+          "output_relative_path": "camera_rear_left/frame_0.jpg",
+          "sha256": "cb32f44e0d134d2c92063f4888864bb95847ab3ddeb6fb0e49c5550be172c946",
+          "bytes": 298558
+        },
+        {
+          "archive_member": "20260112-111049/camera_rear_right/00000180.jpg",
+          "output_relative_path": "camera_rear_right/frame_0.jpg",
+          "sha256": "3c513c816c1182739925bd3faf4fd588e67711a8ea6cdc43650503e88fdce296",
+          "bytes": 408874
+        },
+        {
+          "archive_member": "20260112-111049/camera_front/00000179.jpg",
+          "output_relative_path": "camera_front/frame_-1.jpg",
+          "sha256": "fce709393a01236c4565d5132d9f0c408c39da4c3f8b5e0ad3c62b3af39959c8",
+          "bytes": 251588
+        },
+        {
+          "archive_member": "20260112-111049/camera_front/00000178.jpg",
+          "output_relative_path": "camera_front/frame_-2.jpg",
+          "sha256": "7fe1062d4bd75da011432ff92765571007a0c41f1aa49450146c68ebade555cd",
+          "bytes": 263932
+        },
+        {
+          "archive_member": "20260112-111049/camera_front/00000175.jpg",
+          "output_relative_path": "camera_front/frame_-5.jpg",
+          "sha256": "003bbc9fe7da8b8bd63bb9eac1f8e14c51bbd5dd3cb86bd075d3417affd7761c",
+          "bytes": 245650
+        },
+        {
+          "archive_member": "20260112-111049/camera_front/00000170.jpg",
+          "output_relative_path": "camera_front/frame_-10.jpg",
+          "sha256": "7a607f92cf779a128a7eca65e911e96f200a6f772d2bf44a5eba7f4f3f32c728",
+          "bytes": 232051
+        }
+      ],
+      "outputs": {
+        "camera_front/frame_0.jpg": {
+          "sha256": "8aa5f535539117eaa37f71d2a9dfd17a178e17ba36e90cbc98eb964a78d80d1d",
+          "bytes": 258049
+        },
+        "camera_front_right/frame_0.jpg": {
+          "sha256": "e50275a784af416b480ac1544756d31aec354716abc0178b0b1dd5c13c1dcc40",
+          "bytes": 369913
+        },
+        "camera_front_left/frame_0.jpg": {
+          "sha256": "ef4452dc0517f534b21cfc87501b6f0d99bbd022c195df4be2db42a2cce9b3a9",
+          "bytes": 334262
+        },
+        "camera_rear_wide/frame_0.jpg": {
+          "sha256": "cdf1058563874eda9bf72180742b67011f19aa973b6af81183c29f2af6d6f3d8",
+          "bytes": 368087
+        },
+        "camera_rear_left/frame_0.jpg": {
+          "sha256": "cb32f44e0d134d2c92063f4888864bb95847ab3ddeb6fb0e49c5550be172c946",
+          "bytes": 298558
+        },
+        "camera_rear_right/frame_0.jpg": {
+          "sha256": "3c513c816c1182739925bd3faf4fd588e67711a8ea6cdc43650503e88fdce296",
+          "bytes": 408874
+        },
+        "camera_front/frame_-1.jpg": {
+          "sha256": "fce709393a01236c4565d5132d9f0c408c39da4c3f8b5e0ad3c62b3af39959c8",
+          "bytes": 251588
+        },
+        "camera_front/frame_-2.jpg": {
+          "sha256": "7fe1062d4bd75da011432ff92765571007a0c41f1aa49450146c68ebade555cd",
+          "bytes": 263932
+        },
+        "camera_front/frame_-5.jpg": {
+          "sha256": "003bbc9fe7da8b8bd63bb9eac1f8e14c51bbd5dd3cb86bd075d3417affd7761c",
+          "bytes": 245650
+        },
+        "camera_front/frame_-10.jpg": {
+          "sha256": "7a607f92cf779a128a7eca65e911e96f200a6f772d2bf44a5eba7f4f3f32c728",
+          "bytes": 232051
+        },
+        "calibration.parquet": {
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "ego_pose.parquet": {
+          "sha256": "0da7b21485137df6e538a9fbe056b71df9969e86e1e981e2c5438197bd72205c",
+          "bytes": 3925
+        }
+      }
+    },
+    {
+      "clip_id": "fixture_006",
+      "clip_directory": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_006",
+      "source_split": "train",
+      "source_scene": "20260112-111149",
+      "source_frame": 30,
+      "model_must_not_receive_source_mapping": true,
+      "jpeg_sources": [
+        {
+          "archive_member": "20260112-111149/camera_front/00000030.jpg",
+          "output_relative_path": "camera_front/frame_0.jpg",
+          "sha256": "a0c11c1c717f54fa87a948df1b60fb84e7cb4503751215bf17c658610e012224",
+          "bytes": 195550
+        },
+        {
+          "archive_member": "20260112-111149/camera_front_right/00000030.jpg",
+          "output_relative_path": "camera_front_right/frame_0.jpg",
+          "sha256": "47aa3e62b5f022dc01ad54c7c4cf5f187257b7f7c516da02d2f2192730a58726",
+          "bytes": 281086
+        },
+        {
+          "archive_member": "20260112-111149/camera_front_left/00000030.jpg",
+          "output_relative_path": "camera_front_left/frame_0.jpg",
+          "sha256": "d35b06a0d1b134abc814021b8aaee4a9cfb8e7e94c75c0c87872f21918b1fde3",
+          "bytes": 319743
+        },
+        {
+          "archive_member": "20260112-111149/camera_rear_wide/00000030.jpg",
+          "output_relative_path": "camera_rear_wide/frame_0.jpg",
+          "sha256": "4033021d21ba96779b8df883cae4efea343893ba2c0a5d5220d1ba820eb2b182",
+          "bytes": 381996
+        },
+        {
+          "archive_member": "20260112-111149/camera_rear_left/00000030.jpg",
+          "output_relative_path": "camera_rear_left/frame_0.jpg",
+          "sha256": "c749de4eee0c4c9454cdb0c2746bf91c99e4e8037549b7d473d8118c1f62d355",
+          "bytes": 312366
+        },
+        {
+          "archive_member": "20260112-111149/camera_rear_right/00000030.jpg",
+          "output_relative_path": "camera_rear_right/frame_0.jpg",
+          "sha256": "d0fa9850ef372fbd39126f817ded752b5648a5ba405b2cf7b9372fdada9f34dd",
+          "bytes": 380931
+        },
+        {
+          "archive_member": "20260112-111149/camera_front/00000029.jpg",
+          "output_relative_path": "camera_front/frame_-1.jpg",
+          "sha256": "bfbc5488d00336b07472757e179bca2409d442a8119369106fe4ae630a58c370",
+          "bytes": 197312
+        },
+        {
+          "archive_member": "20260112-111149/camera_front/00000028.jpg",
+          "output_relative_path": "camera_front/frame_-2.jpg",
+          "sha256": "ef055f585607b258b8fefc75ff11e079eae72e484f9e38e2b5c3bb0f9ebe8f83",
+          "bytes": 198383
+        },
+        {
+          "archive_member": "20260112-111149/camera_front/00000025.jpg",
+          "output_relative_path": "camera_front/frame_-5.jpg",
+          "sha256": "d978d3f9b20dadc8fcf6dff769e174f1329219cacacba56eb6671e6f1c55e70d",
+          "bytes": 213701
+        },
+        {
+          "archive_member": "20260112-111149/camera_front/00000020.jpg",
+          "output_relative_path": "camera_front/frame_-10.jpg",
+          "sha256": "83ac5d73dfb8277a6328dc20b0c125b342d051eb1e7b539698e40b48dab2a3e4",
+          "bytes": 249334
+        }
+      ],
+      "outputs": {
+        "camera_front/frame_0.jpg": {
+          "sha256": "a0c11c1c717f54fa87a948df1b60fb84e7cb4503751215bf17c658610e012224",
+          "bytes": 195550
+        },
+        "camera_front_right/frame_0.jpg": {
+          "sha256": "47aa3e62b5f022dc01ad54c7c4cf5f187257b7f7c516da02d2f2192730a58726",
+          "bytes": 281086
+        },
+        "camera_front_left/frame_0.jpg": {
+          "sha256": "d35b06a0d1b134abc814021b8aaee4a9cfb8e7e94c75c0c87872f21918b1fde3",
+          "bytes": 319743
+        },
+        "camera_rear_wide/frame_0.jpg": {
+          "sha256": "4033021d21ba96779b8df883cae4efea343893ba2c0a5d5220d1ba820eb2b182",
+          "bytes": 381996
+        },
+        "camera_rear_left/frame_0.jpg": {
+          "sha256": "c749de4eee0c4c9454cdb0c2746bf91c99e4e8037549b7d473d8118c1f62d355",
+          "bytes": 312366
+        },
+        "camera_rear_right/frame_0.jpg": {
+          "sha256": "d0fa9850ef372fbd39126f817ded752b5648a5ba405b2cf7b9372fdada9f34dd",
+          "bytes": 380931
+        },
+        "camera_front/frame_-1.jpg": {
+          "sha256": "bfbc5488d00336b07472757e179bca2409d442a8119369106fe4ae630a58c370",
+          "bytes": 197312
+        },
+        "camera_front/frame_-2.jpg": {
+          "sha256": "ef055f585607b258b8fefc75ff11e079eae72e484f9e38e2b5c3bb0f9ebe8f83",
+          "bytes": 198383
+        },
+        "camera_front/frame_-5.jpg": {
+          "sha256": "d978d3f9b20dadc8fcf6dff769e174f1329219cacacba56eb6671e6f1c55e70d",
+          "bytes": 213701
+        },
+        "camera_front/frame_-10.jpg": {
+          "sha256": "83ac5d73dfb8277a6328dc20b0c125b342d051eb1e7b539698e40b48dab2a3e4",
+          "bytes": 249334
+        },
+        "calibration.parquet": {
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "ego_pose.parquet": {
+          "sha256": "d7995c52823b25d1edcb49d3bd7a05e16ce34e250604bee2a306616a1300aa1d",
+          "bytes": 3914
+        }
+      }
+    },
+    {
+      "clip_id": "fixture_007",
+      "clip_directory": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_007",
+      "source_split": "train",
+      "source_scene": "20260112-111149",
+      "source_frame": 180,
+      "model_must_not_receive_source_mapping": true,
+      "jpeg_sources": [
+        {
+          "archive_member": "20260112-111149/camera_front/00000180.jpg",
+          "output_relative_path": "camera_front/frame_0.jpg",
+          "sha256": "84bf4fc3b95c5abbb9cfaf96df5d32db49d035f3a0bb121bd7e29ad45392e9bb",
+          "bytes": 339423
+        },
+        {
+          "archive_member": "20260112-111149/camera_front_right/00000180.jpg",
+          "output_relative_path": "camera_front_right/frame_0.jpg",
+          "sha256": "390716a8144a738a143a15cd82d1cc74ef8af9e682082dbfb40067d5dd2fd380",
+          "bytes": 308952
+        },
+        {
+          "archive_member": "20260112-111149/camera_front_left/00000180.jpg",
+          "output_relative_path": "camera_front_left/frame_0.jpg",
+          "sha256": "36120fdad2b6ac07c8911cc8c66020717f745e9f08f9da98654031601068862f",
+          "bytes": 337289
+        },
+        {
+          "archive_member": "20260112-111149/camera_rear_wide/00000180.jpg",
+          "output_relative_path": "camera_rear_wide/frame_0.jpg",
+          "sha256": "e004a9634f882d5b597276491c70f9dde5d6e25390d1f9a6421d8155138de8b7",
+          "bytes": 453592
+        },
+        {
+          "archive_member": "20260112-111149/camera_rear_left/00000180.jpg",
+          "output_relative_path": "camera_rear_left/frame_0.jpg",
+          "sha256": "f4be165e8956d507f16e57c8b2dde77b1429aa1ee3c9c60670c6b7eeaba9f8ed",
+          "bytes": 284771
+        },
+        {
+          "archive_member": "20260112-111149/camera_rear_right/00000180.jpg",
+          "output_relative_path": "camera_rear_right/frame_0.jpg",
+          "sha256": "441232176a40fd970ae89f2c5c06ddb369b2202d8ace78ddfbb08527f1062372",
+          "bytes": 391610
+        },
+        {
+          "archive_member": "20260112-111149/camera_front/00000179.jpg",
+          "output_relative_path": "camera_front/frame_-1.jpg",
+          "sha256": "b070857b9cbb72cd1462a3ae6bb1af99f071a467168cabd6595931339bda774b",
+          "bytes": 343025
+        },
+        {
+          "archive_member": "20260112-111149/camera_front/00000178.jpg",
+          "output_relative_path": "camera_front/frame_-2.jpg",
+          "sha256": "aedd87172c5d788d73ce5e57de22d5dae2ee08355c7a0415715572d0d416313e",
+          "bytes": 343228
+        },
+        {
+          "archive_member": "20260112-111149/camera_front/00000175.jpg",
+          "output_relative_path": "camera_front/frame_-5.jpg",
+          "sha256": "c0e4a7e8714ff480ceaec13075987c882e616451b44e0c13215d3b6a41f8c960",
+          "bytes": 342489
+        },
+        {
+          "archive_member": "20260112-111149/camera_front/00000170.jpg",
+          "output_relative_path": "camera_front/frame_-10.jpg",
+          "sha256": "5465088afa6556cba7d60c21d0f158bf0d6096880e3b5c5377994788fdaef706",
+          "bytes": 353234
+        }
+      ],
+      "outputs": {
+        "camera_front/frame_0.jpg": {
+          "sha256": "84bf4fc3b95c5abbb9cfaf96df5d32db49d035f3a0bb121bd7e29ad45392e9bb",
+          "bytes": 339423
+        },
+        "camera_front_right/frame_0.jpg": {
+          "sha256": "390716a8144a738a143a15cd82d1cc74ef8af9e682082dbfb40067d5dd2fd380",
+          "bytes": 308952
+        },
+        "camera_front_left/frame_0.jpg": {
+          "sha256": "36120fdad2b6ac07c8911cc8c66020717f745e9f08f9da98654031601068862f",
+          "bytes": 337289
+        },
+        "camera_rear_wide/frame_0.jpg": {
+          "sha256": "e004a9634f882d5b597276491c70f9dde5d6e25390d1f9a6421d8155138de8b7",
+          "bytes": 453592
+        },
+        "camera_rear_left/frame_0.jpg": {
+          "sha256": "f4be165e8956d507f16e57c8b2dde77b1429aa1ee3c9c60670c6b7eeaba9f8ed",
+          "bytes": 284771
+        },
+        "camera_rear_right/frame_0.jpg": {
+          "sha256": "441232176a40fd970ae89f2c5c06ddb369b2202d8ace78ddfbb08527f1062372",
+          "bytes": 391610
+        },
+        "camera_front/frame_-1.jpg": {
+          "sha256": "b070857b9cbb72cd1462a3ae6bb1af99f071a467168cabd6595931339bda774b",
+          "bytes": 343025
+        },
+        "camera_front/frame_-2.jpg": {
+          "sha256": "aedd87172c5d788d73ce5e57de22d5dae2ee08355c7a0415715572d0d416313e",
+          "bytes": 343228
+        },
+        "camera_front/frame_-5.jpg": {
+          "sha256": "c0e4a7e8714ff480ceaec13075987c882e616451b44e0c13215d3b6a41f8c960",
+          "bytes": 342489
+        },
+        "camera_front/frame_-10.jpg": {
+          "sha256": "5465088afa6556cba7d60c21d0f158bf0d6096880e3b5c5377994788fdaef706",
+          "bytes": 353234
+        },
+        "calibration.parquet": {
+          "sha256": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+          "bytes": 3737
+        },
+        "ego_pose.parquet": {
+          "sha256": "d638b150a928aef5bade83c06f70636b6051c544cd55e27af4dd920abd063853",
+          "bytes": 3925
+        }
+      }
+    }
+  ],
+  "script_sha256": "72b18e6b1911a1143f2472b1cf9ce8bdc50f1db19b56249289d325cca944633e",
+  "root_manifest_not_a_model_input": true,
+  "gpu_used": false,
+  "tune_finalval_test_access": false,
+  "full_archive_extraction": false,
+  "output_gt_future_status_object_map": false,
+  "original_sources_unchanged": true,
+  "note": "+50의 제공 goal pose는 공식 허용 입력을 train에서 모사한 것; 미래1..30 궤적/상태 라벨은 출력하지 않음"
+}

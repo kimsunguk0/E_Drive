@@ -88,3 +88,25 @@ XOR=0이었다. `occ/lane` target은 crop과 무관하고 valid는 이 visibilit
 후속 제출 adapter는 위 crop/nominal/full-SE3/absolute-output 조건으로 train clip을
 재구성하여 학습 입력과 대조하고, 최종 wrapper 전체 forward를 3090에서 다시 측정한다.
 현재 측정된32.23ms는 학습된 P1 step1000 모델 자체이며 최종 wrapper/4090 수치가 아니다.
+
+## 5. GT-free raw adapter의 실제 train8 입력 검증 완료
+
+`models/motiondrive_v2_inputs.py`는 clip별 calibration, 과거31행과 제공+50goal행 pose,
+현재6대/과거front4개 JPEG만 사용한다. timestamp/status/정답 중간 궤적은 모델 입력에
+넣지 않는다. full-SE3 과거 정합은 scene 입력이며 raw motion/planner 수치 토큰이 아니다.
+네트워크 호출과 제출 파일 작성은 이 adapter의 역할이 아니다.
+
+`build_motiondrive_v2_deploy_fixture.py`는 지정 train4scene×frame30/180으로
+test-shaped fixture8개를 만들었고, 새 `audit_motiondrive_v2_deploy_inputs.py`가
+학습 systemPython의 기존 tensor export와 직접 비교했다. 기준은 export 이후
+영상 재디코딩 없이 사용했고 calibration/time만 P2 C1/T1 계약으로 교체했다.
+
+- 현재영상/과거영상/투영행렬/과거정렬/nominal시간/goal 모두8/8 bitwise, maxabs0.
+- 재구성 JPEG80/80 SHA가 저장된 학습 캐시 출처 SHA와 동일.
+- 원본 파일·메모리 GT·코드 SHA 불변, CUDA/model forward 없음.
+- adapter/fixture/runner B200 CPU tests55개 통과.
+
+보고서 `reports/motiondrive_v2_deploy_input_parity_train8.json`의 SHA는
+`5f60c0f6dbaaadb0774a2596f1c1f2e2be920b25f17bdd9e166ff323c7c00fa7`이다.
+8개 train clip에 대한 입력 재현이며 모든 clip·다른 라이브러리 빌드·최종 forward까지
+보장하지 않는다. 실제 제출 환경에도 이 계약과 검사를 묶어야 한다.
