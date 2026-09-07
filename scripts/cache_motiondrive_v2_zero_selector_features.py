@@ -109,6 +109,12 @@ def rows_sha256(rows):
     return hashlib.sha256(np.asarray(rows, dtype="<i8").tobytes()).hexdigest()
 
 
+def runtime_receipt(device):
+    return {"python_executable": sys.executable, "python_version": sys.version.split()[0],
+            "torch_version": str(torch.__version__), "torch_cuda_runtime": torch.version.cuda,
+            "device": str(device), "cuda_initialized": torch.cuda.is_initialized()}
+
+
 def ensure_new(path):
     path = Path(path)
     require(not path.exists() and not path.is_symlink(), f"Refusing to overwrite output: {path}")
@@ -379,8 +385,28 @@ def compare_tune_batch(reference, offset, batch, plan, gt):
                 "Tune reference row identity/order differs")
         expected_plan = torch.as_tensor(record.get("pred_abs_xy"), dtype=torch.float32)
         expected_gt = torch.as_tensor(record.get("gt_abs_xy"), dtype=torch.float32)
-        require(torch.equal(plan[index].detach().cpu(), expected_plan)
-                and torch.equal(gt[index].detach().cpu().float(), expected_gt),
+        observed_plan, observed_gt = plan[index].detach().cpu(), gt[index].detach().cpu().float()
+        require(expected_plan.shape == observed_plan.shape == (6, 2)
+                and expected_gt.shape == observed_gt.shape == (6, 2)
+                and torch.isfinite(expected_plan).all() and torch.isfinite(expected_gt).all(),
+                "Tune reference plan/GT must be finite [6,2]")
+        plan_equal, gt_equal = torch.equal(observed_plan, expected_plan), torch.equal(observed_gt, expected_gt)
+        if not plan_equal or not gt_equal:
+            def difference(left, right):
+                mask = left != right
+                first = torch.nonzero(mask, as_tuple=False)[0].tolist() if mask.any() else None
+                return {"bitwise_equal": bool(not mask.any()),
+                        "different_elements": int(mask.sum()),
+                        "max_abs": float((left - right).abs().max()),
+                        "first_mismatch_index": first,
+                        "observed_at_first": (float(left[tuple(first)]) if first is not None else None),
+                        "reference_at_first": (float(right[tuple(first)]) if first is not None else None)}
+            print(json.dumps({"event": "tune_reference_bitwise_mismatch",
+                              "identity": identity,
+                              "plan": difference(observed_plan, expected_plan),
+                              "ground_truth": difference(observed_gt, expected_gt)},
+                             allow_nan=False), flush=True)
+        require(plan_equal and gt_equal,
                 "Tune report and cache forward/GT are not bitwise identical")
         expected_d3 = float(record.get("d3"))
         observed_d3 = float(weighted_d3(plan[index:index + 1], gt[index:index + 1]).item())
@@ -489,6 +515,8 @@ def main(argv=None):
     require(before == expected, "Pinned input artifact SHA256 mismatch")
     source_document = read_pinned_json(paths["source_manifest"], expected["source_manifest"])
     source_files = validate_source_manifest(source_document)
+    # Match the immutable evaluator's seed point before device/model creation.
+    torch.manual_seed(args.base_seed)
     device = torch.device(args.device)
     require(device.type == "cuda", "Actual feature caching requires CUDA BF16 inference")
     torch.cuda.set_device(device)
@@ -533,6 +561,7 @@ def main(argv=None):
         "checkpoint_sha256": expected["checkpoint"],
         "completed_run_manifest_sha256": expected["run_manifest"],
         "training_git_sha": P4_GIT_SHA, "evaluation_source_git_sha": source_document["source_git_sha"],
+        "runtime": runtime_receipt(device),
         "source_manifest_sha256": expected["source_manifest"], "source_files": source_files,
         "data": {**inventory, "split_sha256": SPLIT_SHA256,
                  "supervision_manifest_sha256": SUPERVISION_SHA256,

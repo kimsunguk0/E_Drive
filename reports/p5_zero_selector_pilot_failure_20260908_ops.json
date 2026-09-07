@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status": "failed_closed",
+  "purpose": "Preserve the first bounded P5-Z cache pilot exactly as observed; this is not a successful pilot receipt.",
+  "remote_git_sha": "e1a4594bbd86f39d11db2a3ac7487f7abd4bd58d",
+  "orchestrator": {
+    "path": "reports/p5_zero_selector_pilot_command_20260908_ops.py",
+    "sha256": "30878d3bb19470b580645c8840727f57fff4d79dea8cec7e23d72c7384021c55",
+    "python_executable_from_original_execution_argv": "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "post_failure_same_venv_cpu_probe_torch": "2.7.1+cu128",
+    "post_failure_same_venv_cpu_probe_cuda_runtime": "12.8",
+    "post_failure_same_venv_cpu_probe_output_sha256": "6a4a24cfb9885272ffc2911b50fe794ce986a65b51b616754e73c48e18103a70",
+    "provenance_note": "The failed child log did not print Torch/CUDA versions. The executable is fixed by the original argv; exact versions are from a later CPU-only probe of that same venv."
+  },
+  "immutable_reference_environment": {
+    "python": "/usr/bin/python",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "cuda_runtime": "13.1",
+    "cache_import_cpu_only_actual_returncode": 0,
+    "cache_help_cpu_only_actual_returncode": 0,
+    "cpu_check_cuda_visible_devices": "",
+    "cpu_check_cuda_initialized": false
+  },
+  "failure": {
+    "message": "ValueError: Tune report and cache forward/GT are not bitwise identical",
+    "location": "scripts/cache_motiondrive_v2_zero_selector_features.py:382 compare_tune_batch",
+    "first_failed_comparison": "plan tensor torch.equal",
+    "numeric_mismatch_not_logged": true,
+    "interpretation": "The required bitwise parity gate rejected both tune pilots. The Python/Torch/CUDA runtime differed from the immutable evaluation runtime; causality is not asserted by this record.",
+    "retry_performed": false,
+    "full_cache_started": false,
+    "head_training_started": false
+  },
+  "base_runs": [
+    {
+      "base_seed": 0,
+      "physical_gpu": 4,
+      "gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "unified_ssh_handle": 43132,
+      "parent_pid": 2168915,
+      "train_child_pid": 2168982,
+      "train_actual_returncode": 0,
+      "tune_child_pid": 2169061,
+      "tune_actual_returncode": 1,
+      "parent_actual_os_returncode": 1,
+      "execution_record": "reports/p5_zero_selector_pilot_b0_20260908/execution.json",
+      "execution_record_sha256": "7fcce6d11c4ec61197756827ce6ec7b6ca0b05513299b7451f85aee0c6c36390",
+      "train_cache": "work_dirs/motiondrive_v2/p5_zero_selector_pilot_b0_train8.pt",
+      "train_cache_sha256": "83c77d64105cb2bfeac947a71958f86273331055131a0f8d58c66336035730ea",
+      "train_manifest_sha256": "2817cccbfe8be5f23d6f8a21be96691be3e22f67664d6d04663fab881ba82f8c",
+      "train_stdout_sha256": "2193927295436f44f467ecb3f66008b173f709044a4ed5a3cacf31f3b5565af2",
+      "tune_stdout_sha256": "22b4e7b48a689654b8de38b93f87058460928879fd698ba09c2d2e0ec5c2a876",
+      "tune_output_created": false
+    },
+    {
+      "base_seed": 1,
+      "physical_gpu": 5,
+      "gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "unified_ssh_handle": 27750,
+      "parent_pid": 2168905,
+      "train_child_pid": 2168981,
+      "train_actual_returncode": 0,
+      "tune_child_pid": 2169060,
+      "tune_actual_returncode": 1,
+      "parent_actual_os_returncode": 1,
+      "execution_record": "reports/p5_zero_selector_pilot_b1_20260908/execution.json",
+      "execution_record_sha256": "61eb50adb57cec14daa6c18055852823d7baffc00dca5661fa0bfbf3bc1402d0",
+      "train_cache": "work_dirs/motiondrive_v2/p5_zero_selector_pilot_b1_train8.pt",
+      "train_cache_sha256": "075d2fb0bb8d48d07573afb5640f5e7be871f1f546e2508d0fac3e3524d165f9",
+      "train_manifest_sha256": "be72135c94a5266ed90cf74e9cf20fe67be78a2dea7c20f2b87192e5c3cc05e7",
+      "train_stdout_sha256": "e4c06de414248217eca9dc23706520374960ebc651d2d59bc021fdf64a0974e7",
+      "tune_stdout_sha256": "85c9bd402a0751b455c6019b66f5f5cb26b8eb1ae3bad1be847c2fcf34034112",
+      "tune_output_created": false
+    }
+  ],
+  "postflight": {
+    "all_recorded_parent_and_child_pids_absent": true,
+    "gpu4_used_mib": 0,
+    "gpu4_free_mib": 182632,
+    "gpu5_used_mib": 0,
+    "gpu5_free_mib": 182632,
+    "gpu4_gpu5_compute_pids": [],
+    "pressure_events": 0,
+    "train_manifests_report_inputs_before_after_equal": true,
+    "train_manifests_report_model_state_before_after_equal": true,
+    "train_manifests_report_bn_state_before_after_equal": true
+  },
+  "pinned_sha256_after_failure": {
+    "scripts/cache_motiondrive_v2_zero_selector_features.py": "42749aebe6ae1d56a1d55348193c9bb6d92357b5870122dfc8ad303c9bd921d1",
+    "reports/p5_zero_selector_protocol_20260908/runtime22_source_manifest.json": "98478a88022981396f7d3a6ffb2f7f2e815797ca60b482a1d7c645c83aac4ae2",
+    "data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "work_dirs/motiondrive_v2/p4_fresh_joint_s0/last.pth": "3e9ae5aa6ca89f4eb9a72ba38355dfdbec4ccaa38eabbebb3526fa3019404478",
+    "work_dirs/motiondrive_v2/p4_fresh_joint_s0/manifest.json": "001b822dde79024f0e2cd52b5b99cb1096bbab5bfd09ef2d95e963ad8dc6e3de",
+    "work_dirs/motiondrive_v2/p4_fresh_joint_s1/last.pth": "c937f2f772c78f99cf3cfa5b1a96614267e20a9a667a157f4ada284940f9672e",
+    "work_dirs/motiondrive_v2/p4_fresh_joint_s1/manifest.json": "49dc09c8e7840a059ae6bcadba1c490052847c678dc81d5524ee39f9da159aad",
+    "reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "reports/p4_joint_full_tune_eval_s1_20260908_ops/normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137"
+  }
+}

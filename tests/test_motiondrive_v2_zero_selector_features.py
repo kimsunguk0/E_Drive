@@ -161,6 +161,37 @@ def test_cache_split_rejects_any_invalid_gt_point():
                           state_sha=cache.tensor_state_sha256(model.state_dict()))
 
 
+def test_tune_mismatch_reports_plan_and_gt_separately_without_relaxing(capsys):
+    batch = fake_batch(1)
+    plan = torch.ones(1, 6, 2)
+    gt = torch.zeros(1, 6, 2)
+    reference = [{"row": 10, "scenario": "scene0", "session": "session0", "frame": 30,
+                  "pred_abs_xy": torch.zeros(6, 2).tolist(), "gt_abs_xy": gt[0].tolist(),
+                  "d3": 0.}]
+    with pytest.raises(ValueError, match="bitwise"):
+        cache.compare_tune_batch(reference, 0, batch, plan, gt)
+    event = json.loads(capsys.readouterr().out)
+    assert event["event"] == "tune_reference_bitwise_mismatch"
+    assert not event["plan"]["bitwise_equal"] and event["plan"]["max_abs"] == 1.
+    assert event["ground_truth"]["bitwise_equal"]
+
+
+def test_main_seeds_like_evaluator_before_device_and_model_creation():
+    source = Path(cache.__file__).read_text()
+    seed = source.index("torch.manual_seed(args.base_seed)")
+    device = source.index("device = torch.device(args.device)", seed)
+    model = source.index("model, training_manifest = load_frozen_model", device)
+    assert seed < device < model
+
+
+def test_runtime_receipt_records_exact_interpreter_torch_and_cuda_runtime():
+    receipt = cache.runtime_receipt(torch.device("cpu"))
+    assert receipt["python_executable"]
+    assert receipt["torch_version"] == str(torch.__version__)
+    assert receipt["torch_cuda_runtime"] == torch.version.cuda
+    assert receipt["device"] == "cpu" and not receipt["cuda_initialized"]
+
+
 @pytest.mark.parametrize("mutation", ["step", "seed", "phase", "config", "git", "data", "sidecar"])
 def test_checkpoint_contract_fails_closed(mutation):
     manifest = training_manifest()

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "purpose": "CPU-only compatibility probe for a possible separately approved P5-Z pilot retry; this is not a retry or GPU result.",
+  "remote_root": "/NHNHOME/data/sukim/adcl",
+  "cuda_visible_devices": "",
+  "import_probe": {
+    "python": "/usr/bin/python",
+    "operation": "import torch, then import scripts.cache_motiondrive_v2_zero_selector_features and report runtime state",
+    "actual_returncode": 0,
+    "stdout": "{\"cache_import\": \"ok\", \"cuda_initialized_after\": false, \"cuda_initialized_before\": false, \"cuda_runtime\": \"13.1\", \"torch\": \"2.10.0a0+b4e4ee81d3.nv25.12\"}\n",
+    "stdout_sha256": "f8b2124d27bceaad0f5a23468acde9ca1b8a21be26f0694e42616372e7f850bd"
+  },
+  "help_probe": {
+    "argv": [
+      "/usr/bin/python",
+      "scripts/cache_motiondrive_v2_zero_selector_features.py",
+      "--help"
+    ],
+    "actual_returncode": 0,
+    "stdout_stderr_bytes": 3257,
+    "stdout_stderr_sha256": "bf63cbf15472024203d19ff44cb9b35a5e3ae3f484da005db707268b8641ea98"
+  },
+  "installation_or_path_injection_performed": false,
+  "gpu_forward_performed": false
+}
