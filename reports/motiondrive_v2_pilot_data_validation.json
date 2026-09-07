@@ -1,0 +1,163 @@
+{
+  "status": "CPU_REAL_DATA_PASS",
+  "n_frames": 810,
+  "calibration_bitwise_legacy": true,
+  "scenes": [
+    {
+      "scene": "20260112-105434",
+      "frames": 270,
+      "map_schema": [
+        "lane_id",
+        "points"
+      ],
+      "coordinate_fut_max_abs": 0.0,
+      "coordinate_goal_max_abs": 1.906506156501564e-06,
+      "state_valid_fraction": 1.0,
+      "occ_positive_valid": 6551,
+      "occ_negative_valid": 120690,
+      "lane_positive_valid": 64421,
+      "lane_negative_valid": 256737,
+      "time_offsets_min": [
+        0.09977905452251434,
+        0.19971899688243866,
+        0.4995461404323578,
+        0.9993906021118164
+      ],
+      "time_offsets_max": [
+        0.10027636587619781,
+        0.20032274723052979,
+        0.5004863142967224,
+        1.0006301403045654
+      ],
+      "annotation_contract": {
+        "occupancy_target": "current annotated non-ego object footprint with num_points > 0",
+        "negative_assumption": "annotations exhaustive only inside visible conservative current valid-object support; this assumption is not independently certified",
+        "support": "NEGATIVES: valid-object center bounding rectangle padded by 3m, intersect camera-visible grid and radius<=40m; POSITIVES: any visible valid annotated footprint inside grid",
+        "unknown": "outside support, camera-invisible, invalid-object footprints, frames with no valid objects",
+        "not_claimed": "physical free-space, obstacle-free ray tracing, complete occupancy, drivable area",
+        "lane_target": "actual map.parquet polylines; lane-valid support <=approximately 8m from known lines, camera-visible; not hd_map coordinate mixing",
+        "object_dimensions": "raw width[m] is longitudinal (heading-axis) extent; raw length[m] is lateral extent, matching source converter swap"
+      },
+      "sources": {
+        "/tmp/pm97/data/etri/meta_train/20260112-105434/meta/timestamps.parquet": "9b117d46426ca4f832ad6bd19ef084051a1c5d87dc90b986ed85d2a3f7f60d1c",
+        "/tmp/pm97/data/etri/meta_train/20260112-105434/annotation/ego_pose.parquet": "8adfd4c446cfe8888a65f2980c7bc44b11eafe93b020588f9c1449a3978b822d",
+        "/tmp/pm97/data/etri/meta_train/20260112-105434/annotation/object.parquet": "8a56efc87106516f07158b9574dccceed073d3901959b8d1fe3cd43d8f3ade72",
+        "/tmp/pm97/data/etri/meta_train/20260112-105434/annotation/map.parquet": "a11a12e9966ac07d1805f695fb9b5a24cdce7617c0b0accb2e7f8d1339ecb314"
+      },
+      "split_manifest_sha256": "edb1ca33e1d56ca048b8df7635c6addeefc56c5ae440c1ea8793315f6f3d4d52",
+      "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+      "rotation_orthogonality_max_abs": 5.9507710981066e-08,
+      "history_inverse_xy_max_abs": 1.0733352286962372e-06,
+      "mask_summary": {
+        "occ": "valid 15.34%, positive among valid 5.15%, positive frames 224/270",
+        "lane": "valid 38.72%, positive among valid 20.06%, positive frames 270/270"
+      }
+    },
+    {
+      "scene": "20260112-105504",
+      "frames": 270,
+      "map_schema": [
+        "lane_id",
+        "points"
+      ],
+      "coordinate_fut_max_abs": 0.0,
+      "coordinate_goal_max_abs": 1.9063025433752046e-06,
+      "state_valid_fraction": 1.0,
+      "occ_positive_valid": 3071,
+      "occ_negative_valid": 43888,
+      "lane_positive_valid": 53621,
+      "lane_negative_valid": 260242,
+      "time_offsets_min": [
+        0.09983496367931366,
+        0.1997658759355545,
+        0.4996359944343567,
+        0.9993801116943359
+      ],
+      "time_offsets_max": [
+        0.10021582245826721,
+        0.2003149390220642,
+        0.5004938840866089,
+        1.0005460977554321
+      ],
+      "annotation_contract": {
+        "occupancy_target": "current annotated non-ego object footprint with num_points > 0",
+        "negative_assumption": "annotations exhaustive only inside visible conservative current valid-object support; this assumption is not independently certified",
+        "support": "NEGATIVES: valid-object center bounding rectangle padded by 3m, intersect camera-visible grid and radius<=40m; POSITIVES: any visible valid annotated footprint inside grid",
+        "unknown": "outside support, camera-invisible, invalid-object footprints, frames with no valid objects",
+        "not_claimed": "physical free-space, obstacle-free ray tracing, complete occupancy, drivable area",
+        "lane_target": "actual map.parquet polylines; lane-valid support <=approximately 8m from known lines, camera-visible; not hd_map coordinate mixing",
+        "object_dimensions": "raw width[m] is longitudinal (heading-axis) extent; raw length[m] is lateral extent, matching source converter swap"
+      },
+      "sources": {
+        "/tmp/pm97/data/etri/meta_train/20260112-105504/meta/timestamps.parquet": "d9056d13ffcfa5c757ff904285f2d32cd3c23ea4a4be3efb1d6a0b3487738b48",
+        "/tmp/pm97/data/etri/meta_train/20260112-105504/annotation/ego_pose.parquet": "fabbb41cb5c1c381b3f0159cbc17dae3c462842641769e264d3a91d3a1b983ec",
+        "/tmp/pm97/data/etri/meta_train/20260112-105504/annotation/object.parquet": "971c492ef3fa2480740d3dd49c96ec985be0babdada7a0fc40e9e0b0ef6bd77b",
+        "/tmp/pm97/data/etri/meta_train/20260112-105504/annotation/map.parquet": "ac173ca94823aacdb700bb8f77fd7222e45607291820d26859c806e21366e288"
+      },
+      "split_manifest_sha256": "edb1ca33e1d56ca048b8df7635c6addeefc56c5ae440c1ea8793315f6f3d4d52",
+      "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+      "rotation_orthogonality_max_abs": 5.9594822188202556e-08,
+      "history_inverse_xy_max_abs": 1.0985765843685158e-06,
+      "mask_summary": {
+        "occ": "valid 5.66%, positive among valid 6.54%, positive frames 120/270",
+        "lane": "valid 37.84%, positive among valid 17.08%, positive frames 270/270"
+      }
+    },
+    {
+      "scene": "20260113-102709",
+      "frames": 270,
+      "map_schema": [
+        "lane_id",
+        "points"
+      ],
+      "coordinate_fut_max_abs": 0.0,
+      "coordinate_goal_max_abs": 3.7721928265455063e-06,
+      "state_valid_fraction": 1.0,
+      "occ_positive_valid": 17062,
+      "occ_negative_valid": 107746,
+      "lane_positive_valid": 65864,
+      "lane_negative_valid": 263764,
+      "time_offsets_min": [
+        0.09980712831020355,
+        0.19975318014621735,
+        0.4995720088481903,
+        0.9993769526481628
+      ],
+      "time_offsets_max": [
+        0.10017504543066025,
+        0.20027905702590942,
+        0.5005029439926147,
+        1.0006641149520874
+      ],
+      "annotation_contract": {
+        "occupancy_target": "current annotated non-ego object footprint with num_points > 0",
+        "negative_assumption": "annotations exhaustive only inside visible conservative current valid-object support; this assumption is not independently certified",
+        "support": "NEGATIVES: valid-object center bounding rectangle padded by 3m, intersect camera-visible grid and radius<=40m; POSITIVES: any visible valid annotated footprint inside grid",
+        "unknown": "outside support, camera-invisible, invalid-object footprints, frames with no valid objects",
+        "not_claimed": "physical free-space, obstacle-free ray tracing, complete occupancy, drivable area",
+        "lane_target": "actual map.parquet polylines; lane-valid support <=approximately 8m from known lines, camera-visible; not hd_map coordinate mixing",
+        "object_dimensions": "raw width[m] is longitudinal (heading-axis) extent; raw length[m] is lateral extent, matching source converter swap"
+      },
+      "sources": {
+        "/tmp/pm97/data/etri/meta_train/20260113-102709/meta/timestamps.parquet": "09a522ad23ded420cfedca61a725b50fcb159916c134eb87fc7785a365c651c2",
+        "/tmp/pm97/data/etri/meta_train/20260113-102709/annotation/ego_pose.parquet": "23b5a27a827e398e3603dc3fe1078a7a362c65ff06df81d52540980cbdcf04bb",
+        "/tmp/pm97/data/etri/meta_train/20260113-102709/annotation/object.parquet": "96a1d7419c3db86a7743f6c5f57c7cba1be984d885a2aa0b56276c1182385772",
+        "/tmp/pm97/data/etri/meta_train/20260113-102709/annotation/map.parquet": "c94d2ff71f6545f8d6af92e23621cf7d6417b1773644b0bf8b2a4a6720db02eb"
+      },
+      "split_manifest_sha256": "edb1ca33e1d56ca048b8df7635c6addeefc56c5ae440c1ea8793315f6f3d4d52",
+      "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+      "rotation_orthogonality_max_abs": 5.957934434697165e-08,
+      "history_inverse_xy_max_abs": 1.1670504971306173e-06,
+      "mask_summary": {
+        "occ": "valid 15.05%, positive among valid 13.67%, positive frames 247/270",
+        "lane": "valid 39.74%, positive among valid 19.98%, positive frames 270/270"
+      }
+    }
+  ],
+  "not_proved": [
+    "physical free-space completeness",
+    "heldout perception quality",
+    "model accuracy",
+    "official compliance approval"
+  ]
+}

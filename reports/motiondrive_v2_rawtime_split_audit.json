@@ -1,0 +1,129 @@
+{
+  "status": "RAW_TIMESTAMP_GROUPING_PASS",
+  "counts": {
+    "train": {
+      "scenes": 203,
+      "sessions": 72
+    },
+    "tune": {
+      "scenes": 37,
+      "sessions": 11
+    },
+    "val": {
+      "scenes": 136,
+      "sessions": 31
+    },
+    "historical_val": {
+      "scenes": 38,
+      "sessions": 29
+    }
+  },
+  "primary_membership_unchanged": true,
+  "raw_sessions_crossing_primary_split": 0,
+  "prior_manifest_sha256": "edb1ca33e1d56ca048b8df7635c6addeefc56c5ae440c1ea8793315f6f3d4d52",
+  "raw_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "clip_bounds": "frame0 timestamp to frame299 timestamp+median_dt; never future tail",
+  "old_groups_overmerged": [
+    {
+      "old_session": "session_019_20260113-103649",
+      "raw_sessions": [
+        "session_017_20260113-92505",
+        "session_021_20260113-103649"
+      ],
+      "scenes": [
+        "20260113-103649",
+        "20260113-92505",
+        "20260113-92535",
+        "20260113-92605",
+        "20260113-92715",
+        "20260113-92745"
+      ]
+    },
+    {
+      "old_session": "session_051_20260210-150438",
+      "raw_sessions": [
+        "session_044_20260210-95754",
+        "session_052_20260210-150438"
+      ],
+      "scenes": [
+        "20260210-150438",
+        "20260210-150508",
+        "20260210-150538",
+        "20260210-150618",
+        "20260210-150648",
+        "20260210-150758",
+        "20260210-150828",
+        "20260210-150858",
+        "20260210-95754",
+        "20260210-95824",
+        "20260210-95934"
+      ]
+    },
+    {
+      "old_session": "session_093_20260219-110038",
+      "raw_sessions": [
+        "session_087_20260219-90551",
+        "session_097_20260219-110038"
+      ],
+      "scenes": [
+        "20260219-110038",
+        "20260219-110108",
+        "20260219-110218",
+        "20260219-90551",
+        "20260219-90621"
+      ]
+    },
+    {
+      "old_session": "session_110_20260303-143437",
+      "raw_sessions": [
+        "session_110_20260303-94300",
+        "session_113_20260303-143437"
+      ],
+      "scenes": [
+        "20260303-143437",
+        "20260303-143507",
+        "20260303-94300",
+        "20260303-94330"
+      ]
+    }
+  ],
+  "old_groups_fragmented": [
+    {
+      "raw_session": "session_044_20260210-95754",
+      "old_sessions": [
+        "session_043_20260210-100004",
+        "session_051_20260210-150438"
+      ],
+      "scenes": [
+        "20260210-95754",
+        "20260210-95824",
+        "20260210-95934",
+        "20260210-100004",
+        "20260210-100044",
+        "20260210-100144"
+      ]
+    }
+  ],
+  "old_minival8_new_membership": {
+    "train": [
+      "20260211-154211",
+      "20260211-155531",
+      "20260212-100043",
+      "20260213-113054"
+    ],
+    "tune": [],
+    "val": [
+      "20260112-161049",
+      "20260112-162659",
+      "20260213-135618",
+      "20260213-144334"
+    ]
+  },
+  "image_preflight": {
+    "scenes": 240,
+    "required_unique_camera_frame_files": 391200,
+    "missing": [],
+    "scope": "directory existence only; not decode of every image; actual loader sampled separately"
+  },
+  "gt_time_contract": "Use unchanged official/cache index-offset targets +5,+10,...,+30 (goal+50). Actual past timestamp intervals forwarded. Five training scenes have median .10624s; no unsupported correction/resampling made."
+}
