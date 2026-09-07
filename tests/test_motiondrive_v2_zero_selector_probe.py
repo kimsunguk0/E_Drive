@@ -112,6 +112,21 @@ def test_loss_is_exact_ce_plus_quarter_expected_d3_over_train_scale():
     assert set(parts) == {"ce", "expected_d3"}
 
 
+def test_cost_audit_uses_fixed_fp32_tolerance_but_stored_gpu_labels():
+    eps = torch.finfo(torch.float32).eps
+    stored = torch.tensor([[1., 1. + eps], [2., 1.]])
+    recomputed = torch.tensor([[1. + eps, 1.], [2., 1.]])
+    labels = torch.tensor([probe.ZERO, probe.MOVE])
+    receipt = probe.validate_candidate_costs(stored, recomputed, labels)
+    assert receipt["rtol"] == receipt["atol"] == 8 * eps
+    assert receipt["cpu_argmin_difference_count"] == 1
+    assert receipt["unequal_elements"] == 2 and receipt["max_abs"] == eps
+    outside = recomputed.clone()
+    outside[1, 0] += 32 * eps * (1 + abs(float(outside[1, 0])))
+    with pytest.raises(ValueError, match="tolerance"):
+        probe.validate_candidate_costs(stored, outside, labels)
+
+
 def test_deterministic_batch_stream_is_exact_batch128_and_seeded():
     one = probe._batch_indices(200, torch.Generator().manual_seed(7))
     two = probe._batch_indices(200, torch.Generator().manual_seed(7))
@@ -147,7 +162,9 @@ def test_cache_load_fails_closed(mutation, tmp_path, monkeypatch):
     if mutation == "extra_key": payload["raw_goal"] = torch.zeros(8, 2)
     if mutation == "feature": payload["features"] = payload["features"].double()
     if mutation == "zero": payload["candidate_plans"][0, 0, 0, 0] = 1.
-    if mutation == "cost": payload["candidate_costs"][0, 0] += 1.
+    if mutation == "cost":
+        value = float(payload["candidate_costs"][0, 0])
+        payload["candidate_costs"][0, 0] += 32 * torch.finfo(torch.float32).eps * (1 + abs(value))
     if mutation == "label": payload["labels"][0] = 1 - payload["labels"][0]
     if mutation == "rows": payload["rows"][0] += 100
     if mutation != "pilot":
@@ -212,6 +229,12 @@ def test_tiny_training_uses_train_scale_and_accesses_tune_only_after_last(tmp_pa
     monkeypatch.setitem(probe.EXPECTED_INVENTORY, "tune", {"scenes": 2, "sessions": 3})
     _, _, train, tm = cache_artifact(tmp_path, "train", row_offset=0)
     _, _, tune, um = cache_artifact(tmp_path, "tune", row_offset=100)
+    for payload in (train, tune):
+        recomputed = torch.stack((
+            probe.weighted_d3(payload["candidate_plans"][:, probe.ZERO], payload["gt_plan"]),
+            probe.weighted_d3(payload["candidate_plans"][:, probe.MOVE], payload["gt_plan"])), 1)
+        payload["cost_validation"] = probe.validate_candidate_costs(
+            payload["candidate_costs"], recomputed, payload["labels"])
     head, optimizer, evidence = probe.train_head(
         train, tune, tm, um, base_seed=0, head_seed=1, device=torch.device("cpu"))
     assert evidence["tune_first_selector_forward_after_update"] == 4

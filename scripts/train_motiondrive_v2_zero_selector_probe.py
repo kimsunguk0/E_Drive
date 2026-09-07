@@ -46,6 +46,8 @@ GRAD_CLIP = 5.
 HIDDEN_DIM = 64
 BOOTSTRAP_REPEATS = 10000
 BOOTSTRAP_SEED = 20260908
+COST_FP32_RTOL = 8 * torch.finfo(torch.float32).eps
+COST_FP32_ATOL = 8 * torch.finfo(torch.float32).eps
 EXPECTED = {"train": 54810, "tune": 1998}
 EXPECTED_INVENTORY = {"train": {"scenes": 203, "sessions": 72},
                       "tune": {"scenes": 37, "sessions": 11}}
@@ -219,6 +221,39 @@ def _expected_cache_metadata(metadata, manifest, split, base_seed):
         require(payload_metadata == metadata, "Cache payload/sidecar metadata differs")
 
 
+def validate_candidate_costs(stored, recomputed, labels):
+    """Audit device-specific FP32 cost arithmetic without replacing GPU costs."""
+    require(stored.dtype == recomputed.dtype == torch.float32
+            and stored.shape == recomputed.shape and stored.ndim == 2 and stored.shape[1] == 2
+            and labels.dtype == torch.int64 and labels.shape == stored.shape[:1]
+            and torch.isfinite(stored).all() and torch.isfinite(recomputed).all()
+            and (stored >= 0).all() and (recomputed >= 0).all(),
+            "Candidate costs must be matching finite nonnegative FP32 [N,2]")
+    delta = (stored - recomputed).abs()
+    unequal = stored != recomputed
+    require(torch.allclose(stored, recomputed, rtol=COST_FP32_RTOL, atol=COST_FP32_ATOL),
+            "Stored GPU and independently recomputed CPU D3 costs exceed fixed FP32 tolerance")
+    # Stored GPU costs are authoritative for the preregistered strict target.
+    stored_labels = torch.where(stored[:, ZERO] < stored[:, MOVE],
+                                torch.zeros_like(labels), torch.ones_like(labels))
+    cpu_labels = torch.where(recomputed[:, ZERO] < recomputed[:, MOVE],
+                             torch.zeros_like(labels), torch.ones_like(labels))
+    require(torch.equal(stored_labels, labels), "Stored GPU D3 strict-tie labels differ")
+    stored_margin = (stored[:, ZERO] - stored[:, MOVE]).abs()
+    cpu_margin = (recomputed[:, ZERO] - recomputed[:, MOVE]).abs()
+    label_difference = stored_labels != cpu_labels
+    return {
+        "policy": "stored GPU candidate_costs authoritative; CPU recomputation is audit only",
+        "rtol": COST_FP32_RTOL, "atol": COST_FP32_ATOL,
+        "unequal_elements": int(unequal.sum()), "max_abs": float(delta.max()),
+        "cpu_argmin_difference_count": int(label_difference.sum()),
+        "stored_gpu_margin_min_abs": float(stored_margin.min()),
+        "cpu_recomputed_margin_min_abs": float(cpu_margin.min()),
+        "differing_argmin_stored_margin_min_abs": (
+            float(stored_margin[label_difference].min()) if label_difference.any() else None),
+    }
+
+
 def load_cache(cache_path, expected_cache_sha, manifest_path, expected_manifest_sha,
                *, split, base_seed):
     cache_path, manifest_path = Path(cache_path), Path(manifest_path)
@@ -258,11 +293,8 @@ def load_cache(cache_path, expected_cache_sha, manifest_path, expected_manifest_
     zero_cost = weighted_d3(payload["candidate_plans"][:, ZERO], payload["gt_plan"])
     move_cost = weighted_d3(payload["candidate_plans"][:, MOVE], payload["gt_plan"])
     recomputed = torch.stack((zero_cost, move_cost), dim=1)
-    expected_labels = torch.where(zero_cost < move_cost,
-                                  torch.zeros_like(payload["labels"]), torch.ones_like(payload["labels"]))
-    require(torch.equal(recomputed, payload["candidate_costs"])
-            and torch.equal(expected_labels, payload["labels"]),
-            "Cached D3 costs/strict-tie labels differ")
+    payload["cost_validation"] = validate_candidate_costs(
+        payload["candidate_costs"], recomputed, payload["labels"])
     ids, buckets = manifest.get("ids"), manifest.get("diagnostic_buckets")
     require(isinstance(ids, list) and len(ids) == n and isinstance(buckets, list) and len(buckets) == n
             and set(buckets) <= {"steady", "depart", "nonstop"}, "Cache identity/bucket fields differ")
@@ -424,6 +456,9 @@ def train_head(train, tune, train_manifest, tune_manifest, *, base_seed, head_se
                           session_bootstrap=True),
     }
     return head, optimizer, {"c_scale_train_mean_d_zero": c_scale,
+                             "cache_cost_validation": {
+                                 "train": train["cost_validation"],
+                                 "tune": tune["cost_validation"]},
                              "initial_head_state_sha256": initial_state_sha,
                              "initial_all_move_proof": initial_proof,
                              "final_head_state_sha256": tensor_state_sha256(head.state_dict()),

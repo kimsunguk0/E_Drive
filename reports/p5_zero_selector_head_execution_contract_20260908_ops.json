@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "status": "preregistered_before_head_training",
+  "date_kst": "2026-09-08",
+  "purpose": "P5-Z offline zero-versus-move diagnostic head; not a production, submission, accuracy, latency, or compliance claim",
+  "source": {
+    "git_before_head_commit": "c73c4f8e036d3b261e91aac7b278f37145759b77",
+    "cache_producer_sha256": "d54bbdc761fba99ed1cd98b5658f80b1b097aac361bdcb60e326f2e6226999c8",
+    "cache_producer_test_sha256": "5dcd67f4a4e06f24d5b260f8c1ed528d13e7de0a859d444a77771822167920b6",
+    "head_trainer_sha256": "fe4d6c2765cee6a092ba59418c1705aaa155747314dc80aa6b22e13a6e929eb1",
+    "head_trainer_test_sha256": "54da2550423d9d4b08ac40759b3fd6a94a3e7093ab7dc38fa23a2713fa5f8ab8",
+    "runtime22_manifest_sha256": "98478a88022981396f7d3a6ffb2f7f2e815797ca60b482a1d7c645c83aac4ae2"
+  },
+  "full_cache_completion": {
+    "common": {
+      "train_rows": 54810,
+      "tune_rows": 1998,
+      "train_batch": 8,
+      "tune_batch": 4,
+      "schema_version": 2,
+      "pilot_samples": 0,
+      "full_cache_completed": true,
+      "final_val_accessed": false,
+      "selection_performed": false,
+      "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+      "tune_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+      "calibration_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+      "phase_t_global_barrier": "both actual rc0; all 1998 immutable tune identity/GT/plan/D3 rows bitwise exact",
+      "phase_r_completion": "both actual rc0; source, inputs, model state, and fixed-BN state unchanged; parent and child PIDs absent"
+    },
+    "base0": {
+      "train_cache": "work_dirs/motiondrive_v2/p5_zero_selector_full_b0_train54810.pt",
+      "train_cache_sha256": "1f2184ad544cb43e0e5ca1a72ef2534165cd67a927c21a0cd653e37ebbcb92ab",
+      "train_manifest_sha256": "8a4f5b4230e8f1a263b572ee70b425104e4e1745892587aa17f2063ef32a2a58",
+      "train_execution_sha256": "12d3c618caf6e8be57292f2e89645f88888e54f38048b83fc1fcd25ec0a1a512",
+      "train_child_receipt_sha256": "5241c13dfff54bffde89fd968a86a0a74a48a6267966f99036643e372da87576",
+      "tune_cache": "work_dirs/motiondrive_v2/p5_zero_selector_full_b0_tune1998.pt",
+      "tune_cache_sha256": "e2d82afef7851c9496fb8f6e8ff7885d426af81ccf5d9da10ecae9bc852610a5",
+      "tune_manifest_sha256": "dbc26cb794f4b83ff744f4f2f17cae7379ba69b320ca7d6cdabaa1028230805e",
+      "tune_execution_sha256": "f59f5f54d8c86848e713bc55f7b2ef9f8df2bdd11779628c59cf029fbc2c9121",
+      "tune_child_receipt_sha256": "ae7ca51904368fe850e19509dba4a6f73f6f651f475440859be8bedd2133ee06"
+    },
+    "base1": {
+      "train_cache": "work_dirs/motiondrive_v2/p5_zero_selector_full_b1_train54810.pt",
+      "train_cache_sha256": "99c873a710a3cb36c23f5a67f8840c81b277c18702651815923e3caf0e39a292",
+      "train_manifest_sha256": "49b5f8489a97e80b46afc5be0d0e656ad6e658fbd404071f3edc050f73463903",
+      "train_execution_sha256": "ff53ab3197578fc67f86e272944263fe18ecb6ec6b3be4776946d5730ff57850",
+      "train_child_receipt_sha256": "73253cc3028cc89c7ad37285fad6d96d08a3c8444871e73c878dabf4ada07563",
+      "tune_cache": "work_dirs/motiondrive_v2/p5_zero_selector_full_b1_tune1998.pt",
+      "tune_cache_sha256": "67b1f81029728d9de8417c1c4c968a26e3ed67271d277a7abda969ebf71aff14",
+      "tune_manifest_sha256": "caf6b64cedfa1bd0b08c321f92f5b32c1a7dbaf502bbebeac7c5719681ec475e",
+      "tune_execution_sha256": "3f62c2504dc0334b0007ff11dfeb1e98b01b8aa2ce6478eff5aa501551872531",
+      "tune_child_receipt_sha256": "51848d3861e37fbfa9636c75f6db4b5574bd55fd67e6605ec45741190cdcdf1d"
+    }
+  },
+  "head_training_contract": {
+    "matrix": [
+      {"base_seed": 0, "head_seed": 0, "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b0_h0_last1000"},
+      {"base_seed": 0, "head_seed": 1, "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b0_h1_last1000"},
+      {"base_seed": 0, "head_seed": 2, "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b0_h2_last1000"},
+      {"base_seed": 1, "head_seed": 0, "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b1_h0_last1000"},
+      {"base_seed": 1, "head_seed": 1, "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b1_h1_last1000"},
+      {"base_seed": 1, "head_seed": 2, "run_dir": "work_dirs/motiondrive_v2/p5_zero_selector_head_b1_h2_last1000"}
+    ],
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "python": "/usr/bin/python",
+      "device": "cpu"
+    },
+    "recipe": {
+      "feature_dim": 790,
+      "architecture": "FP32 LayerNorm(790) -> Linear(790,64) -> SiLU -> Linear(64,2)",
+      "initialization": "all Linear weights zero; final bias [-2,+2]",
+      "decision": "ZERO iff zero logit > move logit; ties MOVE",
+      "loss": "cross entropy plus 0.25 times expected D3 normalized by train-only max(mean Dzero,1e-3)",
+      "optimizer": "AdamW lr=1e-3 wd=0.01",
+      "batch": 128,
+      "updates": 1000,
+      "warmup_updates": 100,
+      "schedule": "linear warmup then cosine",
+      "gradient_clip": 5.0,
+      "checkpoint_policy": "LAST1000 only; no BEST selection",
+      "tune_policy": "one evaluation after training; no threshold, seed, or checkpoint tuning"
+    },
+    "forbidden": [
+      "base-model optimizer or backward",
+      "final holdout access",
+      "GPU use",
+      "threshold tuning",
+      "selecting a preferred seed or checkpoint",
+      "automatic deployment or follow-on experiment"
+    ]
+  }
+}
