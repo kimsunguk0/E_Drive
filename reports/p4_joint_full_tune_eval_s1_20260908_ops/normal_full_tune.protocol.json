@@ -1,0 +1,420 @@
+{
+  "status": "preregistered_before_any_forward",
+  "schema_version": 1,
+  "created_utc": "2026-09-07T16:35:51.377191+00:00",
+  "arguments": {
+    "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s1/last.pth",
+    "data_root": "/NHNHOME/data/sukim/adcl",
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+    "split": "tune",
+    "out": "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s1_20260908_ops/normal_full_tune.json",
+    "conditions": [
+      "normal"
+    ],
+    "donor_seed": 20260907,
+    "seed": 1,
+    "frame_stride": 5,
+    "max_samples": 0,
+    "scenes": null,
+    "batch": 4,
+    "workers": 4,
+    "device": "cuda:0",
+    "precision": "bf16",
+    "time_input": "nominal",
+    "include_motion_predictions": true
+  },
+  "checkpoint_sha256": "c937f2f772c78f99cf3cfa5b1a96614267e20a9a667a157f4ada284940f9672e",
+  "checkpoint_file_identity": {
+    "device": 633760522,
+    "inode": 144117169448402496,
+    "bytes": 317746461,
+    "mtime_ns": 1788797766000000000
+  },
+  "checkpoint_step": 6000,
+  "checkpoint_manifest": {
+    "schema_version": 1,
+    "git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+    "arguments": {
+      "data_root": "/NHNHOME/data/sukim/adcl",
+      "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s1",
+      "phase": "joint",
+      "goal_on": 1,
+      "state_on": 1,
+      "gpu": 0,
+      "cpu": false,
+      "cuda_memory_limit_mib": 12000,
+      "cuda_min_free_mib": 8192,
+      "microbatch": 2,
+      "seed": 1,
+      "steps": 6000,
+      "batch": 16,
+      "eval_batch": 4,
+      "workers": 4,
+      "eval_every": 250,
+      "save_every": 250,
+      "log_every": 10,
+      "lr": 0.0001,
+      "backbone_lr": 1e-05,
+      "weight_decay": 0.01,
+      "warmup": 200,
+      "grad_clip": 5.0,
+      "alpha_occ": 0.2,
+      "alpha_lane": 0.2,
+      "alpha_motion": 0.2,
+      "uncertainty": 1,
+      "precision": "bf16",
+      "time_input": "nominal",
+      "bn_policy": "fixed",
+      "pretrained": null,
+      "init": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/last.pth",
+      "resume": null,
+      "arch": "resnet50",
+      "motion_input_mode": "low_feature",
+      "plan_output_scale": null,
+      "train_stride": 1,
+      "eval_stride": 5,
+      "max_train_samples": 0,
+      "max_eval_samples": 0,
+      "train_scenes": null,
+      "eval_scenes": null,
+      "eval_split": "tune",
+      "eval_only": false,
+      "allow_unpretrained": false
+    },
+    "model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": true,
+      "state_on": true,
+      "plan_output_scale": [
+        10.0,
+        5.0
+      ],
+      "motion_input_mode": "low_feature"
+    },
+    "loss_weights": {
+      "plan": 1.0,
+      "occupancy": 0.2,
+      "lane": 0.2,
+      "motion": 0.2,
+      "uncertainty": true
+    },
+    "time_input": "nominal",
+    "time_input_policy": {
+      "mode": "nominal",
+      "scope": "model input time_offsets only; same for training and every evaluation",
+      "source": "fixed nominal frame-offset seconds",
+      "nominal_history_seconds": [
+        0.1,
+        0.2,
+        0.5,
+        1.0
+      ],
+      "nominal_dtype": "float32",
+      "supervision_and_dataset_modified": false
+    },
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "load_report": {
+      "common_checkpoint_sha256": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5"
+    },
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "numpy": "2.1.0",
+    "device": "cuda:0",
+    "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+    "cuda_memory_policy": {
+      "enabled": true,
+      "allocator_limit_mib": 12000,
+      "min_free_mib": 8192,
+      "allocator_fraction": 0.0657060353046741,
+      "initial_free_bytes": 190846992384,
+      "device_total_bytes": 191503138816,
+      "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+    },
+    "microbatch_policy": {
+      "enabled": true,
+      "microbatch": 2,
+      "logical_batch": 16,
+      "optimizer_updates_per_logical_batch": 1,
+      "loss_normalization": "full logical batch label/mask denominators",
+      "bitwise_equivalence_to_unsplit_training_promised": false
+    },
+    "gpu_name": "NVIDIA B200",
+    "pretrained_sha256": null,
+    "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "initial_model_state_sha256": "d595f0788fbb5ae31ea2eaa2f3344ac300028756dcfe8f313ec1dbb761673e0d",
+    "initial_parameter_count": 26409112,
+    "bn_training": {
+      "policy": "fixed",
+      "modules": 53,
+      "affine_and_backbone_weights_trainable": true,
+      "inference_policy": "eval running statistics for both arms"
+    },
+    "status": "running",
+    "pid": 2107398,
+    "data_counts": {
+      "train": 54810,
+      "eval": 1998
+    },
+    "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log"
+  },
+  "source_checkpoint": null,
+  "data": {
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "receiver_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "receiver_count": 1998,
+    "donor_rows_sha256": null,
+    "image_root": "/NHNHOME/data/sukim/adcl/cache/etri_768",
+    "supervision_sha256": {
+      "supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+      "calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+      "20260113-102709.npz": "c3ed650793d417ecc4568dd515b18190b1f9059e37a4435a6f03162cb1613a7d",
+      "20260113-102709.json": "fc5dfc1d432a7ceb3d80b5b0fee89d72a67e9287d31d2c7c128646f5cde1b1c1",
+      "20260122-134906.npz": "4c3097b2e3b0d030a912f788fa77fc3019408b11c6fa61317e34fb15e903f19a",
+      "20260122-134906.json": "8089694be33285c5b62efa9631e9a3e85a6afeae50c9ccc53b8793c072da2683",
+      "20260122-134936.npz": "d9093ab8f980624ffa50293eab91c9d32d7128376bce4de3ee4047d2d3952514",
+      "20260122-134936.json": "3cb2abc39241f8eff7e474f2cc9a72c18a1a330a3a89b60fb35a12ede26aaffb",
+      "20260122-135506.npz": "47de17a58d870f55db996ad4d797d7f7abf465fb2116288b5cdaa4b40908a7f2",
+      "20260122-135506.json": "5fa22d4a87111ed7bcce39dd8624de143bc554e5b1d153faf4ba1ab747ae5c84",
+      "20260122-135546.npz": "c7d6b6bdd63898cf47ea04581d49081378c0a9d5efa40035b19efb8aabc28531",
+      "20260122-135546.json": "017477fb28bc5d48d4a72aecf7d311e6d70149ed3b3f011a3a03cc32684e0eae",
+      "20260122-135616.npz": "4414257d516e3211039f30625b90e1c1b3410c9e5c68b09726f2c0e13859a3e7",
+      "20260122-135616.json": "9e393cfc511197c6a40fac2ac057b4d8f6d2abddcc6c069c0f3b55979be0e5f8",
+      "20260122-135646.npz": "8c110478d1c3e80287fda606382cb607b53c1cafd83158618ed575bb5e36225a",
+      "20260122-135646.json": "e0ac5ec09290f4c2cf6fd81118b9012c506a8bdd1eb89000fc68a522506980f5",
+      "20260122-135800.npz": "b16cdda7e847a4d52e48a6b69d0a2ae5dda05a45ab5cd42af25f007050e364b5",
+      "20260122-135800.json": "e719a06b71732463e0fb893d34d041820d8329ee0fd37318f074a73c507cb706",
+      "20260122-135830.npz": "b63acb0b0a2ffdca1b0fa56f3282e4d2ebbdcb8d8c76e6e749fc2b234de4fa61",
+      "20260122-135830.json": "e340dfcb7a7a6d4d0222dfa56f9ab4f29025d70cd1dbed84a70e8d2f4ecad78c",
+      "20260122-135900.npz": "471c5242bf40db4c9a2686f2dfed9743c221cbff88e466441fb765e1511e0807",
+      "20260122-135900.json": "0cc8dcd17762fc729058c37ec47ba197d14273bc073f7f98a19af446b3979330",
+      "20260209-153550.npz": "aa4d314d9934b4b91bb5807389c6fcf70f594d5cf3fdd61a36b8c48f882b4721",
+      "20260209-153550.json": "a17fb34469a87a7f263cbaff0703d2efcdcafa82e1b699300b58dff352f85795",
+      "20260209-153620.npz": "19c0d50a03427c234ad23de31a7037905f7039ac0edbb9bef6209a7cbf1317a3",
+      "20260209-153620.json": "1498fb8c2fcd404d3adf8de28284aa4dedc7c38962f6bdfe095fbcc80870e75c",
+      "20260210-100504.npz": "c92a447a4c37ca6f010626ddb00383ed89e4649c9b1cfaa9167a676973d6afc2",
+      "20260210-100504.json": "f410e5548a86f94d8446ac7a98c0fade0f1708a681200ce0bdb6d7b03745db10",
+      "20260210-100534.npz": "7e155d386b643ab71d0c494a5d07d2f8bf23b75eea7b0ad183753f8c286624c3",
+      "20260210-100534.json": "6bc8382b9eccb95d7e1df7b4575cd31570be4d99b83fb79172eb69452160559b",
+      "20260210-100614.npz": "588d781bd71b82d1a160d240ebb56ed1b3e267588f291599de8ce4d01c9ab2b4",
+      "20260210-100614.json": "09f53032f7b95cb12f60c78339a4ca83b9ba3f6e149a1a3d046268848bfa6743",
+      "20260210-100644.npz": "716d3805b1211a2ccc54aff48ebc33fedac332c221e4c7453b32513d6c7f38f9",
+      "20260210-100644.json": "3ca72479febf0e4a38f0e2d788a46510fc356e9188287396344beabcb581736e",
+      "20260210-100754.npz": "ae47fbafe4f1bc71f78e863462725d6a367ec582140ea5d06c6a95ab57041dcb",
+      "20260210-100754.json": "43856e316cd5ef7798ca11562075bb327e997e8093d5a576ac6298a363eb8769",
+      "20260210-100854.npz": "7ddbcd8898785522fed04101c49b6f7ba193433f3f697f4c9e9ff6d73bebbfa5",
+      "20260210-100854.json": "30b0ee46e36b7a9038db50bf28c25fa4d82914d9d942faed7f765aadcc3b5f75",
+      "20260210-101004.npz": "d134218ebebfb7e06f2bc5b27c859c1d4a5172a402ad60d1ff228a049e201d07",
+      "20260210-101004.json": "911c651020d69ab2dbff17c23e2950b35ee6f1d01880f7127a9b5f738fefb9a7",
+      "20260210-101034.npz": "eecb1e26468198b7b5da391768e8daae85e392759d0d1cd075286842559ea914",
+      "20260210-101034.json": "06bbb7d2df84b96e97c1fd3e5d0043bc1ce0d16e73799fe68543a347ec93bb4d",
+      "20260210-101114.npz": "f9bbb187c37602aa60f760ed10c22bd625256dc534d118a654691b8804574b2c",
+      "20260210-101114.json": "cec37eaddae2f26042b3317881ac51c45455bfa27b4711218a1fd5bb028a7052",
+      "20260210-101214.npz": "1a18a76717525ef00ed786329a0532a1405f5d67f8480d6c79a67b23115ebe6d",
+      "20260210-101214.json": "2109799aec926d7ad06598e86a4fa7b02f3d0cee01275774d35e97beabc8f59f",
+      "20260213-134648.npz": "6b5156f95eef695fc96438f9f6a1e8af0bc23906797efa46bb11474f2ec0ea1a",
+      "20260213-134648.json": "bfbbda804ec651dc622c643ddf1492a8fe47314bd47bf9f645f0a6ad668c67b9",
+      "20260213-134718.npz": "5a638e07874a7ed909e938b1fde7c67ff8afab52a08db13ede98f8d350cd1b66",
+      "20260213-134718.json": "9fae204931657f2956821ae6a16f7859b0e7f34afd3a76ccbcfea62a5fcb28cf",
+      "20260213-134758.npz": "e65eaa08c2f902cf1a10a9197afaa8a286691b3428c9d30f171e4a362a0c4088",
+      "20260213-134758.json": "57ca16b65350b146f2b47ab4168cac8ba00081ed5d6c49c984ab976f90fe75b3",
+      "20260213-134828.npz": "ebccead7f6b95f298f3d91c1ac0e9094fa9085a66e5f4306269c3827a75b6630",
+      "20260213-134828.json": "802a9381d137eadce3abdb540685accf9c16b7154393d3a52d7185f63a45ecb9",
+      "20260213-134938.npz": "6ee35e7b60e040cdec94d509f59dd55782d4f077b178095755552f69122bc134",
+      "20260213-134938.json": "da6e594ee9c337863d8cd8575dbe3372ecd0ca64727f60eaad6cc3720133c3ff",
+      "20260213-135038.npz": "ff13a323191acac7dd85830339ad21b48231fe47f78bddbdd53fbd109f09e41b",
+      "20260213-135038.json": "9420829e3ace29ee5ed7dca489de29fa9006c35fe5d44e9cb1d0639b7d30eb38",
+      "20260219-103747.npz": "a522e0ee51d3237a4dce0dc55a481241acdd31d975c2db25b19d5d6a8c493165",
+      "20260219-103747.json": "fb1552d9d421fc41d1a6387257d9a6f1f4f0d96012876b11c6973f5580b74a6c",
+      "20260219-110038.npz": "fedb7daeb164e3a803d0ed2e9aa15d8d774aa9ef9d5bc17f3a34206d7b02c8ee",
+      "20260219-110038.json": "df5eac7c7cf53269af86586b4a5bce1907ae71b75f5f1a911ea4e27cdfaa7bd2",
+      "20260219-110108.npz": "1d3f3dc8cf057137c87830ddbd6fc931c8e6a71abb94b5f3afe022b6eaf315ce",
+      "20260219-110108.json": "f7a4a64921b262280f5892bfed3bd4dd51361cf3920f6484a37dc61711a60197",
+      "20260219-110218.npz": "efd1e17ec5eba46f72dccd654298121e47cf958f0d01b12e58f7b08253fb9be1",
+      "20260219-110218.json": "fcd430e73514a89ea72dfb9ab6614c6d9486f45632a3e1b54561052ea010f618",
+      "20260219-90551.npz": "28f962d4a73ba0b3f2a0fbfc6acfc89a91bbc90778df00759aefb97e47293a49",
+      "20260219-90551.json": "985c9068bd3c9c11f096c23cef55a3c2c1feb0ad924fd84305f006fc11f1d7f8",
+      "20260219-90621.npz": "8176396528a7b9c5b057ccf1830198a86d3de63faf158bf212400d048f7d525b",
+      "20260219-90621.json": "8987d21564425765b254e4fd8a49233e11e27bfeb550bc8594c50867b03f2d7c",
+      "20260220-134317.npz": "ce7a403cc72fd3ccf306ae5e48dadf27fd591de4c3481665de76cfcbfc75b09d",
+      "20260220-134317.json": "e7bf71a6c17a318136b953066253137a12d755cf9dd92a303e6e9f827b8d5ecb",
+      "20260220-134347.npz": "727d5d9f48b1185dba59e79098dc1027d9517b3a26578dcbcfd910c724b40f5a",
+      "20260220-134347.json": "8e10d85d82ccbb8ea4955905c6cae7cff0519466b7dd6ad45bb006ff658bbb4a",
+      "20260303-142827.npz": "2f1de9831fc42fc128133817c988e99abd70dfea1417fd3d661bebd0b8f4321e",
+      "20260303-142827.json": "52764fc5ebf728b2657c9abd3bf5a7bafdf1db18e7ee48a30eaf0f411f598e74"
+    }
+  },
+  "source": {
+    "git_sha": "095e49d4e7be36802bad2f5923b873e65115e7fc",
+    "tracked_changes": [],
+    "file_sha256": {
+      "scripts/evaluate_motiondrive_v2_planning.py": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/train_motiondrive_v2.py": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+      "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d"
+    }
+  },
+  "donor_scene_map": null,
+  "donor_policy": "full tune split Sattolo scene permutation; same frame; image tensors only",
+  "bucket_definition": {
+    "version": 1,
+    "source": "GT state_target only; never model-predicted state",
+    "stop": "valid vx,vy and hypot(vx,vy) < 0.2 m/s",
+    "accel": "not stop; valid ego-x acceleration ax >= 0.5 m/s^2",
+    "decel": "not stop; valid ego-x acceleration ax <= -0.5 m/s^2",
+    "cruise": "not stop; valid ego-x acceleration -0.5 < ax < 0.5 m/s^2",
+    "unknown": "missing/nonfinite required GT state components",
+    "priority": "stop first; mutually exclusive and exhaustive",
+    "axes": "current ego x=longitudinal, y=lateral; not a trajectory-tangent frame"
+  },
+  "model_input_whitelist": [
+    "images",
+    "history_images",
+    "lidar2img",
+    "history_transforms",
+    "time_offsets",
+    "goal_xy"
+  ],
+  "time_input": "nominal",
+  "time_input_policy": {
+    "mode": "nominal",
+    "scope": "model input time_offsets only; identical policy for every condition",
+    "source": "fixed nominal frame-offset seconds",
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "nominal_dtype": "float32",
+    "dataset_and_labels_modified": false,
+    "preserved": [
+      "images within each image condition",
+      "poses",
+      "calibration",
+      "goal",
+      "GT",
+      "valid masks",
+      "sample order"
+    ]
+  },
+  "nominal_waypoint_seconds": [
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0
+  ],
+  "target_time_semantics": "Official cached frame-offset targets preserved; actual raw timestamps can differ from nominal 0.5-second spacing",
+  "metric": "mean cumulative ADE@1/2/3s; [11,11,5,5,2,2]/36; equal frame weights",
+  "coordinate_format": "current ego-frame cumulative XY positions, metres; no cumsum or postprocessing",
+  "caveats": [
+    "Image counterfactuals break image/geometry consistency and are diagnostics, not automatic compliance proof.",
+    "Repeatedly used tune is not an untouched holdout; this evaluator performs no checkpoint/condition selection."
+  ],
+  "selection_performed": false,
+  "final_val_accessed": false,
+  "motion_prediction_contract": {
+    "enabled": true,
+    "source": "same complete model forward as plan_abs",
+    "additional_forward_calls": 0,
+    "prediction_dtype": "float32",
+    "pred_state": {
+      "source_key": "state_hat",
+      "shape_per_record": [
+        6
+      ],
+      "order": [
+        "vx",
+        "vy",
+        "ax",
+        "ay",
+        "yaw_rate",
+        "stop_logit"
+      ],
+      "units": [
+        "m/s",
+        "m/s",
+        "m/s^2",
+        "m/s^2",
+        "rad/s",
+        "logit"
+      ],
+      "stop_semantics": "raw neural stop logit, NOT probability or binary decision; no sigmoid/threshold applied"
+    },
+    "pred_history": {
+      "source_key": "history_hat",
+      "shape_per_record": [
+        4,
+        4
+      ],
+      "frame_offsets": [
+        -1,
+        -2,
+        -5,
+        -10
+      ],
+      "component_order": [
+        "dx",
+        "dy",
+        "sin_delta_yaw",
+        "cos_delta_yaw"
+      ],
+      "units": [
+        "m",
+        "m",
+        "dimensionless",
+        "dimensionless"
+      ],
+      "pose_semantics": "historical ego pose expressed relative to current ego; x forward/y left",
+      "orientation_semantics": "raw predicted sin/cos components; no angle conversion or unit normalization"
+    },
+    "condition_semantics": "prediction follows the named image condition; GT state/history and receiver identity stay unchanged",
+    "used_for_metric_or_bucket_or_selection": false,
+    "trajectory_or_gt_modified": false
+  }
+}

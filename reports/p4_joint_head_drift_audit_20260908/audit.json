@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "audit_kind": "independent_cpu_artifact_validation_after_global_head_guard_failure",
+  "created_at": "2026-09-07T16:23:50.501907+00:00",
+  "audit_actual_returncode": 0,
+  "all_checks_passed": true,
+  "environment": {
+    "executable": "/usr/bin/python",
+    "cuda_visible_devices": "",
+    "torch_cuda_available": false,
+    "model_forward_performed": false
+  },
+  "git_context": {
+    "training_expected_git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+    "audit_observed_git_sha": "095e49d4e7be36802bad2f5923b873e65115e7fc",
+    "audit_observed_tracked_dirty": false,
+    "runtime_source_count": 22,
+    "runtime_source_snapshot_matches_launch": true,
+    "data_file_count": 3,
+    "data_snapshot_matches_launch": true
+  },
+  "interpretation_guard": {
+    "training_success_relabelled": false,
+    "original_supervisor_records_modified": false,
+    "original_supervisor_actual_returncode": 1,
+    "original_supervisor_completion_evidence": null,
+    "meaning": "This report's rc=0 validates immutable artifacts independently. It does not change either training child/supervisor rc=1 caused by the post-training global HEAD guard."
+  },
+  "trainer_process_semantics": {
+    "separate_trainer_os_returncode_recorded": false,
+    "finding": "run_motiondrive_v2_fresh_trial.py child_run executes train_motiondrive_v2.py in-process via runpy.run_path, then performs the post-training source/data check in the same child process. Therefore there is no separate trainer subprocess OS return code. The preserved child rc=1 includes the later HEAD-guard exception; the completed sidecar and step-6000 evaluation show that the trainer body reached completion."
+  },
+  "runs": {
+    "seed0": {
+      "original_supervisor": {
+        "path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_joint_s0.supervisor.json",
+        "sha256": "be0656638d04e33ba2c73fd5b6416bc28475a71951b0f7a7a29c27b3c7619084",
+        "actual_returncode": 1,
+        "supervisor_exit_code": 1,
+        "outcome": "failed",
+        "completion_evidence": null
+      },
+      "trainer_sidecar": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/manifest.json",
+        "sha256": "001b822dde79024f0e2cd52b5b99cb1096bbab5bfd09ef2d95e963ad8dc6e3de",
+        "status": "completed",
+        "step": 6000,
+        "nonfinite_count": 0,
+        "git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+        "data_counts": {"train": 54810, "eval": 1998},
+        "config_checked": {
+          "phase": "joint",
+          "seed": 0,
+          "gpu": 0,
+          "cpu": false,
+          "batch": 16,
+          "microbatch": 2,
+          "eval_batch": 4,
+          "bn_policy": "fixed",
+          "time_input": "nominal",
+          "precision": "bf16",
+          "steps": 6000,
+          "eval_split": "tune",
+          "resume": null,
+          "pretrained": null,
+          "allow_unpretrained": false
+        }
+      },
+      "receipt": {
+        "path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_joint_s0.child.json",
+        "sha256": "327204fba66779a69ea6a25eabd15d45e812e54aab3b21280e678deac4970bf3",
+        "initial_checkpoint_sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+        "initial_model_state_sha256": "f69e1c52ccd4b9908130ffe02170c0f08bff21712c634fee064517009a6c2c7d",
+        "source_snapshot_matches_launch": true
+      },
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth",
+        "sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+        "model_state_sha256": "f69e1c52ccd4b9908130ffe02170c0f08bff21712c634fee064517009a6c2c7d",
+        "embedded_step": 2000,
+        "embedded_phase": "pretrain"
+      },
+      "last_checkpoint": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/last.pth",
+        "sha256": "3e9ae5aa6ca89f4eb9a72ba38355dfdbec4ccaa38eabbebb3526fa3019404478",
+        "model_state_sha256": "4f5ea00863d0a99c0aba4931df3865a5f6cab4160347e1f96abe97c1ca96995f",
+        "full_model_strict_cpu_load": true,
+        "optimizer_steps": 6000,
+        "optimizer_tensors_finite": true,
+        "fixed_bn_state_sha256": "15f7b2ea977aedbe202fc42669e687692d779de4fe501cf342a30454b86dfc99",
+        "model_forward_performed": false
+      },
+      "prerequisite_record_sha256": "278293a2275af4dad1975fbc2eb3cc05352dfbf2b0911d62aa25f2d1327f945f"
+    },
+    "seed1": {
+      "original_supervisor": {
+        "path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_joint_s1.supervisor.json",
+        "sha256": "969dff884e9456321bbb54acabd4537ea64aed264d432d69ab5b6f04c1911353",
+        "actual_returncode": 1,
+        "supervisor_exit_code": 1,
+        "outcome": "failed",
+        "completion_evidence": null
+      },
+      "trainer_sidecar": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s1/manifest.json",
+        "sha256": "49dc09c8e7840a059ae6bcadba1c490052847c678dc81d5524ee39f9da159aad",
+        "status": "completed",
+        "step": 6000,
+        "nonfinite_count": 0,
+        "git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+        "data_counts": {"train": 54810, "eval": 1998},
+        "config_checked": {
+          "phase": "joint",
+          "seed": 1,
+          "gpu": 0,
+          "cpu": false,
+          "batch": 16,
+          "microbatch": 2,
+          "eval_batch": 4,
+          "bn_policy": "fixed",
+          "time_input": "nominal",
+          "precision": "bf16",
+          "steps": 6000,
+          "eval_split": "tune",
+          "resume": null,
+          "pretrained": null,
+          "allow_unpretrained": false
+        }
+      },
+      "receipt": {
+        "path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_joint_s1.child.json",
+        "sha256": "5ece718639bfeda16575ad935233b8830464234b63c798ce0144a8cd1c723e45",
+        "initial_checkpoint_sha256": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5",
+        "initial_model_state_sha256": "d595f0788fbb5ae31ea2eaa2f3344ac300028756dcfe8f313ec1dbb761673e0d",
+        "source_snapshot_matches_launch": true
+      },
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/last.pth",
+        "sha256": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5",
+        "model_state_sha256": "d595f0788fbb5ae31ea2eaa2f3344ac300028756dcfe8f313ec1dbb761673e0d",
+        "embedded_step": 2000,
+        "embedded_phase": "pretrain"
+      },
+      "last_checkpoint": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s1/last.pth",
+        "sha256": "c937f2f772c78f99cf3cfa5b1a96614267e20a9a667a157f4ada284940f9672e",
+        "model_state_sha256": "02d3e53b5cbc89ac0a2f6a73dd6d3e736f6fe0af30fef20499429448de702fa0",
+        "full_model_strict_cpu_load": true,
+        "optimizer_steps": 6000,
+        "optimizer_tensors_finite": true,
+        "fixed_bn_state_sha256": "15f7b2ea977aedbe202fc42669e687692d779de4fe501cf342a30454b86dfc99",
+        "model_forward_performed": false
+      },
+      "prerequisite_record_sha256": "2b8ee2d742e80ced8f826cee989ca9ce5f12115a2acd83a10a2485121e9bd625"
+    }
+  }
+}

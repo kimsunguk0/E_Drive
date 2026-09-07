@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "child_pid": 2144048,
+  "status": "completed",
+  "gpu_used": true,
+  "training_success_relabelled": false,
+  "model_forward_source": "existing evaluator normal condition",
+  "main_returncode": 0,
+  "allocator_configured_before_main": true,
+  "memory_policy": {
+    "enabled": true,
+    "allocator_limit_mib": 12000,
+    "min_free_mib": 8192,
+    "allocator_fraction": 0.0657060353046741,
+    "initial_free_bytes": 190847057920,
+    "device_total_bytes": 191503138816,
+    "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+  },
+  "before_evaluation": {
+    "allocated_bytes": 0,
+    "reserved_bytes": 0,
+    "peak_allocated_bytes": 0,
+    "peak_reserved_bytes": 0,
+    "device_free_bytes": 190847057920,
+    "device_total_bytes": 191503138816
+  },
+  "after_evaluation": {
+    "allocated_bytes": 9568256,
+    "reserved_bytes": 1849688064,
+    "peak_allocated_bytes": 1130947072,
+    "peak_reserved_bytes": 1849688064,
+    "device_free_bytes": 188798140416,
+    "device_total_bytes": 191503138816
+  },
+  "device_mapping": {
+    "physical_gpu": 4,
+    "logical_device": "cuda:0",
+    "observed_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+    "observed_uuid_raw": "4b804d68-fd61-af14-393a-573c533d5006",
+    "cuda_visible_devices": "GPU-4b804d68-fd61-af14-393a-573c533d5006"
+  }
+}

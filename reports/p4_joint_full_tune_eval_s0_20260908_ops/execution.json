@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "supervisor_record_id": "8b70454ea6d74a5a829dc6c23b75125f",
+  "parent_pid": 2143832,
+  "child_pid": 2144048,
+  "request": {
+    "schema_version": 1,
+    "root": "/NHNHOME/data/sukim/adcl",
+    "seed": 0,
+    "physical_gpu": 4,
+    "record": "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/execution.json",
+    "log": "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/stdout.log",
+    "manifest_path": "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/unused_trainer_manifest.json",
+    "child_receipt": "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/child_receipt.json",
+    "output": "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json",
+    "protocol": "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.protocol.json",
+    "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/last.pth",
+    "checkpoint_sha256": "3e9ae5aa6ca89f4eb9a72ba38355dfdbec4ccaa38eabbebb3526fa3019404478",
+    "sidecar": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/manifest.json",
+    "sidecar_sha256": "001b822dde79024f0e2cd52b5b99cb1096bbab5bfd09ef2d95e963ad8dc6e3de",
+    "runtime_source_sha256": {
+      "scripts/evaluate_motiondrive_v2_planning.py": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/train_motiondrive_v2.py": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+      "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+      "scripts/run_motiondrive_v2_fresh_trial.py": "08f2ed7dcd6df8fb9252620d263426dd813f5ee7c317b738f29bf0e0259974d2",
+      "scripts/initialize_motiondrive_v2_public.py": "673750b051d4ee20fd0792275b281c757e43b5dbb90d01c06547c2f7a83452cc",
+      "scripts/run_motiondrive_v2_query_trial.py": "2ac750de3b252c4a14178ca1772f6a831cc84825b96266f56eb43f6956db68ff",
+      "scripts/train_motiondrive_v2_query_adapter.py": "330a999b08f3dcca9f05da6158570bb54f3452e03a40c7916e431f315e02fe5c",
+      "models/motiondrive_v2_query_adapter.py": "49eef489ac20f35f2884bcfbb2315d1328f182932b709f964e2baae6e270eab2",
+      "scripts/evaluate_motiondrive_v2_shared.py": "7b49e8f5c3a5b0169e039627953a7ce22b961d9e3d3c86aacb29afe768e6c5ba",
+      "scripts/supervise_motiondrive_v2_job.py": "4a970d80fe2cdc4116f6aebf4848f416478ddcbcaf57765e3d4e5788f9d87218",
+      "scripts/launch_motiondrive_v2_trials.py": "8590f231e14985eac100e13b47b00832fb4a8e5a26e05717411ace637ff10826"
+    },
+    "data_sha256": {
+      "data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+      "data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961"
+    },
+    "training_git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+    "validation_git_sha": "095e49d4e7be36802bad2f5923b873e65115e7fc",
+    "evaluation_argv": [
+      "--checkpoint",
+      "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/last.pth",
+      "--data-root",
+      "/NHNHOME/data/sukim/adcl",
+      "--split-manifest",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "--supervision-root",
+      "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+      "--split",
+      "tune",
+      "--out",
+      "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json",
+      "--conditions",
+      "normal",
+      "--seed",
+      "0",
+      "--frame-stride",
+      "5",
+      "--max-samples",
+      "0",
+      "--batch",
+      "4",
+      "--workers",
+      "4",
+      "--device",
+      "cuda:0",
+      "--precision",
+      "bf16",
+      "--time-input",
+      "nominal",
+      "--include-motion-predictions"
+    ],
+    "memory_policy": {
+      "allocator_limit_mib": 12000,
+      "reserve_mib": 8192
+    },
+    "command": [
+      "/usr/bin/python",
+      "-c",
+      "import hashlib,json,os,sys\nfrom pathlib import Path\nROOT=Path(\"/NHNHOME/data/sukim/adcl\")\nsys.path.insert(0,str(ROOT))\ndef require(c,m):\n    if not c: raise ValueError(m)\ndef sha256(path):\n    h=hashlib.sha256()\n    with Path(path).open(\"rb\") as f:\n        for b in iter(lambda:f.read(8<<20),b\"\"): h.update(b)\n    return h.hexdigest()\nrecord=json.loads(Path(sys.argv[1]).read_text())\nreq=record[\"request\"]\nreceipt={\"schema_version\":1,\"child_pid\":os.getpid(),\"status\":\"failed\",\"gpu_used\":True,\n         \"training_success_relabelled\":False,\"model_forward_source\":\"existing evaluator normal condition\"}\ntry:\n    for key in (\"output\",\"protocol\",\"child_receipt\"):\n        require(not os.path.lexists(req[key]),\"Refusing existing evaluation artifact: \"+req[key])\n    require(sha256(req[\"checkpoint\"])==req[\"checkpoint_sha256\"],\"Checkpoint changed before evaluation\")\n    require(sha256(req[\"sidecar\"])==req[\"sidecar_sha256\"],\"Sidecar changed before evaluation\")\n    require(all(sha256(ROOT/name)==value for name,value in req[\"runtime_source_sha256\"].items()),\n            \"Runtime source bytes changed before evaluation\")\n    require(all(sha256(ROOT/name)==value for name,value in req[\"data_sha256\"].items()),\n            \"Data bytes changed before evaluation\")\n    import torch\n    from scripts.train_motiondrive_v2 import configure_cuda_memory,cuda_memory_snapshot\n    from scripts.evaluate_motiondrive_v2_planning import main as evaluate\n    from scripts.evaluate_motiondrive_v2_shared import canonical_cuda_uuid\n    device=torch.device(\"cuda:0\")\n    require(torch.cuda.device_count()==1,\"Single-GPU namespace required\")\n    torch.cuda.set_device(device)\n    raw=str(torch.cuda.get_device_properties(device).uuid)\n    observed=canonical_cuda_uuid(raw)\n    require(os.environ.get(\"CUDA_VISIBLE_DEVICES\")==req[\"gpu_uuid\"]==observed,\"GPU UUID isolation mismatch\")\n    policy=configure_cuda_memory(device,12000,8192)\n    before=cuda_memory_snapshot(device)\n    rc=evaluate(req[\"evaluation_argv\"])\n    after=cuda_memory_snapshot(device)\n    require(rc==0,\"Existing evaluator returned nonzero\")\n    require(sha256(req[\"checkpoint\"])==req[\"checkpoint_sha256\"],\"Checkpoint changed after evaluation\")\n    require(sha256(req[\"sidecar\"])==req[\"sidecar_sha256\"],\"Sidecar changed after evaluation\")\n    require(all(sha256(ROOT/name)==value for name,value in req[\"runtime_source_sha256\"].items()),\n            \"Runtime source bytes changed after evaluation\")\n    require(all(sha256(ROOT/name)==value for name,value in req[\"data_sha256\"].items()),\n            \"Data bytes changed after evaluation\")\n    receipt.update(status=\"completed\",main_returncode=0,allocator_configured_before_main=True,\n                   memory_policy=policy,before_evaluation=before,after_evaluation=after,\n                   device_mapping={\"physical_gpu\":req[\"physical_gpu\"],\"logical_device\":\"cuda:0\",\n                                   \"observed_uuid\":observed,\"observed_uuid_raw\":raw,\n                                   \"cuda_visible_devices\":os.environ.get(\"CUDA_VISIBLE_DEVICES\")})\nexcept BaseException as exc:\n    receipt[\"error\"]=f\"{type(exc).__name__}: {exc}\"\n    raise\nfinally:\n    with Path(req[\"child_receipt\"]).open(\"x\",encoding=\"utf-8\") as f:\n        json.dump(receipt,f,indent=2,ensure_ascii=False,allow_nan=False);f.write(\"\\n\")\n",
+      "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/execution.json"
+    ],
+    "gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006"
+  },
+  "status": "process_exited",
+  "actual_returncode": 0,
+  "created_at": "2026-09-07T16:35:46.556242+00:00",
+  "preflight": {
+    "physical_gpu": 4,
+    "gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+    "free_mib": 182632.0,
+    "command": [
+      "nvidia-smi",
+      "-i",
+      "4",
+      "--query-gpu=index,uuid,memory.free",
+      "--format=csv,noheader,nounits"
+    ]
+  },
+  "memory_policy": {
+    "allocator_limit_mib": 12000,
+    "reserve_mib": 8192,
+    "poll_seconds": 5,
+    "grace_seconds": 30
+  },
+  "pressure_event": null,
+  "minimum_free_mib": 180056.0,
+  "received_signals": [],
+  "signal_scope": "Only the exact owned Popen child; no foreign PID or process group",
+  "started_at": "2026-09-07T16:35:46.564527+00:00",
+  "last_memory": {
+    "physical_gpu": 4,
+    "gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+    "free_mib": 180056.0,
+    "command": [
+      "nvidia-smi",
+      "-i",
+      "4",
+      "--query-gpu=index,uuid,memory.free",
+      "--format=csv,noheader,nounits"
+    ]
+  },
+  "trainer_manifest": {
+    "exists": false,
+    "status": null,
+    "belongs_to_child": false
+  },
+  "termination_signal": null,
+  "ended_at": "2026-09-07T16:36:20.461554+00:00",
+  "outcome": "completed_cleanly",
+  "supervisor_exit_code": 0,
+  "completion_evidence": {
+    "output_sha256": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "protocol_sha256": "29118cf3e3f55ab1aa12b9a17271418456d82c8708090c4d816b4ea7a70f2c9d",
+    "child_receipt_sha256": "73789889759d66451441b426b63437fa94d713e3db6a42781d2caa3e3842bcf3",
+    "checkpoint_sha256": "3e9ae5aa6ca89f4eb9a72ba38355dfdbec4ccaa38eabbebb3526fa3019404478",
+    "sidecar_sha256": "001b822dde79024f0e2cd52b5b99cb1096bbab5bfd09ef2d95e963ad8dc6e3de",
+    "training_git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+    "validation_git_sha": "095e49d4e7be36802bad2f5923b873e65115e7fc",
+    "runtime_source_snapshot_matches": true,
+    "normal_summary": {
+      "n": 1998,
+      "official_d3": 0.37222161742712223,
+      "point_l2": [
+        0.168271644486123,
+        0.30725458048603815,
+        0.44157011182563893,
+        0.5705543291138334,
+        0.6982256095880667,
+        0.8560580404809078
+      ],
+      "cumulative_ade_1_2_3s": [
+        0.23776311262485547,
+        0.37191266717447025,
+        0.5069890665589599
+      ],
+      "weighted_abs_longitudinal_error": 0.3406303998747574,
+      "weighted_abs_lateral_error": 0.0796826012841369,
+      "n_scenes": 37,
+      "n_sessions": 11,
+      "session_mean_d3": 0.39080697624154676,
+      "session_d3": {
+        "session_019_20260113-102709": 0.29549475924836266,
+        "session_026_20260122-134906": 0.28043364574787794,
+        "session_027_20260122-135506": 0.271579151293115,
+        "session_040_20260209-153550": 0.4197296967247018,
+        "session_046_20260210-100504": 0.45581928395700677,
+        "session_076_20260213-134648": 0.34259939737571976,
+        "session_087_20260219-90551": 0.4085946248292371,
+        "session_092_20260219-103747": 0.8044781146778001,
+        "session_097_20260219-110038": 0.27136680470020685,
+        "session_108_20260220-134317": 0.3769860791939276,
+        "session_112_20260303-142827": 0.37179518090905966
+      },
+      "sessions": {
+        "session_019_20260113-102709": {
+          "n": 54,
+          "official_d3": 0.29549475924836266,
+          "point_l2": [
+            0.12376372247968835,
+            0.23634370742365718,
+            0.35655842921524133,
+            0.46810129188277105,
+            0.5907579074717231,
+            0.6859074888957871
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.18005371483525745,
+            0.29619178851997413,
+            0.41023876435226864
+          ],
+          "weighted_abs_longitudinal_error": 0.2658219939718644,
+          "weighted_abs_lateral_error": 0.0765154364829262
+        },
+        "session_026_20260122-134906": {
+          "n": 108,
+          "official_d3": 0.28043364574787794,
+          "point_l2": [
+            0.1280103334553402,
+            0.22046703063986367,
+            0.3132911718415993,
+            0.4042881624083276,
+            0.5441446457472112,
+            0.7930870478006976
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.17423868143103188,
+            0.2665141738468298,
+            0.4005480760501491
+          ],
+          "weighted_abs_longitudinal_error": 0.21773166549219578,
+          "weighted_abs_lateral_error": 0.12452502481432424
+        },
+        "session_027_20260122-135506": {
+          "n": 378,
+          "official_d3": 0.271579151293115,
+          "point_l2": [
+            0.12278928376596283,
+            0.21657710425954843,
+            0.3181914378194109,
+            0.4157887790844869,
+            0.5169531202618841,
+            0.6700058422549061
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.16968319405895219,
+            0.2683366509597926,
+            0.37671760503182966
+          ],
+          "weighted_abs_longitudinal_error": 0.2514593245303899,
+          "weighted_abs_lateral_error": 0.0569306313745165
+        },
+        "session_040_20260209-153550": {
+          "n": 108,
+          "official_d3": 0.4197296967247018,
+          "point_l2": [
+            0.17848403807039614,
+            0.33644410058924995,
+            0.5071474637284323,
+            0.6791430849030062,
+            0.82005392987695,
+            0.9372493658490755
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.25746407032150914,
+            0.4253046718874463,
+            0.5764203425496817
+          ],
+          "weighted_abs_longitudinal_error": 0.382841773469139,
+          "weighted_abs_lateral_error": 0.0906335131989585
+        },
+        "session_046_20260210-100504": {
+          "n": 540,
+          "official_d3": 0.45581928395700677,
+          "point_l2": [
+            0.1957958731930746,
+            0.37664792383331114,
+            0.5433517224301964,
+            0.718068050298219,
+            0.8675601791461102,
+            1.0351964471102864
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.286221898585144,
+            0.4584658923869332,
+            0.6227700478017882
+          ],
+          "weighted_abs_longitudinal_error": 0.42315279159143016,
+          "weighted_abs_lateral_error": 0.08876756067836174
+        },
+        "session_076_20260213-134648": {
+          "n": 324,
+          "official_d3": 0.34259939737571976,
+          "point_l2": [
+            0.17318408942945232,
+            0.29996808982212786,
+            0.41464839448554464,
+            0.5031542184167646,
+            0.5855367891835394,
+            0.6844087456824419
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.23657609023912637,
+            0.3477386998553059,
+            0.4434834013658541
+          ],
+          "weighted_abs_longitudinal_error": 0.3253259690317475,
+          "weighted_abs_lateral_error": 0.053953455177561185
+        },
+        "session_087_20260219-90551": {
+          "n": 108,
+          "official_d3": 0.4085946248292371,
+          "point_l2": [
+            0.16270982524966476,
+            0.3131798475385747,
+            0.48824326873377516,
+            0.6599023105507648,
+            0.829160602832282,
+            1.0377853197494038
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.23794483670240474,
+            0.40600881518589127,
+            0.5818302155368857
+          ],
+          "weighted_abs_longitudinal_error": 0.3758820552309906,
+          "weighted_abs_lateral_error": 0.08573116097357814
+        },
+        "session_092_20260219-103747": {
+          "n": 54,
+          "official_d3": 0.8044781146778001,
+          "point_l2": [
+            0.3029908644794314,
+            0.6074132532295253,
+            0.9281892561250262,
+            1.3109271540134042,
+            1.6699665804152135,
+            2.20562551446535
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.4552020609240841,
+            0.7873801383431311,
+            1.1708521411098816
+          ],
+          "weighted_abs_longitudinal_error": 0.6717562578894474,
+          "weighted_abs_lateral_error": 0.20818842566330675
+        },
+        "session_097_20260219-110038": {
+          "n": 162,
+          "official_d3": 0.27136680470020685,
+          "point_l2": [
+            0.14919394319072182,
+            0.23789047194288376,
+            0.30494909715137364,
+            0.3807836800445745,
+            0.479410254560342,
+            0.5618959347039093
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.1935422072980415,
+            0.26820429929612594,
+            0.3523539065118925
+          ],
+          "weighted_abs_longitudinal_error": 0.24709388179658556,
+          "weighted_abs_lateral_error": 0.06419340520809738
+        },
+        "session_108_20260220-134317": {
+          "n": 108,
+          "official_d3": 0.3769860791939276,
+          "point_l2": [
+            0.22365579052172876,
+            0.3692091390731986,
+            0.47498986635495116,
+            0.48930277221801655,
+            0.5206669088522041,
+            0.5935936947180717
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.296432464176582,
+            0.38928939395204737,
+            0.44523637769398866
+          ],
+          "weighted_abs_longitudinal_error": 0.35646102398082063,
+          "weighted_abs_lateral_error": 0.07084738037169531
+        },
+        "session_112_20260303-142827": {
+          "n": 54,
+          "official_d3": 0.37179518090905966,
+          "point_l2": [
+            0.10940619999180651,
+            0.2500633587370868,
+            0.4224079634856295,
+            0.6137307639475222,
+            0.8998457601776829,
+            1.2250379931043696
+          ],
+          "cumulative_ade_1_2_3s": [
+            0.17973477850426678,
+            0.3489020712397717,
+            0.5867486925864661
+          ],
+          "weighted_abs_longitudinal_error": 0.31493285995114734,
+          "weighted_abs_lateral_error": 0.11758725355482763
+        }
+      }
+    },
+    "training_supervisor_failure_preserved": true,
+    "training_success_relabelled": false
+  }
+}

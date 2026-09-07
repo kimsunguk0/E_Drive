@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-07T16:23:50.501907+00:00",
+  "working_directory": "/NHNHOME/data/sukim/adcl",
+  "environment": {"CUDA_VISIBLE_DEVICES": ""},
+  "command_argv": ["/usr/bin/python", "-"],
+  "operation": "Import preserved P4 validation functions; call verify_initial_payload(..., 'joint') and validate_last_checkpoint(...) for seed0 and seed1; independently verify sidecar, child receipt, prerequisite, runtime-source, data, initializer, and file immutability contracts.",
+  "validation_entrypoints": [
+    "scripts.run_motiondrive_v2_fresh_trial.verify_initial_payload",
+    "scripts.run_motiondrive_v2_fresh_trial.validate_last_checkpoint",
+    "scripts.motiondrive_v2_training.tensor_state_sha256",
+    "scripts.initialize_motiondrive_v2_public.strict_cpu_state"
+  ],
+  "inputs": [
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_joint_s0.supervisor.json",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_joint_s1.supervisor.json",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_joint_s0.child.json",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p4_fresh_joint_s1.child.json",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/manifest.json",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s1/manifest.json",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/last.pth",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s1/last.pth"
+  ],
+  "actual_returncode": 0,
+  "stdout_json_all_checks_passed": true,
+  "gpu_used": false,
+  "model_forward_performed": false,
+  "training_success_relabelled": false
+}

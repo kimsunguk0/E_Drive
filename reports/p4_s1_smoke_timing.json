@@ -1,0 +1,6471 @@
+{
+  "schema_version": 1,
+  "status": "completed_pass",
+  "pid": 77961,
+  "purpose": "P4 LAST6000 corrected-train8 deployment smoke and RTX3090 full-forward timing",
+  "not_accuracy_evaluation": true,
+  "not_checkpoint_selection": true,
+  "not_the_old_p1_32ms_measurement": true,
+  "p4_measurement_completed": true,
+  "p4_bundle_receipt": {
+    "checkpoint_step": 6000,
+    "phase": "joint",
+    "model_config": {
+      "backbone_arch": "resnet50",
+      "goal_on": true,
+      "state_on": true,
+      "motion_input_mode": "low_feature",
+      "plan_output_scale": [
+        10.0,
+        5.0
+      ],
+      "n_history": 4
+    },
+    "training_source_git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+    "source_checkpoint_sha256": "c937f2f772c78f99cf3cfa5b1a96614267e20a9a667a157f4ada284940f9672e",
+    "completed_run_manifest_sha256": "49dc09c8e7840a059ae6bcadba1c490052847c678dc81d5524ee39f9da159aad",
+    "original_run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s1",
+    "evaluation_source_git_must_equal_training_source": false
+  },
+  "evaluation_source": {
+    "manifest": {
+      "schema_version": 1,
+      "source_git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+      "composition": {
+        "base": "exact 21-file git archive from training commit 86620b4ffc7e6838b49cf83b5be789eba12d8027",
+        "base_archive_sha256": "b957d8c633eef6b7add561843e12269431d1f79f1e7a023cd9a95865f942c44d",
+        "frozen_additions_not_claimed_to_be_in_base_commit": [
+          "scripts/smoke_motiondrive_v2_p4_deployment.py",
+          "scripts/analyze_motiondrive_v2_goal_response.py"
+        ]
+      },
+      "files": {
+        "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+        "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+        "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+        "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+        "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+        "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+        "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+        "models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+        "models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+        "models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+        "scripts/analyze_motiondrive_v2_goal_response.py": "9555cecf6bebd56087da7640eb0372824f563963dedeaadbbcbace9829def41a",
+        "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+        "scripts/audit_motiondrive_v2_deploy_inputs.py": "6153d53d2cff7d494cba3b965ebed27f7f7e6d6c02153b1ef21fe7b2807546ec",
+        "scripts/benchmark_motiondrive_v2.py": "cbce7e834c8c796c2272f76c78c4c7dec99962aeee4fc00d9eca154994226c4b",
+        "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+        "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+        "scripts/smoke_motiondrive_v2_deployment.py": "769bfc77a9f0d399e3b440b71087cfaa0d14215b14f8c1a2bc18974d209ab506",
+        "scripts/smoke_motiondrive_v2_p4_deployment.py": "18006bea19e7f131a4319e95aafbf7725b6fd45755b58fd0f1723ded77083d1a",
+        "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+        "tests/test_motiondrive_v2_deploy_input_audit.py": "7da990732bcea72a8c2a9854067cef9e9c3d882b4f3f7a2a027823757d79fb61",
+        "tests/test_motiondrive_v2_deployment_smoke.py": "b1115c0b747e48fd1cc049d406f35bf3ec1f8e3afbebdda342d69bfeca86b77f",
+        "tests/test_motiondrive_v2_export.py": "1e62ab642543f6d5bbaa68beba65c20c11c3d662d08bbe9781595fff18f5401a",
+        "tests/test_motiondrive_v2_serving.py": "f8393ea02c740f3a360ec745329853077a60d6515cb4cc881845f45deb235f0d"
+      }
+    },
+    "git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+    "must_equal_training_git": false,
+    "sha256_before": {
+      "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+      "models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+      "models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+      "models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+      "scripts/analyze_motiondrive_v2_goal_response.py": "9555cecf6bebd56087da7640eb0372824f563963dedeaadbbcbace9829def41a",
+      "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+      "scripts/audit_motiondrive_v2_deploy_inputs.py": "6153d53d2cff7d494cba3b965ebed27f7f7e6d6c02153b1ef21fe7b2807546ec",
+      "scripts/benchmark_motiondrive_v2.py": "cbce7e834c8c796c2272f76c78c4c7dec99962aeee4fc00d9eca154994226c4b",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/smoke_motiondrive_v2_deployment.py": "769bfc77a9f0d399e3b440b71087cfaa0d14215b14f8c1a2bc18974d209ab506",
+      "scripts/smoke_motiondrive_v2_p4_deployment.py": "18006bea19e7f131a4319e95aafbf7725b6fd45755b58fd0f1723ded77083d1a",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "tests/test_motiondrive_v2_deploy_input_audit.py": "7da990732bcea72a8c2a9854067cef9e9c3d882b4f3f7a2a027823757d79fb61",
+      "tests/test_motiondrive_v2_deployment_smoke.py": "b1115c0b747e48fd1cc049d406f35bf3ec1f8e3afbebdda342d69bfeca86b77f",
+      "tests/test_motiondrive_v2_export.py": "1e62ab642543f6d5bbaa68beba65c20c11c3d662d08bbe9781595fff18f5401a",
+      "tests/test_motiondrive_v2_serving.py": "f8393ea02c740f3a360ec745329853077a60d6515cb4cc881845f45deb235f0d"
+    },
+    "sha256_after": {
+      "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+      "models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+      "models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+      "models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+      "scripts/analyze_motiondrive_v2_goal_response.py": "9555cecf6bebd56087da7640eb0372824f563963dedeaadbbcbace9829def41a",
+      "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+      "scripts/audit_motiondrive_v2_deploy_inputs.py": "6153d53d2cff7d494cba3b965ebed27f7f7e6d6c02153b1ef21fe7b2807546ec",
+      "scripts/benchmark_motiondrive_v2.py": "cbce7e834c8c796c2272f76c78c4c7dec99962aeee4fc00d9eca154994226c4b",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/smoke_motiondrive_v2_deployment.py": "769bfc77a9f0d399e3b440b71087cfaa0d14215b14f8c1a2bc18974d209ab506",
+      "scripts/smoke_motiondrive_v2_p4_deployment.py": "18006bea19e7f131a4319e95aafbf7725b6fd45755b58fd0f1723ded77083d1a",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "tests/test_motiondrive_v2_deploy_input_audit.py": "7da990732bcea72a8c2a9854067cef9e9c3d882b4f3f7a2a027823757d79fb61",
+      "tests/test_motiondrive_v2_deployment_smoke.py": "b1115c0b747e48fd1cc049d406f35bf3ec1f8e3afbebdda342d69bfeca86b77f",
+      "tests/test_motiondrive_v2_export.py": "1e62ab642543f6d5bbaa68beba65c20c11c3d662d08bbe9781595fff18f5401a",
+      "tests/test_motiondrive_v2_serving.py": "f8393ea02c740f3a360ec745329853077a60d6515cb4cc881845f45deb235f0d"
+    }
+  },
+  "input_contract": {
+    "schema_version": 1,
+    "geometry_edition": "geometry_v2",
+    "time_input": "nominal",
+    "camera_order": [
+      "camera_front",
+      "camera_front_right",
+      "camera_front_left",
+      "camera_rear_wide",
+      "camera_rear_left",
+      "camera_rear_right"
+    ],
+    "current_wh": [
+      768,
+      432
+    ],
+    "history_wh": [
+      384,
+      216
+    ],
+    "history_frames": [
+      -1,
+      -2,
+      -5,
+      -10
+    ],
+    "nominal_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "dtype": "float32",
+    "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+    "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+    "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+    "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+    "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+    "raw_image_reads": 10,
+    "cross_clip_feature_cache": false,
+    "provided_status_or_timestamp_input": false,
+    "future_labels_input": false,
+    "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+  },
+  "reference_adaptation": {
+    "replaced_keys": [
+      "lidar2img",
+      "time_offsets"
+    ],
+    "preserved_keys": [
+      "images",
+      "history_images",
+      "history_transforms",
+      "goal_xy"
+    ],
+    "preserved_tensor_object_identity": true,
+    "reference_pixels_redecoded": false,
+    "other_five_cameras_bitwise_preserved": true,
+    "rear_matrix_max_abs_change": 182.27786254882812,
+    "original_raw_time_offsets": [
+      [
+        0.09989697486162186,
+        0.19983690977096558,
+        0.49967408180236816,
+        0.9997878670692444
+      ],
+      [
+        0.09990502893924713,
+        0.19984887540340424,
+        0.49968382716178894,
+        0.9998008012771606
+      ],
+      [
+        0.09998803585767746,
+        0.19991186261177063,
+        0.49977806210517883,
+        0.9999499320983887
+      ],
+      [
+        0.10013207793235779,
+        0.20023608207702637,
+        0.5001062154769897,
+        0.9998510479927063
+      ],
+      [
+        0.09994971007108688,
+        0.19983594119548798,
+        0.4997206926345825,
+        1.0001099109649658
+      ],
+      [
+        0.10013281553983688,
+        0.20024487376213074,
+        0.5004428625106812,
+        1.000121831893921
+      ],
+      [
+        0.09990625083446503,
+        0.19983813166618347,
+        0.49967625737190247,
+        0.9999311566352844
+      ],
+      [
+        0.10008300840854645,
+        0.20015209913253784,
+        0.5004709362983704,
+        1.000335931777954
+      ]
+    ],
+    "nominal_time_offsets": [
+      [
+        0.10000000149011612,
+        0.20000000298023224,
+        0.5,
+        1.0
+      ],
+      [
+        0.10000000149011612,
+        0.20000000298023224,
+        0.5,
+        1.0
+      ],
+      [
+        0.10000000149011612,
+        0.20000000298023224,
+        0.5,
+        1.0
+      ],
+      [
+        0.10000000149011612,
+        0.20000000298023224,
+        0.5,
+        1.0
+      ],
+      [
+        0.10000000149011612,
+        0.20000000298023224,
+        0.5,
+        1.0
+      ],
+      [
+        0.10000000149011612,
+        0.20000000298023224,
+        0.5,
+        1.0
+      ],
+      [
+        0.10000000149011612,
+        0.20000000298023224,
+        0.5,
+        1.0
+      ],
+      [
+        0.10000000149011612,
+        0.20000000298023224,
+        0.5,
+        1.0
+      ]
+    ],
+    "time_max_abs_change_seconds": 0.00047093629837036133,
+    "labels_or_identifiers_forwarded": false
+  },
+  "fixture": {
+    "manifest_sha256": "da1e36a8b45815a8fb9b4f1053c7695cb754cdfa9eb4f2b6602fc0ff6ef67d27",
+    "clip_count": 8,
+    "all_parity_pass": true,
+    "comparisons": [
+      {
+        "all_pass": true,
+        "inputs": {
+          "images": {
+            "shape": [
+              1,
+              6,
+              3,
+              432,
+              768
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_images": {
+            "shape": [
+              1,
+              4,
+              3,
+              216,
+              384
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "lidar2img": {
+            "shape": [
+              1,
+              6,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0001,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_transforms": {
+            "shape": [
+              1,
+              4,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "time_offsets": {
+            "shape": [
+              1,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "goal_xy": {
+            "shape": [
+              1,
+              2
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          }
+        },
+        "input_contract": {
+          "schema_version": 1,
+          "geometry_edition": "geometry_v2",
+          "time_input": "nominal",
+          "camera_order": [
+            "camera_front",
+            "camera_front_right",
+            "camera_front_left",
+            "camera_rear_wide",
+            "camera_rear_left",
+            "camera_rear_right"
+          ],
+          "current_wh": [
+            768,
+            432
+          ],
+          "history_wh": [
+            384,
+            216
+          ],
+          "history_frames": [
+            -1,
+            -2,
+            -5,
+            -10
+          ],
+          "nominal_seconds": [
+            0.1,
+            0.2,
+            0.5,
+            1.0
+          ],
+          "dtype": "float32",
+          "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+          "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+          "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+          "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+          "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+          "raw_image_reads": 10,
+          "cross_clip_feature_cache": false,
+          "provided_status_or_timestamp_input": false,
+          "future_labels_input": false,
+          "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+        },
+        "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
+        "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."
+      },
+      {
+        "all_pass": true,
+        "inputs": {
+          "images": {
+            "shape": [
+              1,
+              6,
+              3,
+              432,
+              768
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_images": {
+            "shape": [
+              1,
+              4,
+              3,
+              216,
+              384
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "lidar2img": {
+            "shape": [
+              1,
+              6,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0001,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_transforms": {
+            "shape": [
+              1,
+              4,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "time_offsets": {
+            "shape": [
+              1,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "goal_xy": {
+            "shape": [
+              1,
+              2
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          }
+        },
+        "input_contract": {
+          "schema_version": 1,
+          "geometry_edition": "geometry_v2",
+          "time_input": "nominal",
+          "camera_order": [
+            "camera_front",
+            "camera_front_right",
+            "camera_front_left",
+            "camera_rear_wide",
+            "camera_rear_left",
+            "camera_rear_right"
+          ],
+          "current_wh": [
+            768,
+            432
+          ],
+          "history_wh": [
+            384,
+            216
+          ],
+          "history_frames": [
+            -1,
+            -2,
+            -5,
+            -10
+          ],
+          "nominal_seconds": [
+            0.1,
+            0.2,
+            0.5,
+            1.0
+          ],
+          "dtype": "float32",
+          "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+          "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+          "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+          "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+          "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+          "raw_image_reads": 10,
+          "cross_clip_feature_cache": false,
+          "provided_status_or_timestamp_input": false,
+          "future_labels_input": false,
+          "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+        },
+        "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
+        "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."
+      },
+      {
+        "all_pass": true,
+        "inputs": {
+          "images": {
+            "shape": [
+              1,
+              6,
+              3,
+              432,
+              768
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_images": {
+            "shape": [
+              1,
+              4,
+              3,
+              216,
+              384
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "lidar2img": {
+            "shape": [
+              1,
+              6,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0001,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_transforms": {
+            "shape": [
+              1,
+              4,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "time_offsets": {
+            "shape": [
+              1,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "goal_xy": {
+            "shape": [
+              1,
+              2
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          }
+        },
+        "input_contract": {
+          "schema_version": 1,
+          "geometry_edition": "geometry_v2",
+          "time_input": "nominal",
+          "camera_order": [
+            "camera_front",
+            "camera_front_right",
+            "camera_front_left",
+            "camera_rear_wide",
+            "camera_rear_left",
+            "camera_rear_right"
+          ],
+          "current_wh": [
+            768,
+            432
+          ],
+          "history_wh": [
+            384,
+            216
+          ],
+          "history_frames": [
+            -1,
+            -2,
+            -5,
+            -10
+          ],
+          "nominal_seconds": [
+            0.1,
+            0.2,
+            0.5,
+            1.0
+          ],
+          "dtype": "float32",
+          "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+          "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+          "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+          "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+          "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+          "raw_image_reads": 10,
+          "cross_clip_feature_cache": false,
+          "provided_status_or_timestamp_input": false,
+          "future_labels_input": false,
+          "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+        },
+        "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
+        "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."
+      },
+      {
+        "all_pass": true,
+        "inputs": {
+          "images": {
+            "shape": [
+              1,
+              6,
+              3,
+              432,
+              768
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_images": {
+            "shape": [
+              1,
+              4,
+              3,
+              216,
+              384
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "lidar2img": {
+            "shape": [
+              1,
+              6,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0001,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_transforms": {
+            "shape": [
+              1,
+              4,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "time_offsets": {
+            "shape": [
+              1,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "goal_xy": {
+            "shape": [
+              1,
+              2
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          }
+        },
+        "input_contract": {
+          "schema_version": 1,
+          "geometry_edition": "geometry_v2",
+          "time_input": "nominal",
+          "camera_order": [
+            "camera_front",
+            "camera_front_right",
+            "camera_front_left",
+            "camera_rear_wide",
+            "camera_rear_left",
+            "camera_rear_right"
+          ],
+          "current_wh": [
+            768,
+            432
+          ],
+          "history_wh": [
+            384,
+            216
+          ],
+          "history_frames": [
+            -1,
+            -2,
+            -5,
+            -10
+          ],
+          "nominal_seconds": [
+            0.1,
+            0.2,
+            0.5,
+            1.0
+          ],
+          "dtype": "float32",
+          "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+          "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+          "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+          "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+          "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+          "raw_image_reads": 10,
+          "cross_clip_feature_cache": false,
+          "provided_status_or_timestamp_input": false,
+          "future_labels_input": false,
+          "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+        },
+        "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
+        "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."
+      },
+      {
+        "all_pass": true,
+        "inputs": {
+          "images": {
+            "shape": [
+              1,
+              6,
+              3,
+              432,
+              768
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_images": {
+            "shape": [
+              1,
+              4,
+              3,
+              216,
+              384
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "lidar2img": {
+            "shape": [
+              1,
+              6,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0001,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_transforms": {
+            "shape": [
+              1,
+              4,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "time_offsets": {
+            "shape": [
+              1,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "goal_xy": {
+            "shape": [
+              1,
+              2
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          }
+        },
+        "input_contract": {
+          "schema_version": 1,
+          "geometry_edition": "geometry_v2",
+          "time_input": "nominal",
+          "camera_order": [
+            "camera_front",
+            "camera_front_right",
+            "camera_front_left",
+            "camera_rear_wide",
+            "camera_rear_left",
+            "camera_rear_right"
+          ],
+          "current_wh": [
+            768,
+            432
+          ],
+          "history_wh": [
+            384,
+            216
+          ],
+          "history_frames": [
+            -1,
+            -2,
+            -5,
+            -10
+          ],
+          "nominal_seconds": [
+            0.1,
+            0.2,
+            0.5,
+            1.0
+          ],
+          "dtype": "float32",
+          "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+          "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+          "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+          "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+          "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+          "raw_image_reads": 10,
+          "cross_clip_feature_cache": false,
+          "provided_status_or_timestamp_input": false,
+          "future_labels_input": false,
+          "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+        },
+        "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
+        "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."
+      },
+      {
+        "all_pass": true,
+        "inputs": {
+          "images": {
+            "shape": [
+              1,
+              6,
+              3,
+              432,
+              768
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_images": {
+            "shape": [
+              1,
+              4,
+              3,
+              216,
+              384
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "lidar2img": {
+            "shape": [
+              1,
+              6,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0001,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_transforms": {
+            "shape": [
+              1,
+              4,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "time_offsets": {
+            "shape": [
+              1,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "goal_xy": {
+            "shape": [
+              1,
+              2
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          }
+        },
+        "input_contract": {
+          "schema_version": 1,
+          "geometry_edition": "geometry_v2",
+          "time_input": "nominal",
+          "camera_order": [
+            "camera_front",
+            "camera_front_right",
+            "camera_front_left",
+            "camera_rear_wide",
+            "camera_rear_left",
+            "camera_rear_right"
+          ],
+          "current_wh": [
+            768,
+            432
+          ],
+          "history_wh": [
+            384,
+            216
+          ],
+          "history_frames": [
+            -1,
+            -2,
+            -5,
+            -10
+          ],
+          "nominal_seconds": [
+            0.1,
+            0.2,
+            0.5,
+            1.0
+          ],
+          "dtype": "float32",
+          "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+          "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+          "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+          "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+          "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+          "raw_image_reads": 10,
+          "cross_clip_feature_cache": false,
+          "provided_status_or_timestamp_input": false,
+          "future_labels_input": false,
+          "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+        },
+        "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
+        "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."
+      },
+      {
+        "all_pass": true,
+        "inputs": {
+          "images": {
+            "shape": [
+              1,
+              6,
+              3,
+              432,
+              768
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_images": {
+            "shape": [
+              1,
+              4,
+              3,
+              216,
+              384
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "lidar2img": {
+            "shape": [
+              1,
+              6,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0001,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_transforms": {
+            "shape": [
+              1,
+              4,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "time_offsets": {
+            "shape": [
+              1,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "goal_xy": {
+            "shape": [
+              1,
+              2
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          }
+        },
+        "input_contract": {
+          "schema_version": 1,
+          "geometry_edition": "geometry_v2",
+          "time_input": "nominal",
+          "camera_order": [
+            "camera_front",
+            "camera_front_right",
+            "camera_front_left",
+            "camera_rear_wide",
+            "camera_rear_left",
+            "camera_rear_right"
+          ],
+          "current_wh": [
+            768,
+            432
+          ],
+          "history_wh": [
+            384,
+            216
+          ],
+          "history_frames": [
+            -1,
+            -2,
+            -5,
+            -10
+          ],
+          "nominal_seconds": [
+            0.1,
+            0.2,
+            0.5,
+            1.0
+          ],
+          "dtype": "float32",
+          "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+          "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+          "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+          "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+          "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+          "raw_image_reads": 10,
+          "cross_clip_feature_cache": false,
+          "provided_status_or_timestamp_input": false,
+          "future_labels_input": false,
+          "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+        },
+        "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
+        "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."
+      },
+      {
+        "all_pass": true,
+        "inputs": {
+          "images": {
+            "shape": [
+              1,
+              6,
+              3,
+              432,
+              768
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_images": {
+            "shape": [
+              1,
+              4,
+              3,
+              216,
+              384
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "lidar2img": {
+            "shape": [
+              1,
+              6,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0001,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "history_transforms": {
+            "shape": [
+              1,
+              4,
+              4,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "time_offsets": {
+            "shape": [
+              1,
+              4
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 0.0,
+            "rtol": 0.0,
+            "pass": true
+          },
+          "goal_xy": {
+            "shape": [
+              1,
+              2
+            ],
+            "bitwise_equal": true,
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "atol": 1e-05,
+            "rtol": 0.0,
+            "pass": true
+          }
+        },
+        "input_contract": {
+          "schema_version": 1,
+          "geometry_edition": "geometry_v2",
+          "time_input": "nominal",
+          "camera_order": [
+            "camera_front",
+            "camera_front_right",
+            "camera_front_left",
+            "camera_rear_wide",
+            "camera_rear_left",
+            "camera_rear_right"
+          ],
+          "current_wh": [
+            768,
+            432
+          ],
+          "history_wh": [
+            384,
+            216
+          ],
+          "history_frames": [
+            -1,
+            -2,
+            -5,
+            -10
+          ],
+          "nominal_seconds": [
+            0.1,
+            0.2,
+            0.5,
+            1.0
+          ],
+          "dtype": "float32",
+          "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+          "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+          "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+          "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+          "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+          "raw_image_reads": 10,
+          "cross_clip_feature_cache": false,
+          "provided_status_or_timestamp_input": false,
+          "future_labels_input": false,
+          "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+        },
+        "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
+        "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."
+      }
+    ],
+    "preprocessing_wall_ms": [
+      857.4346249806695,
+      628.0464080045931,
+      627.8453430277295,
+      615.8774209907278,
+      607.8508929931559,
+      615.5074340058491,
+      610.2513360092416,
+      624.6984979952686
+    ],
+    "preprocessing_summary_ms": {
+      "median_ms": 620.2879594929982,
+      "mean_ms": 648.4389947509044,
+      "p90_ms": 696.862873097416,
+      "p95_ms": 777.1487490390426,
+      "p99_ms": 841.377449792344,
+      "std_ms": 79.3199027594541,
+      "min_ms": 607.8508929931559,
+      "max_ms": 857.4346249806695
+    }
+  },
+  "untimed_full_forward_checks": [
+    {
+      "clip_id": "fixture_000",
+      "raw": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                2.9904608726501465,
+                -0.12456201016902924
+              ],
+              [
+                5.911097526550293,
+                -0.3528699278831482
+              ],
+              [
+                8.739015579223633,
+                -0.6762018203735352
+              ],
+              [
+                11.601399421691895,
+                -1.0367763042449951
+              ],
+              [
+                14.29861068725586,
+                -1.4764821529388428
+              ],
+              [
+                16.999492645263672,
+                -2.1592917442321777
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      },
+      "reference": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                2.9904608726501465,
+                -0.12456201016902924
+              ],
+              [
+                5.911097526550293,
+                -0.3528699278831482
+              ],
+              [
+                8.739015579223633,
+                -0.6762018203735352
+              ],
+              [
+                11.601399421691895,
+                -1.0367763042449951
+              ],
+              [
+                14.29861068725586,
+                -1.4764821529388428
+              ],
+              [
+                16.999492645263672,
+                -2.1592917442321777
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      }
+    },
+    {
+      "clip_id": "fixture_001",
+      "raw": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                5.247709274291992,
+                -0.12804049253463745
+              ],
+              [
+                10.532609939575195,
+                -0.25142014026641846
+              ],
+              [
+                15.918855667114258,
+                -0.3815186321735382
+              ],
+              [
+                21.36499786376953,
+                -0.5279072523117065
+              ],
+              [
+                26.82176399230957,
+                -0.6638860106468201
+              ],
+              [
+                32.419517517089844,
+                -0.7520211338996887
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      },
+      "reference": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                5.247709274291992,
+                -0.12804049253463745
+              ],
+              [
+                10.532609939575195,
+                -0.25142014026641846
+              ],
+              [
+                15.918855667114258,
+                -0.3815186321735382
+              ],
+              [
+                21.36499786376953,
+                -0.5279072523117065
+              ],
+              [
+                26.82176399230957,
+                -0.6638860106468201
+              ],
+              [
+                32.419517517089844,
+                -0.7520211338996887
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      }
+    },
+    {
+      "clip_id": "fixture_002",
+      "raw": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                5.301311016082764,
+                -0.2514720559120178
+              ],
+              [
+                10.604654312133789,
+                -0.6738919615745544
+              ],
+              [
+                15.967498779296875,
+                -1.1961935758590698
+              ],
+              [
+                21.322927474975586,
+                -1.8030840158462524
+              ],
+              [
+                26.864137649536133,
+                -2.823868989944458
+              ],
+              [
+                32.141845703125,
+                -4.50391149520874
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      },
+      "reference": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                5.301311016082764,
+                -0.2514720559120178
+              ],
+              [
+                10.604654312133789,
+                -0.6738919615745544
+              ],
+              [
+                15.967498779296875,
+                -1.1961935758590698
+              ],
+              [
+                21.322927474975586,
+                -1.8030840158462524
+              ],
+              [
+                26.864137649536133,
+                -2.823868989944458
+              ],
+              [
+                32.141845703125,
+                -4.50391149520874
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      }
+    },
+    {
+      "clip_id": "fixture_003",
+      "raw": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.067733287811279,
+                -0.15251092612743378
+              ],
+              [
+                12.161822319030762,
+                -0.3508703410625458
+              ],
+              [
+                18.135286331176758,
+                -0.5490567684173584
+              ],
+              [
+                24.106117248535156,
+                -0.7544431686401367
+              ],
+              [
+                30.059226989746094,
+                -1.0418908596038818
+              ],
+              [
+                35.88358688354492,
+                -1.3299665451049805
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      },
+      "reference": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.067733287811279,
+                -0.15251092612743378
+              ],
+              [
+                12.161822319030762,
+                -0.3508703410625458
+              ],
+              [
+                18.135286331176758,
+                -0.5490567684173584
+              ],
+              [
+                24.106117248535156,
+                -0.7544431686401367
+              ],
+              [
+                30.059226989746094,
+                -1.0418908596038818
+              ],
+              [
+                35.88358688354492,
+                -1.3299665451049805
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      }
+    },
+    {
+      "clip_id": "fixture_004",
+      "raw": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.474817276000977,
+                -0.15809476375579834
+              ],
+              [
+                12.943902969360352,
+                -0.3083200454711914
+              ],
+              [
+                19.315311431884766,
+                -0.43939656019210815
+              ],
+              [
+                25.88193702697754,
+                -0.5526257157325745
+              ],
+              [
+                32.31521224975586,
+                -0.6623028516769409
+              ],
+              [
+                38.639076232910156,
+                -0.655805766582489
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      },
+      "reference": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.474817276000977,
+                -0.15809476375579834
+              ],
+              [
+                12.943902969360352,
+                -0.3083200454711914
+              ],
+              [
+                19.315311431884766,
+                -0.43939656019210815
+              ],
+              [
+                25.88193702697754,
+                -0.5526257157325745
+              ],
+              [
+                32.31521224975586,
+                -0.6623028516769409
+              ],
+              [
+                38.639076232910156,
+                -0.655805766582489
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      }
+    },
+    {
+      "clip_id": "fixture_005",
+      "raw": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.483491897583008,
+                -0.11168725788593292
+              ],
+              [
+                12.985228538513184,
+                -0.12584306299686432
+              ],
+              [
+                19.463016510009766,
+                -0.05441345274448395
+              ],
+              [
+                26.016990661621094,
+                0.09355753660202026
+              ],
+              [
+                32.584075927734375,
+                0.35820555686950684
+              ],
+              [
+                39.19984436035156,
+                0.606255054473877
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      },
+      "reference": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.483491897583008,
+                -0.11168725788593292
+              ],
+              [
+                12.985228538513184,
+                -0.12584306299686432
+              ],
+              [
+                19.463016510009766,
+                -0.05441345274448395
+              ],
+              [
+                26.016990661621094,
+                0.09355753660202026
+              ],
+              [
+                32.584075927734375,
+                0.35820555686950684
+              ],
+              [
+                39.19984436035156,
+                0.606255054473877
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      }
+    },
+    {
+      "clip_id": "fixture_006",
+      "raw": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.155209541320801,
+                -0.10110752284526825
+              ],
+              [
+                12.377178192138672,
+                -0.1261858344078064
+              ],
+              [
+                18.591991424560547,
+                -0.0527176633477211
+              ],
+              [
+                24.85287094116211,
+                0.08653096854686737
+              ],
+              [
+                31.109773635864258,
+                0.3154599964618683
+              ],
+              [
+                37.5038948059082,
+                0.4908316731452942
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      },
+      "reference": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.155209541320801,
+                -0.10110752284526825
+              ],
+              [
+                12.377178192138672,
+                -0.1261858344078064
+              ],
+              [
+                18.591991424560547,
+                -0.0527176633477211
+              ],
+              [
+                24.85287094116211,
+                0.08653096854686737
+              ],
+              [
+                31.109773635864258,
+                0.3154599964618683
+              ],
+              [
+                37.5038948059082,
+                0.4908316731452942
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      }
+    },
+    {
+      "clip_id": "fixture_007",
+      "raw": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.807351112365723,
+                -0.1231084018945694
+              ],
+              [
+                13.693658828735352,
+                -0.16274504363536835
+              ],
+              [
+                20.46739387512207,
+                -0.13593700528144836
+              ],
+              [
+                27.34605598449707,
+                -0.03222458064556122
+              ],
+              [
+                34.2336311340332,
+                0.14814049005508423
+              ],
+              [
+                40.90621566772461,
+                0.3358094394207001
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      },
+      "reference": {
+        "full_forward_count": 1,
+        "input_shapes": {
+          "images": [
+            1,
+            6,
+            3,
+            432,
+            768
+          ],
+          "history_images": [
+            1,
+            4,
+            3,
+            216,
+            384
+          ],
+          "lidar2img": [
+            1,
+            6,
+            4,
+            4
+          ],
+          "history_transforms": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "time_offsets": [
+            1,
+            4
+          ],
+          "goal_xy": [
+            1,
+            2
+          ]
+        },
+        "backbone_input_shapes": [
+          [
+            6,
+            3,
+            432,
+            768
+          ],
+          [
+            5,
+            3,
+            216,
+            384
+          ]
+        ],
+        "image_encodings": 11,
+        "outputs": {
+          "plan_abs": {
+            "shape": [
+              1,
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "values": [
+              [
+                6.807351112365723,
+                -0.1231084018945694
+              ],
+              [
+                13.693658828735352,
+                -0.16274504363536835
+              ],
+              [
+                20.46739387512207,
+                -0.13593700528144836
+              ],
+              [
+                27.34605598449707,
+                -0.03222458064556122
+              ],
+              [
+                34.2336311340332,
+                0.14814049005508423
+              ],
+              [
+                40.90621566772461,
+                0.3358094394207001
+              ]
+            ]
+          },
+          "state_hat": {
+            "shape": [
+              1,
+              6
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "history_hat": {
+            "shape": [
+              1,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "scene_features": {
+            "shape": [
+              1,
+              3072,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "motion_features": {
+            "shape": [
+              1,
+              192,
+              128
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "occ_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          },
+          "lane_logits": {
+            "shape": [
+              1,
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "finite": true
+          }
+        },
+        "absolute_json_roundtrip_bitwise": true,
+        "timing_measured": false
+      }
+    }
+  ],
+  "raw_reference_output_parity": [
+    {
+      "clip_id": "fixture_000",
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    },
+    {
+      "clip_id": "fixture_001",
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    },
+    {
+      "clip_id": "fixture_002",
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    },
+    {
+      "clip_id": "fixture_003",
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    },
+    {
+      "clip_id": "fixture_004",
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    },
+    {
+      "clip_id": "fixture_005",
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    },
+    {
+      "clip_id": "fixture_006",
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    },
+    {
+      "clip_id": "fixture_007",
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    }
+  ],
+  "precision_and_encoding_probe": {
+    "backbone_output_dtypes": [
+      [
+        "torch.bfloat16",
+        "torch.bfloat16",
+        "torch.bfloat16"
+      ],
+      [
+        "torch.bfloat16",
+        "torch.bfloat16",
+        "torch.bfloat16"
+      ]
+    ],
+    "decoder_input_dtypes": [
+      [
+        "torch.float32",
+        "torch.float32"
+      ]
+    ],
+    "xy_head_input_dtypes": [
+      [
+        "torch.float32"
+      ]
+    ],
+    "backbone_input_shapes": [
+      [
+        6,
+        3,
+        432,
+        768
+      ],
+      [
+        5,
+        3,
+        216,
+        384
+      ]
+    ],
+    "image_encodings": 11,
+    "full_forward_count": 1,
+    "plan_dtype": "torch.float32",
+    "encoder_autocast_dtype": "torch.bfloat16",
+    "planner_required_dtype": "torch.float32"
+  },
+  "aba_stateless": {
+    "a_repeat": {
+      "bitwise_equal": true,
+      "max_abs_m": 0.0,
+      "atol_m": 1e-05,
+      "rtol": 0.0,
+      "pass": true
+    },
+    "a_vs_b_bitwise_different": true
+  },
+  "model_state_sha256_before": "02d3e53b5cbc89ac0a2f6a73dd6d3e736f6fe0af30fef20499429448de702fa0",
+  "model_state_sha256_after": "02d3e53b5cbc89ac0a2f6a73dd6d3e736f6fe0af30fef20499429448de702fa0",
+  "timing_protocol": {
+    "warmup_per_clip": 20,
+    "repeats_per_clip": 50,
+    "clip_count": 8,
+    "total_warmup_full_forwards": 160,
+    "total_timed_full_forwards": 400,
+    "aggregation": "per-clip summaries plus pooled equal-count samples over all eight preregistered clips",
+    "model_forward_only": true,
+    "preprocessing_h2d_postprocessing_excluded": true,
+    "feature_cache_used": false,
+    "batch_size": 1
+  },
+  "pooled_timing": {
+    "cuda": {
+      "median_ms": 36.988929748535156,
+      "mean_ms": 36.99335188865662,
+      "p90_ms": 37.0432014465332,
+      "p95_ms": 37.068960189819336,
+      "p99_ms": 37.10260269165039,
+      "std_ms": 0.06771221987034683,
+      "min_ms": 36.87295913696289,
+      "max_ms": 38.02137756347656
+    },
+    "wall": {
+      "median_ms": 37.01667196583003,
+      "mean_ms": 37.02096631255699,
+      "p90_ms": 37.0711077877786,
+      "p95_ms": 37.095254979794845,
+      "p99_ms": 37.13069458724931,
+      "std_ms": 0.06788799631761469,
+      "min_ms": 36.89983097137883,
+      "max_ms": 38.05383504368365
+    },
+    "cuda_samples_ms": [
+      36.93638229370117,
+      36.98988723754883,
+      36.96656036376953,
+      36.971519470214844,
+      37.042240142822266,
+      37.019649505615234,
+      36.985504150390625,
+      37.00912094116211,
+      36.99740982055664,
+      37.02067184448242,
+      37.042015075683594,
+      37.0463981628418,
+      36.99385452270508,
+      37.05887985229492,
+      37.0882568359375,
+      37.02067184448242,
+      36.96428680419922,
+      36.970497131347656,
+      36.95616149902344,
+      36.950016021728516,
+      36.94294357299805,
+      36.97574234008789,
+      37.01123046875,
+      37.02783966064453,
+      37.089088439941406,
+      37.027679443359375,
+      36.98575973510742,
+      36.971614837646484,
+      36.968448638916016,
+      36.95091247558594,
+      36.98873519897461,
+      36.98908615112305,
+      37.028865814208984,
+      37.02783966064453,
+      37.06156921386719,
+      37.09747314453125,
+      37.07904052734375,
+      37.02272033691406,
+      36.9977912902832,
+      37.00969696044922,
+      37.0239372253418,
+      37.00940704345703,
+      36.98876953125,
+      36.9857292175293,
+      37.04422378540039,
+      36.988929748535156,
+      36.96537780761719,
+      36.96537780761719,
+      37.04243087768555,
+      37.00041580200195,
+      37.04217529296875,
+      37.03926467895508,
+      37.02044677734375,
+      37.09542465209961,
+      37.026817321777344,
+      36.9725456237793,
+      36.94899368286133,
+      36.976383209228516,
+      36.971519470214844,
+      37.02169418334961,
+      37.0041618347168,
+      37.01625442504883,
+      36.98883056640625,
+      37.103614807128906,
+      36.926334381103516,
+      36.996097564697266,
+      36.97449493408203,
+      37.01347351074219,
+      36.982784271240234,
+      37.010398864746094,
+      37.000160217285156,
+      36.992000579833984,
+      37.001216888427734,
+      37.06880187988281,
+      36.98988723754883,
+      36.9898567199707,
+      37.01833724975586,
+      37.025856018066406,
+      37.04857635498047,
+      37.064064025878906,
+      37.02579116821289,
+      37.00627136230469,
+      36.964351654052734,
+      37.05344009399414,
+      36.92544174194336,
+      36.95616149902344,
+      37.00099182128906,
+      37.00873565673828,
+      37.01862335205078,
+      37.01555252075195,
+      37.02988815307617,
+      37.009056091308594,
+      37.012481689453125,
+      37.056575775146484,
+      36.984832763671875,
+      36.999168395996094,
+      36.97663879394531,
+      37.01350402832031,
+      37.00841522216797,
+      37.24185562133789,
+      37.00751876831055,
+      37.032958984375,
+      37.06572723388672,
+      37.07596969604492,
+      37.0432014465332,
+      37.026817321777344,
+      37.01862335205078,
+      37.03478240966797,
+      37.03913497924805,
+      37.02492904663086,
+      36.97459030151367,
+      36.95820617675781,
+      36.931583404541016,
+      37.02579116821289,
+      36.95033645629883,
+      36.99711990356445,
+      36.99814224243164,
+      37.01763153076172,
+      37.0247688293457,
+      37.005313873291016,
+      36.98863983154297,
+      36.95449447631836,
+      36.938720703125,
+      37.02374267578125,
+      37.009342193603516,
+      37.019649505615234,
+      37.0247688293457,
+      37.0145263671875,
+      37.01385498046875,
+      37.04230499267578,
+      37.025760650634766,
+      37.003265380859375,
+      37.00233459472656,
+      37.10259246826172,
+      37.01676940917969,
+      37.03007888793945,
+      37.047584533691406,
+      36.96761703491211,
+      36.96451187133789,
+      36.952064514160156,
+      36.97135925292969,
+      36.96742248535156,
+      37.002113342285156,
+      37.07196807861328,
+      37.02579116821289,
+      37.017601013183594,
+      37.02092742919922,
+      37.0115852355957,
+      36.95328140258789,
+      36.979713439941406,
+      36.915199279785156,
+      36.920318603515625,
+      36.95510482788086,
+      37.03091049194336,
+      37.01555252075195,
+      37.012481689453125,
+      36.980865478515625,
+      37.00019073486328,
+      37.00201416015625,
+      37.01145553588867,
+      36.960960388183594,
+      36.99817657470703,
+      36.949119567871094,
+      37.036033630371094,
+      36.98918533325195,
+      37.02604675292969,
+      36.9920654296875,
+      37.008384704589844,
+      37.008384704589844,
+      36.97248077392578,
+      36.9881591796875,
+      37.01542282104492,
+      37.00636672973633,
+      37.08524703979492,
+      36.99001693725586,
+      37.01417541503906,
+      36.958560943603516,
+      36.977664947509766,
+      36.9356803894043,
+      36.9521598815918,
+      36.96332931518555,
+      36.99097442626953,
+      37.01555252075195,
+      37.09747314453125,
+      36.977664947509766,
+      37.00223922729492,
+      37.008384704589844,
+      37.02265548706055,
+      36.988929748535156,
+      36.970497131347656,
+      36.99302291870117,
+      36.98380661010742,
+      36.980735778808594,
+      37.084415435791016,
+      36.973567962646484,
+      36.99507141113281,
+      37.00204849243164,
+      36.98553466796875,
+      36.99903869628906,
+      36.99798583984375,
+      36.961280822753906,
+      36.95500946044922,
+      36.973472595214844,
+      37.05344009399414,
+      36.97760009765625,
+      36.977535247802734,
+      36.96144104003906,
+      36.97734451293945,
+      36.97846221923828,
+      37.017601013183594,
+      37.0107536315918,
+      37.01350402832031,
+      36.97974395751953,
+      37.08585739135742,
+      36.997440338134766,
+      36.9284782409668,
+      36.925758361816406,
+      36.9601936340332,
+      36.934654235839844,
+      36.95820617675781,
+      36.98454284667969,
+      36.989952087402344,
+      37.00428771972656,
+      37.0552978515625,
+      36.979713439941406,
+      36.97862243652344,
+      36.9600944519043,
+      36.99068832397461,
+      36.98691177368164,
+      38.02137756347656,
+      37.040191650390625,
+      37.162113189697266,
+      37.00019073486328,
+      37.0849609375,
+      36.94831848144531,
+      36.981632232666016,
+      36.994911193847656,
+      36.99689483642578,
+      36.97795104980469,
+      37.00617599487305,
+      36.989601135253906,
+      37.01657485961914,
+      36.92921447753906,
+      37.02988815307617,
+      36.926368713378906,
+      36.93439865112305,
+      36.967262268066406,
+      37.02473449707031,
+      36.98585510253906,
+      36.988929748535156,
+      36.99097442626953,
+      36.99603271484375,
+      37.00223922729492,
+      37.075904846191406,
+      36.94300842285156,
+      36.951969146728516,
+      36.91929626464844,
+      36.94793701171875,
+      36.92879867553711,
+      37.019649505615234,
+      37.002464294433594,
+      37.02675247192383,
+      36.97856140136719,
+      37.08211135864258,
+      36.99747085571289,
+      37.017601013183594,
+      37.01862335205078,
+      37.0063362121582,
+      36.977535247802734,
+      36.961280822753906,
+      36.899009704589844,
+      36.936767578125,
+      36.919681549072266,
+      37.012481689453125,
+      36.96575927734375,
+      36.96851348876953,
+      36.96713638305664,
+      36.986881256103516,
+      36.98681640625,
+      36.999168395996094,
+      36.96937561035156,
+      36.947967529296875,
+      36.93360137939453,
+      37.010719299316406,
+      36.905086517333984,
+      36.92646408081055,
+      36.957088470458984,
+      36.982784271240234,
+      36.97862243652344,
+      36.98380661010742,
+      37.0101432800293,
+      37.00243377685547,
+      36.96137619018555,
+      37.0432014465332,
+      36.95820617675781,
+      36.98588943481445,
+      36.955135345458984,
+      36.921470642089844,
+      36.918270111083984,
+      36.928321838378906,
+      36.97590255737305,
+      36.98672103881836,
+      36.988929748535156,
+      37.049537658691406,
+      36.98454284667969,
+      36.97782516479492,
+      36.968448638916016,
+      36.99625778198242,
+      37.001216888427734,
+      36.957183837890625,
+      36.93439865112305,
+      36.94489669799805,
+      36.91212844848633,
+      37.01555252075195,
+      36.955265045166016,
+      36.97257614135742,
+      36.96742248535156,
+      36.97654342651367,
+      36.962303161621094,
+      36.96121597290039,
+      36.907840728759766,
+      36.926273345947266,
+      36.921024322509766,
+      37.03120040893555,
+      36.92172622680664,
+      37.0063362121582,
+      36.99292755126953,
+      37.005985260009766,
+      36.96537780761719,
+      36.975616455078125,
+      36.9541130065918,
+      36.99168014526367,
+      36.9901123046875,
+      37.05958557128906,
+      36.9694709777832,
+      36.98585510253906,
+      36.94358444213867,
+      36.92300796508789,
+      36.927486419677734,
+      36.943870544433594,
+      37.00227355957031,
+      37.02035140991211,
+      37.01350402832031,
+      37.04115295410156,
+      37.082176208496094,
+      37.00223922729492,
+      37.01766586303711,
+      36.909854888916016,
+      36.93462371826172,
+      36.94095993041992,
+      36.914241790771484,
+      36.89811325073242,
+      36.90729522705078,
+      37.050048828125,
+      36.97321701049805,
+      36.982784271240234,
+      36.95616149902344,
+      36.99638366699219,
+      36.970497131347656,
+      36.936702728271484,
+      36.90796661376953,
+      36.90425491333008,
+      36.87295913696289,
+      36.95894241333008,
+      36.96092987060547,
+      36.99923324584961,
+      36.94899368286133,
+      36.986881256103516,
+      36.98175811767578,
+      36.980735778808594,
+      36.9510383605957,
+      36.986881256103516,
+      36.968448638916016,
+      37.04524612426758,
+      36.944766998291016,
+      37.036033630371094,
+      36.940032958984375,
+      36.927486419677734,
+      36.91417694091797,
+      36.92851257324219,
+      36.968353271484375,
+      36.966400146484375,
+      36.983680725097656,
+      37.0648307800293,
+      36.96409606933594,
+      36.979713439941406,
+      36.94355010986328,
+      36.931583404541016,
+      36.936702728271484,
+      36.924415588378906,
+      36.92339324951172,
+      36.966400146484375,
+      36.939552307128906,
+      37.04934310913086,
+      36.977664947509766,
+      36.97459030151367,
+      36.96531295776367,
+      36.975582122802734,
+      36.968448638916016,
+      36.98175811767578
+    ],
+    "wall_samples_ms": [
+      36.98064194759354,
+      37.01695700874552,
+      36.993747984524816,
+      36.99871897697449,
+      37.069331970997155,
+      37.046214973088354,
+      37.01179497875273,
+      37.03620802843943,
+      37.02468296978623,
+      37.0476899552159,
+      37.068630976136774,
+      37.07410802599043,
+      37.019862968008965,
+      37.086510041262954,
+      37.115159968379885,
+      37.04810299677774,
+      36.99149895692244,
+      36.998743016738445,
+      36.983468977268785,
+      36.97819303488359,
+      36.9708999642171,
+      37.00335999019444,
+      37.0378129882738,
+      37.05503197852522,
+      37.1166990371421,
+      37.05417696619406,
+      37.01232100138441,
+      36.99920198414475,
+      36.9951450265944,
+      36.97755403118208,
+      37.01562300557271,
+      37.017330003436655,
+      37.05656103556976,
+      37.05466602696106,
+      37.088227982167155,
+      37.127883988432586,
+      37.106683012098074,
+      37.05041395733133,
+      37.024780991487205,
+      37.03754302114248,
+      37.05155599163845,
+      37.036044988781214,
+      37.01596596511081,
+      37.012737011536956,
+      37.07109298557043,
+      37.016278016380966,
+      36.99254197999835,
+      36.99289099313319,
+      37.06989699276164,
+      37.028493999969214,
+      37.08751202793792,
+      37.06683299969882,
+      37.04720997484401,
+      37.12231601821259,
+      37.05410799011588,
+      36.99915099423379,
+      36.97670501424,
+      37.003864999860525,
+      37.000043026637286,
+      37.04950999235734,
+      37.0310969883576,
+      37.04307600855827,
+      37.01584500959143,
+      37.13115397840738,
+      36.95334697840735,
+      37.023994023911655,
+      37.00176498387009,
+      37.03997703269124,
+      37.010025000199676,
+      37.03765798127279,
+      37.027216982096434,
+      37.01988002285361,
+      37.02925698598847,
+      37.095021980348974,
+      37.01709501910955,
+      37.01732895569876,
+      37.045445991680026,
+      37.052701984066516,
+      37.076921958941966,
+      37.091760023031384,
+      37.05267299665138,
+      37.03262296039611,
+      36.99170099571347,
+      37.081087997648865,
+      36.95239097578451,
+      36.98326903395355,
+      37.028675025794655,
+      37.03670995309949,
+      37.045645993202925,
+      37.04162302892655,
+      37.056838045828044,
+      37.0362619869411,
+      37.04017400741577,
+      37.08383900811896,
+      37.01209899736568,
+      37.02706500189379,
+      37.00791101437062,
+      37.0424619759433,
+      37.035432003904134,
+      37.26926300441846,
+      37.05291502410546,
+      37.06041898112744,
+      37.09395899204537,
+      37.10372396744788,
+      37.071241007652134,
+      37.05510898726061,
+      37.04745101276785,
+      37.061331036966294,
+      37.06615400733426,
+      37.051999010145664,
+      37.0022639981471,
+      36.98531800182536,
+      36.95892001269385,
+      37.05377399455756,
+      36.978179996367544,
+      37.02415298903361,
+      37.025170982815325,
+      37.0454239891842,
+      37.05223702127114,
+      37.03363297972828,
+      37.01515099965036,
+      36.98257898213342,
+      36.96576500078663,
+      37.050516984891146,
+      37.03666100045666,
+      37.04874694813043,
+      37.05214703222737,
+      37.04218502389267,
+      37.041442992631346,
+      37.06968098413199,
+      37.053130043204874,
+      37.029856990557164,
+      37.029907980468124,
+      37.13068994693458,
+      37.044888944365084,
+      37.05752198584378,
+      37.0756930205971,
+      36.99556301580742,
+      36.99217498069629,
+      36.98065597563982,
+      36.99880494968966,
+      36.99468803824857,
+      37.02804498607293,
+      37.099681969266385,
+      37.053079053293914,
+      37.04686899436638,
+      37.04838105477393,
+      37.03954099910334,
+      36.98107198579237,
+      37.00621402822435,
+      36.96037904592231,
+      36.948386987205595,
+      36.98204003740102,
+      37.05760295270011,
+      37.04224602552131,
+      37.03973401570693,
+      37.008207000326365,
+      37.02686703763902,
+      37.03058999963105,
+      37.041275994852185,
+      36.98857000563294,
+      37.02564997365698,
+      36.976297036744654,
+      37.06315398449078,
+      37.01672295574099,
+      37.05316997366026,
+      37.01927495421842,
+      37.036263034678996,
+      37.035268964245915,
+      36.9984659482725,
+      37.015146983321756,
+      37.04213700257242,
+      37.03392401803285,
+      37.11200400721282,
+      37.01869898941368,
+      37.04042301978916,
+      36.986187973525375,
+      37.00517100514844,
+      36.96317202411592,
+      36.979090014938265,
+      36.990881024394184,
+      37.01783204451203,
+      37.042992014903575,
+      37.12447301950306,
+      37.0054779923521,
+      37.02958801295608,
+      37.0360350352712,
+      37.04962698975578,
+      37.01638296479359,
+      36.997721006628126,
+      37.02107100980356,
+      37.010449974332005,
+      37.008197978138924,
+      37.11244201986119,
+      37.001052987761796,
+      37.022163975052536,
+      37.02889400301501,
+      37.01170801650733,
+      37.02686901669949,
+      37.025669997092336,
+      37.00508101610467,
+      36.98259097291157,
+      37.000762997195125,
+      37.08152601029724,
+      37.004602956585586,
+      37.00434201164171,
+      36.988420994021,
+      37.00439399108291,
+      37.00468403985724,
+      37.04510099487379,
+      37.037828005850315,
+      37.03971300274134,
+      37.00744401430711,
+      37.11297700647265,
+      37.025472964160144,
+      36.95593198062852,
+      36.952987022232264,
+      36.98757599340752,
+      36.96151199983433,
+      36.990521010011435,
+      37.0205559884198,
+      37.01880999142304,
+      37.03165298793465,
+      37.08206705050543,
+      37.006498023401946,
+      37.005321006290615,
+      36.98731499025598,
+      37.017847993411124,
+      37.01467998325825,
+      38.05383504368365,
+      37.06810198491439,
+      37.18917799415067,
+      37.02746197814122,
+      37.112748017534614,
+      36.97593603283167,
+      37.0079490239732,
+      37.02146501746029,
+      37.02373499982059,
+      37.00524795567617,
+      37.032749969512224,
+      37.01662097591907,
+      37.044155003968626,
+      36.955830990336835,
+      37.05667797476053,
+      36.9583559804596,
+      36.961656995117664,
+      36.9945929851383,
+      37.05120796803385,
+      37.020481016952544,
+      37.01600100612268,
+      37.03533101361245,
+      37.0230830158107,
+      37.02896198956296,
+      37.10315900389105,
+      36.971331981476396,
+      36.9791190023534,
+      36.94574098335579,
+      36.97431302862242,
+      36.95640998193994,
+      37.046684010419995,
+      37.02988201985136,
+      37.05449897097424,
+      37.00489999027923,
+      37.10834600497037,
+      37.02512802556157,
+      37.0453919749707,
+      37.0464920415543,
+      37.03274799045175,
+      37.00463898712769,
+      36.987732979469,
+      36.92712198244408,
+      36.96317895082757,
+      36.947051994502544,
+      37.03925700392574,
+      36.99259797576815,
+      36.995316040702164,
+      36.993638961575925,
+      37.01340302359313,
+      37.013844994362444,
+      37.02482598600909,
+      36.99616697849706,
+      36.97416099021211,
+      36.95948503445834,
+      37.03798196511343,
+      36.93206998286769,
+      36.95305698784068,
+      36.983383004553616,
+      37.00963401934132,
+      37.00555599061772,
+      37.00972598744556,
+      37.03691897680983,
+      37.0296579785645,
+      36.98846197221428,
+      37.06996695837006,
+      36.98449500370771,
+      37.01265197014436,
+      36.98229102883488,
+      36.947851011063904,
+      36.94505803287029,
+      36.954523995518684,
+      37.019921001046896,
+      37.014149012975395,
+      37.01540100155398,
+      37.0763239916414,
+      37.01140603516251,
+      37.00538497650996,
+      36.99527797289193,
+      37.02364902710542,
+      37.02835401054472,
+      36.983539001084864,
+      36.96091298479587,
+      36.97192296385765,
+      36.938223987817764,
+      37.042493000626564,
+      36.98264004196972,
+      36.999429983552545,
+      36.99464397504926,
+      37.003300967626274,
+      36.98943997733295,
+      36.98734298814088,
+      36.934358009602875,
+      36.95259103551507,
+      36.94772202288732,
+      37.05785097554326,
+      36.949073954019696,
+      37.03342197695747,
+      37.01874997932464,
+      37.031825981102884,
+      36.99147904990241,
+      37.00242203194648,
+      36.98052297113463,
+      37.017706024926156,
+      37.01686498243362,
+      37.08569204900414,
+      36.99655900709331,
+      37.013045977801085,
+      36.96990304160863,
+      36.94907604949549,
+      36.95401700679213,
+      36.97490302147344,
+      37.03493397915736,
+      37.04801294952631,
+      37.04174398444593,
+      37.06814197357744,
+      37.1093709836714,
+      37.029478000476956,
+      37.04407502664253,
+      36.936343007255346,
+      36.960719036869705,
+      36.967731022741646,
+      36.95699397940189,
+      36.92545695230365,
+      36.934515985194594,
+      37.07616904284805,
+      36.999773990828544,
+      37.01016801642254,
+      36.983581027016044,
+      37.0240299962461,
+      36.99733002576977,
+      36.96394298458472,
+      36.93511197343469,
+      36.93107998697087,
+      36.89983097137883,
+      36.98491503018886,
+      36.98729502502829,
+      37.02615399379283,
+      36.97542694862932,
+      37.01492596883327,
+      37.008371960837394,
+      37.00765501707792,
+      36.97810904122889,
+      37.01345401350409,
+      36.99590195901692,
+      37.07215603208169,
+      36.97176300920546,
+      37.06482797861099,
+      36.96683398447931,
+      36.95463598705828,
+      36.94108099443838,
+      36.9551470503211,
+      36.99532797327265,
+      36.99364000931382,
+      37.01053495751694,
+      37.09164902102202,
+      36.99006198439747,
+      37.00620698509738,
+      36.970846995245665,
+      36.95899300510064,
+      36.96465794928372,
+      36.9518639636226,
+      36.950451030861586,
+      36.993018991779536,
+      36.96619800757617,
+      37.07677498459816,
+      37.00337203918025,
+      37.00114198727533,
+      36.992069974076,
+      37.00238198507577,
+      36.99547500582412,
+      37.00808499706909
+    ]
+  },
+  "clip_timings": [
+    {
+      "clip_id": "fixture_000",
+      "source_scene": "20260112-105434",
+      "source_frame": 30,
+      "cuda_samples_ms": [
+        36.93638229370117,
+        36.98988723754883,
+        36.96656036376953,
+        36.971519470214844,
+        37.042240142822266,
+        37.019649505615234,
+        36.985504150390625,
+        37.00912094116211,
+        36.99740982055664,
+        37.02067184448242,
+        37.042015075683594,
+        37.0463981628418,
+        36.99385452270508,
+        37.05887985229492,
+        37.0882568359375,
+        37.02067184448242,
+        36.96428680419922,
+        36.970497131347656,
+        36.95616149902344,
+        36.950016021728516,
+        36.94294357299805,
+        36.97574234008789,
+        37.01123046875,
+        37.02783966064453,
+        37.089088439941406,
+        37.027679443359375,
+        36.98575973510742,
+        36.971614837646484,
+        36.968448638916016,
+        36.95091247558594,
+        36.98873519897461,
+        36.98908615112305,
+        37.028865814208984,
+        37.02783966064453,
+        37.06156921386719,
+        37.09747314453125,
+        37.07904052734375,
+        37.02272033691406,
+        36.9977912902832,
+        37.00969696044922,
+        37.0239372253418,
+        37.00940704345703,
+        36.98876953125,
+        36.9857292175293,
+        37.04422378540039,
+        36.988929748535156,
+        36.96537780761719,
+        36.96537780761719,
+        37.04243087768555,
+        37.00041580200195
+      ],
+      "wall_samples_ms": [
+        36.98064194759354,
+        37.01695700874552,
+        36.993747984524816,
+        36.99871897697449,
+        37.069331970997155,
+        37.046214973088354,
+        37.01179497875273,
+        37.03620802843943,
+        37.02468296978623,
+        37.0476899552159,
+        37.068630976136774,
+        37.07410802599043,
+        37.019862968008965,
+        37.086510041262954,
+        37.115159968379885,
+        37.04810299677774,
+        36.99149895692244,
+        36.998743016738445,
+        36.983468977268785,
+        36.97819303488359,
+        36.9708999642171,
+        37.00335999019444,
+        37.0378129882738,
+        37.05503197852522,
+        37.1166990371421,
+        37.05417696619406,
+        37.01232100138441,
+        36.99920198414475,
+        36.9951450265944,
+        36.97755403118208,
+        37.01562300557271,
+        37.017330003436655,
+        37.05656103556976,
+        37.05466602696106,
+        37.088227982167155,
+        37.127883988432586,
+        37.106683012098074,
+        37.05041395733133,
+        37.024780991487205,
+        37.03754302114248,
+        37.05155599163845,
+        37.036044988781214,
+        37.01596596511081,
+        37.012737011536956,
+        37.07109298557043,
+        37.016278016380966,
+        36.99254197999835,
+        36.99289099313319,
+        37.06989699276164,
+        37.028493999969214
+      ],
+      "cuda": {
+        "median_ms": 36.99910354614258,
+        "mean_ms": 37.005973205566406,
+        "p90_ms": 37.05914878845215,
+        "p95_ms": 37.084109497070315,
+        "p99_ms": 37.09336463928223,
+        "std_ms": 0.03912428792952355,
+        "min_ms": 36.93638229370117,
+        "max_ms": 37.09747314453125
+      },
+      "wall": {
+        "median_ms": 37.02663749572821,
+        "mean_ms": 37.033593653468415,
+        "p90_ms": 37.086681835353374,
+        "p95_ms": 37.11134533805307,
+        "p99_ms": 37.12240336230025,
+        "std_ms": 0.038702992532017595,
+        "min_ms": 36.9708999642171,
+        "max_ms": 37.127883988432586
+      },
+      "warmup": 20,
+      "repeats": 50,
+      "h2d_ms": 2.717847004532814,
+      "postprocess_d2h_and_json_ms": 0.07801403990015388,
+      "output_checks": {
+        "output_plan_abs_present": true,
+        "output_plan_abs_finite": true,
+        "output_scene_features_present": true,
+        "output_scene_features_finite": true,
+        "output_motion_features_present": true,
+        "output_motion_features_finite": true,
+        "output_history_hat_present": true,
+        "output_history_hat_finite": true,
+        "output_state_hat_present": true,
+        "output_state_hat_finite": true,
+        "output_occ_logits_present": true,
+        "output_occ_logits_finite": true,
+        "output_lane_logits_present": true,
+        "output_lane_logits_finite": true,
+        "plan_abs_shape": true,
+        "plan_abs_fp32": true,
+        "history_hat_shape": true,
+        "history_hat_fp32": true,
+        "state_hat_shape": true,
+        "state_hat_fp32": true
+      },
+      "plan_abs": [
+        [
+          2.9904608726501465,
+          -0.12456201016902924
+        ],
+        [
+          5.911097526550293,
+          -0.3528699278831482
+        ],
+        [
+          8.739015579223633,
+          -0.6762018203735352
+        ],
+        [
+          11.601399421691895,
+          -1.0367763042449951
+        ],
+        [
+          14.29861068725586,
+          -1.4764821529388428
+        ],
+        [
+          16.999492645263672,
+          -2.1592917442321777
+        ]
+      ],
+      "timing_boundary": "CUDA events enclose only complete model(**six_inputs); preprocessing/H2D/D2H/JSON excluded"
+    },
+    {
+      "clip_id": "fixture_001",
+      "source_scene": "20260112-105434",
+      "source_frame": 180,
+      "cuda_samples_ms": [
+        37.04217529296875,
+        37.03926467895508,
+        37.02044677734375,
+        37.09542465209961,
+        37.026817321777344,
+        36.9725456237793,
+        36.94899368286133,
+        36.976383209228516,
+        36.971519470214844,
+        37.02169418334961,
+        37.0041618347168,
+        37.01625442504883,
+        36.98883056640625,
+        37.103614807128906,
+        36.926334381103516,
+        36.996097564697266,
+        36.97449493408203,
+        37.01347351074219,
+        36.982784271240234,
+        37.010398864746094,
+        37.000160217285156,
+        36.992000579833984,
+        37.001216888427734,
+        37.06880187988281,
+        36.98988723754883,
+        36.9898567199707,
+        37.01833724975586,
+        37.025856018066406,
+        37.04857635498047,
+        37.064064025878906,
+        37.02579116821289,
+        37.00627136230469,
+        36.964351654052734,
+        37.05344009399414,
+        36.92544174194336,
+        36.95616149902344,
+        37.00099182128906,
+        37.00873565673828,
+        37.01862335205078,
+        37.01555252075195,
+        37.02988815307617,
+        37.009056091308594,
+        37.012481689453125,
+        37.056575775146484,
+        36.984832763671875,
+        36.999168395996094,
+        36.97663879394531,
+        37.01350402832031,
+        37.00841522216797,
+        37.24185562133789
+      ],
+      "wall_samples_ms": [
+        37.08751202793792,
+        37.06683299969882,
+        37.04720997484401,
+        37.12231601821259,
+        37.05410799011588,
+        36.99915099423379,
+        36.97670501424,
+        37.003864999860525,
+        37.000043026637286,
+        37.04950999235734,
+        37.0310969883576,
+        37.04307600855827,
+        37.01584500959143,
+        37.13115397840738,
+        36.95334697840735,
+        37.023994023911655,
+        37.00176498387009,
+        37.03997703269124,
+        37.010025000199676,
+        37.03765798127279,
+        37.027216982096434,
+        37.01988002285361,
+        37.02925698598847,
+        37.095021980348974,
+        37.01709501910955,
+        37.01732895569876,
+        37.045445991680026,
+        37.052701984066516,
+        37.076921958941966,
+        37.091760023031384,
+        37.05267299665138,
+        37.03262296039611,
+        36.99170099571347,
+        37.081087997648865,
+        36.95239097578451,
+        36.98326903395355,
+        37.028675025794655,
+        37.03670995309949,
+        37.045645993202925,
+        37.04162302892655,
+        37.056838045828044,
+        37.0362619869411,
+        37.04017400741577,
+        37.08383900811896,
+        37.01209899736568,
+        37.02706500189379,
+        37.00791101437062,
+        37.0424619759433,
+        37.035432003904134,
+        37.26926300441846
+      ],
+      "cuda": {
+        "median_ms": 37.00889587402344,
+        "mean_ms": 37.012764892578126,
+        "p90_ms": 37.05732460021973,
+        "p95_ms": 37.08344440460205,
+        "p99_ms": 37.17411762237549,
+        "std_ms": 0.04852602068794685,
+        "min_ms": 36.92544174194336,
+        "max_ms": 37.24185562133789
+      },
+      "wall": {
+        "median_ms": 37.036485970020294,
+        "mean_ms": 37.040511298691854,
+        "p90_ms": 37.087936827447265,
+        "p95_ms": 37.11003370117396,
+        "p99_ms": 37.20158958167303,
+        "std_ms": 0.048752574925204795,
+        "min_ms": 36.95239097578451,
+        "max_ms": 37.26926300441846
+      },
+      "warmup": 20,
+      "repeats": 50,
+      "h2d_ms": 2.658044046256691,
+      "postprocess_d2h_and_json_ms": 0.08399301441386342,
+      "output_checks": {
+        "output_plan_abs_present": true,
+        "output_plan_abs_finite": true,
+        "output_scene_features_present": true,
+        "output_scene_features_finite": true,
+        "output_motion_features_present": true,
+        "output_motion_features_finite": true,
+        "output_history_hat_present": true,
+        "output_history_hat_finite": true,
+        "output_state_hat_present": true,
+        "output_state_hat_finite": true,
+        "output_occ_logits_present": true,
+        "output_occ_logits_finite": true,
+        "output_lane_logits_present": true,
+        "output_lane_logits_finite": true,
+        "plan_abs_shape": true,
+        "plan_abs_fp32": true,
+        "history_hat_shape": true,
+        "history_hat_fp32": true,
+        "state_hat_shape": true,
+        "state_hat_fp32": true
+      },
+      "plan_abs": [
+        [
+          5.247709274291992,
+          -0.12804049253463745
+        ],
+        [
+          10.532609939575195,
+          -0.25142014026641846
+        ],
+        [
+          15.918855667114258,
+          -0.3815186321735382
+        ],
+        [
+          21.36499786376953,
+          -0.5279072523117065
+        ],
+        [
+          26.82176399230957,
+          -0.6638860106468201
+        ],
+        [
+          32.419517517089844,
+          -0.7520211338996887
+        ]
+      ],
+      "timing_boundary": "CUDA events enclose only complete model(**six_inputs); preprocessing/H2D/D2H/JSON excluded"
+    },
+    {
+      "clip_id": "fixture_002",
+      "source_scene": "20260112-105504",
+      "source_frame": 30,
+      "cuda_samples_ms": [
+        37.00751876831055,
+        37.032958984375,
+        37.06572723388672,
+        37.07596969604492,
+        37.0432014465332,
+        37.026817321777344,
+        37.01862335205078,
+        37.03478240966797,
+        37.03913497924805,
+        37.02492904663086,
+        36.97459030151367,
+        36.95820617675781,
+        36.931583404541016,
+        37.02579116821289,
+        36.95033645629883,
+        36.99711990356445,
+        36.99814224243164,
+        37.01763153076172,
+        37.0247688293457,
+        37.005313873291016,
+        36.98863983154297,
+        36.95449447631836,
+        36.938720703125,
+        37.02374267578125,
+        37.009342193603516,
+        37.019649505615234,
+        37.0247688293457,
+        37.0145263671875,
+        37.01385498046875,
+        37.04230499267578,
+        37.025760650634766,
+        37.003265380859375,
+        37.00233459472656,
+        37.10259246826172,
+        37.01676940917969,
+        37.03007888793945,
+        37.047584533691406,
+        36.96761703491211,
+        36.96451187133789,
+        36.952064514160156,
+        36.97135925292969,
+        36.96742248535156,
+        37.002113342285156,
+        37.07196807861328,
+        37.02579116821289,
+        37.017601013183594,
+        37.02092742919922,
+        37.0115852355957,
+        36.95328140258789,
+        36.979713439941406
+      ],
+      "wall_samples_ms": [
+        37.05291502410546,
+        37.06041898112744,
+        37.09395899204537,
+        37.10372396744788,
+        37.071241007652134,
+        37.05510898726061,
+        37.04745101276785,
+        37.061331036966294,
+        37.06615400733426,
+        37.051999010145664,
+        37.0022639981471,
+        36.98531800182536,
+        36.95892001269385,
+        37.05377399455756,
+        36.978179996367544,
+        37.02415298903361,
+        37.025170982815325,
+        37.0454239891842,
+        37.05223702127114,
+        37.03363297972828,
+        37.01515099965036,
+        36.98257898213342,
+        36.96576500078663,
+        37.050516984891146,
+        37.03666100045666,
+        37.04874694813043,
+        37.05214703222737,
+        37.04218502389267,
+        37.041442992631346,
+        37.06968098413199,
+        37.053130043204874,
+        37.029856990557164,
+        37.029907980468124,
+        37.13068994693458,
+        37.044888944365084,
+        37.05752198584378,
+        37.0756930205971,
+        36.99556301580742,
+        36.99217498069629,
+        36.98065597563982,
+        36.99880494968966,
+        36.99468803824857,
+        37.02804498607293,
+        37.099681969266385,
+        37.053079053293914,
+        37.04686899436638,
+        37.04838105477393,
+        37.03954099910334,
+        36.98107198579237,
+        37.00621402822435
+      ],
+      "cuda": {
+        "median_ms": 37.015647888183594,
+        "mean_ms": 37.008350677490235,
+        "p90_ms": 37.043639755249025,
+        "p95_ms": 37.06915969848633,
+        "p99_ms": 37.089547309875485,
+        "std_ms": 0.03618786111665743,
+        "min_ms": 36.931583404541016,
+        "max_ms": 37.10259246826172
+      },
+      "wall": {
+        "median_ms": 37.04515646677464,
+        "mean_ms": 37.0362942176871,
+        "p90_ms": 37.07168620894663,
+        "p95_ms": 37.09710662951693,
+        "p99_ms": 37.117476616986096,
+        "std_ms": 0.036361976291280546,
+        "min_ms": 36.95892001269385,
+        "max_ms": 37.13068994693458
+      },
+      "warmup": 20,
+      "repeats": 50,
+      "h2d_ms": 2.6548270252533257,
+      "postprocess_d2h_and_json_ms": 0.07608695887029171,
+      "output_checks": {
+        "output_plan_abs_present": true,
+        "output_plan_abs_finite": true,
+        "output_scene_features_present": true,
+        "output_scene_features_finite": true,
+        "output_motion_features_present": true,
+        "output_motion_features_finite": true,
+        "output_history_hat_present": true,
+        "output_history_hat_finite": true,
+        "output_state_hat_present": true,
+        "output_state_hat_finite": true,
+        "output_occ_logits_present": true,
+        "output_occ_logits_finite": true,
+        "output_lane_logits_present": true,
+        "output_lane_logits_finite": true,
+        "plan_abs_shape": true,
+        "plan_abs_fp32": true,
+        "history_hat_shape": true,
+        "history_hat_fp32": true,
+        "state_hat_shape": true,
+        "state_hat_fp32": true
+      },
+      "plan_abs": [
+        [
+          5.301311016082764,
+          -0.2514720559120178
+        ],
+        [
+          10.604654312133789,
+          -0.6738919615745544
+        ],
+        [
+          15.967498779296875,
+          -1.1961935758590698
+        ],
+        [
+          21.322927474975586,
+          -1.8030840158462524
+        ],
+        [
+          26.864137649536133,
+          -2.823868989944458
+        ],
+        [
+          32.141845703125,
+          -4.50391149520874
+        ]
+      ],
+      "timing_boundary": "CUDA events enclose only complete model(**six_inputs); preprocessing/H2D/D2H/JSON excluded"
+    },
+    {
+      "clip_id": "fixture_003",
+      "source_scene": "20260112-105504",
+      "source_frame": 180,
+      "cuda_samples_ms": [
+        36.915199279785156,
+        36.920318603515625,
+        36.95510482788086,
+        37.03091049194336,
+        37.01555252075195,
+        37.012481689453125,
+        36.980865478515625,
+        37.00019073486328,
+        37.00201416015625,
+        37.01145553588867,
+        36.960960388183594,
+        36.99817657470703,
+        36.949119567871094,
+        37.036033630371094,
+        36.98918533325195,
+        37.02604675292969,
+        36.9920654296875,
+        37.008384704589844,
+        37.008384704589844,
+        36.97248077392578,
+        36.9881591796875,
+        37.01542282104492,
+        37.00636672973633,
+        37.08524703979492,
+        36.99001693725586,
+        37.01417541503906,
+        36.958560943603516,
+        36.977664947509766,
+        36.9356803894043,
+        36.9521598815918,
+        36.96332931518555,
+        36.99097442626953,
+        37.01555252075195,
+        37.09747314453125,
+        36.977664947509766,
+        37.00223922729492,
+        37.008384704589844,
+        37.02265548706055,
+        36.988929748535156,
+        36.970497131347656,
+        36.99302291870117,
+        36.98380661010742,
+        36.980735778808594,
+        37.084415435791016,
+        36.973567962646484,
+        36.99507141113281,
+        37.00204849243164,
+        36.98553466796875,
+        36.99903869628906,
+        36.99798583984375
+      ],
+      "wall_samples_ms": [
+        36.96037904592231,
+        36.948386987205595,
+        36.98204003740102,
+        37.05760295270011,
+        37.04224602552131,
+        37.03973401570693,
+        37.008207000326365,
+        37.02686703763902,
+        37.03058999963105,
+        37.041275994852185,
+        36.98857000563294,
+        37.02564997365698,
+        36.976297036744654,
+        37.06315398449078,
+        37.01672295574099,
+        37.05316997366026,
+        37.01927495421842,
+        37.036263034678996,
+        37.035268964245915,
+        36.9984659482725,
+        37.015146983321756,
+        37.04213700257242,
+        37.03392401803285,
+        37.11200400721282,
+        37.01869898941368,
+        37.04042301978916,
+        36.986187973525375,
+        37.00517100514844,
+        36.96317202411592,
+        36.979090014938265,
+        36.990881024394184,
+        37.01783204451203,
+        37.042992014903575,
+        37.12447301950306,
+        37.0054779923521,
+        37.02958801295608,
+        37.0360350352712,
+        37.04962698975578,
+        37.01638296479359,
+        36.997721006628126,
+        37.02107100980356,
+        37.010449974332005,
+        37.008197978138924,
+        37.11244201986119,
+        37.001052987761796,
+        37.022163975052536,
+        37.02889400301501,
+        37.01170801650733,
+        37.02686901669949,
+        37.025669997092336
+      ],
+      "cuda": {
+        "median_ms": 36.99404716491699,
+        "mean_ms": 36.994826278686524,
+        "p90_ms": 37.026533126831055,
+        "p95_ms": 37.06264362335205,
+        "p99_ms": 37.09148235321045,
+        "std_ms": 0.0351766564978248,
+        "min_ms": 36.915199279785156,
+        "max_ms": 37.09747314453125
+      },
+      "wall": {
+        "median_ms": 37.02161749242805,
+        "mean_ms": 37.02251300099306,
+        "p90_ms": 37.053613271564245,
+        "p95_ms": 37.0900214969879,
+        "p99_ms": 37.11857782967854,
+        "std_ms": 0.0344065965537937,
+        "min_ms": 36.948386987205595,
+        "max_ms": 37.12447301950306
+      },
+      "warmup": 20,
+      "repeats": 50,
+      "h2d_ms": 2.656602009665221,
+      "postprocess_d2h_and_json_ms": 0.08120998973026872,
+      "output_checks": {
+        "output_plan_abs_present": true,
+        "output_plan_abs_finite": true,
+        "output_scene_features_present": true,
+        "output_scene_features_finite": true,
+        "output_motion_features_present": true,
+        "output_motion_features_finite": true,
+        "output_history_hat_present": true,
+        "output_history_hat_finite": true,
+        "output_state_hat_present": true,
+        "output_state_hat_finite": true,
+        "output_occ_logits_present": true,
+        "output_occ_logits_finite": true,
+        "output_lane_logits_present": true,
+        "output_lane_logits_finite": true,
+        "plan_abs_shape": true,
+        "plan_abs_fp32": true,
+        "history_hat_shape": true,
+        "history_hat_fp32": true,
+        "state_hat_shape": true,
+        "state_hat_fp32": true
+      },
+      "plan_abs": [
+        [
+          6.067733287811279,
+          -0.15251092612743378
+        ],
+        [
+          12.161822319030762,
+          -0.3508703410625458
+        ],
+        [
+          18.135286331176758,
+          -0.5490567684173584
+        ],
+        [
+          24.106117248535156,
+          -0.7544431686401367
+        ],
+        [
+          30.059226989746094,
+          -1.0418908596038818
+        ],
+        [
+          35.88358688354492,
+          -1.3299665451049805
+        ]
+      ],
+      "timing_boundary": "CUDA events enclose only complete model(**six_inputs); preprocessing/H2D/D2H/JSON excluded"
+    },
+    {
+      "clip_id": "fixture_004",
+      "source_scene": "20260112-111049",
+      "source_frame": 30,
+      "cuda_samples_ms": [
+        36.961280822753906,
+        36.95500946044922,
+        36.973472595214844,
+        37.05344009399414,
+        36.97760009765625,
+        36.977535247802734,
+        36.96144104003906,
+        36.97734451293945,
+        36.97846221923828,
+        37.017601013183594,
+        37.0107536315918,
+        37.01350402832031,
+        36.97974395751953,
+        37.08585739135742,
+        36.997440338134766,
+        36.9284782409668,
+        36.925758361816406,
+        36.9601936340332,
+        36.934654235839844,
+        36.95820617675781,
+        36.98454284667969,
+        36.989952087402344,
+        37.00428771972656,
+        37.0552978515625,
+        36.979713439941406,
+        36.97862243652344,
+        36.9600944519043,
+        36.99068832397461,
+        36.98691177368164,
+        38.02137756347656,
+        37.040191650390625,
+        37.162113189697266,
+        37.00019073486328,
+        37.0849609375,
+        36.94831848144531,
+        36.981632232666016,
+        36.994911193847656,
+        36.99689483642578,
+        36.97795104980469,
+        37.00617599487305,
+        36.989601135253906,
+        37.01657485961914,
+        36.92921447753906,
+        37.02988815307617,
+        36.926368713378906,
+        36.93439865112305,
+        36.967262268066406,
+        37.02473449707031,
+        36.98585510253906,
+        36.988929748535156
+      ],
+      "wall_samples_ms": [
+        37.00508101610467,
+        36.98259097291157,
+        37.000762997195125,
+        37.08152601029724,
+        37.004602956585586,
+        37.00434201164171,
+        36.988420994021,
+        37.00439399108291,
+        37.00468403985724,
+        37.04510099487379,
+        37.037828005850315,
+        37.03971300274134,
+        37.00744401430711,
+        37.11297700647265,
+        37.025472964160144,
+        36.95593198062852,
+        36.952987022232264,
+        36.98757599340752,
+        36.96151199983433,
+        36.990521010011435,
+        37.0205559884198,
+        37.01880999142304,
+        37.03165298793465,
+        37.08206705050543,
+        37.006498023401946,
+        37.005321006290615,
+        36.98731499025598,
+        37.017847993411124,
+        37.01467998325825,
+        38.05383504368365,
+        37.06810198491439,
+        37.18917799415067,
+        37.02746197814122,
+        37.112748017534614,
+        36.97593603283167,
+        37.0079490239732,
+        37.02146501746029,
+        37.02373499982059,
+        37.00524795567617,
+        37.032749969512224,
+        37.01662097591907,
+        37.044155003968626,
+        36.955830990336835,
+        37.05667797476053,
+        36.9583559804596,
+        36.961656995117664,
+        36.9945929851383,
+        37.05120796803385,
+        37.020481016952544,
+        37.01600100612268
+      ],
+      "cuda": {
+        "median_ms": 36.985198974609375,
+        "mean_ms": 37.011308670043945,
+        "p90_ms": 37.053625869750974,
+        "p95_ms": 37.08545398712158,
+        "p99_ms": 37.600338020324706,
+        "std_ms": 0.15078670614337517,
+        "min_ms": 36.925758361816406,
+        "max_ms": 38.02137756347656
+      },
+      "wall": {
+        "median_ms": 37.01534049469046,
+        "mean_ms": 37.03944411827251,
+        "p90_ms": 37.08158011431806,
+        "p95_ms": 37.11287396145053,
+        "p99_ms": 37.63015308941249,
+        "std_ms": 0.15127551302278733,
+        "min_ms": 36.952987022232264,
+        "max_ms": 38.05383504368365
+      },
+      "warmup": 20,
+      "repeats": 50,
+      "h2d_ms": 2.652816998306662,
+      "postprocess_d2h_and_json_ms": 0.0797589891590178,
+      "output_checks": {
+        "output_plan_abs_present": true,
+        "output_plan_abs_finite": true,
+        "output_scene_features_present": true,
+        "output_scene_features_finite": true,
+        "output_motion_features_present": true,
+        "output_motion_features_finite": true,
+        "output_history_hat_present": true,
+        "output_history_hat_finite": true,
+        "output_state_hat_present": true,
+        "output_state_hat_finite": true,
+        "output_occ_logits_present": true,
+        "output_occ_logits_finite": true,
+        "output_lane_logits_present": true,
+        "output_lane_logits_finite": true,
+        "plan_abs_shape": true,
+        "plan_abs_fp32": true,
+        "history_hat_shape": true,
+        "history_hat_fp32": true,
+        "state_hat_shape": true,
+        "state_hat_fp32": true
+      },
+      "plan_abs": [
+        [
+          6.474817276000977,
+          -0.15809476375579834
+        ],
+        [
+          12.943902969360352,
+          -0.3083200454711914
+        ],
+        [
+          19.315311431884766,
+          -0.43939656019210815
+        ],
+        [
+          25.88193702697754,
+          -0.5526257157325745
+        ],
+        [
+          32.31521224975586,
+          -0.6623028516769409
+        ],
+        [
+          38.639076232910156,
+          -0.655805766582489
+        ]
+      ],
+      "timing_boundary": "CUDA events enclose only complete model(**six_inputs); preprocessing/H2D/D2H/JSON excluded"
+    },
+    {
+      "clip_id": "fixture_005",
+      "source_scene": "20260112-111049",
+      "source_frame": 180,
+      "cuda_samples_ms": [
+        36.99097442626953,
+        36.99603271484375,
+        37.00223922729492,
+        37.075904846191406,
+        36.94300842285156,
+        36.951969146728516,
+        36.91929626464844,
+        36.94793701171875,
+        36.92879867553711,
+        37.019649505615234,
+        37.002464294433594,
+        37.02675247192383,
+        36.97856140136719,
+        37.08211135864258,
+        36.99747085571289,
+        37.017601013183594,
+        37.01862335205078,
+        37.0063362121582,
+        36.977535247802734,
+        36.961280822753906,
+        36.899009704589844,
+        36.936767578125,
+        36.919681549072266,
+        37.012481689453125,
+        36.96575927734375,
+        36.96851348876953,
+        36.96713638305664,
+        36.986881256103516,
+        36.98681640625,
+        36.999168395996094,
+        36.96937561035156,
+        36.947967529296875,
+        36.93360137939453,
+        37.010719299316406,
+        36.905086517333984,
+        36.92646408081055,
+        36.957088470458984,
+        36.982784271240234,
+        36.97862243652344,
+        36.98380661010742,
+        37.0101432800293,
+        37.00243377685547,
+        36.96137619018555,
+        37.0432014465332,
+        36.95820617675781,
+        36.98588943481445,
+        36.955135345458984,
+        36.921470642089844,
+        36.918270111083984,
+        36.928321838378906
+      ],
+      "wall_samples_ms": [
+        37.03533101361245,
+        37.0230830158107,
+        37.02896198956296,
+        37.10315900389105,
+        36.971331981476396,
+        36.9791190023534,
+        36.94574098335579,
+        36.97431302862242,
+        36.95640998193994,
+        37.046684010419995,
+        37.02988201985136,
+        37.05449897097424,
+        37.00489999027923,
+        37.10834600497037,
+        37.02512802556157,
+        37.0453919749707,
+        37.0464920415543,
+        37.03274799045175,
+        37.00463898712769,
+        36.987732979469,
+        36.92712198244408,
+        36.96317895082757,
+        36.947051994502544,
+        37.03925700392574,
+        36.99259797576815,
+        36.995316040702164,
+        36.993638961575925,
+        37.01340302359313,
+        37.013844994362444,
+        37.02482598600909,
+        36.99616697849706,
+        36.97416099021211,
+        36.95948503445834,
+        37.03798196511343,
+        36.93206998286769,
+        36.95305698784068,
+        36.983383004553616,
+        37.00963401934132,
+        37.00555599061772,
+        37.00972598744556,
+        37.03691897680983,
+        37.0296579785645,
+        36.98846197221428,
+        37.06996695837006,
+        36.98449500370771,
+        37.01265197014436,
+        36.98229102883488,
+        36.947851011063904,
+        36.94505803287029,
+        36.954523995518684
+      ],
+      "cuda": {
+        "median_ms": 36.97804832458496,
+        "mean_ms": 36.975334548950194,
+        "p90_ms": 37.01872596740723,
+        "p95_ms": 37.03579940795898,
+        "p99_ms": 37.0790701675415,
+        "std_ms": 0.04038720292449099,
+        "min_ms": 36.899009704589844,
+        "max_ms": 37.08211135864258
+      },
+      "wall": {
+        "median_ms": 37.00476948870346,
+        "mean_ms": 37.00254455558024,
+        "p90_ms": 37.04651123844087,
+        "p95_ms": 37.06300636404194,
+        "p99_ms": 37.105804374441504,
+        "std_ms": 0.04064227126237647,
+        "min_ms": 36.92712198244408,
+        "max_ms": 37.10834600497037
+      },
+      "warmup": 20,
+      "repeats": 50,
+      "h2d_ms": 2.6626940234564245,
+      "postprocess_d2h_and_json_ms": 0.08023501140996814,
+      "output_checks": {
+        "output_plan_abs_present": true,
+        "output_plan_abs_finite": true,
+        "output_scene_features_present": true,
+        "output_scene_features_finite": true,
+        "output_motion_features_present": true,
+        "output_motion_features_finite": true,
+        "output_history_hat_present": true,
+        "output_history_hat_finite": true,
+        "output_state_hat_present": true,
+        "output_state_hat_finite": true,
+        "output_occ_logits_present": true,
+        "output_occ_logits_finite": true,
+        "output_lane_logits_present": true,
+        "output_lane_logits_finite": true,
+        "plan_abs_shape": true,
+        "plan_abs_fp32": true,
+        "history_hat_shape": true,
+        "history_hat_fp32": true,
+        "state_hat_shape": true,
+        "state_hat_fp32": true
+      },
+      "plan_abs": [
+        [
+          6.483491897583008,
+          -0.11168725788593292
+        ],
+        [
+          12.985228538513184,
+          -0.12584306299686432
+        ],
+        [
+          19.463016510009766,
+          -0.05441345274448395
+        ],
+        [
+          26.016990661621094,
+          0.09355753660202026
+        ],
+        [
+          32.584075927734375,
+          0.35820555686950684
+        ],
+        [
+          39.19984436035156,
+          0.606255054473877
+        ]
+      ],
+      "timing_boundary": "CUDA events enclose only complete model(**six_inputs); preprocessing/H2D/D2H/JSON excluded"
+    },
+    {
+      "clip_id": "fixture_006",
+      "source_scene": "20260112-111149",
+      "source_frame": 30,
+      "cuda_samples_ms": [
+        36.97590255737305,
+        36.98672103881836,
+        36.988929748535156,
+        37.049537658691406,
+        36.98454284667969,
+        36.97782516479492,
+        36.968448638916016,
+        36.99625778198242,
+        37.001216888427734,
+        36.957183837890625,
+        36.93439865112305,
+        36.94489669799805,
+        36.91212844848633,
+        37.01555252075195,
+        36.955265045166016,
+        36.97257614135742,
+        36.96742248535156,
+        36.97654342651367,
+        36.962303161621094,
+        36.96121597290039,
+        36.907840728759766,
+        36.926273345947266,
+        36.921024322509766,
+        37.03120040893555,
+        36.92172622680664,
+        37.0063362121582,
+        36.99292755126953,
+        37.005985260009766,
+        36.96537780761719,
+        36.975616455078125,
+        36.9541130065918,
+        36.99168014526367,
+        36.9901123046875,
+        37.05958557128906,
+        36.9694709777832,
+        36.98585510253906,
+        36.94358444213867,
+        36.92300796508789,
+        36.927486419677734,
+        36.943870544433594,
+        37.00227355957031,
+        37.02035140991211,
+        37.01350402832031,
+        37.04115295410156,
+        37.082176208496094,
+        37.00223922729492,
+        37.01766586303711,
+        36.909854888916016,
+        36.93462371826172,
+        36.94095993041992
+      ],
+      "wall_samples_ms": [
+        37.019921001046896,
+        37.014149012975395,
+        37.01540100155398,
+        37.0763239916414,
+        37.01140603516251,
+        37.00538497650996,
+        36.99527797289193,
+        37.02364902710542,
+        37.02835401054472,
+        36.983539001084864,
+        36.96091298479587,
+        36.97192296385765,
+        36.938223987817764,
+        37.042493000626564,
+        36.98264004196972,
+        36.999429983552545,
+        36.99464397504926,
+        37.003300967626274,
+        36.98943997733295,
+        36.98734298814088,
+        36.934358009602875,
+        36.95259103551507,
+        36.94772202288732,
+        37.05785097554326,
+        36.949073954019696,
+        37.03342197695747,
+        37.01874997932464,
+        37.031825981102884,
+        36.99147904990241,
+        37.00242203194648,
+        36.98052297113463,
+        37.017706024926156,
+        37.01686498243362,
+        37.08569204900414,
+        36.99655900709331,
+        37.013045977801085,
+        36.96990304160863,
+        36.94907604949549,
+        36.95401700679213,
+        36.97490302147344,
+        37.03493397915736,
+        37.04801294952631,
+        37.04174398444593,
+        37.06814197357744,
+        37.1093709836714,
+        37.029478000476956,
+        37.04407502664253,
+        36.936343007255346,
+        36.960719036869705,
+        36.967731022741646
+      ],
+      "cuda": {
+        "median_ms": 36.975759506225586,
+        "mean_ms": 36.97593490600586,
+        "p90_ms": 37.021436309814455,
+        "p95_ms": 37.04576454162598,
+        "p99_ms": 37.07110679626465,
+        "std_ms": 0.03986386671371119,
+        "min_ms": 36.907840728759766,
+        "max_ms": 37.082176208496094
+      },
+      "wall": {
+        "median_ms": 37.00286149978638,
+        "mean_ms": 37.00324184028432,
+        "p90_ms": 37.048996752128005,
+        "p95_ms": 37.07264208351262,
+        "p99_ms": 37.09776830568444,
+        "std_ms": 0.04008933776727942,
+        "min_ms": 36.934358009602875,
+        "max_ms": 37.1093709836714
+      },
+      "warmup": 20,
+      "repeats": 50,
+      "h2d_ms": 2.672688977327198,
+      "postprocess_d2h_and_json_ms": 0.0805750023573637,
+      "output_checks": {
+        "output_plan_abs_present": true,
+        "output_plan_abs_finite": true,
+        "output_scene_features_present": true,
+        "output_scene_features_finite": true,
+        "output_motion_features_present": true,
+        "output_motion_features_finite": true,
+        "output_history_hat_present": true,
+        "output_history_hat_finite": true,
+        "output_state_hat_present": true,
+        "output_state_hat_finite": true,
+        "output_occ_logits_present": true,
+        "output_occ_logits_finite": true,
+        "output_lane_logits_present": true,
+        "output_lane_logits_finite": true,
+        "plan_abs_shape": true,
+        "plan_abs_fp32": true,
+        "history_hat_shape": true,
+        "history_hat_fp32": true,
+        "state_hat_shape": true,
+        "state_hat_fp32": true
+      },
+      "plan_abs": [
+        [
+          6.155209541320801,
+          -0.10110752284526825
+        ],
+        [
+          12.377178192138672,
+          -0.1261858344078064
+        ],
+        [
+          18.591991424560547,
+          -0.0527176633477211
+        ],
+        [
+          24.85287094116211,
+          0.08653096854686737
+        ],
+        [
+          31.109773635864258,
+          0.3154599964618683
+        ],
+        [
+          37.5038948059082,
+          0.4908316731452942
+        ]
+      ],
+      "timing_boundary": "CUDA events enclose only complete model(**six_inputs); preprocessing/H2D/D2H/JSON excluded"
+    },
+    {
+      "clip_id": "fixture_007",
+      "source_scene": "20260112-111149",
+      "source_frame": 180,
+      "cuda_samples_ms": [
+        36.914241790771484,
+        36.89811325073242,
+        36.90729522705078,
+        37.050048828125,
+        36.97321701049805,
+        36.982784271240234,
+        36.95616149902344,
+        36.99638366699219,
+        36.970497131347656,
+        36.936702728271484,
+        36.90796661376953,
+        36.90425491333008,
+        36.87295913696289,
+        36.95894241333008,
+        36.96092987060547,
+        36.99923324584961,
+        36.94899368286133,
+        36.986881256103516,
+        36.98175811767578,
+        36.980735778808594,
+        36.9510383605957,
+        36.986881256103516,
+        36.968448638916016,
+        37.04524612426758,
+        36.944766998291016,
+        37.036033630371094,
+        36.940032958984375,
+        36.927486419677734,
+        36.91417694091797,
+        36.92851257324219,
+        36.968353271484375,
+        36.966400146484375,
+        36.983680725097656,
+        37.0648307800293,
+        36.96409606933594,
+        36.979713439941406,
+        36.94355010986328,
+        36.931583404541016,
+        36.936702728271484,
+        36.924415588378906,
+        36.92339324951172,
+        36.966400146484375,
+        36.939552307128906,
+        37.04934310913086,
+        36.977664947509766,
+        36.97459030151367,
+        36.96531295776367,
+        36.975582122802734,
+        36.968448638916016,
+        36.98175811767578
+      ],
+      "wall_samples_ms": [
+        36.95699397940189,
+        36.92545695230365,
+        36.934515985194594,
+        37.07616904284805,
+        36.999773990828544,
+        37.01016801642254,
+        36.983581027016044,
+        37.0240299962461,
+        36.99733002576977,
+        36.96394298458472,
+        36.93511197343469,
+        36.93107998697087,
+        36.89983097137883,
+        36.98491503018886,
+        36.98729502502829,
+        37.02615399379283,
+        36.97542694862932,
+        37.01492596883327,
+        37.008371960837394,
+        37.00765501707792,
+        36.97810904122889,
+        37.01345401350409,
+        36.99590195901692,
+        37.07215603208169,
+        36.97176300920546,
+        37.06482797861099,
+        36.96683398447931,
+        36.95463598705828,
+        36.94108099443838,
+        36.9551470503211,
+        36.99532797327265,
+        36.99364000931382,
+        37.01053495751694,
+        37.09164902102202,
+        36.99006198439747,
+        37.00620698509738,
+        36.970846995245665,
+        36.95899300510064,
+        36.96465794928372,
+        36.9518639636226,
+        36.950451030861586,
+        36.993018991779536,
+        36.96619800757617,
+        37.07677498459816,
+        37.00337203918025,
+        37.00114198727533,
+        36.992069974076,
+        37.00238198507577,
+        36.99547500582412,
+        37.00808499706909
+      ],
+      "cuda": {
+        "median_ms": 36.96585655212402,
+        "mean_ms": 36.96232192993164,
+        "p90_ms": 37.002913284301755,
+        "p95_ms": 37.04749946594238,
+        "p99_ms": 37.05758762359619,
+        "std_ms": 0.04017026175602646,
+        "min_ms": 36.87295913696289,
+        "max_ms": 37.0648307800293
+      },
+      "wall": {
+        "median_ms": 36.99254448292777,
+        "mean_ms": 36.989587815478444,
+        "p90_ms": 37.03002139227465,
+        "p95_ms": 37.07436318800319,
+        "p99_ms": 37.08436074317433,
+        "std_ms": 0.039848680331386686,
+        "min_ms": 36.89983097137883,
+        "max_ms": 37.09164902102202
+      },
+      "warmup": 20,
+      "repeats": 50,
+      "h2d_ms": 2.6659839786589146,
+      "postprocess_d2h_and_json_ms": 0.08123001316562295,
+      "output_checks": {
+        "output_plan_abs_present": true,
+        "output_plan_abs_finite": true,
+        "output_scene_features_present": true,
+        "output_scene_features_finite": true,
+        "output_motion_features_present": true,
+        "output_motion_features_finite": true,
+        "output_history_hat_present": true,
+        "output_history_hat_finite": true,
+        "output_state_hat_present": true,
+        "output_state_hat_finite": true,
+        "output_occ_logits_present": true,
+        "output_occ_logits_finite": true,
+        "output_lane_logits_present": true,
+        "output_lane_logits_finite": true,
+        "plan_abs_shape": true,
+        "plan_abs_fp32": true,
+        "history_hat_shape": true,
+        "history_hat_fp32": true,
+        "state_hat_shape": true,
+        "state_hat_fp32": true
+      },
+      "plan_abs": [
+        [
+          6.807351112365723,
+          -0.1231084018945694
+        ],
+        [
+          13.693658828735352,
+          -0.16274504363536835
+        ],
+        [
+          20.46739387512207,
+          -0.13593700528144836
+        ],
+        [
+          27.34605598449707,
+          -0.03222458064556122
+        ],
+        [
+          34.2336311340332,
+          0.14814049005508423
+        ],
+        [
+          40.90621566772461,
+          0.3358094394207001
+        ]
+      ],
+      "timing_boundary": "CUDA events enclose only complete model(**six_inputs); preprocessing/H2D/D2H/JSON excluded"
+    }
+  ],
+  "memory": {
+    "peak_allocated_bytes": 448418304,
+    "peak_reserved_bytes": 543162368
+  },
+  "gpu_observations": [
+    {
+      "observed_at": "2026-09-07T16:47:24.192340+00:00",
+      "gpu_uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+      "used_mib": 130.0,
+      "free_mib": 23986.0,
+      "total_mib": 24576.0,
+      "processes": [],
+      "foreign_processes": []
+    },
+    {
+      "observed_at": "2026-09-07T16:47:48.039041+00:00",
+      "gpu_uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+      "used_mib": 999.0,
+      "free_mib": 23118.0,
+      "total_mib": 24576.0,
+      "processes": [
+        {
+          "gpu_uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+          "pid": 77961,
+          "name": "/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10"
+        }
+      ],
+      "foreign_processes": []
+    }
+  ],
+  "artifacts_sha256_before": {
+    "bundle": "edfd1bb738b878653b16b546336112f47f5bd100be044826f1727b5e15bd9e49",
+    "reference": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "raw_manifest": "da1e36a8b45815a8fb9b4f1053c7695cb754cdfa9eb4f2b6602fc0ff6ef67d27",
+    "calibration": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "geometry_contract": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "source_manifest": "cc2b2c9f15f21b115498fcff560cb9710c3183f4787ed62f317de3052970b1b6"
+  },
+  "artifacts_sha256_after": {
+    "bundle": "edfd1bb738b878653b16b546336112f47f5bd100be044826f1727b5e15bd9e49",
+    "reference": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "raw_manifest": "da1e36a8b45815a8fb9b4f1053c7695cb754cdfa9eb4f2b6602fc0ff6ef67d27",
+    "calibration": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "geometry_contract": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "source_manifest": "cc2b2c9f15f21b115498fcff560cb9710c3183f4787ed62f317de3052970b1b6"
+  },
+  "raw_files_before": {
+    "/inputs/deploy_fixture_train8/fixture_000/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_-1.jpg": "e13b350ef4839adb744cc62544790918b01b2efd06757dcb471b10d09a88c0e7",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_-10.jpg": "39b6f7eccbd1cec9c5f409e5d70b053205b64065a0269a363b1fbc6babe866d1",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_-2.jpg": "9c599df6b49d37410277370e2cf280da58a08dd9f79806cc8dd392ac999a556d",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_-5.jpg": "555340b0b2ba066938d3d0cf51063ba72c048c8a4955a5bb1408d4b6a559f519",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_0.jpg": "a900a033a744797bd4773b4c5bc73096198186520c859885849efa90b5a7b9df",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front_left/frame_0.jpg": "bc477d30301bbf8b60a9318d85435207b4688de5c9361fbdc2e7e091000743b5",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front_right/frame_0.jpg": "68205ec8ae9ebd6f2662ebb310697171ec2f85fdf4f444e6c3697c81d09df6aa",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_rear_left/frame_0.jpg": "4bca6d553f2e809d69fa801032a9be6dc231b8ea802c21a7e296b298cc79b8e5",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_rear_right/frame_0.jpg": "97e830b02eb4e0531f3cb19c8c763b5ec487c2217acd6c568c08394e0c3bd53d",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_rear_wide/frame_0.jpg": "741f4ad891ac25e5b771ea30c355a0c0bec05260be1861dd4ecd0a4eff8292f7",
+    "/inputs/deploy_fixture_train8/fixture_000/ego_pose.parquet": "3403f8f5cf521b09b3c4936a0e1425d6afd5b5caad5533bb80949a2fb56ba2c0",
+    "/inputs/deploy_fixture_train8/fixture_001/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_-1.jpg": "50b309c430828e6b010f2d661f5dcbf12e0b760ec5b0b436132fe8fc49119e2c",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_-10.jpg": "9b6a2d2eab22c600bd7eaaacb48e5752b02a992f25c7db31fabac2ec5ecaa085",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_-2.jpg": "bfb786caf2f36a5810a13013182edb90f24ba47684965de7d791820b5eb6f3d3",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_-5.jpg": "262e04ccdd34cdaf66f5e5ed58a499f0517b66d55c0ae018ecebd37721b20f2d",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_0.jpg": "b615bf4425676e37cc00537ad43006502c12abcef6348f77911f650c6ede3be9",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front_left/frame_0.jpg": "a1d2aaf14b916ddb4858b546a075264d30f4276d0863633b86c77c04ce1211f4",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front_right/frame_0.jpg": "15eb58f16708037b98afdfd4b8ef90f5a5720d493eb94dba1d7ace7a07c900f6",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_rear_left/frame_0.jpg": "28857d589596ee1e6dbde28e7700cfedd515822db15299233a4cbf186457ccf4",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_rear_right/frame_0.jpg": "50dfcea96104e6be4c692e3ec0d0b3e77b5f4b44125fa97dcef82ed57380f232",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_rear_wide/frame_0.jpg": "88bca731d34a27697a653dfdcad982ee60158d2d572c130f6e61b2020e2dcb9a",
+    "/inputs/deploy_fixture_train8/fixture_001/ego_pose.parquet": "ab502d484f66eef8b2c3d6a54231fe53057e7c995b6b8dd08311a4350f67e6bf",
+    "/inputs/deploy_fixture_train8/fixture_002/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_-1.jpg": "3a2b7447b8d3f0d897f93c376569fbc10b7f799b3d439417a95e67ec6e460f4f",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_-10.jpg": "ba6bbe41552459679c9a52bc8fdbdbd2915d42d82be1600403e91f8054a395b9",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_-2.jpg": "61f303e53b31e4e42ca4582298f7c51cbd23c38a3f3558e6e6528d8e3d7bc976",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_-5.jpg": "c9878956f27d44fc136b1a36bcbfe1ae57c4590d8a7ac2c72b46036402f33432",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_0.jpg": "a4f1fbe2b5afe813267e2e54e94ce986f070c41d30fe058df55832f471b5442f",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front_left/frame_0.jpg": "972bd2c33ae8d280396a88a793edcca95f0e3caa5fa22c437d6ed61f64917368",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front_right/frame_0.jpg": "16a10f25e5a10bfcf0c4ffb50192b984352a839dda93a565b6f03d1e40a80668",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_rear_left/frame_0.jpg": "06bf9d786b019f0b929282d9b86b2f557ceb8e2ad8cb651000b216a9218749ca",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_rear_right/frame_0.jpg": "6610203b0ee4138564a04f871f9a32d11e4e61308538c99e09cd006d565ab94c",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_rear_wide/frame_0.jpg": "1ebe248ac027f872906eb2e55728e81e5eec3eb6aa7e4f49120261549c18a8b9",
+    "/inputs/deploy_fixture_train8/fixture_002/ego_pose.parquet": "434180b8625e9cd37919ed5e9837d3ccaa8449e2777fb73bc735168b163a7dce",
+    "/inputs/deploy_fixture_train8/fixture_003/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_-1.jpg": "3ea9b18898281ec3bff30a84c50bb70f35f31ffb5f508a3f1b2b27d3f80a37c5",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_-10.jpg": "37e9d20eff0925a86f79f91ca5f10ef60baf23665262fa24f10a542e289f1bc3",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_-2.jpg": "a22de78edc9760f51a9667d5cf5d02024f6fdbb8e01be89b70e097fcafbec332",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_-5.jpg": "4a48d7e98213f314a66f5856ef946c5f635079b482eba238e265780a475ba487",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_0.jpg": "835ca73d5ac0f805edd97f9f50555629f039949bca2c16643421ce8e25c0394e",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front_left/frame_0.jpg": "c8f2405b99c3c8727eeaa48ba50d8be890248caeccbc58c31595d04b359046d3",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front_right/frame_0.jpg": "334ec4693a46187f4587afed8c278bbcbd0b2815190539e6a258a0fd2ca2a9f1",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_rear_left/frame_0.jpg": "c8c0bbf4362f4d1e21a48422d2978ef6fb7c62f5784e6049e098e6409af4324a",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_rear_right/frame_0.jpg": "49ce20a490a19bc81141e2b41c3e68e193311e9abb4db03a5ef67f8dcae267e6",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_rear_wide/frame_0.jpg": "3b8d1a6c04b43b68a6102b14d3cdd8e5288ed26ca2b21a487184a48273bd37d2",
+    "/inputs/deploy_fixture_train8/fixture_003/ego_pose.parquet": "2122713c00480763e7f8aedc38e97a3244d8bbdcaea5cdb8b119fc0a0c660cc6",
+    "/inputs/deploy_fixture_train8/fixture_004/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_-1.jpg": "e195f39be7d37fa26df93cc5d1c0e9d96f11784867ef0f3f14d97bd905620eed",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_-10.jpg": "822881541ddaaf987be976f33af2ff15482d9c6d9798385563a8c1546288fe21",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_-2.jpg": "cec0b759ca46edd175d1ec489e502a4b5b23bfdd89b4a65831212b88721ac4e6",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_-5.jpg": "e4492a52a8c4d61d59398f725bc03417ed699d327e9e0920c34045ca66e5a6a2",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_0.jpg": "b7440dd39b797a0ed7d01740728c620ed5aeaae0341354c1d152b9d93772f777",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front_left/frame_0.jpg": "896f6362f8ec7f0853284fbadc60af9d7f0cb7bfd9c28dac7cbbeeee01a71663",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front_right/frame_0.jpg": "ae052bc39575cf32b8205f0c574455b130e5693791033668a33d4baaeef99239",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_rear_left/frame_0.jpg": "3e67f27fc84d617a750ca8b77b4ffb12d0ce4314d7be9f1e8e7e15a121819f74",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_rear_right/frame_0.jpg": "627baedb5a34132f3415127dcb9dd133566e8ac4995c2d383f80f27ee6e89be4",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_rear_wide/frame_0.jpg": "37915abd4121078cba8f583b335d2d7d6b1b2081b5b493f5f3aefedc6a3c6116",
+    "/inputs/deploy_fixture_train8/fixture_004/ego_pose.parquet": "f7130d36504fa87fab6ae04cd811280e34dd244251524fb17f9501d655b4a844",
+    "/inputs/deploy_fixture_train8/fixture_005/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_-1.jpg": "fce709393a01236c4565d5132d9f0c408c39da4c3f8b5e0ad3c62b3af39959c8",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_-10.jpg": "7a607f92cf779a128a7eca65e911e96f200a6f772d2bf44a5eba7f4f3f32c728",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_-2.jpg": "7fe1062d4bd75da011432ff92765571007a0c41f1aa49450146c68ebade555cd",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_-5.jpg": "003bbc9fe7da8b8bd63bb9eac1f8e14c51bbd5dd3cb86bd075d3417affd7761c",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_0.jpg": "8aa5f535539117eaa37f71d2a9dfd17a178e17ba36e90cbc98eb964a78d80d1d",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front_left/frame_0.jpg": "ef4452dc0517f534b21cfc87501b6f0d99bbd022c195df4be2db42a2cce9b3a9",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front_right/frame_0.jpg": "e50275a784af416b480ac1544756d31aec354716abc0178b0b1dd5c13c1dcc40",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_rear_left/frame_0.jpg": "cb32f44e0d134d2c92063f4888864bb95847ab3ddeb6fb0e49c5550be172c946",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_rear_right/frame_0.jpg": "3c513c816c1182739925bd3faf4fd588e67711a8ea6cdc43650503e88fdce296",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_rear_wide/frame_0.jpg": "cdf1058563874eda9bf72180742b67011f19aa973b6af81183c29f2af6d6f3d8",
+    "/inputs/deploy_fixture_train8/fixture_005/ego_pose.parquet": "0da7b21485137df6e538a9fbe056b71df9969e86e1e981e2c5438197bd72205c",
+    "/inputs/deploy_fixture_train8/fixture_006/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_-1.jpg": "bfbc5488d00336b07472757e179bca2409d442a8119369106fe4ae630a58c370",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_-10.jpg": "83ac5d73dfb8277a6328dc20b0c125b342d051eb1e7b539698e40b48dab2a3e4",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_-2.jpg": "ef055f585607b258b8fefc75ff11e079eae72e484f9e38e2b5c3bb0f9ebe8f83",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_-5.jpg": "d978d3f9b20dadc8fcf6dff769e174f1329219cacacba56eb6671e6f1c55e70d",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_0.jpg": "a0c11c1c717f54fa87a948df1b60fb84e7cb4503751215bf17c658610e012224",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front_left/frame_0.jpg": "d35b06a0d1b134abc814021b8aaee4a9cfb8e7e94c75c0c87872f21918b1fde3",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front_right/frame_0.jpg": "47aa3e62b5f022dc01ad54c7c4cf5f187257b7f7c516da02d2f2192730a58726",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_rear_left/frame_0.jpg": "c749de4eee0c4c9454cdb0c2746bf91c99e4e8037549b7d473d8118c1f62d355",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_rear_right/frame_0.jpg": "d0fa9850ef372fbd39126f817ded752b5648a5ba405b2cf7b9372fdada9f34dd",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_rear_wide/frame_0.jpg": "4033021d21ba96779b8df883cae4efea343893ba2c0a5d5220d1ba820eb2b182",
+    "/inputs/deploy_fixture_train8/fixture_006/ego_pose.parquet": "d7995c52823b25d1edcb49d3bd7a05e16ce34e250604bee2a306616a1300aa1d",
+    "/inputs/deploy_fixture_train8/fixture_007/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_-1.jpg": "b070857b9cbb72cd1462a3ae6bb1af99f071a467168cabd6595931339bda774b",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_-10.jpg": "5465088afa6556cba7d60c21d0f158bf0d6096880e3b5c5377994788fdaef706",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_-2.jpg": "aedd87172c5d788d73ce5e57de22d5dae2ee08355c7a0415715572d0d416313e",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_-5.jpg": "c0e4a7e8714ff480ceaec13075987c882e616451b44e0c13215d3b6a41f8c960",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_0.jpg": "84bf4fc3b95c5abbb9cfaf96df5d32db49d035f3a0bb121bd7e29ad45392e9bb",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front_left/frame_0.jpg": "36120fdad2b6ac07c8911cc8c66020717f745e9f08f9da98654031601068862f",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front_right/frame_0.jpg": "390716a8144a738a143a15cd82d1cc74ef8af9e682082dbfb40067d5dd2fd380",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_rear_left/frame_0.jpg": "f4be165e8956d507f16e57c8b2dde77b1429aa1ee3c9c60670c6b7eeaba9f8ed",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_rear_right/frame_0.jpg": "441232176a40fd970ae89f2c5c06ddb369b2202d8ace78ddfbb08527f1062372",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_rear_wide/frame_0.jpg": "e004a9634f882d5b597276491c70f9dde5d6e25390d1f9a6421d8155138de8b7",
+    "/inputs/deploy_fixture_train8/fixture_007/ego_pose.parquet": "d638b150a928aef5bade83c06f70636b6051c544cd55e27af4dd920abd063853"
+  },
+  "raw_files_after": {
+    "/inputs/deploy_fixture_train8/fixture_000/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_-1.jpg": "e13b350ef4839adb744cc62544790918b01b2efd06757dcb471b10d09a88c0e7",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_-10.jpg": "39b6f7eccbd1cec9c5f409e5d70b053205b64065a0269a363b1fbc6babe866d1",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_-2.jpg": "9c599df6b49d37410277370e2cf280da58a08dd9f79806cc8dd392ac999a556d",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_-5.jpg": "555340b0b2ba066938d3d0cf51063ba72c048c8a4955a5bb1408d4b6a559f519",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front/frame_0.jpg": "a900a033a744797bd4773b4c5bc73096198186520c859885849efa90b5a7b9df",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front_left/frame_0.jpg": "bc477d30301bbf8b60a9318d85435207b4688de5c9361fbdc2e7e091000743b5",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_front_right/frame_0.jpg": "68205ec8ae9ebd6f2662ebb310697171ec2f85fdf4f444e6c3697c81d09df6aa",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_rear_left/frame_0.jpg": "4bca6d553f2e809d69fa801032a9be6dc231b8ea802c21a7e296b298cc79b8e5",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_rear_right/frame_0.jpg": "97e830b02eb4e0531f3cb19c8c763b5ec487c2217acd6c568c08394e0c3bd53d",
+    "/inputs/deploy_fixture_train8/fixture_000/camera_rear_wide/frame_0.jpg": "741f4ad891ac25e5b771ea30c355a0c0bec05260be1861dd4ecd0a4eff8292f7",
+    "/inputs/deploy_fixture_train8/fixture_000/ego_pose.parquet": "3403f8f5cf521b09b3c4936a0e1425d6afd5b5caad5533bb80949a2fb56ba2c0",
+    "/inputs/deploy_fixture_train8/fixture_001/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_-1.jpg": "50b309c430828e6b010f2d661f5dcbf12e0b760ec5b0b436132fe8fc49119e2c",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_-10.jpg": "9b6a2d2eab22c600bd7eaaacb48e5752b02a992f25c7db31fabac2ec5ecaa085",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_-2.jpg": "bfb786caf2f36a5810a13013182edb90f24ba47684965de7d791820b5eb6f3d3",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_-5.jpg": "262e04ccdd34cdaf66f5e5ed58a499f0517b66d55c0ae018ecebd37721b20f2d",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front/frame_0.jpg": "b615bf4425676e37cc00537ad43006502c12abcef6348f77911f650c6ede3be9",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front_left/frame_0.jpg": "a1d2aaf14b916ddb4858b546a075264d30f4276d0863633b86c77c04ce1211f4",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_front_right/frame_0.jpg": "15eb58f16708037b98afdfd4b8ef90f5a5720d493eb94dba1d7ace7a07c900f6",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_rear_left/frame_0.jpg": "28857d589596ee1e6dbde28e7700cfedd515822db15299233a4cbf186457ccf4",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_rear_right/frame_0.jpg": "50dfcea96104e6be4c692e3ec0d0b3e77b5f4b44125fa97dcef82ed57380f232",
+    "/inputs/deploy_fixture_train8/fixture_001/camera_rear_wide/frame_0.jpg": "88bca731d34a27697a653dfdcad982ee60158d2d572c130f6e61b2020e2dcb9a",
+    "/inputs/deploy_fixture_train8/fixture_001/ego_pose.parquet": "ab502d484f66eef8b2c3d6a54231fe53057e7c995b6b8dd08311a4350f67e6bf",
+    "/inputs/deploy_fixture_train8/fixture_002/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_-1.jpg": "3a2b7447b8d3f0d897f93c376569fbc10b7f799b3d439417a95e67ec6e460f4f",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_-10.jpg": "ba6bbe41552459679c9a52bc8fdbdbd2915d42d82be1600403e91f8054a395b9",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_-2.jpg": "61f303e53b31e4e42ca4582298f7c51cbd23c38a3f3558e6e6528d8e3d7bc976",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_-5.jpg": "c9878956f27d44fc136b1a36bcbfe1ae57c4590d8a7ac2c72b46036402f33432",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front/frame_0.jpg": "a4f1fbe2b5afe813267e2e54e94ce986f070c41d30fe058df55832f471b5442f",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front_left/frame_0.jpg": "972bd2c33ae8d280396a88a793edcca95f0e3caa5fa22c437d6ed61f64917368",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_front_right/frame_0.jpg": "16a10f25e5a10bfcf0c4ffb50192b984352a839dda93a565b6f03d1e40a80668",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_rear_left/frame_0.jpg": "06bf9d786b019f0b929282d9b86b2f557ceb8e2ad8cb651000b216a9218749ca",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_rear_right/frame_0.jpg": "6610203b0ee4138564a04f871f9a32d11e4e61308538c99e09cd006d565ab94c",
+    "/inputs/deploy_fixture_train8/fixture_002/camera_rear_wide/frame_0.jpg": "1ebe248ac027f872906eb2e55728e81e5eec3eb6aa7e4f49120261549c18a8b9",
+    "/inputs/deploy_fixture_train8/fixture_002/ego_pose.parquet": "434180b8625e9cd37919ed5e9837d3ccaa8449e2777fb73bc735168b163a7dce",
+    "/inputs/deploy_fixture_train8/fixture_003/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_-1.jpg": "3ea9b18898281ec3bff30a84c50bb70f35f31ffb5f508a3f1b2b27d3f80a37c5",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_-10.jpg": "37e9d20eff0925a86f79f91ca5f10ef60baf23665262fa24f10a542e289f1bc3",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_-2.jpg": "a22de78edc9760f51a9667d5cf5d02024f6fdbb8e01be89b70e097fcafbec332",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_-5.jpg": "4a48d7e98213f314a66f5856ef946c5f635079b482eba238e265780a475ba487",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front/frame_0.jpg": "835ca73d5ac0f805edd97f9f50555629f039949bca2c16643421ce8e25c0394e",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front_left/frame_0.jpg": "c8f2405b99c3c8727eeaa48ba50d8be890248caeccbc58c31595d04b359046d3",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_front_right/frame_0.jpg": "334ec4693a46187f4587afed8c278bbcbd0b2815190539e6a258a0fd2ca2a9f1",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_rear_left/frame_0.jpg": "c8c0bbf4362f4d1e21a48422d2978ef6fb7c62f5784e6049e098e6409af4324a",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_rear_right/frame_0.jpg": "49ce20a490a19bc81141e2b41c3e68e193311e9abb4db03a5ef67f8dcae267e6",
+    "/inputs/deploy_fixture_train8/fixture_003/camera_rear_wide/frame_0.jpg": "3b8d1a6c04b43b68a6102b14d3cdd8e5288ed26ca2b21a487184a48273bd37d2",
+    "/inputs/deploy_fixture_train8/fixture_003/ego_pose.parquet": "2122713c00480763e7f8aedc38e97a3244d8bbdcaea5cdb8b119fc0a0c660cc6",
+    "/inputs/deploy_fixture_train8/fixture_004/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_-1.jpg": "e195f39be7d37fa26df93cc5d1c0e9d96f11784867ef0f3f14d97bd905620eed",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_-10.jpg": "822881541ddaaf987be976f33af2ff15482d9c6d9798385563a8c1546288fe21",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_-2.jpg": "cec0b759ca46edd175d1ec489e502a4b5b23bfdd89b4a65831212b88721ac4e6",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_-5.jpg": "e4492a52a8c4d61d59398f725bc03417ed699d327e9e0920c34045ca66e5a6a2",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front/frame_0.jpg": "b7440dd39b797a0ed7d01740728c620ed5aeaae0341354c1d152b9d93772f777",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front_left/frame_0.jpg": "896f6362f8ec7f0853284fbadc60af9d7f0cb7bfd9c28dac7cbbeeee01a71663",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_front_right/frame_0.jpg": "ae052bc39575cf32b8205f0c574455b130e5693791033668a33d4baaeef99239",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_rear_left/frame_0.jpg": "3e67f27fc84d617a750ca8b77b4ffb12d0ce4314d7be9f1e8e7e15a121819f74",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_rear_right/frame_0.jpg": "627baedb5a34132f3415127dcb9dd133566e8ac4995c2d383f80f27ee6e89be4",
+    "/inputs/deploy_fixture_train8/fixture_004/camera_rear_wide/frame_0.jpg": "37915abd4121078cba8f583b335d2d7d6b1b2081b5b493f5f3aefedc6a3c6116",
+    "/inputs/deploy_fixture_train8/fixture_004/ego_pose.parquet": "f7130d36504fa87fab6ae04cd811280e34dd244251524fb17f9501d655b4a844",
+    "/inputs/deploy_fixture_train8/fixture_005/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_-1.jpg": "fce709393a01236c4565d5132d9f0c408c39da4c3f8b5e0ad3c62b3af39959c8",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_-10.jpg": "7a607f92cf779a128a7eca65e911e96f200a6f772d2bf44a5eba7f4f3f32c728",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_-2.jpg": "7fe1062d4bd75da011432ff92765571007a0c41f1aa49450146c68ebade555cd",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_-5.jpg": "003bbc9fe7da8b8bd63bb9eac1f8e14c51bbd5dd3cb86bd075d3417affd7761c",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front/frame_0.jpg": "8aa5f535539117eaa37f71d2a9dfd17a178e17ba36e90cbc98eb964a78d80d1d",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front_left/frame_0.jpg": "ef4452dc0517f534b21cfc87501b6f0d99bbd022c195df4be2db42a2cce9b3a9",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_front_right/frame_0.jpg": "e50275a784af416b480ac1544756d31aec354716abc0178b0b1dd5c13c1dcc40",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_rear_left/frame_0.jpg": "cb32f44e0d134d2c92063f4888864bb95847ab3ddeb6fb0e49c5550be172c946",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_rear_right/frame_0.jpg": "3c513c816c1182739925bd3faf4fd588e67711a8ea6cdc43650503e88fdce296",
+    "/inputs/deploy_fixture_train8/fixture_005/camera_rear_wide/frame_0.jpg": "cdf1058563874eda9bf72180742b67011f19aa973b6af81183c29f2af6d6f3d8",
+    "/inputs/deploy_fixture_train8/fixture_005/ego_pose.parquet": "0da7b21485137df6e538a9fbe056b71df9969e86e1e981e2c5438197bd72205c",
+    "/inputs/deploy_fixture_train8/fixture_006/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_-1.jpg": "bfbc5488d00336b07472757e179bca2409d442a8119369106fe4ae630a58c370",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_-10.jpg": "83ac5d73dfb8277a6328dc20b0c125b342d051eb1e7b539698e40b48dab2a3e4",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_-2.jpg": "ef055f585607b258b8fefc75ff11e079eae72e484f9e38e2b5c3bb0f9ebe8f83",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_-5.jpg": "d978d3f9b20dadc8fcf6dff769e174f1329219cacacba56eb6671e6f1c55e70d",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front/frame_0.jpg": "a0c11c1c717f54fa87a948df1b60fb84e7cb4503751215bf17c658610e012224",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front_left/frame_0.jpg": "d35b06a0d1b134abc814021b8aaee4a9cfb8e7e94c75c0c87872f21918b1fde3",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_front_right/frame_0.jpg": "47aa3e62b5f022dc01ad54c7c4cf5f187257b7f7c516da02d2f2192730a58726",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_rear_left/frame_0.jpg": "c749de4eee0c4c9454cdb0c2746bf91c99e4e8037549b7d473d8118c1f62d355",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_rear_right/frame_0.jpg": "d0fa9850ef372fbd39126f817ded752b5648a5ba405b2cf7b9372fdada9f34dd",
+    "/inputs/deploy_fixture_train8/fixture_006/camera_rear_wide/frame_0.jpg": "4033021d21ba96779b8df883cae4efea343893ba2c0a5d5220d1ba820eb2b182",
+    "/inputs/deploy_fixture_train8/fixture_006/ego_pose.parquet": "d7995c52823b25d1edcb49d3bd7a05e16ce34e250604bee2a306616a1300aa1d",
+    "/inputs/deploy_fixture_train8/fixture_007/calibration.parquet": "07a225bdca7c0caefd0aed72e0f56d4a539dcd5774bbb5d901a319a3aca8c1f7",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_-1.jpg": "b070857b9cbb72cd1462a3ae6bb1af99f071a467168cabd6595931339bda774b",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_-10.jpg": "5465088afa6556cba7d60c21d0f158bf0d6096880e3b5c5377994788fdaef706",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_-2.jpg": "aedd87172c5d788d73ce5e57de22d5dae2ee08355c7a0415715572d0d416313e",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_-5.jpg": "c0e4a7e8714ff480ceaec13075987c882e616451b44e0c13215d3b6a41f8c960",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front/frame_0.jpg": "84bf4fc3b95c5abbb9cfaf96df5d32db49d035f3a0bb121bd7e29ad45392e9bb",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front_left/frame_0.jpg": "36120fdad2b6ac07c8911cc8c66020717f745e9f08f9da98654031601068862f",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_front_right/frame_0.jpg": "390716a8144a738a143a15cd82d1cc74ef8af9e682082dbfb40067d5dd2fd380",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_rear_left/frame_0.jpg": "f4be165e8956d507f16e57c8b2dde77b1429aa1ee3c9c60670c6b7eeaba9f8ed",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_rear_right/frame_0.jpg": "441232176a40fd970ae89f2c5c06ddb369b2202d8ace78ddfbb08527f1062372",
+    "/inputs/deploy_fixture_train8/fixture_007/camera_rear_wide/frame_0.jpg": "e004a9634f882d5b597276491c70f9dde5d6e25390d1f9a6421d8155138de8b7",
+    "/inputs/deploy_fixture_train8/fixture_007/ego_pose.parquet": "d638b150a928aef5bade83c06f70636b6051c544cd55e27af4dd920abd063853"
+  },
+  "environment": {
+    "python": "3.10.20",
+    "torch": "2.7.1+cu128",
+    "cuda_build": "12.8",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "precision": "bf16",
+    "planner_precision": "fp32",
+    "tf32": false,
+    "deterministic_algorithms": true
+  },
+  "argv": [
+    "/source/scripts/smoke_motiondrive_v2_p4_deployment.py",
+    "--bundle",
+    "/bundle/p4_fresh_joint_s1_last6000_deployment.pth",
+    "--expected-bundle-sha256",
+    "edfd1bb738b878653b16b546336112f47f5bd100be044826f1727b5e15bd9e49",
+    "--expected-checkpoint-sha256",
+    "c937f2f772c78f99cf3cfa5b1a96614267e20a9a667a157f4ada284940f9672e",
+    "--expected-run-manifest-sha256",
+    "49dc09c8e7840a059ae6bcadba1c490052847c678dc81d5524ee39f9da159aad",
+    "--fixture-root",
+    "/inputs/deploy_fixture_train8",
+    "--reference",
+    "/reference/p1_gradient_train8.pt",
+    "--calibration",
+    "/inputs/calibration.npz",
+    "--geometry-contract",
+    "/inputs/supervision_manifest.json",
+    "--source-manifest",
+    "/source/source_manifest.json",
+    "--output",
+    "/reports/p4_s1_smoke_timing.json",
+    "--device",
+    "cuda:0",
+    "--precision",
+    "bf16",
+    "--warmup",
+    "20",
+    "--repeats",
+    "50"
+  ],
+  "started_at": "2026-09-07T16:47:16.875439+00:00",
+  "ended_at": "2026-09-07T16:47:49.056211+00:00"
+}
