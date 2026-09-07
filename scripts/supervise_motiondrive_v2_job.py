@@ -6,10 +6,12 @@ Usage (launcher creates the surrounding process group/log redirection):
     --record /project/logs/motiondrive_v2/job.supervisor.json -- \
     scripts/train_motiondrive_v2.py ... --gpu 0 --run-dir /project/work_dirs/motiondrive_v2/job
 
-Only the reviewed trainer is executable. No shell, new child session, automatic
-kill, deletion, or interpretation of stdout completion messages is used. A child
-still alive after its manifest becomes terminal is recorded as teardown_pending
-after the grace interval; the supervisor continues waiting without killing it.
+Only the reviewed trainer is executable. No shell, new child session, deletion,
+or interpretation of stdout completion messages is used. By default a child still
+alive after its manifest becomes terminal is recorded as teardown_pending and
+never automatically killed. Explicit trainer --cuda-min-free-mib > 0 enables a
+separate shared-GPU safety policy: pressure or a failed memory query terminates
+only our Popen child, escalating to child.kill() after the safety grace period.
 """
 from __future__ import annotations
 
@@ -61,10 +63,10 @@ def validate_command(root, record, argv):
         if not token.startswith("--"):
             continue
         option, equal, value = token.partition("=")
-        for name in ("--gpu", "--run-dir"):
+        for name in ("--gpu", "--run-dir", "--cuda-min-free-mib"):
             if name.startswith(option) and name != option:
-                raise SupervisorError("Abbreviated GPU/run-dir options are not allowed")
-        if option not in ("--gpu", "--run-dir"):
+                raise SupervisorError("Abbreviated controlled options are not allowed")
+        if option not in ("--gpu", "--run-dir", "--cuda-min-free-mib"):
             continue
         if option in controlled:
             raise SupervisorError(f"Duplicate controlled option: {option}")
@@ -73,10 +75,13 @@ def validate_command(root, record, argv):
                 raise SupervisorError(f"Missing value for {option}")
             value = argv[i + 1]
         controlled[option] = value
-    if set(controlled) != {"--gpu", "--run-dir"}:
+    if not {"--gpu", "--run-dir"}.issubset(controlled):
         raise SupervisorError("Explicit --gpu and --run-dir are required")
     if controlled["--gpu"] not in {"0", "1", "2", "3"}:
         raise SupervisorError("Only GPU0--3 may be assigned")
+    minimum = controlled.get("--cuda-min-free-mib", "0")
+    if not minimum.isascii() or not minimum.isdecimal():
+        raise SupervisorError("--cuda-min-free-mib must be a nonnegative integer; 0 disables the guard")
     run = Path(controlled["--run-dir"])
     run_base = contained(root / "work_dirs/motiondrive_v2", root)
     run = contained(run if run.is_absolute() else root / run, run_base)
@@ -93,7 +98,30 @@ def validate_command(root, record, argv):
     # Use this interpreter, never a caller-supplied executable or shell command.
     return {"root": root, "record": record_path, "run_dir": run,
             "manifest_path": run / "manifest.json", "command": [sys.executable, *argv],
-            "gpu": int(controlled["--gpu"])}
+            "gpu": int(controlled["--gpu"]), "cuda_min_free_mib": int(minimum)}
+
+
+def query_gpu_free_memory(gpu):
+    """Read only the requested physical GPU; no CUDA context or foreign signals."""
+    if type(gpu) is not int or gpu not in range(4):
+        raise SupervisorError("Memory guard is restricted to physical GPU0--3")
+    command = ["nvidia-smi", "-i", str(gpu), "--query-gpu=index,uuid,memory.free",
+               "--format=csv,noheader,nounits"]
+    output = subprocess.run(command, check=True, capture_output=True, text=True, timeout=5).stdout
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    if len(lines) != 1:
+        raise SupervisorError("Memory query must return exactly one GPU")
+    fields = [value.strip() for value in lines[0].split(",")]
+    if len(fields) != 3:
+        raise SupervisorError("Malformed GPU memory query")
+    index, gpu_uuid, free = fields
+    if index != str(gpu) or not gpu_uuid.startswith("GPU-"):
+        raise SupervisorError("Memory query physical GPU identity mismatch")
+    free = float(free)
+    if not math.isfinite(free) or free < 0:
+        raise SupervisorError("GPU free memory must be finite and nonnegative")
+    return {"physical_gpu": gpu, "gpu_uuid": gpu_uuid, "free_mib": free,
+            "command": command}
 
 
 class OwnedRecord:
@@ -161,14 +189,21 @@ def exit_fields(returncode, snapshot):
 
 
 def supervise_job(root, record_path, argv, *, teardown_grace_seconds=60., poll_seconds=1.,
-                  process_factory=None, sleeper=None, monotonic=None, install_signal_handlers=True):
+                  process_factory=None, sleeper=None, monotonic=None, install_signal_handlers=True,
+                  gpu_memory_query=None, pressure_poll_seconds=5., safety_grace_seconds=30.):
     if not math.isfinite(teardown_grace_seconds) or teardown_grace_seconds < 0:
         raise SupervisorError("teardown grace must be finite and nonnegative")
     if not math.isfinite(poll_seconds) or not 0 < poll_seconds <= 45:
         raise SupervisorError("poll interval must be between 0 and 45 seconds")
+    if not math.isfinite(pressure_poll_seconds) or not 0 < pressure_poll_seconds <= 45:
+        raise SupervisorError("pressure poll interval must be between 0 and 45 seconds")
+    if not math.isfinite(safety_grace_seconds) or safety_grace_seconds < 0:
+        raise SupervisorError("safety grace must be finite and nonnegative")
     prepared = validate_command(root, record_path, argv)
     popen = process_factory or subprocess.Popen
     sleep, clock = sleeper or time.sleep, monotonic or time.monotonic
+    pressure_enabled = prepared["cuda_min_free_mib"] > 0
+    query_memory = gpu_memory_query or query_gpu_free_memory
     record = {"schema_version": 1, "supervisor_record_id": uuid.uuid4().hex,
               "supervisor_pid": os.getpid(), "supervisor_process_group": os.getpgrp(),
               "child_pid": None, "child_start_new_session": False,
@@ -178,7 +213,17 @@ def supervise_job(root, record_path, argv, *, teardown_grace_seconds=60., poll_s
               "termination_signal": None, "trainer_manifest": None,
               "teardown_grace_seconds": teardown_grace_seconds,
               "teardown_pending_observed": False,
-              "received_signals": [], "automatic_kill_enabled": False}
+              "received_signals": [], "automatic_kill_enabled": pressure_enabled}
+    if pressure_enabled:
+        record.update(pressure_policy={
+            "enabled": True, "source": "trainer --cuda-min-free-mib",
+            "physical_gpu": prepared["gpu"], "minimum_free_mib": prepared["cuda_min_free_mib"],
+            "poll_seconds": pressure_poll_seconds, "safety_grace_seconds": safety_grace_seconds,
+            "trigger": "free_mib < minimum_free_mib OR query failure",
+            "signal_scope": "exact Popen child only; never another PID or process group",
+            "actions": ["SIGTERM once", "kill once if still alive after safety grace"]},
+            pressure_checks={"count": 0, "last": None, "minimum_observed_free_mib": None},
+            pressure_event=None)
     owned = OwnedRecord(prepared["record"], record)
     pending, previous_handlers = [], {}
     def received(signum, _frame):
@@ -201,6 +246,7 @@ def supervise_job(root, record_path, argv, *, teardown_grace_seconds=60., poll_s
         record.update(child_pid=child.pid, status="running", child_started_at=now())
         owned.write(record)
         terminal_since, first_terminal_at = None, None
+        pressure_since, next_pressure_check = None, -math.inf
         while True:
             rc = child.poll()
             for sig in pending[:]:
@@ -221,8 +267,74 @@ def supervise_job(root, record_path, argv, *, teardown_grace_seconds=60., poll_s
             record["last_observed_at"] = now()
             if rc is not None:
                 record.update(status="process_exited", ended_at=now(), **exit_fields(rc, snapshot))
+                if pressure_enabled and record["pressure_event"] is not None:
+                    # Even a graceful rc=0/completed exit after pressure is not a
+                    # successful experiment. Preserve the actual native exit above.
+                    record["exit_outcome_without_pressure"] = record["outcome"]
+                    record.update(outcome="cuda_memory_pressure", supervisor_exit_code=1)
                 owned.write(record)
                 return record
+            if pressure_enabled and pressure_since is None and clock() >= next_pressure_check:
+                sample = {"observed_at": now(), "physical_gpu": prepared["gpu"]}
+                reason = None
+                try:
+                    observed = query_memory(prepared["gpu"])
+                    if (not isinstance(observed, dict) or observed.get("physical_gpu") != prepared["gpu"]
+                            or not isinstance(observed.get("gpu_uuid"), str)
+                            or not observed["gpu_uuid"].startswith("GPU-")):
+                        raise SupervisorError("Memory query identity/record mismatch")
+                    free = float(observed["free_mib"])
+                    if not math.isfinite(free) or free < 0:
+                        raise SupervisorError("Memory query returned invalid free memory")
+                    sample.update(observed, free_mib=free)
+                    minimum_seen = record["pressure_checks"]["minimum_observed_free_mib"]
+                    record["pressure_checks"]["minimum_observed_free_mib"] = (
+                        free if minimum_seen is None else min(minimum_seen, free))
+                    if free < prepared["cuda_min_free_mib"]:
+                        reason = "below_minimum_free_memory"
+                except Exception as exc:
+                    # A failed/malformed query cannot silently disable a guard
+                    # that was explicitly requested for a shared GPU.
+                    sample["query_error"] = f"{type(exc).__name__}: {exc}"
+                    reason = "memory_query_failed"
+                record["pressure_checks"]["count"] += 1
+                record["pressure_checks"]["last"] = sample
+                next_pressure_check = clock() + pressure_poll_seconds
+                if reason is not None:
+                    pressure_since = clock()
+                    event = {"reason": reason, "observed_at": now(), "child_pid": child.pid,
+                             "query": sample, "sigterm_attempted": True, "sigterm_sent": False,
+                             "kill_attempted": False, "kill_sent": False}
+                    record["pressure_event"] = event
+                    record["status"] = "pressure_terminating"
+                    owned.write(record)  # persist ownership/evidence before any signal
+                    try:
+                        child.send_signal(signal.SIGTERM)
+                        event.update(sigterm_sent=True, sigterm_sent_at=now())
+                    except ProcessLookupError:
+                        event["child_already_exited_before_sigterm"] = True
+                    except OSError as exc:
+                        event["sigterm_error"] = f"{type(exc).__name__}: {exc}"
+                    pressure_since = clock()
+                    event["safety_grace_started_at"] = now()
+            if pressure_since is not None:
+                event = record["pressure_event"]
+                elapsed = max(0., clock() - pressure_since)
+                event["seconds_since_pressure"] = elapsed
+                if elapsed >= safety_grace_seconds and not event["kill_attempted"]:
+                    event.update(kill_attempted=True, kill_attempted_at=now())
+                    owned.write(record)
+                    try:
+                        child.kill()
+                        event.update(kill_sent=True, kill_sent_at=now())
+                    except ProcessLookupError:
+                        event["child_already_exited_before_kill"] = True
+                    except OSError as exc:
+                        event["kill_error"] = f"{type(exc).__name__}: {exc}"
+                record["status"] = "pressure_kill_pending" if event["kill_attempted"] else "pressure_terminating"
+                owned.write(record)
+                sleep(min(poll_seconds, pressure_poll_seconds))
+                continue
             terminal = snapshot.get("belongs_to_child") and snapshot.get("status") in TERMINAL_TRAINER_STATES
             if terminal:
                 if terminal_since is None:
@@ -237,9 +349,10 @@ def supervise_job(root, record_path, argv, *, teardown_grace_seconds=60., poll_s
             else:
                 terminal_since, first_terminal_at = None, None
                 record["status"] = "running"
-            # Even after grace expiry, keep waiting: no terminate/kill/delete.
+            # Ordinary trainer teardown never enables automatic killing. Only
+            # the explicit pressure policy above may terminate the owned child.
             owned.write(record)
-            sleep(poll_seconds)
+            sleep(min(poll_seconds, pressure_poll_seconds) if pressure_enabled else poll_seconds)
     finally:
         for sig, old in previous_handlers.items():
             signal.signal(sig, old)

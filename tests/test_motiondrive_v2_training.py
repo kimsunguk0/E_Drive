@@ -269,7 +269,8 @@ def test_time_cli_default_explicit_and_no_abbreviation_bypass():
 
 
 @pytest.mark.parametrize("time_mode", ["raw", "nominal"])
-def test_cpu_mock_all_forward_paths_use_same_policy_and_loss_gets_original_gt(tmp_path, monkeypatch, time_mode):
+@pytest.mark.parametrize("microbatch", [0, 1, 2])
+def test_cpu_mock_all_forward_paths_use_same_policy_and_loss_gets_original_gt(tmp_path, monkeypatch, time_mode, microbatch):
     """Two-step scalar mock only: no driving data, real V2 network, or GPU run."""
     import motiondrive_v2_data as data_module
     import models.motiondrive_v2 as model_module
@@ -317,22 +318,22 @@ def test_cpu_mock_all_forward_paths_use_same_policy_and_loss_gets_original_gt(tm
             times = inputs["time_offsets"]
             calls.append({"training": self.training, "time_offsets": times.clone()})
             b = len(inputs["images"])
-            value = self.bias + times.float().sum() / 100.
+            value = self.bias + times.float().mean(0).sum() / 100.
             return {"plan_abs": value.expand(b, 6, 2), "history_hat": value.expand(b, 4, 4),
                     "state_hat": value.expand(b, 6), "occ_logits": value.expand(b, 1, 2, 2),
                     "lane_logits": value.expand(b, 1, 2, 2)}
 
     real_compute_loss = trainer.compute_loss
 
-    def checked_loss(outputs, batch, weights):
-        assert torch.equal(batch["time_offsets"], raw_times.expand(2, -1))
+    def checked_loss(outputs, batch, weights, **kwargs):
+        assert torch.equal(batch["time_offsets"], raw_times.expand(len(batch["row"]), -1))
         for row, gt, history, state in zip(batch["row"], batch["gt_plan"], batch["history_target"], batch["state_target"]):
             assert torch.equal(gt, torch.full_like(gt, float(row) / 10.))
             assert torch.equal(history, torch.full_like(history, float(row) / 10.))
             assert torch.equal(state, torch.full_like(state, float(row) / 10.))
         assert all(batch[key].all() for key in ("plan_valid", "history_valid", "state_valid", "occ_valid", "lane_valid"))
         losses.append(True)
-        return real_compute_loss(outputs, batch, weights)
+        return real_compute_loss(outputs, batch, weights, **kwargs)
 
     monkeypatch.setattr(data_module, "MotionDriveDataset", FakeDataset)
     monkeypatch.setattr(model_module, "MotionDriveV2", FakeModel)
@@ -350,7 +351,7 @@ def test_cpu_mock_all_forward_paths_use_same_policy_and_loss_gets_original_gt(tm
     required = ["--cpu", "--allow-unpretrained", "--split-manifest", str(split),
                 "--supervision-root", str(supervision), "--steps", "2", "--batch", "2",
                 "--eval-batch", "2", "--workers", "0", "--eval-every", "1", "--save-every", "2",
-                "--log-every", "1", "--bn-policy", "fixed"]
+                "--log-every", "1", "--bn-policy", "fixed", "--microbatch", str(microbatch)]
 
     def run(name, extra):
         target = tmp_path / name
@@ -360,19 +361,23 @@ def test_cpu_mock_all_forward_paths_use_same_policy_and_loss_gets_original_gt(tm
 
     def check_calls(mode, expected_training):
         expected = nominal_times if mode == "nominal" else raw_times
+        if microbatch == 1:
+            expected_training = [value for is_training in expected_training
+                                 for value in ([True, True] if is_training else [False])]
         assert [call["training"] for call in calls] == expected_training
         for call in calls:
             assert call["time_offsets"].dtype == expected.dtype
-            assert torch.equal(call["time_offsets"], expected.expand(2, -1))
+            assert torch.equal(call["time_offsets"], expected.expand(len(call["time_offsets"]), -1))
 
     try:
         # Raw omits the new flag entirely; this exercises the backward-compatible default.
         run_dir = run("initial", [] if time_mode == "raw" else ["--time-input", time_mode])
         check_calls(time_mode, [False, True, False, True, False])
-        assert len(losses) == 2
+        assert len(losses) == (4 if microbatch == 1 else 2)
         manifest = json.loads((run_dir / "manifest.json").read_text())
         assert manifest["time_input"] == manifest["arguments"]["time_input"] == time_mode
         assert manifest["time_input_policy"]["supervision_and_dataset_modified"] is False
+        assert manifest["microbatch_policy"]["microbatch"] == microbatch
         assert json.loads((run_dir / "initial_eval.json").read_text())["time_input"] == time_mode
         assert json.loads((run_dir / "latest_eval.json").read_text())["time_input"] == time_mode
         checkpoint = run_dir / "last.pth"

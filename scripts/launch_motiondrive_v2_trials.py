@@ -12,6 +12,7 @@ import csv
 import hashlib
 import io
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -31,6 +32,8 @@ NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,95}\Z")
 TRAINER = "scripts/train_motiondrive_v2.py"
 SUPERVISOR = "scripts/supervise_motiondrive_v2_job.py"
 CONTROLLED = ("--gpu", "--run-dir")
+SHARING_FLAGS = {"--cuda-memory-limit-mib": "allocator_limit_mib",
+                 "--cuda-min-free-mib": "reserve_mib"}
 
 
 def sha256(path):
@@ -79,13 +82,44 @@ def scalar_option(options, name, required=False):
     return options[name][0]
 
 
+def validate_gpu_sharing(value):
+    """Explicit opt-in only; budgets are per process, not an aggregate promise."""
+    if not isinstance(value, dict):
+        raise LaunchError("gpu_sharing must be a JSON object")
+    mode = value.get("mode")
+    if mode == "idle_only":
+        if set(value) != {"mode"}:
+            raise LaunchError("idle_only gpu_sharing accepts only mode")
+        return {"mode": "idle_only"}
+    if mode != "shared" or set(value) != {"mode", "allocator_limit_mib", "reserve_mib"}:
+        raise LaunchError("gpu_sharing must be idle_only or shared with exactly allocator_limit_mib and reserve_mib")
+    for name in ("allocator_limit_mib", "reserve_mib"):
+        if type(value[name]) is not int or value[name] <= 0:
+            raise LaunchError(f"gpu_sharing {name} must be a positive JSON integer")
+    return dict(value)
+
+
+def validate_sharing_argv(options, policy):
+    """Never add/alter trainer flags silently or accept an abbreviated override."""
+    if policy["mode"] != "shared":
+        return
+    for option in options:
+        if any(flag.startswith(option) and flag != option for flag in SHARING_FLAGS):
+            raise LaunchError(f"Shared GPU memory flags must not be abbreviated: {option}")
+    for flag, field in SHARING_FLAGS.items():
+        value = scalar_option(options, flag, required=True)
+        if not re.fullmatch(r"[1-9][0-9]*", value) or int(value) != policy[field]:
+            raise LaunchError(f"Shared trainer {flag} must exactly match gpu_sharing.{field}={policy[field]}")
+
+
 def validate_plan(plan):
     """Validate every job and artifact path without creating anything."""
     if not isinstance(plan, dict):
         raise LaunchError("Plan must be a JSON object")
-    allowed = {"experiment_id", "root", "expected_git_sha", "jobs", "description", "supervise"}
+    allowed = {"experiment_id", "root", "expected_git_sha", "jobs", "description", "supervise", "gpu_sharing"}
     if set(plan) - allowed:
         raise LaunchError(f"Unknown plan keys: {sorted(set(plan) - allowed)}")
+    sharing = validate_gpu_sharing(plan.get("gpu_sharing", {"mode": "idle_only"}))
     experiment = plan.get("experiment_id", "")
     if not isinstance(experiment, str) or not NAME.fullmatch(experiment):
         raise LaunchError("Invalid experiment_id")
@@ -156,6 +190,7 @@ def validate_plan(plan):
         lexical_targets.extend((root / "work_dirs/motiondrive_v2" / name,
                                 root / "logs/motiondrive_v2" / f"{name}.log"))
         options = options_from_argv(argv)
+        validate_sharing_argv(options, sharing)
         lineage = {}
         for flag, kind in (("--init", "checkpoint_init"), ("--resume", "checkpoint_resume"),
                            ("--pretrained", "public_pretrained"),
@@ -185,6 +220,9 @@ def validate_plan(plan):
             "description": plan.get("description", ""), "expected_git_sha": expected,
             "launch_manifest": str(manifest), "trainer_sha256": sha256(trainer),
             "supervise": supervise, "supervisor_sha256": sha256(supervisor) if supervise else None,
+            "gpu_sharing": sharing, "gpu_sharing_explicit": "gpu_sharing" in plan,
+            "plan_json_sha256": hashlib.sha256(json.dumps(plan, sort_keys=True, separators=(",", ":"),
+                                                          ensure_ascii=False, allow_nan=False).encode()).hexdigest(),
             "jobs": jobs}
 
 
@@ -202,11 +240,21 @@ def inspect_gpus():
                                 check=True, text=True, capture_output=True).stdout
         return list(csv.reader(io.StringIO(output), skipinitialspace=True))
     devices = {}
-    for row in query("--query-gpu=index,uuid,memory.used"):
+    for row in query("--query-gpu=index,uuid,memory.used,memory.free,memory.total"):
         if not row:
             continue
-        index, uuid, used = row
-        devices[int(index)] = {"uuid": uuid.strip(), "memory_used_mib": float(used)}
+        if len(row) != 5:
+            raise LaunchError("GPU memory query must provide index, UUID, used, free and total")
+        index, uuid, used, free, total = row
+        try:
+            entry = {"uuid": uuid.strip(), "memory_used_mib": float(used),
+                     "memory_free_mib": float(free), "memory_total_mib": float(total)}
+            index = int(index)
+        except ValueError as exc:
+            raise LaunchError("GPU memory query contains unparseable measurements") from exc
+        if index in devices or not entry["uuid"]:
+            raise LaunchError("GPU memory query contains duplicate index or missing UUID")
+        devices[index] = entry
     processes = []
     for row in query("--query-compute-apps=gpu_uuid,pid,process_name"):
         if not row or row[0].startswith("No running processes"):
@@ -214,6 +262,30 @@ def inspect_gpus():
         uuid, pid, name = row
         processes.append({"gpu_uuid": uuid.strip(), "pid": int(pid), "process_name": name.strip()})
     return {"devices": devices, "compute_processes": processes}
+
+
+def shared_memory_admission(index, entry, processes, policy):
+    values = {}
+    for field in ("memory_used_mib", "memory_free_mib", "memory_total_mib"):
+        value = entry.get(field)
+        if type(value) not in (int, float) or not math.isfinite(value):
+            raise LaunchError(f"GPU {index} missing/nonfinite measured {field}")
+        values[field] = value
+    used, free, total = (values[field] for field in
+                         ("memory_used_mib", "memory_free_mib", "memory_total_mib"))
+    if total <= 0 or used < 0 or free < 0 or used > total or free > total or used + free > total:
+        raise LaunchError(f"GPU {index} inconsistent used/free/total memory measurements: {values}")
+    limit, reserve = policy["allocator_limit_mib"], policy["reserve_mib"]
+    required = limit + reserve
+    if required > total or free < required:
+        raise LaunchError(f"GPU {index} free memory {free} MiB cannot admit allocator {limit} + reserve {reserve} MiB")
+    return {"gpu": index, "gpu_uuid": entry["uuid"], **values,
+            "allocator_limit_mib": limit, "reserve_mib": reserve,
+            "required_free_mib": required, "free_after_full_allocator_budget_mib": free - limit,
+            "remaining_above_reserve_mib": free - required,
+            "existing_compute_processes": [dict(p) for p in processes if p["gpu_uuid"] == entry["uuid"]],
+            "admitted": True,
+            "scope": "Point-in-time admission only; per-process PyTorch allocator cap and runtime free-memory guard are required. This does not reserve VRAM against other processes."}
 
 
 def preflight(prepared):
@@ -226,6 +298,9 @@ def preflight(prepared):
         raise LaunchError(f"Source SHA mismatch: expected {expected}, got {actual}")
     gpu = inspect_gpus()
     devices, processes = gpu["devices"], gpu["compute_processes"]
+    sharing = validate_gpu_sharing(prepared.get("gpu_sharing", {"mode": "idle_only"}))
+    for job in prepared["jobs"]:
+        validate_sharing_argv(options_from_argv(job["explicit_argv"]), sharing)
     selected = sorted(j["gpu"] for j in prepared["jobs"])
     # CUDA ids become the UUID order, so requested logical id N still maps to
     # physical nvidia-smi GPU N. GPUs 4--7 never enter the child CUDA namespace.
@@ -235,13 +310,17 @@ def preflight(prepared):
     known_uuids = {entry["uuid"] for entry in devices.values()}
     if any(proc["gpu_uuid"] not in known_uuids for proc in processes):
         raise LaunchError("Compute-process GPU UUID cannot be mapped safely (possibly MIG)")
+    admissions = []
     for index in selected:
         entry = devices[index]
-        if not (0 <= entry["memory_used_mib"] < 1000):
-            raise LaunchError(f"GPU {index} memory is not below 1000 MiB: {entry['memory_used_mib']}")
-        if any(proc["gpu_uuid"] == entry["uuid"] for proc in processes):
-            raise LaunchError(f"GPU {index} has an active compute process")
-    return {**repository, "gpu_preflight": gpu,
+        if sharing["mode"] == "shared":
+            admissions.append(shared_memory_admission(index, entry, processes, sharing))
+        else:
+            if not (0 <= entry["memory_used_mib"] < 1000):
+                raise LaunchError(f"GPU {index} memory is not below 1000 MiB: {entry['memory_used_mib']}")
+            if any(proc["gpu_uuid"] == entry["uuid"] for proc in processes):
+                raise LaunchError(f"GPU {index} has an active compute process")
+    return {**repository, "gpu_preflight": gpu, "gpu_memory_admission": admissions,
             "child_environment_overrides": {"OMP_NUM_THREADS": "4", "MKL_NUM_THREADS": "4",
                                              "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
                                              "CUDA_VISIBLE_DEVICES": ",".join(devices[i]["uuid"] for i in visible)}}

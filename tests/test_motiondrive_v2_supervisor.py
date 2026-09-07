@@ -28,10 +28,13 @@ class FakeChild:
     def __init__(self, codes):
         self.codes = iter(codes)
         self.signals = []
+        self.kill_calls = 0
     def poll(self):
         return next(self.codes)
     def send_signal(self, sig):
         self.signals.append(sig)
+    def kill(self):
+        self.kill_calls += 1
 
 
 def manifest(run, status, pid=12345):
@@ -154,3 +157,185 @@ def test_symlinked_scope_cannot_escape_project(job, escaped_directory, tmp_path)
     (root / escaped_directory).symlink_to(outside, target_is_directory=True)
     with pytest.raises(supervisor.SupervisorError, match="escapes"):
         supervisor.validate_command(root, record, argv(run))
+
+
+def memory_sample(gpu, free):
+    return {"physical_gpu": gpu, "gpu_uuid": f"GPU-test-{gpu}", "free_mib": free}
+
+
+@pytest.mark.parametrize("option,expected", [([], 0), (["--cuda-min-free-mib", "0"], 0),
+                                            (["--cuda-min-free-mib", "8192"], 8192),
+                                            (["--cuda-min-free-mib=8192"], 8192)])
+def test_pressure_guard_explicit_opt_in(job, option, expected):
+    root, record, run = job
+    prepared = supervisor.validate_command(root, record, argv(run) + option)
+    assert prepared["cuda_min_free_mib"] == expected
+
+
+@pytest.mark.parametrize("option", [["--cuda-min-free-mib", "-1"],
+                                    ["--cuda-min-free-mib", "1.5"],
+                                    ["--cuda-min-free-mib", "nan"],
+                                    ["--cuda-min-free-mib"], ["--cuda-min-free-mib="],
+                                    ["--cuda-min-free", "8192"],
+                                    ["--cuda-min-free-mib", "8192", "--cuda-min-free-mib=4096"]])
+def test_pressure_policy_malformed_options_fail_before_spawn(job, option):
+    root, record, run = job
+    with pytest.raises(supervisor.SupervisorError):
+        supervisor.supervise_job(root, record, argv(run) + option,
+                                 process_factory=lambda *_a, **_k: pytest.fail("must not spawn"))
+    assert not record.exists()
+
+
+@pytest.mark.parametrize("option", [[], ["--cuda-min-free-mib", "0"]])
+def test_disabled_pressure_never_queries_or_automatically_signals(job, option):
+    root, record, run = job
+    child = FakeChild([None, None, 0])
+    manifest(run, "completed")
+    result = supervisor.supervise_job(root, record, argv(run) + option,
+        process_factory=lambda *_a, **_k: child, sleeper=lambda _: None,
+        gpu_memory_query=lambda _: pytest.fail("disabled guard queried GPU"), install_signal_handlers=False)
+    assert result["outcome"] == "completed_cleanly"
+    assert not result["automatic_kill_enabled"]
+    assert "pressure_policy" not in result
+    assert child.signals == [] and child.kill_calls == 0
+
+
+def test_memory_query_only_requests_one_physical_gpu(job, monkeypatch):
+    calls = []
+    def query(command, **kwargs):
+        calls.append((command, kwargs))
+        return type("Output", (), {"stdout": "1, GPU-test-1, 8192\n"})()
+    monkeypatch.setattr(supervisor.subprocess, "run", query)
+    sample = supervisor.query_gpu_free_memory(1)
+    assert sample["physical_gpu"] == 1 and sample["free_mib"] == 8192
+    assert calls[0][0] == ["nvidia-smi", "-i", "1", "--query-gpu=index,uuid,memory.free",
+                           "--format=csv,noheader,nounits"]
+    assert calls[0][1]["timeout"] == 5 and calls[0][1]["check"] is True
+    with pytest.raises(supervisor.SupervisorError, match="GPU0--3"):
+        supervisor.query_gpu_free_memory(6)
+    assert len(calls) == 1
+
+
+@pytest.mark.parametrize("output", ["", "1, GPU-test, 8192\n2, GPU-other, 9000\n",
+                                    "2, GPU-test, 8192\n", "1, unknown, 8192\n",
+                                    "1, GPU-test, nan\n", "1, GPU-test, -1\n", "bad output\n"])
+def test_memory_query_rejects_unusable_evidence(monkeypatch, output):
+    monkeypatch.setattr(supervisor.subprocess, "run",
+                        lambda *_a, **_k: type("Output", (), {"stdout": output})())
+    with pytest.raises((supervisor.SupervisorError, ValueError)):
+        supervisor.query_gpu_free_memory(1)
+
+
+def test_pressure_poll_defaults_to_five_seconds_and_threshold_is_strict(job):
+    root, record, run = job
+    child = FakeChild([None] * 12 + [0])
+    manifest(run, "completed")
+    tick, observations = [0.], []
+    def sleep(seconds):
+        tick[0] += seconds
+    def query(gpu):
+        observations.append((tick[0], gpu))
+        return memory_sample(gpu, 8192)
+    result = supervisor.supervise_job(root, record, argv(run) + ["--cuda-min-free-mib", "8192"],
+        process_factory=lambda *_a, **_k: child, sleeper=sleep, monotonic=lambda: tick[0],
+        gpu_memory_query=query, install_signal_handlers=False)
+    assert observations == [(0., 1), (5., 1), (10., 1)]
+    assert result["pressure_policy"]["poll_seconds"] == 5.
+    assert result["pressure_policy"]["safety_grace_seconds"] == 30.
+    assert result["pressure_checks"]["count"] == 3
+    assert result["pressure_event"] is None
+    assert result["outcome"] == "completed_cleanly"
+    assert child.signals == [] and child.kill_calls == 0
+
+
+def test_pressure_sigterm_once_and_graceful_completed_exit_is_failure(job, monkeypatch):
+    root, record, run = job
+    child = FakeChild([None, None, 0])
+    tick, calls = [0.], []
+    manifest(run, "completed")
+    monkeypatch.setattr(supervisor.os, "killpg", lambda *_: pytest.fail("foreign/group signal"))
+    monkeypatch.setattr(supervisor.os, "kill", lambda *_: pytest.fail("raw PID signal"))
+    def query(gpu):
+        calls.append(gpu)
+        return memory_sample(gpu, 8191)
+    def sleep(seconds):
+        tick[0] += seconds
+    def send(sig):
+        evidence = json.loads(record.read_text())["pressure_event"]
+        assert evidence["child_pid"] == child.pid and evidence["sigterm_attempted"]
+        child.signals.append(sig)
+    child.send_signal = send
+    result = supervisor.supervise_job(root, record, argv(run) + ["--cuda-min-free-mib", "8192"],
+        process_factory=lambda *_a, **_k: child, sleeper=sleep, monotonic=lambda: tick[0],
+        gpu_memory_query=query, poll_seconds=5, install_signal_handlers=False)
+    assert child.signals == [signal.SIGTERM] and child.kill_calls == 0
+    assert calls == [1]  # no repeated queries or signals after the latched event
+    assert result["actual_returncode"] == 0 and result["trainer_reported_completed"]
+    assert result["outcome"] == "cuda_memory_pressure" and result["supervisor_exit_code"] == 1
+    assert result["exit_outcome_without_pressure"] == "completed_cleanly"
+    assert result["pressure_event"]["reason"] == "below_minimum_free_memory"
+    assert result["pressure_event"]["sigterm_sent"]
+
+
+@pytest.mark.parametrize("error", [OSError("query unavailable"),
+                                   supervisor.subprocess.TimeoutExpired("nvidia-smi", 5),
+                                   ValueError("malformed query")])
+def test_query_failure_fails_closed_and_only_signals_owned_child(job, error):
+    root, record, run = job
+    child = FakeChild([None, -15])
+    def query(_gpu):
+        raise error
+    result = supervisor.supervise_job(root, record, argv(run) + ["--cuda-min-free-mib", "8192"],
+        process_factory=lambda *_a, **_k: child, sleeper=lambda _: None,
+        gpu_memory_query=query, install_signal_handlers=False)
+    assert child.signals == [signal.SIGTERM] and child.kill_calls == 0
+    assert result["pressure_event"]["reason"] == "memory_query_failed"
+    assert type(error).__name__ in result["pressure_checks"]["last"]["query_error"]
+    assert result["actual_returncode"] == -15 and result["supervisor_exit_code"] != 0
+
+
+@pytest.mark.parametrize("process_poll_seconds", [5, 45])
+def test_pressure_kills_exact_child_once_only_after_thirty_seconds(job, monkeypatch, process_poll_seconds):
+    root, record, run = job
+    child = FakeChild([None] * 9 + [-9])
+    tick, kill_times, snapshots = [0.], [], []
+    manifest(run, "completed")
+    monkeypatch.setattr(supervisor.os, "killpg", lambda *_: pytest.fail("foreign/group signal"))
+    monkeypatch.setattr(supervisor.os, "kill", lambda *_: pytest.fail("raw PID signal"))
+    def sleep(seconds):
+        snapshots.append(json.loads(record.read_text()))
+        tick[0] += seconds
+    def kill():
+        evidence = json.loads(record.read_text())["pressure_event"]
+        assert evidence["kill_attempted"] and evidence["child_pid"] == child.pid
+        kill_times.append(tick[0])
+        child.kill_calls += 1
+    child.kill = kill
+    result = supervisor.supervise_job(root, record, argv(run) + ["--cuda-min-free-mib", "8192"],
+        process_factory=lambda *_a, **_k: child, sleeper=sleep, monotonic=lambda: tick[0],
+        gpu_memory_query=lambda gpu: memory_sample(gpu, 0), poll_seconds=process_poll_seconds,
+        install_signal_handlers=False)
+    assert child.signals == [signal.SIGTERM] and child.kill_calls == 1
+    assert kill_times == [30.]
+    assert snapshots[0]["status"] == "pressure_terminating"
+    assert any(row["status"] == "pressure_kill_pending" for row in snapshots)
+    assert result["pressure_event"]["kill_sent"]
+    assert result["actual_returncode"] == -9 and result["termination_signal_name"] == "SIGKILL"
+    assert result["outcome"] == "cuda_memory_pressure"
+
+
+@pytest.mark.parametrize("sample", [None, {"physical_gpu": 4, "gpu_uuid": "GPU-other", "free_mib": 99999},
+                                    {"physical_gpu": 1, "gpu_uuid": "GPU-test", "free_mib": float("nan")}])
+def test_injected_invalid_memory_records_fail_closed(job, sample):
+    root, record, run = job
+    child = FakeChild([None, -15])
+    queried = []
+    def query(gpu):
+        queried.append(gpu)
+        return sample
+    result = supervisor.supervise_job(root, record, argv(run) + ["--cuda-min-free-mib", "8192"],
+        process_factory=lambda *_a, **_k: child, sleeper=lambda _: None,
+        gpu_memory_query=query, install_signal_handlers=False)
+    assert queried == [1] and child.signals == [signal.SIGTERM]
+    assert result["pressure_event"]["reason"] == "memory_query_failed"
+    assert result["supervisor_exit_code"] == 1

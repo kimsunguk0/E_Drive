@@ -32,6 +32,71 @@ from motiondrive_v2_training import (LossWeights, compute_loss, model_inputs,
                                      raster_counts, set_training_mode, tensor_state_sha256,
                                      time_input_policy, TIME_INPUT_MODES, to_device, weighted_d3)
 ACTIVE_RUN_DIR = None
+MIB = 1024 ** 2
+
+
+def configure_cuda_memory(device, limit_mib=0, min_free_mib=0):
+    """Opt-in allocator cap before model allocation; no whole-GPU reservation.
+
+    The PyTorch cap does not cover all CUDA-library allocations or prevent a
+    different process from growing. Keep external headroom and runtime guards.
+    """
+    if any(type(v) is not int or v < 0 for v in (limit_mib, min_free_mib)):
+        raise ValueError("CUDA memory values must be nonnegative integer MiB")
+    if bool(limit_mib) != bool(min_free_mib):
+        raise ValueError("CUDA limit and minimum free memory must be enabled together")
+    if not limit_mib:
+        return {"enabled": False}
+    if device.type != "cuda":
+        raise ValueError("CUDA memory sharing requires a CUDA device")
+    free, total = torch.cuda.mem_get_info(device)
+    requested = (limit_mib + min_free_mib) * MIB
+    if not (0 < free <= total) or requested > free:
+        raise RuntimeError(f"Insufficient CUDA headroom before allocation: free={free / MIB:.1f} MiB, "
+                           f"required={limit_mib}+{min_free_mib} MiB")
+    physical_total = torch.cuda.get_device_properties(device).total_memory
+    if limit_mib * MIB >= physical_total:
+        raise ValueError("CUDA allocator limit must be below device capacity")
+    fraction = float(limit_mib * MIB / physical_total)
+    torch.cuda.set_per_process_memory_fraction(fraction, device)
+    return {"enabled": True, "allocator_limit_mib": limit_mib,
+            "min_free_mib": min_free_mib, "allocator_fraction": fraction,
+            "initial_free_bytes": free, "device_total_bytes": physical_total,
+            "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"}
+
+
+def check_cuda_headroom(device, min_free_mib=0):
+    if not min_free_mib:
+        return
+    free, _ = torch.cuda.mem_get_info(device)
+    if free < min_free_mib * MIB:
+        raise RuntimeError(f"CUDA shared-memory pressure: free={free / MIB:.1f} MiB "
+                           f"below reserve={min_free_mib} MiB; stopping only this trainer")
+
+
+def cuda_memory_snapshot(device):
+    if device.type != "cuda":
+        return {}
+    free, total = torch.cuda.mem_get_info(device)
+    return {"allocated_bytes": torch.cuda.memory_allocated(device),
+            "reserved_bytes": torch.cuda.memory_reserved(device),
+            "peak_allocated_bytes": torch.cuda.max_memory_allocated(device),
+            "peak_reserved_bytes": torch.cuda.max_memory_reserved(device),
+            "device_free_bytes": free, "device_total_bytes": total}
+
+
+def slice_batch(batch, start, end):
+    """Slice collated samples before GPU transfer, retaining metadata order."""
+    size = len(batch["images"])
+    result = {}
+    for key, value in batch.items():
+        if isinstance(value, (torch.Tensor, list, tuple)):
+            if len(value) != size:
+                raise ValueError(f"Non-sample batch field cannot be microbatched: {key}")
+            result[key] = value[start:end]
+        else:
+            raise TypeError(f"Unsupported collated batch field: {key}")
+    return result
 
 
 def sha256(path: str | Path) -> str:
@@ -107,6 +172,9 @@ def restore_run_configuration(args, saved, explicit_options):
             if key not in saved_args:
                 raise ValueError(f"Resume configuration missing {key}")
             settings[key] = saved_args[key]
+        for key in ("microbatch", "cuda_memory_limit_mib", "cuda_min_free_mib"):
+            if hasattr(args, key):
+                settings[key] = saved_args.get(key, 0)
     for key, value in settings.items():
         flag = "--" + key.replace("_", "-")
         if flag in explicit_options and getattr(args, key) != value:
@@ -127,12 +195,13 @@ def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None
 
 
 @torch.inference_mode()
-def evaluate(model, loader, device, precision, time_input="raw"):
+def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0):
     time_input_policy(time_input)
     model.eval()
     records, state_errors, history_errors = [], [], []
     iou_counts = {"occ": [0, 0], "lane": [0, 0]}
     for raw in loader:
+        check_cuda_headroom(device, min_free_mib)
         batch = to_device(raw, device)
         with autocast(device, precision):
             out = model(**model_inputs(batch, time_input=time_input))
@@ -198,6 +267,12 @@ def arguments(argv=None):
     p.add_argument("--state-on", type=int, choices=[0, 1], default=1)
     p.add_argument("--gpu", type=int, choices=[0, 1, 2, 3], default=0)
     p.add_argument("--cpu", action="store_true")
+    p.add_argument("--cuda-memory-limit-mib", type=int, default=0,
+                   help="Opt-in PyTorch allocator limit; requires --cuda-min-free-mib")
+    p.add_argument("--cuda-min-free-mib", type=int, default=0,
+                   help="Shared GPU safety reserve; stop our trainer if free memory falls below this")
+    p.add_argument("--microbatch", type=int, default=0,
+                   help="Split each logical --batch for gradient accumulation; 0 preserves the original path; fixed BN only")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--steps", type=int, default=5000)
     p.add_argument("--batch", type=int, default=16)
@@ -254,6 +329,8 @@ def main():
         raise ValueError("Checkpoint selection must use tune, never final val")
     if args.steps < 1 or args.batch < 1 or args.eval_every < 1:
         raise ValueError("steps/batch/eval-every must be positive")
+    if args.microbatch < 0 or args.microbatch > args.batch:
+        raise ValueError("microbatch must be zero or no larger than logical batch")
     run_dir = Path(args.run_dir).resolve()
     if run_dir.exists() and any(run_dir.iterdir()) and not args.resume:
         raise FileExistsError(f"Refusing to overwrite existing run: {run_dir}")
@@ -291,6 +368,13 @@ def main():
         config.motion_input_mode = args.motion_input_mode
         if previous_mode != config.motion_input_mode:
             load_report["motion_input_mode_override"] = {"from": previous_mode, "to": config.motion_input_mode}
+    if args.microbatch < 0 or args.microbatch > args.batch:
+        raise ValueError("Restored microbatch must be zero or no larger than logical batch")
+    if args.microbatch and args.bn_policy != "fixed":
+        raise ValueError("Microbatch accumulation requires fixed BN running statistics")
+    # Resume owns this execution policy too; apply it only AFTER restoration,
+    # still before any model/optimizer tensors move to CUDA.
+    memory_policy = configure_cuda_memory(device, args.cuda_memory_limit_mib, args.cuda_min_free_mib)
     model = MotionDriveV2(config)
     if args.pretrained:
         load_report["backbone"] = model.load_pretrained_backbone(args.pretrained)
@@ -327,6 +411,11 @@ def main():
         "split_sha256": sha256(args.split_manifest), "load_report": load_report,
         "torch": torch.__version__, "numpy": np.__version__,
         "device": str(device), "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+        "cuda_memory_policy": memory_policy,
+        "microbatch_policy": {"enabled": bool(args.microbatch), "microbatch": args.microbatch,
+                              "logical_batch": args.batch, "optimizer_updates_per_logical_batch": 1,
+                              "loss_normalization": "full logical batch label/mask denominators",
+                              "bitwise_equivalence_to_unsplit_training_promised": False},
         "gpu_name": torch.cuda.get_device_name(device) if device.type == "cuda" else "CPU",
         "pretrained_sha256": sha256(args.pretrained) if args.pretrained else None,
         "supervision_manifest_sha256": sha256(Path(args.supervision_root) / "supervision_manifest.json"),
@@ -351,7 +440,8 @@ def main():
     eval_loader = DataLoader(evaluation, batch_size=args.eval_batch, shuffle=False,
                              num_workers=args.workers, pin_memory=device.type == "cuda")
     if args.eval_only:
-        report, records = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input)
+        report, records = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input,
+                                   min_free_mib=args.cuda_min_free_mib)
         atomic_json(run_dir / "evaluation.json", {"report": report, "records": records})
         print(json.dumps(report), flush=True)
         manifest.update(status="completed", evaluation=report)
@@ -402,7 +492,8 @@ def main():
     atomic_json(run_dir / "manifest.json", manifest)
     with (run_dir / "metrics.jsonl").open("a", buffering=1) as log:
         if not args.resume:
-            initial_report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input)
+            initial_report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input,
+                                          min_free_mib=args.cuda_min_free_mib)
             atomic_json(run_dir / "initial_eval.json", initial_report)
             log.write(json.dumps({"kind": "initial_eval", "step": 0, **initial_report}, allow_nan=False) + "\n")
             print(json.dumps({"kind": "initial_eval", "step": 0, **initial_report}), flush=True)
@@ -414,19 +505,40 @@ def main():
                     break
                 set_training_mode(model, args.bn_policy)
                 sample_order_digest.update(np.asarray(raw["row"], dtype="<i8").tobytes())
-                batch = to_device(raw, device)
                 warm = min(1., (step + 1) / max(1, args.warmup))
                 progress = max(0., (step - args.warmup) / max(1, args.steps - args.warmup))
                 factor = warm * .5 * (1. + math.cos(math.pi * min(1., progress)))
                 for group in optimizer.param_groups:
                     group["lr"] = group["base_lr"] * factor
                 optimizer.zero_grad(set_to_none=True)
-                with autocast(device, args.precision):
-                    output = model(**model_inputs(batch, time_input=args.time_input))
-                loss, parts = compute_loss(output, batch, weights)
-                if not bool(torch.isfinite(loss)):
-                    raise FloatingPointError(f"Nonfinite loss at step {step}; no silent NaN skip")
-                loss.backward()
+                if args.microbatch:
+                    # Normalizers are computed once from the WHOLE logical batch.
+                    # Taking a mean of microbatch means would change raster/mask loss.
+                    from motiondrive_v2_training import build_loss_normalizers
+                    check_cuda_headroom(device, args.cuda_min_free_mib)
+                    normalizers = to_device(build_loss_normalizers(raw), device)
+                    parts = {}
+                    for start in range(0, len(raw["images"]), args.microbatch):
+                        check_cuda_headroom(device, args.cuda_min_free_mib)
+                        batch = to_device(slice_batch(raw, start, start + args.microbatch), device)
+                        with autocast(device, args.precision):
+                            output = model(**model_inputs(batch, time_input=args.time_input))
+                        loss, micro_parts = compute_loss(output, batch, weights, normalizers=normalizers)
+                        if not bool(torch.isfinite(loss)):
+                            raise FloatingPointError(f"Nonfinite microbatch loss at step {step}; no silent NaN skip")
+                        loss.backward()
+                        for name, value in micro_parts.items():
+                            parts[name] = parts.get(name, 0.) + value.detach()
+                        del batch, output, loss, micro_parts
+                else:
+                    check_cuda_headroom(device, args.cuda_min_free_mib)
+                    batch = to_device(raw, device)
+                    with autocast(device, args.precision):
+                        output = model(**model_inputs(batch, time_input=args.time_input))
+                    loss, parts = compute_loss(output, batch, weights)
+                    if not bool(torch.isfinite(loss)):
+                        raise FloatingPointError(f"Nonfinite loss at step {step}; no silent NaN skip")
+                    loss.backward()
                 norm = torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip,
                                                        error_if_nonfinite=True)
                 optimizer.step()
@@ -436,11 +548,13 @@ def main():
                            "elapsed_seconds": time.monotonic() - started,
                            "grad_norm": float(norm), "lr": optimizer.param_groups[-1]["lr"],
                            "sample_order_sha256": sample_order_digest.hexdigest(),
+                           "cuda_memory": cuda_memory_snapshot(device),
                            **{k: float(v.detach()) for k, v in parts.items()}}
                     log.write(json.dumps(row, allow_nan=False) + "\n")
                     print(json.dumps(row, allow_nan=False), flush=True)
                 if step % args.eval_every == 0 or step == args.steps:
-                    report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input)
+                    report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input,
+                                         min_free_mib=args.cuda_min_free_mib)
                     # Pretrain selection is task quality, not an untrained planner's D3.
                     if args.phase == "pretrain":
                         motion_value = report["history_position_mae_by_offset"]
@@ -465,6 +579,7 @@ def main():
         atomic_checkpoint(run_dir / "last.pth", checkpoint())
     manifest.update(status="stopped" if requested_stop[0] else "completed", step=step,
                     best_metric=best if math.isfinite(best) else None,
+                    cuda_memory=cuda_memory_snapshot(device),
                     elapsed_seconds=time.monotonic() - started, nonfinite_count=nonfinite_count)
     atomic_json(run_dir / "manifest.json", manifest)
 

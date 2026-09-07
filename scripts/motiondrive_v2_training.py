@@ -106,13 +106,16 @@ def _mask_like(mask: Tensor | None, value: Tensor) -> Tensor:
     return mask.bool().expand_as(value)
 
 
-def masked_mean(value: Tensor, mask: Tensor | None) -> Tensor:
+def masked_mean(value: Tensor, mask: Tensor | None, *, normalizer: Tensor | None = None) -> Tensor:
     valid = _mask_like(mask, value)
     clean = torch.where(valid, value, torch.zeros_like(value))
+    if normalizer is not None:
+        return clean.sum() / normalizer.clamp_min(1)
     return clean.sum() / valid.sum().clamp_min(1)
 
 
-def balanced_raster_bce(logit: Tensor, target: Tensor, valid: Tensor) -> Tensor:
+def balanced_raster_bce(logit: Tensor, target: Tensor, valid: Tensor,
+                        *, normalizers: tuple[Tensor, Tensor, Tensor] | None = None) -> Tensor:
     """Balance annotated foreground/background, ignoring unsupported cells."""
     if logit.shape != target.shape or target.shape != valid.shape:
         raise ValueError(f"Raster mismatch: {logit.shape}/{target.shape}/{valid.shape}")
@@ -120,6 +123,13 @@ def balanced_raster_bce(logit: Tensor, target: Tensor, valid: Tensor) -> Tensor:
     safe_target = torch.where(mask, target.float(), torch.zeros_like(target.float()))
     bce = F.binary_cross_entropy_with_logits(logit.float(), safe_target, reduction="none")
     positive, negative = mask & (safe_target >= .5), mask & (safe_target < .5)
+    if normalizers is not None:
+        pos_count, neg_count, class_count = normalizers
+        # Class presence AND denominators belong to the FULL effective batch,
+        # even if this chunk contains only one class or no valid raster cells.
+        pos_present, neg_present = (pos_count > 0).float(), (neg_count > 0).float()
+        return (masked_mean(bce, positive, normalizer=pos_count) * pos_present +
+                masked_mean(bce, negative, normalizer=neg_count) * neg_present) / class_count.clamp_min(1)
     pos_count, neg_count = positive.sum(), negative.sum()
     # No Python GPU synchronization in loss construction.
     pos_present, neg_present = (pos_count > 0).float(), (neg_count > 0).float()
@@ -128,7 +138,8 @@ def balanced_raster_bce(logit: Tensor, target: Tensor, valid: Tensor) -> Tensor:
 
 
 def regression_loss(pred: Tensor, target: Tensor, valid: Tensor | None,
-                    scale: tuple[float, ...], logvar: Tensor | None = None) -> Tensor:
+                    scale: tuple[float, ...], logvar: Tensor | None = None,
+                    *, normalizer: Tensor | None = None) -> Tensor:
     pred = pred.float()
     mask = _mask_like(valid, pred)
     target = torch.where(mask, target.float(), torch.zeros_like(pred))
@@ -141,32 +152,104 @@ def regression_loss(pred: Tensor, target: Tensor, valid: Tensor | None,
         # Log-variance is in the normalized physical units defined above.
         lv = logvar.float().clamp(-6, 6)
         loss = .5 * (error.square() * (-lv).exp() + lv)
-    return masked_mean(loss, mask)
+    return masked_mean(loss, mask, normalizer=normalizer)
+
+
+LOSS_NORMALIZER_KEYS = ("plan_complete", "occ_positive", "occ_negative", "occ_classes",
+                        "lane_positive", "lane_negative", "lane_classes", "history_valid",
+                        "state_valid", "stop_valid")
+
+
+def build_loss_normalizers(full_cpu_batch: Mapping[str, Tensor]) -> dict[str, Tensor]:
+    """Count full-effective-batch labels BEFORE moving sliced batches to CUDA.
+
+    Return detached scalar CPU int64 tensors. Move this dict to the loss device
+    once with to_device(), then pass it unchanged to EVERY microbatch. Each
+    compute_loss(..., normalizers=...) is an additive contribution: sum losses,
+    parts and gradients; do not average again by chunk count or batch size.
+
+    This preserves reduction semantics, not dropout RNG, floating-point order,
+    adaptive BatchNorm statistics, or other batch-coupled model computation.
+    """
+    required = ("gt_plan", "history_target", "state_target", "occ_target", "occ_valid",
+                "lane_target", "lane_valid")
+    optional = ("plan_valid", "history_valid", "state_valid")
+    for name in (*required, *[k for k in optional if k in full_cpu_batch]):
+        value = full_cpu_batch.get(name)
+        if not isinstance(value, Tensor) or value.device.type != "cpu" or value.requires_grad:
+            raise ValueError(f"Full-batch label {name} must be a detached CPU tensor")
+    gt, history, state = (full_cpu_batch[k] for k in ("gt_plan", "history_target", "state_target"))
+    if gt.ndim != 3 or gt.shape[1:] != (6, 2) or len(gt) < 1:
+        raise ValueError("Full-batch gt_plan must be nonempty [B,6,2]")
+    b = len(gt)
+    if state.shape != (b, 6) or history.ndim != 3 or history.shape[0] != b or history.shape[-1] != 4:
+        raise ValueError("Full-batch state/history target shape mismatch")
+    plan_mask = full_cpu_batch.get("plan_valid", torch.ones((b, 6), dtype=torch.bool))
+    if plan_mask.shape != (b, 6):
+        raise ValueError("Full-batch plan_valid must be [B,6]")
+    state_mask = full_cpu_batch.get("state_valid", torch.ones_like(state, dtype=torch.bool))
+    if state_mask.shape != state.shape:
+        raise ValueError("Full-batch state_valid must match [B,6]")
+    result = {"plan_complete": plan_mask.bool().all(-1).sum(),
+              "history_valid": _mask_like(full_cpu_batch.get("history_valid"), history).sum(),
+              "state_valid": _mask_like(state_mask[..., :5], state[..., :5]).sum(),
+              "stop_valid": state_mask[..., 5].bool().sum()}
+    for prefix in ("occ", "lane"):
+        target, valid = full_cpu_batch[prefix + "_target"], full_cpu_batch[prefix + "_valid"]
+        if target.shape != valid.shape or target.ndim < 2 or target.shape[0] != b:
+            raise ValueError(f"Full-batch {prefix} raster shape mismatch")
+        mask = valid.bool()
+        safe = torch.where(mask, target.float(), torch.zeros_like(target.float()))
+        positive, negative = (mask & (safe >= .5)).sum(), (mask & (safe < .5)).sum()
+        result[prefix + "_positive"], result[prefix + "_negative"] = positive, negative
+        result[prefix + "_classes"] = (positive > 0).long() + (negative > 0).long()
+    return {name: result[name].detach().to(dtype=torch.int64) for name in LOSS_NORMALIZER_KEYS}
+
+
+def _validate_loss_normalizers(normalizers: Mapping[str, Tensor], device: torch.device) -> None:
+    if not isinstance(normalizers, Mapping) or set(normalizers) != set(LOSS_NORMALIZER_KEYS):
+        raise ValueError("Use the complete build_loss_normalizers result without changing keys")
+    for name, value in normalizers.items():
+        if (not isinstance(value, Tensor) or value.ndim != 0 or value.dtype != torch.int64
+                or value.device != device or value.requires_grad):
+            raise ValueError(f"Loss normalizer {name} must be detached scalar int64 on {device}")
+        # Builder guarantees nonnegative counts; metadata checks above never
+        # synchronize GPU execution. Extra value validation is CPU-only.
+        if device.type == "cpu" and value.item() < 0:
+            raise ValueError(f"Loss normalizer {name} must be nonnegative")
 
 
 def compute_loss(outputs: Mapping[str, Tensor], batch: Mapping[str, Tensor],
-                 weights: LossWeights) -> tuple[Tensor, dict[str, Tensor]]:
+                 weights: LossWeights, *, normalizers: Mapping[str, Tensor] | None = None
+                 ) -> tuple[Tensor, dict[str, Tensor]]:
     pred = outputs["plan_abs"].float()
+    if normalizers is not None:
+        _validate_loss_normalizers(normalizers, pred.device)
     plan_valid = batch.get("plan_valid", torch.ones_like(pred[..., 0], dtype=torch.bool))
     # Official metric requires all six samples. Do not quietly redefine metric.
     complete = plan_valid.bool().all(-1)
     safe_gt = torch.where(complete[:, None, None], batch["gt_plan"].float(),
                           torch.zeros_like(pred))
     d3 = weighted_d3(pred, safe_gt)
-    plan_loss = masked_mean(d3, complete)
-    occ = balanced_raster_bce(outputs["occ_logits"], batch["occ_target"], batch["occ_valid"])
-    lane = balanced_raster_bce(outputs["lane_logits"], batch["lane_target"], batch["lane_valid"])
+    plan_loss = masked_mean(d3, complete, normalizer=None if normalizers is None else normalizers["plan_complete"])
+    raster_norms = lambda prefix: None if normalizers is None else tuple(
+        normalizers[prefix + "_" + suffix] for suffix in ("positive", "negative", "classes"))
+    occ = balanced_raster_bce(outputs["occ_logits"], batch["occ_target"], batch["occ_valid"], normalizers=raster_norms("occ"))
+    lane = balanced_raster_bce(outputs["lane_logits"], batch["lane_target"], batch["lane_valid"], normalizers=raster_norms("lane"))
     history = regression_loss(outputs["history_hat"], batch["history_target"],
                               batch.get("history_valid"), HISTORY_SCALE,
-                              outputs.get("history_logvar") if weights.uncertainty else None)
+                              outputs.get("history_logvar") if weights.uncertainty else None,
+                              normalizer=None if normalizers is None else normalizers["history_valid"])
     state_valid = batch.get("state_valid", torch.ones_like(batch["state_target"], dtype=torch.bool))
     state = regression_loss(outputs["state_hat"][..., :5], batch["state_target"][..., :5],
                             state_valid[..., :5], STATE_SCALE,
-                            outputs.get("state_logvar") if weights.uncertainty else None)
+                            outputs.get("state_logvar") if weights.uncertainty else None,
+                            normalizer=None if normalizers is None else normalizers["state_valid"])
     stop_target = torch.where(state_valid[..., 5].bool(), batch["state_target"][..., 5].float(),
                               torch.zeros_like(batch["state_target"][..., 5].float()))
     stop = masked_mean(F.binary_cross_entropy_with_logits(
-        outputs["state_hat"][..., 5].float(), stop_target, reduction="none"), state_valid[..., 5])
+        outputs["state_hat"][..., 5].float(), stop_target, reduction="none"), state_valid[..., 5],
+        normalizer=None if normalizers is None else normalizers["stop_valid"])
     motion = history + state + .2 * stop
     loss = (weights.plan * plan_loss + weights.occupancy * occ +
             weights.lane * lane + weights.motion * motion)
