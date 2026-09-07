@@ -154,6 +154,8 @@ def restore_run_configuration(args, saved, explicit_options):
         settings["motion_input_mode"] = config.get("motion_input_mode", "legacy")
     if hasattr(args, "plan_output_scale"):
         settings["plan_output_scale"] = list(config.get("plan_output_scale", (1., 1.)))
+    if hasattr(args, "cross_cell_goal_mode"):
+        settings["cross_cell_goal_mode"] = config.get("cross_cell_goal_mode", "disabled")
     if hasattr(args, "bn_policy"):
         settings["bn_policy"] = saved_args.get("bn_policy", "adaptive")
     if hasattr(args, "time_input"):
@@ -183,7 +185,8 @@ def restore_run_configuration(args, saved, explicit_options):
     return config
 
 
-def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None):
+def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None,
+                                 cross_cell_goal_mode=None):
     """A fresh paired run inherits every architecture field, changing G/S only."""
     config = dict(saved.get("model_config", {}))
     if not config or "backbone_arch" not in config:
@@ -191,6 +194,8 @@ def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None
     if explicit_arch is not None and explicit_arch != config["backbone_arch"]:
         raise ValueError("--init cannot silently change backbone architecture")
     config.update(goal_on=bool(goal_on), state_on=bool(state_on))
+    if cross_cell_goal_mode is not None:
+        config["cross_cell_goal_mode"] = cross_cell_goal_mode
     return config
 
 
@@ -328,6 +333,7 @@ def arguments(argv=None):
     p.add_argument("--resume", help="Explicit full resume checkpoint")
     p.add_argument("--arch", choices=["resnet34", "resnet50"], default="resnet50")
     p.add_argument("--motion-input-mode", choices=["legacy", "high_feature", "low_feature"])
+    p.add_argument("--cross-cell-goal-mode", choices=["disabled", "zero", "real"])
     p.add_argument("--plan-output-scale", type=float, nargs=2, metavar=("X", "Y"),
                    help="Internal neural output units; inverse-rescale last Linear to preserve initial predictions")
     p.add_argument("--train-stride", type=int, default=1)
@@ -345,6 +351,59 @@ def arguments(argv=None):
 
 def _validate_experimental_protocol(experiment):
     if experiment is None:
+        return None
+    if isinstance(experiment, dict) and experiment.get("name") == "p7_cross_cell_goal_routing":
+        required = {"schema_version", "name", "arm", "last_only_final_eval",
+                    "expected_initial_model_state_sha256", "expected_p0_model_state_sha256",
+                    "expected_optimizer_groups", "expected_missing_state_keys",
+                    "train_data", "tune_data", "source", "fresh_optimizer_step_zero",
+                    "all_model_parameters_joint_trainable", "existing_goal_path_on",
+                    "planner_signature_unchanged", "branch"}
+        if set(experiment) != required:
+            raise ValueError("P7 experimental protocol must be complete")
+        mode = {"control_zero_slot": "zero", "goal_real_slot": "real"}.get(experiment["arm"])
+        branch = experiment["branch"]
+        expected_branch = {
+            "mode": mode, "sigma_m": [10., 32. / 3.], "sigma_selection": "fixed_geometry_not_tuned",
+            "pool_size": 4, "source_cells": 192, "destination_cells": 3072,
+            "attention_dim": 32, "cosine_scale": 8.,
+            "attention_precision": "fp32_autocast_disabled",
+            "goal_enters_distance_score_only": True,
+            "new_value_projection_adds_goal_or_position": False, "output_bias": False,
+            "output_weight_zero_initialized": True,
+        }
+        if (experiment["schema_version"] != 1 or mode is None
+                or experiment["last_only_final_eval"] is not True
+                or experiment["fresh_optimizer_step_zero"] is not True
+                or experiment["all_model_parameters_joint_trainable"] is not True
+                or experiment["existing_goal_path_on"] is not True
+                or experiment["planner_signature_unchanged"] is not True
+                or branch != expected_branch):
+            raise ValueError("Unsupported P7 experimental protocol")
+        for key in ("expected_initial_model_state_sha256", "expected_p0_model_state_sha256"):
+            value = experiment[key]
+            if not isinstance(value, str) or len(value) != 64:
+                raise ValueError(f"P7 {key} is required")
+        if experiment["expected_optimizer_groups"] != [
+                {"name": "backbone", "base_lr": 1e-5}, {"name": "head", "base_lr": 1e-4}]:
+            raise ValueError("P7 optimizer group contract mismatch")
+        missing = experiment["expected_missing_state_keys"]
+        if (not isinstance(missing, list) or not missing
+                or len(missing) != len(set(missing))
+                or not all(isinstance(key, str)
+                           and key.startswith("scene_encoder.cross_cell_goal_residual.")
+                           for key in missing)):
+            raise ValueError("P7 old-checkpoint missing-key contract is invalid")
+        if experiment["train_data"] != {
+                "rows": 54810,
+                "rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854"}:
+            raise ValueError("P7 fixed train rows contract mismatch")
+        if experiment["tune_data"] != {
+                "rows": 1998,
+                "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88"}:
+            raise ValueError("P7 fixed tune rows contract mismatch")
+        if not isinstance(experiment["source"], dict) or not experiment["source"]:
+            raise ValueError("P7 source provenance is required")
         return None
     required = {"schema_version", "name", "arm", "last_only_final_eval", "stop_class_weights",
                 "expected_initial_model_state_sha256", "expected_optimizer_groups",
@@ -393,6 +452,27 @@ def _validate_experimental_protocol(experiment):
 
 
 def _validate_experimental_runtime_args(args):
+    """Backward-compatible P6 unit-test/driver validation entrypoint."""
+    return _validate_experimental_runtime(args, {"name": "p6_global_stop_class_balance"})
+
+
+def _validate_experimental_runtime(args, experiment):
+    if experiment.get("name") == "p7_cross_cell_goal_routing":
+        mode = {"control_zero_slot": "zero", "goal_real_slot": "real"}[experiment["arm"]]
+        expected = {"phase": "joint", "goal_on": 1, "state_on": 1, "steps": 6000,
+                    "batch": 16, "microbatch": 2, "eval_batch": 4, "eval_every": 6000,
+                    "save_every": 6000, "lr": 1e-4, "backbone_lr": 1e-5,
+                    "weight_decay": .01, "warmup": 200, "grad_clip": 5.,
+                    "alpha_occ": .2, "alpha_lane": .2, "alpha_motion": .2,
+                    "uncertainty": 1, "precision": "bf16", "time_input": "nominal",
+                    "bn_policy": "fixed", "arch": "resnet50", "motion_input_mode": "low_feature",
+                    "cross_cell_goal_mode": mode, "train_stride": 1, "eval_stride": 5,
+                    "max_train_samples": 0, "max_eval_samples": 0, "eval_split": "tune"}
+        if any(getattr(args, key) != value for key, value in expected.items()):
+            raise ValueError("P7 fixed joint recipe mismatch")
+        if not args.init or args.resume or args.pretrained or args.eval_only or args.train_scenes or args.eval_scenes:
+            raise ValueError("P7 requires full train+tune, weights-only P0 init, and fresh optimizer")
+        return
     expected = {"phase": "joint", "goal_on": 1, "state_on": 1, "steps": 1000,
                 "batch": 16, "microbatch": 2, "eval_batch": 4, "eval_every": 1000,
                 "save_every": 1000, "lr": 5e-5, "backbone_lr": 5e-6,
@@ -415,6 +495,27 @@ def _training_schedule_actions(step, args, experiment):
     return evaluate_now, periodic_save
 
 
+def _load_initial_model_state(model, common, experiment=None):
+    """Load a weights-only initializer, narrowly permitting P7's new keys."""
+    if experiment is not None and experiment.get("name") == "p7_cross_cell_goal_routing":
+        incompatible = model.load_state_dict(common["model"], strict=False)
+        expected_missing = experiment["expected_missing_state_keys"]
+        if list(incompatible.missing_keys) != expected_missing or incompatible.unexpected_keys:
+            raise ValueError("P7 P0 load must miss exactly the new residual state")
+        if tensor_state_sha256(common["model"]) != experiment["expected_p0_model_state_sha256"]:
+            raise ValueError("P7 P0 model tensor SHA mismatch")
+        branch = model.scene_encoder.cross_cell_goal_residual
+        if branch.output.bias is not None:
+            raise ValueError("P7 output projection must be bias-free")
+        if bool(branch.output.weight.count_nonzero()):
+            raise ValueError("P7 initial output projection must be exactly zero")
+        return {"p7_old_checkpoint_load": {
+            "strict_existing_keys": True, "missing_keys": expected_missing,
+            "unexpected_keys": [], "weights_only": True}}
+    model.load_state_dict(common["model"], strict=True)
+    return {}
+
+
 def main():
     return run_training()
 
@@ -426,7 +527,7 @@ def run_training(argv=None, *, experiment=None):
     explicit = {token.split("=", 1)[0] for token in command if token.startswith("--")}
     stop_class_weights = _validate_experimental_protocol(experiment)
     if experiment is not None:
-        _validate_experimental_runtime_args(args)
+        _validate_experimental_runtime(args, experiment)
     from motiondrive_v2_data import MotionDriveDataset
     from models.motiondrive_v2 import MotionDriveV2, MotionDriveV2Config
     if args.init and args.resume:
@@ -463,11 +564,14 @@ def run_training(argv=None, *, experiment=None):
     elif common is not None:
         config = MotionDriveV2Config(**initialization_configuration(
             common["manifest"], goal_on=args.goal_on, state_on=args.state_on,
-            explicit_arch=args.arch if "--arch" in explicit else None))
+            explicit_arch=args.arch if "--arch" in explicit else None,
+            cross_cell_goal_mode=args.cross_cell_goal_mode
+            if "--cross-cell-goal-mode" in explicit else None))
         args.arch = config.backbone_arch
     else:
         config = MotionDriveV2Config(backbone_arch=args.arch, goal_on=bool(args.goal_on),
-                                    state_on=bool(args.state_on))
+                                    state_on=bool(args.state_on),
+                                    cross_cell_goal_mode=args.cross_cell_goal_mode or "disabled")
     if args.phase == "pretrain":
         config.goal_on = False
         config.state_on = False
@@ -489,7 +593,7 @@ def run_training(argv=None, *, experiment=None):
         if (load_report["backbone"]["nonhead_missing"] or load_report["backbone"]["unexpected"]):
             raise ValueError(f"Incomplete public backbone load: {load_report['backbone']}")
     if common is not None:
-        model.load_state_dict(common["model"], strict=True)
+        load_report.update(_load_initial_model_state(model, common, experiment))
     if args.plan_output_scale is not None:
         previous_scale = list(config.plan_output_scale)
         model.reparameterize_plan_output_scale(args.plan_output_scale, preserve_function=True)
@@ -517,7 +621,7 @@ def run_training(argv=None, *, experiment=None):
         if actual_groups != experiment["expected_optimizer_groups"]:
             raise ValueError("P6 optimizer group LR mismatch")
         if args.resume:
-            raise ValueError("P6 continuation uses weights-only --init and a fresh optimizer")
+            raise ValueError("Experimental run uses weights-only --init and a fresh optimizer")
         if optimizer.state or not all(param.requires_grad for param in model.parameters()):
             raise ValueError("P6 must begin at optimizer step0 with every model parameter trainable")
     weights = LossWeights(plan=0. if args.phase == "pretrain" else 1.,
@@ -576,9 +680,15 @@ def run_training(argv=None, *, experiment=None):
         np.asarray(evaluation.rows, dtype="<i8").tobytes()).hexdigest()
     manifest["sample_order_policy"] = "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log"
     if experiment is not None:
-        declared = experiment["train_label_counts"]
+        declared = (experiment["train_label_counts"] if experiment.get("name") == "p6_global_stop_class_balance"
+                    else experiment["train_data"])
         if len(training) != declared["rows"] or manifest["train_rows_sha256"] != declared["rows_sha256"]:
-            raise ValueError("P6 counted train rows differ from actual trainer rows")
+            raise ValueError("Experimental train rows differ from the pinned protocol")
+        if experiment.get("name") == "p7_cross_cell_goal_routing":
+            declared_tune = experiment["tune_data"]
+            if (len(evaluation) != declared_tune["rows"]
+                    or manifest["eval_rows_sha256"] != declared_tune["rows_sha256"]):
+                raise ValueError("P7 tune rows differ from the pinned protocol")
     generator = torch.Generator().manual_seed(args.seed)
     train_loader = DataLoader(training, batch_size=args.batch, shuffle=True,
                               num_workers=args.workers, pin_memory=device.type == "cuda",

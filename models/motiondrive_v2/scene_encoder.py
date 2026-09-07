@@ -82,6 +82,15 @@ class SharedSceneEncoder(nn.Module):
         self.scale_keys = nn.Parameter(torch.randn(2, d) * 0.02)
         self.time_key = nn.Sequential(nn.Linear(1, d), nn.Tanh(), nn.Linear(d, d))
         self.global_proj = nn.Linear(c, c, bias=False)
+        if config.cross_cell_goal_mode == "disabled":
+            self.cross_cell_goal_residual = None
+        else:
+            # Local import avoids a module cycle: the residual reuses the
+            # geometry and all-invalid softmax helpers defined above.
+            from .cross_cell_goal_residual import GoalScoredImageValueResidual
+            self.cross_cell_goal_residual = GoalScoredImageValueResidual(
+                channels=c, attention_dim=32, grid_size=config.grid_size,
+                x_range=config.x_range, y_range=config.y_range)
         self.refine = nn.Sequential(SpatialMix(c), SpatialMix(c))
         self.occ_head = nn.Sequential(nn.Conv2d(c, c // 2, 3, padding=1), nn.GELU(),
                                       nn.Conv2d(c // 2, 1, 1))
@@ -96,6 +105,14 @@ class SharedSceneEncoder(nn.Module):
         sampled = F.grid_sample(feat, grid.reshape(b * v, q, nh, 2).to(feat.dtype),
                                 mode="bilinear", padding_mode="zeros", align_corners=False)
         return sampled.reshape(b, v, -1, q, nh).permute(0, 3, 1, 4, 2)
+
+    def _apply_cross_cell_goal_residual(self, scene: Tensor, visible: Tensor,
+                                        goal_xy_m: Tensor) -> Tensor:
+        if self.cross_cell_goal_residual is None:
+            return scene
+        branch_goal_m = (goal_xy_m if self.config.cross_cell_goal_mode == "real"
+                         else torch.zeros_like(goal_xy_m))
+        return self.cross_cell_goal_residual(scene, branch_goal_m, visible)
 
     def forward(self, current_levels, history_levels, current_global, lidar2img,
                 history_transforms, time_offsets, goal_xy, image_hw):
@@ -159,11 +176,13 @@ class SharedSceneEncoder(nn.Module):
             chunks.append(base + evidence.to(base.dtype))
             visible_chunks.append(valid.any(-1))
         scene = torch.cat(chunks, 1)
+        visible = torch.cat(visible_chunks, 1)
         # Broad image context for traffic lights / actors beyond ground samples.
         context_global = self.global_proj(current_global.mean(dim=(1, 3, 4)))
         scene = scene + context_global[:, None]
+        scene = self._apply_cross_cell_goal_residual(scene, visible, goal_xy)
         raster = self.refine(scene.transpose(1, 2).reshape(b, c, *self.config.grid_size))
         return {"scene_features": raster.flatten(2).transpose(1, 2),
                 "occ_logits": self.occ_head(raster).float(),
                 "lane_logits": self.lane_head(raster).float(),
-                "scene_visible": torch.cat(visible_chunks, 1).reshape(b, 1, *self.config.grid_size)}
+                "scene_visible": visible.reshape(b, 1, *self.config.grid_size)}

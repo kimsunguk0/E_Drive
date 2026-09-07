@@ -36,6 +36,10 @@ class MotionDriveV2Config:
     state_on: bool = True
     plan_output_scale: tuple[float, float] = (1.0, 1.0)
     motion_input_mode: str = "legacy"
+    # P7-only branch mode. Disabled preserves the legacy state-dict and graph.
+    # Both experimental arms retain the existing per-cell real-goal path;
+    # only the new branch's distance-score slot differs.
+    cross_cell_goal_mode: str = "disabled"
     # Inputs use exactly the normalization of the public ResNet checkpoint.
     # Dataset/serving code supplies normalized float images, not uint8 images.
 
@@ -54,3 +58,5 @@ class MotionDriveV2Config:
         self.plan_output_scale = validated_plan_output_scale(self.plan_output_scale)
         if self.motion_input_mode not in ("legacy", "high_feature", "low_feature"):
             raise ValueError("motion_input_mode must be legacy, high_feature or low_feature")
+        if self.cross_cell_goal_mode not in ("disabled", "zero", "real"):
+            raise ValueError("cross_cell_goal_mode must be disabled, zero or real")
