@@ -196,7 +196,8 @@ def arguments():
     p.add_argument("--max-eval-samples", type=int, default=0)
     p.add_argument("--train-scenes", nargs="+")
     p.add_argument("--eval-scenes", nargs="+")
-    p.add_argument("--eval-split", choices=["tune", "val", "historical_val"], default="tune")
+    p.add_argument("--eval-split", choices=["train", "tune", "val", "historical_val"], default="tune",
+                   help="train is diagnostic eval-only; only tune may select checkpoints")
     p.add_argument("--eval-only", action="store_true")
     p.add_argument("--allow-unpretrained", action="store_true", help="Explicit diagnostic only")
     return p.parse_args()

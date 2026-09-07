@@ -93,6 +93,7 @@ def load_batch(path=None, *, device="cpu", seed=7):
                   "notice": "Synthetic image timing only; not real-data accuracy or final latency gate."}
     else:
         path = Path(path)
+        identity = {}
         if path.suffix == ".npz":
             with np.load(path, allow_pickle=False) as saved:
                 batch = {k: torch.from_numpy(saved[k].copy()) for k in INPUT_KEYS}
@@ -103,10 +104,14 @@ def load_batch(path=None, *, device="cpu", seed=7):
         else:
             saved = torch.load(path, map_location="cpu", weights_only=True)
             batch = dict(saved.get("batch", saved))
+            for key in ("scenario", "session_id", "frame", "row", "scen_idx"):
+                if key in batch:
+                    identity[key] = batch[key].tolist() if torch.is_tensor(batch[key]) else batch[key]
             if "gt_plan_abs" not in batch and "gt_plan" in batch:
                 batch["gt_plan_abs"] = batch["gt_plan"]
             batch = {k: torch.as_tensor(batch[k]) for k in (*INPUT_KEYS, "gt_plan_abs") if k in batch}
         source = {"kind": "file", "path": str(path.resolve()), "sha256": sha256(path),
+                  "sample_identity": identity,
                   "notice": "File provenance must establish real imagery; loading a file is not proof."}
     batch = {k: v.to(device=device, dtype=torch.float32) for k, v in batch.items()}
     validate_batch(batch)
@@ -118,22 +123,73 @@ def model_inputs(batch):
 
 
 def construct_model(args):
+    """Restore a trusted user-owned LOCAL training checkpoint and its run config.
+
+    Trainer payloads contain NumPy/Python RNG states, so weights_only=False is
+    intentional here. Never point this option at an untrusted downloaded pickle.
+    Input-batch loading remains weights_only=True.
+    """
     from models.motiondrive_v2 import MotionDriveV2, MotionDriveV2Config
     checkpoint = None
     config = {}
+    info = {"checkpoint": None, "config_source": "model_defaults",
+            "checkpoint_load_policy": "not_applicable", "explicit_overrides": {},
+            "explicit_config_sources": [], "evaluation_kind": "random_initialization"}
     if args.checkpoint:
-        checkpoint = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
-        config.update(checkpoint.get("config", checkpoint.get("model_config", {})))
+        checkpoint_path = Path(args.checkpoint)
+        if not checkpoint_path.is_file():
+            raise ValueError("--checkpoint must be an existing trusted local file")
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+        if not isinstance(checkpoint, dict):
+            raise ValueError("checkpoint must contain a state dictionary and model configuration")
+        manifest = checkpoint.get("manifest", {})
+        if isinstance(manifest, dict) and "model_config" in manifest:
+            saved_config, source = manifest["model_config"], "manifest.model_config"
+        elif "model_config" in checkpoint:
+            saved_config, source = checkpoint["model_config"], "model_config"
+        elif "config" in checkpoint:
+            saved_config, source = checkpoint["config"], "config"
+        elif args.config_json:
+            saved_config, source = {}, "explicit_config_json_required"
+        else:
+            raise ValueError("checkpoint has no model configuration; provide --config-json explicitly")
+        if not isinstance(saved_config, dict):
+            raise ValueError(f"checkpoint {source} must be a configuration dictionary")
+        config.update(saved_config)
+        info.update(checkpoint=str(checkpoint_path.resolve()),
+                    checkpoint_sha256=sha256(checkpoint_path), config_source=source,
+                    checkpoint_model_config=dict(saved_config),
+                    checkpoint_load_policy="trusted_user_local_pickle_weights_only_false",
+                    evaluation_kind="checkpoint_configuration")
+
+    def apply_explicit_config(values, source):
+        defaults = dataclasses.asdict(MotionDriveV2Config(**config))
+        for key, value in values.items():
+            old = info["explicit_overrides"].get(key, {}).get("from", defaults.get(key))
+            # JSON arrays and dataclass tuples describe the same configuration.
+            if json.dumps(old) != json.dumps(value):
+                info["explicit_overrides"][key] = {"from": old, "to": value, "source": source}
+            else:
+                info["explicit_overrides"].pop(key, None)
+            config[key] = value
+        info["explicit_config_sources"].append(source)
+
     if args.config_json:
-        config.update(json.loads(Path(args.config_json).read_text()))
+        apply_explicit_config(json.loads(Path(args.config_json).read_text()), "--config-json")
     for key in ("goal_on", "state_on"):
         value = getattr(args, key, None)
         if value is not None:
-            config[key] = bool(value)
+            apply_explicit_config({key: bool(value)}, "--" + key.replace("_", "-"))
+    if checkpoint is not None and any(key not in config for key in ("goal_on", "state_on")):
+        raise ValueError("checkpoint goal_on/state_on are unspecified; provide them explicitly via --config-json or --goal-on/--state-on")
     model = MotionDriveV2(MotionDriveV2Config(**config))
     if checkpoint is not None:
         state = checkpoint.get("model", checkpoint.get("state_dict", checkpoint))
         model.load_state_dict(state, strict=True)
+        if info["explicit_overrides"]:
+            info["evaluation_kind"] = "explicit_checkpoint_ablation"
+    info["effective_model_config"] = dataclasses.asdict(model.config)
+    model.audit_load_metadata = info
     model.to(args.device).eval()
     return model
 
@@ -238,6 +294,18 @@ def run_audit(model, batch, *, precision="bf16", goal_on=True, with_gradients=Tr
 
     normal = execute(batch)
     checks.update(output_checks(normal, batch["images"].shape[0]))
+    if "gt_plan_abs" in batch:
+        weights = normal["plan_abs"].new_tensor([11, 11, 5, 5, 2, 2]) / 36
+        measurements["normal_official_temporal_d3_frame_mean"] = float(
+            ((normal["plan_abs"] - batch["gt_plan_abs"]).norm(dim=-1) * weights).sum(-1).mean())
+    if "scene_visible" in normal:
+        visibility = normal["scene_visible"].float()
+        measurements["calibration_scene_visibility"] = {
+            "fraction": float(visibility.mean().cpu()),
+            "visible_cells": int((visibility > 0).sum().cpu()),
+            "total_cells": visibility.numel(),
+        }
+        checks["calibration_has_visible_scene_cells"] = bool((visibility > 0).any())
     observed_precision = final_head_precision(model, batch, device, precision)
     measurements["final_head_input_dtypes"] = observed_precision
     for name, dtypes in observed_precision.items():
@@ -304,13 +372,13 @@ def run_audit(model, batch, *, precision="bf16", goal_on=True, with_gradients=Tr
 
 def common_parser(description):
     parser = argparse.ArgumentParser(description=description)
-    parser.add_argument("--checkpoint")
+    parser.add_argument("--checkpoint", help="Trusted user-owned local training checkpoint; uses Python pickle (weights_only=False) to read saved RNG state/config")
     parser.add_argument("--config-json")
     parser.add_argument("--batch", help="NPZ or weights-only Torch tensor dict, model input keys")
     parser.add_argument("--device", default="cuda:0" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--precision", choices=("bf16", "fp32"), default="bf16")
-    parser.add_argument("--goal-on", type=int, choices=(0, 1))
-    parser.add_argument("--state-on", type=int, choices=(0, 1))
+    parser.add_argument("--goal-on", type=int, choices=(0, 1), help="Explicit goal-condition ablation; saved checkpoint value is preserved when omitted")
+    parser.add_argument("--state-on", type=int, choices=(0, 1), help="Explicit inferred-state ablation; saved checkpoint value is preserved when omitted")
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--out", required=True)
     return parser
@@ -328,12 +396,14 @@ def main():
     report = run_audit(model, batch, precision=args.precision, goal_on=goal_on,
                        with_gradients=not args.skip_gradients)
     report.update({"input_source": source, "checkpoint": args.checkpoint,
+                   "model_load": model.audit_load_metadata,
                    "precision": args.precision, "torch_version": torch.__version__})
     target = Path(args.out)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(report, indent=2))
     print(json.dumps({"pass": report["all_executed_checks_pass"],
                       "failed": [k for k, v in report["checks"].items() if not v],
+                      "model_load": model.audit_load_metadata,
                       "input_source": source, "report": str(target)}, indent=2))
     return 0 if report["all_executed_checks_pass"] else 1
 

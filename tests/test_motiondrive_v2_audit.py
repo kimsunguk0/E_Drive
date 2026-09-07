@@ -1,13 +1,16 @@
 """The audit must detect actual bypasses, not compare artifacts with themselves."""
 import sys
+import dataclasses
+from types import SimpleNamespace
 from pathlib import Path
 
 import pytest
+import numpy as np
 import torch
 from torch import nn
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from audit_motiondrive_v2 import run_audit, synthetic_batch, validate_batch
+from audit_motiondrive_v2 import construct_model, run_audit, synthetic_batch, validate_batch
 from benchmark_motiondrive_v2 import summarize_ms
 
 
@@ -106,3 +109,61 @@ def test_benchmark_summary_preserves_tail_latency():
     assert summary["p99_ms"] > 95.
     with pytest.raises(ValueError):
         summarize_ms([])
+
+
+@pytest.fixture(scope="module")
+def trainer_checkpoint(tmp_path_factory):
+    from models.motiondrive_v2 import MotionDriveV2, MotionDriveV2Config
+    config = MotionDriveV2Config(channels=16, backbone_arch="resnet34", grid_size=(6, 4),
+                                motion_grid=(3, 4), correlation_channels=8,
+                                scene_attention_channels=8, goal_on=False, state_on=False)
+    model = MotionDriveV2(config)
+    path = tmp_path_factory.mktemp("trainer_checkpoint") / "checkpoint.pt"
+    payload = {"model": model.state_dict(), "optimizer": {}, "step": 17,
+               "manifest": {"model_config": dataclasses.asdict(config)},
+               "rng": {"numpy": np.random.get_state(), "torch": torch.get_rng_state()},
+               # A stale old-format field must not override the trainer manifest.
+               "config": {"goal_on": True, "state_on": True}}
+    torch.save(payload, path)
+    return path
+
+
+def checkpoint_args(path, **overrides):
+    values = dict(checkpoint=str(path), config_json=None, goal_on=None, state_on=None, device="cpu")
+    values.update(overrides)
+    return SimpleNamespace(**values)
+
+
+def test_trainer_numpy_rng_checkpoint_restores_manifest_g0s0(trainer_checkpoint):
+    model = construct_model(checkpoint_args(trainer_checkpoint))
+    assert model.config.goal_on is False
+    assert model.config.state_on is False
+    assert model.config.channels == 16
+    meta = model.audit_load_metadata
+    assert meta["config_source"] == "manifest.model_config"
+    assert meta["explicit_overrides"] == {}
+    assert meta["evaluation_kind"] == "checkpoint_configuration"
+
+
+def test_explicit_goal_ablation_is_recorded_without_changing_state(trainer_checkpoint):
+    model = construct_model(checkpoint_args(trainer_checkpoint, goal_on=1))
+    assert model.config.goal_on is True and model.config.state_on is False
+    meta = model.audit_load_metadata
+    assert meta["evaluation_kind"] == "explicit_checkpoint_ablation"
+    assert meta["explicit_overrides"] == {
+        "goal_on": {"from": False, "to": True, "source": "--goal-on"}}
+    assert meta["effective_model_config"]["state_on"] is False
+
+
+def test_checkpoint_without_config_is_not_silently_assumed_on(tmp_path):
+    path = tmp_path / "ambiguous.pt"
+    torch.save({"model": {}}, path)
+    with pytest.raises(ValueError, match="provide --config-json"):
+        construct_model(checkpoint_args(path))
+
+
+def test_checkpoint_missing_goal_state_flags_requires_explicit_values(tmp_path):
+    path = tmp_path / "missing_flags.pt"
+    torch.save({"model": {}, "manifest": {"model_config": {"channels": 16}}}, path)
+    with pytest.raises(ValueError, match="goal_on/state_on are unspecified"):
+        construct_model(checkpoint_args(path))

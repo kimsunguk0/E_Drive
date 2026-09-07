@@ -9,7 +9,9 @@ from PIL import Image
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from build_grouped_split_v2 import group_scenes, make_manifest, sha256, validate_manifest
+from build_grouped_split_v2 import (group_scenes, group_raw_scene_bounds,
+                                    make_manifest, rebind_raw_sessions, sha256,
+                                    validate_manifest)
 from build_scene_supervision_v2 import (camera_visible, object_corners_world,
                                         rasterize_objects, rasterize_lanes,
                                         transform_points)
@@ -31,6 +33,24 @@ def test_end_to_start_gap_and_quarantine():
     m["splits"]["train"].append(scenes[0])
     with pytest.raises(ValueError, match="Overlapping"):
         validate_manifest(m)
+
+
+def test_raw_timestamps_not_ambiguous_filename_and_cross_split_fail():
+    names = ["20260205-03916", "20260205-03948", "20260205-04020",
+             "20260205-100000", "20260205-110000", "20260205-120000"]
+    bounds = {s: {"start_seconds": start, "end_seconds": start + 31.875}
+              for s, start in zip(names, [0, 31.875, 63.75, 10000, 14000, 18000])}
+    assert group_raw_scene_bounds(bounds)[0] == names[:3]
+    previous = make_manifest(names, [names[-1]])
+    previous["splits"] = {"train": names[:3], "tune": names[3:5], "val": names[5:], "historical_val": names[5:]}
+    previous["scene_to_session"] = {s: s for s in names}
+    fixed = rebind_raw_sessions(previous, bounds)
+    assert fixed["splits"] == previous["splits"]
+    assert len({fixed["scene_to_session"][s] for s in names[:3]}) == 1
+    previous["splits"]["train"].remove(names[1])
+    previous["splits"]["tune"].append(names[1])
+    with pytest.raises(ValueError, match="CROSSES_PRIMARY_SPLITS"):
+        rebind_raw_sessions(previous, bounds)
 
 
 def test_motion_causal_constant_acceleration_and_full_se3():

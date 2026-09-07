@@ -45,3 +45,4 @@ scripts/*.pre_*
 .venv/
 .local_deps/
 .pytest_cache/
+/reports/fixtures/

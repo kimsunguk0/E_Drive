@@ -87,6 +87,7 @@ def main():
     except (OSError, subprocess.CalledProcessError):
         smi = "unavailable"
     result.update({"input_source": source, "checkpoint": args.checkpoint,
+                   "model_load": model.audit_load_metadata,
                    "checkpoint_sha256": sha256(args.checkpoint) if args.checkpoint else None,
                    "weight_status": "checkpoint_loaded" if args.checkpoint else "random_initialization",
                    "device": args.device, "gpu": torch.cuda.get_device_name(args.device),
@@ -111,6 +112,7 @@ def main():
     print(json.dumps({"cuda": result["cuda"], "wall": result["wall"],
                       "peak_allocated_bytes": result["peak_allocated_bytes"],
                       "input_source": source, "output_checks_pass": result["all_output_checks_pass"],
+                      "model_load": model.audit_load_metadata,
                       "report": str(target)}, indent=2))
     return 0 if result["all_output_checks_pass"] else 1
 
