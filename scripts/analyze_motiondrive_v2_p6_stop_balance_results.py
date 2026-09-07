@@ -35,7 +35,7 @@ P4_REFERENCE_SHA256 = {
     0: "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
     1: "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137",
 }
-FP32_AUDIT_TOLERANCE = 8 * np.finfo(np.float32).eps
+FP32_AUDIT_TOLERANCE = float(8 * np.finfo(np.float32).eps)
 OFFICIAL_TIME_WEIGHTS = (11 / 36, 11 / 36, 5 / 36, 5 / 36, 2 / 36, 2 / 36)
 
 
@@ -415,13 +415,32 @@ def write_new_json(path, value):
     path = Path(path)
     require(path.parent.is_dir(), f"Output parent missing: {path.parent}")
     require(not os.path.lexists(path), f"Refusing to overwrite output: {path}")
+    def native(item):
+        if item is None or type(item) in (bool, int, float, str):
+            return item
+        if isinstance(item, np.integer):
+            return int(item)
+        if isinstance(item, np.floating):
+            return float(item)
+        if isinstance(item, np.ndarray):
+            return [native(element) for element in item.tolist()]
+        if isinstance(item, (list, tuple)):
+            return [native(element) for element in item]
+        if isinstance(item, dict):
+            require(all(type(key) is str for key in item), "JSON output keys must be strings")
+            return {key: native(element) for key, element in item.items()}
+        raise TypeError(f"Unsupported JSON output type: {type(item).__name__}")
+
+    normalized = native(value)
+    serialized = json.dumps(normalized, indent=2, allow_nan=False) + "\n"
+    # Exercise the complete serialized representation before publishing it.
+    require(json.loads(serialized) == normalized, "JSON output round-trip mismatch")
     temporary = None
     try:
         with tempfile.NamedTemporaryFile("w", dir=path.parent, prefix=f".{path.name}.",
                                          suffix=".tmp", delete=False) as stream:
             temporary = Path(stream.name)
-            json.dump(value, stream, indent=2, allow_nan=False)
-            stream.write("\n"); stream.flush(); os.fsync(stream.fileno())
+            stream.write(serialized); stream.flush(); os.fsync(stream.fileno())
         os.link(temporary, path)
     finally:
         if temporary is not None:
@@ -472,7 +491,7 @@ def main(argv=None):
             "final_validation_accessed": False, "gpu_used": False,
             "actual_performance_was_pending_when_analyzer_was_authored": True,
             "reused_tune_is_exploratory": True},
-        "environment": {"python": os.sys.version, "numpy": np.__version__, "torch": torch.__version__,
+        "environment": {"python": os.sys.version, "numpy": np.__version__, "torch": str(torch.__version__),
             "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
             "cuda_initialized": torch.cuda.is_initialized(),
             "analyzer_sha256": sha256_bytes(Path(__file__).read_bytes())},
