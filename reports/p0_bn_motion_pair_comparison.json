@@ -1,0 +1,2731 @@
+{
+  "상태": "BN 쌍 D LAST1000 paired 분석 완료",
+  "expected_step": 1000,
+  "protocol": {
+    "n_scenes": 37,
+    "n_rawtime_sessions": 11,
+    "n_frames": 370,
+    "frames_per_scene": [
+      30,
+      55,
+      85,
+      115,
+      145,
+      175,
+      205,
+      235,
+      265,
+      295
+    ],
+    "augmentation": false,
+    "bootstrap_repeats": 10000,
+    "seed": 20260907,
+    "primary_ci": "rawtime 세션 11개를 복원추출한 paired percentile 95% 구간",
+    "secondary_ci": "scene 37개 기준 보조 구간; 프레임 독립 bootstrap 금지",
+    "sampling": "세션 내 paired 차이와 전체 고정 표본 수를 함께 재표집한 프레임 가중 평균",
+    "checkpoint": "같은 LAST1000만 사용. best는 혼합하거나 재선택하지 않음",
+    "manipulation": "두 팔 모두 low_feature / G0S0; BN 학습 정책만 adaptive 대 fixed"
+  },
+  "fairness_checks": "동일 초기 전체 state(버퍼 포함), 모델, 소스, 행 목록, 누적 표본 순서 및 BN 외 인자 일치",
+  "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "checkpoint_sha256": {
+    "adaptive": "9bf403fbf973ddd89e70a734df4b7773cac592186920168b7feb982054a78c70",
+    "fixed": "e0deb9fd92d2bd859e13ba647685aee4f7cdef1e7bf3effeed8675fcbafcbd75"
+  },
+  "normal_accuracy": {
+    "vx_mae_m_s": {
+      "adaptive": 1.1791828588859454,
+      "fixed": 1.0150113830695282,
+      "sign": "fixed-adaptive; 음수가 fixed 개선",
+      "primary_rawtime_session": {
+        "mean_difference": -0.1641714758164174,
+        "ci95_percentile": [
+          -0.31748036773077076,
+          -0.006026850657707108
+        ],
+        "n_clusters": 11,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": true,
+        "bootstrap_fraction_above_zero": 0.0187,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      },
+      "secondary_scene": {
+        "mean_difference": -0.1641714758164174,
+        "ci95_percentile": [
+          -0.28976190384175327,
+          -0.05578534105742309
+        ],
+        "n_clusters": 37,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": true,
+        "bootstrap_fraction_above_zero": 0.0008,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "adaptive": 0.5493787176705696,
+      "fixed": 0.4730213046879382,
+      "sign": "fixed-adaptive; 음수가 fixed 개선",
+      "primary_rawtime_session": {
+        "mean_difference": -0.07635741298263138,
+        "ci95_percentile": [
+          -0.14113222176124476,
+          -0.010726220092284647
+        ],
+        "n_clusters": 11,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": true,
+        "bootstrap_fraction_above_zero": 0.0066,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      },
+      "secondary_scene": {
+        "mean_difference": -0.07635741298263138,
+        "ci95_percentile": [
+          -0.13343386243324024,
+          -0.026406335025220305
+        ],
+        "n_clusters": 37,
+        "n_scenes": 37,
+        "n_frames": 370,
+        "bootstrap_repeats": 10000,
+        "seed": 20260907,
+        "ci_excludes_zero": true,
+        "bootstrap_fraction_above_zero": 0.0005,
+        "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+      }
+    }
+  },
+  "temporal_controls": {
+    "vx_mae_m_s": {
+      "repeat_current": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "adaptive_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.05702951147749617,
+            "ci95_percentile": [
+              -0.034996507360943056,
+              0.18726367957808154
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8681,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.05702951147749617,
+            "ci95_percentile": [
+              -0.016546612454427255,
+              0.1252471267572931
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9358,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "fixed_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.09531322685447899,
+            "ci95_percentile": [
+              -0.008565783692880514,
+              0.2447326207798102
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9594,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.09531322685447899,
+            "ci95_percentile": [
+              -0.0003704371887284355,
+              0.1815096192666002
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9747,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_fixed_minus_adaptive": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.038283715376982816,
+            "ci95_percentile": [
+              0.011855556881603073,
+              0.0864826127596489
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9999,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.038283715376982816,
+            "ci95_percentile": [
+              -0.010377582968086808,
+              0.08735316705864828
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9382,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "reverse_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "adaptive_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.019277480808464257,
+            "ci95_percentile": [
+              -0.009225276523028259,
+              0.07586056866190005
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8846,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.019277480808464257,
+            "ci95_percentile": [
+              -0.008014882798935915,
+              0.047745138648393984
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9133,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "fixed_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.03898945853516862,
+            "ci95_percentile": [
+              0.007681731236021535,
+              0.09681355351070207
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9952,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.03898945853516862,
+            "ci95_percentile": [
+              0.008639913434917863,
+              0.0711743983465272
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9937,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_fixed_minus_adaptive": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.019711977726704365,
+            "ci95_percentile": [
+              0.0049145676182971955,
+              0.03393749655783175
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.997,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.019711977726704365,
+            "ci95_percentile": [
+              0.001087044864087492,
+              0.03887090912541827
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9814,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "cross_scene_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "adaptive_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 2.031547538332037,
+            "ci95_percentile": [
+              1.5482909901653017,
+              2.438540864618761
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 2.031547538332037,
+            "ci95_percentile": [
+              1.4625796507741955,
+              2.6570040315993735
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "fixed_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 2.2064612660859084,
+            "ci95_percentile": [
+              1.6352843574769795,
+              2.7001043841809853
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 2.2064612660859084,
+            "ci95_percentile": [
+              1.5892772893245155,
+              2.8864644184708594
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_fixed_minus_adaptive": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.1749137277538712,
+            "ci95_percentile": [
+              0.0503367124564992,
+              0.2839280302419017
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9993,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.1749137277538712,
+            "ci95_percentile": [
+              0.07752783773718654,
+              0.2847796924210883
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9997,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "repeat_current": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "adaptive_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.01371351327445056,
+            "ci95_percentile": [
+              -0.01576227564484842,
+              0.0582913810617867
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.01371351327445056,
+            "ci95_percentile": [
+              -0.010913189027357743,
+              0.03558301609512922
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.8724,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "fixed_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.0242141791292139,
+            "ci95_percentile": [
+              -0.0030371288457603824,
+              0.06726698618694187
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.951,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.0242141791292139,
+            "ci95_percentile": [
+              -0.004294039127794471,
+              0.05069163697394164
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9524,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_fixed_minus_adaptive": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.010500665854763341,
+            "ci95_percentile": [
+              0.00442513604680975,
+              0.019736220356490877
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9994,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.010500665854763341,
+            "ci95_percentile": [
+              -0.005383872200508373,
+              0.026304311627471766
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9087,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "reverse_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "adaptive_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.01564263693384222,
+            "ci95_percentile": [
+              0.0033652263590031204,
+              0.04031297948722746
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9965,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.01564263693384222,
+            "ci95_percentile": [
+              0.002939285740659044,
+              0.028542561124305463
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9917,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "fixed_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.023957940774994926,
+            "ci95_percentile": [
+              0.006741307271240944,
+              0.04923844384358209
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9982,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.023957940774994926,
+            "ci95_percentile": [
+              0.010276479485469897,
+              0.03804936329456599
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9998,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_fixed_minus_adaptive": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.008315303841152706,
+            "ci95_percentile": [
+              -0.0009317790729408503,
+              0.017094055589004165
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": false,
+            "bootstrap_fraction_above_zero": 0.9494,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.008315303841152706,
+            "ci95_percentile": [
+              0.0002743291693764764,
+              0.016706912823625512
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.9792,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      },
+      "cross_scene_history": {
+        "within_arm_sign": "교란-normal; 양수가 정상 과거 영상 사용의 관측상 이점",
+        "adaptive_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.7633576675041301,
+            "ci95_percentile": [
+              0.5772169844258106,
+              0.9162970213633862
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.7633576675041301,
+            "ci95_percentile": [
+              0.5384835680292265,
+              1.013584235552195
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "fixed_advantage": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.8251767891484338,
+            "ci95_percentile": [
+              0.6261130928695202,
+              1.0012076142195023
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.8251767891484338,
+            "ci95_percentile": [
+              0.5916466476446068,
+              1.086486830673105
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        },
+        "difference_in_advantages_fixed_minus_adaptive": {
+          "primary_rawtime_session": {
+            "mean_difference": 0.06181912164430361,
+            "ci95_percentile": [
+              0.021622255669074806,
+              0.0964550982994156
+            ],
+            "n_clusters": 11,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 1.0,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          },
+          "secondary_scene": {
+            "mean_difference": 0.06181912164430361,
+            "ci95_percentile": [
+              0.020574064220528345,
+              0.10754804242704363
+            ],
+            "n_clusters": 37,
+            "n_scenes": 37,
+            "n_frames": 370,
+            "bootstrap_repeats": 10000,
+            "seed": 20260907,
+            "ci_excludes_zero": true,
+            "bootstrap_fraction_above_zero": 0.999,
+            "fraction_note": "재표집 분포의 부호 비율이며 빈도주의 p값 또는 베이지안 사후확률이 아님"
+          }
+        }
+      }
+    }
+  },
+  "per_scene": {
+    "vx_mae_m_s": {
+      "20260113-102709": {
+        "session": "session_019_20260113-102709",
+        "adaptive_normal": 0.8919256329536438,
+        "fixed_normal": 0.8959082365036011,
+        "normal_fixed_minus_adaptive": 0.003982603549957275
+      },
+      "20260122-134906": {
+        "session": "session_026_20260122-134906",
+        "adaptive_normal": 1.3624463081359863,
+        "fixed_normal": 1.2433732748031616,
+        "normal_fixed_minus_adaptive": -0.11907303333282471
+      },
+      "20260122-134936": {
+        "session": "session_026_20260122-134906",
+        "adaptive_normal": 0.8291374444961548,
+        "fixed_normal": 0.7560964822769165,
+        "normal_fixed_minus_adaptive": -0.07304096221923828
+      },
+      "20260122-135506": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.8228883743286133,
+        "fixed_normal": 0.9129341244697571,
+        "normal_fixed_minus_adaptive": 0.0900457501411438
+      },
+      "20260122-135546": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.9145709276199341,
+        "fixed_normal": 0.7946422696113586,
+        "normal_fixed_minus_adaptive": -0.11992865800857544
+      },
+      "20260122-135616": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 1.3985742330551147,
+        "fixed_normal": 1.2950636148452759,
+        "normal_fixed_minus_adaptive": -0.10351061820983887
+      },
+      "20260122-135646": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 1.4541914463043213,
+        "fixed_normal": 1.1712568998336792,
+        "normal_fixed_minus_adaptive": -0.2829345464706421
+      },
+      "20260122-135800": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.6307274699211121,
+        "fixed_normal": 0.8577195405960083,
+        "normal_fixed_minus_adaptive": 0.22699207067489624
+      },
+      "20260122-135830": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.6613785624504089,
+        "fixed_normal": 0.9548112750053406,
+        "normal_fixed_minus_adaptive": 0.29343271255493164
+      },
+      "20260122-135900": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.4724122881889343,
+        "fixed_normal": 0.44521665573120117,
+        "normal_fixed_minus_adaptive": -0.027195632457733154
+      },
+      "20260209-153550": {
+        "session": "session_040_20260209-153550",
+        "adaptive_normal": 0.9020549654960632,
+        "fixed_normal": 0.7725117206573486,
+        "normal_fixed_minus_adaptive": -0.1295432448387146
+      },
+      "20260209-153620": {
+        "session": "session_040_20260209-153550",
+        "adaptive_normal": 0.5512440800666809,
+        "fixed_normal": 0.37724512815475464,
+        "normal_fixed_minus_adaptive": -0.17399895191192627
+      },
+      "20260210-100504": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.4883457124233246,
+        "fixed_normal": 0.4393371641635895,
+        "normal_fixed_minus_adaptive": -0.04900854825973511
+      },
+      "20260210-100534": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.9037250280380249,
+        "fixed_normal": 0.9339808225631714,
+        "normal_fixed_minus_adaptive": 0.030255794525146484
+      },
+      "20260210-100614": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.7445542216300964,
+        "fixed_normal": 0.5928982496261597,
+        "normal_fixed_minus_adaptive": -0.15165597200393677
+      },
+      "20260210-100644": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.3471013903617859,
+        "fixed_normal": 0.3912275731563568,
+        "normal_fixed_minus_adaptive": 0.04412618279457092
+      },
+      "20260210-100754": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 1.2801622152328491,
+        "fixed_normal": 1.0495145320892334,
+        "normal_fixed_minus_adaptive": -0.23064768314361572
+      },
+      "20260210-100854": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 1.623295545578003,
+        "fixed_normal": 1.2280935049057007,
+        "normal_fixed_minus_adaptive": -0.39520204067230225
+      },
+      "20260210-101004": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 1.6032730340957642,
+        "fixed_normal": 1.400283694267273,
+        "normal_fixed_minus_adaptive": -0.2029893398284912
+      },
+      "20260210-101034": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 3.258496046066284,
+        "fixed_normal": 2.031886339187622,
+        "normal_fixed_minus_adaptive": -1.226609706878662
+      },
+      "20260210-101114": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 3.2913849353790283,
+        "fixed_normal": 2.208733081817627,
+        "normal_fixed_minus_adaptive": -1.0826518535614014
+      },
+      "20260210-101214": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 4.062302589416504,
+        "fixed_normal": 2.8787877559661865,
+        "normal_fixed_minus_adaptive": -1.1835148334503174
+      },
+      "20260213-134648": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 1.0012667179107666,
+        "fixed_normal": 0.6867988109588623,
+        "normal_fixed_minus_adaptive": -0.3144679069519043
+      },
+      "20260213-134718": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.6708876490592957,
+        "fixed_normal": 0.9120104908943176,
+        "normal_fixed_minus_adaptive": 0.24112284183502197
+      },
+      "20260213-134758": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.6091920137405396,
+        "fixed_normal": 0.5464335680007935,
+        "normal_fixed_minus_adaptive": -0.0627584457397461
+      },
+      "20260213-134828": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 1.8322559595108032,
+        "fixed_normal": 1.2659821510314941,
+        "normal_fixed_minus_adaptive": -0.5662738084793091
+      },
+      "20260213-134938": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.7763957977294922,
+        "fixed_normal": 0.7692146301269531,
+        "normal_fixed_minus_adaptive": -0.0071811676025390625
+      },
+      "20260213-135038": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.835354208946228,
+        "fixed_normal": 0.9162715077400208,
+        "normal_fixed_minus_adaptive": 0.08091729879379272
+      },
+      "20260219-103747": {
+        "session": "session_092_20260219-103747",
+        "adaptive_normal": 1.998024582862854,
+        "fixed_normal": 1.808722734451294,
+        "normal_fixed_minus_adaptive": -0.18930184841156006
+      },
+      "20260219-110038": {
+        "session": "session_097_20260219-110038",
+        "adaptive_normal": 0.5520714521408081,
+        "fixed_normal": 0.9180445671081543,
+        "normal_fixed_minus_adaptive": 0.3659731149673462
+      },
+      "20260219-110108": {
+        "session": "session_097_20260219-110038",
+        "adaptive_normal": 0.613418459892273,
+        "fixed_normal": 0.7185971140861511,
+        "normal_fixed_minus_adaptive": 0.10517865419387817
+      },
+      "20260219-110218": {
+        "session": "session_097_20260219-110038",
+        "adaptive_normal": 0.9281381368637085,
+        "fixed_normal": 1.0217911005020142,
+        "normal_fixed_minus_adaptive": 0.09365296363830566
+      },
+      "20260219-90551": {
+        "session": "session_087_20260219-90551",
+        "adaptive_normal": 1.6708910465240479,
+        "fixed_normal": 1.5317457914352417,
+        "normal_fixed_minus_adaptive": -0.13914525508880615
+      },
+      "20260219-90621": {
+        "session": "session_087_20260219-90551",
+        "adaptive_normal": 0.6697483062744141,
+        "fixed_normal": 0.5861916542053223,
+        "normal_fixed_minus_adaptive": -0.0835566520690918
+      },
+      "20260220-134317": {
+        "session": "session_108_20260220-134317",
+        "adaptive_normal": 0.7965944409370422,
+        "fixed_normal": 0.7729862332344055,
+        "normal_fixed_minus_adaptive": -0.02360820770263672
+      },
+      "20260220-134347": {
+        "session": "session_108_20260220-134317",
+        "adaptive_normal": 1.6102778911590576,
+        "fixed_normal": 0.9745556116104126,
+        "normal_fixed_minus_adaptive": -0.635722279548645
+      },
+      "20260303-142827": {
+        "session": "session_112_20260303-142827",
+        "adaptive_normal": 0.5710566639900208,
+        "fixed_normal": 0.49455326795578003,
+        "normal_fixed_minus_adaptive": -0.07650339603424072
+      }
+    },
+    "history_position_mae_mean4_m": {
+      "20260113-102709": {
+        "session": "session_019_20260113-102709",
+        "adaptive_normal": 0.42994946241378784,
+        "fixed_normal": 0.4475437104701996,
+        "normal_fixed_minus_adaptive": 0.017594248056411743
+      },
+      "20260122-134906": {
+        "session": "session_026_20260122-134906",
+        "adaptive_normal": 0.6266788244247437,
+        "fixed_normal": 0.6128041744232178,
+        "normal_fixed_minus_adaptive": -0.013874650001525879
+      },
+      "20260122-134936": {
+        "session": "session_026_20260122-134906",
+        "adaptive_normal": 0.3692072927951813,
+        "fixed_normal": 0.34657925367355347,
+        "normal_fixed_minus_adaptive": -0.022628039121627808
+      },
+      "20260122-135506": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.42911720275878906,
+        "fixed_normal": 0.4702928066253662,
+        "normal_fixed_minus_adaptive": 0.04117560386657715
+      },
+      "20260122-135546": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.41540852189064026,
+        "fixed_normal": 0.3576563894748688,
+        "normal_fixed_minus_adaptive": -0.057752132415771484
+      },
+      "20260122-135616": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.6334447860717773,
+        "fixed_normal": 0.5234049558639526,
+        "normal_fixed_minus_adaptive": -0.11003983020782471
+      },
+      "20260122-135646": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.6684533953666687,
+        "fixed_normal": 0.5047124624252319,
+        "normal_fixed_minus_adaptive": -0.16374093294143677
+      },
+      "20260122-135800": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.2497483789920807,
+        "fixed_normal": 0.34236955642700195,
+        "normal_fixed_minus_adaptive": 0.09262117743492126
+      },
+      "20260122-135830": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.29077082872390747,
+        "fixed_normal": 0.42809733748435974,
+        "normal_fixed_minus_adaptive": 0.13732650876045227
+      },
+      "20260122-135900": {
+        "session": "session_027_20260122-135506",
+        "adaptive_normal": 0.25213608145713806,
+        "fixed_normal": 0.2665007710456848,
+        "normal_fixed_minus_adaptive": 0.014364689588546753
+      },
+      "20260209-153550": {
+        "session": "session_040_20260209-153550",
+        "adaptive_normal": 0.37257149815559387,
+        "fixed_normal": 0.3055534064769745,
+        "normal_fixed_minus_adaptive": -0.06701809167861938
+      },
+      "20260209-153620": {
+        "session": "session_040_20260209-153550",
+        "adaptive_normal": 0.2502610683441162,
+        "fixed_normal": 0.18408295512199402,
+        "normal_fixed_minus_adaptive": -0.06617811322212219
+      },
+      "20260210-100504": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.25492480397224426,
+        "fixed_normal": 0.2542479932308197,
+        "normal_fixed_minus_adaptive": -0.0006768107414245605
+      },
+      "20260210-100534": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.40950775146484375,
+        "fixed_normal": 0.444719135761261,
+        "normal_fixed_minus_adaptive": 0.035211384296417236
+      },
+      "20260210-100614": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.35085153579711914,
+        "fixed_normal": 0.2703712284564972,
+        "normal_fixed_minus_adaptive": -0.08048030734062195
+      },
+      "20260210-100644": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.1567739099264145,
+        "fixed_normal": 0.17859815061092377,
+        "normal_fixed_minus_adaptive": 0.021824240684509277
+      },
+      "20260210-100754": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.6090155839920044,
+        "fixed_normal": 0.4667637348175049,
+        "normal_fixed_minus_adaptive": -0.1422518491744995
+      },
+      "20260210-100854": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.681041955947876,
+        "fixed_normal": 0.5308276414871216,
+        "normal_fixed_minus_adaptive": -0.1502143144607544
+      },
+      "20260210-101004": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 0.7393072247505188,
+        "fixed_normal": 0.6826192736625671,
+        "normal_fixed_minus_adaptive": -0.05668795108795166
+      },
+      "20260210-101034": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 1.4319442510604858,
+        "fixed_normal": 0.8980329632759094,
+        "normal_fixed_minus_adaptive": -0.5339112877845764
+      },
+      "20260210-101114": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 1.4609111547470093,
+        "fixed_normal": 0.948935329914093,
+        "normal_fixed_minus_adaptive": -0.5119758248329163
+      },
+      "20260210-101214": {
+        "session": "session_046_20260210-100504",
+        "adaptive_normal": 1.891039490699768,
+        "fixed_normal": 1.3420301675796509,
+        "normal_fixed_minus_adaptive": -0.5490093231201172
+      },
+      "20260213-134648": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.5117217302322388,
+        "fixed_normal": 0.38424795866012573,
+        "normal_fixed_minus_adaptive": -0.12747377157211304
+      },
+      "20260213-134718": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.35537272691726685,
+        "fixed_normal": 0.4597969949245453,
+        "normal_fixed_minus_adaptive": 0.10442426800727844
+      },
+      "20260213-134758": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.28475743532180786,
+        "fixed_normal": 0.25692468881607056,
+        "normal_fixed_minus_adaptive": -0.027832746505737305
+      },
+      "20260213-134828": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.8593392372131348,
+        "fixed_normal": 0.5840104818344116,
+        "normal_fixed_minus_adaptive": -0.27532875537872314
+      },
+      "20260213-134938": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.3964361548423767,
+        "fixed_normal": 0.42784371972084045,
+        "normal_fixed_minus_adaptive": 0.031407564878463745
+      },
+      "20260213-135038": {
+        "session": "session_076_20260213-134648",
+        "adaptive_normal": 0.4120818078517914,
+        "fixed_normal": 0.42073115706443787,
+        "normal_fixed_minus_adaptive": 0.008649349212646484
+      },
+      "20260219-103747": {
+        "session": "session_092_20260219-103747",
+        "adaptive_normal": 1.0168304443359375,
+        "fixed_normal": 0.9209215044975281,
+        "normal_fixed_minus_adaptive": -0.09590893983840942
+      },
+      "20260219-110038": {
+        "session": "session_097_20260219-110038",
+        "adaptive_normal": 0.3202430307865143,
+        "fixed_normal": 0.46823328733444214,
+        "normal_fixed_minus_adaptive": 0.14799025654792786
+      },
+      "20260219-110108": {
+        "session": "session_097_20260219-110038",
+        "adaptive_normal": 0.30775099992752075,
+        "fixed_normal": 0.34839218854904175,
+        "normal_fixed_minus_adaptive": 0.040641188621520996
+      },
+      "20260219-110218": {
+        "session": "session_097_20260219-110038",
+        "adaptive_normal": 0.4583696722984314,
+        "fixed_normal": 0.4526120126247406,
+        "normal_fixed_minus_adaptive": -0.005757659673690796
+      },
+      "20260219-90551": {
+        "session": "session_087_20260219-90551",
+        "adaptive_normal": 0.6653786897659302,
+        "fixed_normal": 0.6159543991088867,
+        "normal_fixed_minus_adaptive": -0.04942429065704346
+      },
+      "20260219-90621": {
+        "session": "session_087_20260219-90551",
+        "adaptive_normal": 0.33871951699256897,
+        "fixed_normal": 0.28060176968574524,
+        "normal_fixed_minus_adaptive": -0.05811774730682373
+      },
+      "20260220-134317": {
+        "session": "session_108_20260220-134317",
+        "adaptive_normal": 0.36388516426086426,
+        "fixed_normal": 0.36959773302078247,
+        "normal_fixed_minus_adaptive": 0.005712568759918213
+      },
+      "20260220-134347": {
+        "session": "session_108_20260220-134317",
+        "adaptive_normal": 0.7281548380851746,
+        "fixed_normal": 0.43410739302635193,
+        "normal_fixed_minus_adaptive": -0.29404744505882263
+      },
+      "20260303-142827": {
+        "session": "session_112_20260303-142827",
+        "adaptive_normal": 0.33490610122680664,
+        "fixed_normal": 0.27106958627700806,
+        "normal_fixed_minus_adaptive": -0.06383651494979858
+      }
+    }
+  },
+  "주의": [
+    "11세션의 작은 개발 표본이며 단일 seed 결과임",
+    "정상 오차 감소와 영상 교란 효과를 별도로 보고함",
+    "영상 교란은 분포 밖 진단이며 정보량 상한 또는 완전한 운동 인과 증명이 아님",
+    "여러 지표와 교란의 신뢰구간은 탐색적이며 다중비교 보정에 따른 유의성 선언이 아님",
+    "P0 planning loss가 0이므로 이 분석은 planning 성능이나 최종 채택을 증명하지 않음"
+  ],
+  "screening": {
+    "mean_vx_reduction_at_least_0p1_m_s": true,
+    "normal_vx_session_ci_entirely_below_zero": true,
+    "설명": "평균 정확도와 시간 대조의 일부 조건이며 자동 채택 규칙이 아님"
+  },
+  "bn_buffer_audit": {
+    "adaptive": {
+      "n_bn_modules": 53,
+      "n_buffer_tensors": 159,
+      "initial_buffer_sha256": "c3ac3ad5e25479af82b7563593d9d7d56a60f62c2e41c9a7e82ede6f0df6eb43",
+      "last_buffer_sha256": "94fa7706f909ef53607e4220dbb5d642fd59fbb45f6f165bb9e69fe6379410b0",
+      "buffer_changed_count": 159,
+      "changed_buffer_names": [
+        "backbone_fpn.layer1.0.bn1.num_batches_tracked",
+        "backbone_fpn.layer1.0.bn1.running_mean",
+        "backbone_fpn.layer1.0.bn1.running_var",
+        "backbone_fpn.layer1.0.bn2.num_batches_tracked",
+        "backbone_fpn.layer1.0.bn2.running_mean",
+        "backbone_fpn.layer1.0.bn2.running_var",
+        "backbone_fpn.layer1.0.bn3.num_batches_tracked",
+        "backbone_fpn.layer1.0.bn3.running_mean",
+        "backbone_fpn.layer1.0.bn3.running_var",
+        "backbone_fpn.layer1.0.downsample.1.num_batches_tracked",
+        "backbone_fpn.layer1.0.downsample.1.running_mean",
+        "backbone_fpn.layer1.0.downsample.1.running_var",
+        "backbone_fpn.layer1.1.bn1.num_batches_tracked",
+        "backbone_fpn.layer1.1.bn1.running_mean",
+        "backbone_fpn.layer1.1.bn1.running_var",
+        "backbone_fpn.layer1.1.bn2.num_batches_tracked",
+        "backbone_fpn.layer1.1.bn2.running_mean",
+        "backbone_fpn.layer1.1.bn2.running_var",
+        "backbone_fpn.layer1.1.bn3.num_batches_tracked",
+        "backbone_fpn.layer1.1.bn3.running_mean",
+        "backbone_fpn.layer1.1.bn3.running_var",
+        "backbone_fpn.layer1.2.bn1.num_batches_tracked",
+        "backbone_fpn.layer1.2.bn1.running_mean",
+        "backbone_fpn.layer1.2.bn1.running_var",
+        "backbone_fpn.layer1.2.bn2.num_batches_tracked",
+        "backbone_fpn.layer1.2.bn2.running_mean",
+        "backbone_fpn.layer1.2.bn2.running_var",
+        "backbone_fpn.layer1.2.bn3.num_batches_tracked",
+        "backbone_fpn.layer1.2.bn3.running_mean",
+        "backbone_fpn.layer1.2.bn3.running_var",
+        "backbone_fpn.layer2.0.bn1.num_batches_tracked",
+        "backbone_fpn.layer2.0.bn1.running_mean",
+        "backbone_fpn.layer2.0.bn1.running_var",
+        "backbone_fpn.layer2.0.bn2.num_batches_tracked",
+        "backbone_fpn.layer2.0.bn2.running_mean",
+        "backbone_fpn.layer2.0.bn2.running_var",
+        "backbone_fpn.layer2.0.bn3.num_batches_tracked",
+        "backbone_fpn.layer2.0.bn3.running_mean",
+        "backbone_fpn.layer2.0.bn3.running_var",
+        "backbone_fpn.layer2.0.downsample.1.num_batches_tracked",
+        "backbone_fpn.layer2.0.downsample.1.running_mean",
+        "backbone_fpn.layer2.0.downsample.1.running_var",
+        "backbone_fpn.layer2.1.bn1.num_batches_tracked",
+        "backbone_fpn.layer2.1.bn1.running_mean",
+        "backbone_fpn.layer2.1.bn1.running_var",
+        "backbone_fpn.layer2.1.bn2.num_batches_tracked",
+        "backbone_fpn.layer2.1.bn2.running_mean",
+        "backbone_fpn.layer2.1.bn2.running_var",
+        "backbone_fpn.layer2.1.bn3.num_batches_tracked",
+        "backbone_fpn.layer2.1.bn3.running_mean",
+        "backbone_fpn.layer2.1.bn3.running_var",
+        "backbone_fpn.layer2.2.bn1.num_batches_tracked",
+        "backbone_fpn.layer2.2.bn1.running_mean",
+        "backbone_fpn.layer2.2.bn1.running_var",
+        "backbone_fpn.layer2.2.bn2.num_batches_tracked",
+        "backbone_fpn.layer2.2.bn2.running_mean",
+        "backbone_fpn.layer2.2.bn2.running_var",
+        "backbone_fpn.layer2.2.bn3.num_batches_tracked",
+        "backbone_fpn.layer2.2.bn3.running_mean",
+        "backbone_fpn.layer2.2.bn3.running_var",
+        "backbone_fpn.layer2.3.bn1.num_batches_tracked",
+        "backbone_fpn.layer2.3.bn1.running_mean",
+        "backbone_fpn.layer2.3.bn1.running_var",
+        "backbone_fpn.layer2.3.bn2.num_batches_tracked",
+        "backbone_fpn.layer2.3.bn2.running_mean",
+        "backbone_fpn.layer2.3.bn2.running_var",
+        "backbone_fpn.layer2.3.bn3.num_batches_tracked",
+        "backbone_fpn.layer2.3.bn3.running_mean",
+        "backbone_fpn.layer2.3.bn3.running_var",
+        "backbone_fpn.layer3.0.bn1.num_batches_tracked",
+        "backbone_fpn.layer3.0.bn1.running_mean",
+        "backbone_fpn.layer3.0.bn1.running_var",
+        "backbone_fpn.layer3.0.bn2.num_batches_tracked",
+        "backbone_fpn.layer3.0.bn2.running_mean",
+        "backbone_fpn.layer3.0.bn2.running_var",
+        "backbone_fpn.layer3.0.bn3.num_batches_tracked",
+        "backbone_fpn.layer3.0.bn3.running_mean",
+        "backbone_fpn.layer3.0.bn3.running_var",
+        "backbone_fpn.layer3.0.downsample.1.num_batches_tracked",
+        "backbone_fpn.layer3.0.downsample.1.running_mean",
+        "backbone_fpn.layer3.0.downsample.1.running_var",
+        "backbone_fpn.layer3.1.bn1.num_batches_tracked",
+        "backbone_fpn.layer3.1.bn1.running_mean",
+        "backbone_fpn.layer3.1.bn1.running_var",
+        "backbone_fpn.layer3.1.bn2.num_batches_tracked",
+        "backbone_fpn.layer3.1.bn2.running_mean",
+        "backbone_fpn.layer3.1.bn2.running_var",
+        "backbone_fpn.layer3.1.bn3.num_batches_tracked",
+        "backbone_fpn.layer3.1.bn3.running_mean",
+        "backbone_fpn.layer3.1.bn3.running_var",
+        "backbone_fpn.layer3.2.bn1.num_batches_tracked",
+        "backbone_fpn.layer3.2.bn1.running_mean",
+        "backbone_fpn.layer3.2.bn1.running_var",
+        "backbone_fpn.layer3.2.bn2.num_batches_tracked",
+        "backbone_fpn.layer3.2.bn2.running_mean",
+        "backbone_fpn.layer3.2.bn2.running_var",
+        "backbone_fpn.layer3.2.bn3.num_batches_tracked",
+        "backbone_fpn.layer3.2.bn3.running_mean",
+        "backbone_fpn.layer3.2.bn3.running_var",
+        "backbone_fpn.layer3.3.bn1.num_batches_tracked",
+        "backbone_fpn.layer3.3.bn1.running_mean",
+        "backbone_fpn.layer3.3.bn1.running_var",
+        "backbone_fpn.layer3.3.bn2.num_batches_tracked",
+        "backbone_fpn.layer3.3.bn2.running_mean",
+        "backbone_fpn.layer3.3.bn2.running_var",
+        "backbone_fpn.layer3.3.bn3.num_batches_tracked",
+        "backbone_fpn.layer3.3.bn3.running_mean",
+        "backbone_fpn.layer3.3.bn3.running_var",
+        "backbone_fpn.layer3.4.bn1.num_batches_tracked",
+        "backbone_fpn.layer3.4.bn1.running_mean",
+        "backbone_fpn.layer3.4.bn1.running_var",
+        "backbone_fpn.layer3.4.bn2.num_batches_tracked",
+        "backbone_fpn.layer3.4.bn2.running_mean",
+        "backbone_fpn.layer3.4.bn2.running_var",
+        "backbone_fpn.layer3.4.bn3.num_batches_tracked",
+        "backbone_fpn.layer3.4.bn3.running_mean",
+        "backbone_fpn.layer3.4.bn3.running_var",
+        "backbone_fpn.layer3.5.bn1.num_batches_tracked",
+        "backbone_fpn.layer3.5.bn1.running_mean",
+        "backbone_fpn.layer3.5.bn1.running_var",
+        "backbone_fpn.layer3.5.bn2.num_batches_tracked",
+        "backbone_fpn.layer3.5.bn2.running_mean",
+        "backbone_fpn.layer3.5.bn2.running_var",
+        "backbone_fpn.layer3.5.bn3.num_batches_tracked",
+        "backbone_fpn.layer3.5.bn3.running_mean",
+        "backbone_fpn.layer3.5.bn3.running_var",
+        "backbone_fpn.layer4.0.bn1.num_batches_tracked",
+        "backbone_fpn.layer4.0.bn1.running_mean",
+        "backbone_fpn.layer4.0.bn1.running_var",
+        "backbone_fpn.layer4.0.bn2.num_batches_tracked",
+        "backbone_fpn.layer4.0.bn2.running_mean",
+        "backbone_fpn.layer4.0.bn2.running_var",
+        "backbone_fpn.layer4.0.bn3.num_batches_tracked",
+        "backbone_fpn.layer4.0.bn3.running_mean",
+        "backbone_fpn.layer4.0.bn3.running_var",
+        "backbone_fpn.layer4.0.downsample.1.num_batches_tracked",
+        "backbone_fpn.layer4.0.downsample.1.running_mean",
+        "backbone_fpn.layer4.0.downsample.1.running_var",
+        "backbone_fpn.layer4.1.bn1.num_batches_tracked",
+        "backbone_fpn.layer4.1.bn1.running_mean",
+        "backbone_fpn.layer4.1.bn1.running_var",
+        "backbone_fpn.layer4.1.bn2.num_batches_tracked",
+        "backbone_fpn.layer4.1.bn2.running_mean",
+        "backbone_fpn.layer4.1.bn2.running_var",
+        "backbone_fpn.layer4.1.bn3.num_batches_tracked",
+        "backbone_fpn.layer4.1.bn3.running_mean",
+        "backbone_fpn.layer4.1.bn3.running_var",
+        "backbone_fpn.layer4.2.bn1.num_batches_tracked",
+        "backbone_fpn.layer4.2.bn1.running_mean",
+        "backbone_fpn.layer4.2.bn1.running_var",
+        "backbone_fpn.layer4.2.bn2.num_batches_tracked",
+        "backbone_fpn.layer4.2.bn2.running_mean",
+        "backbone_fpn.layer4.2.bn2.running_var",
+        "backbone_fpn.layer4.2.bn3.num_batches_tracked",
+        "backbone_fpn.layer4.2.bn3.running_mean",
+        "backbone_fpn.layer4.2.bn3.running_var",
+        "backbone_fpn.stem.1.num_batches_tracked",
+        "backbone_fpn.stem.1.running_mean",
+        "backbone_fpn.stem.1.running_var"
+      ],
+      "affine_tensor_count": 106,
+      "affine_changed_count": 106,
+      "전체버퍼동일": false,
+      "설명": "BN 통계 고정과 BN affine 가중치 동결은 다른 조작",
+      "initial_path": "work_dirs/motiondrive_v2/p0_motion_bn_adaptive_s0/initial.pth",
+      "initial_checkpoint_sha256": "69d8e7694d0319377eaeb4821845cc777efe81e561be18133053aafda4bdd39e",
+      "last_path": "work_dirs/motiondrive_v2/p0_motion_bn_adaptive_s0/last.pth",
+      "last_checkpoint_sha256": "9bf403fbf973ddd89e70a734df4b7773cac592186920168b7feb982054a78c70",
+      "initial_model_state_sha256": "3eab27564f98ab95664eb648ed811c98cab490bd094f665568b1e8d8e2eef6e6"
+    },
+    "fixed": {
+      "n_bn_modules": 53,
+      "n_buffer_tensors": 159,
+      "initial_buffer_sha256": "c3ac3ad5e25479af82b7563593d9d7d56a60f62c2e41c9a7e82ede6f0df6eb43",
+      "last_buffer_sha256": "c3ac3ad5e25479af82b7563593d9d7d56a60f62c2e41c9a7e82ede6f0df6eb43",
+      "buffer_changed_count": 0,
+      "changed_buffer_names": [],
+      "affine_tensor_count": 106,
+      "affine_changed_count": 106,
+      "전체버퍼동일": true,
+      "설명": "BN 통계 고정과 BN affine 가중치 동결은 다른 조작",
+      "initial_path": "work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/initial.pth",
+      "initial_checkpoint_sha256": "c891fb63e8a067c5c4ab1056fe341a34aab86d6b2c1cd82f4db9d6806d86e32a",
+      "last_path": "work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/last.pth",
+      "last_checkpoint_sha256": "e0deb9fd92d2bd859e13ba647685aee4f7cdef1e7bf3effeed8675fcbafcbd75",
+      "initial_model_state_sha256": "3eab27564f98ab95664eb648ed811c98cab490bd094f665568b1e8d8e2eef6e6"
+    }
+  },
+  "normal_full_tune1998": {
+    "설명": "원본 metrics.jsonl의 LAST1000 정상 tune1998 평가. 고정370 감사와 표본 수가 다름. best와 혼합하지 않음",
+    "adaptive": {
+      "step": 1000,
+      "n": 1998,
+      "n_sessions": 11,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        1.2114962860009633,
+        0.038330652492444356,
+        0.2934100131072604,
+        0.09633261563496555,
+        0.010451677371379989
+      ],
+      "history_position_mae_by_offset": [
+        0.13914395033276883,
+        0.2605392145124862,
+        0.6308179845918903,
+        1.2188487195220354
+      ],
+      "occ_iou": 0.44657394843962006,
+      "lane_iou": 0.4907143725314907,
+      "source": "work_dirs/motiondrive_v2/p0_motion_bn_adaptive_s0/metrics.jsonl",
+      "source_sha256": "1469c5cfb4eeaa19afe1c529844d697e184069c82609ba47bffc0a554277ea91",
+      "history_position_mae_mean4_m": 0.5623374672397952,
+      "best_separate_context": {
+        "step": 1000,
+        "selection_metric": 0.5623374672397952,
+        "selection_definition": "history_position_mae",
+        "설명": "기존 history 선택 기준의 별도 기록; LAST 비교에 섞지 않음"
+      }
+    },
+    "fixed": {
+      "step": 1000,
+      "n": 1998,
+      "n_sessions": 11,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        1.0375949406028688,
+        0.03591240262644455,
+        0.29238445071277563,
+        0.09263362661506319,
+        0.009915888275223857
+      ],
+      "history_position_mae_by_offset": [
+        0.12466159300025981,
+        0.2255855930105152,
+        0.5371258772089956,
+        1.0584616354653598
+      ],
+      "occ_iou": 0.42670363935651545,
+      "lane_iou": 0.5031663244304689,
+      "source": "work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/metrics.jsonl",
+      "source_sha256": "d9877a571131f744c02bd844bc0186057522813bb2b9a17fde98f46dd9e1037d",
+      "history_position_mae_mean4_m": 0.48645867467128256,
+      "best_separate_context": {
+        "step": 1000,
+        "selection_metric": 0.48645867467128256,
+        "selection_definition": "history_position_mae",
+        "설명": "기존 history 선택 기준의 별도 기록; LAST 비교에 섞지 않음"
+      }
+    },
+    "fixed_minus_adaptive": {
+      "vx_mae_m_s": -0.17390134539809443,
+      "history_position_mae_mean4_m": -0.0758787925685126,
+      "occ_iou": -0.01987030908310461,
+      "lane_iou": 0.012451951898978242
+    }
+  },
+  "fixed370_auxiliary": {
+    "adaptive": {
+      "normal": {
+        "n": 370,
+        "n_scenes": 37,
+        "n_sessions": 11,
+        "state": {
+          "vx_m_s": {
+            "n": 370,
+            "mae": 1.1791828870773315,
+            "rmse": 1.612249732017517,
+            "bias": -0.12121807783842087,
+            "p90_abs": 2.6456074714660645,
+            "pearson": 0.9601232180643182
+          },
+          "vy_m_s": {
+            "n": 370,
+            "mae": 0.038634464144706726,
+            "rmse": 0.048391252756118774,
+            "bias": -0.009787028655409813,
+            "p90_abs": 0.07813997566699982,
+            "pearson": 0.9227694033572054
+          },
+          "ax_m_s2": {
+            "n": 370,
+            "mae": 0.2909650504589081,
+            "rmse": 0.42300328612327576,
+            "bias": -0.024904679507017136,
+            "p90_abs": 0.7167781591415405,
+            "pearson": 0.2476368511194293
+          },
+          "ay_m_s2": {
+            "n": 370,
+            "mae": 0.09841009974479675,
+            "rmse": 0.14022935926914215,
+            "bias": 0.020025430247187614,
+            "p90_abs": 0.22886669635772705,
+            "pearson": 0.8732366898976297
+          },
+          "yaw_rate_rad_s": {
+            "n": 370,
+            "mae": 0.010548577643930912,
+            "rmse": 0.015603797510266304,
+            "bias": 0.0011980069102719426,
+            "p90_abs": 0.020435042679309845,
+            "pearson": 0.946207389911994
+          }
+        },
+        "stop": {
+          "tp": 3,
+          "fp": 2,
+          "fn": 21,
+          "tn": 344,
+          "iou": 0.11538461538461539,
+          "precision": 0.6,
+          "recall": 0.125,
+          "accuracy": 0.9378378378378378,
+          "balanced_accuracy": 0.5596098265895953,
+          "brier": 0.030149830505251884,
+          "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+          "probability_threshold": 0.5
+        },
+        "history": [
+          {
+            "frame_offset": 1,
+            "n": 370,
+            "position_mae_m": 0.1363438367843628,
+            "position_rmse_m": 0.18115481734275818,
+            "xy_mae_m": [
+              0.13461510837078094,
+              0.011431343853473663
+            ],
+            "yaw_mae_rad": 0.0031490616966038942,
+            "predicted_sincos_norm_mean": 1.0001671314239502
+          },
+          {
+            "frame_offset": 2,
+            "n": 370,
+            "position_mae_m": 0.2549799382686615,
+            "position_rmse_m": 0.3459964692592621,
+            "xy_mae_m": [
+              0.2539304792881012,
+              0.011253569275140762
+            ],
+            "yaw_mae_rad": 0.0031819671858102083,
+            "predicted_sincos_norm_mean": 1.000070571899414
+          },
+          {
+            "frame_offset": 5,
+            "n": 370,
+            "position_mae_m": 0.6146323084831238,
+            "position_rmse_m": 0.8396869897842407,
+            "xy_mae_m": [
+              0.6127354502677917,
+              0.024561913684010506
+            ],
+            "yaw_mae_rad": 0.00633652787655592,
+            "predicted_sincos_norm_mean": 1.0008515119552612
+          },
+          {
+            "frame_offset": 10,
+            "n": 370,
+            "position_mae_m": 1.1915587186813354,
+            "position_rmse_m": 1.608399748802185,
+            "xy_mae_m": [
+              1.1856632232666016,
+              0.06369049102067947
+            ],
+            "yaw_mae_rad": 0.011186759918928146,
+            "predicted_sincos_norm_mean": 1.0003536939620972
+          }
+        ],
+        "history_position_mae_mean4_m": 0.5493787005543709,
+        "raster": {
+          "occ": {
+            "tp": 26392,
+            "fp": 26969,
+            "fn": 5691,
+            "tn": 232649,
+            "iou": 0.4469281311386575,
+            "precision": 0.4945934296583647,
+            "recall": 0.8226163388710532,
+            "accuracy": 0.8880360369007991,
+            "balanced_accuracy": 0.8593683963843515,
+            "bce_valid_pixel_mean": 0.24439599432674172,
+            "threshold_probability": 0.5
+          },
+          "lane": {
+            "tp": 80154,
+            "fp": 69263,
+            "fn": 13502,
+            "tn": 287530,
+            "iou": 0.4919868155340998,
+            "precision": 0.5364449828332787,
+            "recall": 0.8558341163406509,
+            "accuracy": 0.8162611083607689,
+            "balanced_accuracy": 0.8308537749781104,
+            "bce_valid_pixel_mean": 0.36781439782427505,
+            "threshold_probability": 0.5
+          }
+        }
+      },
+      "repeat_current": {
+        "n": 370,
+        "n_scenes": 37,
+        "n_sessions": 11,
+        "state": {
+          "vx_m_s": {
+            "n": 370,
+            "mae": 1.2362123727798462,
+            "rmse": 1.641355037689209,
+            "bias": 0.0012616905150935054,
+            "p90_abs": 2.6621780395507812,
+            "pearson": 0.953030829217065
+          },
+          "vy_m_s": {
+            "n": 370,
+            "mae": 0.041273631155490875,
+            "rmse": 0.05219999700784683,
+            "bias": -0.013666771352291107,
+            "p90_abs": 0.08315198868513107,
+            "pearson": 0.9125499360244933
+          },
+          "ax_m_s2": {
+            "n": 370,
+            "mae": 0.2935357689857483,
+            "rmse": 0.42908143997192383,
+            "bias": -0.03598417341709137,
+            "p90_abs": 0.7578533291816711,
+            "pearson": 0.18657790375074795
+          },
+          "ay_m_s2": {
+            "n": 370,
+            "mae": 0.11788478493690491,
+            "rmse": 0.17365336418151855,
+            "bias": 0.007764704059809446,
+            "p90_abs": 0.25625136494636536,
+            "pearson": 0.7885372598094613
+          },
+          "yaw_rate_rad_s": {
+            "n": 370,
+            "mae": 0.01215621829032898,
+            "rmse": 0.018070103600621223,
+            "bias": 0.00014216215640772134,
+            "p90_abs": 0.02603018283843994,
+            "pearson": 0.9212552238782863
+          }
+        },
+        "stop": {
+          "tp": 5,
+          "fp": 3,
+          "fn": 19,
+          "tn": 343,
+          "iou": 0.18518518518518517,
+          "precision": 0.625,
+          "recall": 0.20833333333333334,
+          "accuracy": 0.9405405405405406,
+          "balanced_accuracy": 0.5998314065510597,
+          "brier": 0.03125901520252228,
+          "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+          "probability_threshold": 0.5
+        },
+        "history": [
+          {
+            "frame_offset": 1,
+            "n": 370,
+            "position_mae_m": 0.13573510944843292,
+            "position_rmse_m": 0.17848871648311615,
+            "xy_mae_m": [
+              0.13394029438495636,
+              0.012138991616666317
+            ],
+            "yaw_mae_rad": 0.003054011147469282,
+            "predicted_sincos_norm_mean": 1.000207781791687
+          },
+          {
+            "frame_offset": 2,
+            "n": 370,
+            "position_mae_m": 0.2552199959754944,
+            "position_rmse_m": 0.34390467405319214,
+            "xy_mae_m": [
+              0.25421732664108276,
+              0.011359895579516888
+            ],
+            "yaw_mae_rad": 0.003270588582381606,
+            "predicted_sincos_norm_mean": 1.0000360012054443
+          },
+          {
+            "frame_offset": 5,
+            "n": 370,
+            "position_mae_m": 0.6279932856559753,
+            "position_rmse_m": 0.8428847789764404,
+            "xy_mae_m": [
+              0.6257655620574951,
+              0.026420118287205696
+            ],
+            "yaw_mae_rad": 0.006859722547233105,
+            "predicted_sincos_norm_mean": 1.0007665157318115
+          },
+          {
+            "frame_offset": 10,
+            "n": 370,
+            "position_mae_m": 1.233420491218567,
+            "position_rmse_m": 1.6398274898529053,
+            "xy_mae_m": [
+              1.2252219915390015,
+              0.0727863758802414
+            ],
+            "yaw_mae_rad": 0.01382560096681118,
+            "predicted_sincos_norm_mean": 1.0015766620635986
+          }
+        ],
+        "history_position_mae_mean4_m": 0.5630922205746174,
+        "raster": {
+          "occ": {
+            "tp": 26376,
+            "fp": 27181,
+            "fn": 5707,
+            "tn": 232437,
+            "iou": 0.4450593952483801,
+            "precision": 0.4924846425303882,
+            "recall": 0.8221176323909859,
+            "accuracy": 0.8872544146231929,
+            "balanced_accuracy": 0.8587107509611871,
+            "bce_valid_pixel_mean": 0.2458259895651878,
+            "threshold_probability": 0.5
+          },
+          "lane": {
+            "tp": 79793,
+            "fp": 70331,
+            "fn": 13863,
+            "tn": 286462,
+            "iou": 0.48658125339203717,
+            "precision": 0.5315139484692654,
+            "recall": 0.8519795848637567,
+            "accuracy": 0.8130887181456724,
+            "balanced_accuracy": 0.8274298431055183,
+            "bce_valid_pixel_mean": 0.37310732534479657,
+            "threshold_probability": 0.5
+          }
+        }
+      },
+      "reverse_history": {
+        "n": 370,
+        "n_scenes": 37,
+        "n_sessions": 11,
+        "state": {
+          "vx_m_s": {
+            "n": 370,
+            "mae": 1.198460340499878,
+            "rmse": 1.6361995935440063,
+            "bias": -0.14938800036907196,
+            "p90_abs": 2.736541509628296,
+            "pearson": 0.9574740914339639
+          },
+          "vy_m_s": {
+            "n": 370,
+            "mae": 0.03880933299660683,
+            "rmse": 0.05016114190220833,
+            "bias": -0.011042789556086063,
+            "p90_abs": 0.07989171147346497,
+            "pearson": 0.9174176794928693
+          },
+          "ax_m_s2": {
+            "n": 370,
+            "mae": 0.29092150926589966,
+            "rmse": 0.4259873032569885,
+            "bias": -0.03080030344426632,
+            "p90_abs": 0.7510510087013245,
+            "pearson": 0.21835584591682553
+          },
+          "ay_m_s2": {
+            "n": 370,
+            "mae": 0.10734248906373978,
+            "rmse": 0.155436709523201,
+            "bias": 0.016106469556689262,
+            "p90_abs": 0.23475752770900726,
+            "pearson": 0.8406493642545918
+          },
+          "yaw_rate_rad_s": {
+            "n": 370,
+            "mae": 0.01121573057025671,
+            "rmse": 0.016385920345783234,
+            "bias": 0.0006609042757190764,
+            "p90_abs": 0.022293847054243088,
+            "pearson": 0.939531428724274
+          }
+        },
+        "stop": {
+          "tp": 4,
+          "fp": 3,
+          "fn": 20,
+          "tn": 343,
+          "iou": 0.14814814814814814,
+          "precision": 0.5714285714285714,
+          "recall": 0.16666666666666666,
+          "accuracy": 0.9378378378378378,
+          "balanced_accuracy": 0.5789980732177264,
+          "brier": 0.03036557324230671,
+          "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+          "probability_threshold": 0.5
+        },
+        "history": [
+          {
+            "frame_offset": 1,
+            "n": 370,
+            "position_mae_m": 0.14023269712924957,
+            "position_rmse_m": 0.17959028482437134,
+            "xy_mae_m": [
+              0.13848572969436646,
+              0.012113578617572784
+            ],
+            "yaw_mae_rad": 0.003357235575094819,
+            "predicted_sincos_norm_mean": 0.9999548196792603
+          },
+          {
+            "frame_offset": 2,
+            "n": 370,
+            "position_mae_m": 0.24986524879932404,
+            "position_rmse_m": 0.3403594493865967,
+            "xy_mae_m": [
+              0.2486959546804428,
+              0.011689760722219944
+            ],
+            "yaw_mae_rad": 0.0030934493988752365,
+            "predicted_sincos_norm_mean": 1.0001590251922607
+          },
+          {
+            "frame_offset": 5,
+            "n": 370,
+            "position_mae_m": 0.6283827424049377,
+            "position_rmse_m": 0.8507438898086548,
+            "xy_mae_m": [
+              0.6265391707420349,
+              0.025550343096256256
+            ],
+            "yaw_mae_rad": 0.006607310846447945,
+            "predicted_sincos_norm_mean": 1.000838279724121
+          },
+          {
+            "frame_offset": 10,
+            "n": 370,
+            "position_mae_m": 1.2416046857833862,
+            "position_rmse_m": 1.6679779291152954,
+            "xy_mae_m": [
+              1.233871579170227,
+              0.07195735722780228
+            ],
+            "yaw_mae_rad": 0.013423406518995762,
+            "predicted_sincos_norm_mean": 1.001172423362732
+          }
+        ],
+        "history_position_mae_mean4_m": 0.5650213435292244,
+        "raster": {
+          "occ": {
+            "tp": 26066,
+            "fp": 26017,
+            "fn": 6017,
+            "tn": 233601,
+            "iou": 0.44864027538726337,
+            "precision": 0.5004704030105792,
+            "recall": 0.8124551943396815,
+            "accuracy": 0.8901820699963319,
+            "balanced_accuracy": 0.8561212871297048,
+            "bce_valid_pixel_mean": 0.2417629000246434,
+            "threshold_probability": 0.5
+          },
+          "lane": {
+            "tp": 80283,
+            "fp": 69971,
+            "fn": 13373,
+            "tn": 286822,
+            "iou": 0.49064640921119373,
+            "precision": 0.5343152262169393,
+            "recall": 0.8572114973947211,
+            "accuracy": 0.814975724221832,
+            "balanced_accuracy": 0.8305502935735213,
+            "bce_valid_pixel_mean": 0.36965762081755854,
+            "threshold_probability": 0.5
+          }
+        }
+      },
+      "cross_scene_history": {
+        "n": 370,
+        "n_scenes": 37,
+        "n_sessions": 11,
+        "state": {
+          "vx_m_s": {
+            "n": 370,
+            "mae": 3.2107303142547607,
+            "rmse": 4.299528121948242,
+            "bias": -0.1602105051279068,
+            "p90_abs": 7.12421989440918,
+            "pearson": 0.519730245188206
+          },
+          "vy_m_s": {
+            "n": 370,
+            "mae": 0.10583428293466568,
+            "rmse": 0.14882296323776245,
+            "bias": -0.020210132002830505,
+            "p90_abs": 0.2513958215713501,
+            "pearson": 0.14826318100121064
+          },
+          "ax_m_s2": {
+            "n": 370,
+            "mae": 0.3437483608722687,
+            "rmse": 0.48055049777030945,
+            "bias": 0.007031440734863281,
+            "p90_abs": 0.8027824759483337,
+            "pearson": -0.03899396318871717
+          },
+          "ay_m_s2": {
+            "n": 370,
+            "mae": 0.2901250123977661,
+            "rmse": 0.4190451502799988,
+            "bias": 0.061902716755867004,
+            "p90_abs": 0.6673511862754822,
+            "pearson": 0.0007546185834996826
+          },
+          "yaw_rate_rad_s": {
+            "n": 370,
+            "mae": 0.02460496313869953,
+            "rmse": 0.043908052146434784,
+            "bias": 0.0054730866104364395,
+            "p90_abs": 0.051142316311597824,
+            "pearson": 0.3300044695056698
+          }
+        },
+        "stop": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 24,
+          "tn": 346,
+          "iou": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "accuracy": 0.9351351351351351,
+          "balanced_accuracy": 0.5,
+          "brier": 0.05781793221831322,
+          "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+          "probability_threshold": 0.5
+        },
+        "history": [
+          {
+            "frame_offset": 1,
+            "n": 370,
+            "position_mae_m": 0.2892152667045593,
+            "position_rmse_m": 0.37883302569389343,
+            "xy_mae_m": [
+              0.2863962650299072,
+              0.02234993316233158
+            ],
+            "yaw_mae_rad": 0.00857757031917572,
+            "predicted_sincos_norm_mean": 0.9983484148979187
+          },
+          {
+            "frame_offset": 2,
+            "n": 370,
+            "position_mae_m": 0.5686928033828735,
+            "position_rmse_m": 0.7621870636940002,
+            "xy_mae_m": [
+              0.566215455532074,
+              0.02804538421332836
+            ],
+            "yaw_mae_rad": 0.010029036551713943,
+            "predicted_sincos_norm_mean": 0.9989256262779236
+          },
+          {
+            "frame_offset": 5,
+            "n": 370,
+            "position_mae_m": 1.4520444869995117,
+            "position_rmse_m": 1.9629137516021729,
+            "xy_mae_m": [
+              1.4468594789505005,
+              0.06130689010024071
+            ],
+            "yaw_mae_rad": 0.014829530380666256,
+            "predicted_sincos_norm_mean": 0.9995653033256531
+          },
+          {
+            "frame_offset": 10,
+            "n": 370,
+            "position_mae_m": 2.940993309020996,
+            "position_rmse_m": 3.9480860233306885,
+            "xy_mae_m": [
+              2.9272758960723877,
+              0.14837093651294708
+            ],
+            "yaw_mae_rad": 0.02538418211042881,
+            "predicted_sincos_norm_mean": 0.9946854710578918
+          }
+        ],
+        "history_position_mae_mean4_m": 1.3127364665269852,
+        "raster": {
+          "occ": {
+            "tp": 23688,
+            "fp": 23289,
+            "fn": 8395,
+            "tn": 236329,
+            "iou": 0.4277974427508488,
+            "precision": 0.5042467590523022,
+            "recall": 0.7383349437396752,
+            "accuracy": 0.891381928755815,
+            "balanced_accuracy": 0.824315034827722,
+            "bce_valid_pixel_mean": 0.2584709010554666,
+            "threshold_probability": 0.5
+          },
+          "lane": {
+            "tp": 72276,
+            "fp": 80716,
+            "fn": 21380,
+            "tn": 276077,
+            "iou": 0.4144931525703668,
+            "precision": 0.4724168583978247,
+            "recall": 0.7717177756897583,
+            "accuracy": 0.7733461501746035,
+            "balanced_accuracy": 0.772745682148579,
+            "bce_valid_pixel_mean": 0.466225256220911,
+            "threshold_probability": 0.5
+          }
+        }
+      }
+    },
+    "fixed": {
+      "normal": {
+        "n": 370,
+        "n_scenes": 37,
+        "n_sessions": 11,
+        "state": {
+          "vx_m_s": {
+            "n": 370,
+            "mae": 1.0150113105773926,
+            "rmse": 1.3551723957061768,
+            "bias": -0.010994967073202133,
+            "p90_abs": 2.1351406574249268,
+            "pearson": 0.9670536006062308
+          },
+          "vy_m_s": {
+            "n": 370,
+            "mae": 0.03552347794175148,
+            "rmse": 0.04633471369743347,
+            "bias": -0.0023907998111099005,
+            "p90_abs": 0.07616470754146576,
+            "pearson": 0.9265153279298668
+          },
+          "ax_m_s2": {
+            "n": 370,
+            "mae": 0.2902045249938965,
+            "rmse": 0.4209969937801361,
+            "bias": -0.0043266089633107185,
+            "p90_abs": 0.7230335474014282,
+            "pearson": 0.25629627975479663
+          },
+          "ay_m_s2": {
+            "n": 370,
+            "mae": 0.09460065513849258,
+            "rmse": 0.13296394050121307,
+            "bias": 0.022952798753976822,
+            "p90_abs": 0.2054513394832611,
+            "pearson": 0.8862094230948064
+          },
+          "yaw_rate_rad_s": {
+            "n": 370,
+            "mae": 0.009791076183319092,
+            "rmse": 0.01466407161206007,
+            "bias": 0.0023845804389566183,
+            "p90_abs": 0.019473444670438766,
+            "pearson": 0.9504249267885654
+          }
+        },
+        "stop": {
+          "tp": 6,
+          "fp": 3,
+          "fn": 18,
+          "tn": 343,
+          "iou": 0.2222222222222222,
+          "precision": 0.6666666666666666,
+          "recall": 0.25,
+          "accuracy": 0.9432432432432433,
+          "balanced_accuracy": 0.6206647398843931,
+          "brier": 0.028928864747285843,
+          "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+          "probability_threshold": 0.5
+        },
+        "history": [
+          {
+            "frame_offset": 1,
+            "n": 370,
+            "position_mae_m": 0.12374474108219147,
+            "position_rmse_m": 0.1609405279159546,
+            "xy_mae_m": [
+              0.12227816879749298,
+              0.010257195681333542
+            ],
+            "yaw_mae_rad": 0.0030432555358856916,
+            "predicted_sincos_norm_mean": 1.0001808404922485
+          },
+          {
+            "frame_offset": 2,
+            "n": 370,
+            "position_mae_m": 0.22028684616088867,
+            "position_rmse_m": 0.2946728467941284,
+            "xy_mae_m": [
+              0.21906378865242004,
+              0.011649995110929012
+            ],
+            "yaw_mae_rad": 0.003056294284760952,
+            "predicted_sincos_norm_mean": 1.0001531839370728
+          },
+          {
+            "frame_offset": 5,
+            "n": 370,
+            "position_mae_m": 0.5212461948394775,
+            "position_rmse_m": 0.6957582831382751,
+            "xy_mae_m": [
+              0.5188822746276855,
+              0.024204879999160767
+            ],
+            "yaw_mae_rad": 0.005912470165640116,
+            "predicted_sincos_norm_mean": 1.0006499290466309
+          },
+          {
+            "frame_offset": 10,
+            "n": 370,
+            "position_mae_m": 1.026807427406311,
+            "position_rmse_m": 1.3696975708007812,
+            "xy_mae_m": [
+              1.0190913677215576,
+              0.06271746009588242
+            ],
+            "yaw_mae_rad": 0.010484039783477783,
+            "predicted_sincos_norm_mean": 1.0004912614822388
+          }
+        ],
+        "history_position_mae_mean4_m": 0.4730213023722172,
+        "raster": {
+          "occ": {
+            "tp": 27884,
+            "fp": 32884,
+            "fn": 4199,
+            "tn": 226734,
+            "iou": 0.4292025182015485,
+            "precision": 0.4588599262769879,
+            "recall": 0.8691207181373313,
+            "accuracy": 0.8728732503488161,
+            "balanced_accuracy": 0.8712288489268418,
+            "bce_valid_pixel_mean": 0.2679384721838323,
+            "threshold_probability": 0.5
+          },
+          "lane": {
+            "tp": 79065,
+            "fp": 62982,
+            "fn": 14591,
+            "tn": 293811,
+            "iou": 0.5047625735772928,
+            "precision": 0.5566115440664006,
+            "recall": 0.8442064576748953,
+            "accuracy": 0.8277873854753812,
+            "balanced_accuracy": 0.8338419681064355,
+            "bce_valid_pixel_mean": 0.35746846073350214,
+            "threshold_probability": 0.5
+          }
+        }
+      },
+      "repeat_current": {
+        "n": 370,
+        "n_scenes": 37,
+        "n_sessions": 11,
+        "state": {
+          "vx_m_s": {
+            "n": 370,
+            "mae": 1.1103246212005615,
+            "rmse": 1.4358171224594116,
+            "bias": 0.2025095820426941,
+            "p90_abs": 2.220585584640503,
+            "pearson": 0.9599565706532576
+          },
+          "vy_m_s": {
+            "n": 370,
+            "mae": 0.037838734686374664,
+            "rmse": 0.050032202154397964,
+            "bias": -0.00696728378534317,
+            "p90_abs": 0.08117260783910751,
+            "pearson": 0.9174450240312539
+          },
+          "ax_m_s2": {
+            "n": 370,
+            "mae": 0.29428207874298096,
+            "rmse": 0.42805975675582886,
+            "bias": -0.025619011372327805,
+            "p90_abs": 0.7604777216911316,
+            "pearson": 0.1904228778756867
+          },
+          "ay_m_s2": {
+            "n": 370,
+            "mae": 0.11421044915914536,
+            "rmse": 0.1696542650461197,
+            "bias": 0.003970003221184015,
+            "p90_abs": 0.24815846979618073,
+            "pearson": 0.7989549767672308
+          },
+          "yaw_rate_rad_s": {
+            "n": 370,
+            "mae": 0.011584611609578133,
+            "rmse": 0.016984853893518448,
+            "bias": 0.0012554969871416688,
+            "p90_abs": 0.02520575560629368,
+            "pearson": 0.9284023461833671
+          }
+        },
+        "stop": {
+          "tp": 8,
+          "fp": 3,
+          "fn": 16,
+          "tn": 343,
+          "iou": 0.2962962962962963,
+          "precision": 0.7272727272727273,
+          "recall": 0.3333333333333333,
+          "accuracy": 0.9486486486486486,
+          "balanced_accuracy": 0.6623314065510597,
+          "brier": 0.029465526342391968,
+          "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+          "probability_threshold": 0.5
+        },
+        "history": [
+          {
+            "frame_offset": 1,
+            "n": 370,
+            "position_mae_m": 0.12304840236902237,
+            "position_rmse_m": 0.15993021428585052,
+            "xy_mae_m": [
+              0.12146339565515518,
+              0.010577341541647911
+            ],
+            "yaw_mae_rad": 0.002869031857699156,
+            "predicted_sincos_norm_mean": 1.0001100301742554
+          },
+          {
+            "frame_offset": 2,
+            "n": 370,
+            "position_mae_m": 0.2245577573776245,
+            "position_rmse_m": 0.29680800437927246,
+            "xy_mae_m": [
+              0.22348801791667938,
+              0.011543173342943192
+            ],
+            "yaw_mae_rad": 0.0029875915497541428,
+            "predicted_sincos_norm_mean": 1.0000282526016235
+          },
+          {
+            "frame_offset": 5,
+            "n": 370,
+            "position_mae_m": 0.5439280867576599,
+            "position_rmse_m": 0.7210624814033508,
+            "xy_mae_m": [
+              0.5414279699325562,
+              0.026467403396964073
+            ],
+            "yaw_mae_rad": 0.0065578860230743885,
+            "predicted_sincos_norm_mean": 1.000491976737976
+          },
+          {
+            "frame_offset": 10,
+            "n": 370,
+            "position_mae_m": 1.0974076986312866,
+            "position_rmse_m": 1.4458216428756714,
+            "xy_mae_m": [
+              1.0895386934280396,
+              0.07240579277276993
+            ],
+            "yaw_mae_rad": 0.013229862786829472,
+            "predicted_sincos_norm_mean": 1.001412272453308
+          }
+        ],
+        "history_position_mae_mean4_m": 0.49723548628389835,
+        "raster": {
+          "occ": {
+            "tp": 27850,
+            "fp": 32827,
+            "fn": 4233,
+            "tn": 226791,
+            "iou": 0.4290556154675705,
+            "precision": 0.458987754832968,
+            "recall": 0.8680609668671883,
+            "accuracy": 0.8729520982101535,
+            "balanced_accuracy": 0.8708087499636499,
+            "bce_valid_pixel_mean": 0.2681306036521006,
+            "threshold_probability": 0.5
+          },
+          "lane": {
+            "tp": 78841,
+            "fp": 63659,
+            "fn": 14815,
+            "tn": 293134,
+            "iou": 0.501166449480342,
+            "precision": 0.5532701754385965,
+            "recall": 0.8418147262321688,
+            "accuracy": 0.825787159034652,
+            "balanced_accuracy": 0.8316973730097763,
+            "bce_valid_pixel_mean": 0.36092294388574647,
+            "threshold_probability": 0.5
+          }
+        }
+      },
+      "reverse_history": {
+        "n": 370,
+        "n_scenes": 37,
+        "n_sessions": 11,
+        "state": {
+          "vx_m_s": {
+            "n": 370,
+            "mae": 1.0540008544921875,
+            "rmse": 1.4033671617507935,
+            "bias": -0.046965327113866806,
+            "p90_abs": 2.2586894035339355,
+            "pearson": 0.9637104707826326
+          },
+          "vy_m_s": {
+            "n": 370,
+            "mae": 0.03620448708534241,
+            "rmse": 0.048508960753679276,
+            "bias": -0.0025933217257261276,
+            "p90_abs": 0.07909390330314636,
+            "pearson": 0.9199117377750183
+          },
+          "ax_m_s2": {
+            "n": 370,
+            "mae": 0.29124900698661804,
+            "rmse": 0.4244614541530609,
+            "bias": -0.01246867049485445,
+            "p90_abs": 0.7517962455749512,
+            "pearson": 0.2230140749239109
+          },
+          "ay_m_s2": {
+            "n": 370,
+            "mae": 0.10290151089429855,
+            "rmse": 0.14791539311408997,
+            "bias": 0.015719547867774963,
+            "p90_abs": 0.21969835460186005,
+            "pearson": 0.8547936958031386
+          },
+          "yaw_rate_rad_s": {
+            "n": 370,
+            "mae": 0.010469883680343628,
+            "rmse": 0.015409130603075027,
+            "bias": 0.0018329088343307376,
+            "p90_abs": 0.022093284875154495,
+            "pearson": 0.9444017920271618
+          }
+        },
+        "stop": {
+          "tp": 7,
+          "fp": 3,
+          "fn": 17,
+          "tn": 343,
+          "iou": 0.25925925925925924,
+          "precision": 0.7,
+          "recall": 0.2916666666666667,
+          "accuracy": 0.9459459459459459,
+          "balanced_accuracy": 0.6414980732177264,
+          "brier": 0.029209578409790993,
+          "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+          "probability_threshold": 0.5
+        },
+        "history": [
+          {
+            "frame_offset": 1,
+            "n": 370,
+            "position_mae_m": 0.12256482243537903,
+            "position_rmse_m": 0.15474833548069,
+            "xy_mae_m": [
+              0.12064028531312943,
+              0.011190834455192089
+            ],
+            "yaw_mae_rad": 0.0033572164829820395,
+            "predicted_sincos_norm_mean": 0.9999604225158691
+          },
+          {
+            "frame_offset": 2,
+            "n": 370,
+            "position_mae_m": 0.21546775102615356,
+            "position_rmse_m": 0.28327101469039917,
+            "xy_mae_m": [
+              0.2142380028963089,
+              0.01178520917892456
+            ],
+            "yaw_mae_rad": 0.003138934029266238,
+            "predicted_sincos_norm_mean": 1.000192642211914
+          },
+          {
+            "frame_offset": 5,
+            "n": 370,
+            "position_mae_m": 0.5342376828193665,
+            "position_rmse_m": 0.721092164516449,
+            "xy_mae_m": [
+              0.5320525169372559,
+              0.024804256856441498
+            ],
+            "yaw_mae_rad": 0.006251751910895109,
+            "predicted_sincos_norm_mean": 1.0007681846618652
+          },
+          {
+            "frame_offset": 10,
+            "n": 370,
+            "position_mae_m": 1.1156467199325562,
+            "position_rmse_m": 1.4803942441940308,
+            "xy_mae_m": [
+              1.1076998710632324,
+              0.0708947479724884
+            ],
+            "yaw_mae_rad": 0.013008365407586098,
+            "predicted_sincos_norm_mean": 1.0014227628707886
+          }
+        ],
+        "history_position_mae_mean4_m": 0.4969792440533638,
+        "raster": {
+          "occ": {
+            "tp": 27637,
+            "fp": 31969,
+            "fn": 4446,
+            "tn": 227649,
+            "iou": 0.43147754949103856,
+            "precision": 0.46366137637150623,
+            "recall": 0.861421936851292,
+            "accuracy": 0.8751632664954868,
+            "balanced_accuracy": 0.869141662753466,
+            "bce_valid_pixel_mean": 0.2636622845944494,
+            "threshold_probability": 0.5
+          },
+          "lane": {
+            "tp": 79304,
+            "fp": 63591,
+            "fn": 14352,
+            "tn": 293202,
+            "iou": 0.5043275865358322,
+            "precision": 0.5549809300535358,
+            "recall": 0.8467583497053045,
+            "accuracy": 0.8269659828304647,
+            "balanced_accuracy": 0.8342644780957091,
+            "bce_valid_pixel_mean": 0.3586075218896824,
+            "threshold_probability": 0.5
+          }
+        }
+      },
+      "cross_scene_history": {
+        "n": 370,
+        "n_scenes": 37,
+        "n_sessions": 11,
+        "state": {
+          "vx_m_s": {
+            "n": 370,
+            "mae": 3.22147274017334,
+            "rmse": 4.3317742347717285,
+            "bias": -0.1731809824705124,
+            "p90_abs": 7.263544082641602,
+            "pearson": 0.5234961655606972
+          },
+          "vy_m_s": {
+            "n": 370,
+            "mae": 0.11547430604696274,
+            "rmse": 0.160122349858284,
+            "bias": -0.020780596882104874,
+            "p90_abs": 0.2653849124908447,
+            "pearson": 0.06163156538813654
+          },
+          "ax_m_s2": {
+            "n": 370,
+            "mae": 0.35233274102211,
+            "rmse": 0.49324142932891846,
+            "bias": 0.03408491238951683,
+            "p90_abs": 0.7975351214408875,
+            "pearson": -0.03650909215778342
+          },
+          "ay_m_s2": {
+            "n": 370,
+            "mae": 0.3171335458755493,
+            "rmse": 0.4534823000431061,
+            "bias": 0.08394590020179749,
+            "p90_abs": 0.7369941473007202,
+            "pearson": -0.019571510706135335
+          },
+          "yaw_rate_rad_s": {
+            "n": 370,
+            "mae": 0.02584853582084179,
+            "rmse": 0.04410114511847496,
+            "bias": 0.0067133367992937565,
+            "p90_abs": 0.054060060530900955,
+            "pearson": 0.3638967061918089
+          }
+        },
+        "stop": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 24,
+          "tn": 346,
+          "iou": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "accuracy": 0.9351351351351351,
+          "balanced_accuracy": 0.5,
+          "brier": 0.056688278913497925,
+          "gt_definition": "과거 1초 인과적 2차 fit의 평면 속도 < 0.2m/s",
+          "probability_threshold": 0.5
+        },
+        "history": [
+          {
+            "frame_offset": 1,
+            "n": 370,
+            "position_mae_m": 0.2885923385620117,
+            "position_rmse_m": 0.38434654474258423,
+            "xy_mae_m": [
+              0.2827809154987335,
+              0.029120124876499176
+            ],
+            "yaw_mae_rad": 0.00965744536370039,
+            "predicted_sincos_norm_mean": 0.9985689520835876
+          },
+          {
+            "frame_offset": 2,
+            "n": 370,
+            "position_mae_m": 0.5613229274749756,
+            "position_rmse_m": 0.7599503993988037,
+            "xy_mae_m": [
+              0.5576714873313904,
+              0.0337824709713459
+            ],
+            "yaw_mae_rad": 0.01078371237963438,
+            "predicted_sincos_norm_mean": 0.9993703365325928
+          },
+          {
+            "frame_offset": 5,
+            "n": 370,
+            "position_mae_m": 1.4320111274719238,
+            "position_rmse_m": 1.937689185142517,
+            "xy_mae_m": [
+              1.425425410270691,
+              0.06245462968945503
+            ],
+            "yaw_mae_rad": 0.016254115849733353,
+            "predicted_sincos_norm_mean": 1.000545620918274
+          },
+          {
+            "frame_offset": 10,
+            "n": 370,
+            "position_mae_m": 2.9108662605285645,
+            "position_rmse_m": 3.9150118827819824,
+            "xy_mae_m": [
+              2.894598960876465,
+              0.1574016958475113
+            ],
+            "yaw_mae_rad": 0.02886011265218258,
+            "predicted_sincos_norm_mean": 0.9959626197814941
+          }
+        ],
+        "history_position_mae_mean4_m": 1.298198163509369,
+        "raster": {
+          "occ": {
+            "tp": 25913,
+            "fp": 29084,
+            "fn": 6170,
+            "tn": 230534,
+            "iou": 0.42364346788300883,
+            "precision": 0.4711711547902613,
+            "recall": 0.8076863136240376,
+            "accuracy": 0.8791433694090867,
+            "balanced_accuracy": 0.8478300914621586,
+            "bce_valid_pixel_mean": 0.2683906387433316,
+            "threshold_probability": 0.5
+          },
+          "lane": {
+            "tp": 72622,
+            "fp": 72774,
+            "fn": 21034,
+            "tn": 284019,
+            "iou": 0.43635161929940514,
+            "precision": 0.4994772896090677,
+            "recall": 0.7754121465789698,
+            "accuracy": 0.7917455694207335,
+            "balanced_accuracy": 0.7857225702499073,
+            "bce_valid_pixel_mean": 0.44105641056510636,
+            "threshold_probability": 0.5
+          }
+        }
+      }
+    }
+  },
+  "input_sha256": {
+    "adaptive_audit": "3f1af51dce970a8da58aad5746be128b81480a1cc32e918223e53864a2b45942",
+    "fixed_audit": "96ae133dafe9e8ad1a0d59de400f39286e1e73bc4bee5815bde033834ac874bc"
+  },
+  "source_sha256": {
+    "analyze_motiondrive_v2_bn_motion_pair.py": "5bab16bc7011c4e4614c9b8712471b5bc571054de171ef21f69446dc89601b62",
+    "scripts/evaluate_motiondrive_v2_aux.py": "356bfa1fe051ed63ea3467e44ad4b5f3f89f09c105765ead6839b7ac977fd44b",
+    "MOTIONDRIVE_V2_P0_BN_PROTOCOL.md": "97ba9c544f68435d1f04ee93573c85636090395a95ddc0bc52e896d7f1ab62ce",
+    "configs/motiondrive_v2/p0_bn_pairs_r2_s0.json": "d05bbb7fc5d0ea76df211f40349d4c5ead0d789c88916cfc1b93ee68b947399c"
+  },
+  "보고서": "P0 BN 쌍 D: adaptive/fixed LAST1000 통제 비교",
+  "generated_at_utc": "2026-09-07T07:33:34.712835+00:00",
+  "원시분석": {
+    "path": "reports/p0_bn_motion_pair_comparison_raw.json",
+    "sha256": "469c381d31c962da4594cd9489fb2157291fdbf2cce97a2b456526b6ef9af3f9"
+  },
+  "checkpoint_integrity": {
+    "path": "reports/p0_bn_motion_checkpoint_integrity.json",
+    "sha256": "7f47946119197a94d59eb35d6556ef1dfd521a266406b53890c951e3fca219d0",
+    "report": {
+      "설명": "GPU 없이 두 LAST checkpoint의 ZIP, CPU 역직렬화, step, 계보, 모델 tensor 유한성 검증. 정상 종료 또는 독립 forward 재현을 대신하지 않음.",
+      "runs": {
+        "adaptive": {
+          "path": "work_dirs/motiondrive_v2/p0_motion_bn_adaptive_s0/last.pth",
+          "sha256": "9bf403fbf973ddd89e70a734df4b7773cac592186920168b7feb982054a78c70",
+          "bytes": 317745565,
+          "zip_integrity": "PASS",
+          "zip_entries": 1331,
+          "torch_load_cpu": "PASS",
+          "step": 1000,
+          "manifest_core_match": "PASS; JSON tuple/list 표기 차이만 정규화",
+          "run_manifest_status": "completed",
+          "embedded_manifest_status": "running",
+          "model_tensor_count": 456,
+          "model_tensor_finite": "PASS",
+          "model_state_sha256": "bbae8bd9e7ee8c58d4c4ab99edfcb5eed3e6172cef585eb64977e69d65fb2893",
+          "log": "logs/motiondrive_v2/p0_motion_bn_adaptive_s0.log",
+          "log_sha256_at_audit": "5a45ca84edd66ff30ddb60d97e5f01a5fdf169d53b602972a05b9f07257998f6",
+          "crash_lines": [
+            "[DCTN-beyless:1896489:0:1896489] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x7df2671ef0a0)"
+          ]
+        },
+        "fixed": {
+          "path": "work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/last.pth",
+          "sha256": "e0deb9fd92d2bd859e13ba647685aee4f7cdef1e7bf3effeed8675fcbafcbd75",
+          "bytes": 317745565,
+          "zip_integrity": "PASS",
+          "zip_entries": 1331,
+          "torch_load_cpu": "PASS",
+          "step": 1000,
+          "manifest_core_match": "PASS; JSON tuple/list 표기 차이만 정규화",
+          "run_manifest_status": "completed",
+          "embedded_manifest_status": "running",
+          "model_tensor_count": 456,
+          "model_tensor_finite": "PASS",
+          "model_state_sha256": "269d7f83ebe4d0be59497d4aa72e1df6eec2638f4a031c42748af742fe3764ba",
+          "log": "logs/motiondrive_v2/p0_motion_bn_fixed_s0.log",
+          "log_sha256_at_audit": "d9877a571131f744c02bd844bc0186057522813bb2b9a17fde98f46dd9e1037d",
+          "crash_lines": []
+        }
+      },
+      "주의": "adaptive 로그에는 step1000 최종 평가 뒤 signal11 종료 오류가 기록됨. artifact 검증이 통과해도 독립 재평가와 종료 오류 공개가 필요함. 저장 시점 때문에 embedded manifest는 running, 최종 manifest는 completed임."
+    }
+  },
+  "independent_full1998_replay": {
+    "path": "reports/p0_bn_motion_independent_replay.json",
+    "sha256": "c06c69310d64304886470670b7c5069ea513ae3f894b7e72367b6f9a82c8e192",
+    "all_runs_exact_equal": true,
+    "설명": "별도 GPU0 프로세스에서 원래 평가 함수, batch4, eval, bf16, 같은 데이터 순서로 재실행. 로그의 모든 보고 필드와 정확히 일치했으며 허용오차를 사용하지 않음.",
+    "runs": {
+      "adaptive": {
+        "checkpoint": "work_dirs/motiondrive_v2/p0_motion_bn_adaptive_s0/last.pth",
+        "checkpoint_sha256": "9bf403fbf973ddd89e70a734df4b7773cac592186920168b7feb982054a78c70",
+        "step": 1000,
+        "elapsed_seconds": 29.13855091482401,
+        "log_source": "work_dirs/motiondrive_v2/p0_motion_bn_adaptive_s0/metrics.jsonl",
+        "log_sha256": "1469c5cfb4eeaa19afe1c529844d697e184069c82609ba47bffc0a554277ea91",
+        "all_report_fields_exact_equal": true,
+        "exact_equality_by_field": {
+          "n": true,
+          "official_d3": true,
+          "session_mean_d3": true,
+          "n_sessions": true,
+          "proxy_d3": true,
+          "proxy_is_not_official_sample_weight": true,
+          "state_mae_vx_vy_ax_ay_yawrate": true,
+          "history_position_mae_by_offset": true,
+          "session_d3": true,
+          "occ_iou": true,
+          "lane_iou": true
+        },
+        "actual_minus_logged": {
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "history_position_mae_by_offset": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "occ_iou": 0.0,
+          "lane_iou": 0.0,
+          "official_d3": 0.0
+        }
+      },
+      "fixed": {
+        "checkpoint": "work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/last.pth",
+        "checkpoint_sha256": "e0deb9fd92d2bd859e13ba647685aee4f7cdef1e7bf3effeed8675fcbafcbd75",
+        "step": 1000,
+        "elapsed_seconds": 26.598037650808692,
+        "log_source": "work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/metrics.jsonl",
+        "log_sha256": "d9877a571131f744c02bd844bc0186057522813bb2b9a17fde98f46dd9e1037d",
+        "all_report_fields_exact_equal": true,
+        "exact_equality_by_field": {
+          "n": true,
+          "official_d3": true,
+          "session_mean_d3": true,
+          "n_sessions": true,
+          "proxy_d3": true,
+          "proxy_is_not_official_sample_weight": true,
+          "state_mae_vx_vy_ax_ay_yawrate": true,
+          "history_position_mae_by_offset": true,
+          "session_d3": true,
+          "occ_iou": true,
+          "lane_iou": true
+        },
+        "actual_minus_logged": {
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "history_position_mae_by_offset": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "occ_iou": 0.0,
+          "lane_iou": 0.0,
+          "official_d3": 0.0
+        }
+      }
+    }
+  },
+  "exit_incident": {
+    "run": "p0_motion_bn_adaptive_s0",
+    "내용": "최종 평가와 LAST 저장 이후 signal11 종료 오류 및 지연 종료. 프로세스는 자발적으로 사라졌으며 root가 signal을 보내지 않았다고 확인함. 무결성 감사와 본 독립 재평가를 거쳐 수치 재현 여부를 별도로 판단함.",
+    "integrity_report": "reports/p0_bn_motion_checkpoint_integrity.json",
+    "integrity_report_sha256": "7f47946119197a94d59eb35d6556ef1dfd521a266406b53890c951e3fca219d0"
+  },
+  "판정": {
+    "정상정확도": "fixed는 고정370 vx를0.1642m/s, history를0.0764m 개선했으며, 단일 seed의11세션 paired95% 구간은 둘 다0 미만이다. full1998에서도 같은 방향이다. 작은 개발 세션 수와 단일 seed 한계는 유지한다.",
+    "시간사용": "fixed에서 시간반전은 vx/history를 악화시키며 두 구간이0을 제외한다. 현재 영상 반복의 fixed 내부 효과 구간은0을 포함하지만, adaptive 대비 반복 교란 효과의 증가분은 vx/history 모두 양의 구간이다. 시간 정보 사용의 일부 근거이지 정확한 물리 운동 추정 완성의 증명은 아니다.",
+    "인지트레이드오프": "full1998 occupancy IoU는0.4466에서0.4267로0.0199 감소했고 lane IoU는0.4907에서0.5032로0.0125 증가했다. motion 개선만으로 공통 학습 정책을 자동 확대하지 않는다.",
+    "정지": "고정 확률0.5에서 recall은 adaptive12.5%(3/24), fixed25.0%(6/24)이다. 개선 방향이나 정지 누락이 여전히 많고 작은 표본이므로 해결된 과제로 보지 않는다.",
+    "실험조작": "BN53개, running 버퍼159개 중 fixed 변화0개 / adaptive 변화159개. 양쪽 BN affine106개는 모두 변화해 통계 고정이 가중치 동결이 아님을 확인했다.",
+    "결과사용": "adaptive 종료 오류를 삭제하거나 정상 종료라고 재해석하지 않는다. ZIP/CPU 로드/finite/계보 검사와 독립 full1998 정확 재현을 통과한 저장 모델의 수치로만 비교한다.",
+    "범위": "최종 val136/기존 val38은 사용하지 않았다. P0 planning loss는0이므로 planning 성능이나 수상 가능성은 이 결과로 판단하지 않는다."
+  },
+  "실행제약": {
+    "gpu": "GPU0만 독립 재평가와 고정370 감사에 사용한 뒤 반환 확인",
+    "프로세스": "adaptive 프로세스는 자발적으로 사라졌고 root는 signal을 보내지 않았다고 확인",
+    "변경": "두 신규 분석/테스트 소스 파일만 작성. 원본 checkpoint/로그/데이터와 공용 trainer/model 수정 없음. 커밋 없음.",
+    "CPU테스트": "로컬 및 B200에서15개 통과(BN전용11개+기존4개)"
+  }
+}

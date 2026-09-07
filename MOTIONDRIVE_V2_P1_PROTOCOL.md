@@ -33,6 +33,36 @@ planner goal token/GT status/GT history 직접 입력, 외부 경로 보정은 �
 - 네 팔은 같은 backbone/모든 trainable weights, loss, optimizer, precision, 데이터 순서를 쓴다.
 - low_feature와 BN policy 채택은 P0 screening에 근거한 개발 선택이지 복수seed 우월성 증명이 아니다.
 
+### 실행 전 선택 고정 (16:38 KST)
+
+BN policy는 **fixed**로 선택한다. BN running statistics만 고정하고 backbone,
+BN affine, FPN 및 모든 head는 학습한다. 공통 checkpoint는
+`work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/best.pth` (step1000),
+SHA256 `a9d64f41e66a6549a98882c04fe471eb0830e064f23b06f032d8f7f3c202879c`다.
+실행 명세는 `configs/motiondrive_v2/p1_gs_r1_s0.json`이다.
+
+실제 checkpoint와 각 manifest에서 확인한 초기화 계보:
+
+| 단계 | SHA256 | planning 학습 |
+|---|---|---|
+| 공개 nuImages R50 | `4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e` | 없음 |
+| common best750 | `767fbab49f6121be25015eb110ea95baca41b971d6551ec9bc4aa8684f172f98` | loss=0 |
+| low_feature LAST1000 | `b7af30e12c7ba2d24f44c1039dff2aa68c3f63cd2117342d23365aa3ea5d8b89` | loss=0 |
+| BN fixed best1000 | `a9d64f41e66a6549a98882c04fe471eb0830e064f23b06f032d8f7f3c202879c` | loss=0 |
+
+세 P0 단계 모두 동일 rawtime split의 train203만 학습했다. 초기화에 tiny-fit,
+기존 full330 teacher, final-val supervision은 들어가지 않았다.
+
+선택 근거와 손익을 함께 보존한다. 정상 eval의 train16 fitting D3는 adaptive .19161,
+fixed .04360이며 3초 L2는 .61565/.31013m다. 이는 fitting gate이지 전이 성능이 아니다.
+별도 full tune1998의 vx MAE는1.21150→1.03759m/s, history MAE는.56234→.48646m다.
+그러나 객체 footprint IoU는.44657→.42670으로 약2%p 감소했고 lane IoU는.49071→.50317이다.
+고정 tune370의 11세션 paired CI는 vx/history 개선에서0을 제외하지만 단일seed 개발 감사다.
+실제 planning과 복수seed에서 이 선택을 검증하며 인지 지표 하나로 우월성을 확정하지 않는다.
+
+실행 supervisor는 trainer manifest와 실제 OS 종료 코드/시그널을 별도로 기록한다.
+학습 완료 문구만으로 clean exit를 선언하지 않고, 종료 지연 시 관찰만 하며 자동 kill하지 않는다.
+
 ## 첫 일정: 6,000 step, 단일 seed screening
 
 Train54,810 frame / tune1,998 frame, frame>=30, train stride1 / tune stride5.

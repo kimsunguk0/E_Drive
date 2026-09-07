@@ -47,6 +47,45 @@ def test_dry_run_does_not_create_artifacts_or_processes(plan, system, monkeypatc
     assert result["jobs"][0]["inputs"]["checkpoint_init"]["sha256"]
 
 
+def test_supervised_plan_preserves_trainer_arguments_and_log_scope(plan, system):
+    plan["supervise"] = True
+    root = Path(plan["root"])
+    (root / launcher.SUPERVISOR).write_text("# supervisor fixture\n")
+    result = launcher.execute_plan(plan)
+    job = result["jobs"][0]
+    assert result["supervise"] and result["supervisor_sha256"]
+    assert job["command"][:2] == [sys.executable, launcher.SUPERVISOR]
+    separator = job["command"].index("--")
+    assert job["command"][separator + 1:] == job["trainer_command"][1:]
+    assert Path(job["supervisor_record"]).parent == root / "logs/motiondrive_v2"
+    assert not Path(job["run_dir"]).exists()
+
+
+def test_missing_supervisor_is_rejected_before_launch(plan):
+    plan["supervise"] = True
+    with pytest.raises(launcher.LaunchError, match="Missing required supervisor"):
+        launcher.validate_plan(plan)
+
+
+def test_existing_supervisor_record_refuses_plan(plan, system):
+    plan["supervise"] = True
+    root = Path(plan["root"])
+    (root / launcher.SUPERVISOR).write_text("# supervisor fixture\n")
+    path = root / "logs/motiondrive_v2/control_s0.supervisor.json"
+    path.parent.mkdir(parents=True)
+    path.write_text("preserve this prior execution record")
+    with pytest.raises(launcher.LaunchError, match="existing artifact"):
+        launcher.execute_plan(plan, launch=True)
+    assert path.read_text() == "preserve this prior execution record"
+
+
+@pytest.mark.parametrize("value", [1, "true", None])
+def test_supervise_flag_requires_boolean(plan, value):
+    plan["supervise"] = value
+    with pytest.raises(launcher.LaunchError, match="explicit boolean"):
+        launcher.validate_plan(plan)
+
+
 @pytest.mark.parametrize("field,value", [("name", "../escape"), ("name", "/outside"), ("gpu", 6), ("gpu", True)])
 def test_rejects_bad_job_scope(plan, field, value):
     plan["jobs"][0][field] = value

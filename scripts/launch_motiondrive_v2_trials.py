@@ -29,6 +29,7 @@ class LaunchError(ValueError):
 
 NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,95}\Z")
 TRAINER = "scripts/train_motiondrive_v2.py"
+SUPERVISOR = "scripts/supervise_motiondrive_v2_job.py"
 CONTROLLED = ("--gpu", "--run-dir")
 
 
@@ -82,7 +83,7 @@ def validate_plan(plan):
     """Validate every job and artifact path without creating anything."""
     if not isinstance(plan, dict):
         raise LaunchError("Plan must be a JSON object")
-    allowed = {"experiment_id", "root", "expected_git_sha", "jobs", "description"}
+    allowed = {"experiment_id", "root", "expected_git_sha", "jobs", "description", "supervise"}
     if set(plan) - allowed:
         raise LaunchError(f"Unknown plan keys: {sorted(set(plan) - allowed)}")
     experiment = plan.get("experiment_id", "")
@@ -97,6 +98,12 @@ def validate_plan(plan):
     trainer = contained(root / TRAINER, root)
     if not trainer.is_file():
         raise LaunchError(f"Missing allowed trainer: {trainer}")
+    supervise = plan.get("supervise", False)
+    if type(supervise) is not bool:
+        raise LaunchError("supervise must be an explicit boolean")
+    supervisor = contained(root / SUPERVISOR, root)
+    if supervise and not supervisor.is_file():
+        raise LaunchError(f"Missing required supervisor: {supervisor}")
     run_base = contained(root / "work_dirs/motiondrive_v2", root)
     log_base = contained(root / "logs/motiondrive_v2", root)
     manifest = contained(log_base / f"launch_{experiment}.json", log_base)
@@ -158,16 +165,27 @@ def validate_plan(plan):
                 lineage[kind] = fingerprint(value, "supervision" if kind == "supervision" else kind)
         if "--init" in options and "--resume" in options:
             raise LaunchError("Trainer cannot combine --init with --resume")
+        trainer_argv = [*argv, "--gpu", str(gpu), "--run-dir", str(run_dir)]
+        command = [sys.executable, *trainer_argv]
+        supervisor_record = None
+        if supervise:
+            supervisor_record = contained(log_base / f"{name}.supervisor.json", log_base)
+            lexical_targets.append(root / "logs/motiondrive_v2" / f"{name}.supervisor.json")
+            command = [sys.executable, SUPERVISOR, "--root", str(root),
+                       "--record", str(supervisor_record), "--poll-seconds", "5", "--", *trainer_argv]
         jobs.append({"name": name, "gpu": gpu, "run_dir": str(run_dir), "log_path": str(log_path),
                      "explicit_argv": list(argv), "explicit_options": options, "inputs": lineage,
-                     "command": [sys.executable, *argv, "--gpu", str(gpu), "--run-dir", str(run_dir)]})
+                     "supervisor_record": str(supervisor_record) if supervisor_record else None,
+                     "trainer_command": [sys.executable, *trainer_argv], "command": command})
     # Check the complete target set before the caller can reserve or launch anything.
     for path in [*lexical_targets, manifest, *(Path(j[k]) for j in jobs for k in ("run_dir", "log_path"))]:
         if path.exists() or path.is_symlink():
             raise LaunchError(f"Refusing existing artifact: {path}")
     return {"schema_version": 1, "experiment_id": experiment, "root": str(root),
             "description": plan.get("description", ""), "expected_git_sha": expected,
-            "launch_manifest": str(manifest), "trainer_sha256": sha256(trainer), "jobs": jobs}
+            "launch_manifest": str(manifest), "trainer_sha256": sha256(trainer),
+            "supervise": supervise, "supervisor_sha256": sha256(supervisor) if supervise else None,
+            "jobs": jobs}
 
 
 def inspect_repository(root):

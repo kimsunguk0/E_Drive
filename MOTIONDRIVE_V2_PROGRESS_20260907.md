@@ -96,3 +96,30 @@ VRAM alloc403.0/reserved500MiB, warmup20/repeats50, 감사43/43 통과.
 배포 bundle은 optimizer/RNG를 제외하고 모든 config/출처 SHA를 보존하여
 317,745,437→106,193,135bytes로 줄였다. 기본 config로 복원해 scale이나 mode를 잃지 않는다.
 원본 보고서는 `reports/*p0_motion_lowfeature_last1000.json`에 보존했다.
+
+## 16:38 KST: P0 BN 결과 및 P1 실행 준비
+
+BN 대조 네 판의 계산이 끝났다. 작은 train16의 정상 eval D3는 adaptive .19161,
+fixed .04360이며 fixed만 사전 fitting gate를 통과했다. 3초 L2는.31013m다.
+train-BN 모드로 평가 기준을 바꾸지 않았다. 이 결과는 작은 train fitting이며 일반화 주장이 아니다.
+
+전체 tune1998에서 fixed는 vx MAE1.21150→1.03759m/s,
+history MAE.56234→.48646m를 보였다. footprint IoU 약2%p 하락/lane IoU 약1.3%p 상승도 기록한다.
+고정 tune370의 11세션 paired CI는 vx/history 개선에서0을 제외했다.
+저해상도 feature 정합 + fixed BN statistics를 P1 공통 개발 설정으로 선택했다.
+
+adaptive motion run은 checkpoint 저장·평가 완료 후 native SIGSEGV 문구와 종료 지연이 있었다.
+원인은 확정하지 않았다. 프로세스는 개별 중지 시도 전 이미 사라졌으므로 실제 signal을 보내지 않았다.
+두 LAST checkpoint 무결성/모든 tensor 유한성을 검사하고 별도 전체 tune replay에서
+보고된 모든 지표를 정확히 재현했다. 학습 결과 유효성과 정상 종료 여부는 구분한다.
+후속 P1에는 실제 OS 종료를 별도 기록하는 supervisor를 사용한다. native 문제를 해결했다고 주장하지 않는다.
+
+원본은 `reports/p0_tail_bn_pair_comparison.json`,
+`reports/p0_bn_motion_pair_comparison.json`,
+`reports/p0_bn_motion_checkpoint_integrity.json`,
+`reports/p0_bn_motion_independent_replay.json`이다.
+
+P1은 planning 미학습 공통 BN-fixed best1000에서 G×S 네 판을 같은6000step으로 시작한다.
+LAST6000 2×2 비교를 주표, 팔별 tune-BEST를 보조표로 사전 고정했다.
+정확한 계보·손익·실행/평가 조건은 `MOTIONDRIVE_V2_P1_PROTOCOL.md`에 고정했다.
+이 문단 작성 시 P1은 아직 미실행이며 최종val136과 과거val38을 열지 않았다.
