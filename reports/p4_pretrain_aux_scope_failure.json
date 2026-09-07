@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "status": "failed_preserved",
+  "classification": "audit_helper_scope_mismatch_not_model_training_failure",
+  "source_git_sha": "806f0fa8c7447a7f66f59462977d87e00b492d0c",
+  "failed_attempt": {
+    "seed": 0,
+    "pid": 2097463,
+    "actual_returncode": 1,
+    "pid_absent_after_exit": true,
+    "cuda_visible_devices": "",
+    "command": [
+      "/usr/bin/python",
+      "scripts/audit_motiondrive_v2_fresh_aux_updates.py",
+      "--initial-checkpoint",
+      "work_dirs/motiondrive_v2/p4_public_init_s0.pth",
+      "--last-checkpoint",
+      "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth",
+      "--manifest",
+      "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/manifest.json",
+      "--output",
+      "reports/p4_fresh_pretrain_s0_aux_updates.json"
+    ],
+    "helper_sha256": "28aa6d7fcf0aff6f254990935cd51e3a55f19d65560e872abf03e8b81aa620e6",
+    "exception_type": "ValueError",
+    "exception_message": "Manifest must describe the completed joint canary step count",
+    "rejected_condition": {
+      "helper_requirement": "arguments.steps == last_step and arguments.phase == joint",
+      "actual_valid_manifest_phase": "pretrain",
+      "actual_valid_manifest_step": 2000
+    },
+    "output_created": false
+  },
+  "root_judgement": {
+    "model_training_failed": false,
+    "cause": "The canary-scoped audit helper was applied to a completed pretrain manifest.",
+    "old_returncode_reclassified_as_success": false
+  },
+  "input_sha256_after_failure": {
+    "work_dirs/motiondrive_v2/p4_public_init_s0.pth": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a",
+    "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+    "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/last.pth": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5",
+    "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/manifest.json": "9e5ba7ce89c0c1a9e4fe49476ff72c63b451f2658766e74e84c7336a4591fd98",
+    "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/manifest.json": "385ea53269e96d73c7d66f4196bc2e1205b0c6b7e9c7db537f983bc7aa37c421"
+  },
+  "p0_training_terminal_evidence": {
+    "seed0": {
+      "actual_returncode": 0,
+      "supervisor_exit_code": 0,
+      "outcome": "completed_cleanly",
+      "last_step": 2000,
+      "last_sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+      "supervisor_record_sha256": "278293a2275af4dad1975fbc2eb3cc05352dfbf2b0911d62aa25f2d1327f945f"
+    },
+    "seed1": {
+      "actual_returncode": 0,
+      "supervisor_exit_code": 0,
+      "outcome": "completed_cleanly",
+      "last_step": 2000,
+      "last_sha256": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5",
+      "supervisor_record_sha256": "2b8ee2d742e80ced8f826cee989ca9ce5f12115a2acd83a10a2485121e9bd625"
+    }
+  },
+  "post_failure_state": {
+    "tracked_clean": true,
+    "gpu4": {
+      "uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "used_mib": 0,
+      "free_mib": 182632
+    },
+    "gpu5": {
+      "uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "used_mib": 0,
+      "free_mib": 182632
+    },
+    "seed0_audit_output_present": false,
+    "seed1_audit_attempted": false,
+    "seed1_audit_output_present": false,
+    "joint_started": false
+  },
+  "preservation": {
+    "retry_performed": false,
+    "helper_or_manifest_bypassed_or_modified": false,
+    "p0_last_or_manifest_modified": false,
+    "p0_supervisor_record_modified": false,
+    "initializer_modified": false,
+    "gpu_job_started": false,
+    "old_failure_deleted_or_rewritten_as_success": false
+  }
+}

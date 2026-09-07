@@ -1,4 +1,5 @@
 """CPU tests for the fresh-canary auxiliary update audit."""
+import argparse
 import copy
 import hashlib
 
@@ -142,6 +143,68 @@ def test_input_hash_and_existing_output_are_read_only(tmp_path):
     with pytest.raises(ValueError, match="existing output"):
         audit.new_output(output)
     assert output.read_text() == "preserve"
+
+
+def test_explicit_pretrain_2000_stage_contract_is_accepted():
+    result = audit.validate_expected_stage({"phase": "pretrain", "steps": 2000},
+                                           2000, 2000, "pretrain", 2000)
+    assert result == {"expected": {"phase": "pretrain", "steps": 2000},
+                      "actual": {"manifest_phase": "pretrain", "manifest_argument_steps": 2000,
+                                 "last_payload_step": 2000, "sidecar_step": 2000}}
+
+
+def test_default_canary_stage_contract_remains_joint_two_steps():
+    result = audit.validate_expected_stage({"phase": "joint", "steps": 2}, 2, 2, "joint", 2)
+    assert result["expected"] == {"phase": "joint", "steps": 2}
+
+
+def producer_consumer_fixture():
+    initial = {"git_sha": "producer-git", "initial_model_state_sha256": "tensor-sha",
+               "source": {"git_sha": "producer-git", "file_sha256": {"model.py": "a" * 64}}}
+    last = {"git_sha": "trainer-git"}
+    sidecar = {"git_sha": "trainer-git", "load_report": {"common_checkpoint_sha256": "file-sha"},
+               "initial_model_state_sha256": "tensor-sha"}
+    return initial, last, sidecar
+
+
+def test_different_initializer_producer_and_trainer_git_is_valid_lineage():
+    initial, last, sidecar = producer_consumer_fixture()
+    result = audit.validate_producer_consumer_lineage(
+        initial, last, sidecar, "file-sha", "tensor-sha")
+    assert result["initializer_producer_git_sha"] == "producer-git"
+    assert result["trainer_git_sha"] == "trainer-git"
+    assert result["producer_and_trainer_git_may_differ"] is True
+
+
+@pytest.mark.parametrize("fault", ["file_sha", "tensor_sha", "trainer_git"])
+def test_producer_consumer_lineage_rejects_wrong_consumption_or_trainer_git(fault):
+    initial, last, sidecar = producer_consumer_fixture()
+    if fault == "file_sha":
+        sidecar["load_report"]["common_checkpoint_sha256"] = "other-file"
+    elif fault == "tensor_sha":
+        sidecar["initial_model_state_sha256"] = "other-tensor"
+    else:
+        last["git_sha"] = "other-trainer"
+    with pytest.raises(ValueError):
+        audit.validate_producer_consumer_lineage(
+            initial, last, sidecar, "file-sha", "tensor-sha")
+
+
+@pytest.mark.parametrize("arguments,last_step,sidecar_step", [
+    ({"phase": "joint", "steps": 2000}, 2000, 2000),
+    ({"phase": "pretrain", "steps": 1999}, 2000, 2000),
+    ({"phase": "pretrain", "steps": 2000}, 1999, 2000),
+    ({"phase": "pretrain", "steps": 2000}, 2000, 1999),
+])
+def test_explicit_pretrain_stage_rejects_phase_or_step_mismatch(arguments, last_step, sidecar_step):
+    with pytest.raises(ValueError, match="explicit expected stage"):
+        audit.validate_expected_stage(arguments, last_step, sidecar_step, "pretrain", 2000)
+
+
+@pytest.mark.parametrize("value", ["0", "-1", "not-an-int"])
+def test_cli_expected_steps_requires_positive_integer(value):
+    with pytest.raises(argparse.ArgumentTypeError, match="positive integer"):
+        audit.positive_int(value)
 
 
 @pytest.mark.parametrize("value", [None, "0", "GPU-example"])

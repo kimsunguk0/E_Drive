@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "status": "failed_preserved",
+  "classification": "audit_helper_lineage_assumption_not_model_training_failure",
+  "failed_attempt": {
+    "seed": 0,
+    "pid": 2100032,
+    "actual_returncode": 1,
+    "pid_absent_after_exit": true,
+    "cuda_visible_devices": "",
+    "command": [
+      "/usr/bin/python",
+      "scripts/audit_motiondrive_v2_fresh_aux_updates.py",
+      "--initial-checkpoint",
+      "work_dirs/motiondrive_v2/p4_public_init_s0.pth",
+      "--last-checkpoint",
+      "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth",
+      "--manifest",
+      "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/manifest.json",
+      "--output",
+      "reports/p4_fresh_pretrain_s0_aux_updates.json",
+      "--expected-phase",
+      "pretrain",
+      "--expected-steps",
+      "2000"
+    ],
+    "helper_sha256": "604c6e4f23c08e07552f9944d397df912c471033bf032a85699af641a240ccb2",
+    "exception_type": "ValueError",
+    "exception_message": "Initial/LAST/sidecar git_sha identity mismatch",
+    "output_created": false
+  },
+  "valid_lineage_rejected_by_helper": {
+    "producer_git_sha": "1947cb33134dba9559c14f1e8c47301c6ef52c7e",
+    "producer_artifact": "work_dirs/motiondrive_v2/p4_public_init_s0.pth",
+    "producer_artifact_sha256": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a",
+    "trainer_git_sha": "806f0fa8c7447a7f66f59462977d87e00b492d0c",
+    "last_embedded_git_sha": "806f0fa8c7447a7f66f59462977d87e00b492d0c",
+    "sidecar_git_sha": "806f0fa8c7447a7f66f59462977d87e00b492d0c",
+    "incorrect_helper_assumption": "producer, LAST, and sidecar git_sha must all be identical",
+    "required_binding": "The trainer lineage must bind the consumed I0 by its exact file and model-tensor SHA while preserving the distinct producer and trainer commits."
+  },
+  "input_sha256_after_failure": {
+    "work_dirs/motiondrive_v2/p4_public_init_s0.pth": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a",
+    "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+    "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/last.pth": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5",
+    "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/manifest.json": "9e5ba7ce89c0c1a9e4fe49476ff72c63b451f2658766e74e84c7336a4591fd98",
+    "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/manifest.json": "385ea53269e96d73c7d66f4196bc2e1205b0c6b7e9c7db537f983bc7aa37c421"
+  },
+  "post_failure_state": {
+    "seed0_audit_output_present": false,
+    "seed1_audit_attempted": false,
+    "seed1_audit_output_present": false,
+    "joint_started": false,
+    "input_files_changed": false
+  },
+  "root_judgement": {
+    "model_training_failed": false,
+    "goal_blocked": false,
+    "cause": "The revised audit helper still assumed that the I0 producer commit and P0 trainer commit were identical.",
+    "old_returncode_reclassified_as_success": false
+  },
+  "preservation": {
+    "retry_performed": false,
+    "helper_or_metadata_bypassed": false,
+    "initializer_modified": false,
+    "p0_last_modified": false,
+    "p0_sidecar_modified": false,
+    "p0_supervisor_record_modified": false,
+    "first_scope_failure_artifact_preserved": {
+      "path": "reports/p4_pretrain_aux_scope_failure.json",
+      "sha256": "410e457fc06495dd73261597a3503726ba7583baad788e60f61bf889f5fb8329"
+    },
+    "joint_or_other_gpu_job_started": false
+  }
+}

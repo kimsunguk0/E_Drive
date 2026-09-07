@@ -1,0 +1,139 @@
+# Recorded from the successful diagnostic tool call (actual exit code 0).
+# This command writes only its JSON report to stdout. It must not be run while
+# a change to the remote repository, model evaluation, or final-split access is intended.
+ssh -i ./<KEY> -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o BatchMode=yes -p <PORT> <USER>@<HOST> 'cd /NHNHOME/data/sukim/adcl && env CUDA_VISIBLE_DEVICES="" PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /usr/bin/python - <<'"'"'PY'"'"'
+import hashlib, json, os, subprocess
+from pathlib import Path
+import numpy as np
+ROOT=Path.cwd()
+SPLIT=ROOT/"data/etri/motiondrive_v2/grouped_split_rawtime.json"
+SUP=ROOT/"data/etri/motiondrive_v2/train_tune_geometry_v2"
+EGO=Path("/tmp/pm97/data/etri/ego_cache.npz")
+EXPECTED={
+ str(SPLIT):"f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+ str(SUP/"supervision_manifest.json"):"ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+ str(SUP/"calibration.npz"):"8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961"}
+def sha(path):
+ h=hashlib.sha256()
+ with open(path,"rb") as f:
+  for b in iter(lambda:f.read(1048576),b""): h.update(b)
+ return h.hexdigest()
+def git_state():
+ return {"head":subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(),
+         "tracked_status":subprocess.check_output(["git","status","--porcelain","--untracked-files=no"],text=True).splitlines()}
+before_git=git_state()
+assert before_git=={"head":"806f0fa8c7447a7f66f59462977d87e00b492d0c","tracked_status":[]}
+core_sha={path:sha(path) for path in EXPECTED}
+assert core_sha==EXPECTED
+split=json.loads(SPLIT.read_text())
+contract=json.loads((SUP/"supervision_manifest.json").read_text())
+ego_sha=sha(EGO)
+assert contract["split_manifest_sha256"]==EXPECTED[str(SPLIT)]
+assert contract["ego_cache_sha256"]==ego_sha
+with np.load(EGO,allow_pickle=False) as z:
+ scenarios=z["scenarios"].astype(str); scen_idx=z["scen_idx"].astype(np.int64); frames=z["frame"].astype(np.int64)
+names=scenarios[scen_idx]
+
+def digest_arrays(rows, arrays):
+ h=hashlib.sha256()
+ for name,value in [("selected_global_rows",rows),*arrays.items()]:
+  a=np.ascontiguousarray(value)
+  h.update((name+"\0"+str(a.dtype)+"\0"+str(tuple(a.shape))+"\0").encode())
+  h.update(a.view(np.uint8).tobytes())
+ return h.hexdigest()
+
+def load_labels(which,stride):
+ allowed=list(split["splits"][which])
+ chosen=np.isin(names,allowed)&(frames>=30)&(frames%stride==0)
+ rows=np.flatnonzero(chosen).astype(np.int64)
+ pos=np.full(len(names),-1,np.int64); pos[rows]=np.arange(len(rows))
+ history=np.empty((len(rows),4,4),np.float32); hv=np.empty((len(rows),4,4),bool)
+ state=np.empty((len(rows),6),np.float32); sv=np.empty((len(rows),6),bool)
+ filled=np.zeros(len(rows),bool)
+ loaded=[]
+ for scene in sorted(allowed):
+  path=SUP/(scene+".npz")
+  with np.load(path,allow_pickle=False) as z:
+   zr=z["row"].astype(np.int64); zf=z["frame"].astype(np.int64)
+   assert len(zr)==len(zf) and np.array_equal(frames[zr],zf) and np.all(names[zr]==scene)
+   take=chosen[zr]
+   dst=pos[zr[take]]
+   history[dst]=z["history_target"][take]
+   hv[dst]=z["history_valid"][take]
+   state[dst]=z["state_target"][take]
+   sv[dst]=z["state_valid"][take]
+   filled[dst]=True
+  loaded.append(str(path.relative_to(ROOT)))
+ assert filled.all() and np.isfinite(history).all() and np.isfinite(state).all()
+ arrays={"history_target":history,"history_valid":hv,"state_target":state,"state_valid":sv}
+ return {"rows":rows,"history":history,"history_valid":hv,"state":state,"state_valid":sv,
+         "scenes":allowed,"loaded_files":loaded,"label_array_sha256":digest_arrays(rows,arrays)}
+train=load_labels("train",1); tune=load_labels("tune",5)
+assert len(train["rows"])==54810 and len(train["scenes"])==203
+assert len(tune["rows"])==1998 and len(tune["scenes"])==37
+assert set(train["scenes"]).isdisjoint(tune["scenes"])
+train_sessions={split["scene_to_session"][s] for s in train["scenes"]}
+tune_sessions={split["scene_to_session"][s] for s in tune["scenes"]}
+assert len(train_sessions)==72 and len(tune_sessions)==11 and train_sessions.isdisjoint(tune_sessions)
+
+def component_prior(values,valid,fn):
+ out=np.empty(values.shape[1:],np.float64)
+ for idx in np.ndindex(values.shape[1:]):
+  x=values[(slice(None),)+idx]; m=valid[(slice(None),)+idx]
+  assert m.any()
+  out[idx]=fn(x[m].astype(np.float64))
+ return out
+med_h=component_prior(train["history"],train["history_valid"],np.median)
+mean_h=component_prior(train["history"],train["history_valid"],np.mean)
+med_s=component_prior(train["state"],train["state_valid"],np.median)
+mean_s=component_prior(train["state"],train["state_valid"],np.mean)
+
+def history_metric(prior):
+ err=np.linalg.norm(tune["history"][...,:2].astype(np.float64)-prior[None,:,:2],axis=-1)
+ valid=tune["history_valid"][...,:2].all(-1)
+ return [float(err[:,i][valid[:,i]].mean()) for i in range(4)]
+def state_metric(prior):
+ err=np.abs(tune["state"][:,:5].astype(np.float64)-prior[None,:5])
+ valid=tune["state_valid"][:,:5]
+ return [float(err[:,i][valid[:,i]].mean()) for i in range(5)]
+def prior_report(h,s):
+ return {"history_position_mae_by_offset":history_metric(h),
+         "state_mae_vx_vy_ax_ay_yawrate":state_metric(s)}
+zero_h=np.zeros_like(med_h); zero_s=np.zeros_like(med_s)
+report={
+ "execution":{"cpu_only":True,"cuda_visible_devices":os.environ.get("CUDA_VISIBLE_DEVICES"),
+              "omp_num_threads":os.environ.get("OMP_NUM_THREADS"),"openblas_num_threads":os.environ.get("OPENBLAS_NUM_THREADS"),
+              "dataset_getitem_called":False,"images_read":False,"model_forward_performed":False,"files_written":False,
+              "final_supervision_loaded":False},
+ "git":{"before":before_git,"after":git_state()},
+ "sha256":{"scripts/motiondrive_v2_data.py":sha(ROOT/"scripts/motiondrive_v2_data.py"),
+            "scripts/train_motiondrive_v2.py":sha(ROOT/"scripts/train_motiondrive_v2.py"),
+            str(SPLIT.relative_to(ROOT)):core_sha[str(SPLIT)],
+            str((SUP/"supervision_manifest.json").relative_to(ROOT)):core_sha[str(SUP/"supervision_manifest.json")],
+            str((SUP/"calibration.npz").relative_to(ROOT)):core_sha[str(SUP/"calibration.npz")],
+            str(EGO):ego_sha,
+            "train_selected_label_arrays":train["label_array_sha256"],
+            "tune_selected_label_arrays":tune["label_array_sha256"]},
+ "selection":{"train":{"rows":len(train["rows"]),"scenes":len(train["scenes"]),"sessions":len(train_sessions),"min_frame":30,"stride":1,"scene_npz_files_read":len(train["loaded_files"])},
+              "tune":{"rows":len(tune["rows"]),"scenes":len(tune["scenes"]),"sessions":len(tune_sessions),"min_frame":30,"stride":5,"scene_npz_files_read":len(tune["loaded_files"])},
+              "train_tune_scene_overlap":0,"train_tune_session_overlap":0},
+ "mask_counts":{"train":{"history_xy_pair_by_offset":train["history_valid"][...,:2].all(-1).sum(0).astype(int).tolist(),
+                           "history_each_dimension_by_offset":train["history_valid"].sum(0).astype(int).tolist(),
+                           "state_each_dimension":train["state_valid"].sum(0).astype(int).tolist()},
+                "tune":{"history_xy_pair_by_offset":tune["history_valid"][...,:2].all(-1).sum(0).astype(int).tolist(),
+                         "history_each_dimension_by_offset":tune["history_valid"].sum(0).astype(int).tolist(),
+                         "state_each_dimension":tune["state_valid"].sum(0).astype(int).tolist()}},
+ "train_derived_constants":{"history_offsets_frames":[1,2,5,10],
+   "component_median":{"history_position_xy":med_h[:,:2].tolist(),"history_yaw_sin_cos_report_only":med_h[:,2:].tolist(),"state_vx_vy_ax_ay_yawrate":med_s[:5].tolist()},
+   "component_mean_secondary":{"history_position_xy":mean_h[:,:2].tolist(),"history_yaw_sin_cos_report_only":mean_h[:,2:].tolist(),"state_vx_vy_ax_ay_yawrate":mean_s[:5].tolist()}},
+ "tune_metrics_matching_trainer":{"train_component_median":prior_report(med_h,med_s),
+                                  "zero_reference":prior_report(zero_h,zero_s),
+                                  "train_component_mean_secondary":prior_report(mean_h,mean_s)},
+ "metric_definition":{"history":"mean per offset of Euclidean norm over XY, valid only when both XY mask entries are true",
+                      "state":"per-coordinate mean absolute error for vx,vy,ax,ay,yaw_rate using each coordinate mask",
+                      "median_note":"component median minimizes componentwise absolute error, but is not the geometric median and does not minimize the 2D Euclidean history metric",
+                      "yaw_note":"history sin/cos yaw components are reported separately and never mixed into the XY metric"}}
+assert report["git"]["after"]==before_git
+assert {path:sha(path) for path in EXPECTED}==core_sha
+print(json.dumps(report,sort_keys=True,allow_nan=False))
+PY'

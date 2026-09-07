@@ -1,0 +1,104 @@
+{
+  "artifact_schema_version": 1,
+  "artifact_scope": "Recorded stdout JSON from the completed CPU-only, label-only constant-motion-prior diagnostic; not a model evaluation or submission baseline.",
+  "successful_diagnostic_actual_exit_code": 0,
+  "successful_stdout_json": {
+    "execution": {
+      "cpu_only": true,
+      "cuda_visible_devices": "",
+      "dataset_getitem_called": false,
+      "files_written": false,
+      "final_supervision_loaded": false,
+      "images_read": false,
+      "model_forward_performed": false,
+      "omp_num_threads": "1",
+      "openblas_num_threads": "1"
+    },
+    "git": {
+      "after": {
+        "head": "806f0fa8c7447a7f66f59462977d87e00b492d0c",
+        "tracked_status": []
+      },
+      "before": {
+        "head": "806f0fa8c7447a7f66f59462977d87e00b492d0c",
+        "tracked_status": []
+      }
+    },
+    "mask_counts": {
+      "train": {
+        "history_each_dimension_by_offset": [[54810, 54810, 54810, 54810], [54810, 54810, 54810, 54810], [54810, 54810, 54810, 54810], [54810, 54810, 54810, 54810]],
+        "history_xy_pair_by_offset": [54810, 54810, 54810, 54810],
+        "state_each_dimension": [54810, 54810, 54810, 54810, 54810, 54810]
+      },
+      "tune": {
+        "history_each_dimension_by_offset": [[1998, 1998, 1998, 1998], [1998, 1998, 1998, 1998], [1998, 1998, 1998, 1998], [1998, 1998, 1998, 1998]],
+        "history_xy_pair_by_offset": [1998, 1998, 1998, 1998],
+        "state_each_dimension": [1998, 1998, 1998, 1998, 1998, 1998]
+      }
+    },
+    "metric_definition": {
+      "history": "mean per offset of Euclidean norm over XY, valid only when both XY mask entries are true",
+      "median_note": "component median minimizes componentwise absolute error, but is not the geometric median and does not minimize the 2D Euclidean history metric",
+      "state": "per-coordinate mean absolute error for vx,vy,ax,ay,yaw_rate using each coordinate mask",
+      "yaw_note": "history sin/cos yaw components are reported separately and never mixed into the XY metric"
+    },
+    "selection": {
+      "train": {"min_frame": 30, "rows": 54810, "scene_npz_files_read": 203, "scenes": 203, "sessions": 72, "stride": 1},
+      "train_tune_scene_overlap": 0,
+      "train_tune_session_overlap": 0,
+      "tune": {"min_frame": 30, "rows": 1998, "scene_npz_files_read": 37, "scenes": 37, "sessions": 11, "stride": 5}
+    },
+    "sha256": {
+      "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+      "data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+      "data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "scripts/train_motiondrive_v2.py": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+      "train_selected_label_arrays": "24f938fbbf96606a0e3d06b6ea694727c1e3d76cc2414aa5defd6eb016151b29",
+      "tune_selected_label_arrays": "ba817948a1461038bcee2864ab16ae10d6bcc2ac5c96426fb844e4a71266462c"
+    },
+    "train_derived_constants": {
+      "component_mean_secondary": {
+        "history_position_xy": [[-1.1049255112284582, 0.026163199420201122], [-2.209765870095919, 0.05232692206459765], [-5.523567185510343, 0.13078426290808967], [-11.043046350665632, 0.2613197346775687]],
+        "history_yaw_sin_cos_report_only": [[2.678127495081364e-05, 0.999983045064583], [5.263646915277215e-05, 0.9999322267099359], [0.00012835943946277046, 0.9995786145435505], [0.00025655805657133637, 0.9983466614153976]],
+        "state_vx_vy_ax_ay_yawrate": [11.027298994590579, -0.26133057387258674, 0.016036496842145195, -0.0011438695376574492, -0.00028124935953349083]
+      },
+      "component_median": {
+        "history_position_xy": [[-1.135968804359436, 0.026656562462449074], [-2.2718939781188965, 0.05338735319674015], [-5.6790337562561035, 0.13372717052698135], [-11.352205753326416, 0.26172538101673126]],
+        "history_yaw_sin_cos_report_only": [[-2.4025241884828574e-07, 0.9999998211860657], [-3.3346006489409774e-07, 0.9999994039535522], [-1.9744062029758425e-07, 0.9999966025352478], [-2.461520836050113e-07, 0.9999877214431763]],
+        "state_vx_vy_ax_ay_yawrate": [11.3455810546875, -0.2694689631462097, 0.001480302249547094, -0.0001230889101861976, -5.529599889086967e-07]
+      },
+      "history_offsets_frames": [1, 2, 5, 10]
+    },
+    "tune_metrics_matching_trainer": {
+      "train_component_mean_secondary": {
+        "history_position_mae_by_offset": [0.3685182003814112, 0.7367192700393445, 1.8411875408851865, 3.6834770005515765],
+        "state_mae_vx_vy_ax_ay_yawrate": [3.686662550133471, 0.09137433012774909, 0.2980506949577813, 0.1415443695233896, 0.015186051992848285]
+      },
+      "train_component_median": {
+        "history_position_mae_by_offset": [0.36790383844488134, 0.7355232419829597, 1.8383020354869923, 3.677874020441455],
+        "state_mae_vx_vy_ax_ay_yawrate": [3.6790704451247938, 0.0912840353713715, 0.29726760284186626, 0.1415361682012601, 0.015164628646758488]
+      },
+      "zero_reference": {
+        "history_position_mae_by_offset": [1.053173707067944, 2.1060561976952585, 5.265080517092186, 10.528303267096558],
+        "state_mae_vx_vy_ax_ay_yawrate": [10.530344322043737, 0.25143551410941073, 0.29727805994502376, 0.14153718033110052, 0.015164624463876291]
+      }
+    }
+  },
+  "original_common_predicate": {
+    "scene_name_source": "ego_cache.scenarios.astype(str)[ego_cache.scen_idx]",
+    "split_membership": "scene name is in grouped_split_rawtime.json splits[train|tune]",
+    "minimum_frame_inclusive": 30,
+    "train_frame_predicate": "frame % 1 == 0",
+    "tune_frame_predicate": "frame % 5 == 0",
+    "scene_supervision_mapping": "scene NPZ row indexes must match ego-cache frame and scene identity",
+    "history_metric_mask": "history_valid[..., :2].all(-1)",
+    "state_metric_mask": "state_valid[..., :5] independently per coordinate"
+  },
+  "provided_750_step_interpretation": "At 750 steps, both seeds materially improve history and vx versus the constant median prior; ax is approximately tied; yaw is worse than the prior for seed 0 and better for seed 1. This qualitative comparison was supplied with the artifact request; no P4 values were reconstructed here.",
+  "preflight_attempts_not_part_of_successful_numeric_report": [
+    {"actual_exit_code": 1, "reason": "The first path interpretation /home/NHNHOME/data/sukim/adcl did not exist; no repository file was read or changed."},
+    {"actual_exit_code": 1, "reason": "The repository-local data/etri/ego_cache.npz did not exist; the completed diagnostic subsequently used the dataset code's /tmp/pm97/data/etri/ego_cache.npz fallback. No file was changed."}
+  ]
+}

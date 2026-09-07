@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CPU-only audit of auxiliary updates in a fresh MotionDrive V2 canary.
+"""CPU-only audit of auxiliary updates in a fresh MotionDrive V2 training stage.
 
 This reads existing checkpoints and a trainer manifest.  It never reads the
 dataset and never executes a model forward.  The optimizer-id mapping mirrors
@@ -39,6 +39,7 @@ UNCERTAINTY_AUXILIARIES = {
 }
 STOP_WEIGHT = "motion_encoder.state_head.2.weight"
 STOP_BIAS = "motion_encoder.state_head.2.bias"
+PUBLIC_SHA256 = "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e"
 
 
 def require(condition, message):
@@ -80,6 +81,89 @@ def new_output(value: str | Path) -> Path:
 def same_json(left, right) -> bool:
     return json.dumps(left, sort_keys=True, allow_nan=False) == json.dumps(
         right, sort_keys=True, allow_nan=False)
+
+
+def positive_int(value: str) -> int:
+    try:
+        result = int(value)
+    except (TypeError, ValueError) as exc:
+        raise argparse.ArgumentTypeError("expected a positive integer") from exc
+    if result < 1:
+        raise argparse.ArgumentTypeError("expected a positive integer")
+    return result
+
+
+def validate_expected_stage(arguments: Mapping, last_step: int, sidecar_step: int,
+                            expected_phase: str, expected_steps: int) -> dict:
+    require(type(expected_steps) is int and expected_steps > 0, "Expected steps must be a positive integer")
+    require(expected_phase in ("joint", "pretrain"), "Expected phase must be joint or pretrain")
+    require((expected_phase, expected_steps) in (("joint", 2), ("pretrain", 2000)),
+            "Audit scope is limited to joint/2 canary or pretrain/2000")
+    actual = {"manifest_phase": arguments.get("phase"),
+              "manifest_argument_steps": arguments.get("steps"),
+              "last_payload_step": last_step, "sidecar_step": sidecar_step}
+    require(actual == {"manifest_phase": expected_phase,
+                       "manifest_argument_steps": expected_steps,
+                       "last_payload_step": expected_steps, "sidecar_step": expected_steps},
+            "Manifest phase/steps and LAST payload must match the explicit expected stage")
+    return {"expected": {"phase": expected_phase, "steps": expected_steps}, "actual": actual}
+
+
+def validate_producer_consumer_lineage(initial_manifest: Mapping, last_manifest: Mapping,
+                                        sidecar: Mapping, initial_file_sha: str,
+                                        initial_tensor_sha: str) -> dict:
+    producer_git = initial_manifest.get("git_sha")
+    source = initial_manifest.get("source")
+    require(isinstance(producer_git, str) and producer_git,
+            "Public initializer producer git_sha required")
+    require(isinstance(source, Mapping) and source.get("git_sha") == producer_git,
+            "Public initializer source/producer git_sha mismatch")
+    source_files = source.get("file_sha256")
+    require(isinstance(source_files, Mapping) and bool(source_files)
+            and all(isinstance(name, str) and isinstance(digest, str) and len(digest) == 64
+                    and all(character in "0123456789abcdef" for character in digest)
+                    for name, digest in source_files.items()),
+            "Public initializer source file SHA mapping is missing or malformed")
+    trainer_gits = (last_manifest.get("git_sha"), sidecar.get("git_sha"))
+    require(all(isinstance(value, str) and value for value in trainer_gits)
+            and trainer_gits[0] == trainer_gits[1],
+            "LAST embedded and sidecar trainer git_sha mismatch")
+    require(sidecar.get("load_report", {}).get("common_checkpoint_sha256") == initial_file_sha,
+            "Trainer did not consume the supplied public initializer file SHA")
+    require(sidecar.get("initial_model_state_sha256") == initial_tensor_sha,
+            "Trainer initial tensor SHA does not match the supplied public initializer")
+    require(initial_manifest.get("initial_model_state_sha256") == initial_tensor_sha,
+            "Public initializer manifest does not identify its actual model tensors")
+    return {"initializer_producer_git_sha": producer_git,
+            "trainer_git_sha": trainer_gits[0],
+            "producer_and_trainer_git_may_differ": True,
+            "consumed_initializer_file_sha256": initial_file_sha,
+            "consumed_initializer_tensor_sha256": initial_tensor_sha,
+            "runtime_source_file_intersection": "unavailable: LAST/sidecar manifest has no source file hash mapping"}
+
+
+def validate_public_initializer_manifest(manifest: Mapping) -> dict:
+    require(manifest.get("status") == "public_initialization_only" and manifest.get("step") == 0,
+            "Initial checkpoint must be the zero-step public initializer")
+    require(manifest.get("public_checkpoint_sha256") == PUBLIC_SHA256
+            and manifest.get("pretrained_sha256") == PUBLIC_SHA256,
+            "Public backbone SHA provenance mismatch")
+    require(manifest.get("etri_optimizer_steps") == 0
+            and manifest.get("etri_optimizer_updates") == 0
+            and manifest.get("labels_read") is False and manifest.get("image_data_read") is False,
+            "Public initializer must contain zero ETRI training/data use")
+    report = manifest.get("load_report", {}).get("backbone", {})
+    require(report.get("injected") == 318 and report.get("unexpected") == []
+            and report.get("nonhead_missing") == []
+            and report.get("fpn_initialized_from_checkpoint") is False,
+            "Public backbone load report mismatch")
+    bn = manifest.get("bn_training", {})
+    require(bn.get("policy") == "fixed" and bn.get("affine_and_backbone_weights_trainable") is True,
+            "Public initializer fixed-BN policy mismatch")
+    config = validate_complete_config(dict(manifest.get("model_config", {}))).to_dict()
+    require(config["goal_on"] is False and config["state_on"] is False,
+            "Public initializer must be G0S0")
+    return config
 
 
 def optimizer_parameter_name_groups(model: torch.nn.Module) -> list[list[str]]:
@@ -220,7 +304,8 @@ def validate_model_states(config: Mapping, initial_state: Mapping, last_state: M
 
 
 def audit(initial_checkpoint: str | Path, last_checkpoint: str | Path,
-          manifest_path: str | Path, output: str | Path) -> dict:
+          manifest_path: str | Path, output: str | Path, *, expected_phase: str = "joint",
+          expected_steps: int = 2) -> dict:
     assert_cpu_only()
     initial_path = input_file(initial_checkpoint, "Initial checkpoint")
     last_path = input_file(last_checkpoint, "LAST checkpoint")
@@ -239,29 +324,46 @@ def audit(initial_checkpoint: str | Path, last_checkpoint: str | Path,
             "Embedded checkpoint manifests required")
     initial_step, last_step, sidecar_step = initial.get("step"), last.get("step"), sidecar.get("step")
     require(type(initial_step) is int and initial_step == 0, "Initializer must be step zero")
-    require(type(last_step) is int and last_step > 0 and sidecar_step == last_step,
-            "LAST and sidecar optimizer steps must agree and be positive")
+    require(initial.get("optimizer") == {}, "Step-zero public initializer optimizer must be empty")
+    require(type(last_step) is int and type(sidecar_step) is int,
+            "LAST and sidecar optimizer steps must be integers")
     arguments = sidecar.get("arguments", {})
-    require(arguments.get("steps") == last_step and arguments.get("phase") == "joint",
-            "Manifest must describe the completed joint canary step count")
+    require(isinstance(arguments, Mapping), "Manifest arguments mapping required")
+    stage = validate_expected_stage(arguments, last_step, sidecar_step,
+                                    expected_phase, expected_steps)
     require(sidecar.get("status") == "completed", "Trainer sidecar must be completed")
-    require(sidecar.get("load_report", {}).get("common_checkpoint_sha256") == before["initial_checkpoint"],
-            "Manifest initializer SHA does not identify the supplied checkpoint")
     require(Path(arguments.get("init", "")).resolve() == initial_path,
             "Manifest initializer path does not identify the supplied checkpoint")
-    for field in ("git_sha", "split_sha256"):
-        values = [initial_manifest.get(field), last_manifest.get(field), sidecar.get(field)]
-        require(all(isinstance(value, str) and value for value in values) and len(set(values)) == 1,
-                f"Initial/LAST/sidecar {field} identity mismatch")
+    split_values = [initial_manifest.get("split_sha256"), last_manifest.get("split_sha256"),
+                    sidecar.get("split_sha256")]
+    require(all(isinstance(value, str) and value for value in split_values)
+            and len(set(split_values)) == 1, "Initial/LAST/sidecar split_sha256 identity mismatch")
     for field in ("model_config", "arguments", "initial_model_state_sha256", "load_report",
                   "loss_weights", "supervision_manifest_sha256"):
         require(same_json(last_manifest.get(field), sidecar.get(field)),
                 f"LAST embedded/sidecar identity mismatch: {field}")
     initial_state, last_state = initial.get("model"), last.get("model")
     require(isinstance(initial_state, Mapping) and isinstance(last_state, Mapping), "Model state mappings required")
-    require(tensor_state_sha256(initial_state) == sidecar.get("initial_model_state_sha256"),
-            "Supplied initializer tensors differ from trainer initial tensors")
+    initial_tensor_sha = tensor_state_sha256(initial_state)
+    producer_config = validate_public_initializer_manifest(initial_manifest)
+    provenance = validate_producer_consumer_lineage(initial_manifest, last_manifest, sidecar,
+                                                     before["initial_checkpoint"], initial_tensor_sha)
+    trainer_config = validate_complete_config(dict(sidecar.get("model_config", {}))).to_dict()
+    require(all(same_json(producer_config[key], trainer_config[key])
+                for key in producer_config if key not in ("goal_on", "state_on")),
+            "Trainer architecture differs from the public initializer beyond G/S flags")
+    expected_flags = (False, False) if expected_phase == "pretrain" else (True, True)
+    require((trainer_config["goal_on"], trainer_config["state_on"]) == expected_flags,
+            "Trainer G/S flags do not match the audited stage")
+    require(arguments.get("bn_policy") == "fixed"
+            and sidecar.get("bn_training", {}).get("policy") == "fixed",
+            "Trainer fixed-BN policy mismatch")
     model = validate_model_states(sidecar["model_config"], initial_state, last_state)
+    bn_names = [name for name in initial_state
+                if name.endswith(("running_mean", "running_var", "num_batches_tracked"))]
+    require(bool(bn_names) and all(torch.equal(initial_state[name], last_state[name]) for name in bn_names),
+            "Fixed-BN running buffers changed")
+    fixed_bn_sha = tensor_state_sha256({name: last_state[name] for name in bn_names})
     optimizer = last.get("optimizer")
     id_to_name, group_summaries = optimizer_id_to_name(model, optimizer)
     primary = {name: parameter_update_report(initial_state, last_state, optimizer, id_to_name, prefixes)
@@ -277,17 +379,22 @@ def audit(initial_checkpoint: str | Path, last_checkpoint: str | Path,
     result = {
         "schema_version": 1, "status": "passed" if passed else "failed",
         "primary_aux_update_gate_passed": passed,
-        "primary_gate_definition": "each of occupancy/lane/history/state has >=1 changed parameter and >=1 finite nonzero Adam exp_avg",
+        "primary_gate_definition": "each of occupancy/lane/history/state has >=1 same parameter with an actual delta and finite nonzero Adam exp_avg",
         "primary_auxiliaries": primary, "uncertainty_paths_report_only": uncertainty,
         "stop_path_report_only": stop,
         "optimizer_mapping": {"source": "train_motiondrive_v2.py named_parameters backbone/other predicate and order",
                               "groups": group_summaries, "mapped_parameter_count": len(id_to_name)},
+        "stage_contract": stage,
+        "producer_consumer_lineage": provenance,
         "lineage": {"initial_step": initial_step, "last_step": last_step,
-                    "sidecar_step": sidecar_step, "git_sha": sidecar["git_sha"],
+                    "sidecar_step": sidecar_step,
+                    "initializer_producer_git_sha": initial_manifest["git_sha"],
+                    "trainer_git_sha": sidecar["git_sha"],
                     "split_sha256": sidecar["split_sha256"],
                     "supervision_manifest_sha256": sidecar.get("supervision_manifest_sha256"),
                     "initial_model_state_sha256": tensor_state_sha256(initial_state),
-                    "last_model_state_sha256": tensor_state_sha256(last_state)},
+                    "last_model_state_sha256": tensor_state_sha256(last_state),
+                    "fixed_bn_state_sha256": fixed_bn_sha},
         "inputs": {name: {"path": str(path), "sha256_before": before[name],
                            "sha256_after": after[name]}
                    for name, path in (("initial_checkpoint", initial_path),
@@ -311,8 +418,11 @@ def main(argv=None) -> int:
     parser.add_argument("--last-checkpoint", required=True)
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--expected-phase", choices=("joint", "pretrain"), default="joint")
+    parser.add_argument("--expected-steps", type=positive_int, default=2)
     args = parser.parse_args(argv)
-    result = audit(args.initial_checkpoint, args.last_checkpoint, args.manifest, args.output)
+    result = audit(args.initial_checkpoint, args.last_checkpoint, args.manifest, args.output,
+                   expected_phase=args.expected_phase, expected_steps=args.expected_steps)
     print(json.dumps({"status": result["status"],
                       "primary_aux_update_gate_passed": result["primary_aux_update_gate_passed"],
                       "output": str(Path(args.output).absolute())}))
