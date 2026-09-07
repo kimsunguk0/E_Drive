@@ -408,3 +408,30 @@ train54810/tune1998/3000steps. 19:55 관측step80/80/190/80, 네 팔 pressure_ev
 C0 초기 D3는 P1 raw/nominal값0.372043/0.372059를 정확히 재현했고,
 C1 초기 D3는0.98955/0.98963으로 악화되어 geometry 적응 결과를 기다려야 한다.
 이는 완료 결과가 아니다. `MOTIONDRIVE_V2_SHARED_GPU_20260907.md` 및 startup JSON 참조.
+
+## 20:28 KST: 실제 C1/T1 canary의 3090 배포 연결 검증
+
+진행 중 P2 네 팔의 학습 소스/조건은 그대로다. 별도로 이미 정상 종료한
+`p2_shared_memory_probe_s0` step2를 **포장·입력·forward 연결 검사에만** 사용했다.
+기존 strict exporter는 검사 완화 없이 B200 CPU에서 통과했다. 원 checkpoint SHA
+`ba53c9dd5a84db04297cd3e6fb065be081ef8c1a3c179afdb76852b5be044703`,
+새 geometry-v2/nominal bundle SHA
+`43c349ebabbc1cff182255e19ff590c6ed513af572eaf8bdc286d5d6b50870ba`다.
+
+3090의 기존 runtime을 읽기 전용으로 사용해 raw train8 입력→strict bundle load→
+전체 forward→ABS JSON 경로를 실제 실행했다. 8클립×6종 입력48개가 reference와
+bitwise 동일했고, raw/reference 출력8쌍과 A/다른클립/A 재실행 결과도 최대 차이0m였다.
+총17 complete forward 각각 현재6+저해상도5 이미지 인코딩, 주요7출력 유한성,
+최종 FP32좌표 및 ABS 직렬화 무변형을 확인했다. model state/자료/source 전후불변이다.
+
+실제 Docker/SSH rc0, PID72989 부재, GPU130MiB/no compute, Docker 종료를 독립 확인했다.
+이 과정에서 다른 작업을 중지하거나 패키지를 설치하지 않았다. 관련 CPU131tests가
+로컬과 B200 기존 `env/venv/bin/python`에서 통과했다. B200 system Python은 cv2가
+없어 최초 collection에 실패했고, 코드를 우회하지 않고 이미 설치된 환경으로 검증했다.
+원 결과 `reports/motiondrive_v2_canary_deployment_smoke_3090.json`,
+실행 증거는 같은 이름의 `.execution.json`, CPU export 증거는
+`reports/motiondrive_v2_canary_strict_export.json`이다.
+
+**이 체크포인트는 2-step 메모리 canary이지 최종 제출 후보가 아니다.** 이번 결과는
+일반화·대회 승인·최종 Tinfer 또는 실제 P2 LAST3000의 배포 검증을 대신하지 않는다.
+최종 C1/T1 학습 결과와 실제 해당 체크포인트의 검증은 여전히 남아 있다.

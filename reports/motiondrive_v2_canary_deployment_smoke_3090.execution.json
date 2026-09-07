@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "status": "completed_pass",
+  "purpose": "Actual 3090 raw adapter -> strict canary bundle loader -> full serving forward -> six absolute XY smoke",
+  "not_accuracy_or_final_latency_measurement": true,
+  "not_final_submission_candidate": true,
+  "actual_official_submission": false,
+  "remote_host": "intern@192.168.10.182",
+  "remote_stage": "/home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG",
+  "new_b200_export_parent": "/NHNHOME/data/sukim/adcl/checkpoints/motiondrive_v2/diagnostics/deploy_smoke_canary.Y67Mq3eI",
+  "local_transfer_stage": "/tmp/motiondrive-v2-deploy-canary.7xxMiBzd",
+  "training_source": "c6845fb33e548462f0fecead8baa1ec259d10d4a",
+  "b200_head_when_staging": "5993117d1e3f21eb8ca687d453e0cb584567de76",
+  "authority": "17 existing dependency/input audit source files match local, B200 working tree and git show c6845fb; new diagnostic runner is separately SHA-pinned",
+  "b200_source_before": {
+    "source_git_sha": "c6845fb33e548462f0fecead8baa1ec259d10d4a",
+    "observed_head": "5993117d1e3f21eb8ca687d453e0cb584567de76",
+    "files": {
+      "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+      "models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+      "models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+      "models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/audit_motiondrive_v2_deploy_inputs.py": "6153d53d2cff7d494cba3b965ebed27f7f7e6d6c02153b1ef21fe7b2807546ec",
+      "scripts/etri_build_cache_b200.py": "8e41c778817e15f68b3081e8599b2821a5c77d2c62a7c15d5586af885c5cd6dc",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "dense_vocab_v1/tools/data_converter/etri_test_converter.py": "77a700dff251c4a1a8f45734ee50bf5e3e3c08a46ab28c110069ff2c9def2de2"
+    }
+  },
+  "b200_after": {
+    "head": "5993117d1e3f21eb8ca687d453e0cb584567de76",
+    "tracked_dirty": "",
+    "files": {
+      "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+      "models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+      "models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+      "models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/audit_motiondrive_v2_deploy_inputs.py": "6153d53d2cff7d494cba3b965ebed27f7f7e6d6c02153b1ef21fe7b2807546ec",
+      "scripts/etri_build_cache_b200.py": "8e41c778817e15f68b3081e8599b2821a5c77d2c62a7c15d5586af885c5cd6dc",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "dense_vocab_v1/tools/data_converter/etri_test_converter.py": "77a700dff251c4a1a8f45734ee50bf5e3e3c08a46ab28c110069ff2c9def2de2"
+    },
+    "artifacts": {
+      "work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/last.pth": "ba53c9dd5a84db04297cd3e6fb065be081ef8c1a3c179afdb76852b5be044703",
+      "work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/manifest.json": "7c307b1e8ce2dd7a6a4f1488055b4653a52ba35f3a1f62c6bbf22ee0c4c9df35",
+      "logs/motiondrive_v2/p2_shared_memory_probe_s0.supervisor.json": "fb54cd22326d9511b635f4c8a592827ae9ea83208a981111bbe6802058f9d244",
+      "checkpoints/motiondrive_v2/diagnostics/deploy_smoke_canary.Y67Mq3eI/canary_step2_geometry_v2_nominal.pth": "43c349ebabbc1cff182255e19ff590c6ed513af572eaf8bdc286d5d6b50870ba"
+    }
+  },
+  "docker": {
+    "image": "adcl-latency-runtime:cu128",
+    "image_id_before": "sha256:7c0f4aaf98f2f3391d30d426e6217f524c8717aaa6b7d431fcd6f71740aa15c7",
+    "image_id_after": "sha256:7c0f4aaf98f2f3391d30d426e6217f524c8717aaa6b7d431fcd6f71740aa15c7",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--gpus",
+      "device=0",
+      "--pid=host",
+      "--network",
+      "none",
+      "--read-only",
+      "--user",
+      "1000:1000",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,size=512m",
+      "--env",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "--env",
+      "OMP_NUM_THREADS=2",
+      "--env",
+      "MKL_NUM_THREADS=2",
+      "--env",
+      "CUBLAS_WORKSPACE_CONFIG=:4096:8",
+      "--env",
+      "PYTHONPATH=/source:/runtime/venv_dev/lib/python3.10/site-packages",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_latency/runtime,dst=/runtime,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/source,dst=/source,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/bundle,dst=/bundle,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/deploy_inputs_cpu_cab53b1.lEi72Zr2/inputs,dst=/inputs,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/p1_g1s1_step1000/fixtures/p1_gradient_train8.pt,dst=/reference/p1_gradient_train8.pt,readonly",
+      "--mount",
+      "type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/reports,dst=/reports",
+      "--entrypoint",
+      "/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10",
+      "adcl-latency-runtime:cu128",
+      "-B",
+      "/source/scripts/smoke_motiondrive_v2_deployment.py",
+      "--bundle",
+      "/bundle/canary_step2_geometry_v2_nominal.pth",
+      "--expected-bundle-sha256",
+      "43c349ebabbc1cff182255e19ff590c6ed513af572eaf8bdc286d5d6b50870ba",
+      "--fixture-root",
+      "/inputs/deploy_fixture_train8",
+      "--reference",
+      "/reference/p1_gradient_train8.pt",
+      "--calibration",
+      "/inputs/calibration.npz",
+      "--geometry-contract",
+      "/inputs/supervision_manifest.json",
+      "--source-manifest",
+      "/source/source_manifest.json",
+      "--device",
+      "cuda:0",
+      "--precision",
+      "bf16",
+      "--output",
+      "/reports/motiondrive_v2_canary_deployment_smoke_3090.json"
+    ],
+    "ssh_command": "ssh -o BatchMode=yes -o ConnectTimeout=15 intern@192.168.10.182 ''\\''docker'\\'' '\\''run'\\'' '\\''--rm'\\'' '\\''--gpus'\\'' '\\''device=0'\\'' '\\''--pid=host'\\'' '\\''--network'\\'' '\\''none'\\'' '\\''--read-only'\\'' '\\''--user'\\'' '\\''1000:1000'\\'' '\\''--tmpfs'\\'' '\\''/tmp:rw,nosuid,nodev,size=512m'\\'' '\\''--env'\\'' '\\''PYTHONDONTWRITEBYTECODE=1'\\'' '\\''--env'\\'' '\\''OMP_NUM_THREADS=2'\\'' '\\''--env'\\'' '\\''MKL_NUM_THREADS=2'\\'' '\\''--env'\\'' '\\''CUBLAS_WORKSPACE_CONFIG=:4096:8'\\'' '\\''--env'\\'' '\\''PYTHONPATH=/source:/runtime/venv_dev/lib/python3.10/site-packages'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_latency/runtime,dst=/runtime,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/source,dst=/source,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/bundle,dst=/bundle,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/deploy_inputs_cpu_cab53b1.lEi72Zr2/inputs,dst=/inputs,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/p1_g1s1_step1000/fixtures/p1_gradient_train8.pt,dst=/reference/p1_gradient_train8.pt,readonly'\\'' '\\''--mount'\\'' '\\''type=bind,src=/home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/reports,dst=/reports'\\'' '\\''--entrypoint'\\'' '\\''/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10'\\'' '\\''adcl-latency-runtime:cu128'\\'' '\\''-B'\\'' '\\''/source/scripts/smoke_motiondrive_v2_deployment.py'\\'' '\\''--bundle'\\'' '\\''/bundle/canary_step2_geometry_v2_nominal.pth'\\'' '\\''--expected-bundle-sha256'\\'' '\\''43c349ebabbc1cff182255e19ff590c6ed513af572eaf8bdc286d5d6b50870ba'\\'' '\\''--fixture-root'\\'' '\\''/inputs/deploy_fixture_train8'\\'' '\\''--reference'\\'' '\\''/reference/p1_gradient_train8.pt'\\'' '\\''--calibration'\\'' '\\''/inputs/calibration.npz'\\'' '\\''--geometry-contract'\\'' '\\''/inputs/supervision_manifest.json'\\'' '\\''--source-manifest'\\'' '\\''/source/source_manifest.json'\\'' '\\''--device'\\'' '\\''cuda:0'\\'' '\\''--precision'\\'' '\\''bf16'\\'' '\\''--output'\\'' '\\''/reports/motiondrive_v2_canary_deployment_smoke_3090.json'\\'''",
+    "actual_returncode": 0,
+    "returncode_semantics": "Actual SSH exit code from its sole remote Docker run command; propagates child exit, not log-text success inference",
+    "pid": 72989,
+    "pid_absent_after": true,
+    "docker_ps_after_empty": true,
+    "network": "none",
+    "rootfs_readonly": true,
+    "pid_host": true,
+    "readonly_mounts": [
+      "/source",
+      "/runtime",
+      "/bundle",
+      "/inputs",
+      "/reference/p1_gradient_train8.pt"
+    ],
+    "only_persistent_writable_mount": "/reports",
+    "container_removed": true,
+    "other_containers_stopped": false
+  },
+  "gpu_before": {
+    "uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+    "used_mib": 130,
+    "free_mib": 23986,
+    "total_mib": 24576,
+    "compute_processes": []
+  },
+  "gpu_after": {
+    "uuid": "GPU-8768d7a1-6e1b-1aae-4774-248c9d28b887",
+    "used_mib": 130,
+    "free_mib": 23986,
+    "total_mib": 24576,
+    "compute_processes": []
+  },
+  "summary": {
+    "status": "completed_pass",
+    "pid": 72989,
+    "step": 2,
+    "n": 8,
+    "forwards": 17,
+    "input_bitwise_all": true,
+    "output_bitwise_all": true,
+    "max_output_error": 0,
+    "repeat": {
+      "bitwise_equal": true,
+      "max_abs_m": 0,
+      "atol_m": 0.00001,
+      "rtol": 0,
+      "pass": true
+    },
+    "first_clip": {
+      "clip_id": "fixture_000",
+      "source_scene": "20260112-105434",
+      "source_frame": 30
+    },
+    "first_plan": [
+      [
+        3.6907191276550293,
+        -0.10504274815320969
+      ],
+      [
+        7.391341209411621,
+        -0.1981501579284668
+      ],
+      [
+        10.755972862243652,
+        -0.29055359959602356
+      ],
+      [
+        13.78109073638916,
+        -0.36597445607185364
+      ],
+      [
+        16.399221420288086,
+        -0.4319828748703003
+      ],
+      [
+        18.720359802246094,
+        -0.49469858407974243
+      ]
+    ],
+    "model_state_unchanged": true,
+    "source_unchanged": true,
+    "artifact_unchanged": true,
+    "model_parameters": 26409112,
+    "memory": {
+      "allocated_bytes": 139645952,
+      "reserved_bytes": 541065216,
+      "peak_allocated_bytes": 393136128,
+      "peak_reserved_bytes": 541065216
+    },
+    "gpu_observations": 18,
+    "observed_compute_pids": [
+      72989
+    ],
+    "environment": {
+      "python": "3.10.20 (main, Jun 23 2026, 15:20:26) [Clang 22.1.3 ]",
+      "executable": "/runtime/uv-python/cpython-3.10.20-linux-x86_64-gnu/bin/python3.10",
+      "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+      "torch": "2.7.1+cu128",
+      "torchvision": "0.22.1+cu128",
+      "cuda_build": "12.8",
+      "opencv": "4.8.1",
+      "pillow": "12.2.0",
+      "numpy": "1.26.4",
+      "pyarrow": "24.0.0",
+      "scipy": "1.15.3",
+      "gpu_name": "NVIDIA GeForce RTX 3090",
+      "tf32_matmul": false,
+      "tf32_cudnn": false,
+      "deterministic_algorithms": true,
+      "mountinfo": [
+        "1925 1425 8:2 /home/intern/adcl_latency/runtime /runtime ro,relatime - ext4 /dev/sda2 rw,errors=remount-ro",
+        "1926 1425 8:2 /home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/source /source ro,relatime - ext4 /dev/sda2 rw,errors=remount-ro",
+        "1927 1425 8:2 /home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/bundle /bundle ro,relatime - ext4 /dev/sda2 rw,errors=remount-ro",
+        "1929 1425 8:2 /home/intern/adcl_motiondrive_v2/measurements/deploy_inputs_cpu_cab53b1.lEi72Zr2/inputs /inputs ro,relatime - ext4 /dev/sda2 rw,errors=remount-ro",
+        "1930 1425 8:2 /home/intern/adcl_motiondrive_v2/measurements/deploy_canary_smoke.cYf9MKyG/reports /reports rw,relatime - ext4 /dev/sda2 rw,errors=remount-ro",
+        "1934 1425 8:2 /home/intern/adcl_motiondrive_v2/measurements/p1_g1s1_step1000/fixtures/p1_gradient_train8.pt /reference/p1_gradient_train8.pt ro,relatime - ext4 /dev/sda2 rw,errors=remount-ro"
+      ]
+    },
+    "started_at": "2026-09-07T11:23:35.932831+00:00",
+    "ended_at": "2026-09-07T11:23:45.836306+00:00"
+  },
+  "report": {
+    "path": "reports/motiondrive_v2_canary_deployment_smoke_3090.json",
+    "sha256": "b0e7d2b94fa36d8d883d4d07393f7c0c6d49954bc3e0bc6a5c91d1da60fef986",
+    "local_remote_sha_equal": true
+  },
+  "tests": {
+    "command": "OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 python3 -m pytest -q tests/test_motiondrive_v2_deployment_smoke.py tests/test_motiondrive_v2_serving.py tests/test_motiondrive_v2_export.py",
+    "exit_code": 0,
+    "passed": 131
+  },
+  "new_files_source_sha256": {
+    "scripts/smoke_motiondrive_v2_deployment.py": "769bfc77a9f0d399e3b440b71087cfaa0d14215b14f8c1a2bc18974d209ab506",
+    "tests/test_motiondrive_v2_deployment_smoke.py": "b1115c0b747e48fd1cc049d406f35bf3ec1f8e3afbebdda342d69bfeca86b77f"
+  },
+  "restrictions": {
+    "existing_runtime_source_modified": false,
+    "b200_gpu_forward_performed": false,
+    "packages_installed": false,
+    "existing_artifacts_overwritten": false,
+    "raw_reference_modified": false,
+    "foreign_process_signals_sent": false,
+    "training_performed": false,
+    "git_commit_performed_by_subagent": false
+  }
+}

@@ -85,3 +85,23 @@ RAFT의 flow는 픽셀 변위이지 metric 속도가 아니며 깊이·회전·�
 [Torchvision 사전학습 모델 고지](https://github.com/pytorch/vision/blob/v0.22.1/README.md#pre-trained-model-license)는
 학습 데이터 유래 별도 조건의 가능성을 명시한다. 사용 조건 검토는 미완결이며,
 현재 결과는 연구용 비용 검증이다. 대회 규정의 최종 승인을 뜻하지 않는다.
+
+### 20:24 KST 추가: 학습 데이터 사용 조건의 구체적 확인
+
+[공식 Torchvision0.22 문서](https://docs.pytorch.org/vision/0.22/models/generated/torchvision.models.optical_flow.raft_small.html)는
+측정한 C_T_V2 가중치의 학습 데이터를 FlyingChairs + FlyingThings3D로 명시한다.
+[FlyingThings3D 제공기관의 Scene Flow 이용 조건](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html)은
+데이터를 연구 목적으로 한정하고 상업적 사용을 금지한다. 같은 기관의
+[FAQ](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets)는
+일부 원 자산의 권리 때문에 상업용 데이터 라이선스를 판매할 수 없다고 설명한다.
+직접 페이지 열기는 시간 초과했지만 검색 도구가 반환한 해당 공식 페이지 본문에서
+이 조건을 확인했다. 비공식 재배포 페이지는 근거로 사용하지 않았다.
+
+이는 **데이터의 명시적 조건**이다. 이것만으로 파생 가중치에 어떤 조건이 적용되는지,
+상금 대회 참가가 상업적 이용에 해당하는지, 운영국이 해당 가중치를 인정하는지를
+법적으로 확정하지 않는다. 코드 라이선스만 보고 배포 적합성을 인정해서는 안 된다는
+기존 주의사항을 구체화한다. FlyingChairs 조건과 가중치/대회 적용 범위 검토도 남아 있다.
+
+따라서 기존 RAFT 비용 측정은 연구 결과로 보존하지만, 제출용 주력에 자동 편입하지 않는다.
+연구 실험의 정확도 이득과 별개로, 최종 채택 전 사용 조건을 확인해야 한다.
+현재 P2와 이미 보유한 영상 모델을 이용한 planner 연결 실험은 이 추가 가중치에 의존하지 않는다.

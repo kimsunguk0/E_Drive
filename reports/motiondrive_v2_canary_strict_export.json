@@ -1,0 +1,533 @@
+{
+  "schema_version": 1,
+  "status": "completed_pass",
+  "purpose": "CPU strict export of completed two-step C1T1 memory canary; not a final submission candidate",
+  "actual_export_command": "ssh -i /home/a/<KEY> -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p <PORT> <USER>@<HOST> 'cd /NHNHOME/data/sukim/adcl && CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 PYTHONDONTWRITEBYTECODE=1 /usr/bin/python -B scripts/export_motiondrive_v2_inference.py --checkpoint work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/last.pth --out checkpoints/motiondrive_v2/diagnostics/deploy_smoke_canary.Y67Mq3eI/canary_step2_geometry_v2_nominal.pth --deployment-contract geometry-v2-nominal --expected-checkpoint-sha256 ba53c9dd5a84db04297cd3e6fb065be081ef8c1a3c179afdb76852b5be044703'",
+  "actual_export_exit_code": 0,
+  "export_execution_location": "B200 /NHNHOME/data/sukim/adcl; original recorded run_dir retained",
+  "cuda_visible_devices": "",
+  "cpu_only": true,
+  "model_forward_performed": false,
+  "strict_checks_relaxed": false,
+  "result_metadata_recorded_from_actual_exported_bundle": {
+    "output": "/NHNHOME/data/sukim/adcl/checkpoints/motiondrive_v2/diagnostics/deploy_smoke_canary.Y67Mq3eI/canary_step2_geometry_v2_nominal.pth",
+    "output_sha256": "43c349ebabbc1cff182255e19ff590c6ed513af572eaf8bdc286d5d6b50870ba",
+    "output_bytes": 106197999,
+    "source_checkpoint": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/last.pth",
+      "sha256": "ba53c9dd5a84db04297cd3e6fb065be081ef8c1a3c179afdb76852b5be044703",
+      "bytes": 317746653,
+      "step": 2,
+      "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "training_git_sha": "c6845fb33e548462f0fecead8baa1ec259d10d4a",
+      "epoch": 1
+    },
+    "model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10,
+        70
+      ],
+      "y_range": [
+        -32,
+        32
+      ],
+      "heights": [
+        0,
+        1,
+        2
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": true,
+      "state_on": true,
+      "plan_output_scale": [
+        10,
+        5
+      ],
+      "motion_input_mode": "low_feature"
+    },
+    "tensor_count": 456,
+    "optimizer_and_rng_excluded": true,
+    "input_contract": {
+      "schema_version": 1,
+      "geometry_edition": "geometry_v2",
+      "time_input": "nominal",
+      "camera_order": [
+        "camera_front",
+        "camera_front_right",
+        "camera_front_left",
+        "camera_rear_wide",
+        "camera_rear_left",
+        "camera_rear_right"
+      ],
+      "current_wh": [
+        768,
+        432
+      ],
+      "history_wh": [
+        384,
+        216
+      ],
+      "history_frames": [
+        -1,
+        -2,
+        -5,
+        -10
+      ],
+      "nominal_seconds": [
+        0.1,
+        0.2,
+        0.5,
+        1
+      ],
+      "dtype": "float32",
+      "pose_alignment": "inv(E_past) @ E_current; full SE3; scene branch only",
+      "goal": "(R_current.T @ (p_plus50 - p_current))[:2]",
+      "crop": "front and rear_wide bottom; other four top; horizontal center 1920x1080",
+      "pixels": "OpenCV undistort/INTER_AREA768 -> JPEG Q95 -> PIL RGB -> ImageNet normalization",
+      "history_pixels": "PIL BILINEAR384 from decoded Q95 768 image, before normalization",
+      "raw_image_reads": 10,
+      "cross_clip_feature_cache": false,
+      "provided_status_or_timestamp_input": false,
+      "future_labels_input": false,
+      "projection_precision": "raw calibration float64 -> final float32; archived NPZ rounding may differ"
+    },
+    "deployment_provenance": {
+      "mode": "geometry-v2-nominal",
+      "status": "input_contract_lineage_verified",
+      "geometry_edition": "geometry_v2",
+      "time_input": "nominal",
+      "canonical_calibration_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+      "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+      "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0",
+      "training_git_sha": "c6845fb33e548462f0fecead8baa1ec259d10d4a",
+      "selected_checkpoint_sha256": "ba53c9dd5a84db04297cd3e6fb065be081ef8c1a3c179afdb76852b5be044703",
+      "checkpoint_step": 2,
+      "completed_run_step": 2,
+      "evidence": {
+        "source_checkpoint": {
+          "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/last.pth",
+          "sha256": "ba53c9dd5a84db04297cd3e6fb065be081ef8c1a3c179afdb76852b5be044703",
+          "bytes": 317746653
+        },
+        "completed_run_manifest": {
+          "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/manifest.json",
+          "sha256": "7c307b1e8ce2dd7a6a4f1488055b4653a52ba35f3a1f62c6bbf22ee0c4c9df35",
+          "bytes": 5147
+        },
+        "supervision_manifest": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json",
+          "sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+          "bytes": 4237
+        },
+        "canonical_calibration": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz",
+          "sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+          "bytes": 531
+        },
+        "split_manifest": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+          "sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+          "bytes": 180747
+        },
+        "training_initializer": {
+          "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth",
+          "sha256": "e2a0e2dc9f3320f5e9744e3e4ef0b77bf9dffffee33aed1274b610bd6faac80e",
+          "bytes": 317745565
+        }
+      },
+      "contract_source_sha256": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+      "verified_scope": "C1 geometry and nominal model-input timing lineage only",
+      "accuracy_latency_compliance_certified": false,
+      "os_process_exit_verified": false
+    },
+    "inference_export": {
+      "script_sha256": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "weights_device": "cpu",
+      "weights_dtype_preserved": true,
+      "optimizer_and_rng_excluded": true,
+      "complete_config_required": true
+    }
+  },
+  "training_os_exit_evidence": {
+    "supervisor_record": "logs/motiondrive_v2/p2_shared_memory_probe_s0.supervisor.json",
+    "supervisor_sha256": "fb54cd22326d9511b635f4c8a592827ae9ea83208a981111bbe6802058f9d244",
+    "record": {
+      "schema_version": 1,
+      "supervisor_record_id": "dd188673582142c2a551e6c7b8c3ba42",
+      "supervisor_pid": 2006927,
+      "supervisor_process_group": 2006927,
+      "child_pid": 2006928,
+      "child_start_new_session": false,
+      "command": [
+        "/usr/bin/python",
+        "scripts/train_motiondrive_v2.py",
+        "--split-manifest",
+        "data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root",
+        "data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--workers",
+        "0",
+        "--eval-batch",
+        "4",
+        "--seed",
+        "0",
+        "--precision",
+        "bf16",
+        "--lr",
+        "0.00005",
+        "--backbone-lr",
+        "0.000005",
+        "--weight-decay",
+        "0.01",
+        "--grad-clip",
+        "5",
+        "--alpha-occ",
+        "0.2",
+        "--alpha-lane",
+        "0.2",
+        "--alpha-motion",
+        "0.2",
+        "--uncertainty",
+        "1",
+        "--log-every",
+        "1",
+        "--init",
+        "work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth",
+        "--phase",
+        "joint",
+        "--goal-on",
+        "1",
+        "--state-on",
+        "1",
+        "--plan-output-scale",
+        "10",
+        "5",
+        "--steps",
+        "2",
+        "--batch",
+        "16",
+        "--warmup",
+        "100",
+        "--eval-every",
+        "1",
+        "--save-every",
+        "1",
+        "--motion-input-mode",
+        "low_feature",
+        "--bn-policy",
+        "fixed",
+        "--time-input",
+        "nominal",
+        "--microbatch",
+        "2",
+        "--cuda-memory-limit-mib",
+        "12000",
+        "--cuda-min-free-mib",
+        "8192",
+        "--max-train-samples",
+        "32",
+        "--max-eval-samples",
+        "8",
+        "--gpu",
+        "2",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0"
+      ],
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0",
+      "trainer_manifest_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/manifest.json",
+      "gpu": 2,
+      "created_at": "2026-09-07T10:50:42.476004+00:00",
+      "status": "process_exited",
+      "actual_returncode": 0,
+      "termination_signal": null,
+      "trainer_manifest": {
+        "exists": true,
+        "status": "completed",
+        "pid": 2006928,
+        "step": 2,
+        "belongs_to_child": true,
+        "manifest_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/manifest.json"
+      },
+      "teardown_grace_seconds": 60,
+      "teardown_pending_observed": false,
+      "received_signals": [],
+      "automatic_kill_enabled": true,
+      "pressure_policy": {
+        "enabled": true,
+        "source": "trainer --cuda-min-free-mib",
+        "physical_gpu": 2,
+        "minimum_free_mib": 8192,
+        "poll_seconds": 5,
+        "safety_grace_seconds": 30,
+        "trigger": "free_mib < minimum_free_mib OR query failure",
+        "signal_scope": "exact Popen child only; never another PID or process group",
+        "actions": [
+          "SIGTERM once",
+          "kill once if still alive after safety grace"
+        ]
+      },
+      "pressure_checks": {
+        "count": 4,
+        "last": {
+          "observed_at": "2026-09-07T10:50:57.880198+00:00",
+          "physical_gpu": 2,
+          "gpu_uuid": "GPU-4f5a3e60-3c76-6719-33ed-8c8b8bd41565",
+          "free_mib": 19884,
+          "command": [
+            "nvidia-smi",
+            "-i",
+            "2",
+            "--query-gpu=index,uuid,memory.free",
+            "--format=csv,noheader,nounits"
+          ]
+        },
+        "minimum_observed_free_mib": 19884
+      },
+      "pressure_event": null,
+      "child_started_at": "2026-09-07T10:50:42.479540+00:00",
+      "last_observed_at": "2026-09-07T10:51:03.015899+00:00",
+      "trainer_terminal_first_observed_at": "2026-09-07T10:50:58.009822+00:00",
+      "seconds_alive_after_trainer_terminal": 0.000027222558856010437,
+      "ended_at": "2026-09-07T10:51:03.015915+00:00",
+      "exit_code": 0,
+      "termination_signal_name": null,
+      "outcome": "completed_cleanly",
+      "trainer_reported_completed": true,
+      "supervisor_exit_code": 0
+    },
+    "pids_absent_after": true
+  },
+  "completed_manifest_sha256": "7c307b1e8ce2dd7a6a4f1488055b4653a52ba35f3a1f62c6bbf22ee0c4c9df35",
+  "completed_manifest": {
+    "schema_version": 1,
+    "git_sha": "c6845fb33e548462f0fecead8baa1ec259d10d4a",
+    "arguments": {
+      "data_root": "/NHNHOME/data/sukim/adcl",
+      "split_manifest": "data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "supervision_root": "data/etri/motiondrive_v2/train_tune_geometry_v2",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_shared_memory_probe_s0",
+      "phase": "joint",
+      "goal_on": 1,
+      "state_on": 1,
+      "gpu": 2,
+      "cpu": false,
+      "cuda_memory_limit_mib": 12000,
+      "cuda_min_free_mib": 8192,
+      "microbatch": 2,
+      "seed": 0,
+      "steps": 2,
+      "batch": 16,
+      "eval_batch": 4,
+      "workers": 0,
+      "eval_every": 1,
+      "save_every": 1,
+      "log_every": 1,
+      "lr": 0.00005,
+      "backbone_lr": 0.000005,
+      "weight_decay": 0.01,
+      "warmup": 100,
+      "grad_clip": 5,
+      "alpha_occ": 0.2,
+      "alpha_lane": 0.2,
+      "alpha_motion": 0.2,
+      "uncertainty": 1,
+      "precision": "bf16",
+      "time_input": "nominal",
+      "bn_policy": "fixed",
+      "pretrained": null,
+      "init": "work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth",
+      "resume": null,
+      "arch": "resnet50",
+      "motion_input_mode": "low_feature",
+      "plan_output_scale": [
+        10,
+        5
+      ],
+      "train_stride": 1,
+      "eval_stride": 5,
+      "max_train_samples": 32,
+      "max_eval_samples": 8,
+      "train_scenes": null,
+      "eval_scenes": null,
+      "eval_split": "tune",
+      "eval_only": false,
+      "allow_unpretrained": false
+    },
+    "model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10,
+        70
+      ],
+      "y_range": [
+        -32,
+        32
+      ],
+      "heights": [
+        0,
+        1,
+        2
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": true,
+      "state_on": true,
+      "plan_output_scale": [
+        10,
+        5
+      ],
+      "motion_input_mode": "low_feature"
+    },
+    "loss_weights": {
+      "plan": 1,
+      "occupancy": 0.2,
+      "lane": 0.2,
+      "motion": 0.2,
+      "uncertainty": true
+    },
+    "time_input": "nominal",
+    "time_input_policy": {
+      "mode": "nominal",
+      "scope": "model input time_offsets only; same for training and every evaluation",
+      "source": "fixed nominal frame-offset seconds",
+      "nominal_history_seconds": [
+        0.1,
+        0.2,
+        0.5,
+        1
+      ],
+      "nominal_dtype": "float32",
+      "supervision_and_dataset_modified": false
+    },
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "load_report": {
+      "common_checkpoint_sha256": "e2a0e2dc9f3320f5e9744e3e4ef0b77bf9dffffee33aed1274b610bd6faac80e",
+      "plan_output_unit_reparameterization": {
+        "from": [
+          10,
+          5
+        ],
+        "to": [
+          10,
+          5
+        ],
+        "initial_function_preserved": true,
+        "note": "Inverse scale of final Linear rows; Adam parameterization changes, not target coordinates"
+      }
+    },
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "numpy": "2.1.0",
+    "device": "cuda:2",
+    "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+    "cuda_memory_policy": {
+      "enabled": true,
+      "allocator_limit_mib": 12000,
+      "min_free_mib": 8192,
+      "allocator_fraction": 0.0657060353046741,
+      "initial_free_bytes": 27097169920,
+      "device_total_bytes": 191503138816,
+      "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+    },
+    "microbatch_policy": {
+      "enabled": true,
+      "microbatch": 2,
+      "logical_batch": 16,
+      "optimizer_updates_per_logical_batch": 1,
+      "loss_normalization": "full logical batch label/mask denominators",
+      "bitwise_equivalence_to_unsplit_training_promised": false
+    },
+    "gpu_name": "NVIDIA B200",
+    "pretrained_sha256": null,
+    "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "initial_model_state_sha256": "e3823058037c5aa4422ff3f7900cbcf7bf40374fd04dec1d4391d1572bf8e0ba",
+    "initial_parameter_count": 26409112,
+    "bn_training": {
+      "policy": "fixed",
+      "modules": 53,
+      "affine_and_backbone_weights_trainable": true,
+      "inference_policy": "eval running statistics for both arms"
+    },
+    "status": "completed",
+    "pid": 2006928,
+    "data_counts": {
+      "train": 32,
+      "eval": 8
+    },
+    "train_rows_sha256": "36dc7dce06ad91e9f6c456142a2995edddff300ae3976bc6c38bdd02d4fc4e17",
+    "eval_rows_sha256": "6960e074988ed35e240780f2a0a835cc0ac9a5bfe04d0d950f920bd600ac180b",
+    "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log",
+    "step": 2,
+    "best_metric": 1.1487219892442226,
+    "cuda_memory": {
+      "allocated_bytes": 453608448,
+      "reserved_bytes": 5943328768,
+      "peak_allocated_bytes": 5323615744,
+      "peak_reserved_bytes": 5943328768,
+      "device_free_bytes": 20849754112,
+      "device_total_bytes": 191503138816
+    },
+    "elapsed_seconds": 10.216706657782197,
+    "nonfinite_count": 0
+  },
+  "b200_after": {
+    "head": "5993117d1e3f21eb8ca687d453e0cb584567de76",
+    "tracked_dirty": "",
+    "files": {
+      "models/__init__.py": "bb72330d8c2e382fa721cc9449c9a17dcacfb4128750ca373d4af7227b87afd3",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+      "models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+      "models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+      "models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/audit_motiondrive_v2_deploy_inputs.py": "6153d53d2cff7d494cba3b965ebed27f7f7e6d6c02153b1ef21fe7b2807546ec",
+      "scripts/etri_build_cache_b200.py": "8e41c778817e15f68b3081e8599b2821a5c77d2c62a7c15d5586af885c5cd6dc",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "dense_vocab_v1/tools/data_converter/etri_test_converter.py": "77a700dff251c4a1a8f45734ee50bf5e3e3c08a46ab28c110069ff2c9def2de2"
+    },
+    "artifacts": {
+      "work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/last.pth": "ba53c9dd5a84db04297cd3e6fb065be081ef8c1a3c179afdb76852b5be044703",
+      "work_dirs/motiondrive_v2/p2_shared_memory_probe_s0/manifest.json": "7c307b1e8ce2dd7a6a4f1488055b4653a52ba35f3a1f62c6bbf22ee0c4c9df35",
+      "logs/motiondrive_v2/p2_shared_memory_probe_s0.supervisor.json": "fb54cd22326d9511b635f4c8a592827ae9ea83208a981111bbe6802058f9d244",
+      "checkpoints/motiondrive_v2/diagnostics/deploy_smoke_canary.Y67Mq3eI/canary_step2_geometry_v2_nominal.pth": "43c349ebabbc1cff182255e19ff590c6ed513af572eaf8bdc286d5d6b50870ba"
+    }
+  },
+  "accuracy_latency_compliance_certified": false
+}
