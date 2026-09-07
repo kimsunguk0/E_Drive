@@ -76,7 +76,7 @@
     "recipe": {
       "feature_dim": 790,
       "architecture": "FP32 LayerNorm(790) -> Linear(790,64) -> SiLU -> Linear(64,2)",
-      "initialization": "all Linear weights zero; final bias [-2,+2]",
+      "initialization": "final Linear weight zero and bias [-2,+2]; preceding Linear uses default torch initialization fixed by head seed",
       "decision": "ZERO iff zero logit > move logit; ties MOVE",
       "loss": "cross entropy plus 0.25 times expected D3 normalized by train-only max(mean Dzero,1e-3)",
       "optimizer": "AdamW lr=1e-3 wd=0.01",
