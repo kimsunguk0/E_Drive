@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "purpose": "Exact P4 launch-time runtime allowlist for P5-Z validation",
+  "source_git_sha": "53e702c9aeb553ef16cd9369023078e7e46dfe40",
+  "runtime_origin_git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+  "source_receipts": {
+    "seed0_path": "logs/motiondrive_v2/p4_fresh_joint_s0.child.json",
+    "seed0_sha256": "327204fba66779a69ea6a25eabd15d45e812e54aab3b21280e678deac4970bf3",
+    "seed1_path": "logs/motiondrive_v2/p4_fresh_joint_s1.child.json",
+    "seed1_sha256": "5ece718639bfeda16575ad935233b8830464234b63c798ce0144a8cd1c723e45",
+    "source_mappings_json_equal": true
+  },
+  "files": {
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+    "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+    "models/motiondrive_v2_query_adapter.py": "49eef489ac20f35f2884bcfbb2315d1328f182932b709f964e2baae6e270eab2",
+    "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/evaluate_motiondrive_v2_planning.py": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+    "scripts/evaluate_motiondrive_v2_shared.py": "7b49e8f5c3a5b0169e039627953a7ce22b961d9e3d3c86aacb29afe768e6c5ba",
+    "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+    "scripts/initialize_motiondrive_v2_public.py": "673750b051d4ee20fd0792275b281c757e43b5dbb90d01c06547c2f7a83452cc",
+    "scripts/launch_motiondrive_v2_trials.py": "8590f231e14985eac100e13b47b00832fb4a8e5a26e05717411ace637ff10826",
+    "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+    "scripts/run_motiondrive_v2_fresh_trial.py": "08f2ed7dcd6df8fb9252620d263426dd813f5ee7c317b738f29bf0e0259974d2",
+    "scripts/run_motiondrive_v2_query_trial.py": "2ac750de3b252c4a14178ca1772f6a831cc84825b96266f56eb43f6956db68ff",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/supervise_motiondrive_v2_job.py": "4a970d80fe2cdc4116f6aebf4848f416478ddcbcaf57765e3d4e5788f9d87218",
+    "scripts/train_motiondrive_v2.py": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+    "scripts/train_motiondrive_v2_query_adapter.py": "330a999b08f3dcca9f05da6158570bb54f3452e03a40c7916e431f315e02fe5c"
+  }
+}
