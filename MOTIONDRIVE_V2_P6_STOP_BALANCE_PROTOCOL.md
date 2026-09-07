@@ -46,6 +46,7 @@ P6 구현 source commit은 preregistration commit 직후 실제 SHA를 실행 re
 - `scripts/train_motiondrive_v2.py`: SHA-256 `61b889f9f600814ba3145cd98d50f1f8483cc72c9589054d7baafc35e920a10a`
 - `scripts/run_motiondrive_v2_stop_balance_continuation.py`: SHA-256 `94167d50d46b5e91d529c0ac96924bf27934dd9c3e99c2cdc2bc3c803b7c81de`
 - `tests/test_motiondrive_v2_stop_balance_continuation.py`: SHA-256 `abc3997f1781e618cebdada9178f440a4f22133a38ac383efa2b81c10313406d`
+- actual P6 training-source Git: `56753e775674204ab0b9241513d61dd819ec2ff5`
 
 독립 label-only 집계의 실측 provenance:
 
@@ -197,3 +198,24 @@ P5-Z fixed selector는 base0 세 head seed 모두 ZERO 0/Δ0이었고, base1도 
 ## 9. 속도·배포 경계
 
 Model graph가 같더라도 P6 checkpoint의 실제 latency, parity, state-hash 및 배포 smoke를 측정하기 전에는 architecture-speed 변화 없음이나 배포 적합성을 주장하지 않는다. 이 사전등록은 추가 3090 측정, export 또는 submission 변경을 승인하지 않는다.
+
+## 10. 실행 후 증거 부록 (사전등록 변경 아님)
+
+네 preregistered arm은 source Git `56753e775674204ab0b9241513d61dd819ec2ff5`에서 actual OS rc0로 종료했다. 각 manifest는 `completed`, step/optimizer step `1000`, nonfinite `0`, fixed BN을 기록했고, LAST 뒤 tune 1,998행/11 sessions 평가를 정확히 한 번 수행했다. 같은 base C/B의 initial model-state SHA와 최종 sample-order SHA는 exact 일치했다. GPU4/5는 종료 뒤 각각 0 MiB 사용으로 복귀했다.
+
+| base | original P4 D3 | C D3 | B D3 | B−C | B−original |
+|---|---:|---:|---:|---:|---:|
+| 0 | 0.3722216174 | 0.3697884780 | 0.3683529174 | -0.0014355605 | -0.0038687000 |
+| 1 | 0.3669574755 | 0.3628462547 | 0.3648386386 | +0.0019923839 | -0.0021188370 |
+
+두 base 평균은 original `0.3695895465`, C `0.3663173663`, B `0.3665957780`이다. Shared-session 11-cluster bootstrap에서 mean B−C는 `+0.0002784117`, 95% CI `[-0.0023184367, +0.0043582712]`; mean B−original은 `-0.0029937685`, 95% CI `[-0.0082540480, +0.0009267247]`다. Shared-group B−C는 steady99 `-0.0066984767`, depart24 `+0.0195502245`, nonstop1875 `+0.0004001122`, session046 제외 `+0.0009707750`이었다.
+
+사전등록 KEEP 조건 네 개 중 `두 base 모두 B가 original보다 낮음`만 충족했다. Base1의 B−C가 양수이고, 평균 B−original은 `-0.01`에 미달하며, shared B−C CI upper도 0보다 작지 않다. 따라서 이 fixed P6 balanced recipe는 **불채택**이다. 추가 stop-loss weight, threshold, seed 또는 epoch 탐색으로 이어가지 않는다.
+
+실행·분석 provenance:
+
+- `reports/p6_stop_balance_execution_20260908_ops.json`
+- `reports/p6_stop_balance_results_20260908_ops.json`, SHA-256 `9caf1de86795916f7a468a3a94e6bf45be4321b7a78ea368053bf7e4fedf0e6a`
+- fixed CPU analyzer `scripts/analyze_motiondrive_v2_p6_stop_balance_results.py`, SHA-256 `e3ef5f7dac642d20aedafa71bcd4979aee4faaa077d2c234f910b736691da753`
+
+첫 analyzer `b33cb2b77b5f71c2b89e1455a7617a4b9910ba65a948c4bd399d522dba6a13b1` 실행은 모든 계산 뒤 NumPy `float32` JSON 직렬화에서 actual rc1/output absent였다. 이 실패는 숨기지 않으며, 독립 검토된 serialization-only 수정본으로 재실행한 CPU 분석만 rc0였다. 학습 네 arm의 rc0와 analyzer rc1/rc0는 별개다.

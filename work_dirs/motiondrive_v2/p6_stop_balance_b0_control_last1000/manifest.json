@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "git_sha": "56753e775674204ab0b9241513d61dd819ec2ff5",
+  "arguments": {
+    "data_root": "/NHNHOME/data/sukim/adcl",
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+    "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p6_stop_balance_b0_control_last1000",
+    "phase": "joint",
+    "goal_on": 1,
+    "state_on": 1,
+    "gpu": 0,
+    "cpu": false,
+    "cuda_memory_limit_mib": 12000,
+    "cuda_min_free_mib": 8192,
+    "microbatch": 2,
+    "seed": 0,
+    "steps": 1000,
+    "batch": 16,
+    "eval_batch": 4,
+    "workers": 4,
+    "eval_every": 1000,
+    "save_every": 1000,
+    "log_every": 10,
+    "lr": 5e-05,
+    "backbone_lr": 5e-06,
+    "weight_decay": 0.01,
+    "warmup": 100,
+    "grad_clip": 5.0,
+    "alpha_occ": 0.2,
+    "alpha_lane": 0.2,
+    "alpha_motion": 0.2,
+    "uncertainty": 1,
+    "precision": "bf16",
+    "time_input": "nominal",
+    "bn_policy": "fixed",
+    "pretrained": null,
+    "init": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/last.pth",
+    "resume": null,
+    "arch": "resnet50",
+    "motion_input_mode": "low_feature",
+    "plan_output_scale": null,
+    "train_stride": 1,
+    "eval_stride": 5,
+    "max_train_samples": 0,
+    "max_eval_samples": 0,
+    "train_scenes": null,
+    "eval_scenes": null,
+    "eval_split": "tune",
+    "eval_only": false,
+    "allow_unpretrained": false
+  },
+  "model_config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 2,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": true,
+    "state_on": true,
+    "plan_output_scale": [
+      10.0,
+      5.0
+    ],
+    "motion_input_mode": "low_feature"
+  },
+  "loss_weights": {
+    "plan": 1.0,
+    "occupancy": 0.2,
+    "lane": 0.2,
+    "motion": 0.2,
+    "uncertainty": true
+  },
+  "time_input": "nominal",
+  "time_input_policy": {
+    "mode": "nominal",
+    "scope": "model input time_offsets only; same for training and every evaluation",
+    "source": "fixed nominal frame-offset seconds",
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "nominal_dtype": "float32",
+    "supervision_and_dataset_modified": false
+  },
+  "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "load_report": {
+    "common_checkpoint_sha256": "3e9ae5aa6ca89f4eb9a72ba38355dfdbec4ccaa38eabbebb3526fa3019404478"
+  },
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "numpy": "2.1.0",
+  "device": "cuda:0",
+  "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+  "cuda_memory_policy": {
+    "enabled": true,
+    "allocator_limit_mib": 12000,
+    "min_free_mib": 8192,
+    "allocator_fraction": 0.0657060353046741,
+    "initial_free_bytes": 190847057920,
+    "device_total_bytes": 191503138816,
+    "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+  },
+  "microbatch_policy": {
+    "enabled": true,
+    "microbatch": 2,
+    "logical_batch": 16,
+    "optimizer_updates_per_logical_batch": 1,
+    "loss_normalization": "full logical batch label/mask denominators",
+    "bitwise_equivalence_to_unsplit_training_promised": false
+  },
+  "gpu_name": "NVIDIA B200",
+  "pretrained_sha256": null,
+  "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+  "initial_model_state_sha256": "4f5ea00863d0a99c0aba4931df3865a5f6cab4160347e1f96abe97c1ca96995f",
+  "initial_parameter_count": 26409112,
+  "bn_training": {
+    "policy": "fixed",
+    "modules": 53,
+    "affine_and_backbone_weights_trainable": true,
+    "inference_policy": "eval running statistics for both arms"
+  },
+  "status": "completed",
+  "pid": 2221667,
+  "experimental_protocol": {
+    "schema_version": 1,
+    "name": "p6_global_stop_class_balance",
+    "arm": "control_unweighted",
+    "last_only_final_eval": true,
+    "stop_class_weights": null,
+    "expected_initial_model_state_sha256": "4f5ea00863d0a99c0aba4931df3865a5f6cab4160347e1f96abe97c1ca96995f",
+    "expected_optimizer_groups": [
+      {
+        "name": "backbone",
+        "base_lr": 5e-06
+      },
+      {
+        "name": "head",
+        "base_lr": 5e-05
+      }
+    ],
+    "train_label_counts": {
+      "rows": 54810,
+      "valid": 54810,
+      "negative": 50829,
+      "positive": 3981,
+      "rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+      "labels_sha256": "d587ff2c8cbab445434123c1b3b194295d7c8e30513ba2c62aa538c82098a475"
+    },
+    "fresh_optimizer_step_zero": true,
+    "all_model_parameters_joint_trainable": true,
+    "stop_target_definition": "state_valid[:,5] AND state_target[:,5]>=0.5; target generated from causal current planar speed <0.2 m/s",
+    "balanced_output_is_calibrated_posterior": false,
+    "raw_stop_logit_is_planner_input": true,
+    "source": {
+      "scripts/run_motiondrive_v2_stop_balance_continuation.py": "94167d50d46b5e91d529c0ac96924bf27934dd9c3e99c2cdc2bc3c803b7c81de",
+      "scripts/train_motiondrive_v2.py": "61b889f9f600814ba3145cd98d50f1f8483cc72c9589054d7baafc35e920a10a",
+      "scripts/motiondrive_v2_training.py": "3929538dcc58c786b242680e84ca768ecb3674ec7bfbbd784a8143fd7d1aed70",
+      "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+      "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+      "train_scene_count": 203,
+      "train_session_count": 72,
+      "tune_scene_count": 37,
+      "tune_session_count": 11,
+      "final_session_count_declared_not_accessed": 31,
+      "unchanged_p4_model_data_source_sha256": {
+        "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+        "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+        "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+        "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+        "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+        "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+        "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+        "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db"
+      }
+    }
+  },
+  "data_counts": {
+    "train": 54810,
+    "eval": 1998
+  },
+  "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+  "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log",
+  "step": 1000,
+  "best_metric": 0.3697884779514836,
+  "cuda_memory": {
+    "allocated_bytes": 451519488,
+    "reserved_bytes": 7233077248,
+    "peak_allocated_bytes": 5322640896,
+    "peak_reserved_bytes": 7233077248,
+    "device_free_bytes": 183301505024,
+    "device_total_bytes": 191503138816
+  },
+  "elapsed_seconds": 738.0568424556404,
+  "nonfinite_count": 0
+}
