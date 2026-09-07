@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "git_sha": "64e92694ccbe0a3c5a581e421e16a884b9c5a088",
+  "file_sha256": {
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "a3c54cfd4016bb91c1325d6799ea0cffc36c60e7363ee1a88f33536f84ac24b3",
+    "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+    "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "scripts/motiondrive_v2_training.py": "3929538dcc58c786b242680e84ca768ecb3674ec7bfbbd784a8143fd7d1aed70",
+    "scripts/run_motiondrive_v2_p7_goal_routing.py": "75b6908715a9181309ec586a18f3026518b419c922d1ec67b2a9f729d5a4c8cc",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/train_motiondrive_v2.py": "52eac2a28ba12f4724b7f18a3c2d6889241a58ec5b665ef44bd0e2f5966268d2"
+  }
+}
