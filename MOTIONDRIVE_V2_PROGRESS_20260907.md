@@ -51,3 +51,48 @@ CUDA event와 synchronize 사용. 전처리/H2D 제외. 감사 43/43 통과.
 V2의 grouped holdout planning 경쟁력, P1 G×S 순효과, 복수 seed 재현성,
 채택 모델의 전체 이미지 교란/출처 감사와 latency, 기존 제출 후보 대비 우위는 미확인이다.
 P0 인지 점수나 작은 fitting 결과로 1위 가능성을 확정하지 않는다.
+
+## 16:09 KST: 보완 결과 및 BN 정책 대조 시작
+
+앞선 네 판은 모두 종료했다. 결과/후속 사전 기준 커밋은 `38ee977`이다.
+
+| LAST500 정상 train16 | 단위(1,1) | 단위(10,5) |
+|---|---:|---:|
+| D3 | .28081 | .21418 |
+| 3초 L2 | 1.96714 | .80705 |
+| 첫2초 정규화 D3 | .16313 | .16296 |
+
+출력 단위 변경은 초기 실제 좌표를1.526e-5m 이내로 보존했고, 앞부분 악화 없이 tail을 개선했다.
+대조군 자체의 .52216→.28081은 추가 일정의 효과이며, scale의 순효과와 구분한다.
+정상 D3<=.15는 두 판 모두 미달이다. train-BN .12012로 기준을 바꾸지 않는다.
+
+Motion LAST1000 고정 tune370에서 low-high vx MAE 차이-.1480m/s,
+11세션 paired CI[-.3082,+.0184], history 차이-.0316m, CI[-.1045,+.0414]다.
+full tune1998 vx는1.3682→1.2702, history는.6182→.6025다.
+시간반전 민감도의 일부 증거는 있지만 현재영상 반복 대조는 CI가0을 포함한다.
+확정적 정상 개선이나 정확한 속도 관측 해결로 선언하지 않는다.
+
+train16 영상만으로 shared BN을 표준 재보정했을 때 .21418→.21892로 개선되지 않았다.
+가중치/원 checkpoint는 그대로다. 통계를 재평균하면 해결된다는 가설은 지지되지 않는다.
+이후에는 **학습 중 BN 정책만** adaptive/fixed로 대조한다. 모든 가중치는 계속 학습한다.
+
+| GPU | 현재 run | 시작점 | 일정 |
+|---|---|---|---|
+| 0 | p0_tail_bn_adaptive_s0 | unit10x5 LAST500 | 같은 train16, 500 step |
+| 1 | p0_tail_bn_fixed_s0 | 동일 | 동일 |
+| 2 | p0_motion_bn_adaptive_s0 | low_feature LAST1000 | 전체 train/tune, 1000 step |
+| 3 | p0_motion_bn_fixed_s0 | 동일 | 동일 |
+
+프로토콜 `MOTIONDRIVE_V2_P0_BN_PROTOCOL.md`에 후속 판정 기준을 사전 고정했다.
+실제 초기 state SHA와 데이터 순서는 각 쌍 안에서 일치했다. P1 G×S는 아직 시작하지 않았다.
+
+## P0 low_feature 실제 3090 재측정
+
+새로운 low_feature LAST1000 원설정(G0S0/scale1,1)에서 추가 current front encoder까지 포함:
+CUDA median32.256ms/p95 32.292ms/p99 32.308ms, wall median32.282ms,
+VRAM alloc403.0/reserved500MiB, warmup20/repeats50, 감사43/43 통과.
+이는 최종 G1S1 정확도·심사 승인 결과가 아니다.
+
+배포 bundle은 optimizer/RNG를 제외하고 모든 config/출처 SHA를 보존하여
+317,745,437→106,193,135bytes로 줄였다. 기본 config로 복원해 scale이나 mode를 잃지 않는다.
+원본 보고서는 `reports/*p0_motion_lowfeature_last1000.json`에 보존했다.

@@ -1,0 +1,42 @@
+{
+  "purpose": "P0 repair low_feature real-checkpoint structure and latency verification; not final selected model or planning accuracy evidence",
+  "export_source_git_sha": "9e2a0ed00f6c48e62573f43a2e0951bcb969fc60",
+  "source_checkpoint": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p0_motion_lowfeature_s0/last.pth",
+    "sha256": "b7af30e12c7ba2d24f44c1039dff2aa68c3f63cd2117342d23365aa3ea5d8b89",
+    "bytes": 317745437,
+    "step": 1000,
+    "epoch": 1,
+    "training_git_sha": "92fbdc6cedfbdb324f39977e95f6932ed415b46b",
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936"
+  },
+  "inference_bundle": {
+    "path": "/NHNHOME/data/sukim/adcl/checkpoints/motiondrive_v2/p0_motion_lowfeature_last1000_inference.pth",
+    "sha256": "c2ee1e85b7b2886b7260f1bb70e313daaca8c5bfce34f008dd94bac24c820dcb",
+    "bytes": 106193135,
+    "tensor_count": 456,
+    "optimizer_and_rng_excluded": true,
+    "complete_manifest_model_config_preserved": true,
+    "goal_on": false,
+    "state_on": false,
+    "motion_input_mode": "low_feature",
+    "plan_output_scale": [1.0, 1.0]
+  },
+  "real_fixture": {
+    "sha256": "f287c518f5d94aaeef2a5a3bce6f623a7cebd3bbeb449751c850a4c8f5a8f765",
+    "scenario": "20260112-105434",
+    "frame": 30,
+    "row": 30
+  },
+  "measurement_directory_3090": "/home/intern/adcl_motiondrive_v2/measurements/p0_motion_lowfeature_last1000",
+  "report_sha256": {
+    "audit_3090_r50_p0_motion_lowfeature_last1000.json": "a9d86529d749a8534eb6119c5fa0262b9cda946ccd235773b35098aaa81b7fe4",
+    "latency_3090_r50_p0_motion_lowfeature_last1000.json": "564bde874489a2a976e8c1134ee0b82d09526393ea84ac5028e419e4d3136db1"
+  },
+  "safety": {
+    "b200_cuda_visible_devices_during_export": "",
+    "b200_gpu_used": false,
+    "unrelated_processes_or_containers_stopped": false,
+    "existing_reports_overwritten": false
+  }
+}
