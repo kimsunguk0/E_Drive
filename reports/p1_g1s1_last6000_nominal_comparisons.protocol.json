@@ -1,0 +1,72 @@
+{
+  "status": "preregistered_before_nominal_forward",
+  "created_at": "2026-09-07T08:41:11.660552+00:00",
+  "condition_order": [
+    "raw_normal",
+    "nominal_normal",
+    "nominal_image_shuffle",
+    "nominal_repeat_current",
+    "nominal_reverse_history"
+  ],
+  "contrasts": {
+    "nominal_normal_minus_raw_normal": [
+      -1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "image_shuffle_minus_nominal_normal": [
+      0,
+      -1,
+      1,
+      0,
+      0
+    ],
+    "repeat_current_minus_nominal_normal": [
+      0,
+      -1,
+      0,
+      1,
+      0
+    ],
+    "reverse_history_minus_nominal_normal": [
+      0,
+      -1,
+      0,
+      0,
+      1
+    ]
+  },
+  "bootstrap_repeats": 10000,
+  "bootstrap_seed": 20260907,
+  "resampling_unit": "same 11 rawtime sessions; shared session draws for all conditions and contrasts",
+  "primary": "frame-weighted mean, sum session error totals / sum sampled session frame counts",
+  "secondary": "equal session means",
+  "ci": "95% percentile; exploratory/unadjusted",
+  "raw_reference_path": "/NHNHOME/data/sukim/adcl/reports/p1_g1s1_last6000_raw_planning.json",
+  "raw_reference_sha256": "0fccd6c0eb4deb8b0a4bdd03fdea0d18cf404a8b2b1abd6b545f972e971768bc",
+  "checkpoint_step": 6000,
+  "checkpoint_sha256": "e2a0e2dc9f3320f5e9744e3e4ef0b77bf9dffffee33aed1274b610bd6faac80e",
+  "source_sha256": {
+    "scripts/evaluate_motiondrive_v2_planning.py": "3e01f780109fbd92cc619ff4219bbe68e22dc4a147d3018dfc36b60b4baf0bd7",
+    "scripts/analyze_motiondrive_v2_gs.py": "9bd3bedc48de6fc4bfb0892192f2bdcf6e2973537410d85450ff3e99638912d1",
+    "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+    "scripts/motiondrive_v2_data.py": "8d6a7360cdbf09c29a68bce2fcc3ddd4d124672b1c967651e22be0addfcc4054",
+    "scripts/motiondrive_v2_training.py": "08da8baad9c60598d92055de4301b2a94186439c9d2ec7c5322f9841927dd540",
+    "scripts/train_motiondrive_v2.py": "b3b99536d0a775d0b000bc63a9a9fde9bdb36b4e2b2db6373a2ac493a3d9610b",
+    "scripts/export_motiondrive_v2_inference.py": "e6c1e1ebf4e39ae8415764f6ae4c80b31f13419cff4273a5739a0f1091b9c782",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+    "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d"
+  },
+  "original_supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime",
+  "calibration_sha256": "a6e29e9ecdf596560161b5c68806445e0d9139dded7c7bb403842af5a8a93cbb",
+  "selection_performed": false,
+  "final_val_accessed": false
+}

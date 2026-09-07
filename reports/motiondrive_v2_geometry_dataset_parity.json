@@ -1,0 +1,2873 @@
+{
+  "status": "pass",
+  "purpose": "실제 loader의 geometry edition 전환 정합 검증",
+  "selection_policy": "train 이름순 첫4scene×frame30/180 + tune 이름순 첫1scene×frame30/295",
+  "scope": {
+    "train_samples": 8,
+    "tune_samples": 2,
+    "total_samples": 10,
+    "finalval_test_access": false,
+    "large_fixture_created": false,
+    "gpu_used": false
+  },
+  "data_roots": {
+    "old": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime",
+    "new": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+    "images": "/NHNHOME/data/sukim/adcl/cache/etri_768"
+  },
+  "canonical_manifest_sha_matches": true,
+  "new_canonical_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+  "source_paths": {
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "ego_cache": "/tmp/pm97/data/etri/ego_cache.npz",
+    "old_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/supervision_manifest.json",
+    "new_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json",
+    "old_calibration": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/calibration.npz",
+    "new_calibration": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz",
+    "loader": "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py",
+    "script": "/NHNHOME/data/sukim/adcl/scripts/audit_motiondrive_v2_geometry_dataset.py"
+  },
+  "source_sha256_before": {
+    "split_manifest": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "old_manifest": "073d9d2eb89956cac5c3d78b91622f5e397cfa116b1ed8f9a9f639ec3003a8d0",
+    "new_manifest": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "old_calibration": "a6e29e9ecdf596560161b5c68806445e0d9139dded7c7bb403842af5a8a93cbb",
+    "new_calibration": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "loader": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "script": "08f3e1716994b4dca2020ed985f38ec044a0b33a666f2b4d6858674677ad41a1"
+  },
+  "source_sha256_after": {
+    "split_manifest": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "old_manifest": "073d9d2eb89956cac5c3d78b91622f5e397cfa116b1ed8f9a9f639ec3003a8d0",
+    "new_manifest": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "old_calibration": "a6e29e9ecdf596560161b5c68806445e0d9139dded7c7bb403842af5a8a93cbb",
+    "new_calibration": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "loader": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "script": "08f3e1716994b4dca2020ed985f38ec044a0b33a666f2b4d6858674677ad41a1"
+  },
+  "all_samples_only_rear_projection_changed": true,
+  "records": [
+    {
+      "split": "train",
+      "scene": "20260112-105434",
+      "frame": 30,
+      "row": 30,
+      "session_id": "session_000_20260112-105434",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "9e01dd3f693714d27cb4eb9bf5bb8ac1944bb851a04bde3e68fee6a4fb0e5f88",
+            "new_sha256": "9e01dd3f693714d27cb4eb9bf5bb8ac1944bb851a04bde3e68fee6a4fb0e5f88"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "7f4ab469520f0d213dcb5b5e1b00279195fa4a844d5c6a679f38dfa35a5d9c7a",
+            "new_sha256": "7f4ab469520f0d213dcb5b5e1b00279195fa4a844d5c6a679f38dfa35a5d9c7a"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "d9822c9b4a2687d876dcd9fc2d82ccdd9ad5933e3a47596e28ebe58287827506",
+            "new_sha256": "d9822c9b4a2687d876dcd9fc2d82ccdd9ad5933e3a47596e28ebe58287827506"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "04226d5acc01ac992884bc5bf91468f85cedc76a22766621fbee3803a3686dd8",
+            "new_sha256": "04226d5acc01ac992884bc5bf91468f85cedc76a22766621fbee3803a3686dd8"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "fa5a7d729caa9236f84860c41d60ecc8404d4bc8fdbdedd633262a06711ba5ea",
+            "new_sha256": "fa5a7d729caa9236f84860c41d60ecc8404d4bc8fdbdedd633262a06711ba5ea"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "56197dfb9c2c714152b3a4995f78aa2a2de6bcf0a87ceb8d5e49dda460504ea7",
+            "new_sha256": "56197dfb9c2c714152b3a4995f78aa2a2de6bcf0a87ceb8d5e49dda460504ea7"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "eed07413fb2df50e4ed6212328fa2e9ecc5c12d38c78a7e345c9da2c8a2a505c",
+            "new_sha256": "eed07413fb2df50e4ed6212328fa2e9ecc5c12d38c78a7e345c9da2c8a2a505c"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "424bc64c3846afc3c20f8fc79c90a697adc822e3a7b87101f5ace44146dfd010",
+            "new_sha256": "424bc64c3846afc3c20f8fc79c90a697adc822e3a7b87101f5ace44146dfd010"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "3196103319adf082bc066712777f3deb46ca15a9ae1ddd9970cdd08e675f6050",
+            "new_sha256": "3196103319adf082bc066712777f3deb46ca15a9ae1ddd9970cdd08e675f6050"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "4c14a169e1353233f2c30b1b109ab30d5ecc7559165b641dd5998a7b56170c67",
+            "new_sha256": "4c14a169e1353233f2c30b1b109ab30d5ecc7559165b641dd5998a7b56170c67"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "e3d96e6ebcd96b8d7ea5129952a65e5d2b100ac5995f5d1312a533260a899e39",
+            "new_sha256": "e3d96e6ebcd96b8d7ea5129952a65e5d2b100ac5995f5d1312a533260a899e39"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "2270fb570b386df7c77a4d09b409cc49dbf667e0681e142c42c223c8ecc4bb28",
+            "new_sha256": "2270fb570b386df7c77a4d09b409cc49dbf667e0681e142c42c223c8ecc4bb28"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000030.jpg",
+          "sha256": "8bf70ff69af33477c89f69720f44aac4558298b6c51894aec8f279f1be08a069"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_right/00000030.jpg",
+          "sha256": "7a204aab2511613d4929ffa8ed208753b7acb2b89f57f4006b4055292ae67f06"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_left/00000030.jpg",
+          "sha256": "c71453f02851a6c7909d609a6f5f2908eee6917ef814791a44b3030fbf1ec162"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_wide/00000030.jpg",
+          "sha256": "8e24097e16f0b403bfc00556364d57db590b7c900aaef1e0898faa025d39f97e"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_left/00000030.jpg",
+          "sha256": "e6e3ed547ce9b90b2f704d054edcf29334554159af0a2684032b97ff6f4e1150"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_right/00000030.jpg",
+          "sha256": "e9485eafe078086e2ff4454ff46fcab6a2e5c4cd17b18189e8a17e8c01ccb99c"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 29,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000029.jpg",
+          "sha256": "2476cefee30c9118c95698cc48a69e5fb1dd39412ec74dc1d6e7fc0d22d90e7c"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 28,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000028.jpg",
+          "sha256": "1f7dbcee5ff3fbea48bcc26237b735419b2eb475ad51cb798b453effa1f16be7"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 25,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000025.jpg",
+          "sha256": "deeefe90250dc0c01e4db27e1a71ccdbcf4a23f261056c92b73ec326ccd3219c"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 20,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000020.jpg",
+          "sha256": "162cae9564a98873c31283a428cb276fbc855cb431b9a54ce9ad2261412f0786"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105434.npz",
+          "sha256": "ab508a9d992cca127789f6720a979148a17f866a30f59fc39887ab070fc7df39"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105434.json",
+          "sha256": "453fffe0a9b50bc720ffb8e68a21c3566b9584e898c7a1b8db2ff09c60af4aa3"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-105434.npz",
+          "sha256": "ab508a9d992cca127789f6720a979148a17f866a30f59fc39887ab070fc7df39"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-105434.json",
+          "sha256": "453fffe0a9b50bc720ffb8e68a21c3566b9584e898c7a1b8db2ff09c60af4aa3"
+        }
+      }
+    },
+    {
+      "split": "train",
+      "scene": "20260112-105434",
+      "frame": 180,
+      "row": 180,
+      "session_id": "session_000_20260112-105434",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "b76b0ae0a6ebb9cb4b30e5b51b4b980b4bfbd9d3eb48cf7c9af1eada53bf62e4",
+            "new_sha256": "b76b0ae0a6ebb9cb4b30e5b51b4b980b4bfbd9d3eb48cf7c9af1eada53bf62e4"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "c2271664517de3fcd75ba5507112dc89c06200a4793fb7e73cded99bff306d2c",
+            "new_sha256": "c2271664517de3fcd75ba5507112dc89c06200a4793fb7e73cded99bff306d2c"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "6a294d730e26fa1824a689c4b63686703658c97f914c094ff1d173e4e40621a9",
+            "new_sha256": "6a294d730e26fa1824a689c4b63686703658c97f914c094ff1d173e4e40621a9"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "2debf547bddbea941f9db017982ca5a9543560b1e58a39d3142cf496f6a524e6",
+            "new_sha256": "2debf547bddbea941f9db017982ca5a9543560b1e58a39d3142cf496f6a524e6"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "724b11d300c49ab51fe56b605dcd1e687d5483a8c8495b7f43839b70b494bd8d",
+            "new_sha256": "724b11d300c49ab51fe56b605dcd1e687d5483a8c8495b7f43839b70b494bd8d"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "15377016226da01efba7e7acecbda9e7ce3ea08403263f8b4868930d0f7f5b30",
+            "new_sha256": "15377016226da01efba7e7acecbda9e7ce3ea08403263f8b4868930d0f7f5b30"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "de73a6a6fb612601f2789fb030a1475396f1ff71a0cc30b66c1f0e3658cb943c",
+            "new_sha256": "de73a6a6fb612601f2789fb030a1475396f1ff71a0cc30b66c1f0e3658cb943c"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "7a9e53ffff57c8c6e0ff227edf8755508a8a7a579e89a3743226e9a9d0ba8ef2",
+            "new_sha256": "7a9e53ffff57c8c6e0ff227edf8755508a8a7a579e89a3743226e9a9d0ba8ef2"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "a04d99323093a7b08fc3affbf0e5737ad698362ce7ef263a26213779626b8238",
+            "new_sha256": "a04d99323093a7b08fc3affbf0e5737ad698362ce7ef263a26213779626b8238"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "5c79c6bd8f34b3e9ea750f1ef5e4c08792a3e0bb38548a8673cabf44a0e5b475",
+            "new_sha256": "5c79c6bd8f34b3e9ea750f1ef5e4c08792a3e0bb38548a8673cabf44a0e5b475"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "85c0b15a3dc0a108e25a9c4b0a5aebf7ea76160e4a0e90fb793d39123f2fc67f",
+            "new_sha256": "85c0b15a3dc0a108e25a9c4b0a5aebf7ea76160e4a0e90fb793d39123f2fc67f"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f5b202c528cb08fe3b2196aba804c4df6575508947836ba9ef4d926451582fb3",
+            "new_sha256": "f5b202c528cb08fe3b2196aba804c4df6575508947836ba9ef4d926451582fb3"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000180.jpg",
+          "sha256": "718699091d6dfdcfe9042be138664c3b856ad355918176a4cefc02485ea66d02"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_right/00000180.jpg",
+          "sha256": "eb35a400fc9c48594f2ac4a84e8bcf61129ed5fba947339819146e9a993814af"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front_left/00000180.jpg",
+          "sha256": "99ba895476af11861ba0817e1ba0df280281420672605e6f5d1c927417750adf"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_wide/00000180.jpg",
+          "sha256": "34a4f7263b109aa284b490906ba5dc918cb01605dad0362d02c6b144a7b4fc89"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_left/00000180.jpg",
+          "sha256": "1e286c51737df98f5de58edcf176b9c45c25a44739bd53fd6e30d1ab095f1bf7"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_rear_right/00000180.jpg",
+          "sha256": "f25c775007df6b1a6d167ae402f7c8d5a075f7deaee6523898d212fccce94c15"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 179,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000179.jpg",
+          "sha256": "d72e1a2dd8746365c124ee5cc5a7debecf8d4348e80415ee50a6dbd59d684ca9"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 178,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000178.jpg",
+          "sha256": "480e262d15ccdec452257ec3d84a2059c512a15bc5058f7745cccf3c13c02d17"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 175,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000175.jpg",
+          "sha256": "8d5a0cbe9e50a977e3a1c1870eca9b98c20d222466f169c222c64dc114768953"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 170,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105434/camera_front/00000170.jpg",
+          "sha256": "3da2ad38b75f247b1536d904337cf901e85d1bfee01d9659ab51348f6326a95f"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105434.npz",
+          "sha256": "ab508a9d992cca127789f6720a979148a17f866a30f59fc39887ab070fc7df39"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105434.json",
+          "sha256": "453fffe0a9b50bc720ffb8e68a21c3566b9584e898c7a1b8db2ff09c60af4aa3"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-105434.npz",
+          "sha256": "ab508a9d992cca127789f6720a979148a17f866a30f59fc39887ab070fc7df39"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-105434.json",
+          "sha256": "453fffe0a9b50bc720ffb8e68a21c3566b9584e898c7a1b8db2ff09c60af4aa3"
+        }
+      }
+    },
+    {
+      "split": "train",
+      "scene": "20260112-105504",
+      "frame": 30,
+      "row": 330,
+      "session_id": "session_000_20260112-105434",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "1ed945f7e2b1701f5ae7afdddf038d4eacdcd1bb62889c65113f4ecc3473ca6b",
+            "new_sha256": "1ed945f7e2b1701f5ae7afdddf038d4eacdcd1bb62889c65113f4ecc3473ca6b"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "c19b831fd03e03ee19774c33d26fb60a5b13f56910626ff4c13e66dc5ba9bdbd",
+            "new_sha256": "c19b831fd03e03ee19774c33d26fb60a5b13f56910626ff4c13e66dc5ba9bdbd"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "943871a8b5fe799c772b861c40d3c83976dc66d3a47f7d98ba65d9f6a597a74a",
+            "new_sha256": "943871a8b5fe799c772b861c40d3c83976dc66d3a47f7d98ba65d9f6a597a74a"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "6d2e652ab430ca28b344dfa7893708b3fac879796719dea323723beb243f1781",
+            "new_sha256": "6d2e652ab430ca28b344dfa7893708b3fac879796719dea323723beb243f1781"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "9ee5f16e6710424d0754485b581d3613c9756533dcbe15c31dd24f8a37817668",
+            "new_sha256": "9ee5f16e6710424d0754485b581d3613c9756533dcbe15c31dd24f8a37817668"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "834441bb1c85ccfa044dae7716e511759e23cd437b606647ac93c51164564708",
+            "new_sha256": "834441bb1c85ccfa044dae7716e511759e23cd437b606647ac93c51164564708"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "077ac9cc68e9834f228696aea6344655c69ea3b785dcf309000d764c22208c63",
+            "new_sha256": "077ac9cc68e9834f228696aea6344655c69ea3b785dcf309000d764c22208c63"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1e2871e4da89a95d9efef8ac932e767c81446b5d5104e79ac67807da8435d3ed",
+            "new_sha256": "1e2871e4da89a95d9efef8ac932e767c81446b5d5104e79ac67807da8435d3ed"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "1e56bb238fab59fcb602b615bfe2f77a1cf99af6203b41802b038a29ed063066",
+            "new_sha256": "1e56bb238fab59fcb602b615bfe2f77a1cf99af6203b41802b038a29ed063066"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "d2b9a77c7afffdbcd2d1bae468d453d38832a7de80ba0f067d37731ea090f668",
+            "new_sha256": "d2b9a77c7afffdbcd2d1bae468d453d38832a7de80ba0f067d37731ea090f668"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "4b48a314ff816510b75eae2b9a567fcd40a33c1d7e0bebb9f4f38b725efd2090",
+            "new_sha256": "4b48a314ff816510b75eae2b9a567fcd40a33c1d7e0bebb9f4f38b725efd2090"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "688b50bbf821215e39cebfe2d044836fd07363d2c186769ffc349b2783e0cf18",
+            "new_sha256": "688b50bbf821215e39cebfe2d044836fd07363d2c186769ffc349b2783e0cf18"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000030.jpg",
+          "sha256": "8ee70fc77685ab5ea8a1579cb2f60fd2b59152cace018ec22884f5197cd8ac03"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_right/00000030.jpg",
+          "sha256": "2317b98c09394209121c4daf682c83e98a05ebcd963b182faf606b94b8241c6b"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_left/00000030.jpg",
+          "sha256": "f5eeeb042b5690e174a821573c5fb1acca41bf8f8e479e50d0c4223151ffceb9"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_wide/00000030.jpg",
+          "sha256": "3d2611b87c19c69e700267a41b158db8059c0c68f317b5c837fc367bec0ce7b6"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_left/00000030.jpg",
+          "sha256": "83a44b711f7ca851d6ed4c8b58d488bc0b5fdfdb3b287387914b684920346126"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_right/00000030.jpg",
+          "sha256": "52dfeb597d2cb1c696d40517db3084ec4c0bbc4c78c53d3f1d2ae855393cdbcf"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 29,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000029.jpg",
+          "sha256": "e5c1377eeb23d3ef874dd4c499fef92e2f45d73092b406403aa133eea63f015a"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 28,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000028.jpg",
+          "sha256": "0cf79bcda09877a96983ba95514e800fa1f3307eccc473f8036021baed68bf77"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 25,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000025.jpg",
+          "sha256": "5dd1cf9bd9c76180a6136c6f66235df90a019933c57ed2817d69fe9b8e24a839"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 20,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000020.jpg",
+          "sha256": "821784c70aa2a08c619ec5e847e0f7036ebf61dcec127f86e5495e72c34dd7f8"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105504.npz",
+          "sha256": "b2a586d976612045b27f25f6107883dd292894a227761d14a07102694732785e"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105504.json",
+          "sha256": "c30dfb8f54967475979003fcb600862004742f363442fa4403b77a0dbaca3293"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-105504.npz",
+          "sha256": "b2a586d976612045b27f25f6107883dd292894a227761d14a07102694732785e"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-105504.json",
+          "sha256": "c30dfb8f54967475979003fcb600862004742f363442fa4403b77a0dbaca3293"
+        }
+      }
+    },
+    {
+      "split": "train",
+      "scene": "20260112-105504",
+      "frame": 180,
+      "row": 480,
+      "session_id": "session_000_20260112-105434",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "9e8b94c037c4cf5bd493b07f7cbfc40edc90e399a692644da9c95c9b3921d3a3",
+            "new_sha256": "9e8b94c037c4cf5bd493b07f7cbfc40edc90e399a692644da9c95c9b3921d3a3"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "77bd36a120e035994752a6b6590f6e0a0ecc3d9e328f0aafb53c67d7d5e68fee",
+            "new_sha256": "77bd36a120e035994752a6b6590f6e0a0ecc3d9e328f0aafb53c67d7d5e68fee"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "e4f5d43b97d2fb8316b42188ca348eb8e886b071207840723316236b0edd58f8",
+            "new_sha256": "e4f5d43b97d2fb8316b42188ca348eb8e886b071207840723316236b0edd58f8"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "ae136e6ac9ac74c33215c1199d60f58292b7fc34ba5324da300f27268399254b",
+            "new_sha256": "ae136e6ac9ac74c33215c1199d60f58292b7fc34ba5324da300f27268399254b"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "0345dca28c34b80dc9b908b587f6ff3bc0bc39768509bd563cbebaa303807e46",
+            "new_sha256": "0345dca28c34b80dc9b908b587f6ff3bc0bc39768509bd563cbebaa303807e46"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "6d74e25a0864068285bfc7e633c35600efd3fa7337eddf38179eca65e78bf13c",
+            "new_sha256": "6d74e25a0864068285bfc7e633c35600efd3fa7337eddf38179eca65e78bf13c"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "0ca97cff665894cd80e6ff5a400be69966026402f47fd4c14c6a670e2d8757e8",
+            "new_sha256": "0ca97cff665894cd80e6ff5a400be69966026402f47fd4c14c6a670e2d8757e8"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "b55e1a728a7cb3a1d60f4e771e8f9b4f34fbf5a317b23bc57941e1f8a70d122f",
+            "new_sha256": "b55e1a728a7cb3a1d60f4e771e8f9b4f34fbf5a317b23bc57941e1f8a70d122f"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f3300f7e648d81d867f974eaafac703afbbee034a8de6281a9409d67a8055586",
+            "new_sha256": "f3300f7e648d81d867f974eaafac703afbbee034a8de6281a9409d67a8055586"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "191160ea9a6b7abe8a4054b21fe5f18b1cc500524e982d6943f00ac7af174afb",
+            "new_sha256": "191160ea9a6b7abe8a4054b21fe5f18b1cc500524e982d6943f00ac7af174afb"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "5aade21444135b68403e875f5cba98f34318a8f795c5e84c30fce4d8e6cb0b71",
+            "new_sha256": "5aade21444135b68403e875f5cba98f34318a8f795c5e84c30fce4d8e6cb0b71"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "87ef1696baed58a37989665daf5c4de315d79d82ae02819b88b29404e7e5ca9a",
+            "new_sha256": "87ef1696baed58a37989665daf5c4de315d79d82ae02819b88b29404e7e5ca9a"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000180.jpg",
+          "sha256": "9d241ac7ce97364175870b0aaac8006e86bd1f70c6d63fa842f37993720ee03a"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_right/00000180.jpg",
+          "sha256": "96152635c63ad92edb58ec06568bb9da573bb7417ad3f5aba944bf5be0d2af83"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front_left/00000180.jpg",
+          "sha256": "20c960f7605dad25db68083a8ccbcb26e6cd8a3d9b9899fead42129f004224e6"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_wide/00000180.jpg",
+          "sha256": "e8dc13184443e6aa7c24c179b917140d95ef77cd1ce66f7774c3eca2f752c4bb"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_left/00000180.jpg",
+          "sha256": "1e92ee079745d4ab770b53d730b64a3a8524f6d35b95f4b64c62e79eb185e797"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_rear_right/00000180.jpg",
+          "sha256": "0aa084c5fcd3025d6ecc5886ddc4d4454e7a4ef6a0881396d93bbd8e1b4e43cb"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 179,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000179.jpg",
+          "sha256": "7a354d70c32949d30d6888dfce51f7b2a9c1a406780a99c2746d80cf2a3dfac7"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 178,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000178.jpg",
+          "sha256": "c6bdf048012c5e472ba498235604f15f46b21935aaa0567902a0d4a85f690424"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 175,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000175.jpg",
+          "sha256": "f53a32df4a94bde3238f7734a455b1367058b8e1e34dc5258a7aba904f926fb7"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 170,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-105504/camera_front/00000170.jpg",
+          "sha256": "1c904360d1b0799bef0fcd2317e82118996c7b0dfedf05d1ca46de4ceac1709f"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105504.npz",
+          "sha256": "b2a586d976612045b27f25f6107883dd292894a227761d14a07102694732785e"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-105504.json",
+          "sha256": "c30dfb8f54967475979003fcb600862004742f363442fa4403b77a0dbaca3293"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-105504.npz",
+          "sha256": "b2a586d976612045b27f25f6107883dd292894a227761d14a07102694732785e"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-105504.json",
+          "sha256": "c30dfb8f54967475979003fcb600862004742f363442fa4403b77a0dbaca3293"
+        }
+      }
+    },
+    {
+      "split": "train",
+      "scene": "20260112-111049",
+      "frame": 30,
+      "row": 630,
+      "session_id": "session_001_20260112-111049",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "8ecdabfa5da8401379a74fcb1d7145e42ad676e0359f1b529a0223c135887304",
+            "new_sha256": "8ecdabfa5da8401379a74fcb1d7145e42ad676e0359f1b529a0223c135887304"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "19d7751b01caf551171db4d59ce116942591e3787cd7ebd979d5d03969a7607f",
+            "new_sha256": "19d7751b01caf551171db4d59ce116942591e3787cd7ebd979d5d03969a7607f"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "83bbf4b7856de23bd26232f4880b38652988de797b0244dafab764311cd19a2f",
+            "new_sha256": "83bbf4b7856de23bd26232f4880b38652988de797b0244dafab764311cd19a2f"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "a71c4c57152c7c91d2d1db1d9f0bd1ea27714ec27465649f39e1fd9ea87fb4d5",
+            "new_sha256": "a71c4c57152c7c91d2d1db1d9f0bd1ea27714ec27465649f39e1fd9ea87fb4d5"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "74e13f06f860f3c64e8df967d837253990e523f8c7ddcd947dbc65233f646e6a",
+            "new_sha256": "74e13f06f860f3c64e8df967d837253990e523f8c7ddcd947dbc65233f646e6a"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "5e6f2b58cae3d4c074ce67d17e4f14ba7f3a5829c11da7656222eb3f5c0fbdc3",
+            "new_sha256": "5e6f2b58cae3d4c074ce67d17e4f14ba7f3a5829c11da7656222eb3f5c0fbdc3"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "673df4053d3a32f65168af3362856504ec985be1311d9fb09e010cc72f4b2f64",
+            "new_sha256": "673df4053d3a32f65168af3362856504ec985be1311d9fb09e010cc72f4b2f64"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "6322a434a70c003168fa00a99f115a446c6ce120429a5dfffe1ee68c574a2924",
+            "new_sha256": "6322a434a70c003168fa00a99f115a446c6ce120429a5dfffe1ee68c574a2924"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "facbe0b629cb110c131c733dc09e240e68e08b46fe4bb36186b2d231f33dcdbf",
+            "new_sha256": "facbe0b629cb110c131c733dc09e240e68e08b46fe4bb36186b2d231f33dcdbf"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "f4bf28eb928e2f95aa054d147cef810cdb163621000fb3e574d329a49103dee5",
+            "new_sha256": "f4bf28eb928e2f95aa054d147cef810cdb163621000fb3e574d329a49103dee5"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "3b0be5ac195bcdb02e31d3c9276003bcd28c43a3f8a396c307d3b40c7a34929b",
+            "new_sha256": "3b0be5ac195bcdb02e31d3c9276003bcd28c43a3f8a396c307d3b40c7a34929b"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "c31d9bfa2eedd5e09cd707b2edf04fe26f5c4b785f674ccdbf776f46f4e19c75",
+            "new_sha256": "c31d9bfa2eedd5e09cd707b2edf04fe26f5c4b785f674ccdbf776f46f4e19c75"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000030.jpg",
+          "sha256": "7ed2125c631e2ff24ddbdc2a7343e9b2fc5161d416c9538270964dcaae5c0d1c"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_right/00000030.jpg",
+          "sha256": "81a0e9e1676a9d6febda35ae2945cfac943d913bfdd323bc27320a329bf1df92"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_left/00000030.jpg",
+          "sha256": "9ae2d7ad38f3910f79a90957dc698aa319db6e0006a04745425bd881de29becf"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_wide/00000030.jpg",
+          "sha256": "eea9f0a21e346f7a66a2b54bc14eaa90e8eb6119d060e8e8e1b74ef774cac333"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_left/00000030.jpg",
+          "sha256": "1e998a0abd50954c92493142f879735da02f8dd2ae792bab98d0bd6422ceaa48"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_right/00000030.jpg",
+          "sha256": "4d75a3389ad3654d5a50885c7acf1a3ceb1861d298cc94201df0ff49fb56b424"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 29,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000029.jpg",
+          "sha256": "3d6e897ec4bf1da4dd617081db940f74821ce5a888fb385955d9c1488b49b712"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 28,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000028.jpg",
+          "sha256": "48d07626704a5ee73a670854ecb50f70118ba471c14bddd31d3577153f35d531"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 25,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000025.jpg",
+          "sha256": "5110ecd5c413cec32190e654c24f0c78aaeb2a04dbc731ccfc9637cd70f75a7f"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 20,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000020.jpg",
+          "sha256": "d6dcc28436b55cbb7a1429baba502f84bc914dda024b396eed2afef58088c921"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111049.npz",
+          "sha256": "ea693061118976e12e925f03c0c86e8da4b2bc2428eb349b6f02d86e27bb6cb2"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111049.json",
+          "sha256": "3b15e908fd6f6e21a6962dd56f32c9548afa76602190882cfd158f06498bc01c"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-111049.npz",
+          "sha256": "ea693061118976e12e925f03c0c86e8da4b2bc2428eb349b6f02d86e27bb6cb2"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-111049.json",
+          "sha256": "3b15e908fd6f6e21a6962dd56f32c9548afa76602190882cfd158f06498bc01c"
+        }
+      }
+    },
+    {
+      "split": "train",
+      "scene": "20260112-111049",
+      "frame": 180,
+      "row": 780,
+      "session_id": "session_001_20260112-111049",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "89bec377d9af87bdd20b477d7c8ce7bd19a05f0297339384333d8387f25a669e",
+            "new_sha256": "89bec377d9af87bdd20b477d7c8ce7bd19a05f0297339384333d8387f25a669e"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "3791623ab5e20e33eb0a4fcb317e30d1552871ccbd27de5fa5169ddf6ffdf0e7",
+            "new_sha256": "3791623ab5e20e33eb0a4fcb317e30d1552871ccbd27de5fa5169ddf6ffdf0e7"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "ab5498cbde280ea87823e9905a952801dbf6a4ab77d6d622fe03931ec3b6ec6a",
+            "new_sha256": "ab5498cbde280ea87823e9905a952801dbf6a4ab77d6d622fe03931ec3b6ec6a"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "15f04be60ed6f87a3652345594bac5e57a467f84a77cffcd843a04693482c299",
+            "new_sha256": "15f04be60ed6f87a3652345594bac5e57a467f84a77cffcd843a04693482c299"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "29bd6be5e86d78d80f17384ec073409a662fd6dce6420e15364754a8f839c4cd",
+            "new_sha256": "29bd6be5e86d78d80f17384ec073409a662fd6dce6420e15364754a8f839c4cd"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "b19d871f4806d9aed235bee2b270ed1048e45ca9e8765a71c65236f6b512c610",
+            "new_sha256": "b19d871f4806d9aed235bee2b270ed1048e45ca9e8765a71c65236f6b512c610"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "de4926784bbb58dba899f3e5663657be98d2cbcd959f7b194405e3c1e88a580d",
+            "new_sha256": "de4926784bbb58dba899f3e5663657be98d2cbcd959f7b194405e3c1e88a580d"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "7f5880f438c003906cf2faaad07409f20c0c31918d9396ba60413531080598bd",
+            "new_sha256": "7f5880f438c003906cf2faaad07409f20c0c31918d9396ba60413531080598bd"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "d5d7791673f75b151312cb25331f965d20340bb172fb0a430c2cbf1f2dc786fc",
+            "new_sha256": "d5d7791673f75b151312cb25331f965d20340bb172fb0a430c2cbf1f2dc786fc"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "296de61b2912c03684d93c34bb1e950b992faae3d0ec1990b14452e220b30d4f",
+            "new_sha256": "296de61b2912c03684d93c34bb1e950b992faae3d0ec1990b14452e220b30d4f"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "7fc576db9651855513b99555c19541edcf8681411df2fbff0812055cab6b8db3",
+            "new_sha256": "7fc576db9651855513b99555c19541edcf8681411df2fbff0812055cab6b8db3"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "9fe7d712991abaab6c67886d8183bb48ac79f698bba6d1bd6ee57240651f2e46",
+            "new_sha256": "9fe7d712991abaab6c67886d8183bb48ac79f698bba6d1bd6ee57240651f2e46"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000180.jpg",
+          "sha256": "a366fb6a5cbc8f6ce921ac1ac6c5374329e3301555b91d9d36ca5a3a87efe4ba"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_right/00000180.jpg",
+          "sha256": "02e55b39d1361be05fc2e627273c279234e4977e009afe3240fb45ea2b1a5ddf"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front_left/00000180.jpg",
+          "sha256": "4dca91a39dd2e2228fc20da4828ac196268024805ec8f578eea52e4c9c8876f1"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_wide/00000180.jpg",
+          "sha256": "82357d3c57f748937c6b9c4f1d64563282af027e615eacbbe726fd7d1755571f"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_left/00000180.jpg",
+          "sha256": "25424198cff5fbc0ecca67bfc0d8ee60f2426c4ebdaa6a2aea4398d61c2f1535"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_rear_right/00000180.jpg",
+          "sha256": "09f0253de02351eca587440e559a4081ae14e5d68b24baa1d26e10901132f2a0"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 179,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000179.jpg",
+          "sha256": "0a4324e9d2e5bc21904e95ab9e8b196a486c4260713b7fee77828861d757f082"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 178,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000178.jpg",
+          "sha256": "de530340db4b51e7ef5875ed2bf195e1e60f4e1105bc664b9bbbaaea8b326f95"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 175,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000175.jpg",
+          "sha256": "eaac20e01ccee08f17fe5a1b87ef72cd002d728353f2a4f6d1701cf1394d87a3"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 170,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111049/camera_front/00000170.jpg",
+          "sha256": "244cfba81458cd82855a290e95e9de43a87ce36d385a4a68a9c468cca57d9b7a"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111049.npz",
+          "sha256": "ea693061118976e12e925f03c0c86e8da4b2bc2428eb349b6f02d86e27bb6cb2"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111049.json",
+          "sha256": "3b15e908fd6f6e21a6962dd56f32c9548afa76602190882cfd158f06498bc01c"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-111049.npz",
+          "sha256": "ea693061118976e12e925f03c0c86e8da4b2bc2428eb349b6f02d86e27bb6cb2"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-111049.json",
+          "sha256": "3b15e908fd6f6e21a6962dd56f32c9548afa76602190882cfd158f06498bc01c"
+        }
+      }
+    },
+    {
+      "split": "train",
+      "scene": "20260112-111149",
+      "frame": 30,
+      "row": 930,
+      "session_id": "session_001_20260112-111049",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "a44731c0f5fa0116aab4c655f966a44c381dea87e99cc2ba21496a993cf997f0",
+            "new_sha256": "a44731c0f5fa0116aab4c655f966a44c381dea87e99cc2ba21496a993cf997f0"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "db0a0d4d0bffe0c26bed8faf53c4dc4323a3a320ca3ed2fc3923dac9f0f5c91e",
+            "new_sha256": "db0a0d4d0bffe0c26bed8faf53c4dc4323a3a320ca3ed2fc3923dac9f0f5c91e"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "dde821a738c140600dea5d9282834b95e0d4e1332fdf1cec9be1f22d94dcc6d1",
+            "new_sha256": "dde821a738c140600dea5d9282834b95e0d4e1332fdf1cec9be1f22d94dcc6d1"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "c4ae63f2d6e3c4e4259ce5e3280b1fbacca352394088971f33f333c24365a07c",
+            "new_sha256": "c4ae63f2d6e3c4e4259ce5e3280b1fbacca352394088971f33f333c24365a07c"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "4fe9d282ecb01a476aa8bb3eeed81ea1bed8233e58834ac1d395bb269d633caf",
+            "new_sha256": "4fe9d282ecb01a476aa8bb3eeed81ea1bed8233e58834ac1d395bb269d633caf"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "7aae7a250057899266b843e861d8d4769b3299b27c65a3fafac5709d3266034f",
+            "new_sha256": "7aae7a250057899266b843e861d8d4769b3299b27c65a3fafac5709d3266034f"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "20b873ce4e8a411ff525b2d78ea21f7a9651d5a26f165f507b2453aea23b41c5",
+            "new_sha256": "20b873ce4e8a411ff525b2d78ea21f7a9651d5a26f165f507b2453aea23b41c5"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "a72433fbe59c32373be735aa8cb337aadf06327424d7c6acc88b892aaa32fed5",
+            "new_sha256": "a72433fbe59c32373be735aa8cb337aadf06327424d7c6acc88b892aaa32fed5"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "1ef7472cad531f3d2ce5371644d9b5c146598caa510534d2da053959820b227b",
+            "new_sha256": "1ef7472cad531f3d2ce5371644d9b5c146598caa510534d2da053959820b227b"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "a0b3f6a9d6d992e8f64b833488817721a62df71b6303430ba9447d823d60a54d",
+            "new_sha256": "a0b3f6a9d6d992e8f64b833488817721a62df71b6303430ba9447d823d60a54d"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "9c7e4b799d983e050d5effb236c84a03c333d662da46d2ae5c2029387055295e",
+            "new_sha256": "9c7e4b799d983e050d5effb236c84a03c333d662da46d2ae5c2029387055295e"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "cecd52bfed876dabb231718a70170a75eee1330623c02e718951902339b96805",
+            "new_sha256": "cecd52bfed876dabb231718a70170a75eee1330623c02e718951902339b96805"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000030.jpg",
+          "sha256": "21467c88d44d702865f992b19c5fb6050d3414e57a5186acc036dd9094ddd15a"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_right/00000030.jpg",
+          "sha256": "a255f9a87ec446762fc5ed281e9a2baf32b54d7063e93d06271c305d76e40592"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_left/00000030.jpg",
+          "sha256": "01e4c527669740f73cce2184c7c124997014ee95d0e2364f77a9ff1e0694870e"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_wide/00000030.jpg",
+          "sha256": "975be776daf014231c1a007e787d35864a4d7838285e6ef49aa2816305e85e5d"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_left/00000030.jpg",
+          "sha256": "f9da0629a80d8ab333bd4152990e92f59e40ee2b85b346cd3dfbff65b9083fc7"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_right/00000030.jpg",
+          "sha256": "97eeeaf96a75b1e2a4497c60b471fa0eb360dfcb9e11a1ca16a9de3c1b4944f7"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 29,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000029.jpg",
+          "sha256": "e0cc1a87fe881c68add94a3ce66a201e0ebe50de0b6d7fef331b32e55db56744"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 28,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000028.jpg",
+          "sha256": "8d19e3b9d960a57ac695214f2d912301ec948dc56f0d94950da134c24ad77fbb"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 25,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000025.jpg",
+          "sha256": "4bfcdea00ecc4cc5a0a7c76868fcd5aa091212913b71b8b0cb1952bf98e119e3"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 20,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000020.jpg",
+          "sha256": "dcfb8b82ecfbf07c6d35392ad1761283fff8198e9ec8e8904e61cd193162ac16"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111149.npz",
+          "sha256": "7de89b7806749d5b4f2ba4a3660726e6566fbf9084b248e64dbcbf0fc63710d8"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111149.json",
+          "sha256": "e5e0f34af19a788e21d37b6c153cdd7b9ecaefa3dcbdec20092d5a415ad9bb7b"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-111149.npz",
+          "sha256": "7de89b7806749d5b4f2ba4a3660726e6566fbf9084b248e64dbcbf0fc63710d8"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-111149.json",
+          "sha256": "e5e0f34af19a788e21d37b6c153cdd7b9ecaefa3dcbdec20092d5a415ad9bb7b"
+        }
+      }
+    },
+    {
+      "split": "train",
+      "scene": "20260112-111149",
+      "frame": 180,
+      "row": 1080,
+      "session_id": "session_001_20260112-111049",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "3d59cfd90289ca0e85c9878c4b99da06ccb9cc3cd1901667ac04dd5bdbf09c15",
+            "new_sha256": "3d59cfd90289ca0e85c9878c4b99da06ccb9cc3cd1901667ac04dd5bdbf09c15"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "98cf478e819f44ec39bf6607ea18e802987b76b8879092d542ff0dfb2a279729",
+            "new_sha256": "98cf478e819f44ec39bf6607ea18e802987b76b8879092d542ff0dfb2a279729"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "b4f7a999e8d263070b26ce22db59aa20d2006d344d0a6a37d920a5abb47f22f7",
+            "new_sha256": "b4f7a999e8d263070b26ce22db59aa20d2006d344d0a6a37d920a5abb47f22f7"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "a9c459566204631633377438b0c31ace1b12cd81f0bc99fe45c0e3520de4bd3f",
+            "new_sha256": "a9c459566204631633377438b0c31ace1b12cd81f0bc99fe45c0e3520de4bd3f"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "4a7a59bd3104e8b8b96fbcb6546858db0bc61a38c0db897861267d1f818b1b9d",
+            "new_sha256": "4a7a59bd3104e8b8b96fbcb6546858db0bc61a38c0db897861267d1f818b1b9d"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "c91a3714bef14339ffeff0e2c670e92a4155812690b7baf5e1750f9c5509ab67",
+            "new_sha256": "c91a3714bef14339ffeff0e2c670e92a4155812690b7baf5e1750f9c5509ab67"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "e032df9f96f88be40f561d8e32196c1abc139e2de3a6ba0bb954313cc4db721a",
+            "new_sha256": "e032df9f96f88be40f561d8e32196c1abc139e2de3a6ba0bb954313cc4db721a"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "a567dbf9df5dbda77c7b61dbf17af1f894d2704a5e78f36589dd2d8e81ad5b15",
+            "new_sha256": "a567dbf9df5dbda77c7b61dbf17af1f894d2704a5e78f36589dd2d8e81ad5b15"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "c6f6ce98d0ec6e92f08fde8b461f27e722ecba11e4811d1b471ec72e4bcf16d1",
+            "new_sha256": "c6f6ce98d0ec6e92f08fde8b461f27e722ecba11e4811d1b471ec72e4bcf16d1"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1137fa1fbe175ebb1d5cc49f9315612a4d34e23530fd8ce787105c659899ab87",
+            "new_sha256": "1137fa1fbe175ebb1d5cc49f9315612a4d34e23530fd8ce787105c659899ab87"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "40a6868a478acddfdb292f00b009dd4a2f598c45d9da6c33a41ec2a74d4de2a6",
+            "new_sha256": "40a6868a478acddfdb292f00b009dd4a2f598c45d9da6c33a41ec2a74d4de2a6"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "de490867f46dfc719261e2e6a3012bee72c459b3dda358fc09784eb9f2e64cb3",
+            "new_sha256": "de490867f46dfc719261e2e6a3012bee72c459b3dda358fc09784eb9f2e64cb3"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000180.jpg",
+          "sha256": "af690bbf4b737ebb3559862d6fc4451bbf7e4f465537bff3d787a11f7f5f9921"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_right/00000180.jpg",
+          "sha256": "26bb90f12cf94d61e30434152e6485c5213b31e28d015030af7493c764c086b5"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front_left/00000180.jpg",
+          "sha256": "00c842e5145c5ab2fcfd4159cf5ecc3b437664180b8c9371ae435b6e2532b83e"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_wide/00000180.jpg",
+          "sha256": "c192945c49741b62a0c41fefa7e0b0829beac65bccf001194a94e0ab9b5b6014"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_left/00000180.jpg",
+          "sha256": "94fc3f7b311870a54202e6bda2f7ec88be205c076a3263d4fcd639dc47563e57"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 180,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_rear_right/00000180.jpg",
+          "sha256": "11ae67a323a6473799b32f9ec6098060922c736d30f9a399afc48d271a0f2662"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 179,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000179.jpg",
+          "sha256": "c3870c5c376f2394b851971b9bcb9f63109f9520fe3607ca4945d6038fca116a"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 178,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000178.jpg",
+          "sha256": "18b712b0382337499fdd723b9f747acbbabcb619039de641311b9bf112a62313"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 175,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000175.jpg",
+          "sha256": "8d69f757cf870c134e6a0ac4ee1f781b85c50dd55f71f4da7eaae6d8dbd9c716"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 170,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260112-111149/camera_front/00000170.jpg",
+          "sha256": "6b3e695137522bd0f659c078b2879eb08d989e51965da973a0e33410f9d55215"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111149.npz",
+          "sha256": "7de89b7806749d5b4f2ba4a3660726e6566fbf9084b248e64dbcbf0fc63710d8"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260112-111149.json",
+          "sha256": "e5e0f34af19a788e21d37b6c153cdd7b9ecaefa3dcbdec20092d5a415ad9bb7b"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-111149.npz",
+          "sha256": "7de89b7806749d5b4f2ba4a3660726e6566fbf9084b248e64dbcbf0fc63710d8"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260112-111149.json",
+          "sha256": "e5e0f34af19a788e21d37b6c153cdd7b9ecaefa3dcbdec20092d5a415ad9bb7b"
+        }
+      }
+    },
+    {
+      "split": "tune",
+      "scene": "20260113-102709",
+      "frame": 30,
+      "row": 14730,
+      "session_id": "session_019_20260113-102709",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "e17bbf8f959ce4142b84daf3cf933c7cbd1e44c9b4011c34ff93d83ec8000d78",
+            "new_sha256": "e17bbf8f959ce4142b84daf3cf933c7cbd1e44c9b4011c34ff93d83ec8000d78"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "75425cdb6a1f8b6f56c98ebec6fff62e9a404818501e6f1b8060dfb5949f08bb",
+            "new_sha256": "75425cdb6a1f8b6f56c98ebec6fff62e9a404818501e6f1b8060dfb5949f08bb"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "883c2c6028cf7dfb5969896d615df05e8ed1472daa1ad1bac7c1ef71dc02832e",
+            "new_sha256": "883c2c6028cf7dfb5969896d615df05e8ed1472daa1ad1bac7c1ef71dc02832e"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "32604f16e636ad294c9ef683a578f21993ba2702123b16ca963f887e7a910b81",
+            "new_sha256": "32604f16e636ad294c9ef683a578f21993ba2702123b16ca963f887e7a910b81"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "341b7f8ac60e24e7a151b39afc70415d387164e80cfea476b71f615643ff5d5d",
+            "new_sha256": "341b7f8ac60e24e7a151b39afc70415d387164e80cfea476b71f615643ff5d5d"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "0cd7153f610cc63e7aa8d6a63c3f1b3f6e73c89d85e530685f7f930ce36552bf",
+            "new_sha256": "0cd7153f610cc63e7aa8d6a63c3f1b3f6e73c89d85e530685f7f930ce36552bf"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "35fbb43c550278866d6a778a8dbbbc76096b79a3184bd993b0a74c72506470af",
+            "new_sha256": "35fbb43c550278866d6a778a8dbbbc76096b79a3184bd993b0a74c72506470af"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "9820a6fcd5f1544527d7e753a680da53f998ac764944310ae521b3503af116b0",
+            "new_sha256": "9820a6fcd5f1544527d7e753a680da53f998ac764944310ae521b3503af116b0"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "5df6ab879c0a8198714e363e65bbebe0fa21a9420532a84a5754f880f0023ac7",
+            "new_sha256": "5df6ab879c0a8198714e363e65bbebe0fa21a9420532a84a5754f880f0023ac7"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "2074e3613b1101e1268983a8878758528907d44dbd83f5c431745ebb059affde",
+            "new_sha256": "2074e3613b1101e1268983a8878758528907d44dbd83f5c431745ebb059affde"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "5e88cc005c24024e7683c17f3f3dcd345a0930657c57cb32b834b20e9d54a9fb",
+            "new_sha256": "5e88cc005c24024e7683c17f3f3dcd345a0930657c57cb32b834b20e9d54a9fb"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "a63b61278f604a0f9bbf09539d1a36a239c3e2d8c0656bfb046b073bfe6e040c",
+            "new_sha256": "a63b61278f604a0f9bbf09539d1a36a239c3e2d8c0656bfb046b073bfe6e040c"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000030.jpg",
+          "sha256": "0030c4d5cfadff164b5856682d3543b69ba23c04cec5604dfdf74944e8b94b31"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front_right/00000030.jpg",
+          "sha256": "88f65370ffb2bceb6838059a0e494cb5068b4ecf100989223d23229baf2ccd01"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front_left/00000030.jpg",
+          "sha256": "59861464b8d1cbf98e7c6d360ec3913ed9b389e0cf84bd89a1e9ed7fa2debc58"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_rear_wide/00000030.jpg",
+          "sha256": "ded534db34e8e3055110c693fa7e0c7b9d0d6a06d7660ee5c27e40e16d0924ed"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_rear_left/00000030.jpg",
+          "sha256": "0456a4b4330613226340db6612c61d326e4f2ed56056c4d583162af8b6685397"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 30,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_rear_right/00000030.jpg",
+          "sha256": "f92f11a74a14208ccd1715352006258a98b41b639d0c1b953121cad0a181d3b3"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 29,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000029.jpg",
+          "sha256": "3a115d1164667b358d1aad5aaf2161d05b43e8f9bbaefe06f18104f93d1ff95e"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 28,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000028.jpg",
+          "sha256": "b62068421575a3bba7b34ae291bbed879936667d4e7bb0d4f53e9f7bff40e420"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 25,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000025.jpg",
+          "sha256": "253ccbe5a087dd95ca796912f96d0e612e518288f05dca695c65f8296f5eb0bf"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 20,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000020.jpg",
+          "sha256": "241e0dd6d1fffd39e679fce5f4384c91a3f677ae008b0279d966fd4eabbfe044"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260113-102709.npz",
+          "sha256": "c3ed650793d417ecc4568dd515b18190b1f9059e37a4435a6f03162cb1613a7d"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260113-102709.json",
+          "sha256": "fc5dfc1d432a7ceb3d80b5b0fee89d72a67e9287d31d2c7c128646f5cde1b1c1"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260113-102709.npz",
+          "sha256": "c3ed650793d417ecc4568dd515b18190b1f9059e37a4435a6f03162cb1613a7d"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260113-102709.json",
+          "sha256": "fc5dfc1d432a7ceb3d80b5b0fee89d72a67e9287d31d2c7c128646f5cde1b1c1"
+        }
+      }
+    },
+    {
+      "split": "tune",
+      "scene": "20260113-102709",
+      "frame": 295,
+      "row": 14995,
+      "session_id": "session_019_20260113-102709",
+      "comparison": {
+        "all_nonrear_values_bitwise_equal": true,
+        "checks": {
+          "frame": "equal",
+          "goal_xy": "bitwise_equal",
+          "gt_plan": "bitwise_equal",
+          "history_images": "bitwise_equal",
+          "history_target": "bitwise_equal",
+          "history_transforms": "bitwise_equal",
+          "history_valid": "bitwise_equal",
+          "images": "bitwise_equal",
+          "lane_target": "bitwise_equal",
+          "lane_valid": "bitwise_equal",
+          "lidar2img": "rear_only_changed",
+          "occ_target": "bitwise_equal",
+          "occ_valid": "bitwise_equal",
+          "plan_valid": "bitwise_equal",
+          "proxy_weight": "bitwise_equal",
+          "row": "equal",
+          "scen_idx": "equal",
+          "scenario": "equal",
+          "session_id": "equal",
+          "state_target": "bitwise_equal",
+          "state_valid": "bitwise_equal",
+          "time_offsets": "bitwise_equal"
+        },
+        "tensors": {
+          "goal_xy": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "44f161f6d3a902e3a99d34755c1b0254f85f6463980dd9796b5a6b640ae6814d",
+            "new_sha256": "44f161f6d3a902e3a99d34755c1b0254f85f6463980dd9796b5a6b640ae6814d"
+          },
+          "gt_plan": {
+            "shape": [
+              6,
+              2
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "4a7ff637b2f69a2deffcf99a704c62e57236d3e2baa5dce8881d43a14dce9e05",
+            "new_sha256": "4a7ff637b2f69a2deffcf99a704c62e57236d3e2baa5dce8881d43a14dce9e05"
+          },
+          "history_images": {
+            "shape": [
+              4,
+              3,
+              216,
+              384
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "8e1be2b993d6e6bad23b5b99e3b13fed84d6c5e974248a1e3be10963bfe04038",
+            "new_sha256": "8e1be2b993d6e6bad23b5b99e3b13fed84d6c5e974248a1e3be10963bfe04038"
+          },
+          "history_target": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "ec11e4d8942c54108b7fbe91faaef7fa3424ce7c4a1cb205873d1d4ddad2dc15",
+            "new_sha256": "ec11e4d8942c54108b7fbe91faaef7fa3424ce7c4a1cb205873d1d4ddad2dc15"
+          },
+          "history_transforms": {
+            "shape": [
+              4,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "c6b526836eae763e7d581bf00282e4d06376e53a1e6066e6a18ef88172603605",
+            "new_sha256": "c6b526836eae763e7d581bf00282e4d06376e53a1e6066e6a18ef88172603605"
+          },
+          "history_valid": {
+            "shape": [
+              4,
+              4
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028",
+            "new_sha256": "105d699eb6bb6120042e624cc1fb88a8b75c033aec3f577d7bed1758231ab028"
+          },
+          "images": {
+            "shape": [
+              6,
+              3,
+              432,
+              768
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "3c6b989f35484904478b110a06dbe611983843b674862b4ad542c940546c69a9",
+            "new_sha256": "3c6b989f35484904478b110a06dbe611983843b674862b4ad542c940546c69a9"
+          },
+          "lane_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "e177ae929577e0cab26e25362e36dca711d1dd452b97daa0b42a629e1c3d2e2d",
+            "new_sha256": "e177ae929577e0cab26e25362e36dca711d1dd452b97daa0b42a629e1c3d2e2d"
+          },
+          "lane_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "15cdb594dc61d90172d392f772befaa7f1215541defe2eaf13079554950fbbf0",
+            "new_sha256": "15cdb594dc61d90172d392f772befaa7f1215541defe2eaf13079554950fbbf0"
+          },
+          "lidar2img": {
+            "shape": [
+              6,
+              4,
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "f1c8784b9dcd30dda1b972def10bcfcb269accf5d4d90a0e1ffa75599c9b1bc6",
+            "new_sha256": "af8829d38b8009aa69f8ee1bc87d4b23538d072761954e1a8b0ad67023787455",
+            "rear_max_abs_matrix_delta": 182.27786254882812
+          },
+          "occ_target": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "ea27cb40a3b7f469ffd4e7448b3734a726875c24bcb30f2c686caf0097e0edab",
+            "new_sha256": "ea27cb40a3b7f469ffd4e7448b3734a726875c24bcb30f2c686caf0097e0edab"
+          },
+          "occ_valid": {
+            "shape": [
+              1,
+              64,
+              48
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "e4da150c61e7235c06408cb03c6863def966e08060121951629003ed1735875c",
+            "new_sha256": "e4da150c61e7235c06408cb03c6863def966e08060121951629003ed1735875c"
+          },
+          "plan_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "proxy_weight": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "old_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428",
+            "new_sha256": "88f0d11ae93ac2f493bacc37a68050d8103e810580cae567e49d496c928d4428"
+          },
+          "state_target": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "fd86073fb9d0153499e99b31000b84161ccdc2afaa4ff49b8ca1704361dcd80e",
+            "new_sha256": "fd86073fb9d0153499e99b31000b84161ccdc2afaa4ff49b8ca1704361dcd80e"
+          },
+          "state_valid": {
+            "shape": [
+              6
+            ],
+            "dtype": "torch.bool",
+            "old_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf",
+            "new_sha256": "1f2ae72e4f699eb3523c3b49f196dcfc76f0db9f5ad215f8824aa21ef99c4fdf"
+          },
+          "time_offsets": {
+            "shape": [
+              4
+            ],
+            "dtype": "torch.float32",
+            "old_sha256": "6fe23cfe03c3b1041f14db533cbc50d6b9e10285d5911833bd954d4e6201d827",
+            "new_sha256": "6fe23cfe03c3b1041f14db533cbc50d6b9e10285d5911833bd954d4e6201d827"
+          }
+        }
+      },
+      "image_sources": [
+        {
+          "kind": "current",
+          "camera": "camera_front",
+          "frame": 295,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000295.jpg",
+          "sha256": "fdebefe52a6a4f607b6e4397272ce384ac94e1dff53a8a8ca62fd0962dfad9ca"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_right",
+          "frame": 295,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front_right/00000295.jpg",
+          "sha256": "6fef1602fad16c8243d776dd923d2aefcf322eaf5732912d9b9fad2fc7042b6e"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_front_left",
+          "frame": 295,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front_left/00000295.jpg",
+          "sha256": "ebe316a9e3eb72253caf65e0b9af7f5c9f4c4c5beaaab300dd9f4c4e3b682fa5"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_wide",
+          "frame": 295,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_rear_wide/00000295.jpg",
+          "sha256": "969f836e163d7acb2b17837cb4707313a6771b1ef37989a75bd510f676190500"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_left",
+          "frame": 295,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_rear_left/00000295.jpg",
+          "sha256": "4215430c8d5d6a354db6a677f8fd77f3ba4b5eb1ee20854d2b286c4543ceaf94"
+        },
+        {
+          "kind": "current",
+          "camera": "camera_rear_right",
+          "frame": 295,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_rear_right/00000295.jpg",
+          "sha256": "a09ff59a6e1fd140e2fea2159144fed7e43e29e1688c4ed2eeed683011e89ef5"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 294,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000294.jpg",
+          "sha256": "a8ad5f9ab4c7b64a2daeb537cc78a94bcf2070a130f7db676314313c1d5ac424"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 293,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000293.jpg",
+          "sha256": "f5ea0a416b6d8b06c414459bf7d568ec56630f54209e1467fbacd9e21f1fdea6"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 290,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000290.jpg",
+          "sha256": "c75f4504eb3975ec7e89b51fbe224b387fbda3ece58a20c47bdc7ac9a966cfea"
+        },
+        {
+          "kind": "history",
+          "camera": "camera_front",
+          "frame": 285,
+          "path": "/NHNHOME/data/sukim/adcl/cache/etri_768/20260113-102709/camera_front/00000285.jpg",
+          "sha256": "c3d08d9476b9a82189ba7e411e77f8816b7e190950c82a71bbb22de7d9951990"
+        }
+      ],
+      "supervision_sources": {
+        "old_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260113-102709.npz",
+          "sha256": "c3ed650793d417ecc4568dd515b18190b1f9059e37a4435a6f03162cb1613a7d"
+        },
+        "old_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_rawtime/20260113-102709.json",
+          "sha256": "fc5dfc1d432a7ceb3d80b5b0fee89d72a67e9287d31d2c7c128646f5cde1b1c1"
+        },
+        "new_npz": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260113-102709.npz",
+          "sha256": "c3ed650793d417ecc4568dd515b18190b1f9059e37a4435a6f03162cb1613a7d"
+        },
+        "new_json": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/20260113-102709.json",
+          "sha256": "fc5dfc1d432a7ceb3d80b5b0fee89d72a67e9287d31d2c7c128646f5cde1b1c1"
+        }
+      }
+    }
+  ]
+}
