@@ -1,6 +1,9 @@
 """CPU-only inference packaging tests; never exports a real training checkpoint."""
 import dataclasses
+import copy
+import json
 from pathlib import Path
+import subprocess
 import sys
 from types import SimpleNamespace
 
@@ -13,6 +16,9 @@ from audit_motiondrive_v2 import construct_model
 from export_motiondrive_v2_inference import (export_checkpoint, file_sha256,
                                             prepare_bundle, validate_complete_config)
 from models.motiondrive_v2 import MotionDriveV2, MotionDriveV2Config
+from models.motiondrive_v2_input_contract import input_contract
+from motiondrive_v2_training import time_input_policy
+import export_motiondrive_v2_inference as exporter
 
 
 @pytest.fixture(autouse=True)
@@ -80,6 +86,7 @@ def test_export_reload_preserves_complete_config_and_bitwise_outputs(tmp_path, m
     assert file_sha256(source) == source_hash
     # No unsafe NumPy/Python RNG object survives in the output bundle.
     bundle = torch.load(target, map_location="cpu", weights_only=True)
+    assert "input_contract" not in bundle and "deployment_provenance" not in bundle
     assert "optimizer" not in bundle and "rng" not in bundle
     assert result["output_bytes"] < result["source_checkpoint"]["bytes"]
     assert result["source_checkpoint"]["sha256"] == source_hash
@@ -201,3 +208,297 @@ def test_publish_race_never_overwrites_someone_elses_target(tmp_path, monkeypatc
         exporter.export_checkpoint(source, target)
     assert target.read_bytes() == b"owned by concurrent process"
     assert list(tmp_path.glob(".*.tmp")) == []
+
+
+@pytest.fixture
+def deployment_fixture(tmp_path, monkeypatch):
+    """Only synthetic files; production immutable artifact SHA pins are not changed."""
+    root = tmp_path / "mock_repository"
+    run, supervision = root / "work_dirs/mock_c1t1", root / "data/mock_geometry_v2"
+    run.mkdir(parents=True)
+    supervision.mkdir(parents=True)
+    split, initializer = root / "mock_split.json", root / "mock_initializer.pth"
+    split.write_text('{"splits":{"train":["synthetic_train"]}}')
+    initializer.write_bytes(b"synthetic initializer; never unpickled")
+    canonical = supervision / "calibration.npz"
+    canonical.write_bytes(b"synthetic canonical; checked as bytes only")
+    canonical_sha, split_sha = file_sha256(canonical), file_sha256(split)
+    supervision_manifest = supervision / "supervision_manifest.json"
+    supervision_manifest.write_text(json.dumps({
+        "schema_version": 2, "geometry_edition": "cache_meta_rear_wide_v2",
+        "canonical_calibration_sha256": canonical_sha,
+        "split_manifest_sha256": split_sha,
+        "calibration_sha256": "b" * 64}))  # PKL hash is NOT the canonical hash.
+    sup_sha = file_sha256(supervision_manifest)
+    monkeypatch.setattr(exporter, "C1_CANONICAL_SHA256", canonical_sha)
+    monkeypatch.setattr(exporter, "C1_SUPERVISION_SHA256", sup_sha)
+    monkeypatch.setattr(exporter, "RAWTIME_SPLIT_SHA256", split_sha)
+    checkpoint = payload(tiny_config())
+    checkpoint["manifest"].update({
+        "arguments": {"data_root": str(root), "run_dir": "work_dirs/mock_c1t1",
+                      "supervision_root": "data/mock_geometry_v2", "split_manifest": "mock_split.json",
+                      "init": "mock_initializer.pth", "resume": None, "pretrained": None,
+                      "time_input": "nominal", "steps": 3000, "seed": 0},
+        "time_input": "nominal", "time_input_policy": time_input_policy("nominal"),
+        "split_sha256": split_sha, "supervision_manifest_sha256": sup_sha,
+        "load_report": {"common_checkpoint_sha256": file_sha256(initializer)},
+        "initial_model_state_sha256": "a" * 64, "eval_rows_sha256": "e" * 64,
+        "data_counts": {"train": 8, "eval": 8}, "bn_training": {"policy": "fixed"},
+        "loss_weights": {"plan": 1.}, "pid": 12345, "status": "running",
+        "pretrained_sha256": None,
+    })
+    source = run / "best.pth"
+    source.write_bytes(b"synthetic checkpoint; validation-only fixture")
+    sidecar = run / "manifest.json"
+
+    def sync_sidecar():
+        final = copy.deepcopy(checkpoint["manifest"])
+        final.update(status="completed", step=3000)
+        sidecar.write_text(json.dumps(final))
+
+    sync_sidecar()
+    return SimpleNamespace(root=root, run=run, supervision=supervision, split=split,
+                           initializer=initializer, canonical=canonical, sidecar=sidecar,
+                           supervision_manifest=supervision_manifest, source=source,
+                           checkpoint=checkpoint, sync_sidecar=sync_sidecar)
+
+
+def verify_fixture(fixture, **overrides):
+    kwargs = dict(source_path=fixture.source, source_sha256=file_sha256(fixture.source),
+                  expected_checkpoint_sha256=file_sha256(fixture.source),
+                  deployment_contract=exporter.DEPLOYMENT_CONTRACT)
+    kwargs.update(overrides)
+    return exporter.verify_deployment_lineage(fixture.checkpoint, **kwargs)
+
+
+def test_strict_lineage_is_explicit_and_checks_original_run_files(deployment_fixture):
+    fixture = deployment_fixture
+    report = verify_fixture(fixture)
+    assert report["status"] == "input_contract_lineage_verified"
+    assert report["checkpoint_step"] == 250 and report["completed_run_step"] == 3000
+    assert report["selected_checkpoint_sha256"] == file_sha256(fixture.source)
+    assert report["geometry_edition"] == "geometry_v2" and report["time_input"] == "nominal"
+    assert report["supervision_manifest_sha256"] == file_sha256(fixture.supervision_manifest)
+    assert report["canonical_calibration_sha256"] == file_sha256(fixture.canonical)
+    assert report["evidence"]["canonical_calibration"]["sha256"] == file_sha256(fixture.canonical)
+    assert report["accuracy_latency_compliance_certified"] is False
+    assert report["os_process_exit_verified"] is False
+    assert fixture.checkpoint["manifest"]["status"] == "running"
+    exporter.reverify_deployment_evidence(report)
+
+
+@pytest.mark.parametrize("mode,expected", [(None, "a" * 64), ("wrong", "a" * 64),
+                                         ("geometry-v2-nominal", None),
+                                         ("geometry-v2-nominal", "not-sha"),
+                                         ("geometry-v2-nominal", "a" * 64)])
+def test_deployment_requires_explicit_mode_and_selected_sha(deployment_fixture, mode, expected):
+    with pytest.raises(ValueError, match="contract|SHA256"):
+        verify_fixture(deployment_fixture, deployment_contract=mode, expected_checkpoint_sha256=expected)
+
+
+@pytest.mark.parametrize("which", ["args_raw", "manifest_raw", "missing", "policy_raw", "policy_mutated"])
+def test_raw_or_inconsistent_time_is_never_relabelled(deployment_fixture, which):
+    manifest = deployment_fixture.checkpoint["manifest"]
+    if which == "args_raw":
+        manifest["arguments"]["time_input"] = "raw"
+    elif which == "manifest_raw":
+        manifest["time_input"] = "raw"
+    elif which == "missing":
+        del manifest["time_input"]
+    elif which == "policy_raw":
+        manifest["time_input_policy"] = time_input_policy("raw")
+    else:
+        manifest["time_input_policy"]["nominal_history_seconds"] = [0., .2, .5, 1.]
+    deployment_fixture.sync_sidecar()
+    with pytest.raises(ValueError, match="nominal"):
+        verify_fixture(deployment_fixture)
+
+
+@pytest.mark.parametrize("kind", ["old_supervision", "wrong_split", "history_count", "step_zero",
+                                  "relative_root", "source_relocated"])
+def test_old_geometry_or_unbound_checkpoint_fails_closed(deployment_fixture, kind):
+    fixture, manifest = deployment_fixture, deployment_fixture.checkpoint["manifest"]
+    if kind == "old_supervision":
+        manifest["supervision_manifest_sha256"] = "0" * 64
+    elif kind == "wrong_split":
+        manifest["split_sha256"] = "0" * 64
+    elif kind == "history_count":
+        manifest["model_config"]["n_history"] = 3
+    elif kind == "step_zero":
+        fixture.checkpoint["step"] = 0
+    elif kind == "relative_root":
+        manifest["arguments"]["data_root"] = "."
+    else:
+        moved = fixture.root / "best.pth"
+        moved.write_bytes(fixture.source.read_bytes())
+        fixture.source = moved
+    fixture.sync_sidecar()
+    with pytest.raises(ValueError):
+        verify_fixture(fixture)
+
+
+@pytest.mark.parametrize("field", ["status", "step", "arguments", "model_config", "load_report",
+                                   "initial_model_state_sha256", "pid", "train_rows_sha256"])
+def test_external_run_manifest_must_match_checkpoint(deployment_fixture, field):
+    fixture = deployment_fixture
+    final = json.loads(fixture.sidecar.read_text())
+    if field == "status":
+        final[field] = "running"
+    elif field == "step":
+        final[field] = 2999
+    else:
+        del final[field]
+    fixture.sidecar.write_text(json.dumps(final))
+    with pytest.raises(ValueError, match="completed|lineage mismatch"):
+        verify_fixture(fixture)
+
+
+@pytest.mark.parametrize("artifact", ["source", "supervision_manifest", "canonical", "split", "initializer"])
+def test_real_bytes_must_match_the_recorded_sha(deployment_fixture, artifact):
+    fixture = deployment_fixture
+    original = file_sha256(fixture.source)
+    path = getattr(fixture, artifact)
+    path.write_bytes(path.read_bytes() + b"mutation")
+    with pytest.raises(ValueError, match="SHA256"):
+        verify_fixture(fixture, source_sha256=original, expected_checkpoint_sha256=original)
+
+
+@pytest.mark.parametrize("field,value", [("schema_version", 1), ("geometry_edition", "old"),
+                                        ("canonical_calibration_sha256", "0" * 64),
+                                        ("split_manifest_sha256", "0" * 64)])
+def test_geometry_declaration_must_also_match_even_with_valid_file_hash(
+        deployment_fixture, monkeypatch, field, value):
+    fixture = deployment_fixture
+    contract = json.loads(fixture.supervision_manifest.read_text())
+    contract[field] = value
+    fixture.supervision_manifest.write_text(json.dumps(contract))
+    changed_sha = file_sha256(fixture.supervision_manifest)
+    monkeypatch.setattr(exporter, "C1_SUPERVISION_SHA256", changed_sha)
+    fixture.checkpoint["manifest"]["supervision_manifest_sha256"] = changed_sha
+    fixture.sync_sidecar()
+    with pytest.raises(ValueError, match="geometry/split declaration"):
+        verify_fixture(fixture)
+
+
+def test_initializer_is_verified_and_no_fallback_is_invented(deployment_fixture):
+    fixture = deployment_fixture
+    del fixture.checkpoint["manifest"]["load_report"]["common_checkpoint_sha256"]
+    fixture.sync_sidecar()
+    with pytest.raises(ValueError, match="initialization lineage"):
+        verify_fixture(fixture)
+
+
+def test_pretrained_lineage_checked_when_present(deployment_fixture):
+    fixture = deployment_fixture
+    pretrained = fixture.root / "pretrained.pth"
+    pretrained.write_bytes(b"mock pretraining")
+    fixture.checkpoint["manifest"]["arguments"]["pretrained"] = "pretrained.pth"
+    fixture.checkpoint["manifest"]["pretrained_sha256"] = file_sha256(pretrained)
+    fixture.sync_sidecar()
+    assert "pretrained_backbone" in verify_fixture(fixture)["evidence"]
+    pretrained.write_bytes(b"changed")
+    with pytest.raises(ValueError, match="pretrained_backbone"):
+        verify_fixture(fixture)
+
+
+def test_existing_conflicting_contract_is_not_overwritten(deployment_fixture):
+    fixture = deployment_fixture
+    fixture.checkpoint["input_contract"] = {**input_contract(), "time_input": "raw"}
+    with pytest.raises(ValueError, match="conflicts"):
+        verify_fixture(fixture)
+
+
+def test_publish_time_recheck_detects_changed_sidecar(deployment_fixture):
+    fixture = deployment_fixture
+    report = verify_fixture(fixture)
+    fixture.sidecar.write_bytes(fixture.sidecar.read_bytes() + b"\n")
+    with pytest.raises(ValueError, match="changed before publication"):
+        exporter.reverify_deployment_evidence(report)
+
+
+def test_selected_sha_does_not_silently_enable_deployment_mode():
+    with pytest.raises(ValueError, match="explicit deployment contract"):
+        prepare_bundle(payload(tiny_config()), source_path="mock", source_sha256="f" * 64,
+                       source_bytes=1, expected_checkpoint_sha256="f" * 64)
+
+
+def test_strict_synthetic_bundle_has_safe_contract_and_loads_with_generic_loader(deployment_fixture):
+    fixture = deployment_fixture
+    model = MotionDriveV2(tiny_config()).eval()
+    fixture.checkpoint["model"] = model.state_dict()
+    torch.save(fixture.checkpoint, fixture.source)
+    before = file_sha256(fixture.source)
+    target = fixture.root / "mock_inference.pth"
+    result = export_checkpoint(fixture.source, target, deployment_contract=exporter.DEPLOYMENT_CONTRACT,
+                               expected_checkpoint_sha256=before)
+    saved = torch.load(target, map_location="cpu", weights_only=True)
+    assert saved["input_contract"] == input_contract() == result["input_contract"]
+    assert saved["deployment_provenance"] == result["deployment_provenance"]
+    assert saved["deployment_provenance"]["selected_checkpoint_sha256"] == before
+    assert file_sha256(fixture.source) == before
+    assert "optimizer" not in saved and "rng" not in saved
+    restored = construct_model(SimpleNamespace(checkpoint=str(target), config_json=None,
+                                               goal_on=None, state_on=None, device="cpu"))
+    assert all(torch.equal(value, restored.state_dict()[key]) for key, value in model.state_dict().items())
+
+
+def test_strict_nonfinite_tensor_is_rejected_before_model_construction(deployment_fixture):
+    fixture = deployment_fixture
+    fixture.checkpoint["model"] = {"bad": torch.tensor([float("nan")])}
+    with pytest.raises(ValueError, match="nonfinite"):
+        prepare_bundle(fixture.checkpoint, source_path=fixture.source,
+                       source_sha256=file_sha256(fixture.source), source_bytes=fixture.source.stat().st_size,
+                       deployment_contract=exporter.DEPLOYMENT_CONTRACT,
+                       expected_checkpoint_sha256=file_sha256(fixture.source))
+
+
+@pytest.mark.parametrize("package_import", [False, True])
+def test_export_import_has_no_opencv_dependency(package_import):
+    code = """
+import importlib.abc, sys
+class NoCV2(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, path=None, target=None):
+        if fullname == 'cv2' or fullname.startswith('cv2.'):
+            raise RuntimeError('OpenCV must not be imported during CPU export')
+sys.meta_path.insert(0, NoCV2())
+if sys.argv[1] == 'True':
+    import scripts.export_motiondrive_v2_inference as exporter
+else:
+    sys.path.insert(0, 'scripts')
+    import export_motiondrive_v2_inference as exporter
+assert 'models.motiondrive_v2_inputs' not in sys.modules
+assert 'cv2' not in sys.modules
+from scripts.motiondrive_v2_training import time_input_policy
+try:
+    exporter.verify_deployment_lineage(
+        {'manifest': {'arguments': {'time_input': 'nominal'}, 'time_input': 'nominal',
+                      'time_input_policy': time_input_policy('nominal')}},
+        source_path='unused', source_sha256='a' * 64,
+        expected_checkpoint_sha256='a' * 64, deployment_contract='geometry-v2-nominal')
+except ValueError as error:
+    assert 'C1 supervision' in str(error)
+else:
+    raise AssertionError('Invalid lineage must not pass')
+"""
+    result = subprocess.run([sys.executable, "-c", code, str(package_import)], cwd=Path(__file__).resolve().parents[1],
+                            capture_output=True, text=True, timeout=60)
+    assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_strict_publish_aborts_if_evidence_changes_during_serialization(deployment_fixture, monkeypatch):
+    fixture = deployment_fixture
+    torch.save({"synthetic": True}, fixture.source)
+    proof = verify_fixture(fixture)
+    monkeypatch.setattr(exporter, "prepare_bundle", lambda *a, **kw: {
+        "model": {"x": torch.zeros(1)}, "deployment_provenance": proof})
+    original_save = torch.save
+    def mutation_during_save(*args, **kwargs):
+        original_save(*args, **kwargs)
+        fixture.sidecar.write_bytes(fixture.sidecar.read_bytes() + b"\n")
+    monkeypatch.setattr(torch, "save", mutation_during_save)
+    target = fixture.root / "should_not_be_published.pth"
+    with pytest.raises(ValueError, match="changed before publication"):
+        export_checkpoint(fixture.source, target, deployment_contract=exporter.DEPLOYMENT_CONTRACT,
+                           expected_checkpoint_sha256=file_sha256(fixture.source))
+    assert not target.exists()
+    assert not list(fixture.root.glob(".*.tmp"))

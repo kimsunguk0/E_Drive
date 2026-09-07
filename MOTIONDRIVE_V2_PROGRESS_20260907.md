@@ -325,3 +325,26 @@ GT 자체99.99981%도 같은 저차 함수로 설명된다. 이는 속도·가�
 반복 tune11세션·old geometry의 기술적 관찰이다. 현재 보고서의 상태값은 모두 유효하나
 분석기는 부분 유효 상태의 null/object dtype을 아직 지원하지 않으므로 후속 확장 시
 float 변환 회귀 검사를 추가해야 한다. 이 제한은 현재1998행 결과에는 영향을 주지 않는다.
+
+## 배포 export 및 stateless 추론 도우미 검증
+
+기존 generic inference export는 그대로 유지했다. 새 명시적
+`--deployment-contract geometry-v2-nominal --expected-checkpoint-sha256 ...` 모드만
+선정 checkpoint, 원 run의 완료 manifest, 초기 가중치·split·C1 calibration/supervision
+파일의 SHA와 nominal 정책을 검증하고 `input_contract`/`deployment_provenance`를 저장한다.
+서버 밖으로 옮겨져 원 계보가 확인되지 않는 파일이나 P1 raw/C0는 새 계약으로 승격하지 않는다.
+이 검증은 정확도·latency·운영국 승인 또는 OS 정상 종료를 인증하지 않는다.
+
+`models/motiondrive_v2_serving.py`는 명시적인 bundle SHA와 내부 계약 정합을 검사하고
+weights_only=True/완전 config/strict weights로 로드한다. 원 B200 파일을 다른 서버에서
+재열람하는 대신 export 때 검증한 묶음의 SHA와 선언 정합을 검사한다.
+모델에는6개 입력만 주고 전체 forward1회를 실행한다. 영상유래state/motion/perception을
+생략하는 별도 지름길은 없으며 `[1,6,2]` FP32 `plan_abs`를 순수 slice/list로 변환한다.
+절대좌표에 cumsum·clamp·보정·resampling을 적용하지 않는다.
+
+독립 코드 리뷰에서 발견된 provenance 중복선언 모순 통과와 index 없는 `cuda`의
+장치 불일치를 수정했다. C1/T1 SHA·완료step 모순은 거절하고 `cpu` 또는 명시적
+`cuda:N`만 받는다. 체크포인트 parameter dtype의 묵시적 변환도 거절한다.
+export+serving CPU tests는 로컬/B200 모두122개 통과했다. OpenCV 없는 systemPython에서
+검증했으며 실제 배포 checkpoint export·GPU forward·공식 제출은 아직 하지 않았다.
+CLI 전체 제출 파일 생성기는 아직 없고 실제 C1/T1 checkpoint와3090 검증이 남아 있다.

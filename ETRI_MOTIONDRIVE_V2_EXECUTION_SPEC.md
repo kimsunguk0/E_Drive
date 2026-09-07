@@ -3,7 +3,7 @@
 작성: 2026-09-07. 설계 기준 코드: `7f2752c` / 실험 근거: `4908989`까지.
 작업루트: `/NHNHOME/data/sukim/adcl`.
 
-현재 상태(2026-09-07 17:40 KST): **P1 G×S 4판 정상 종료·독립 raw 재평가 완료, 정합 수정 P2 준비 중.**
+현재 상태(2026-09-07 18:19 KST): **P1 완료·배포 입력 train8 parity 통과, P2는 타 작업의 GPU0–3 점유로 미실행.**
 P1 실행 소스 `fdd309d`, 분석/진행 기록 `940253b`. 정확한 실행 조건은
 `MOTIONDRIVE_V2_P1_PROTOCOL.md`, P0 근거와 현재 상태는
 `MOTIONDRIVE_V2_PROGRESS_20260907.md`를 따른다. 아래 "아직 미실행" 문장은 최초 설계 시점 기록이며
@@ -11,6 +11,9 @@ P1 실행 소스 `fdd309d`, 분석/진행 기록 `940253b`. 정확한 실행 조
 P1 LAST6000은 G0S0 .747844 / G1S0 .381652 / G0S1 .785360 / G1S1 .372043이며
 11세션 paired 분석을 완료했다. 반복tune·단일seed·오류기하 조건이라는 한계를 유지한다.
 P2의 기하/nominal 입력 통제 수정 계획은 `MOTIONDRIVE_V2_P2_REPAIR_PROTOCOL.md`를 따른다.
+실제 raw-clip adapter의6종 입력은 기준과8/8 bitwise 일치했고 최대오차0이다.
+코드/계약 분리 후에도 동일하게 재현했으며 근거는 `1e6fee2`, 사후 오차 분석은 `5f83af5`다.
+이는 입력 정합 증거이지 P2 성능 또는 최종 제출 승인 증거가 아니다.
 17:28 KST 추가: 실제 캐시 rear_wide crop과 투영행렬의182.4px 불일치 및 테스트 원 timestamp
 미제공을 확인했다. 기존 P1은 원 조건으로 완주/분석하고 새 geometry edition과 nominal
 시간 입력을 별도로 검증한다. `MOTIONDRIVE_V2_DEPLOYMENT_CONTRACT_AUDIT.md`가 수정 범위를 정한다.
@@ -122,7 +125,9 @@ planner는 영상 feature `Z_scene`, `M_visual`을 직접 사용한다. bbox/차
 - 물리적인 이미지 10장. 일부 카메라만 사용하는 것은 Q1 허용 범위다.
 - 현재 전방 이미지는 motion용으로 feature를 재사용하거나 필요한 해상도로 모델 내
   변환한다. 그 추가 neural forward가 있으면 전부 지연에 포함한다.
-- 과거 범위는 제공된 3초 이내, 실제 timestamp 간격을 사용한다.
+- 과거 범위는 제공된3초 이내다. 최초 P0/P1은 실제 timestamp 간격을 사용했으나
+  공식 테스트에 원 timestamp가 없어 **배포와 P2 T1은 nominal [.1,.2,.5,1.]초**를 쓴다.
+  P2 T0의 raw는 대조군으로만 남긴다. rawtime 데이터 split과 감독 라벨은 바꾸지 않는다.
 - 첫 판에서 T7 전체 카메라나 dense sequential BEV rollout을 넣지 않는다.
 
 위 간격은 시작 설정이지 최적값이 아니다. 입력 수를 바꾸는 ablation은 첫 2×2 이후다.
