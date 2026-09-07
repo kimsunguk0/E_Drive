@@ -1,0 +1,292 @@
+{
+  "arm": "goal_real_slot",
+  "base_seed": 0,
+  "boundary": "Three-update plumbing/memory evidence only; never initialize a later run from this process.",
+  "branch_calls": 24,
+  "branch_input_dtypes": [
+    "torch.float32"
+  ],
+  "branch_mode": "real",
+  "branch_parameter_names": [
+    "scene_encoder.cross_cell_goal_residual.norm.weight",
+    "scene_encoder.cross_cell_goal_residual.norm.bias",
+    "scene_encoder.cross_cell_goal_residual.query_image.weight",
+    "scene_encoder.cross_cell_goal_residual.key_image.weight",
+    "scene_encoder.cross_cell_goal_residual.value_image.weight",
+    "scene_encoder.cross_cell_goal_residual.position.0.weight",
+    "scene_encoder.cross_cell_goal_residual.position.0.bias",
+    "scene_encoder.cross_cell_goal_residual.position.2.weight",
+    "scene_encoder.cross_cell_goal_residual.output.weight"
+  ],
+  "checkpoint_written": false,
+  "cuda_memory": {
+    "allocated_bytes": 512287744,
+    "device_free_bytes": 184589156352,
+    "device_total_bytes": 191503138816,
+    "peak_allocated_bytes": 5364743680,
+    "peak_reserved_bytes": 5949620224,
+    "reserved_bytes": 5949620224
+  },
+  "data": {
+    "calibration_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "final_sessions_declared_not_accessed": 31,
+    "final_validation_accessed": false,
+    "image_getitem_calls": 0,
+    "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "train_rows": 54810,
+    "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "train_scenes": 203,
+    "train_sessions": 72,
+    "tune_rows": 1998,
+    "tune_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "tune_scenes": 37,
+    "tune_sessions": 11
+  },
+  "elapsed_seconds": 7.479560859501362,
+  "eligible_as_training_initializer": false,
+  "final_ephemeral_model_state_sha256": "1b4659f835f3c1effc9309ac0b7fd183cab78de26f3577e619f6a4336be3a9db",
+  "final_validation_accessed": false,
+  "fixed_bn_buffers_unchanged": true,
+  "initial_model_state_sha256": "fc51a847cc5532e8010454d2452ea8233e0d1e560053d2217f34580f464db1c7",
+  "logical_batch": 16,
+  "memory_policy": {
+    "allocator_fraction": 0.0657060353046741,
+    "allocator_limit_mib": 12000,
+    "device_total_bytes": 191503138816,
+    "enabled": true,
+    "initial_free_bytes": 190847057920,
+    "min_free_mib": 8192,
+    "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+  },
+  "microbatch": 2,
+  "missing_new_state_keys": [
+    "scene_encoder.cross_cell_goal_residual.destination_xy",
+    "scene_encoder.cross_cell_goal_residual.source_xy",
+    "scene_encoder.cross_cell_goal_residual.position_scale",
+    "scene_encoder.cross_cell_goal_residual.sigma_m",
+    "scene_encoder.cross_cell_goal_residual.norm.weight",
+    "scene_encoder.cross_cell_goal_residual.norm.bias",
+    "scene_encoder.cross_cell_goal_residual.query_image.weight",
+    "scene_encoder.cross_cell_goal_residual.key_image.weight",
+    "scene_encoder.cross_cell_goal_residual.value_image.weight",
+    "scene_encoder.cross_cell_goal_residual.position.0.weight",
+    "scene_encoder.cross_cell_goal_residual.position.0.bias",
+    "scene_encoder.cross_cell_goal_residual.position.2.weight",
+    "scene_encoder.cross_cell_goal_residual.output.weight"
+  ],
+  "optimizer_state_entries": 298,
+  "optimizer_state_steps": [
+    3
+  ],
+  "optimizer_tensors_finite": true,
+  "p0": {
+    "base_seed": 0,
+    "checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth",
+    "checkpoint_sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c",
+    "common_public_i0_model_state_sha256": "7ac28a8f26dc796be70ddb78edff1e1c128c64f43b5982747ba419d5d5200683",
+    "common_public_i0_sha256": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a",
+    "model_state_sha256": "f69e1c52ccd4b9908130ffe02170c0f08bff21712c634fee064517009a6c2c7d",
+    "phase": "pretrain",
+    "sidecar_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/manifest.json",
+    "sidecar_sha256": "9e5ba7ce89c0c1a9e4fe49476ff72c63b451f2658766e74e84c7336a4591fd98",
+    "step": 2000,
+    "training_git_sha": "806f0fa8c7447a7f66f59462977d87e00b492d0c",
+    "weights_only_for_p7": true
+  },
+  "planner_input_dtypes": [
+    "torch.float32"
+  ],
+  "receipts": [
+    {
+      "backbone_lr": 5.0000000000000004e-08,
+      "branch_gradients": {
+        "key": {
+          "l2": 0.0,
+          "nonzero": false
+        },
+        "output": {
+          "l2": 7.655743598937988,
+          "nonzero": true
+        },
+        "query": {
+          "l2": 0.0,
+          "nonzero": false
+        },
+        "value": {
+          "l2": 0.0,
+          "nonzero": false
+        }
+      },
+      "grad_norm_before_clip": 132.8437042236328,
+      "head_lr": 5.000000000000001e-07,
+      "lr_factor": 0.005,
+      "microbatch_losses": [
+        1.6937681436538696,
+        1.7278550863265991,
+        1.4484665393829346,
+        2.2483322620391846,
+        2.8415133953094482,
+        1.8184529542922974,
+        1.5399664640426636,
+        2.893665313720703
+      ],
+      "update": 1
+    },
+    {
+      "backbone_lr": 1.0000000000000001e-07,
+      "branch_gradients": {
+        "key": {
+          "l2": 5.1929928304161876e-05,
+          "nonzero": true
+        },
+        "output": {
+          "l2": 7.2832560539245605,
+          "nonzero": true
+        },
+        "query": {
+          "l2": 5.4972908401396126e-05,
+          "nonzero": true
+        },
+        "value": {
+          "l2": 0.0007345393532887101,
+          "nonzero": true
+        }
+      },
+      "grad_norm_before_clip": 122.12110900878906,
+      "head_lr": 1.0000000000000002e-06,
+      "lr_factor": 0.01,
+      "microbatch_losses": [
+        2.1441922187805176,
+        0.8890516757965088,
+        1.5936020612716675,
+        1.5601953268051147,
+        2.182795763015747,
+        1.699726939201355,
+        1.604097604751587,
+        1.6691620349884033
+      ],
+      "update": 2
+    },
+    {
+      "backbone_lr": 1.5000000000000002e-07,
+      "branch_gradients": {
+        "key": {
+          "l2": 0.0001603247510502115,
+          "nonzero": true
+        },
+        "output": {
+          "l2": 7.799212455749512,
+          "nonzero": true
+        },
+        "query": {
+          "l2": 0.0001593005144968629,
+          "nonzero": true
+        },
+        "value": {
+          "l2": 0.0022641660179942846,
+          "nonzero": true
+        }
+      },
+      "grad_norm_before_clip": 123.39969635009766,
+      "head_lr": 1.5e-06,
+      "lr_factor": 0.015,
+      "microbatch_losses": [
+        1.84421968460083,
+        1.4376215934753418,
+        1.5883967876434326,
+        0.9623631834983826,
+        1.1070181131362915,
+        1.5104262828826904,
+        1.8230937719345093,
+        2.230790853500366
+      ],
+      "update": 3
+    }
+  ],
+  "runtime": {
+    "actual_physical_gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+    "cuda_visible_devices": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+    "expected_physical_gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+    "gpu_used": true,
+    "logical_gpu": 0,
+    "observed_physical_gpu_uuid_raw": "1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+    "resource_contract_checked": true
+  },
+  "sample_order_sha256": "a68287fd099552eb380a003a067360eabe86ef698f2e7dfd731d1b63fd1d6c6a",
+  "sample_rows": [
+    106493,
+    83079,
+    100333,
+    17601,
+    78111,
+    59873,
+    68389,
+    35793,
+    34659,
+    55250,
+    2206,
+    92789,
+    58480,
+    11294,
+    101098,
+    53448,
+    67570,
+    104167,
+    84974,
+    50584,
+    100241,
+    102830,
+    49786,
+    104177,
+    53011,
+    100639,
+    6709,
+    83574,
+    1877,
+    33883,
+    26153,
+    7393,
+    3783,
+    96522,
+    246,
+    4119,
+    97001,
+    108497,
+    83250,
+    96384,
+    65826,
+    17167,
+    82771,
+    17381,
+    25965,
+    45235,
+    101258,
+    108087
+  ],
+  "schema_version": 1,
+  "scientific_result": false,
+  "source": {
+    "file_sha256": {
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "a3c54cfd4016bb91c1325d6799ea0cffc36c60e7363ee1a88f33536f84ac24b3",
+      "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+      "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "scripts/motiondrive_v2_training.py": "3929538dcc58c786b242680e84ca768ecb3674ec7bfbbd784a8143fd7d1aed70",
+      "scripts/run_motiondrive_v2_p7_goal_routing.py": "75b6908715a9181309ec586a18f3026518b419c922d1ec67b2a9f729d5a4c8cc",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/train_motiondrive_v2.py": "52eac2a28ba12f4724b7f18a3c2d6889241a58ec5b665ef44bd0e2f5966268d2"
+    },
+    "git_sha": "64e92694ccbe0a3c5a581e421e16a884b9c5a088",
+    "path": "/NHNHOME/data/sukim/adcl/reports/p7_goal_routing_source_manifest_20260908_ops.json",
+    "sha256": "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4"
+  },
+  "status": "completed_three_update_canary_not_training_result",
+  "tune_evaluations": 0,
+  "updates": 3
+}
