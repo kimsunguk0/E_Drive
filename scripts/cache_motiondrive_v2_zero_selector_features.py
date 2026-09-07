@@ -18,7 +18,9 @@ from pathlib import Path
 import re
 import sys
 import tempfile
+import time
 from typing import Mapping
+from types import SimpleNamespace
 
 import numpy as np
 import torch
@@ -28,10 +30,12 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from models.motiondrive_v2 import MotionDriveV2, MotionDriveV2Config
+from audit_motiondrive_v2 import construct_model
+from evaluate_motiondrive_v2_planning import planning_model_inputs
 from motiondrive_v2_data import MotionDriveDataset
 from motiondrive_v2_training import (MODEL_INPUTS, model_inputs, tensor_state_sha256,
                                      to_device, weighted_d3)
+from train_motiondrive_v2 import autocast as training_autocast
 
 P4_GIT_SHA = "86620b4ffc7e6838b49cf83b5be789eba12d8027"
 SPLIT_SHA256 = "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936"
@@ -235,12 +239,18 @@ def load_frozen_model(checkpoint, expected_sha, run_manifest, expected_manifest_
     manifest = validate_checkpoint_payload(payload, sidecar, base_seed=base_seed,
                                            checkpoint_sha=expected_sha,
                                            run_manifest_sha=expected_manifest_sha)
-    config = MotionDriveV2Config(**manifest["model_config"])
-    model = MotionDriveV2(config)
-    model.load_state_dict(payload["model"], strict=True)
-    model.requires_grad_(False).eval().to(device)
-    require(not any(parameter.requires_grad for parameter in model.parameters()),
-            "Base model must be completely frozen")
+    del payload
+    # Use the exact evaluator constructor that produced the immutable tune report.
+    # Do not alter requires_grad metadata: the 7-forward diagnostic established
+    # that doing so changes this model's numerical forward path on CUDA.
+    model = construct_model(SimpleNamespace(
+        checkpoint=str(checkpoint), config_json=None, goal_on=None, state_on=None,
+        device=str(device)))
+    parameters = list(model.parameters())
+    require(parameters and all(parameter.requires_grad for parameter in parameters),
+            "Canonical evaluator requires_grad metadata was not preserved")
+    require(getattr(model, "audit_load_metadata", {}).get("checkpoint_sha256") == expected_sha,
+            "Canonical evaluator loaded a different checkpoint")
     require(file_sha(checkpoint) == expected_sha and file_sha(run_manifest) == expected_manifest_sha,
             "Checkpoint lineage changed while loading")
     return model, manifest
@@ -291,6 +301,7 @@ def forward_with_decoded(model, inputs, autocast_context):
     decoded = captured[0]
     require(decoded.dtype == torch.float32, "xy_head pre-input must be decoded.float()")
     feature = compose_selector_feature(decoded, output["state_hat"], output["history_hat"])
+    require(not feature.requires_grad, "Selector feature must be detached inference output")
     return output, feature
 
 
@@ -321,10 +332,7 @@ def selector_targets(plan, gt):
 
 
 def _autocast(device):
-    if device.type == "cuda":
-        return torch.autocast(device_type="cuda", dtype=torch.bfloat16)
-    from contextlib import nullcontext
-    return nullcontext()
+    return training_autocast(device, "bf16")
 
 
 def _batch_ids(batch):
@@ -418,9 +426,11 @@ def compare_tune_batch(reference, offset, batch, plan, gt):
 def cache_split(model, loader, device, *, state_sha, tune_reference=None):
     features, candidates, costs, labels, targets, ids, buckets, seen_rows = [], [], [], [], [], [], [], []
     first_verified = False
-    for cpu_batch in loader:
+    started = time.monotonic()
+    total = len(loader.dataset) if hasattr(loader, "dataset") else None
+    for batch_index, cpu_batch in enumerate(loader):
         batch = to_device(cpu_batch, device)
-        inputs = model_inputs(batch, time_input="nominal")
+        inputs = planning_model_inputs(batch, time_input="nominal")
         output, feature = forward_with_decoded(model, inputs, _autocast(device))
         plan, gt = output.get("plan_abs"), batch.get("gt_plan")
         plan_valid = batch.get("plan_valid")
@@ -449,6 +459,10 @@ def cache_split(model, loader, device, *, state_sha, tune_reference=None):
         buckets.extend(diagnostic_bucket(cpu_batch["gt_plan"], cpu_batch["state_target"],
                                          cpu_batch["state_valid"]))
         seen_rows.extend(int(value) for value in cpu_batch["row"])
+        if (batch_index + 1) % 128 == 0:
+            print(json.dumps({"event": "cache_progress", "cached": len(ids), "total": total,
+                              "elapsed_seconds": time.monotonic() - started}, allow_nan=False),
+                  flush=True)
     payload = {"features": torch.cat(features), "candidate_plans": torch.cat(candidates),
                "candidate_costs": torch.cat(costs), "labels": torch.cat(labels),
                "gt_plan": torch.cat(targets), "rows": torch.tensor(seen_rows, dtype=torch.int64)}
@@ -550,10 +564,12 @@ def main(argv=None):
                         pin_memory=True, drop_last=False)
     payload, ids, buckets = cache_split(model, loader, device, state_sha=state_sha,
                                         tune_reference=tune_reference)
+    state_sha_after = tensor_state_sha256(model.state_dict())
+    require(state_sha_after == state_sha, "Canonical evaluator model state changed during caching")
     require(rows_sha256(payload["rows"].numpy()) == rows_sha256(selected_rows),
             "Observed cache row order differs")
     metadata = {
-        "schema_version": 1, "status": "completed", "purpose": "P5-Z offline diagnostic cache",
+        "schema_version": 2, "status": "completed", "purpose": "P5-Z offline diagnostic cache",
         "created_utc": datetime.now(timezone.utc).isoformat(), "split": args.split,
         "execution_scope": "ordered_first8_pilot" if args.pilot_samples else "full_fixed_split",
         "pilot_samples": args.pilot_samples, "full_cache_completed": args.pilot_samples == 0,
@@ -571,9 +587,17 @@ def main(argv=None):
                  "batch": args.batch, "cached_n": selected_n,
                  "cached_rows_sha256": rows_sha256(selected_rows),
                  "selection": "ordered first eight rows" if args.pilot_samples else "all ordered rows"},
-        "model": {"mode": "eval", "all_parameters_frozen": True, "fixed_bn": True,
+        "model": {"mode": "eval", "base_weights_frozen_by_no_update": True, "fixed_bn": True,
                   "time_input": "nominal", "precision": "bf16_encoder_fp32_planner",
-                  "state_sha256_before_after": state_sha,
+                  "construction": "scripts.audit_motiondrive_v2.construct_model",
+                  "input_adapter": "scripts.evaluate_motiondrive_v2_planning.planning_model_inputs",
+                  "parameter_requires_grad_metadata": "canonical_evaluator_preserved",
+                  "all_parameters_require_grad": all(parameter.requires_grad
+                                                      for parameter in model.parameters()),
+                  "forward_context": "torch.inference_mode",
+                  "base_optimizer_created": False, "base_backward_called": False,
+                  "feature_detached": True, "weights_updated": False,
+                  "state_sha256_before_after": {"before": state_sha, "after": state_sha_after},
                   "feature_producing_hooked_forwards_per_cached_sample": 1,
                   "extra_unhooked_forwards": {"first_batch_only": 1, "cached_or_trained_on": False},
                   "hook": "planner.xy_head forward_pre_hook; exactly decoded.float()"},
@@ -596,6 +620,8 @@ def main(argv=None):
         "diagnostic_buckets_are_selector_features": False,
         "final_val_accessed": False, "selection_performed": False,
         "production_api_modified": False, "accuracy_latency_compliance_certified": False,
+        "reference_forward_path_alignment": ("numerical path aligned to immutable evaluator; "
+                                             "not an accuracy improvement"),
     }
     payload["metadata"] = {key: value for key, value in metadata.items()
                            if key not in ("ids", "diagnostic_buckets")}

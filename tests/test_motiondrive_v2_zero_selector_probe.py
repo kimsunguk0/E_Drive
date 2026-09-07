@@ -27,7 +27,7 @@ def cache_artifact(tmp_path, split, *, base_seed=0, n=8, pilot=False, row_offset
                          torch.ones(n, dtype=torch.long))
     rows = torch.arange(row_offset, row_offset + n, dtype=torch.int64)
     metadata = {
-        "schema_version": 1, "status": "completed", "purpose": "P5-Z offline diagnostic cache",
+        "schema_version": 2, "status": "completed", "purpose": "P5-Z offline diagnostic cache",
         "split": split, "base_seed": base_seed, "checkpoint_step": 6000,
         "checkpoint_sha256": probe.P4_CHECKPOINT_SHA256[base_seed],
         "completed_run_manifest_sha256": "1" * 64, "training_git_sha": probe.P4_GIT_SHA,
@@ -44,6 +44,16 @@ def cache_artifact(tmp_path, split, *, base_seed=0, n=8, pilot=False, row_offset
         "feature_contract": {"dtype": "float32", "dimension": probe.FEATURE_DIM,
                              "components": list(probe.FEATURE_COMPONENTS),
                              "allowed": [item["name"] for item in probe.FEATURE_COMPONENTS]},
+        "model": {"mode": "eval", "base_weights_frozen_by_no_update": True,
+                  "fixed_bn": True, "time_input": "nominal",
+                  "precision": "bf16_encoder_fp32_planner",
+                  "construction": "scripts.audit_motiondrive_v2.construct_model",
+                  "input_adapter": "scripts.evaluate_motiondrive_v2_planning.planning_model_inputs",
+                  "parameter_requires_grad_metadata": "canonical_evaluator_preserved",
+                  "all_parameters_require_grad": True, "forward_context": "torch.inference_mode",
+                  "base_optimizer_created": False, "base_backward_called": False,
+                  "feature_detached": True, "weights_updated": False,
+                  "state_sha256_before_after": {"before": "5" * 64, "after": "5" * 64}},
         "candidate_order": list(probe.CANDIDATE_ORDER),
         "class_order": {"zero": probe.ZERO, "move": probe.MOVE},
         "immutable_tune_rowwise_plan_gt_d3_bitwise_verified": split == "tune",
@@ -118,11 +128,22 @@ def test_full_cache_load_recomputes_costs_labels_and_pins_hash(tmp_path, monkeyp
     assert sidecar["ids"] == manifest["ids"]
 
 
-@pytest.mark.parametrize("mutation", ["pilot", "extra_key", "feature", "zero", "cost", "label", "rows"])
+@pytest.mark.parametrize("mutation", ["pilot", "schema", "freeze", "fixed_bn", "time_input",
+                                       "precision", "extra_key", "feature", "zero", "cost",
+                                       "label", "rows"])
 def test_cache_load_fails_closed(mutation, tmp_path, monkeypatch):
     monkeypatch.setitem(probe.EXPECTED, "train", 8)
     monkeypatch.setitem(probe.EXPECTED_INVENTORY, "train", {"scenes": 2, "sessions": 3})
     cp, mp, payload, manifest = cache_artifact(tmp_path, "train", pilot=mutation == "pilot")
+    if mutation == "schema":
+        payload["metadata"]["schema_version"] = manifest["schema_version"] = 1
+    if mutation == "freeze":
+        payload["metadata"]["model"]["weights_updated"] = True
+        manifest["model"]["weights_updated"] = True
+    if mutation in ("fixed_bn", "time_input", "precision"):
+        replacement = {"fixed_bn": False, "time_input": "raw", "precision": "fp32"}[mutation]
+        payload["metadata"]["model"][mutation] = replacement
+        manifest["model"][mutation] = replacement
     if mutation == "extra_key": payload["raw_goal"] = torch.zeros(8, 2)
     if mutation == "feature": payload["features"] = payload["features"].double()
     if mutation == "zero": payload["candidate_plans"][0, 0, 0, 0] = 1.

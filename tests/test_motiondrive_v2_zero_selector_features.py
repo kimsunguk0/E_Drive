@@ -192,6 +192,30 @@ def test_runtime_receipt_records_exact_interpreter_torch_and_cuda_runtime():
     assert receipt["device"] == "cpu" and not receipt["cuda_initialized"]
 
 
+def test_loader_reuses_canonical_evaluator_and_preserves_requires_grad(tmp_path, monkeypatch):
+    checkpoint, sidecar = tmp_path / "last.pth", tmp_path / "manifest.json"
+    checkpoint.write_bytes(b"checkpoint")
+    sidecar.write_text("{}")
+    checkpoint_sha, sidecar_sha = "c" * 64, "d" * 64
+    model = FakeModel()
+    model.audit_load_metadata = {"checkpoint_sha256": checkpoint_sha}
+    constructed = []
+    monkeypatch.setattr(cache, "file_sha", lambda path: checkpoint_sha
+                        if Path(path) == checkpoint else sidecar_sha)
+    monkeypatch.setattr(cache, "read_pinned_json", lambda path, expected: {})
+    monkeypatch.setattr(cache.torch, "load", lambda *args, **kwargs: {"model": {}})
+    monkeypatch.setattr(cache, "validate_checkpoint_payload", lambda *args, **kwargs: {})
+    monkeypatch.setattr(cache, "construct_model",
+                        lambda args: constructed.append(args) or model)
+    loaded, _ = cache.load_frozen_model(checkpoint, checkpoint_sha, sidecar, sidecar_sha,
+                                        0, torch.device("cpu"))
+    assert loaded is model and constructed[0].checkpoint == str(checkpoint)
+    assert all(parameter.requires_grad for parameter in loaded.parameters())
+    source = Path(cache.__file__).read_text()
+    assert ".requires_grad_(False)" not in source
+    assert "planning_model_inputs(batch, time_input=\"nominal\")" in source
+
+
 @pytest.mark.parametrize("mutation", ["step", "seed", "phase", "config", "git", "data", "sidecar"])
 def test_checkpoint_contract_fails_closed(mutation):
     manifest = training_manifest()

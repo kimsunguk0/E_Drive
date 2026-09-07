@@ -165,7 +165,7 @@ def selector_loss(logits, labels, costs, c_scale):
 
 def _expected_cache_metadata(metadata, manifest, split, base_seed):
     require(isinstance(metadata, dict) and isinstance(manifest, dict), "Cache metadata mappings required")
-    require(metadata.get("schema_version") == 1 and metadata.get("status") == "completed"
+    require(metadata.get("schema_version") == 2 and metadata.get("status") == "completed"
             and metadata.get("purpose") == "P5-Z offline diagnostic cache", "Wrong cache schema/purpose")
     require(metadata.get("split") == split and metadata.get("base_seed") == base_seed
             and metadata.get("checkpoint_step") == P4_STEP
@@ -189,6 +189,24 @@ def _expected_cache_metadata(metadata, manifest, split, base_seed):
             and feature.get("components") == list(FEATURE_COMPONENTS)
             and feature.get("allowed") == [item["name"] for item in FEATURE_COMPONENTS],
             "Selector feature whitelist differs")
+    model = metadata.get("model", {})
+    state = model.get("state_sha256_before_after", {})
+    require(model.get("mode") == "eval"
+            and model.get("base_weights_frozen_by_no_update") is True
+            and model.get("fixed_bn") is True
+            and model.get("time_input") == "nominal"
+            and model.get("precision") == "bf16_encoder_fp32_planner"
+            and model.get("construction") == "scripts.audit_motiondrive_v2.construct_model"
+            and model.get("input_adapter") == "scripts.evaluate_motiondrive_v2_planning.planning_model_inputs"
+            and model.get("parameter_requires_grad_metadata") == "canonical_evaluator_preserved"
+            and model.get("all_parameters_require_grad") is True
+            and model.get("forward_context") == "torch.inference_mode"
+            and model.get("base_optimizer_created") is False
+            and model.get("base_backward_called") is False
+            and model.get("feature_detached") is True
+            and model.get("weights_updated") is False
+            and valid_sha(state.get("before")) and state.get("after") == state.get("before"),
+            "Cache did not preserve the canonical evaluator no-update forward contract")
     require(metadata.get("candidate_order") == list(CANDIDATE_ORDER)
             and metadata.get("class_order") == {"zero": ZERO, "move": MOVE}
             and metadata.get("final_val_accessed") is False
