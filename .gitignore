@@ -41,3 +41,7 @@ __pycache__/
 .ipynb_checkpoints/
 *.pre_gate3
 scripts/*.pre_*
+# V2 isolated local development environments (not experiment artifacts)
+.venv/
+.local_deps/
+.pytest_cache/
