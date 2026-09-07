@@ -7,6 +7,23 @@
 기존 설계/코드/체크포인트는 보존한다. 이번 작업은 조사와 설계 문서 작성이며,
 학습 실행이나 제출 변경을 뜻하지 않는다.
 
+## 최신 운영 답변 반영 — 영상 추론 status 사용
+
+2026-09-07 사용자가 전달한 추가 운영 답변을 반영한다. 이번 확인 시 서버의
+`h200_latest/OPEN_ISSUE.md` 말미에는 이 추가 답변이 없었으므로, 아래는
+**사용자 전달 내용**으로 출처를 구분한다. 기존 질의응답 원문은 변경하지 않는다.
+
+- 영상으로부터 네트워크가 직접 추론한 history/status를 planning에 사용하는 것은 허용된다.
+  영상에서 파생된 정보라는 것이 허용 근거다.
+- planner가 영상 기반 feature 없이 bbox/vectorized map 등의 출력값만 받는 구조는
+  영상과 궤적이 하나의 네트워크로 이어지지 않으므로 이번 챌린지 범위에서 제외된다.
+
+따라서 영상으로 예측한 속도/가속도/회전율/과거 움직임을 auxiliary에만 제한할
+규정상 이유는 없다. **실제 영상 feature 경로와 함께 planner 입력으로 사용한다.**
+제공 pose/status를 직접 넣는 것, goal로 후보 좌표를 생성/수정하는 것을 새로 허용한
+답변은 아니므로 해당 제한은 유지한다. 전체 모듈 공동 학습이나 전 구간 gradient
+전달 의무까지 이 답변에서 추론하지 않는다.
+
 ## 1. 결정
 
 주력은 **정렬 전 영상의 운동 대응을 보존하는 dual-stream video encoder +
@@ -159,7 +176,8 @@ selector-only CV와 전체 pipeline nested OOF는 이름과 비용을 분리한�
     ├─ Scene stream: 도로/차선/신호/선행차/교차로의 공간 특징
     │    └─ 과거 정보 사용 시 정확한 SE(3)로 정렬 가능
     └─ Motion stream: 정렬 전 이미지 쌍의 correspondence + 시간간격
-         └─ 영상 운동 latent + confidence; 제공 pose/status 입력 없음
+         └─ 영상 운동 latent + 예측 history/status + confidence
+              (제공 pose/status 입력 없음)
                          ↓
            image-only joint trajectory decoder
        [B,N,10,2] 완성 5초 후보 + 후보별 visual descriptor
@@ -179,6 +197,9 @@ legacy diagnostic으로 표시하며 새로운 end-to-end 일반화 점수에 �
 최종 모델에서 dense BEV를 필수로 두지 않는다. multi-camera image feature + 적은 수의
 scene/candidate tokens로 공간 문맥을 읽어도 된다. 다만 후보 지면점 평균만으로
 신호등·선행차·진입 우선권을 다 안다고 가정하지 않는다.
+이 scene feature는 후보 planner가 직접 읽는 실질적인 입력으로 유지한다.
+perception 결과를 bbox/map 리스트로만 저장한 뒤 그것만 입력받는 별도 planner로
+대체하지 않는다. 사용되지 않는 feature를 인자로 추가하는 형식적 연결도 하지 않는다.
 
 장면 표현이 다음 병목으로 확인되면 이미 가진 driving-pretrained backbone 및
 object/lane auxiliary supervision을 같은 encoder 예산에서 시험한다.
@@ -205,9 +226,17 @@ pitch 변화, 동적 물체, texture 부족을 반드시 평가한다. 다중 �
 
 학습 label: 과거 구간 Δtranslation/Δrotation, 정지/비정지, 영상 matching 및 uncertainty.
 제공 pose는 label 또는 scene 정렬에만 쓰고 raw-motion input/ROI 선택/normalization에
-들어가지 않는다. 추론 시 planner에는 **영상에서 얻은 latent**를 전달한다.
-scalar v/a head는 진단·보조 학습용으로 시작하며, 제공 ego status를 embedding으로
-우회 입력하는 구조를 만들지 않는다.
+들어가지 않는다. 추론 시 planner에는 **영상 feature + 영상 운동 latent +
+영상에서 예측한 명시적 history/status 및 confidence**를 전달할 수 있다.
+예를 들어 v/a/yaw-rate/과거 변위의 추정값을 임베딩해 scene feature와 결합한다.
+최신 답변에 따라 scalar v/a head를 진단·auxiliary 전용으로 제한했던 방침은 정정한다.
+이는 네트워크가 영상에서 예측한 값이며, 제공 ego status를 임베딩한 값과 다르다.
+planner를 상태 숫자만 받는 구조로 바꾸지 않고 영상 feature 경로를 유지한다.
+
+정밀도와 효과는 별도 문제다. 같은 후보/데이터/encoder 조건에서
+`scene feature only`, `scene + motion latent`,
+`scene + motion latent + predicted status`를 비교하여 명시적 상태 입력의 순효과를 본다.
+GT status 입력은 별도 표기된 진단 상한에만 사용하고 배포 체크포인트/API에서 제외한다.
 
 초기 독립 검사는 고정 calibration + 정적 지면 픽셀 matching + robust ground-motion fit으로
 실제 metric 정보량을 본다. 이는 진단 baseline이며 제출용 규칙 궤적 생성기가 아니다.
@@ -363,7 +392,10 @@ goal 선택으로 회수 가능한 multimodal uncertainty다.
   normal/shuffle/temporal shuffle/zero 및 goal-only 음성 대조를 실제 전체 모델로 검사한다.
 - 학습/추론 어디에도 test 미래 라벨 사용, test trajectory lookup, 장면 ID 외우는 lookup,
   제공 ego/status를 planner feature로 입력하는 통로를 두지 않는다.
-- 학습 라벨로 쓰는 pose, scene 정렬에 쓰는 pose, motion branch 입력을 명확히 구분한다.
+- 학습 라벨로 쓰는 pose, scene 정렬에 쓰는 pose, 영상에서 예측한 history/status를
+  명확히 구분한다. 마지막 것은 최신 답변에 따라 planner 입력으로 허용된다.
+- planner는 scene/video feature를 직접 사용한다. bbox/map 출력값만으로 planning을
+  수행하거나, 사용하지 않는 영상 feature를 명목상 연결하는 구조로 바꾸지 않는다.
 - `git SHA / config / bank+split+checkpoint SHA / label provenance / code-path / precision /
   seed / selected step / metric definition / latency script`를 한 manifest에 남긴다.
 - 실제 수상 허용 여부는 운영국의 코드 심사 사항이다. 내부 PASS를 공식 승인이라 부르지 않는다.
@@ -408,4 +440,6 @@ heldout realized 개선이 다음 GPU 투입을 결정하게 한다.
 - `scripts/train_row_selector.py:93` — scalar visual feature selector.
 - `scripts/etri_split.py:179` — 자체 sample importance weights.
 - `h200_latest/OPEN_ISSUE.md` — 최신 운영 답변; 이전 완화 답변보다 최신 제한을 우선.
+- 2026-09-07 사용자 전달 추가 운영 답변 — 영상에서 네트워크가 추론한 history/status
+  planning 사용 허용, 영상 feature 없이 bbox/vectorized map 출력만 받는 planner 제외.
 - `adcl_pre.zip`, slide 43/47 — 채점식, 외부 공개 데이터 라이선스/출처, test 학습 금지.
