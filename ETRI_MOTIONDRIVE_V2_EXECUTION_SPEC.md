@@ -3,8 +3,9 @@
 작성: 2026-09-07. 설계 기준 코드: `7f2752c` / 실험 근거: `4908989`까지.
 작업루트: `/NHNHOME/data/sukim/adcl`.
 
-현재 상태(2026-09-07 15:48 KST): **V2 구현·P0 1차 학습·3090 실측 완료, P0 보완 대조 4판 실행 중.**
-실행 소스 `92fbdc6`, 세부 근거는 `MOTIONDRIVE_V2_P0_REPAIR_PROTOCOL.md`와
+현재 상태(2026-09-07 16:45 KST): **P0 보완 완료, 공통 초기값에서 P1 G×S 4판 실행 중.**
+P1 실행 소스 `fdd309d`, 분석/진행 기록 `940253b`. 정확한 실행 조건은
+`MOTIONDRIVE_V2_P1_PROTOCOL.md`, P0 근거와 현재 상태는
 `MOTIONDRIVE_V2_PROGRESS_20260907.md`를 따른다. 아래 "아직 미실행" 문장은 최초 설계 시점 기록이며
 현재 실행 상태를 뜻하지 않는다. 사용자 장기 실행 요청으로 GPU0–3 작업을 진행한다.
 확정은 실행할 구조와 검정 순서를 뜻하며, 성능 달성이나 운영국의 개별 코드 승인이 아니다.
@@ -129,6 +130,12 @@ pixel-center convention을 반영한 image↔feature roundtrip을 검사한다.
 현재 768-pixel 변위와 과거 384-pixel 변위를 같은 수치로 비교하지 않는다.
 증강은 첫 판에서 같은 카메라의 시간쌍에 일관된 photometric 변환을 적용하고,
 기하 증강은 calibration/label 변환 검증 전까지 사용하지 않는다.
+
+P0 후속 결정: P1은 위 최초 feature-resample 구현 대신 **low_feature**를 사용한다.
+모델 안에서 현재 front 영상을384×216으로 antialias resize하여 과거4장과 함께
+동일 해상도 encoder에 통과시킨다. 현재6camera encoder는 그대로 유지한다.
+따라서 물리적 원본10장 외에 현재front의 저해상도 encoder 계산이 추가되며 전부 latency에 포함한다.
+P0 실측32.256ms는 이 추가 계산을 포함한 G0S0 값이지 최종 G1S1 실측값이 아니다.
 
 ### 4.2 Backbone / shared scene
 
