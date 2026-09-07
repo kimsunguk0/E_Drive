@@ -72,10 +72,16 @@ def regression_metrics(pred, gt):
         raise ValueError("회귀 비교 shape/finite 불일치")
     n = len(pred)
     error = pred - gt
-    return {"n_valid": n, "mae": float(np.abs(error).mean()) if n else None,
+    zero_mae = float(np.abs(gt).mean()) if n else None
+    mae = float(np.abs(error).mean()) if n else None
+    return {"n_valid": n, "mae": mae,
             "rmse": float(np.sqrt(np.mean(error ** 2))) if n else None,
             "bias_pred_minus_gt": float(error.mean()) if n else None,
-            "pearson": pearson(pred, gt)}
+            "pearson": pearson(pred, gt),
+            "gt_std_ddof0": float(gt.std(ddof=0)) if n else None,
+            "pred_std_ddof0": float(pred.std(ddof=0)) if n else None,
+            "zero_reference_mae": zero_mae,
+            "mae_relative_to_zero_reference": mae / zero_mae if zero_mae else None}
 
 
 def stop_metrics(logits, labels):
@@ -283,6 +289,7 @@ def analyze(document, conditions="normal"):
                 "state_order": [*STATE_NAMES, "stop_logit"], "state_units": [*STATE_UNITS, "logit"],
                 "mask": "각 GT 성분의 boolean valid mask를 사용. GT yaw를 포함하는 상관만 해당 yaw mask를 적용",
                 "state_errors": "원 neural 예측 - GT. 각 성분의 유효 프레임을 동일 가중; 단위별 독립 MAE/RMSE/bias/Pearson",
+                "zero_reference": "같은 유효 GT에서 고정 0 예측의 MAE를 사후 비교. 학습/임계값 선택/배포 입력 대체 없음. vx=0은 특히 약한 대조군이며 이를 이기는 것이 정밀한 상태 추정이나 planning 개선을 증명하지 않음",
                 "stop": "state[5]는 GT binary target, pred_state[5]는 raw logit. sigmoid 후 Brier; 원 logit 순위로 AUROC tie=0.5. 단일 클래스/빈 집단 AUROC=null. 분류 임계값 미사용",
                 "history_frame_offsets": [-1, -2, -5, -10], "history_components": list(HISTORY_COMPONENTS),
                 "history": "원 sin/cos 성분을 정규화하거나 각도로 바꾸지 않음. GT 미제공이므로 정확도 산출 불가",

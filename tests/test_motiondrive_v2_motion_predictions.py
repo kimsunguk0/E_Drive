@@ -73,6 +73,26 @@ def test_history_missing_gt_is_descriptive_not_accuracy():
     assert stats["raw_pred_component_mean"][0][0] == pytest.approx(2.5)
 
 
+def test_zero_reference_and_state_dispersion_do_not_fit_or_modify_predictions():
+    pred = np.array([-1., 0., 1.])
+    gt = np.array([-2., 0., 2.])
+    before = pred.copy(), gt.copy()
+    result = analysis.regression_metrics(pred, gt)
+    assert result["zero_reference_mae"] == pytest.approx(4 / 3)
+    assert result["mae_relative_to_zero_reference"] == pytest.approx(.5)
+    assert result["gt_std_ddof0"] == pytest.approx(np.sqrt(8 / 3))
+    assert result["pred_std_ddof0"] == pytest.approx(np.sqrt(2 / 3))
+    np.testing.assert_array_equal(pred, before[0])
+    np.testing.assert_array_equal(gt, before[1])
+
+
+@pytest.mark.parametrize("pred,gt", [([], []), ([0., 1.], [0., 0.])])
+def test_zero_reference_empty_or_zero_denominator_returns_null(pred, gt):
+    result = analysis.regression_metrics(pred, gt)
+    assert result["mae_relative_to_zero_reference"] is None
+    json.dumps(result, allow_nan=False)
+
+
 def test_coefficients_axes_two_b_relation_and_correlations_are_distinguished():
     stats = analysis.analyze(fixture_document())["conditions"]["normal"]["all"]
     assert stats["temporal_coefficients"]["y"]["b"]["std_ratio_pred_gt"] == pytest.approx(.5)

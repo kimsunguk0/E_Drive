@@ -68,3 +68,25 @@ S0에도 raw motion 경로는 남아 있으므로 P1의 S 효과를 전체 histo
 어느 경우든 실제 제공 goal/status를 planner query로 넣거나 v*t/a*t²로 미래를
 외부 생성하지 않는다. 추가 설계의 성공 기준은 paired D3 개선이며, 예측 곡선의
 분산 증가나 학습 loss 감소 자체를 성공으로 보지 않는다.
+
+## 20:38 KST: 공유 GPU 평가 실행 조건 고정
+
+`scripts/evaluate_motiondrive_v2_shared.py`는 기존 모델/학습기/평가기를 수정하지 않는
+P2 LAST3000 전용 보호 실행기다. 기존 evaluator의 동일 full forward를 호출한다.
+
+- 네 팔 모두 실제 학습 child/supervisor 종료0·PID 부재를 root가 먼저 확인한다.
+  실행기도 선택 팔의 원 launch·plan·완료 manifest·LAST3000·공통 초기값 SHA를 확인한다.
+- arm으로 GPU0–3/C0·C1/raw·nominal을 고정한다. batch4, bf16, tune1998,
+  normal/image_shuffle/repeat_current/reverse_history와 motion 기록은 변경하지 않는다.
+- allocator cap12000MiB, reserve8192MiB, 시작 전 free20192MiB 이상.
+  물리 GPU의 UUID 순서를 고정하고 child의 실제 CUDA UUID를 대조한다.
+- parent는5초 간격으로 여유를 관측한다. 부족/조회실패 시 자신이 만든 child만
+  종료한다. parent 예외에서도 실제 child 종료를 회수한다. 다른 PID나 process group에
+  신호를 보내지 않는다. pressure 후 rc0도 실패다. OOM 방지의 절대 보장은 아니다.
+- 네 평가의 SOURCE commit을 같게 고정하고, 평가 중 소스/계보가 바뀌면 거절한다.
+  기존 출력 파일/원 protocol/기록은 덮어쓰지 않는다. 실제 child exit와 출력 SHA를
+  확인한 후 P2 분석기에 전달한다. normal과 학습 LAST 평가의 정확 일치는 별도 확인한다.
+
+전용 CPU56 tests와 독립 리뷰가 완료됐다. 실제 평가 실행은 아직 하지 않았다.
+운동 진단에는 고정0 예측 대비 MAE와 GT/예측 분산을 추가한다. 이는 사후 설명용으로,
+GT 기준을 planner에 넣거나 검증값으로 보정식을 학습하는 것이 아니다.
