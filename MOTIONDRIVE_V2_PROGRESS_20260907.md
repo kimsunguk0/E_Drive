@@ -390,3 +390,21 @@ P2 발사0개, 해당 run/log/supervisor/launch 아티팩트 없음, 직전 HEAD
 tracked-clean을 확인했다. 별도 alpamayo coordinator1963557/children1963560–1963563은
 중지하지 않았으며 GPU4–7도 사용하지 않았다. 학습기/모델/기하데이터/원4판 계획/초기
 가중치는 보존한다. 새 HEAD의 동일성 검증 후 재감시하며, 자원 대기를 결과로 보고하지 않는다.
+
+## 19:55 KST 추가: GPU 공유 허용 및 실제 P2 발사
+
+사용자 공동사용 허용에 따라 idle-only 대기 cell273을 종료했다. GPU0–3만 유지하고
+기존 다른 프로젝트 작업에는 신호를 보내지 않았다. 기존 batch16 메모리 관찰43844MiB가
+여유 공간보다 커 microbatch2×8로 logical batch16을 유지했고, full-batch label/mask
+분모 보존을 검증했다. B200 구현 `c6845fb`, CPU276 tests PASS.
+
+GPU2의 2-step canary actual exit0, peak allocated5077/reserved5668MiB,
+최저 관측free19884MiB로 통과했다. allocator12000MiB cap와 reserve8192MiB,
+trainer microbatch 전 검사 및 supervisor5초 own-child-only 중단장치를 활성화했다.
+
+P2 실제 trainer PID: GPU0 C0T0=2008118, GPU1 C1T0=2008121,
+GPU2 C0T1=2007362, GPU3 C1T1=2008122. 공통 source c6845fb, 동일 initial tensor,
+train54810/tune1998/3000steps. 19:55 관측step80/80/190/80, 네 팔 pressure_event 없음.
+C0 초기 D3는 P1 raw/nominal값0.372043/0.372059를 정확히 재현했고,
+C1 초기 D3는0.98955/0.98963으로 악화되어 geometry 적응 결과를 기다려야 한다.
+이는 완료 결과가 아니다. `MOTIONDRIVE_V2_SHARED_GPU_20260907.md` 및 startup JSON 참조.
