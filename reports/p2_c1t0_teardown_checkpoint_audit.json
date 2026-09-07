@@ -1,0 +1,1752 @@
+{
+  "schema_version": 1,
+  "status": "체크포인트 저장 무결성 통과, 원 학습의 SIGSEGV 실패 유지",
+  "created_utc": "2026-09-07T11:59:01.603961+00:00",
+  "run": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0",
+  "checkpoint_storage_integrity_pass": true,
+  "training_process_clean_exit": false,
+  "strict_four_arm_gate": "FAIL",
+  "strict_exit_gate_error": "Actual clean OS exit not proven; completed manifest alone is insufficient",
+  "gate_relaxed": false,
+  "accuracy_replay_performed": false,
+  "model_forward_performed": false,
+  "gpu_used": false,
+  "cuda_initialized": false,
+  "additional_gt_or_dataset_arrays_read": false,
+  "signals_sent": false,
+  "source_modified_by_audit": false,
+  "os_exit": {
+    "actual_returncode": -11,
+    "termination_signal": 11,
+    "termination_signal_name": "SIGSEGV",
+    "supervisor_exit_code": 139,
+    "outcome": "child_signaled",
+    "trainer_reported_completed": true,
+    "teardown_pending_observed": true,
+    "seconds_alive_after_trainer_terminal": 234.31281311437488,
+    "pressure_event": null,
+    "received_signals": [],
+    "trainer_terminal_first_observed_at": "2026-09-07T11:42:58.724249+00:00",
+    "ended_at": "2026-09-07T11:46:58.079225+00:00"
+  },
+  "os_exit_identity_checks": {
+    "child_pid_matches_manifest": true,
+    "supervisor_pid_matches_launch": true,
+    "command_matches_launch": true,
+    "run_path_exact": true
+  },
+  "own_process_absence": {
+    "c0t0": {
+      "actual_returncode": 0,
+      "outcome": "completed_cleanly",
+      "processes": {
+        "child_pid": {
+          "pid": 2008118,
+          "proc_absent": true
+        },
+        "supervisor_pid": {
+          "pid": 2008115,
+          "proc_absent": true
+        }
+      }
+    },
+    "c1t0": {
+      "actual_returncode": -11,
+      "outcome": "child_signaled",
+      "processes": {
+        "child_pid": {
+          "pid": 2008121,
+          "proc_absent": true
+        },
+        "supervisor_pid": {
+          "pid": 2008116,
+          "proc_absent": true
+        }
+      }
+    },
+    "c0t1": {
+      "actual_returncode": 0,
+      "outcome": "completed_cleanly",
+      "processes": {
+        "child_pid": {
+          "pid": 2007362,
+          "proc_absent": true
+        },
+        "supervisor_pid": {
+          "pid": 2007361,
+          "proc_absent": true
+        }
+      }
+    },
+    "c1t1": {
+      "actual_returncode": 0,
+      "outcome": "completed_cleanly",
+      "processes": {
+        "child_pid": {
+          "pid": 2008122,
+          "proc_absent": true
+        },
+        "supervisor_pid": {
+          "pid": 2008117,
+          "proc_absent": true
+        }
+      }
+    }
+  },
+  "crash_log_markers": [
+    {
+      "line": 315,
+      "text": "[DCTN-beyless:2008121:0:2008121] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x70df765c5760)"
+    }
+  ],
+  "checkpoints": {
+    "initial": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/initial.pth",
+      "sha256": "420bd5e959f4554f1190a1c5e2ae5bdfc0101fdf5d953d718009f03ccf940af4",
+      "bytes": 106230891,
+      "step": 0,
+      "epoch": 0,
+      "model_tensor_count": 456,
+      "model_state_sha256": "e3823058037c5aa4422ff3f7900cbcf7bf40374fd04dec1d4391d1572bf8e0ba",
+      "model_elements": 26511841,
+      "zip_crc_pass": true,
+      "zip_entries": 464,
+      "torch_cpu_load_pass": true,
+      "all_checkpoint_tensors": {
+        "tensor_count": 458,
+        "total_tensor_elements": 26516913,
+        "all_cpu": true,
+        "all_finite": true,
+        "nonfinite_paths": []
+      },
+      "optimizer_state_entries": 0,
+      "optimizer_step_values": null,
+      "embedded_manifest_status": "starting",
+      "core_manifest_exact": true,
+      "best_metric_metadata": null,
+      "path_identity": {
+        "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/initial.pth",
+        "is_symlink": false,
+        "device": 633760522,
+        "inode": 144117169448371505,
+        "nlink": 1,
+        "bytes": 106230891,
+        "mtime_ns": 1788778398000000000
+      }
+    },
+    "last": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/last.pth",
+      "sha256": "a3687d87b3d4c2a55138d1ae7ebed690fcab1752894250339ad03b0ccb16df3f",
+      "bytes": 317746653,
+      "step": 3000,
+      "epoch": 1,
+      "model_tensor_count": 456,
+      "model_state_sha256": "f7a4721076ade98fefced1b42bd92103b5d9cc33841a3ae440bd71055be21c20",
+      "model_elements": 26511841,
+      "zip_crc_pass": true,
+      "zip_entries": 1331,
+      "torch_cpu_load_pass": true,
+      "all_checkpoint_tensors": {
+        "tensor_count": 1325,
+        "total_tensor_elements": 79335426,
+        "all_cpu": true,
+        "all_finite": true,
+        "nonfinite_paths": []
+      },
+      "optimizer_state_entries": 289,
+      "optimizer_step_values": [
+        3000.0
+      ],
+      "embedded_manifest_status": "running",
+      "core_manifest_exact": true,
+      "best_metric_metadata": 0.438708960745685,
+      "path_identity": {
+        "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/last.pth",
+        "is_symlink": false,
+        "device": 633760522,
+        "inode": 144117169448375200,
+        "nlink": 1,
+        "bytes": 317746653,
+        "mtime_ns": 1788781378000000000
+      }
+    },
+    "best": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/best.pth",
+      "sha256": "cba5f79642d13c44fc278586bf3269e16fd2ab1b49f9eb5d208aedf415013b7d",
+      "bytes": 317746653,
+      "step": 2250,
+      "epoch": 0,
+      "model_tensor_count": 456,
+      "model_state_sha256": "e268b29c2b3da454dcaa3664a866aa8ac6c64fb553e2084a6224de44b5a20726",
+      "model_elements": 26511841,
+      "zip_crc_pass": true,
+      "zip_entries": 1331,
+      "torch_cpu_load_pass": true,
+      "all_checkpoint_tensors": {
+        "tensor_count": 1325,
+        "total_tensor_elements": 79335426,
+        "all_cpu": true,
+        "all_finite": true,
+        "nonfinite_paths": []
+      },
+      "optimizer_state_entries": 289,
+      "optimizer_step_values": [
+        2250.0
+      ],
+      "embedded_manifest_status": "running",
+      "core_manifest_exact": true,
+      "best_metric_metadata": 0.438708960745685,
+      "path_identity": {
+        "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/best.pth",
+        "is_symlink": false,
+        "device": 633760522,
+        "inode": 144117169448374261,
+        "nlink": 1,
+        "bytes": 317746653,
+        "mtime_ns": 1788780643000000000
+      }
+    },
+    "common_p1_last": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth",
+      "sha256": "e2a0e2dc9f3320f5e9744e3e4ef0b77bf9dffffee33aed1274b610bd6faac80e",
+      "bytes": 317745565,
+      "step": 6000,
+      "epoch": 2,
+      "model_tensor_count": 456,
+      "model_state_sha256": "e3823058037c5aa4422ff3f7900cbcf7bf40374fd04dec1d4391d1572bf8e0ba",
+      "model_elements": 26511841,
+      "zip_crc_pass": true,
+      "zip_entries": 1331,
+      "torch_cpu_load_pass": true,
+      "all_checkpoint_tensors": {
+        "tensor_count": 1325,
+        "total_tensor_elements": 79335426,
+        "all_cpu": true,
+        "all_finite": true,
+        "nonfinite_paths": []
+      },
+      "optimizer_state_entries": 289,
+      "optimizer_step_values": null,
+      "embedded_manifest_status": "running",
+      "core_manifest_exact": false,
+      "best_metric_metadata": 0.36791326190243373,
+      "path_identity": {
+        "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth",
+        "is_symlink": false,
+        "device": 633760522,
+        "inode": 144117169448362992,
+        "nlink": 1,
+        "bytes": 317745565,
+        "mtime_ns": 1788770002000000000
+      }
+    }
+  },
+  "initialization": {
+    "common_file_sha256": "e2a0e2dc9f3320f5e9744e3e4ef0b77bf9dffffee33aed1274b610bd6faac80e",
+    "initial_tensor_sha256": "e3823058037c5aa4422ff3f7900cbcf7bf40374fd04dec1d4391d1572bf8e0ba",
+    "common_tensor_sha256": "e3823058037c5aa4422ff3f7900cbcf7bf40374fd04dec1d4391d1572bf8e0ba",
+    "initial_tensor_bitwise_signature_equal": true,
+    "initial_optimizer_empty": true,
+    "model_shapes_dtypes_equal_across_all_four_files": true
+  },
+  "metrics": {
+    "record_count": 314,
+    "train_log_count": 301,
+    "training_steps": [
+      1,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120,
+      130,
+      140,
+      150,
+      160,
+      170,
+      180,
+      190,
+      200,
+      210,
+      220,
+      230,
+      240,
+      250,
+      260,
+      270,
+      280,
+      290,
+      300,
+      310,
+      320,
+      330,
+      340,
+      350,
+      360,
+      370,
+      380,
+      390,
+      400,
+      410,
+      420,
+      430,
+      440,
+      450,
+      460,
+      470,
+      480,
+      490,
+      500,
+      510,
+      520,
+      530,
+      540,
+      550,
+      560,
+      570,
+      580,
+      590,
+      600,
+      610,
+      620,
+      630,
+      640,
+      650,
+      660,
+      670,
+      680,
+      690,
+      700,
+      710,
+      720,
+      730,
+      740,
+      750,
+      760,
+      770,
+      780,
+      790,
+      800,
+      810,
+      820,
+      830,
+      840,
+      850,
+      860,
+      870,
+      880,
+      890,
+      900,
+      910,
+      920,
+      930,
+      940,
+      950,
+      960,
+      970,
+      980,
+      990,
+      1000,
+      1010,
+      1020,
+      1030,
+      1040,
+      1050,
+      1060,
+      1070,
+      1080,
+      1090,
+      1100,
+      1110,
+      1120,
+      1130,
+      1140,
+      1150,
+      1160,
+      1170,
+      1180,
+      1190,
+      1200,
+      1210,
+      1220,
+      1230,
+      1240,
+      1250,
+      1260,
+      1270,
+      1280,
+      1290,
+      1300,
+      1310,
+      1320,
+      1330,
+      1340,
+      1350,
+      1360,
+      1370,
+      1380,
+      1390,
+      1400,
+      1410,
+      1420,
+      1430,
+      1440,
+      1450,
+      1460,
+      1470,
+      1480,
+      1490,
+      1500,
+      1510,
+      1520,
+      1530,
+      1540,
+      1550,
+      1560,
+      1570,
+      1580,
+      1590,
+      1600,
+      1610,
+      1620,
+      1630,
+      1640,
+      1650,
+      1660,
+      1670,
+      1680,
+      1690,
+      1700,
+      1710,
+      1720,
+      1730,
+      1740,
+      1750,
+      1760,
+      1770,
+      1780,
+      1790,
+      1800,
+      1810,
+      1820,
+      1830,
+      1840,
+      1850,
+      1860,
+      1870,
+      1880,
+      1890,
+      1900,
+      1910,
+      1920,
+      1930,
+      1940,
+      1950,
+      1960,
+      1970,
+      1980,
+      1990,
+      2000,
+      2010,
+      2020,
+      2030,
+      2040,
+      2050,
+      2060,
+      2070,
+      2080,
+      2090,
+      2100,
+      2110,
+      2120,
+      2130,
+      2140,
+      2150,
+      2160,
+      2170,
+      2180,
+      2190,
+      2200,
+      2210,
+      2220,
+      2230,
+      2240,
+      2250,
+      2260,
+      2270,
+      2280,
+      2290,
+      2300,
+      2310,
+      2320,
+      2330,
+      2340,
+      2350,
+      2360,
+      2370,
+      2380,
+      2390,
+      2400,
+      2410,
+      2420,
+      2430,
+      2440,
+      2450,
+      2460,
+      2470,
+      2480,
+      2490,
+      2500,
+      2510,
+      2520,
+      2530,
+      2540,
+      2550,
+      2560,
+      2570,
+      2580,
+      2590,
+      2600,
+      2610,
+      2620,
+      2630,
+      2640,
+      2650,
+      2660,
+      2670,
+      2680,
+      2690,
+      2700,
+      2710,
+      2720,
+      2730,
+      2740,
+      2750,
+      2760,
+      2770,
+      2780,
+      2790,
+      2800,
+      2810,
+      2820,
+      2830,
+      2840,
+      2850,
+      2860,
+      2870,
+      2880,
+      2890,
+      2900,
+      2910,
+      2920,
+      2930,
+      2940,
+      2950,
+      2960,
+      2970,
+      2980,
+      2990,
+      3000
+    ],
+    "logged_sample_order_trace_sha256": "5c20cf9199d669785931105b221d599564dbf91c3e586a25f78b15928bff6b7c",
+    "epoch_values": [
+      0
+    ],
+    "eval_steps": [
+      0,
+      250,
+      500,
+      750,
+      1000,
+      1250,
+      1500,
+      1750,
+      2000,
+      2250,
+      2500,
+      2750,
+      3000
+    ],
+    "last_logged_official_d3": 0.4433074792338026,
+    "best_logged_official_d3": 0.438708960745685,
+    "best_logged_step": 2250,
+    "reported_score_matches_root": true,
+    "all_required_log_metrics_finite": true,
+    "lr_schedule_and_301_log_steps_valid": true,
+    "score_origin": "이미 존재하는 학습 로그. 모델 재평가 또는 정확도 재현 값이 아님",
+    "all_four_logged_sample_order_traces_exact": true,
+    "trace_sha256_by_arm": {
+      "c0t0": "5c20cf9199d669785931105b221d599564dbf91c3e586a25f78b15928bff6b7c",
+      "c1t0": "5c20cf9199d669785931105b221d599564dbf91c3e586a25f78b15928bff6b7c",
+      "c0t1": "5c20cf9199d669785931105b221d599564dbf91c3e586a25f78b15928bff6b7c",
+      "c1t1": "5c20cf9199d669785931105b221d599564dbf91c3e586a25f78b15928bff6b7c"
+    }
+  },
+  "source": {
+    "head_before": "5cea6eda3fae750aa60129596903ad6275b0a10b",
+    "head_after": "5cea6eda3fae750aa60129596903ad6275b0a10b",
+    "tracked_status_before": "",
+    "tracked_status_after": "",
+    "baseline_evaluation_commit": "5cea6eda3fae750aa60129596903ad6275b0a10b",
+    "training_commit": "c6845fb33e548462f0fecead8baa1ec259d10d4a",
+    "runtime_count": 19,
+    "evaluator_source_manifest_count": 14,
+    "separately_pinned_runtime_files": [
+      "scripts/supervise_motiondrive_v2_job.py",
+      "scripts/launch_motiondrive_v2_trials.py",
+      "models/motiondrive_v2_input_contract.py",
+      "models/motiondrive_v2_inputs.py",
+      "models/motiondrive_v2_serving.py"
+    ],
+    "runtime_all_19_exact_training_and_baseline_evaluation_commits": true,
+    "runtime_files": {
+      "scripts/evaluate_motiondrive_v2_planning.py": {
+        "working_sha256": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+        "training_commit_sha256": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+        "baseline_evaluation_commit_sha256": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/evaluate_motiondrive_v2_planning.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448357237,
+          "nlink": 1,
+          "bytes": 27009,
+          "mtime_ns": 1788776806000000000
+        }
+      },
+      "scripts/motiondrive_v2_data.py": {
+        "working_sha256": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+        "training_commit_sha256": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+        "baseline_evaluation_commit_sha256": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346808,
+          "nlink": 1,
+          "bytes": 14611,
+          "mtime_ns": 1788770702000000000
+        }
+      },
+      "scripts/motiondrive_v2_training.py": {
+        "working_sha256": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+        "training_commit_sha256": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+        "baseline_evaluation_commit_sha256": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346906,
+          "nlink": 1,
+          "bytes": 14536,
+          "mtime_ns": 1788777973000000000
+        }
+      },
+      "scripts/train_motiondrive_v2.py": {
+        "working_sha256": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+        "training_commit_sha256": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+        "baseline_evaluation_commit_sha256": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/train_motiondrive_v2.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346907,
+          "nlink": 1,
+          "bytes": 33144,
+          "mtime_ns": 1788778155000000000
+        }
+      },
+      "scripts/audit_motiondrive_v2.py": {
+        "working_sha256": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+        "training_commit_sha256": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+        "baseline_evaluation_commit_sha256": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/audit_motiondrive_v2.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346908,
+          "nlink": 1,
+          "bytes": 21365,
+          "mtime_ns": 1788760307000000000
+        }
+      },
+      "scripts/export_motiondrive_v2_inference.py": {
+        "working_sha256": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+        "training_commit_sha256": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+        "baseline_evaluation_commit_sha256": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_inference.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448356744,
+          "nlink": 1,
+          "bytes": 21473,
+          "mtime_ns": 1788773470000000000
+        }
+      },
+      "scripts/sparse_scoredrive.py": {
+        "working_sha256": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+        "training_commit_sha256": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+        "baseline_evaluation_commit_sha256": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/sparse_scoredrive.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117130659436639,
+          "nlink": 1,
+          "bytes": 34008,
+          "mtime_ns": 1788704612000000000
+        }
+      },
+      "scripts/build_grouped_split_v2.py": {
+        "working_sha256": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+        "training_commit_sha256": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+        "baseline_evaluation_commit_sha256": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/build_grouped_split_v2.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346806,
+          "nlink": 1,
+          "bytes": 11501,
+          "mtime_ns": 1788760278000000000
+        }
+      },
+      "models/motiondrive_v2/__init__.py": {
+        "working_sha256": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+        "training_commit_sha256": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+        "baseline_evaluation_commit_sha256": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/__init__.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346900,
+          "nlink": 1,
+          "bytes": 167,
+          "mtime_ns": 1788759566000000000
+        }
+      },
+      "models/motiondrive_v2/config.py": {
+        "working_sha256": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+        "training_commit_sha256": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+        "baseline_evaluation_commit_sha256": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/config.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346902,
+          "nlink": 1,
+          "bytes": 2517,
+          "mtime_ns": 1788763325000000000
+        }
+      },
+      "models/motiondrive_v2/model.py": {
+        "working_sha256": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+        "training_commit_sha256": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+        "baseline_evaluation_commit_sha256": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/model.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346905,
+          "nlink": 1,
+          "bytes": 8715,
+          "mtime_ns": 1788763325000000000
+        }
+      },
+      "models/motiondrive_v2/motion_encoder.py": {
+        "working_sha256": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+        "training_commit_sha256": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+        "baseline_evaluation_commit_sha256": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/motion_encoder.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346903,
+          "nlink": 1,
+          "bytes": 6014,
+          "mtime_ns": 1788759566000000000
+        }
+      },
+      "models/motiondrive_v2/planner.py": {
+        "working_sha256": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+        "training_commit_sha256": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+        "baseline_evaluation_commit_sha256": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/planner.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346901,
+          "nlink": 1,
+          "bytes": 3094,
+          "mtime_ns": 1788763325000000000
+        }
+      },
+      "models/motiondrive_v2/scene_encoder.py": {
+        "working_sha256": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+        "training_commit_sha256": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+        "baseline_evaluation_commit_sha256": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/scene_encoder.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448346904,
+          "nlink": 1,
+          "bytes": 9487,
+          "mtime_ns": 1788759567000000000
+        }
+      },
+      "scripts/supervise_motiondrive_v2_job.py": {
+        "working_sha256": "4a970d80fe2cdc4116f6aebf4848f416478ddcbcaf57765e3d4e5788f9d87218",
+        "training_commit_sha256": "4a970d80fe2cdc4116f6aebf4848f416478ddcbcaf57765e3d4e5788f9d87218",
+        "baseline_evaluation_commit_sha256": "4a970d80fe2cdc4116f6aebf4848f416478ddcbcaf57765e3d4e5788f9d87218",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/supervise_motiondrive_v2_job.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448357311,
+          "nlink": 1,
+          "bytes": 20422,
+          "mtime_ns": 1788777974000000000
+        }
+      },
+      "scripts/launch_motiondrive_v2_trials.py": {
+        "working_sha256": "8590f231e14985eac100e13b47b00832fb4a8e5a26e05717411ace637ff10826",
+        "training_commit_sha256": "8590f231e14985eac100e13b47b00832fb4a8e5a26e05717411ace637ff10826",
+        "baseline_evaluation_commit_sha256": "8590f231e14985eac100e13b47b00832fb4a8e5a26e05717411ace637ff10826",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/launch_motiondrive_v2_trials.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448348123,
+          "nlink": 1,
+          "bytes": 22133,
+          "mtime_ns": 1788777973000000000
+        }
+      },
+      "models/motiondrive_v2_input_contract.py": {
+        "working_sha256": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+        "training_commit_sha256": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+        "baseline_evaluation_commit_sha256": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_input_contract.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448365599,
+          "nlink": 1,
+          "bytes": 2692,
+          "mtime_ns": 1788772503000000000
+        }
+      },
+      "models/motiondrive_v2_inputs.py": {
+        "working_sha256": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+        "training_commit_sha256": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+        "baseline_evaluation_commit_sha256": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_inputs.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448364281,
+          "nlink": 1,
+          "bytes": 15834,
+          "mtime_ns": 1788772503000000000
+        }
+      },
+      "models/motiondrive_v2_serving.py": {
+        "working_sha256": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+        "training_commit_sha256": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+        "baseline_evaluation_commit_sha256": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+        "all_three_exact": true,
+        "path_identity": {
+          "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_serving.py",
+          "is_symlink": false,
+          "device": 633760522,
+          "inode": 144117169448366577,
+          "nlink": 1,
+          "bytes": 10101,
+          "mtime_ns": 1788773471000000000
+        }
+      }
+    },
+    "import_aliases_same_resolved_source": {
+      "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_inference.py": {
+        "module_names": [
+          "export_motiondrive_v2_inference",
+          "scripts.export_motiondrive_v2_inference"
+        ],
+        "same_resolved_file": true,
+        "sha256": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d"
+      }
+    }
+  },
+  "file_sha256_before": {
+    "/NHNHOME/data/sukim/adcl/configs/motiondrive_v2/p2_geometry_time_shared_r1_s0.json": "3ea9c4e9e9bb72b49d8abd17553e97261e6a04dbf06b155d82794d5664f265ab",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpu2.json": "1a311114604a55f5220e35a38207b178d97fa414ebc8a343fb90221fb8d73479",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpus013.json": "46e6767dd73c1d25cb98db4faeb3f1a25139c42b0800c7c029bf84b0c7c5c737",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t0_s0.supervisor.json": "d12d5c06db9dac767fc1b337bdf146001af324c0a7cfab4ec1a2892f7ab9f16d",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t1_s0.supervisor.json": "c69d34d9c3b3d213d611481c7ff718772542d9ec987dee6d4a87d7afe768578c",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.log": "89c8c6d5d1f0ae3955d659a0f89ba2989a82354f497569ccc5853410d097f33b",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.supervisor.json": "1f48bed21453cb61c24aa257e49a847e785de14a42dbe002b6cf5d6317112818",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t1_s0.supervisor.json": "2d91a3acf919ea5ae1fba139cb49a9f4544bf58aadb92f337af3dd6664425632",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+    "/NHNHOME/data/sukim/adcl/scripts/analyze_motiondrive_v2_p2.py": "a215dff41608dc8c4e84b90ca6e19fd24ef93475f7d0e86436aab22a15f0708b",
+    "/NHNHOME/data/sukim/adcl/scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+    "/NHNHOME/data/sukim/adcl/scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "/NHNHOME/data/sukim/adcl/scripts/evaluate_motiondrive_v2_planning.py": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+    "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+    "/NHNHOME/data/sukim/adcl/scripts/launch_motiondrive_v2_trials.py": "8590f231e14985eac100e13b47b00832fb4a8e5a26e05717411ace637ff10826",
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+    "/NHNHOME/data/sukim/adcl/scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "/NHNHOME/data/sukim/adcl/scripts/supervise_motiondrive_v2_job.py": "4a970d80fe2cdc4116f6aebf4848f416478ddcbcaf57765e3d4e5788f9d87218",
+    "/NHNHOME/data/sukim/adcl/scripts/train_motiondrive_v2.py": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth": "e2a0e2dc9f3320f5e9744e3e4ef0b77bf9dffffee33aed1274b610bd6faac80e",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t0_s0/metrics.jsonl": "afbc34101bf8fa32e2b6516d9578458cebb5722dfb967f8e73a94c9321c89e51",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t1_s0/metrics.jsonl": "642299895b726c16ff84be4884d0e11fa8b3f3baba3feacd425af23ee1d7b0a7",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/best.pth": "cba5f79642d13c44fc278586bf3269e16fd2ab1b49f9eb5d208aedf415013b7d",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/initial.pth": "420bd5e959f4554f1190a1c5e2ae5bdfc0101fdf5d953d718009f03ccf940af4",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/last.pth": "a3687d87b3d4c2a55138d1ae7ebed690fcab1752894250339ad03b0ccb16df3f",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/latest_eval.json": "da4119991fcf541f51bb599a12ecc163182b60c297ea98cb19d01e37c2825f45",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/manifest.json": "c536342735abad5350d3779594f2a21a04e7f50512bf3b111cc470027137b906",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/metrics.jsonl": "540d268e7abbf434921bf56958ac66d6defe2d9ec7ac53dcf1f5470e3cf4018d",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t1_s0/metrics.jsonl": "fe122bcd9ceba20dd76c593770b1880847acc07ac1957c50dfd60856de41f358"
+  },
+  "file_sha256_after": {
+    "/NHNHOME/data/sukim/adcl/configs/motiondrive_v2/p2_geometry_time_shared_r1_s0.json": "3ea9c4e9e9bb72b49d8abd17553e97261e6a04dbf06b155d82794d5664f265ab",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpu2.json": "1a311114604a55f5220e35a38207b178d97fa414ebc8a343fb90221fb8d73479",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpus013.json": "46e6767dd73c1d25cb98db4faeb3f1a25139c42b0800c7c029bf84b0c7c5c737",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t0_s0.supervisor.json": "d12d5c06db9dac767fc1b337bdf146001af324c0a7cfab4ec1a2892f7ab9f16d",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t1_s0.supervisor.json": "c69d34d9c3b3d213d611481c7ff718772542d9ec987dee6d4a87d7afe768578c",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.log": "89c8c6d5d1f0ae3955d659a0f89ba2989a82354f497569ccc5853410d097f33b",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.supervisor.json": "1f48bed21453cb61c24aa257e49a847e785de14a42dbe002b6cf5d6317112818",
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t1_s0.supervisor.json": "2d91a3acf919ea5ae1fba139cb49a9f4544bf58aadb92f337af3dd6664425632",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_input_contract.py": "d45db0b11b5db19894ccc316eaa53039d4cae40118c45860aabf5eb8af375278",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_inputs.py": "42eb281e90049c37f8128c47e2343ef8788d7c0cf50daa72cba03a2fbd952b1a",
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_serving.py": "2139495525049e9810f5128093ef9b6338d1ee954d6ce201769b6b61386dce5d",
+    "/NHNHOME/data/sukim/adcl/scripts/analyze_motiondrive_v2_p2.py": "a215dff41608dc8c4e84b90ca6e19fd24ef93475f7d0e86436aab22a15f0708b",
+    "/NHNHOME/data/sukim/adcl/scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+    "/NHNHOME/data/sukim/adcl/scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "/NHNHOME/data/sukim/adcl/scripts/evaluate_motiondrive_v2_planning.py": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+    "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+    "/NHNHOME/data/sukim/adcl/scripts/launch_motiondrive_v2_trials.py": "8590f231e14985eac100e13b47b00832fb4a8e5a26e05717411ace637ff10826",
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+    "/NHNHOME/data/sukim/adcl/scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "/NHNHOME/data/sukim/adcl/scripts/supervise_motiondrive_v2_job.py": "4a970d80fe2cdc4116f6aebf4848f416478ddcbcaf57765e3d4e5788f9d87218",
+    "/NHNHOME/data/sukim/adcl/scripts/train_motiondrive_v2.py": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth": "e2a0e2dc9f3320f5e9744e3e4ef0b77bf9dffffee33aed1274b610bd6faac80e",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t0_s0/metrics.jsonl": "afbc34101bf8fa32e2b6516d9578458cebb5722dfb967f8e73a94c9321c89e51",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t1_s0/metrics.jsonl": "642299895b726c16ff84be4884d0e11fa8b3f3baba3feacd425af23ee1d7b0a7",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/best.pth": "cba5f79642d13c44fc278586bf3269e16fd2ab1b49f9eb5d208aedf415013b7d",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/initial.pth": "420bd5e959f4554f1190a1c5e2ae5bdfc0101fdf5d953d718009f03ccf940af4",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/last.pth": "a3687d87b3d4c2a55138d1ae7ebed690fcab1752894250339ad03b0ccb16df3f",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/latest_eval.json": "da4119991fcf541f51bb599a12ecc163182b60c297ea98cb19d01e37c2825f45",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/manifest.json": "c536342735abad5350d3779594f2a21a04e7f50512bf3b111cc470027137b906",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/metrics.jsonl": "540d268e7abbf434921bf56958ac66d6defe2d9ec7ac53dcf1f5470e3cf4018d",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t1_s0/metrics.jsonl": "fe122bcd9ceba20dd76c593770b1880847acc07ac1957c50dfd60856de41f358"
+  },
+  "file_stat_before": {
+    "/NHNHOME/data/sukim/adcl/configs/motiondrive_v2/p2_geometry_time_shared_r1_s0.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/configs/motiondrive_v2/p2_geometry_time_shared_r1_s0.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371004,
+      "nlink": 1,
+      "bytes": 6917,
+      "mtime_ns": 1788778218000000000
+    },
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448347505,
+      "nlink": 1,
+      "bytes": 180747,
+      "mtime_ns": 1788760113000000000
+    },
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448363800,
+      "nlink": 1,
+      "bytes": 531,
+      "mtime_ns": 1788770311000000000
+    },
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448363801,
+      "nlink": 1,
+      "bytes": 4237,
+      "mtime_ns": 1788770311000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpu2.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpu2.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371363,
+      "nlink": 1,
+      "bytes": 13831,
+      "mtime_ns": 1788778298000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpus013.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpus013.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371488,
+      "nlink": 1,
+      "bytes": 32430,
+      "mtime_ns": 1788778392000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t0_s0.supervisor.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t0_s0.supervisor.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375252,
+      "nlink": 1,
+      "bytes": 3590,
+      "mtime_ns": 1788781420000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t1_s0.supervisor.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t1_s0.supervisor.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375088,
+      "nlink": 1,
+      "bytes": 3452,
+      "mtime_ns": 1788781304000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.log": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.log",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371481,
+      "nlink": 1,
+      "bytes": 227110,
+      "mtime_ns": 1788781378000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.supervisor.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.supervisor.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375477,
+      "nlink": 1,
+      "bytes": 3672,
+      "mtime_ns": 1788781618000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t1_s0.supervisor.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t1_s0.supervisor.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375255,
+      "nlink": 1,
+      "bytes": 3597,
+      "mtime_ns": 1788781426000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/__init__.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/__init__.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346900,
+      "nlink": 1,
+      "bytes": 167,
+      "mtime_ns": 1788759566000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/config.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/config.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346902,
+      "nlink": 1,
+      "bytes": 2517,
+      "mtime_ns": 1788763325000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/model.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/model.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346905,
+      "nlink": 1,
+      "bytes": 8715,
+      "mtime_ns": 1788763325000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/motion_encoder.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/motion_encoder.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346903,
+      "nlink": 1,
+      "bytes": 6014,
+      "mtime_ns": 1788759566000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/planner.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/planner.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346901,
+      "nlink": 1,
+      "bytes": 3094,
+      "mtime_ns": 1788763325000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/scene_encoder.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/scene_encoder.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346904,
+      "nlink": 1,
+      "bytes": 9487,
+      "mtime_ns": 1788759567000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_input_contract.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_input_contract.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448365599,
+      "nlink": 1,
+      "bytes": 2692,
+      "mtime_ns": 1788772503000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_inputs.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_inputs.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448364281,
+      "nlink": 1,
+      "bytes": 15834,
+      "mtime_ns": 1788772503000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_serving.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_serving.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448366577,
+      "nlink": 1,
+      "bytes": 10101,
+      "mtime_ns": 1788773471000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/analyze_motiondrive_v2_p2.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/analyze_motiondrive_v2_p2.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448366871,
+      "nlink": 1,
+      "bytes": 41246,
+      "mtime_ns": 1788773766000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/audit_motiondrive_v2.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/audit_motiondrive_v2.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346908,
+      "nlink": 1,
+      "bytes": 21365,
+      "mtime_ns": 1788760307000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/build_grouped_split_v2.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/build_grouped_split_v2.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346806,
+      "nlink": 1,
+      "bytes": 11501,
+      "mtime_ns": 1788760278000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/evaluate_motiondrive_v2_planning.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/evaluate_motiondrive_v2_planning.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448357237,
+      "nlink": 1,
+      "bytes": 27009,
+      "mtime_ns": 1788776806000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_inference.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_inference.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448356744,
+      "nlink": 1,
+      "bytes": 21473,
+      "mtime_ns": 1788773470000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/launch_motiondrive_v2_trials.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/launch_motiondrive_v2_trials.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448348123,
+      "nlink": 1,
+      "bytes": 22133,
+      "mtime_ns": 1788777973000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346808,
+      "nlink": 1,
+      "bytes": 14611,
+      "mtime_ns": 1788770702000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346906,
+      "nlink": 1,
+      "bytes": 14536,
+      "mtime_ns": 1788777973000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/sparse_scoredrive.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/sparse_scoredrive.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117130659436639,
+      "nlink": 1,
+      "bytes": 34008,
+      "mtime_ns": 1788704612000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/supervise_motiondrive_v2_job.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/supervise_motiondrive_v2_job.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448357311,
+      "nlink": 1,
+      "bytes": 20422,
+      "mtime_ns": 1788777974000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/train_motiondrive_v2.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/train_motiondrive_v2.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346907,
+      "nlink": 1,
+      "bytes": 33144,
+      "mtime_ns": 1788778155000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448362992,
+      "nlink": 1,
+      "bytes": 317745565,
+      "mtime_ns": 1788770002000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t0_s0/metrics.jsonl": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t0_s0/metrics.jsonl",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371513,
+      "nlink": 1,
+      "bytes": 227065,
+      "mtime_ns": 1788781412000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t1_s0/metrics.jsonl": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t1_s0/metrics.jsonl",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371370,
+      "nlink": 1,
+      "bytes": 227041,
+      "mtime_ns": 1788781297000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/best.pth": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/best.pth",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448374261,
+      "nlink": 1,
+      "bytes": 317746653,
+      "mtime_ns": 1788780643000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/initial.pth": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/initial.pth",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371505,
+      "nlink": 1,
+      "bytes": 106230891,
+      "mtime_ns": 1788778398000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/last.pth": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/last.pth",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375200,
+      "nlink": 1,
+      "bytes": 317746653,
+      "mtime_ns": 1788781378000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/latest_eval.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/latest_eval.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375198,
+      "nlink": 1,
+      "bytes": 1339,
+      "mtime_ns": 1788781376000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/manifest.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/manifest.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375201,
+      "nlink": 1,
+      "bytes": 5140,
+      "mtime_ns": 1788781378000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/metrics.jsonl": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/metrics.jsonl",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371510,
+      "nlink": 1,
+      "bytes": 226983,
+      "mtime_ns": 1788781376000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t1_s0/metrics.jsonl": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t1_s0/metrics.jsonl",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371509,
+      "nlink": 1,
+      "bytes": 227012,
+      "mtime_ns": 1788781418000000000
+    }
+  },
+  "file_stat_after": {
+    "/NHNHOME/data/sukim/adcl/configs/motiondrive_v2/p2_geometry_time_shared_r1_s0.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/configs/motiondrive_v2/p2_geometry_time_shared_r1_s0.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371004,
+      "nlink": 1,
+      "bytes": 6917,
+      "mtime_ns": 1788778218000000000
+    },
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448347505,
+      "nlink": 1,
+      "bytes": 180747,
+      "mtime_ns": 1788760113000000000
+    },
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448363800,
+      "nlink": 1,
+      "bytes": 531,
+      "mtime_ns": 1788770311000000000
+    },
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448363801,
+      "nlink": 1,
+      "bytes": 4237,
+      "mtime_ns": 1788770311000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpu2.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpu2.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371363,
+      "nlink": 1,
+      "bytes": 13831,
+      "mtime_ns": 1788778298000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpus013.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/launch_p2_geometry_time_shared_r1_s0_gpus013.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371488,
+      "nlink": 1,
+      "bytes": 32430,
+      "mtime_ns": 1788778392000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t0_s0.supervisor.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t0_s0.supervisor.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375252,
+      "nlink": 1,
+      "bytes": 3590,
+      "mtime_ns": 1788781420000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t1_s0.supervisor.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c0t1_s0.supervisor.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375088,
+      "nlink": 1,
+      "bytes": 3452,
+      "mtime_ns": 1788781304000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.log": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.log",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371481,
+      "nlink": 1,
+      "bytes": 227110,
+      "mtime_ns": 1788781378000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.supervisor.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t0_s0.supervisor.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375477,
+      "nlink": 1,
+      "bytes": 3672,
+      "mtime_ns": 1788781618000000000
+    },
+    "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t1_s0.supervisor.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/logs/motiondrive_v2/p2_c1t1_s0.supervisor.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375255,
+      "nlink": 1,
+      "bytes": 3597,
+      "mtime_ns": 1788781426000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/__init__.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/__init__.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346900,
+      "nlink": 1,
+      "bytes": 167,
+      "mtime_ns": 1788759566000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/config.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/config.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346902,
+      "nlink": 1,
+      "bytes": 2517,
+      "mtime_ns": 1788763325000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/model.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/model.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346905,
+      "nlink": 1,
+      "bytes": 8715,
+      "mtime_ns": 1788763325000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/motion_encoder.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/motion_encoder.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346903,
+      "nlink": 1,
+      "bytes": 6014,
+      "mtime_ns": 1788759566000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/planner.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/planner.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346901,
+      "nlink": 1,
+      "bytes": 3094,
+      "mtime_ns": 1788763325000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/scene_encoder.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2/scene_encoder.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346904,
+      "nlink": 1,
+      "bytes": 9487,
+      "mtime_ns": 1788759567000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_input_contract.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_input_contract.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448365599,
+      "nlink": 1,
+      "bytes": 2692,
+      "mtime_ns": 1788772503000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_inputs.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_inputs.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448364281,
+      "nlink": 1,
+      "bytes": 15834,
+      "mtime_ns": 1788772503000000000
+    },
+    "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_serving.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_serving.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448366577,
+      "nlink": 1,
+      "bytes": 10101,
+      "mtime_ns": 1788773471000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/analyze_motiondrive_v2_p2.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/analyze_motiondrive_v2_p2.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448366871,
+      "nlink": 1,
+      "bytes": 41246,
+      "mtime_ns": 1788773766000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/audit_motiondrive_v2.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/audit_motiondrive_v2.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346908,
+      "nlink": 1,
+      "bytes": 21365,
+      "mtime_ns": 1788760307000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/build_grouped_split_v2.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/build_grouped_split_v2.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346806,
+      "nlink": 1,
+      "bytes": 11501,
+      "mtime_ns": 1788760278000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/evaluate_motiondrive_v2_planning.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/evaluate_motiondrive_v2_planning.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448357237,
+      "nlink": 1,
+      "bytes": 27009,
+      "mtime_ns": 1788776806000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_inference.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/export_motiondrive_v2_inference.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448356744,
+      "nlink": 1,
+      "bytes": 21473,
+      "mtime_ns": 1788773470000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/launch_motiondrive_v2_trials.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/launch_motiondrive_v2_trials.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448348123,
+      "nlink": 1,
+      "bytes": 22133,
+      "mtime_ns": 1788777973000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_data.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346808,
+      "nlink": 1,
+      "bytes": 14611,
+      "mtime_ns": 1788770702000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346906,
+      "nlink": 1,
+      "bytes": 14536,
+      "mtime_ns": 1788777973000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/sparse_scoredrive.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/sparse_scoredrive.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117130659436639,
+      "nlink": 1,
+      "bytes": 34008,
+      "mtime_ns": 1788704612000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/supervise_motiondrive_v2_job.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/supervise_motiondrive_v2_job.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448357311,
+      "nlink": 1,
+      "bytes": 20422,
+      "mtime_ns": 1788777974000000000
+    },
+    "/NHNHOME/data/sukim/adcl/scripts/train_motiondrive_v2.py": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/scripts/train_motiondrive_v2.py",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448346907,
+      "nlink": 1,
+      "bytes": 33144,
+      "mtime_ns": 1788778155000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p1_g1s1_s0/last.pth",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448362992,
+      "nlink": 1,
+      "bytes": 317745565,
+      "mtime_ns": 1788770002000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t0_s0/metrics.jsonl": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t0_s0/metrics.jsonl",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371513,
+      "nlink": 1,
+      "bytes": 227065,
+      "mtime_ns": 1788781412000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t1_s0/metrics.jsonl": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c0t1_s0/metrics.jsonl",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371370,
+      "nlink": 1,
+      "bytes": 227041,
+      "mtime_ns": 1788781297000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/best.pth": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/best.pth",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448374261,
+      "nlink": 1,
+      "bytes": 317746653,
+      "mtime_ns": 1788780643000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/initial.pth": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/initial.pth",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371505,
+      "nlink": 1,
+      "bytes": 106230891,
+      "mtime_ns": 1788778398000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/last.pth": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/last.pth",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375200,
+      "nlink": 1,
+      "bytes": 317746653,
+      "mtime_ns": 1788781378000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/latest_eval.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/latest_eval.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375198,
+      "nlink": 1,
+      "bytes": 1339,
+      "mtime_ns": 1788781376000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/manifest.json": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/manifest.json",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448375201,
+      "nlink": 1,
+      "bytes": 5140,
+      "mtime_ns": 1788781378000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/metrics.jsonl": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t0_s0/metrics.jsonl",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371510,
+      "nlink": 1,
+      "bytes": 226983,
+      "mtime_ns": 1788781376000000000
+    },
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t1_s0/metrics.jsonl": {
+      "resolved_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p2_c1t1_s0/metrics.jsonl",
+      "is_symlink": false,
+      "device": 633760522,
+      "inode": 144117169448371509,
+      "nlink": 1,
+      "bytes": 227012,
+      "mtime_ns": 1788781418000000000
+    }
+  },
+  "all_original_bytes_and_file_identities_unchanged": true,
+  "direct_last_best_initial_inodes_distinct": true,
+  "limitations": [
+    "ZIP CRC/CPU load/finite/원본 SHA 일치는 저장 파일의 무결성 증거이며 모델 정확도나 올바른 학습 동작의 독립 재현이 아니다.",
+    "D3는 기존 학습 로그를 읽은 값이다. 새 이미지나 GT를 조회하지 않았고 모델 forward를 수행하지 않았다.",
+    "저장 및 completed manifest 관찰 뒤 SIGSEGV 종료가 기록돼 있으나 종료 크래시의 근본 원인은 이 감사로 확정하지 않는다.",
+    "sample-order 검증은 기존 네 팔 로그의 rolling row SHA 일치 확인이다. 데이터 iterator나 실제 영상 batch를 재생하지 않았다.",
+    "원 c1t0의 종료 rc=-11 및 엄격 4팔 분석 FAIL을 유지한다. 유효한 체크포인트 파일이 종료 실패를 무효화하지 않는다.",
+    "학습 종료 후 root가 새 평가 wrapper를 별도 변경하는 것은 원 학습 소스 오염과 다르다. 이 감사는 원본 runtime19 및 체크포인트 파일의 실제 SHA를 비교한다."
+  ],
+  "execution": {
+    "python_executable": "/usr/bin/python",
+    "python_version": "3.12.3",
+    "torch_version": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "numpy_version": "2.1.0",
+    "method": "승인된 SSH stdin Python CPU 감사; 기존 소스 수정 없이 새 보고서만 exclusive 생성"
+  }
+}

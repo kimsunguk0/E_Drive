@@ -3,6 +3,8 @@
 
 기존 학습·모델·평가 소스를 변경하지 않는다. parent는 자신이 생성한 평가
 child만 감시/중단하며, child는 allocator cap 설정 후 기존 평가 main을 호출한다.
+기본 평가는 원래 GPU0–3 매핑을 유지한다. --physical-gpu 0..5를 명시하면
+그 GPU UUID 하나만 노출하고 logical cuda:0으로 평가한다. 학습 계보는 바꾸지 않는다.
 이 CLI의 실행에는 별도 승인이 필요하다. 단위 테스트는 실제 CUDA를 사용하지 않는다.
 """
 from __future__ import annotations
@@ -88,16 +90,52 @@ def new_artifact(path, root, boundary, suffix):
     return resolved
 
 
-def evaluation_argv(root, arm, output):
+GPU_SELECTION_KEYS = ("training_gpu", "physical_gpu", "logical_device",
+                      "physical_gpu_explicit", "cuda_namespace")
+
+
+def gpu_selection(arm, physical_gpu=None):
+    require(arm in ARMS, "P2의 네 팔만 허용합니다")
+    explicit = physical_gpu is not None
+    require(not explicit or type(physical_gpu) is int and physical_gpu in range(6),
+            "평가 physical GPU는 명시적인 정수0–5만 허용합니다; GPU6/7 금지")
+    training = ARMS[arm][0]
+    return {"training_gpu": training, "physical_gpu": physical_gpu if explicit else training,
+            "logical_device": "cuda:0" if explicit else f"cuda:{training}",
+            "physical_gpu_explicit": explicit,
+            "cuda_namespace": "single_uuid" if explicit else "legacy_four_uuid"}
+
+
+def request_gpu_selection(request):
+    """Old requests retain their exact device behavior; partial new metadata fails."""
+    present = set(GPU_SELECTION_KEYS) & set(request)
+    if not present:
+        return gpu_selection(request["arm"])
+    require(present == set(GPU_SELECTION_KEYS), "평가 GPU 선택 metadata 전체가 필요합니다")
+    require(type(request["physical_gpu_explicit"]) is bool
+            and type(request["physical_gpu"]) is int and type(request["training_gpu"]) is int,
+            "GPU 선택의 명시 여부와 물리/학습 번호 타입이 잘못되었습니다")
+    expected = gpu_selection(request["arm"], request["physical_gpu"] if request["physical_gpu_explicit"] else None)
+    require(all(request[key] == expected[key] for key in GPU_SELECTION_KEYS),
+            "학습/물리/논리 GPU 또는 opt-in namespace 선언이 모순됩니다")
+    return expected
+
+
+def namespace_indices(selection):
+    return [selection["physical_gpu"]] if selection["physical_gpu_explicit"] else list(range(4))
+
+
+def evaluation_argv(root, arm, output, physical_gpu=None):
     require(arm in ARMS, "P2의 네 팔만 허용합니다")
     root = Path(root)
     gpu, edition, timing = ARMS[arm]
+    device = gpu_selection(arm, physical_gpu)["logical_device"]
     return ["--checkpoint", str(root / f"work_dirs/motiondrive_v2/p2_{arm}_s0/last.pth"),
             "--data-root", str(root), "--split-manifest", str(root / "data/etri/motiondrive_v2/grouped_split_rawtime.json"),
             "--supervision-root", str(root / "data/etri/motiondrive_v2" / edition),
             "--split", "tune", "--out", str(output), "--conditions", *CONDITIONS,
             "--donor-seed", "20260907", "--seed", "0", "--frame-stride", "5", "--max-samples", "0",
-            "--batch", "4", "--workers", "4", "--device", f"cuda:{gpu}", "--precision", "bf16",
+            "--batch", "4", "--workers", "4", "--device", device, "--precision", "bf16",
             "--time-input", timing, "--include-motion-predictions"]
 
 
@@ -202,10 +240,12 @@ def source_snapshot(root, expected_git_sha):
             "launcher_helper_sha256": sha256(Path(root) / "scripts/launch_motiondrive_v2_trials.py")}
 
 
-def prepare(root, arm, output, record, launch_record, expected_checkpoint_sha256, expected_evaluation_git_sha):
+def prepare(root, arm, output, record, launch_record, expected_checkpoint_sha256, expected_evaluation_git_sha,
+            physical_gpu=None):
     root = Path(root).resolve()
     require(root == ROOT and root.is_dir() and root != Path(root.anchor), "이 wrapper의 실제 저장소 root만 허용합니다")
     require(arm in ARMS, "P2의 네 팔만 허용합니다")
+    selection = gpu_selection(arm, physical_gpu)
     pinned_sha(expected_checkpoint_sha256)
     pinned_sha(expected_evaluation_git_sha, 40)
     output = new_artifact(output, root, "reports", ".json")
@@ -215,17 +255,36 @@ def prepare(root, arm, output, record, launch_record, expected_checkpoint_sha256
     require(len({output, protocol, record, receipt}) == 4, "평가 산출물 경로가 서로 달라야 합니다")
     lineage = verify_training(root, arm, launch_record, expected_checkpoint_sha256)
     sources = source_snapshot(root, expected_evaluation_git_sha)
-    return {"schema_version": 1, "root": str(root), "arm": arm, "gpu": ARMS[arm][0],
+    return {"schema_version": 1, "root": str(root), "arm": arm, "gpu": ARMS[arm][0], **selection,
             "output": str(output), "protocol": str(protocol), "record": str(record), "child_receipt": str(receipt),
             "launch_record": str(inside(launch_record, root)), "checkpoint_sha256": expected_checkpoint_sha256,
             "expected_evaluation_git_sha": expected_evaluation_git_sha, "training": lineage, "sources": sources,
-            "evaluation_argv": evaluation_argv(root, arm, output),
+            "evaluation_argv": evaluation_argv(root, arm, output, physical_gpu),
             "memory_policy": {"allocator_limit_mib": CAP_MIB, "reserve_mib": RESERVE_MIB,
                               "preflight_free_mib": ADMISSION_MIB, "pressure_poll_seconds": PRESSURE_SECONDS,
                               "safety_grace_seconds": GRACE_SECONDS}}
 
 
+def query_evaluation_memory(gpu):
+    """Read only an allowed physical GPU. Do not broaden the old training helper."""
+    require(type(gpu) is int and gpu in range(6), "메모리 조회는 physical GPU0–5만 허용합니다")
+    if gpu < 4:
+        return query_gpu_free_memory(gpu)
+    command = ["nvidia-smi", "-i", str(gpu), "--query-gpu=index,uuid,memory.free",
+               "--format=csv,noheader,nounits"]
+    output = subprocess.run(command, check=True, capture_output=True, text=True, timeout=5).stdout
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    require(len(lines) == 1, "메모리 조회는 정확히 한 물리 GPU를 반환해야 합니다")
+    fields = [field.strip() for field in lines[0].split(",")]
+    require(len(fields) == 3 and fields[0] == str(gpu) and fields[1].startswith("GPU-"),
+            "메모리 조회 물리 GPU/UUID 형식 불일치")
+    free = float(fields[2])
+    require(math.isfinite(free) and free >= 0, "유효한 free MiB 조회가 필요합니다")
+    return {"physical_gpu": gpu, "gpu_uuid": fields[1], "free_mib": free, "command": command}
+
+
 def checked_memory(query, gpu, expected_uuid=None, admission=False):
+    require(type(gpu) is int and gpu in range(6), "메모리 조회는 physical GPU0–5만 허용합니다")
     result = query(gpu)
     require(isinstance(result, dict) and result.get("physical_gpu") == gpu
             and isinstance(result.get("gpu_uuid"), str) and result["gpu_uuid"].startswith("GPU-"),
@@ -250,7 +309,10 @@ def validate_request(request):
     require(isinstance(request, dict) and request.get("schema_version") == 1, "지원하는 평가 요청이 필요합니다")
     root, arm = Path(request.get("root", "")).resolve(), request.get("arm")
     require(root == ROOT and arm in ARMS and request.get("gpu") == ARMS[arm][0], "고정 root/arm/GPU 요청 불일치")
-    require(request.get("evaluation_argv") == evaluation_argv(root, arm, request.get("output")), "고정 평가 argv 변경은 허용하지 않습니다")
+    selection = request_gpu_selection(request)
+    physical = selection["physical_gpu"] if selection["physical_gpu_explicit"] else None
+    require(request.get("evaluation_argv") == evaluation_argv(root, arm, request.get("output"), physical),
+            "고정 평가 argv 변경은 허용하지 않습니다")
     require(request.get("memory_policy") == {"allocator_limit_mib": CAP_MIB, "reserve_mib": RESERVE_MIB,
             "preflight_free_mib": ADMISSION_MIB, "pressure_poll_seconds": PRESSURE_SECONDS,
             "safety_grace_seconds": GRACE_SECONDS}, "평가 메모리 정책 변경은 허용하지 않습니다")
@@ -265,23 +327,27 @@ def validate_request(request):
             and request["child_receipt"] == str(record.with_suffix(".child.json")), "요청의 파생 산출물 경로 불일치")
     mapping = request.get("gpu_uuid_mapping")
     if mapping is not None:
-        require(isinstance(mapping, dict) and set(mapping) == {str(i) for i in range(4)}
+        indices = namespace_indices(selection)
+        require(isinstance(mapping, dict) and set(mapping) == {str(i) for i in indices}
                 and all(isinstance(v, str) and v.startswith("GPU-") for v in mapping.values())
-                and len(set(mapping.values())) == 4, "고유한 GPU0–3 UUID 매핑이 필요합니다")
+                and len(set(mapping.values())) == len(indices), "선택 정책에 맞는 고유 GPU UUID 매핑이 필요합니다")
 
 
 def verify_child_device(request, device):
     import torch
+    selection = request_gpu_selection(request)
+    indices = namespace_indices(selection)
     mapping = request.get("gpu_uuid_mapping", {})
-    require(set(mapping) == {str(i) for i in range(4)}, "child 요청에 고정 GPU UUID 매핑이 필요합니다")
-    expected = ",".join(mapping[str(i)] for i in range(4))
+    require(set(mapping) == {str(i) for i in indices}, "child 요청에 고정 GPU UUID 매핑이 필요합니다")
+    require(str(device) == selection["logical_device"], "child logical CUDA 장치가 요청과 다릅니다")
+    expected = ",".join(mapping[str(i)] for i in indices)
     require(os.environ.get("CUDA_VISIBLE_DEVICES") == expected
             and os.environ.get("CUDA_DEVICE_ORDER") == "PCI_BUS_ID", "child CUDA 환경의 UUID 순서가 요청과 다릅니다")
-    require(torch.cuda.device_count() == 4, "child CUDA namespace에는 GPU0–3만 있어야 합니다")
+    require(torch.cuda.device_count() == len(indices), "child CUDA namespace 크기가 선택 정책과 다릅니다")
     torch.cuda.set_device(device)
     observed = str(torch.cuda.get_device_properties(device).uuid)
-    require(observed == mapping[str(request["gpu"])], "child CUDA 장치 UUID와 parent 물리 GPU가 다릅니다")
-    return {"logical_device": str(device), "physical_gpu": request["gpu"], "observed_uuid": observed,
+    require(observed == mapping[str(selection["physical_gpu"])], "child CUDA 장치 UUID와 parent 물리 GPU가 다릅니다")
+    return {**selection, "observed_uuid": observed,
             "cuda_visible_devices": expected, "cuda_device_order": "PCI_BUS_ID"}
 
 
@@ -291,7 +357,7 @@ def execute_evaluation(request, *, configure=None, evaluate=None, snapshot=None,
     import torch
     from scripts.train_motiondrive_v2 import configure_cuda_memory, cuda_memory_snapshot
     from scripts.evaluate_motiondrive_v2_planning import main as evaluation_main
-    device = torch.device(f"cuda:{request['gpu']}")
+    device = torch.device(request_gpu_selection(request)["logical_device"])
     configure = configure or configure_cuda_memory
     snapshot = snapshot or cuda_memory_snapshot
     device_record = (device_verifier or verify_child_device)(request, device)
@@ -340,8 +406,12 @@ def inspect_result(request, child_pid, request_sha):
     policy = receipt.get("memory_policy", {})
     require(policy.get("enabled") is True and policy.get("allocator_limit_mib") == CAP_MIB
             and policy.get("min_free_mib") == RESERVE_MIB, "child allocator cap 적용값 불일치")
-    require(receipt.get("device_mapping", {}).get("observed_uuid") == request["gpu_uuid_mapping"][str(request["gpu"])],
+    selection = request_gpu_selection(request)
+    require(receipt.get("device_mapping", {}).get("observed_uuid") == request["gpu_uuid_mapping"][str(selection["physical_gpu"])],
             "child의 실제 CUDA UUID 증거 불일치")
+    if selection["physical_gpu_explicit"]:
+        require(all(receipt["device_mapping"].get(key) == value for key, value in selection.items()),
+                "child의 opt-in 물리/논리 GPU 적용 증거 불일치")
     result, result_sha = read_json(request["output"])
     protocol, protocol_sha = read_json(request["protocol"])
     require(result.get("protocol_sha256") == protocol_sha and result.get("protocol") == protocol
@@ -396,14 +466,16 @@ def supervise(request, *, process_factory=None, gpu_query=None, sleeper=None, mo
               result_inspector=None, install_signal_handlers=True):
     """정확한 Popen child만 대상으로 한 5초 pressure 감시. 외부 PID 목록을 받지 않는다."""
     validate_request(request)
-    query = gpu_query or query_gpu_free_memory
+    query = gpu_query or query_evaluation_memory
     sleep, clock = sleeper or time.sleep, monotonic or time.monotonic
     popen = process_factory or subprocess.Popen
-    gpu = request["gpu"]
-    # 네 UUID를 순서대로 노출하여 cuda:N == physical GPU N을 유지. GPU4–7는 숨긴다.
-    devices = {i: checked_memory(query, i) for i in range(4)}
+    selection = request_gpu_selection(request)
+    gpu = selection["physical_gpu"]
+    indices = namespace_indices(selection)
+    # 기본 4-UUID 동작 보존. 명시적 opt-in은 선택 UUID 하나만 cuda:0으로 노출.
+    devices = {i: checked_memory(query, i) for i in indices}
     admitted = checked_memory(query, gpu, devices[gpu]["gpu_uuid"], admission=True)
-    request = {**request, "gpu_uuid_mapping": {str(i): d["gpu_uuid"] for i, d in devices.items()}}
+    request = {**request, **selection, "gpu_uuid_mapping": {str(i): d["gpu_uuid"] for i, d in devices.items()}}
     validate_request(request)
     request_sha = json_digest(request)
     record = {"schema_version": 1, "supervisor_record_id": uuid.uuid4().hex,
@@ -413,6 +485,7 @@ def supervise(request, *, process_factory=None, gpu_query=None, sleeper=None, mo
               "pressure_checks": {"count": 0, "minimum_free_mib": None, "last": None},
               "signal_scope": "이 wrapper가 생성한 정확한 Popen child만. 다른 PID/process group은 제외",
               "gpu_uuid_mapping": {str(i): d["gpu_uuid"] for i, d in devices.items()},
+              **selection,
               "memory_scope": "PyTorch allocator 제한과 시점별 여유 검사. GPU 독점 예약이나 OOM 방지 보장 아님"}
     owned = OwnedRecord(request["record"], record)
     pending, handlers = [], {}
@@ -426,7 +499,7 @@ def supervise(request, *, process_factory=None, gpu_query=None, sleeper=None, mo
     child = None
     try:
         environment = {**os.environ, "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
-                       "CUDA_VISIBLE_DEVICES": ",".join(devices[i]["gpu_uuid"] for i in range(4)),
+                       "CUDA_VISIBLE_DEVICES": ",".join(devices[i]["gpu_uuid"] for i in indices),
                        "OMP_NUM_THREADS": "4", "MKL_NUM_THREADS": "4"}
         command = [sys.executable, str(Path(request["root"]) / SCRIPT), "--child-record", request["record"],
                    "--expected-request-sha256", request_sha]
@@ -575,12 +648,15 @@ def arguments(argv=None):
     parser.add_argument("--expected-evaluation-git-sha")
     parser.add_argument("--out")
     parser.add_argument("--record")
+    parser.add_argument("--physical-gpu", type=int, choices=range(6), default=None,
+                        help="Explicit opt-in: expose this physical GPU alone as cuda:0; never GPU6/7")
     parser.add_argument("--child-record", help=argparse.SUPPRESS)
     parser.add_argument("--expected-request-sha256", help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     public = ("arm", "launch_record", "expected_checkpoint_sha256", "expected_evaluation_git_sha", "out", "record")
     if args.child_record is not None:
-        require(args.expected_request_sha256 is not None and all(getattr(args, k) is None for k in public),
+        require(args.expected_request_sha256 is not None and args.physical_gpu is None
+                and all(getattr(args, k) is None for k in public),
                 "child 모드와 parent 옵션을 섞을 수 없습니다")
     else:
         require(args.expected_request_sha256 is None and all(getattr(args, k) is not None for k in public),
@@ -593,7 +669,8 @@ def main(argv=None):
     if args.child_record is not None:
         return run_child(args.child_record, args.expected_request_sha256)
     request = prepare(args.root, args.arm, args.out, args.record, args.launch_record,
-                      args.expected_checkpoint_sha256, args.expected_evaluation_git_sha)
+                      args.expected_checkpoint_sha256, args.expected_evaluation_git_sha,
+                      physical_gpu=args.physical_gpu)
     result = supervise(request)
     print(json.dumps({"status": result["status"], "outcome": result.get("outcome"),
                       "actual_returncode": result.get("actual_returncode"), "record": args.record}, ensure_ascii=False))

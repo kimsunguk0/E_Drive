@@ -56,9 +56,10 @@ def memory(gpu, free=25000):
 def supervise_mock(eval_request, child, runtime_free=25000, runtime_error=None, result_valid=True):
     tick, calls = [0.], []
     queries = [0]
+    preflight_queries = 2 if shared.request_gpu_selection(eval_request)["physical_gpu_explicit"] else 5
     def query(gpu):
         queries[0] += 1
-        if queries[0] > 5:
+        if queries[0] > preflight_queries:
             if runtime_error is not None:
                 raise runtime_error
             return memory(gpu, runtime_free)
@@ -89,6 +90,142 @@ def test_four_arm_exact_fixed_argv(arm, gpu, edition, timing):
     assert (args.batch, args.workers, args.frame_stride, args.max_samples, args.scenes) == (4, 4, 5, 0, None)
     assert args.precision == "bf16" and args.split == "tune"
     assert args.conditions == shared.CONDITIONS and args.include_motion_predictions is True
+
+
+def opt_in_request(request, physical_gpu, arm="c0t0"):
+    result = copy.deepcopy(request)
+    result.update(arm=arm, gpu=shared.ARMS[arm][0], **shared.gpu_selection(arm, physical_gpu))
+    result["evaluation_argv"] = shared.evaluation_argv(result["root"], arm, result["output"], physical_gpu)
+    result["gpu_uuid_mapping"] = {str(physical_gpu): f"GPU-synthetic-{physical_gpu}"}
+    return result
+
+
+@pytest.mark.parametrize("arm,physical", [("c1t1", 4), ("c0t1", 5), ("c0t0", 4), ("c0t0", 5)])
+def test_explicit_physical_gpu_queries_only_selected_and_exposes_one_uuid(eval_request, arm, physical):
+    request = opt_in_request(eval_request, physical, arm)
+    shared.validate_request(request)
+    queried, spawned = [], []
+    child = FakeChild([None, 0])
+    def query(gpu):
+        queried.append(gpu)
+        return memory(gpu)
+    def popen(command, **kwargs):
+        spawned.append((command, kwargs))
+        return child
+    result = shared.supervise(request, gpu_query=query, process_factory=popen, sleeper=lambda _: None,
+        result_inspector=lambda *_: {}, install_signal_handlers=False)
+    assert queried == [physical, physical, physical]
+    assert spawned[0][1]["env"]["CUDA_VISIBLE_DEVICES"] == f"GPU-synthetic-{physical}"
+    assert result["training_gpu"] == shared.ARMS[arm][0] and result["physical_gpu"] == physical
+    assert result["logical_device"] == "cuda:0" and result["physical_gpu_explicit"] is True
+    argv = result["request"]["evaluation_argv"]
+    args = eval_arguments(argv)
+    assert args.device == "cuda:0" and args.checkpoint.endswith(f"p2_{arm}_s0/last.pth")
+    assert args.batch == 4 and args.time_input == shared.ARMS[arm][2]
+    assert result["request"]["memory_policy"] == eval_request["memory_policy"]
+    assert result["outcome"] == "completed_cleanly"
+
+
+@pytest.mark.parametrize("physical", [0, 1, 2, 3, 4, 5])
+def test_every_explicit_gpu_uses_logical_zero_and_cpu_mock_verifies_uuid(eval_request, monkeypatch, physical):
+    request = opt_in_request(eval_request, physical, "c1t1")
+    monkeypatch.setenv("CUDA_VISIBLE_DEVICES", f"GPU-synthetic-{physical}")
+    monkeypatch.setenv("CUDA_DEVICE_ORDER", "PCI_BUS_ID")
+    monkeypatch.setattr(torch.cuda, "device_count", lambda: 1)
+    seen = []
+    monkeypatch.setattr(torch.cuda, "set_device", lambda device: seen.append(str(device)))
+    monkeypatch.setattr(torch.cuda, "get_device_properties", lambda device:
+                        type("Properties", (), {"uuid": f"GPU-synthetic-{physical}"})())
+    result = shared.verify_child_device(request, torch.device("cuda:0"))
+    assert seen == ["cuda:0"] and result["physical_gpu"] == physical and result["training_gpu"] == 3
+    with pytest.raises(ValueError, match="logical"):
+        shared.verify_child_device(request, torch.device("cuda:1"))
+
+
+@pytest.mark.parametrize("physical", [6, 7, -1, True, 4., "4"])
+def test_invalid_physical_gpu_rejected_before_query_or_namespace(eval_request, physical):
+    with pytest.raises(ValueError):
+        shared.gpu_selection("c1t1", physical)
+    with pytest.raises(ValueError):
+        shared.checked_memory(lambda *_: pytest.fail("금지 GPU 조회"), physical)
+
+
+@pytest.mark.parametrize("value", ["6", "7", "-1", "4.0"])
+def test_cli_forbids_gpu6_7_and_noninteger_physical_ids(value):
+    with pytest.raises(SystemExit):
+        shared.arguments(["--physical-gpu", value])
+
+
+def test_child_cli_cannot_mix_physical_gpu_option():
+    with pytest.raises(ValueError, match="child"):
+        shared.arguments(["--child-record", "/record.json", "--expected-request-sha256", "a" * 64,
+                          "--physical-gpu", "4"])
+
+
+@pytest.mark.parametrize("field,value", [("physical_gpu", 6), ("physical_gpu_explicit", False),
+    ("logical_device", "cuda:4"), ("training_gpu", 4), ("cuda_namespace", "legacy_four_uuid")])
+def test_optin_request_cannot_silently_relabel_gpu_or_training(eval_request, field, value):
+    request = opt_in_request(eval_request, 4, "c1t1")
+    request[field] = value
+    with pytest.raises(ValueError):
+        shared.validate_request(request)
+
+
+def test_partial_selection_metadata_and_extra_visible_gpu_rejected(eval_request):
+    eval_request["physical_gpu"] = 4
+    with pytest.raises(ValueError, match="metadata"):
+        shared.validate_request(eval_request)
+    request = opt_in_request(eval_request, 4)
+    request["gpu_uuid_mapping"]["5"] = "GPU-synthetic-5"
+    with pytest.raises(ValueError, match="UUID"):
+        shared.validate_request(request)
+
+
+@pytest.mark.parametrize("physical", [4, 5])
+def test_new_physical_memory_query_is_exact_and_timed(monkeypatch, physical):
+    commands = []
+    def run(command, **kwargs):
+        commands.append((command, kwargs))
+        return type("Result", (), {"stdout": f"{physical}, GPU-synthetic-{physical}, 25000\n"})()
+    monkeypatch.setattr(shared.subprocess, "run", run)
+    result = shared.query_evaluation_memory(physical)
+    assert result["physical_gpu"] == physical and result["free_mib"] == 25000
+    assert commands[0][0][:3] == ["nvidia-smi", "-i", str(physical)]
+    assert commands[0][1]["timeout"] == 5 and commands[0][1]["check"] is True
+
+
+@pytest.mark.parametrize("stdout", ["5, GPU-other, 25000\n", "4, GPU-x, nan\n", "4, GPU-x, -1\n", "", "4, GPU-x\n"])
+def test_physical4_memory_query_malformed_or_wrong_identity_fails(monkeypatch, stdout):
+    monkeypatch.setattr(shared.subprocess, "run", lambda *_a, **_k: type("Result", (), {"stdout": stdout})())
+    with pytest.raises(ValueError):
+        shared.query_evaluation_memory(4)
+
+
+@pytest.mark.parametrize("physical", [4, 5])
+@pytest.mark.parametrize("failure", ["pressure", "query", "sigsegv"])
+def test_optin_preserves_pressure_query_and_nonzero_exit_failures(eval_request, physical, failure):
+    request = opt_in_request(eval_request, physical, "c1t1")
+    child = FakeChild([None, -11 if failure == "sigsegv" else 0])
+    result, _, _ = supervise_mock(request, child,
+        runtime_free=8191 if failure == "pressure" else 25000,
+        runtime_error=RuntimeError("조회 실패") if failure == "query" else None)
+    assert result["wrapper_exit_code"] != 0
+    if failure == "sigsegv":
+        assert result["actual_returncode"] == -11 and child.signals == []
+    else:
+        assert result["outcome"] == "memory_pressure_failed" and child.signals == [signal.SIGTERM]
+
+
+def test_physical_optin_cannot_bypass_original_arm_training_gate(eval_request, monkeypatch):
+    observed = []
+    def failed_training(root, arm, launch, expected):
+        observed.append(arm)
+        raise ValueError("원 학습 OS exit -11; 평가 금지")
+    monkeypatch.setattr(shared, "verify_training", failed_training)
+    with pytest.raises(ValueError, match="OS exit -11"):
+        shared.prepare(eval_request["root"], "c1t0", eval_request["output"], eval_request["record"],
+                       "launch.json", "a" * 64, "b" * 40, physical_gpu=4)
+    assert observed == ["c1t0"]
 
 
 @pytest.mark.parametrize("change", ["batch", "conditions", "gpu", "cap", "root", "checkpoint_sha", "receipt", "duplicate_uuid"])
