@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "purpose": "Read-only identity-joined comparison of the immutable base-0 full-tune report and the approved one-scene evaluator replay.",
+  "identity_order_equal": true,
+  "reference_scene_rows": 54,
+  "replay_rows": 54,
+  "first8_rows": [
+    14730,
+    14735,
+    14740,
+    14745,
+    14750,
+    14755,
+    14760,
+    14765
+  ],
+  "first8": {
+    "rows": 8,
+    "plan_different_elements": 0,
+    "plan_max_abs": 0.0,
+    "plan_first_mismatch": null,
+    "gt_different_elements": 0,
+    "gt_max_abs": 0.0,
+    "gt_first_mismatch": null,
+    "d3_different_rows": 0,
+    "d3_max_abs": 0.0,
+    "d3_first_mismatch": null
+  },
+  "first52_batch_matched": {
+    "rows": 52,
+    "plan_different_elements": 0,
+    "plan_max_abs": 0.0,
+    "plan_first_mismatch": null,
+    "gt_different_elements": 0,
+    "gt_max_abs": 0.0,
+    "gt_first_mismatch": null,
+    "d3_different_rows": 0,
+    "d3_max_abs": 0.0,
+    "d3_first_mismatch": null
+  },
+  "last2_batch_companion_changed": {
+    "rows": 2,
+    "plan_different_elements": 21,
+    "plan_max_abs": 0.000011444091796875,
+    "plan_first_mismatch": {
+      "row": 14990,
+      "index": [0, 0],
+      "reference": 6.408011436462402,
+      "replay": 6.4080119132995605,
+      "abs": 4.76837158203125e-7
+    },
+    "gt_different_elements": 0,
+    "gt_max_abs": 0.0,
+    "gt_first_mismatch": null,
+    "d3_different_rows": 2,
+    "d3_max_abs": 4.023313522338867e-7,
+    "d3_first_mismatch": {
+      "row": 14990,
+      "reference": 0.08465136587619781,
+      "replay": 0.08465096354484558,
+      "abs": 4.023313522338867e-7
+    },
+    "interpretation": "These two replay rows used a terminal batch of two, whereas their immutable full-report forward had different batch companions; they are intentionally separated from the batch-matched result."
+  },
+  "artifacts_sha256": {
+    "reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "reports/p5_zero_selector_reference_replay_b0_20260908_ops/normal_scene019_54.json": "4910dd2452362fa8e53d7db467986929ac389c409c5a7caa00b7a0a42ae0e002",
+    "reports/p5_zero_selector_reference_replay_b0_20260908_ops/normal_scene019_54.protocol.json": "04e38ec0b1eef2049d5f25fb2545cf3b53352bd800988bfd9274b5c65c9b58fe",
+    "reports/p5_zero_selector_reference_replay_b0_20260908_ops/execution.json": "21ef6485767af97986709b2b176dba669782699212b678e969985ece70f45734",
+    "reports/p5_zero_selector_reference_replay_b0_20260908_ops/child_receipt.json": "8467be57c39100aad05efe73f74d7b9e8b6f93bb6e62864b504b6235b68981dc",
+    "reports/p5_zero_selector_reference_replay_b0_20260908_ops/runtime_receipt.json": "778d70af13831d9cf8bd166f58b6c845b898044b98a15a9555bddc1ccb28ae54",
+    "reports/p5_zero_selector_reference_replay_b0_20260908_ops/stdout.log": "8d66a5ba64a830a5adad1c8805505026aec34a83f15a0b509c2766c7bd02bab0"
+  },
+  "cpu_analysis": {
+    "actual_returncode": 0,
+    "cuda_visible_devices": "",
+    "python": "/usr/bin/python",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "cuda_runtime": "13.1",
+    "cuda_initialized": false,
+    "new_model_forward": false,
+    "final_val_accessed": false
+  },
+  "conclusion_scope": "The original evaluator is exactly reproducible for the first 52 rows when batch composition is preserved. This does not relax the cache parity gate or identify the remaining cache-path cause."
+}

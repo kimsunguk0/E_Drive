@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "failed_closed",
+  "scope": "ordered train8 then tune8 for each immutable P4 base",
+  "source_commit": "1ef9331310be7876a665877e6cb00f65d702cf44",
+  "cache_helper_sha256": "7fdc279f9221d5bc5704e6354cb60bb2aa0aefe9bf9e9b0adf05d21a69e7124b",
+  "runtime": {
+    "python_executable": "/usr/bin/python",
+    "python_version": "3.12.3",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "cuda_runtime": "13.1",
+    "verified_directly_by_parent_and_each_child_before_forward": true
+  },
+  "failure": {
+    "message": "ValueError: Tune report and cache forward/GT are not bitwise identical",
+    "identity": {
+      "row": 14730,
+      "scenario": "20260113-102709",
+      "session": "session_019_20260113-102709",
+      "frame": 30
+    },
+    "base0": {
+      "plan_different_elements": 8,
+      "plan_max_abs": 1.9073486328125e-6,
+      "first_mismatch_index": [0, 1],
+      "first_observed": -0.06593581289052963,
+      "first_reference": -0.06593608856201172,
+      "ground_truth_bitwise_equal": true
+    },
+    "base1": {
+      "plan_different_elements": 10,
+      "plan_max_abs": 1.9073486328125e-6,
+      "first_mismatch_index": [0, 0],
+      "first_observed": 3.7551517486572266,
+      "first_reference": 3.7551519870758057,
+      "ground_truth_bitwise_equal": true
+    },
+    "strict_gate_relaxed": false,
+    "additional_retry_performed": false
+  },
+  "base_runs": [
+    {
+      "base_seed": 0,
+      "unified_ssh_handle": 79019,
+      "parent_pid": 2174068,
+      "train_child_pid": 2174266,
+      "train_actual_returncode": 0,
+      "tune_child_pid": 2174439,
+      "tune_actual_returncode": 1,
+      "parent_actual_os_returncode": 1,
+      "execution_path": "reports/p5_zero_selector_pilot_retry1_b0_20260908/execution.json",
+      "execution_sha256": "2d6920b946de2b6867b149bb13d8026f89290e2ba707d33bfec8747341e65ef1",
+      "train_cache_path": "work_dirs/motiondrive_v2/p5_zero_selector_pilot_retry1_b0_train8.pt",
+      "train_cache_sha256": "c30f548a6facd9350d7faaaedff61e1b1056444f0666c014a9e37d05b860ca28",
+      "train_manifest_sha256": "168ff0a6f096fb53b6f4b7f2981fc3f043ebe29985d61aa2409999695c4cb657",
+      "train_stdout_sha256": "9386482a5a45e94a6829958199dfe0a7f48120db885a1f3c2b669b66c3bcafa0",
+      "tune_stdout_sha256": "e8b9f7045f2fd9d7aba3f5a2ec8bd7b2a8f41771992cecd66460b6ac9b0201b9",
+      "tune_output_created": false
+    },
+    {
+      "base_seed": 1,
+      "unified_ssh_handle": 92088,
+      "parent_pid": 2174058,
+      "train_child_pid": 2174265,
+      "train_actual_returncode": 0,
+      "tune_child_pid": 2174428,
+      "tune_actual_returncode": 1,
+      "parent_actual_os_returncode": 1,
+      "execution_path": "reports/p5_zero_selector_pilot_retry1_b1_20260908/execution.json",
+      "execution_sha256": "e490a9b9b198601826c4ccf99c31cd4ea155b729c1e63479a98773b0751aca9a",
+      "train_cache_path": "work_dirs/motiondrive_v2/p5_zero_selector_pilot_retry1_b1_train8.pt",
+      "train_cache_sha256": "65ea992616d39b57ba1f08cb35e89426a571bfc54328a3140fc6cdd3b9457966",
+      "train_manifest_sha256": "680aa1a0bbb6d5e71ce53fe9af06b77b577f596338b6bfa2c73938846ed3576f",
+      "train_stdout_sha256": "d4e078d4ed85c828fcd5f08f127194f7e88b21686c9aa9a2301e5015c77a7e7d",
+      "tune_stdout_sha256": "9a765c1e9b2a39694964d0f55060d139846611777859af3d1d9a1bb9ce93afe0",
+      "tune_output_created": false
+    }
+  ],
+  "postflight": {
+    "all_recorded_parent_and_child_pids_absent": true,
+    "gpu4_gpu5_used_mib": [0, 0],
+    "gpu4_gpu5_free_mib": [182632, 182632],
+    "pressure_events": 0,
+    "train_manifests_status": "completed",
+    "train_manifests_execution_scope": "ordered_first8_pilot",
+    "train_manifests_cached_n": 8,
+    "train_manifests_inputs_before_after_equal": true,
+    "train_models_eval_frozen_fixed_bn": true
+  },
+  "interpretation": "The strict cache parity requirement remains failed. Later unmodified-evaluator replay established exact batch-matched evaluator reproducibility, localizing but not yet identifying the cache-specific cause."
+}

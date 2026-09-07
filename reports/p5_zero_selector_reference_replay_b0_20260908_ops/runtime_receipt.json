@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "status": "runtime_preflight_completed",
+  "child_pid": 2177322,
+  "python_executable": "/usr/bin/python",
+  "python_version": "3.12.3 (main, Nov  6 2025, 13:44:16) [GCC 13.3.0]",
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "cuda_runtime": "13.1",
+  "cuda_initialized_before_evaluator": false
+}

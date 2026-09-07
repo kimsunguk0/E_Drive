@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-07T17:24:04.488699+00:00",
+  "status": "completed_cpu_only_command_receipt",
+  "working_directory": "/NHNHOME/data/sukim/adcl",
+  "source_git_sha": "53e702c9aeb553ef16cd9369023078e7e46dfe40",
+  "command_argv": [
+    "/usr/bin/python",
+    "-"
+  ],
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "stdin_analysis_sha256": "e1f4a0c9b8d4c2c2880a7c4d1e69013d496eb160b2f353682e809456613ba6db",
+  "operation": "Read two immutable P4 tune1998 evaluator reports; reuse scripts.motiondrive_v2_training.weighted_d3 for exact-zero and original predictions; compute per-row oracle2=min(Dzero,Dmove) summaries; read only fut/scenario/frame arrays from the pinned ego label cache and train membership/session IDs from the pinned grouped split.",
+  "actual_returncode": 0,
+  "elapsed_seconds_reported": 0.983788663521409,
+  "model_forward_performed": false,
+  "gpu_used": false,
+  "images_opened": false,
+  "final_validation_accessed": false,
+  "threshold_tuned": false,
+  "current_stop_forced_to_zero": false,
+  "inputs_sha256": {
+    "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s1_20260908_ops/normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a"
+  },
+  "inputs_unchanged_before_after": true,
+  "output": {
+    "path": "reports/p4_zero_move_oracle_train_stationary_20260908/oracle_train_distribution.json",
+    "sha256": "65c5cd0295aa89c5a6ff5085d0ab961f95b5ecb36a23b09e5f3e6080f61b2d35"
+  }
+}

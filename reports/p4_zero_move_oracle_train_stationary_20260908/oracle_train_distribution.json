@@ -1,0 +1,798 @@
+{
+  "actual_returncode": 0,
+  "created_at": "2026-09-07T17:24:04.488699+00:00",
+  "definitions": {
+    "candidate0": "exact zero trajectory with shape [6,2]",
+    "candidate1": "immutable original P4 prediction",
+    "current_stop_forced_to_zero": false,
+    "depart": "current speed <0.2m/s and max six-future-GT displacement norm >0.2m",
+    "official_d3_implementation": "scripts.motiondrive_v2_training.weighted_d3",
+    "official_time_weights": [
+      0.3055555555555556,
+      0.3055555555555556,
+      0.1388888888888889,
+      0.1388888888888889,
+      0.05555555555555555,
+      0.05555555555555555
+    ],
+    "oracle2": "per-row min(Dzero,Dmove), theoretical ceiling only",
+    "steady": "current speed <0.2m/s and max six-future-GT displacement norm <=0.2m",
+    "threshold_tuned": false,
+    "train_stationary": "max six-future-GT displacement norm <=0.2m"
+  },
+  "elapsed_seconds": 0.983788663521409,
+  "environment": {
+    "cuda_visible_devices": "",
+    "executable": "/usr/bin/python3.12",
+    "final_validation_accessed": false,
+    "images_opened": false,
+    "model_forward_performed": false,
+    "torch_cuda_available": false
+  },
+  "input_sha256_after": {
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s1_20260908_ops/normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137",
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+    "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd"
+  },
+  "input_sha256_before": {
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s0_20260908_ops/normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "/NHNHOME/data/sukim/adcl/reports/p4_joint_full_tune_eval_s1_20260908_ops/normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137",
+    "/NHNHOME/data/sukim/adcl/scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+    "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd"
+  },
+  "inputs_unchanged": true,
+  "schema_version": 1,
+  "status": "completed_cpu_only_theoretical_oracle_and_train_label_distribution",
+  "train_label_distribution": {
+    "frame_min": 30,
+    "frame_stride": 1,
+    "n": 54810,
+    "nonstationary": 51441,
+    "scene_count": 203,
+    "session_count": 72,
+    "sessions": {
+      "session_000_20260112-105434": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_001_20260112-111049": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_002_20260112-111439": {
+        "n": 270,
+        "nonstationary": 112,
+        "stationary": 158,
+        "stationary_fraction": 0.5851851851851851
+      },
+      "session_003_20260112-111759": {
+        "n": 540,
+        "nonstationary": 534,
+        "stationary": 6,
+        "stationary_fraction": 0.011111111111111112
+      },
+      "session_004_20260112-112649": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_006_20260112-153937": {
+        "n": 810,
+        "nonstationary": 810,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_007_20260112-154227": {
+        "n": 2160,
+        "nonstationary": 1904,
+        "stationary": 256,
+        "stationary_fraction": 0.11851851851851852
+      },
+      "session_008_20260112-154937": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_009_20260112-155157": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_010_20260112-155517": {
+        "n": 810,
+        "nonstationary": 772,
+        "stationary": 38,
+        "stationary_fraction": 0.04691358024691358
+      },
+      "session_011_20260112-155757": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_014_20260112-161839": {
+        "n": 1080,
+        "nonstationary": 1080,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_015_20260112-162309": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_018_20260113-93145": {
+        "n": 540,
+        "nonstationary": 498,
+        "stationary": 42,
+        "stationary_fraction": 0.07777777777777778
+      },
+      "session_020_20260113-103509": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_022_20260114-152408": {
+        "n": 540,
+        "nonstationary": 324,
+        "stationary": 216,
+        "stationary_fraction": 0.4
+      },
+      "session_023_20260120-100949": {
+        "n": 540,
+        "nonstationary": 441,
+        "stationary": 99,
+        "stationary_fraction": 0.18333333333333332
+      },
+      "session_025_20260120-102729": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_029_20260122-142310": {
+        "n": 1620,
+        "nonstationary": 1620,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_031_20260205-03916": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_032_20260205-05627": {
+        "n": 810,
+        "nonstationary": 810,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_034_20260205-155133": {
+        "n": 1350,
+        "nonstationary": 1244,
+        "stationary": 106,
+        "stationary_fraction": 0.07851851851851852
+      },
+      "session_035_20260205-155523": {
+        "n": 1080,
+        "nonstationary": 938,
+        "stationary": 142,
+        "stationary_fraction": 0.13148148148148148
+      },
+      "session_036_20260209-142304": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_037_20260209-142600": {
+        "n": 810,
+        "nonstationary": 810,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_038_20260209-143420": {
+        "n": 540,
+        "nonstationary": 338,
+        "stationary": 202,
+        "stationary_fraction": 0.37407407407407406
+      },
+      "session_039_20260209-153200": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_041_20260209-154620": {
+        "n": 810,
+        "nonstationary": 778,
+        "stationary": 32,
+        "stationary_fraction": 0.03950617283950617
+      },
+      "session_042_20260209-155520": {
+        "n": 810,
+        "nonstationary": 665,
+        "stationary": 145,
+        "stationary_fraction": 0.17901234567901234
+      },
+      "session_043_20260209-160700": {
+        "n": 540,
+        "nonstationary": 304,
+        "stationary": 236,
+        "stationary_fraction": 0.43703703703703706
+      },
+      "session_045_20260210-100324": {
+        "n": 270,
+        "nonstationary": 238,
+        "stationary": 32,
+        "stationary_fraction": 0.11851851851851852
+      },
+      "session_047_20260210-101731": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_048_20260210-102131": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_050_20260210-142306": {
+        "n": 810,
+        "nonstationary": 810,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_051_20260210-145306": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_053_20260211-110145": {
+        "n": 810,
+        "nonstationary": 810,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_054_20260211-110730": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_056_20260211-154111": {
+        "n": 810,
+        "nonstationary": 799,
+        "stationary": 11,
+        "stationary_fraction": 0.013580246913580247
+      },
+      "session_057_20260211-155531": {
+        "n": 270,
+        "nonstationary": 205,
+        "stationary": 65,
+        "stationary_fraction": 0.24074074074074073
+      },
+      "session_058_20260211-160251": {
+        "n": 1080,
+        "nonstationary": 989,
+        "stationary": 91,
+        "stationary_fraction": 0.08425925925925926
+      },
+      "session_060_20260211-170535": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_061_20260212-95833": {
+        "n": 3240,
+        "nonstationary": 3240,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_062_20260213-103230": {
+        "n": 270,
+        "nonstationary": 205,
+        "stationary": 65,
+        "stationary_fraction": 0.24074074074074073
+      },
+      "session_063_20260213-103440": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_064_20260213-103620": {
+        "n": 540,
+        "nonstationary": 477,
+        "stationary": 63,
+        "stationary_fraction": 0.11666666666666667
+      },
+      "session_068_20260213-105012": {
+        "n": 1350,
+        "nonstationary": 1350,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_069_20260213-105432": {
+        "n": 540,
+        "nonstationary": 388,
+        "stationary": 152,
+        "stationary_fraction": 0.2814814814814815
+      },
+      "session_070_20260213-110748": {
+        "n": 5130,
+        "nonstationary": 4907,
+        "stationary": 223,
+        "stationary_fraction": 0.043469785575048735
+      },
+      "session_073_20260213-113054": {
+        "n": 270,
+        "nonstationary": 269,
+        "stationary": 1,
+        "stationary_fraction": 0.003703703703703704
+      },
+      "session_075_20260213-134438": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_077_20260213-135258": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_080_20260213-140938": {
+        "n": 1890,
+        "nonstationary": 1890,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_081_20260213-143904": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_083_20260213-144514": {
+        "n": 1080,
+        "nonstationary": 871,
+        "stationary": 209,
+        "stationary_fraction": 0.1935185185185185
+      },
+      "session_084_20260213-144904": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_086_20260213-150254": {
+        "n": 810,
+        "nonstationary": 810,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_088_20260219-92051": {
+        "n": 1350,
+        "nonstationary": 1350,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_089_20260219-92551": {
+        "n": 1350,
+        "nonstationary": 1211,
+        "stationary": 139,
+        "stationary_fraction": 0.10296296296296296
+      },
+      "session_090_20260219-102531": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_093_20260219-104214": {
+        "n": 540,
+        "nonstationary": 501,
+        "stationary": 39,
+        "stationary_fraction": 0.07222222222222222
+      },
+      "session_094_20260219-104452": {
+        "n": 1080,
+        "nonstationary": 1080,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_095_20260219-105056": {
+        "n": 810,
+        "nonstationary": 810,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_096_20260219-105524": {
+        "n": 1080,
+        "nonstationary": 755,
+        "stationary": 325,
+        "stationary_fraction": 0.30092592592592593
+      },
+      "session_098_20260220-100857": {
+        "n": 1620,
+        "nonstationary": 1620,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_100_20260220-101927": {
+        "n": 540,
+        "nonstationary": 540,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_101_20260220-103655": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_102_20260220-104817": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_104_20260220-110435": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_105_20260220-131957": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_106_20260220-132317": {
+        "n": 540,
+        "nonstationary": 264,
+        "stationary": 276,
+        "stationary_fraction": 0.5111111111111111
+      },
+      "session_109_20260220-134637": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      },
+      "session_111_20260303-142507": {
+        "n": 270,
+        "nonstationary": 270,
+        "stationary": 0,
+        "stationary_fraction": 0.0
+      }
+    },
+    "split": "train",
+    "stationary": 3369,
+    "stationary_fraction": 0.06146688560481664
+  },
+  "tune_oracle": {
+    "seed0": {
+      "groups": {
+        "all": {
+          "candidate0_exact_zero_d3": 13.168883985992025,
+          "candidate1_original_p4_d3": 0.3722216170840525,
+          "maximum_recoverable_gain_d3": 0.07203521707380972,
+          "move_wins_or_ties": 1869,
+          "n": 1998,
+          "oracle2_min_d3": 0.30018640001024277,
+          "zero_wins": 129
+        },
+        "depart_current_stop_and_future_maxnorm_gt_0_2m": {
+          "candidate0_exact_zero_d3": 0.5057931724004447,
+          "candidate1_original_p4_d3": 1.0715792054931323,
+          "maximum_recoverable_gain_d3": 0.7108940685478351,
+          "move_wins_or_ties": 7,
+          "n": 24,
+          "oracle2_min_d3": 0.3606851369452973,
+          "zero_wins": 17
+        },
+        "nonstop_current_speed_ge_0_2mps_or_invalid": {
+          "candidate0_exact_zero_d3": 14.026199535623192,
+          "candidate1_original_p4_d3": 0.3189035505592823,
+          "maximum_recoverable_gain_d3": 0.00373077970445157,
+          "move_wins_or_ties": 1862,
+          "n": 1875,
+          "oracle2_min_d3": 0.31517277085483075,
+          "zero_wins": 13
+        },
+        "steady_current_stop_and_future_maxnorm_le_0_2m": {
+          "candidate0_exact_zero_d3": 0.0016872583936389555,
+          "candidate1_original_p4_d3": 1.2124922495297712,
+          "maximum_recoverable_gain_d3": 1.2108049911361323,
+          "move_wins_or_ties": 0,
+          "n": 99,
+          "oracle2_min_d3": 0.0016872583936389555,
+          "zero_wins": 99
+        }
+      },
+      "maximum_session_recoverable_gain": {
+        "candidate0_exact_zero_d3": 4.536535030442152,
+        "candidate1_original_p4_d3": 0.8044781135740103,
+        "maximum_recoverable_gain_d3": 0.4058164233919578,
+        "move_wins_or_ties": 41,
+        "n": 54,
+        "oracle2_min_d3": 0.39866169018205255,
+        "session": "session_092_20260219-103747",
+        "zero_wins": 13
+      },
+      "sessions": {
+        "session_019_20260113-102709": {
+          "candidate0_exact_zero_d3": 13.738014856974283,
+          "candidate1_original_p4_d3": 0.29549475924836266,
+          "maximum_recoverable_gain_d3": 0.0,
+          "move_wins_or_ties": 54,
+          "n": 54,
+          "oracle2_min_d3": 0.29549475924836266,
+          "zero_wins": 0
+        },
+        "session_026_20260122-134906": {
+          "candidate0_exact_zero_d3": 13.791816232656991,
+          "candidate1_original_p4_d3": 0.28043364747254934,
+          "maximum_recoverable_gain_d3": 0.0,
+          "move_wins_or_ties": 108,
+          "n": 108,
+          "oracle2_min_d3": 0.28043364747254934,
+          "zero_wins": 0
+        },
+        "session_027_20260122-135506": {
+          "candidate0_exact_zero_d3": 12.20986838570966,
+          "candidate1_original_p4_d3": 0.2715791508496281,
+          "maximum_recoverable_gain_d3": 0.007199099699464029,
+          "move_wins_or_ties": 372,
+          "n": 378,
+          "oracle2_min_d3": 0.26438005115016405,
+          "zero_wins": 6
+        },
+        "session_040_20260209-153550": {
+          "candidate0_exact_zero_d3": 7.122613178192599,
+          "candidate1_original_p4_d3": 0.41972969720760983,
+          "maximum_recoverable_gain_d3": 0.09846657614010235,
+          "move_wins_or_ties": 90,
+          "n": 108,
+          "oracle2_min_d3": 0.3212631210675075,
+          "zero_wins": 18
+        },
+        "session_046_20260210-100504": {
+          "candidate0_exact_zero_d3": 15.778473234708159,
+          "candidate1_original_p4_d3": 0.4558192830532789,
+          "maximum_recoverable_gain_d3": 0.17188275447427898,
+          "move_wins_or_ties": 474,
+          "n": 540,
+          "oracle2_min_d3": 0.2839365285789999,
+          "zero_wins": 66
+        },
+        "session_076_20260213-134648": {
+          "candidate0_exact_zero_d3": 12.214875484583136,
+          "candidate1_original_p4_d3": 0.34259939770915626,
+          "maximum_recoverable_gain_d3": 0.032856732714006076,
+          "move_wins_or_ties": 309,
+          "n": 324,
+          "oracle2_min_d3": 0.3097426649951502,
+          "zero_wins": 15
+        },
+        "session_087_20260219-90551": {
+          "candidate0_exact_zero_d3": 11.784554697297237,
+          "candidate1_original_p4_d3": 0.4085946231390591,
+          "maximum_recoverable_gain_d3": 0.04281514938230868,
+          "move_wins_or_ties": 100,
+          "n": 108,
+          "oracle2_min_d3": 0.3657794737567504,
+          "zero_wins": 8
+        },
+        "session_092_20260219-103747": {
+          "candidate0_exact_zero_d3": 4.536535030442152,
+          "candidate1_original_p4_d3": 0.8044781135740103,
+          "maximum_recoverable_gain_d3": 0.4058164233919578,
+          "move_wins_or_ties": 41,
+          "n": 54,
+          "oracle2_min_d3": 0.39866169018205255,
+          "zero_wins": 13
+        },
+        "session_097_20260219-110038": {
+          "candidate0_exact_zero_d3": 13.704356967667003,
+          "candidate1_original_p4_d3": 0.2713668052750973,
+          "maximum_recoverable_gain_d3": 0.0,
+          "move_wins_or_ties": 162,
+          "n": 162,
+          "oracle2_min_d3": 0.2713668052750973,
+          "zero_wins": 0
+        },
+        "session_108_20260220-134317": {
+          "candidate0_exact_zero_d3": 16.874963698563754,
+          "candidate1_original_p4_d3": 0.3769860773657759,
+          "maximum_recoverable_gain_d3": 0.0,
+          "move_wins_or_ties": 108,
+          "n": 108,
+          "oracle2_min_d3": 0.3769860773657759,
+          "zero_wins": 0
+        },
+        "session_112_20260303-142827": {
+          "candidate0_exact_zero_d3": 12.170127123318336,
+          "candidate1_original_p4_d3": 0.3717951803571648,
+          "maximum_recoverable_gain_d3": 0.010561518371105194,
+          "move_wins_or_ties": 51,
+          "n": 54,
+          "oracle2_min_d3": 0.3612336619860596,
+          "zero_wins": 3
+        }
+      }
+    },
+    "seed1": {
+      "groups": {
+        "all": {
+          "candidate0_exact_zero_d3": 13.168883985992025,
+          "candidate1_original_p4_d3": 0.36695747562144343,
+          "maximum_recoverable_gain_d3": 0.06706878664064808,
+          "move_wins_or_ties": 1868,
+          "n": 1998,
+          "oracle2_min_d3": 0.29988868898079535,
+          "zero_wins": 130
+        },
+        "depart_current_stop_and_future_maxnorm_gt_0_2m": {
+          "candidate0_exact_zero_d3": 0.5057931724004447,
+          "candidate1_original_p4_d3": 1.0972995633880298,
+          "maximum_recoverable_gain_d3": 0.7394722853787243,
+          "move_wins_or_ties": 6,
+          "n": 24,
+          "oracle2_min_d3": 0.3578272780093054,
+          "zero_wins": 18
+        },
+        "nonstop_current_speed_ge_0_2mps_or_invalid": {
+          "candidate0_exact_zero_d3": 14.026199535623192,
+          "candidate1_original_p4_d3": 0.31951677520175775,
+          "maximum_recoverable_gain_d3": 0.004624664625525465,
+          "move_wins_or_ties": 1862,
+          "n": 1875,
+          "oracle2_min_d3": 0.3148921105762323,
+          "zero_wins": 13
+        },
+        "steady_current_stop_and_future_maxnorm_le_0_2m": {
+          "candidate0_exact_zero_d3": 0.0016872583936389555,
+          "candidate1_original_p4_d3": 1.0884029622932878,
+          "maximum_recoverable_gain_d3": 1.0867157038996489,
+          "move_wins_or_ties": 0,
+          "n": 99,
+          "oracle2_min_d3": 0.0016872583936389555,
+          "zero_wins": 99
+        }
+      },
+      "maximum_session_recoverable_gain": {
+        "candidate0_exact_zero_d3": 4.536535030442152,
+        "candidate1_original_p4_d3": 0.7949195028179221,
+        "maximum_recoverable_gain_d3": 0.39546909238022093,
+        "move_wins_or_ties": 41,
+        "n": 54,
+        "oracle2_min_d3": 0.3994504104377012,
+        "session": "session_092_20260219-103747",
+        "zero_wins": 13
+      },
+      "sessions": {
+        "session_019_20260113-102709": {
+          "candidate0_exact_zero_d3": 13.738014856974283,
+          "candidate1_original_p4_d3": 0.29575389264910307,
+          "maximum_recoverable_gain_d3": 0.0,
+          "move_wins_or_ties": 54,
+          "n": 54,
+          "oracle2_min_d3": 0.29575389264910307,
+          "zero_wins": 0
+        },
+        "session_026_20260122-134906": {
+          "candidate0_exact_zero_d3": 13.791816232656991,
+          "candidate1_original_p4_d3": 0.29152027062243885,
+          "maximum_recoverable_gain_d3": 0.0,
+          "move_wins_or_ties": 108,
+          "n": 108,
+          "oracle2_min_d3": 0.29152027062243885,
+          "zero_wins": 0
+        },
+        "session_027_20260122-135506": {
+          "candidate0_exact_zero_d3": 12.20986838570966,
+          "candidate1_original_p4_d3": 0.27695536743061094,
+          "maximum_recoverable_gain_d3": 0.004686450800690911,
+          "move_wins_or_ties": 371,
+          "n": 378,
+          "oracle2_min_d3": 0.27226891662992003,
+          "zero_wins": 7
+        },
+        "session_040_20260209-153550": {
+          "candidate0_exact_zero_d3": 7.122613178192599,
+          "candidate1_original_p4_d3": 0.3470269821377264,
+          "maximum_recoverable_gain_d3": 0.03815452702164529,
+          "move_wins_or_ties": 91,
+          "n": 108,
+          "oracle2_min_d3": 0.30887245511608113,
+          "zero_wins": 17
+        },
+        "session_046_20260210-100504": {
+          "candidate0_exact_zero_d3": 15.778473234708159,
+          "candidate1_original_p4_d3": 0.4483581031293229,
+          "maximum_recoverable_gain_d3": 0.16418322801419655,
+          "move_wins_or_ties": 474,
+          "n": 540,
+          "oracle2_min_d3": 0.28417487511512635,
+          "zero_wins": 66
+        },
+        "session_076_20260213-134648": {
+          "candidate0_exact_zero_d3": 12.214875484583136,
+          "candidate1_original_p4_d3": 0.34079945572640424,
+          "maximum_recoverable_gain_d3": 0.034206481918559295,
+          "move_wins_or_ties": 309,
+          "n": 324,
+          "oracle2_min_d3": 0.30659297380784495,
+          "zero_wins": 15
+        },
+        "session_087_20260219-90551": {
+          "candidate0_exact_zero_d3": 11.784554697297237,
+          "candidate1_original_p4_d3": 0.4246412055152986,
+          "maximum_recoverable_gain_d3": 0.05488161853066198,
+          "move_wins_or_ties": 99,
+          "n": 108,
+          "oracle2_min_d3": 0.3697595869846366,
+          "zero_wins": 9
+        },
+        "session_092_20260219-103747": {
+          "candidate0_exact_zero_d3": 4.536535030442152,
+          "candidate1_original_p4_d3": 0.7949195028179221,
+          "maximum_recoverable_gain_d3": 0.39546909238022093,
+          "move_wins_or_ties": 41,
+          "n": 54,
+          "oracle2_min_d3": 0.3994504104377012,
+          "zero_wins": 13
+        },
+        "session_097_20260219-110038": {
+          "candidate0_exact_zero_d3": 13.704356967667003,
+          "candidate1_original_p4_d3": 0.26458221506097435,
+          "maximum_recoverable_gain_d3": 0.0,
+          "move_wins_or_ties": 162,
+          "n": 162,
+          "oracle2_min_d3": 0.26458221506097435,
+          "zero_wins": 0
+        },
+        "session_108_20260220-134317": {
+          "candidate0_exact_zero_d3": 16.874963698563754,
+          "candidate1_original_p4_d3": 0.35955513965476443,
+          "maximum_recoverable_gain_d3": 0.0,
+          "move_wins_or_ties": 108,
+          "n": 108,
+          "oracle2_min_d3": 0.35955513965476443,
+          "zero_wins": 0
+        },
+        "session_112_20260303-142827": {
+          "candidate0_exact_zero_d3": 12.170127123318336,
+          "candidate1_original_p4_d3": 0.3804540238170712,
+          "maximum_recoverable_gain_d3": 0.020127394960986256,
+          "move_wins_or_ties": 51,
+          "n": 54,
+          "oracle2_min_d3": 0.36032662885608496,
+          "zero_wins": 3
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "completed_after_preserved_failed_serialization_attempt",
+  "gpu_replay": {
+    "unified_ssh_handle": 88602,
+    "parent_pid": 2177113,
+    "child_pid": 2177322,
+    "child_actual_returncode": 0,
+    "supervisor_exit_code": 0,
+    "actual_os_returncode": 0,
+    "output_rows": 54
+  },
+  "cpu_comparison_attempts": [
+    {
+      "attempt": 1,
+      "actual_returncode": 1,
+      "output_created": false,
+      "error": "TypeError: Object of type int64 is not JSON serializable",
+      "scope": "Read-only calculation completed until stdout JSON serialization; no GPU, model forward, or input write."
+    },
+    {
+      "attempt": 2,
+      "actual_returncode": 0,
+      "change_from_attempt_1": "Cast NumPy index and row scalars to native Python int for JSON serialization only.",
+      "calculation_changed": false,
+      "gpu_used": false,
+      "model_forward_used": false,
+      "cuda_visible_devices": "",
+      "cuda_initialized": false
+    }
+  ],
+  "source_or_input_modified": false,
+  "additional_gpu_run_performed": false
+}

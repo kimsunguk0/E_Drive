@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "status": "completed_cpu_only_fixed_coordinate_mean_diagnostic",
+  "scope": "same immutable P4 normal tune1998 rows; fixed 0.5 coordinate mean; no sweep or selection",
+  "fixed_formula": "mean_path = 0.5 * (P4_seed0_path + P4_seed1_path), coordinatewise at each of 6 waypoints in float32",
+  "metric": "scripts.motiondrive_v2_training.weighted_d3; cumulative XY L2 with weights [11,11,5,5,2,2]/36",
+  "inputs_sha256": {
+    "reports/p4_actual_results_analysis_20260908/s0_normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "reports/p4_actual_results_analysis_20260908/s1_normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137"
+  },
+  "inputs_sha256_after": {
+    "reports/p4_actual_results_analysis_20260908/s0_normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "reports/p4_actual_results_analysis_20260908/s1_normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137"
+  },
+  "receiver_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "n": 1998,
+  "sessions": 11,
+  "identity_and_gt_exact_between_seeds": true,
+  "scores": {
+    "seed0": 0.3722216170840525,
+    "seed1": 0.36695747562144343,
+    "arithmetic_mean_of_seed_scores": 0.369589546352748,
+    "fixed_mean_path": 0.3661828812666692,
+    "delta_mean_path_minus_seed0": -0.0060387358192477494,
+    "delta_mean_path_minus_seed1": -0.0007745943547742025,
+    "delta_mean_path_minus_arithmetic_mean_score": -0.0034066649737420143,
+    "zero_vs_mean_path_oracle2_lower_bound": 0.29672746432859803,
+    "oracle2_gain_vs_mean_path": 0.06945541671834311,
+    "zero_wins_strict": 128,
+    "mean_path_wins_or_ties": 1870
+  },
+  "mean_path_breakdown": {
+    "all": {"n": 1998, "d3": 0.3661828812666692},
+    "buckets": {
+      "accel": {"n": 203, "d3": 0.3959391615881121},
+      "cruise": {"n": 1486, "d3": 0.29557023736902716},
+      "decel": {"n": 186, "d3": 0.3891395252117867},
+      "stop": {"n": 123, "d3": 1.1354505898264367}
+    },
+    "excluding_session_046": {"n": 1458, "d3": 0.3351264888004225},
+    "sessions": {
+      "session_019_20260113-102709": {"n": 54, "d3": 0.2934258175254972},
+      "session_026_20260122-134906": {"n": 108, "d3": 0.2822032168990484},
+      "session_027_20260122-135506": {"n": 378, "d3": 0.27009184043558815},
+      "session_040_20260209-153550": {"n": 108, "d3": 0.3773986575090223},
+      "session_046_20260210-100504": {"n": 540, "d3": 0.4500351409255354},
+      "session_076_20260213-134648": {"n": 324, "d3": 0.3378275754505102},
+      "session_087_20260219-90551": {"n": 108, "d3": 0.41412445716559887},
+      "session_092_20260219-103747": {"n": 54, "d3": 0.7970440869254095},
+      "session_097_20260219-110038": {"n": 162, "d3": 0.2641942494859298},
+      "session_108_20260220-134317": {"n": 108, "d3": 0.36555293043730436},
+      "session_112_20260303-142827": {"n": 54, "d3": 0.36919568492858496}
+    }
+  },
+  "zero_vs_mean_oracle2_breakdown": {
+    "all": {"n": 1998, "d3": 0.29672746432859803},
+    "buckets": {
+      "accel": {"n": 203, "d3": 0.3959391615881121},
+      "cruise": {"n": 1486, "d3": 0.29436475986146027},
+      "decel": {"n": 186, "d3": 0.3572501234249562},
+      "stop": {"n": 123, "d3": 0.07001030743886372}
+    },
+    "excluding_session_046": {"n": 1458, "d3": 0.3021756129697187},
+    "sessions": {
+      "session_019_20260113-102709": {"n": 54, "d3": 0.2934258175254972},
+      "session_026_20260122-134906": {"n": 108, "d3": 0.2822032168990484},
+      "session_027_20260122-135506": {"n": 378, "d3": 0.2641846217805145},
+      "session_040_20260209-153550": {"n": 108, "d3": 0.3095391910513475},
+      "session_046_20260210-100504": {"n": 540, "d3": 0.28201746299757224},
+      "session_076_20260213-134648": {"n": 324, "d3": 0.30430184259508947},
+      "session_087_20260219-90551": {"n": 108, "d3": 0.36599203371615324},
+      "session_092_20260219-103747": {"n": 54, "d3": 0.39644173215816003},
+      "session_097_20260219-110038": {"n": 162, "d3": 0.2641942494859298},
+      "session_108_20260220-134317": {"n": 108, "d3": 0.36555293043730436},
+      "session_112_20260303-142827": {"n": 54, "d3": 0.35461309979911204}
+    }
+  },
+  "paired_session_cluster_ci95": {
+    "mean_path_minus_seed0": {
+      "delta": -0.0060387358192477494,
+      "ci95": [-0.012663680798177682, -0.002245366128530199],
+      "repeats": 10000,
+      "seed": 20260908,
+      "clusters": 11,
+      "method": "uniform resampling of sessions with replacement; all selected frames retain the frame-weighted estimator; not frame-IID"
+    },
+    "mean_path_minus_seed1": {
+      "delta": -0.0007745943547742025,
+      "ci95": [-0.005224571983723078, 0.005001718758053525],
+      "repeats": 10000,
+      "seed": 20260908,
+      "clusters": 11,
+      "method": "uniform resampling of sessions with replacement; all selected frames retain the frame-weighted estimator; not frame-IID"
+    },
+    "mean_path_minus_arithmetic_mean_score": {
+      "delta": -0.0034066649737420143,
+      "ci95": [-0.00428140759496433, -0.002641075041772985],
+      "repeats": 10000,
+      "seed": 20260908,
+      "clusters": 11,
+      "method": "uniform resampling of sessions with replacement; all selected frames retain the frame-weighted estimator; not frame-IID"
+    }
+  },
+  "environment": {
+    "pid": 2313207,
+    "executable": "/usr/bin/python3",
+    "torch": "2.8.0+cu128",
+    "cuda_visible_devices": "",
+    "cuda_available": false,
+    "cuda_initialized": false
+  },
+  "model_forward_performed": false,
+  "gpu_used": false,
+  "final_val_accessed": false,
+  "interpretation_guards": {
+    "weight_or_threshold_sweep_performed": false,
+    "deployment_ensemble_adopted": false,
+    "two_model_3090_latency_measured": false,
+    "latency_arithmetic_extrapolation_reported_as_measurement": false,
+    "oracle_uses_gt_and_is_not_deployable": true,
+    "repeated_tune_is_exploratory": true,
+    "official_submission_or_compliance_claim": false
+  }
+}

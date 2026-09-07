@@ -1,0 +1,350 @@
+{
+  "status": "preregistered_before_any_forward",
+  "schema_version": 1,
+  "created_utc": "2026-09-07T18:10:16.694516+00:00",
+  "arguments": {
+    "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0/last.pth",
+    "data_root": "/NHNHOME/data/sukim/adcl",
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+    "split": "tune",
+    "out": "/NHNHOME/data/sukim/adcl/reports/p5_zero_selector_reference_replay_b0_20260908_ops/normal_scene019_54.json",
+    "conditions": [
+      "normal"
+    ],
+    "donor_seed": 20260907,
+    "seed": 0,
+    "frame_stride": 5,
+    "max_samples": 0,
+    "scenes": [
+      "20260113-102709"
+    ],
+    "batch": 4,
+    "workers": 4,
+    "device": "cuda:0",
+    "precision": "bf16",
+    "time_input": "nominal",
+    "include_motion_predictions": true
+  },
+  "checkpoint_sha256": "3e9ae5aa6ca89f4eb9a72ba38355dfdbec4ccaa38eabbebb3526fa3019404478",
+  "checkpoint_file_identity": {
+    "device": 633760522,
+    "inode": 144117169448402431,
+    "bytes": 317746397,
+    "mtime_ns": 1788797725000000000
+  },
+  "checkpoint_step": 6000,
+  "checkpoint_manifest": {
+    "schema_version": 1,
+    "git_sha": "86620b4ffc7e6838b49cf83b5be789eba12d8027",
+    "arguments": {
+      "data_root": "/NHNHOME/data/sukim/adcl",
+      "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_joint_s0",
+      "phase": "joint",
+      "goal_on": 1,
+      "state_on": 1,
+      "gpu": 0,
+      "cpu": false,
+      "cuda_memory_limit_mib": 12000,
+      "cuda_min_free_mib": 8192,
+      "microbatch": 2,
+      "seed": 0,
+      "steps": 6000,
+      "batch": 16,
+      "eval_batch": 4,
+      "workers": 4,
+      "eval_every": 250,
+      "save_every": 250,
+      "log_every": 10,
+      "lr": 0.0001,
+      "backbone_lr": 1e-05,
+      "weight_decay": 0.01,
+      "warmup": 200,
+      "grad_clip": 5.0,
+      "alpha_occ": 0.2,
+      "alpha_lane": 0.2,
+      "alpha_motion": 0.2,
+      "uncertainty": 1,
+      "precision": "bf16",
+      "time_input": "nominal",
+      "bn_policy": "fixed",
+      "pretrained": null,
+      "init": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth",
+      "resume": null,
+      "arch": "resnet50",
+      "motion_input_mode": "low_feature",
+      "plan_output_scale": null,
+      "train_stride": 1,
+      "eval_stride": 5,
+      "max_train_samples": 0,
+      "max_eval_samples": 0,
+      "train_scenes": null,
+      "eval_scenes": null,
+      "eval_split": "tune",
+      "eval_only": false,
+      "allow_unpretrained": false
+    },
+    "model_config": {
+      "channels": 128,
+      "backbone_arch": "resnet50",
+      "grid_size": [
+        64,
+        48
+      ],
+      "x_range": [
+        -10.0,
+        70.0
+      ],
+      "y_range": [
+        -32.0,
+        32.0
+      ],
+      "heights": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "n_history": 4,
+      "motion_grid": [
+        12,
+        16
+      ],
+      "correlation_channels": 32,
+      "correlation_radius": 2,
+      "scene_attention_channels": 32,
+      "scene_chunk_size": 512,
+      "planner_layers": 2,
+      "planner_heads": 4,
+      "goal_on": true,
+      "state_on": true,
+      "plan_output_scale": [
+        10.0,
+        5.0
+      ],
+      "motion_input_mode": "low_feature"
+    },
+    "loss_weights": {
+      "plan": 1.0,
+      "occupancy": 0.2,
+      "lane": 0.2,
+      "motion": 0.2,
+      "uncertainty": true
+    },
+    "time_input": "nominal",
+    "time_input_policy": {
+      "mode": "nominal",
+      "scope": "model input time_offsets only; same for training and every evaluation",
+      "source": "fixed nominal frame-offset seconds",
+      "nominal_history_seconds": [
+        0.1,
+        0.2,
+        0.5,
+        1.0
+      ],
+      "nominal_dtype": "float32",
+      "supervision_and_dataset_modified": false
+    },
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "load_report": {
+      "common_checkpoint_sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c"
+    },
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "numpy": "2.1.0",
+    "device": "cuda:0",
+    "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+    "cuda_memory_policy": {
+      "enabled": true,
+      "allocator_limit_mib": 12000,
+      "min_free_mib": 8192,
+      "allocator_fraction": 0.0657060353046741,
+      "initial_free_bytes": 190847057920,
+      "device_total_bytes": 191503138816,
+      "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+    },
+    "microbatch_policy": {
+      "enabled": true,
+      "microbatch": 2,
+      "logical_batch": 16,
+      "optimizer_updates_per_logical_batch": 1,
+      "loss_normalization": "full logical batch label/mask denominators",
+      "bitwise_equivalence_to_unsplit_training_promised": false
+    },
+    "gpu_name": "NVIDIA B200",
+    "pretrained_sha256": null,
+    "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "initial_model_state_sha256": "f69e1c52ccd4b9908130ffe02170c0f08bff21712c634fee064517009a6c2c7d",
+    "initial_parameter_count": 26409112,
+    "bn_training": {
+      "policy": "fixed",
+      "modules": 53,
+      "affine_and_backbone_weights_trainable": true,
+      "inference_policy": "eval running statistics for both arms"
+    },
+    "status": "running",
+    "pid": 2107403,
+    "data_counts": {
+      "train": 54810,
+      "eval": 1998
+    },
+    "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log"
+  },
+  "source_checkpoint": null,
+  "data": {
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "receiver_rows_sha256": "945ba97b1b108619c66a762e31f5cfa0f87bc07ed5b61769c133a38fab0553d9",
+    "receiver_count": 54,
+    "donor_rows_sha256": null,
+    "image_root": "/NHNHOME/data/sukim/adcl/cache/etri_768",
+    "supervision_sha256": {
+      "supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+      "calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+      "20260113-102709.npz": "c3ed650793d417ecc4568dd515b18190b1f9059e37a4435a6f03162cb1613a7d",
+      "20260113-102709.json": "fc5dfc1d432a7ceb3d80b5b0fee89d72a67e9287d31d2c7c128646f5cde1b1c1"
+    }
+  },
+  "source": {
+    "git_sha": "1ef9331310be7876a665877e6cb00f65d702cf44",
+    "tracked_changes": [],
+    "file_sha256": {
+      "scripts/evaluate_motiondrive_v2_planning.py": "41c0a3e4b80173fbc6b740d3401949c6e5f9e09087e0d2378ad84dd216af8a07",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+      "scripts/train_motiondrive_v2.py": "3a209687203630cb09be94ebbc717c4f74c3e2570138fb4bf992bbc59c7be6f5",
+      "scripts/audit_motiondrive_v2.py": "fc10bba5c068c2bd46c84a436fc5357d82d931c16f565efc69d95049718ce06b",
+      "scripts/export_motiondrive_v2_inference.py": "7f93f716edd05f966960309b779d535a10649a9bea5188741545a53ff2a2ef2d",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "f03d75c4d7dd4a500c009cf2adf082f75b90c268ef03da22c747a2dd17df7f8b",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "2263e2281b0175309575a977db89158da1d44511b5177a398eafa713b6893d8d"
+    }
+  },
+  "donor_scene_map": null,
+  "donor_policy": "full tune split Sattolo scene permutation; same frame; image tensors only",
+  "bucket_definition": {
+    "version": 1,
+    "source": "GT state_target only; never model-predicted state",
+    "stop": "valid vx,vy and hypot(vx,vy) < 0.2 m/s",
+    "accel": "not stop; valid ego-x acceleration ax >= 0.5 m/s^2",
+    "decel": "not stop; valid ego-x acceleration ax <= -0.5 m/s^2",
+    "cruise": "not stop; valid ego-x acceleration -0.5 < ax < 0.5 m/s^2",
+    "unknown": "missing/nonfinite required GT state components",
+    "priority": "stop first; mutually exclusive and exhaustive",
+    "axes": "current ego x=longitudinal, y=lateral; not a trajectory-tangent frame"
+  },
+  "model_input_whitelist": [
+    "images",
+    "history_images",
+    "lidar2img",
+    "history_transforms",
+    "time_offsets",
+    "goal_xy"
+  ],
+  "time_input": "nominal",
+  "time_input_policy": {
+    "mode": "nominal",
+    "scope": "model input time_offsets only; identical policy for every condition",
+    "source": "fixed nominal frame-offset seconds",
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "nominal_dtype": "float32",
+    "dataset_and_labels_modified": false,
+    "preserved": [
+      "images within each image condition",
+      "poses",
+      "calibration",
+      "goal",
+      "GT",
+      "valid masks",
+      "sample order"
+    ]
+  },
+  "nominal_waypoint_seconds": [
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0
+  ],
+  "target_time_semantics": "Official cached frame-offset targets preserved; actual raw timestamps can differ from nominal 0.5-second spacing",
+  "metric": "mean cumulative ADE@1/2/3s; [11,11,5,5,2,2]/36; equal frame weights",
+  "coordinate_format": "current ego-frame cumulative XY positions, metres; no cumsum or postprocessing",
+  "caveats": [
+    "Image counterfactuals break image/geometry consistency and are diagnostics, not automatic compliance proof.",
+    "Repeatedly used tune is not an untouched holdout; this evaluator performs no checkpoint/condition selection."
+  ],
+  "selection_performed": false,
+  "final_val_accessed": false,
+  "motion_prediction_contract": {
+    "enabled": true,
+    "source": "same complete model forward as plan_abs",
+    "additional_forward_calls": 0,
+    "prediction_dtype": "float32",
+    "pred_state": {
+      "source_key": "state_hat",
+      "shape_per_record": [
+        6
+      ],
+      "order": [
+        "vx",
+        "vy",
+        "ax",
+        "ay",
+        "yaw_rate",
+        "stop_logit"
+      ],
+      "units": [
+        "m/s",
+        "m/s",
+        "m/s^2",
+        "m/s^2",
+        "rad/s",
+        "logit"
+      ],
+      "stop_semantics": "raw neural stop logit, NOT probability or binary decision; no sigmoid/threshold applied"
+    },
+    "pred_history": {
+      "source_key": "history_hat",
+      "shape_per_record": [
+        4,
+        4
+      ],
+      "frame_offsets": [
+        -1,
+        -2,
+        -5,
+        -10
+      ],
+      "component_order": [
+        "dx",
+        "dy",
+        "sin_delta_yaw",
+        "cos_delta_yaw"
+      ],
+      "units": [
+        "m",
+        "m",
+        "dimensionless",
+        "dimensionless"
+      ],
+      "pose_semantics": "historical ego pose expressed relative to current ego; x forward/y left",
+      "orientation_semantics": "raw predicted sin/cos components; no angle conversion or unit normalization"
+    },
+    "condition_semantics": "prediction follows the named image condition; GT state/history and receiver identity stay unchanged",
+    "used_for_metric_or_bucket_or_selection": false,
+    "trajectory_or_gt_modified": false
+  }
+}

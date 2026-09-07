@@ -2,10 +2,10 @@
 
 ## Status
 
-This document preregisters a bounded offline diagnostic.  It does not authorize
-GPU execution, deployment, a submission change, or a compliance/performance
-claim.  Cache and head implementation SHA-256 values remain `PENDING` until the
-implementation and its tests finish independent review.  Any material change
+This document preregistered a bounded offline diagnostic.  It did not itself
+authorize GPU execution, deployment, a submission change, or a
+compliance/performance claim; later bounded diagnostic executions were
+authorized separately and are recorded in **Actual progress** below.  Any material change
 to the feature contract, target, optimizer, schedule, split use, or report
 contract requires a new protocol and experiment name.
 
@@ -117,16 +117,17 @@ candidate paths remain fixed.
 Every LAST1000 is primary.  There is no BEST selection, early stopping,
 extension, bonus epoch, head-seed selection, base selection, or tune
 hyperparameter/threshold tuning.  Tune evaluation happens once for each of the
-six LAST artifacts only after its training completes.  Final implementation,
-test and source-manifest SHA-256 values will replace these placeholders before
-any GPU cache run:
+six LAST artifacts only after its training completes.  The frozen
+implementation, test, and source-manifest SHA-256 values are:
 
 - cache helper SHA-256:
-  `42749aebe6ae1d56a1d55348193c9bb6d92357b5870122dfc8ad303c9bd921d1`;
+  `7fdc279f9221d5bc5704e6354cb60bb2aa0aefe9bf9e9b0adf05d21a69e7124b`;
 - cache tests SHA-256:
-  `0fc686be9bb50b3d9b86c3ed15fe12071d70a900f4b1db36b564af01265b9128`;
-- head trainer SHA-256: `PENDING_REVIEW`;
-- head tests SHA-256: `PENDING_REVIEW`;
+  `e9d9f58e4576f8b5c1577eed959017a31774026fe630ffdd5dccaeb0ba6d2360`;
+- head trainer SHA-256:
+  `03bff7af9a9a55dc630e9223d566b5774a5744d36a99bf573cf6374587b11f06`;
+- head tests SHA-256:
+  `f2183a65b3fb365c5c75ee4e8db56e2fc3ccdae23b84b742c8d5866fc391dd4d`;
 - exact runtime-22 source manifest
   `reports/p5_zero_selector_protocol_20260908/runtime22_source_manifest.json`
   SHA-256:
@@ -248,3 +249,70 @@ native nonzero is preserved and never retried automatically.
 This proposed command is preparation only.  Pilot8 itself, full-cache
 extraction, deployment, Git commit, and head training all remain forbidden at
 this revision.
+
+## Actual progress — separately authorized diagnostic work
+
+This section records later root-authorized executions without retroactively
+changing the preregistration above.
+
+- The CPU-only two-candidate oracle used the immutable tune1,998 reports and no
+  new forward.  Base-0 D3 had a GT-selected lower bound of `0.3001864` from
+  `0.3722216`; base 1 had `0.2998887` from `0.3669575`.  Session 046 accounted
+  for about 64.5%/66.2% of the recoverable gain.  The report is
+  `reports/p4_zero_move_oracle_train_stationary_20260908/oracle_train_distribution.json`
+  (SHA-256 `65c5cd0295aa89c5a6ff5085d0ab961f95b5ecb36a23b09e5f3e6080f61b2d35`),
+  with command receipt SHA-256
+  `c91aa7665901f1225f970a76964742c5c14da0a96ac4a7a97f51cccf2230761d`.
+  This is a GT oracle ceiling diagnostic, not an attainable gate.
+- A CPU-only fixed 0.5 coordinate-mean ensemble, with no model forward, gave
+  D3 `0.3661828813`: delta `-0.0060387358` versus base 0 and
+  `-0.0007745944` versus base 1.  It has not been adopted.  Report SHA-256 is
+  `d1047ec664d17c213b09815ae81f9df0758223b0db3d72ca466bbb259d3a1fb9`;
+  receipt SHA-256 is
+  `27ca35cab21d8f8a53e12b4f8275a5c88f57e405ed7dd4314f56ebfee69be3e9`.
+- The first bounded cache pilot used commit
+  `e1a4594bbd86f39d11db2a3ac7487f7abd4bd58d`.  Both ordered train8 children
+  exited 0; both tune8 children exited 1 at the strict P4 plan/GT bitwise
+  gate, before tune output creation.  The original child argv fixes the
+  executable as `/NHNHOME/data/sukim/adcl/env/venv/bin/python`; the exact
+  Torch `2.7.1+cu128` and CUDA `12.8` values come from a later CPU-only probe
+  of that same venv, not from the failed child stdout.  The failure summary is
+  `reports/p5_zero_selector_pilot_failure_20260908_ops.json` (SHA-256
+  `f7724b18f668a7cd6fad377bc0df55c5ef1f03e575edd97be70d21f13db77ba6`)
+  and the reference-runtime CPU probe SHA-256 is
+  `59c0fec62e6aff0fa4e8ba0470abdef10cc09442c9d84bec1cec1633864719db`.
+- Retry 1 used `/usr/bin/python`, Python 3.12.3, Torch
+  `2.10.0a0+b4e4ee81d3.nv25.12`, and CUDA `13.1`, checked directly by both
+  parent and child before evaluation.  Both train8 children again exited 0;
+  both tune8 children exited 1 at row 14730.  Ground truth was bitwise exact.
+  The P4 path differed in 8 elements for base 0 and 10 for base 1, with
+  maximum absolute difference `1.9073486328125e-6`.  The preserved evidence
+  directories are `reports/p5_zero_selector_pilot_retry1_b{0,1}_20260908/`;
+  their execution SHA-256 values are
+  `2d6920b946de2b6867b149bb13d8026f89290e2ba707d33bfec8747341e65ef1`
+  and `e490a9b9b198601826c4ccf99c31cd4ea155b729c1e63479a98773b0751aca9a`.
+- To separate the original evaluator from cache-path effects, a separately
+  authorized base-0/GPU4 replay ran the unmodified evaluator on the first tune
+  scene (54 rows), using the original batch 4/BF16/nominal/seed 0/normal
+  contract and exact `/usr/bin/python` runtime.  Child, supervisor, and OS
+  return codes were 0.  Identity-joined plan, GT, and D3 were bitwise exact
+  for the first 52 batch-matched rows, including the first eight rows.  The
+  final two rows used a different terminal-batch composition and are reported
+  separately.  Raw replay report SHA-256 is
+  `4910dd2452362fa8e53d7db467986929ac389c409c5a7caa00b7a0a42ae0e002`
+  (path `reports/p5_zero_selector_reference_replay_b0_20260908_ops/normal_scene019_54.json`);
+  comparison SHA-256 is
+  `9effe126ca3c56bfd794a3473aac65a584f83e0f606e3a005f89f6a957a0da6a`
+  and its receipt SHA-256 is
+  `878ea66da6ad0ecf6f167d9f4576479e6ee98024510eb6a5460d368b971a98f0`.
+- The frozen cache and head tests passed together on CPU: 52 tests, actual
+  exit 0.  No selector-head training has run.  The two strict pilot failures
+  are currently localized to the cache-specific numerical path, but the exact
+  cause remains under diagnosis.  No tolerance was introduced, no ensemble
+  was adopted, and full train54,810/tune1,998 cache extraction, head training,
+  deployment, and final-validation access remain unauthorized.
+
+Throughout these diagnostics the exact runtime-22 contract, P4 checkpoints,
+sidecars, data artifacts, and immutable evaluation reports remained pinned;
+the new diagnostic helpers are separately attributed rather than relabelled as
+the original training source.

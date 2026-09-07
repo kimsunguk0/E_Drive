@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "independent_recomputation_exact",
+  "actual_returncode": 0,
+  "validation_pid": 2316228,
+  "report": "reports/p4_fixed_seed_coordinate_mean_20260908.json",
+  "report_sha256": "d1047ec664d17c213b09815ae81f9df0758223b0db3d72ca466bbb259d3a1fb9",
+  "inputs_sha256": {
+    "reports/p4_actual_results_analysis_20260908/s0_normal_full_tune.json": "cffa9cc8b12f5f9812af7b3fd3631e74597e291b02aecd1cc14d8ec8a1aeba2f",
+    "reports/p4_actual_results_analysis_20260908/s1_normal_full_tune.json": "0e71bef199931cb1916abdc819ca78cf75d8cd7055439bd084ca975bb610c137"
+  },
+  "implementation_sha256": {
+    "scripts/motiondrive_v2_training.py": "148ce7a6c16bb5c604a75d3a15f8ff150b7bf136b2015c5c0d3c02bcf05d326a",
+    "scripts/analyze_motiondrive_v2_query_pair.py": "03e714e845f7c66a152b5e28449444e61b96d82541550747003fa58e71065651"
+  },
+  "validation": {
+    "input_sha256_before_after_exact": true,
+    "row_scenario_session_frame_and_gt_exact_between_seeds": true,
+    "receiver_rows": 1998,
+    "receiver_sessions": 11,
+    "float32_coordinate_mean_recomputed": true,
+    "weighted_d3_recomputed_with_existing_helper": true,
+    "all_bucket_session_and_session046_excluded_aggregates_exact": true,
+    "paired_session_cluster_bootstrap_exact": true,
+    "bootstrap_repeats": 10000,
+    "bootstrap_seed": 20260908,
+    "frame_iid_bootstrap": false,
+    "mean_path_d3": 0.3661828812666692
+  },
+  "environment": {
+    "executable": "/usr/bin/python3",
+    "torch": "2.8.0+cu128",
+    "cuda_visible_devices": "",
+    "cuda_available": false,
+    "cuda_initialized": false
+  },
+  "model_forward_performed": false,
+  "gpu_used": false,
+  "final_val_accessed": false,
+  "files_written": [
+    "reports/p4_fixed_seed_coordinate_mean_20260908.json",
+    "reports/p4_fixed_seed_coordinate_mean_20260908.receipt.json"
+  ]
+}
