@@ -29,7 +29,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 from motiondrive_v2_training import (LossWeights, compute_loss, model_inputs,
-                                     raster_counts, tensor_state_sha256, to_device, weighted_d3)
+                                     raster_counts, set_training_mode, tensor_state_sha256,
+                                     to_device, weighted_d3)
 ACTIVE_RUN_DIR = None
 
 
@@ -88,6 +89,8 @@ def restore_run_configuration(args, saved, explicit_options):
         settings["motion_input_mode"] = config.get("motion_input_mode", "legacy")
     if hasattr(args, "plan_output_scale"):
         settings["plan_output_scale"] = list(config.get("plan_output_scale", (1., 1.)))
+    if hasattr(args, "bn_policy"):
+        settings["bn_policy"] = saved_args.get("bn_policy", "adaptive")
     if args.resume:
         for key in ("alpha_occ", "alpha_lane", "alpha_motion", "uncertainty", "lr",
                     "backbone_lr", "weight_decay", "warmup", "precision", "seed"):
@@ -201,6 +204,8 @@ def arguments():
     p.add_argument("--alpha-motion", type=float, default=.2)
     p.add_argument("--uncertainty", type=int, choices=[0, 1], default=1)
     p.add_argument("--precision", choices=["bf16", "fp32"], default="bf16")
+    p.add_argument("--bn-policy", choices=["adaptive", "fixed"], default="adaptive",
+                   help="Training only: adaptive batch statistics, or fixed running statistics; all weights still train")
     p.add_argument("--pretrained", help="Public backbone only; never a holdout-trained checkpoint")
     p.add_argument("--init", help="Common fold-trained initialization; weights only")
     p.add_argument("--resume", help="Explicit full resume checkpoint")
@@ -288,6 +293,7 @@ def main():
             "note": "Inverse scale of final Linear rows; Adam parameterization changes, not target coordinates"}
     initial_state_sha = tensor_state_sha256(model.state_dict())
     model.to(device)
+    bn_module_count = set_training_mode(model, args.bn_policy)
     backbone, other = [], []
     for name, param in model.named_parameters():
         is_backbone = name.startswith("backbone_fpn.") and not name.startswith(
@@ -311,6 +317,9 @@ def main():
         "supervision_manifest_sha256": sha256(Path(args.supervision_root) / "supervision_manifest.json"),
         "initial_model_state_sha256": initial_state_sha,
         "initial_parameter_count": sum(p.numel() for p in model.parameters()),
+        "bn_training": {"policy": args.bn_policy, "modules": bn_module_count,
+                        "affine_and_backbone_weights_trainable": True,
+                        "inference_policy": "eval running statistics for both arms"},
         "status": "starting", "pid": os.getpid(),
     }
     atomic_json(run_dir / "manifest.json", manifest)
@@ -388,7 +397,7 @@ def main():
             for raw in train_loader:
                 if step >= args.steps or requested_stop[0]:
                     break
-                model.train()
+                set_training_mode(model, args.bn_policy)
                 sample_order_digest.update(np.asarray(raw["row"], dtype="<i8").tobytes())
                 batch = to_device(raw, device)
                 warm = min(1., (step + 1) / max(1, args.warmup))

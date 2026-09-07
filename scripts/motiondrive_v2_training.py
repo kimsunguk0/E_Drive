@@ -18,6 +18,24 @@ HISTORY_SCALE = (10., 5., 1., 1.)
 STATE_SCALE = (10., 5., 3., 3., .5)
 
 
+def set_training_mode(model: torch.nn.Module, bn_policy: str = "adaptive") -> int:
+    """Train all weights; optionally keep only BN statistics in inference mode.
+
+    This is NOT a backbone/affine freeze. GroupNorm, decoder and every trainable
+    parameter retain normal training behavior. Inference always uses eval mode.
+    """
+    if bn_policy not in ("adaptive", "fixed"):
+        raise ValueError(f"Unknown BN training policy: {bn_policy}")
+    modules = [m for m in model.modules() if isinstance(m, torch.nn.modules.batchnorm._BatchNorm)]
+    if bn_policy == "fixed" and any(not m.track_running_stats for m in modules):
+        raise ValueError("Fixed BN policy requires existing running statistics")
+    model.train()
+    if bn_policy == "fixed":
+        for module in modules:
+            module.eval()
+    return len(modules)
+
+
 def tensor_state_sha256(state: Mapping[str, Tensor]) -> str:
     """Order-independent bitwise fingerprint; includes buffers and tensor metadata."""
     digest = hashlib.sha256()
