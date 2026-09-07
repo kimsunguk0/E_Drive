@@ -1,0 +1,44 @@
+{
+  "설명": "GPU 없이 두 LAST checkpoint의 ZIP, CPU 역직렬화, step, 계보, 모델 tensor 유한성 검증. 정상 종료 또는 독립 forward 재현을 대신하지 않음.",
+  "runs": {
+    "adaptive": {
+      "path": "work_dirs/motiondrive_v2/p0_motion_bn_adaptive_s0/last.pth",
+      "sha256": "9bf403fbf973ddd89e70a734df4b7773cac592186920168b7feb982054a78c70",
+      "bytes": 317745565,
+      "zip_integrity": "PASS",
+      "zip_entries": 1331,
+      "torch_load_cpu": "PASS",
+      "step": 1000,
+      "manifest_core_match": "PASS; JSON tuple/list 표기 차이만 정규화",
+      "run_manifest_status": "completed",
+      "embedded_manifest_status": "running",
+      "model_tensor_count": 456,
+      "model_tensor_finite": "PASS",
+      "model_state_sha256": "bbae8bd9e7ee8c58d4c4ab99edfcb5eed3e6172cef585eb64977e69d65fb2893",
+      "log": "logs/motiondrive_v2/p0_motion_bn_adaptive_s0.log",
+      "log_sha256_at_audit": "5a45ca84edd66ff30ddb60d97e5f01a5fdf169d53b602972a05b9f07257998f6",
+      "crash_lines": [
+        "[DCTN-beyless:1896489:0:1896489] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x7df2671ef0a0)"
+      ]
+    },
+    "fixed": {
+      "path": "work_dirs/motiondrive_v2/p0_motion_bn_fixed_s0/last.pth",
+      "sha256": "e0deb9fd92d2bd859e13ba647685aee4f7cdef1e7bf3effeed8675fcbafcbd75",
+      "bytes": 317745565,
+      "zip_integrity": "PASS",
+      "zip_entries": 1331,
+      "torch_load_cpu": "PASS",
+      "step": 1000,
+      "manifest_core_match": "PASS; JSON tuple/list 표기 차이만 정규화",
+      "run_manifest_status": "completed",
+      "embedded_manifest_status": "running",
+      "model_tensor_count": 456,
+      "model_tensor_finite": "PASS",
+      "model_state_sha256": "269d7f83ebe4d0be59497d4aa72e1df6eec2638f4a031c42748af742fe3764ba",
+      "log": "logs/motiondrive_v2/p0_motion_bn_fixed_s0.log",
+      "log_sha256_at_audit": "d9877a571131f744c02bd844bc0186057522813bb2b9a17fde98f46dd9e1037d",
+      "crash_lines": []
+    }
+  },
+  "주의": "adaptive 로그에는 step1000 최종 평가 뒤 signal11 종료 오류가 기록됨. artifact 검증이 통과해도 독립 재평가와 종료 오류 공개가 필요함. 저장 시점 때문에 embedded manifest는 running, 최종 manifest는 completed임."
+}
