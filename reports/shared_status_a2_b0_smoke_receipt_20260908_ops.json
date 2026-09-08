@@ -1,0 +1,217 @@
+{
+  "automatic_retry": false,
+  "cwd": "/NHNHOME/data/sukim/adcl",
+  "ended_utc": "2026-09-08T15:00:10.260881+00:00",
+  "experiment": "shared_status_a2_b0_smoke",
+  "follow_on_stage": null,
+  "gpu_snapshot_after": [
+    {
+      "index": "0",
+      "memory_free_mib": "182632",
+      "memory_total_mib": "183359",
+      "memory_used_mib": "0",
+      "name": "NVIDIA B200",
+      "utilization_percent": "0",
+      "uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24"
+    },
+    {
+      "index": "1",
+      "memory_free_mib": "182632",
+      "memory_total_mib": "183359",
+      "memory_used_mib": "0",
+      "name": "NVIDIA B200",
+      "utilization_percent": "0",
+      "uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015"
+    }
+  ],
+  "gpu_snapshot_before": [
+    {
+      "index": "0",
+      "memory_free_mib": "182632",
+      "memory_total_mib": "183359",
+      "memory_used_mib": "0",
+      "name": "NVIDIA B200",
+      "utilization_percent": "0",
+      "uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24"
+    },
+    {
+      "index": "1",
+      "memory_free_mib": "182632",
+      "memory_total_mib": "183359",
+      "memory_used_mib": "0",
+      "name": "NVIDIA B200",
+      "utilization_percent": "0",
+      "uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015"
+    }
+  ],
+  "jobs": {
+    "provided": {
+      "argv": [
+        "/usr/bin/python",
+        "scripts/run_motiondrive_v2_shared_status_a2.py",
+        "--arm",
+        "provided_causal_5d",
+        "--init",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/last.pth",
+        "--init-manifest",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/manifest.json",
+        "--source-manifest",
+        "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_source_manifest_20260908_ops.json",
+        "--expected-source-manifest-sha256",
+        "d140972b85e8424066284d93945cad54351b6dc0cd3a266ec67a10e208a52418",
+        "--data-root",
+        "/tmp/pm97",
+        "--split-manifest",
+        "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root",
+        "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root",
+        "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256",
+        "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_smoke_only",
+        "--seed",
+        "0",
+        "--gpu",
+        "0",
+        "--expected-physical-gpu-uuid",
+        "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+        "--expected-initial-state-sha256",
+        "6f4762a6366866cd28057f208bf947f2a13ba59d4e94a551fa3b265cef7cd2f9",
+        "--expected-query-state-sha256",
+        "9b410bdad08c87fc1227f57d359c9ae679bae7e3d2d00b5fc500300c5da2767b",
+        "--smoke-only"
+      ],
+      "ended_utc": "2026-09-08T15:00:10.025998+00:00",
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "gpu_uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+      "log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_provided_smoke.log",
+      "pgid": 3080795,
+      "pid": 3080795,
+      "process_exit_status": "zero",
+      "result_files": {
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_smoke_only/last.pth": {
+          "exists": true,
+          "sha256": "649e79c79af039df7ba39d1a96291b410d27cbfef001fda45e85b2ce9b59c0b5"
+        },
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_smoke_only/manifest.json": {
+          "exists": true,
+          "sha256": "4bdd381691dae298835b333194617ce3ecbbf439d0bec3ee8b3725512774a798"
+        },
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_smoke_only/metrics.jsonl": {
+          "exists": true,
+          "sha256": "92e2a7ff3813ec7813c51e8214cb493d050ed991f3956d9102c8b34eca653986"
+        }
+      },
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_smoke_only/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_smoke_only/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_smoke_only/metrics.jsonl"
+      ],
+      "results_complete": true,
+      "return_code": 0,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_smoke_only",
+      "started_utc": "2026-09-08T14:59:49.815529+00:00",
+      "status": "completed"
+    },
+    "zero": {
+      "argv": [
+        "/usr/bin/python",
+        "scripts/run_motiondrive_v2_shared_status_a2.py",
+        "--arm",
+        "zero",
+        "--init",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/last.pth",
+        "--init-manifest",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/manifest.json",
+        "--source-manifest",
+        "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_source_manifest_20260908_ops.json",
+        "--expected-source-manifest-sha256",
+        "d140972b85e8424066284d93945cad54351b6dc0cd3a266ec67a10e208a52418",
+        "--data-root",
+        "/tmp/pm97",
+        "--split-manifest",
+        "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root",
+        "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root",
+        "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256",
+        "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_smoke_only",
+        "--seed",
+        "0",
+        "--gpu",
+        "0",
+        "--expected-physical-gpu-uuid",
+        "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+        "--expected-initial-state-sha256",
+        "6f4762a6366866cd28057f208bf947f2a13ba59d4e94a551fa3b265cef7cd2f9",
+        "--expected-query-state-sha256",
+        "9b410bdad08c87fc1227f57d359c9ae679bae7e3d2d00b5fc500300c5da2767b",
+        "--smoke-only"
+      ],
+      "ended_utc": "2026-09-08T15:00:10.252798+00:00",
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+      "log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_zero_smoke.log",
+      "pgid": 3080794,
+      "pid": 3080794,
+      "process_exit_status": "zero",
+      "result_files": {
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_smoke_only/last.pth": {
+          "exists": true,
+          "sha256": "b3d5aad79357e66a89e16400859ec67b97561b9fe12444feed3be53b69c05f21"
+        },
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_smoke_only/manifest.json": {
+          "exists": true,
+          "sha256": "91784617dcc7a06c761a92925d9b3a2c95d7cf2d3c8dd14524c0e61fc812b576"
+        },
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_smoke_only/metrics.jsonl": {
+          "exists": true,
+          "sha256": "bc86dd783310b61aadc3dafc9c6c5dae13231d1de2e8d33a1128463a36575287"
+        }
+      },
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_smoke_only/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_smoke_only/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_smoke_only/metrics.jsonl"
+      ],
+      "results_complete": true,
+      "return_code": 0,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_smoke_only",
+      "started_utc": "2026-09-08T14:59:49.797287+00:00",
+      "status": "completed"
+    }
+  },
+  "schema_version": 1,
+  "source_pins_verified": {
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops/overlay_manifest.json": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+    "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_source_manifest_20260908_ops.json": "d140972b85e8424066284d93945cad54351b6dc0cd3a266ec67a10e208a52418",
+    "/NHNHOME/data/sukim/adcl/scripts/run_motiondrive_v2_shared_status_a2.py": "313352eed6c76ed61736fb3345c25c2c7bd3e59ca13ae336e6dee89ea28cf682",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/last.pth": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/manifest.json": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0"
+  },
+  "spec": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_smoke_spec_20260908_ops.json",
+  "spec_sha256": "61aeea02390c52eef29097f2efa3cd442fae9f609bbb1a3fc4702901678046b2",
+  "started_utc": "2026-09-08T14:59:49.790087+00:00",
+  "status": "completed",
+  "supervisor_pgid": 3080744,
+  "supervisor_pid": 3080744,
+  "supervisor_source": "/NHNHOME/data/sukim/adcl/scripts/supervise_motiondrive_v2_fixed_two_jobs.py",
+  "supervisor_source_sha256": "cb9a481d073b20e4267db16f8127a6c02ebd68c698e10f2bfe1f4c7570ee9b3f"
+}

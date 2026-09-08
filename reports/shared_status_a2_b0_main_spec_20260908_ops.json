@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "experiment": "shared_status_a2_b0_matched_last2000",
+  "source_pins": {
+    "scripts/run_motiondrive_v2_shared_status_a2.py": "313352eed6c76ed61736fb3345c25c2c7bd3e59ca13ae336e6dee89ea28cf682",
+    "reports/shared_status_a2_source_manifest_20260908_ops.json": "d140972b85e8424066284d93945cad54351b6dc0cd3a266ec67a10e208a52418",
+    "work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/last.pth": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+    "work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/manifest.json": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0",
+    "data/etri/motiondrive_v2_shared_status_a1_20260908_ops/overlay_manifest.json": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699"
+  },
+  "jobs": [
+    {
+      "name": "zero",
+      "gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+      "argv": [
+        "/usr/bin/python", "scripts/run_motiondrive_v2_shared_status_a2.py",
+        "--arm", "zero",
+        "--init", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/last.pth",
+        "--init-manifest", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/manifest.json",
+        "--source-manifest", "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_source_manifest_20260908_ops.json",
+        "--expected-source-manifest-sha256", "d140972b85e8424066284d93945cad54351b6dc0cd3a266ec67a10e208a52418",
+        "--data-root", "/tmp/pm97",
+        "--split-manifest", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256", "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_last2000",
+        "--seed", "0", "--gpu", "0",
+        "--expected-physical-gpu-uuid", "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+        "--expected-initial-state-sha256", "6f4762a6366866cd28057f208bf947f2a13ba59d4e94a551fa3b265cef7cd2f9",
+        "--expected-query-state-sha256", "9b410bdad08c87fc1227f57d359c9ae679bae7e3d2d00b5fc500300c5da2767b"
+      ],
+      "log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_zero_last2000.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_last2000",
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_last2000/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_last2000/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_last2000/metrics.jsonl",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_last2000/final_eval.json"
+      ]
+    },
+    {
+      "name": "provided",
+      "gpu_uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+      "argv": [
+        "/usr/bin/python", "scripts/run_motiondrive_v2_shared_status_a2.py",
+        "--arm", "provided_causal_5d",
+        "--init", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/last.pth",
+        "--init-manifest", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/manifest.json",
+        "--source-manifest", "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_source_manifest_20260908_ops.json",
+        "--expected-source-manifest-sha256", "d140972b85e8424066284d93945cad54351b6dc0cd3a266ec67a10e208a52418",
+        "--data-root", "/tmp/pm97",
+        "--split-manifest", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256", "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000",
+        "--seed", "0", "--gpu", "0",
+        "--expected-physical-gpu-uuid", "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+        "--expected-initial-state-sha256", "6f4762a6366866cd28057f208bf947f2a13ba59d4e94a551fa3b265cef7cd2f9",
+        "--expected-query-state-sha256", "9b410bdad08c87fc1227f57d359c9ae679bae7e3d2d00b5fc500300c5da2767b"
+      ],
+      "log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_provided_last2000.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000",
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/metrics.jsonl",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/final_eval.json"
+      ]
+    }
+  ]
+}

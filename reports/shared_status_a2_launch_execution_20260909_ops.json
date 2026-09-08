@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "status": "running_stable_step80",
+  "experiment": "shared_status_a2_b0_matched_last2000",
+  "scope": "ZERO versus provided_causal_5d; seed 0; fixed 2000 updates; no automatic retry or follow-on",
+  "source": {
+    "source_commit": "6b9a8074b28ad7697859e8dbc7238773016868b9",
+    "source_manifest_commit": "6c4bc45de4c6f9ce0b8d013f2b6908087a4de7ef",
+    "source_manifest": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_source_manifest_20260908_ops.json",
+    "source_manifest_sha256": "d140972b85e8424066284d93945cad54351b6dc0cd3a266ec67a10e208a52418",
+    "driver_sha256": "313352eed6c76ed61736fb3345c25c2c7bd3e59ca13ae336e6dee89ea28cf682",
+    "supervisor_sha256": "cb9a481d073b20e4267db16f8127a6c02ebd68c698e10f2bfe1f4c7570ee9b3f"
+  },
+  "inputs": {
+    "parent_checkpoint_sha256": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+    "parent_model_state_sha256": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2",
+    "parent_manifest_sha256": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0",
+    "overlay_manifest_sha256": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+    "train_rows": 54810,
+    "tune_rows": 1998,
+    "final136_rows_selected_or_computed_for_status_or_training_or_evaluation_or_analysis": 0
+  },
+  "gates": {
+    "focused_remote_tests": "12 passed; actual rc 0",
+    "zero_cpu_preflight_sha256": "c61786186c02494063b2d5d30ec6a7b3ffe10677f1b65254515c5cec6919e850",
+    "provided_cpu_preflight_sha256": "aae56118f773f24be3c9a2661c81bef41360135652e4912ac8a5d2f4bcb8b07c",
+    "paired_initial_model_state_sha256": "6f4762a6366866cd28057f208bf947f2a13ba59d4e94a551fa3b265cef7cd2f9",
+    "paired_initial_query_state_sha256": "9b410bdad08c87fc1227f57d359c9ae679bae7e3d2d00b5fc500300c5da2767b",
+    "initial_train_microbatch_audit_sha256": "93f29af4c5f18e0022041cb21208fbed5ec45a58b6761dc2a5db3bbb27a6d031",
+    "initial_train_microbatch_audit": "parent/ZERO/PROVIDED outputs bitwise exact; plan/occupancy/lane each has finite nonzero gradients to the new query-delta final Linear weight and bias; no registered A1 module, optimizer, tune, or final evaluation",
+    "initial_train_microbatch_process_boundary": "the atomic audit output completed and printed before the process emitted '[DCTN-beyless:3079113:0:3079113] Caught signal 11 (Segmentation fault...)'; the enclosing shell did not reach its ACTUAL_RC echo, so no numeric exit code was captured. This remains an unexplained post-output audit-process failure, is not represented as rc0, and was not rerun. Root explicitly allowed the healthy main pair to continue based on the intact parity/gradient artifact plus both supervised smoke rc0 results",
+    "smoke_supervisor_receipt_sha256": "e7493f80d5f0316a50e8bddb027818b65eb1c7001df4299070fe356e44a8329f",
+    "smoke": "ZERO rc 0 and PROVIDED rc 0; complete LAST/manifest/metrics; step 2; nonfinite 0; identical sample order; query state changed; smoke checkpoints not used as main initializers",
+    "smoke_final_query_state_sha256": {
+      "zero": "5e1cedad542936ef1d42addc474fb6d0b90f6c993ecc9dce08bd914fd54a246f",
+      "provided": "3ab99d6d5c13506636baae435d4a5c8c3df5ec74459f9f0a1c34c05b9ce82d19"
+    }
+  },
+  "launch": {
+    "main_spec": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_main_spec_20260908_ops.json",
+    "main_spec_sha256": "1cc2dac5358d46a98f8712e392c451e81b8a357c79c6c58c6f1f64e9bbb5f9c7",
+    "live_receipt": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_main_receipt_20260908_ops.json",
+    "supervisor_log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_main_supervisor.log",
+    "supervisor_pid": 3082671,
+    "started_utc": "2026-09-08T15:04:48.866624+00:00",
+    "started_kst": "2026-09-09T00:04:48.866624+09:00",
+    "jobs": {
+      "zero": {
+        "gpu_index": 0,
+        "gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+        "pid": 3082701,
+        "pgid": 3082701,
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_zero_last2000",
+        "log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_zero_last2000.log",
+        "observed_step": 80,
+        "nonfinite_count": 0
+      },
+      "provided": {
+        "gpu_index": 1,
+        "gpu_uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+        "pid": 3082702,
+        "pgid": 3082702,
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000",
+        "log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a2_b0_provided_last2000.log",
+        "observed_step": 80,
+        "nonfinite_count": 0
+      }
+    },
+    "observed_sample_order": "identical through step 80",
+    "peak_reserved_bytes_each": 5947523072,
+    "estimated_terminal_kst": "approximately 2026-09-09T00:25:00+09:00 to 2026-09-09T00:30:00+09:00, subject to shared runtime and terminal evaluation",
+    "terminal_contract": "LAST2000 plus one terminal tune evaluation; no BEST selection; supervisor exits after these two fixed jobs and launches nothing else"
+  }
+}
