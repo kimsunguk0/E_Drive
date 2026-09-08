@@ -1,0 +1,206 @@
+{
+  "artifact": "/NHNHOME/data/sukim/adcl/reports/p7_c_gt21_20260908_ops/base0_gt21.pt",
+  "artifact_sha256": "e11fefab7603dc2de89fbaacee78171cad54cfda36ea68d5ea7b10ff11f2ebb3",
+  "base_seed": 0,
+  "baseline_official_d3": 0.3305861224029754,
+  "boundaries": {
+    "flat_or_worse_is_inconclusive_due_to_joint_input_distribution_shift": true,
+    "improvement_supports_planner_ability_to_use_precise_status": true,
+    "no_final_validation_access": true,
+    "no_optimizer_or_backward": true,
+    "not_an_information_theoretic_bound": true,
+    "not_state_token_dilution_proof": true,
+    "weights_unchanged": true
+  },
+  "checkpoint_sha256": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+  "contract": {
+    "baseline_status": "own predicted state6 and history4x4",
+    "batch": 4,
+    "full_image_forward_parts_per_row": 1,
+    "intervention": "GT physical state[0:5] and GT history4x4",
+    "planner_calls_per_row": 2,
+    "precision": "bf16_encoder_fp32_heads",
+    "predicted_raw_stop_logit_preserved": true,
+    "raw_goal_planner_argument": false,
+    "scene_motion_goal_path_identical": true,
+    "workers": 4
+  },
+  "diagnostic_only": true,
+  "executed_source_sha256": {
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "1ecb82e75ca9bb8ffe263ea51c97e79538d43e98c0f13f4a1bdc743cacd0bd50",
+    "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+    "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+    "models/motiondrive_v2_temporal_contract.py": "5cef257cbe53c566effc4e1e17379f1b0d7d530a89cd19c6574e3a152d9c2c14",
+    "scripts/analyze_motiondrive_v2_p6_stop_balance_results.py": "e3ef5f7dac642d20aedafa71bcd4979aee4faaa077d2c234f910b736691da753",
+    "scripts/analyze_motiondrive_v2_p7_goal_routing_results.py": "4ba2ba0050bb74f6de462daf9ef9b5b31a8d3bb70779532465a2ce78fea0213b",
+    "scripts/analyze_motiondrive_v2_query_pair.py": "03e714e845f7c66a152b5e28449444e61b96d82541550747003fa58e71065651",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/diagnose_motiondrive_v2_p7_gt21_planner.py": "bf03aa92cc0c99c754280d7728901eaffd3753dcf301aa8e6927e28d0d52e917",
+    "scripts/motiondrive_v2_data.py": "6c89d4e3b1e17636ef79bdbeae6750b35fea6a87978eaa7bebbdc5c2cf9ee4b6",
+    "scripts/motiondrive_v2_training.py": "6e3d5ecccee0a87cf6a85cd490ee192990fd2ca92f0c307040a93ca2cdc7077c",
+    "scripts/run_motiondrive_v2_p7_goal_routing.py": "75b6908715a9181309ec586a18f3026518b419c922d1ec67b2a9f729d5a4c8cc",
+    "scripts/run_motiondrive_v2_p7_state_sufficiency.py": "1ddd1fcf2c47e04283d0ee2e789fd255c4d5c7d537c09bc2f944d53884800852",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/train_motiondrive_v2.py": "655db8a24ba59ce21ba502e46f7862c6c4ba82446394b169b9f2dbe1e8b2272d"
+  },
+  "gt21_minus_baseline_d3": -2.7157261863246457e-05,
+  "gt21_official_d3": 0.33055896514111216,
+  "gt_tune_sha256": {
+    "artifact_sha256": "8548f5df313eac452cc1ba34c894d5f68bcc1d7337d6122fe7012f6a7d485ea2",
+    "manifest_sha256": "53f0cf2e532c20dfe1e957204ba409a9095a6cd59aff6494e4d8c5d5dfd5922e"
+  },
+  "model_state_sha256_after": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2",
+  "model_state_sha256_before": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2",
+  "paired_11_session_analysis": {
+    "aggregate_is_frame_weighted": true,
+    "joint_two_seed_bootstrap_deferred_until_both_saved_outputs": true,
+    "per_session": {
+      "session_019_20260113-102709": {
+        "baseline_d3_mean": 0.2895672937027282,
+        "baseline_d3_sum": 15.636633859947324,
+        "gt21_d3_mean": 0.289566857015921,
+        "gt21_d3_sum": 15.636610278859735,
+        "gt21_minus_baseline_d3_mean": -4.3668680720859106e-07,
+        "gt21_minus_baseline_d3_sum": -2.3581087589263916e-05,
+        "n": 54
+      },
+      "session_026_20260122-134906": {
+        "baseline_d3_mean": 0.26963014114234185,
+        "baseline_d3_sum": 29.120055243372917,
+        "gt21_d3_mean": 0.26960293389856815,
+        "gt21_d3_sum": 29.11711686104536,
+        "gt21_minus_baseline_d3_mean": -2.7207243773672315e-05,
+        "gt21_minus_baseline_d3_sum": -0.00293838232755661,
+        "n": 108
+      },
+      "session_027_20260122-135506": {
+        "baseline_d3_mean": 0.24787090027892084,
+        "baseline_d3_sum": 93.69520030543208,
+        "gt21_d3_mean": 0.24785923478858812,
+        "gt21_d3_sum": 93.69079075008631,
+        "gt21_minus_baseline_d3_mean": -1.1665490332734648e-05,
+        "gt21_minus_baseline_d3_sum": -0.004409555345773697,
+        "n": 378
+      },
+      "session_040_20260209-153550": {
+        "baseline_d3_mean": 0.29672628958468084,
+        "baseline_d3_sum": 32.04643927514553,
+        "gt21_d3_mean": 0.29671203652051864,
+        "gt21_d3_sum": 32.04489994421601,
+        "gt21_minus_baseline_d3_mean": -1.4253064162201352e-05,
+        "gt21_minus_baseline_d3_sum": -0.001539330929517746,
+        "n": 108
+      },
+      "session_046_20260210-100504": {
+        "baseline_d3_mean": 0.4296768534169705,
+        "baseline_d3_sum": 232.02550084516406,
+        "gt21_d3_mean": 0.4296354159747285,
+        "gt21_d3_sum": 232.00312462635338,
+        "gt21_minus_baseline_d3_mean": -4.143744224199542e-05,
+        "gt21_minus_baseline_d3_sum": -0.02237621881067753,
+        "n": 540
+      },
+      "session_076_20260213-134648": {
+        "baseline_d3_mean": 0.2580208785107566,
+        "baseline_d3_sum": 83.59876463748515,
+        "gt21_d3_mean": 0.2579854758525336,
+        "gt21_d3_sum": 83.5872941762209,
+        "gt21_minus_baseline_d3_mean": -3.540265822300205e-05,
+        "gt21_minus_baseline_d3_sum": -0.011470461264252663,
+        "n": 324
+      },
+      "session_087_20260219-90551": {
+        "baseline_d3_mean": 0.41717982730241837,
+        "baseline_d3_sum": 45.055421348661184,
+        "gt21_d3_mean": 0.4171763220112081,
+        "gt21_d3_sum": 45.055042777210474,
+        "gt21_minus_baseline_d3_mean": -3.5052912102805244e-06,
+        "gt21_minus_baseline_d3_sum": -0.00037857145071029663,
+        "n": 108
+      },
+      "session_092_20260219-103747": {
+        "baseline_d3_mean": 0.7961346507072449,
+        "baseline_d3_sum": 42.99127113819122,
+        "gt21_d3_mean": 0.796113658696413,
+        "gt21_d3_sum": 42.990137569606304,
+        "gt21_minus_baseline_d3_mean": -2.0992010831832886e-05,
+        "gt21_minus_baseline_d3_sum": -0.0011335685849189758,
+        "n": 54
+      },
+      "session_097_20260219-110038": {
+        "baseline_d3_mean": 0.2034051119821307,
+        "baseline_d3_sum": 32.951628141105175,
+        "gt21_d3_mean": 0.2033776912700247,
+        "gt21_d3_sum": 32.947185985744,
+        "gt21_minus_baseline_d3_mean": -2.7420712106021833e-05,
+        "gt21_minus_baseline_d3_sum": -0.004442155361175537,
+        "n": 162
+      },
+      "session_108_20260220-134317": {
+        "baseline_d3_mean": 0.2985231073366271,
+        "baseline_d3_sum": 32.24049559235573,
+        "gt21_d3_mean": 0.29847002281220975,
+        "gt21_d3_sum": 32.23476246371865,
+        "gt21_minus_baseline_d3_mean": -5.308452441736504e-05,
+        "gt21_minus_baseline_d3_sum": -0.005733128637075424,
+        "n": 108
+      },
+      "session_112_20260303-142827": {
+        "baseline_d3_mean": 0.39166041063489737,
+        "baseline_d3_sum": 21.149662174284458,
+        "gt21_d3_mean": 0.3916638318311285,
+        "gt21_d3_sum": 21.14984691888094,
+        "gt21_minus_baseline_d3_mean": 3.4211962311356154e-06,
+        "gt21_minus_baseline_d3_sum": 0.00018474459648132324,
+        "n": 54
+      }
+    },
+    "sessions": 11
+  },
+  "pred_tune_sha256": {
+    "artifact_sha256": "dc7e547345938a00407f0a739cb188849cf31f372499ad9ec029b39cc74bdad7",
+    "manifest_sha256": "c00fa96a393a6edaf924ea22f1910f07250dbc49a280b0e213aca4ab781b289d"
+  },
+  "privileged_gt_not_candidate_output": true,
+  "probe_source_sha256": "1ddd1fcf2c47e04283d0ee2e789fd255c4d5c7d537c09bc2f944d53884800852",
+  "rows": 1998,
+  "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "run_manifest_sha256": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0",
+  "runtime_source": {
+    "file_sha256": {
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "1ecb82e75ca9bb8ffe263ea51c97e79538d43e98c0f13f4a1bdc743cacd0bd50",
+      "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+      "models/motiondrive_v2_temporal_contract.py": "5cef257cbe53c566effc4e1e17379f1b0d7d530a89cd19c6574e3a152d9c2c14",
+      "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+      "scripts/build_motiondrive_v2_history_overlay.py": "fdfe0d1d0fced02c85f78036c13e643f0d40e38f4b43d866d7e2f6844987e649",
+      "scripts/motiondrive_v2_data.py": "6c89d4e3b1e17636ef79bdbeae6750b35fea6a87978eaa7bebbdc5c2cf9ee4b6",
+      "scripts/motiondrive_v2_training.py": "6e3d5ecccee0a87cf6a85cd490ee192990fd2ca92f0c307040a93ca2cdc7077c",
+      "scripts/run_motiondrive_v2_p8_wide_history.py": "984acbc043f92ba12f3e8a35e1a57549a4dade13965e4683d36926f8c2a3d949",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/train_motiondrive_v2.py": "655db8a24ba59ce21ba502e46f7862c6c4ba82446394b169b9f2dbe1e8b2272d"
+    },
+    "git_sha": "20d1429c4db7a7799ebc30f8f2f54fd44c21f172",
+    "schema_version": 1
+  },
+  "runtime_source_manifest_sha256": "6682ea02544fc8a39e5d78bdf90bf9735682b51f3f5c7f88db93d85729d77f75",
+  "schema_version": 1,
+  "script_sha256": "bf03aa92cc0c99c754280d7728901eaffd3753dcf301aa8e6927e28d0d52e917",
+  "status": "completed",
+  "terminal_reference_sha256": "67279fe06120ef752d44c915dbc01d022244b94d60ba27577ed62d1bace1afd0",
+  "validation_source_sha256": {
+    "scripts/analyze_motiondrive_v2_p6_stop_balance_results.py": "e3ef5f7dac642d20aedafa71bcd4979aee4faaa077d2c234f910b736691da753",
+    "scripts/analyze_motiondrive_v2_p7_goal_routing_results.py": "4ba2ba0050bb74f6de462daf9ef9b5b31a8d3bb70779532465a2ce78fea0213b",
+    "scripts/analyze_motiondrive_v2_query_pair.py": "03e714e845f7c66a152b5e28449444e61b96d82541550747003fa58e71065651",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/run_motiondrive_v2_p7_goal_routing.py": "75b6908715a9181309ec586a18f3026518b419c922d1ec67b2a9f729d5a4c8cc"
+  }
+}
