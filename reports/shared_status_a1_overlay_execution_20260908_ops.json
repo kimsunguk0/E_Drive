@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "operation": "shared_status_a1_train_tune_overlay_build",
+  "remote_repo": "/NHNHOME/data/sukim/adcl",
+  "remote_git_head_before_and_after": "314f43bcfef1f600935c94e00572168cfa2065d5",
+  "attempts": [
+    {
+      "attempt": 0,
+      "command_scope": "py_compile succeeded, then builder --help failed; the chained build command was never entered",
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "PYTHONPATH": "unset"
+      },
+      "actual_exit_code": 1,
+      "error": "ModuleNotFoundError: No module named 'models'",
+      "failure_boundary": "import resolution during --help, before builder argument parsing/output creation",
+      "output_root_existed_after": false
+    },
+    {
+      "attempt": 1,
+      "change_from_attempt_0": "environment only: PYTHONPATH=/NHNHOME/data/sukim/adcl",
+      "help_command": "CUDA_VISIBLE_DEVICES='' PYTHONPATH=/NHNHOME/data/sukim/adcl OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /usr/bin/python scripts/build_motiondrive_v2_shared_status_overlay.py --help",
+      "build_command": "CUDA_VISIBLE_DEVICES='' PYTHONPATH=/NHNHOME/data/sukim/adcl OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /usr/bin/python scripts/build_motiondrive_v2_shared_status_overlay.py --source-root /tmp/pm97/data/etri/train --split-manifest /NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json --ego-cache /tmp/pm97/data/etri/ego_cache.npz --output-root /NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+      "actual_exit_code": 0,
+      "observed_wall_seconds": 22.844384316,
+      "stdout_summary": {
+        "status": "completed",
+        "rows": {
+          "train": 54810,
+          "tune": 1998
+        },
+        "source_scene_count": 240,
+        "source_files_sha256": "11d06dd690912b877922f87d54a780b3a68926d2e5a326a238117d00abf290c7"
+      }
+    }
+  ],
+  "source_files_sha256_before_and_after": {
+    "models/motiondrive_v2/shared_status.py": "4246fe34231340ec9d8e4c5134fd11558432161b418c213201a40e2b170fce79",
+    "scripts/motiondrive_v2_shared_status_data.py": "fb7dcf68349e5b27b1578bd6525244972ff89e3a22a8a04c169de505ea24095f",
+    "scripts/build_motiondrive_v2_shared_status_overlay.py": "1868fb503c0245abe6164688bfcde9c12dcfe39f79641076f1b7a6e6204e90ce",
+    "tests/test_motiondrive_v2_shared_status_a1_review.py": "e5d23e8477a02e05f0314a5949dadfefb89c3d216a1383eefca5a4091c06f0c3"
+  },
+  "focused_test": {
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /usr/bin/python -m pytest -q -p no:cacheprovider tests/test_motiondrive_v2_shared_status_a1_review.py",
+    "actual_exit_code": 0,
+    "result": "5 passed in 2.73s"
+  },
+  "inputs": {
+    "source_root": "/tmp/pm97/data/etri/train",
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache": "/tmp/pm97/data/etri/ego_cache.npz",
+    "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "source_scene_count": 240,
+    "source_files_sha256": "11d06dd690912b877922f87d54a780b3a68926d2e5a326a238117d00abf290c7"
+  },
+  "outputs": {
+    "root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+    "overlay_manifest.json": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+    "train.npz": "f76ac0ef4cf3f8626869ec63db6376ccfa2e0d135cf161c076d67854578b05f1",
+    "tune.npz": "aff4c00cd36c35c03c1a43f9f0689c85bc75008be7e8444829ea9a10b9493c6f"
+  },
+  "row_contract": {
+    "train": {
+      "rows": 54810,
+      "valid_rows": 54810,
+      "rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+      "status_sha256": "09225a69f91b5e1eec6a70b8622389216ba19961a948b95b6879a0512ae67c3f"
+    },
+    "tune": {
+      "rows": 1998,
+      "valid_rows": 1998,
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "status_sha256": "f5f17eb0f0276ebbac20ea069bd0e4086342d7aa6281020d3cc5581f530654b6"
+    }
+  },
+  "causal_boundary": {
+    "fields": ["vx", "vy", "ax", "ay", "yaw_rate"],
+    "nominal_pose_frames": [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0],
+    "future_values_used": false,
+    "goal_command_hd_files_read": false,
+    "allowed_splits": ["train", "tune"],
+    "final136_accessed": false,
+    "test_data_accessed": false,
+    "model_forward": false,
+    "gpu_training": false
+  }
+}
