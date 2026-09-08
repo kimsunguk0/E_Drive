@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "scope": "P7-C matched-24D full-train prediction extraction only",
+  "execution_date": "2026-09-08",
+  "frozen_script": {
+    "path": "scripts/run_motiondrive_v2_p7_state_sufficiency.py",
+    "sha256": "1ddd1fcf2c47e04283d0ee2e789fd255c4d5c7d537c09bc2f944d53884800852"
+  },
+  "release_barrier": {
+    "tune_execution_receipt": "reports/p7_c_state_sufficiency_tune_execution_20260908_ops.json",
+    "tune_execution_receipt_sha256": "8742a55fae43d7ce1d020f42a05db54ad60110c462999f1b9cb4aa560fe56b1f",
+    "review_status": "independent PASS before train extraction",
+    "fit_executed": false
+  },
+  "immutable_inputs_after_execution": {
+    "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "calibration_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "p7_source_manifest_sha256": "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4",
+    "runtime_source_manifest_sha256": "6682ea02544fc8a39e5d78bdf90bf9735682b51f3f5c7f88db93d85729d77f75",
+    "rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854"
+  },
+  "runs": {
+    "base0": {
+      "unified_handle": 20038,
+      "pid": 2380274,
+      "physical_gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "actual_exit_code": 0,
+      "checkpoint_sha256": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+      "run_manifest_sha256": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0",
+      "artifact": "reports/p7_c_state_sufficiency_20260908_ops/pred_b0_train.pt",
+      "artifact_sha256": "5b06a432912324312bae97b4a14f796585a86b9532e2c57edc18694948e4699c",
+      "artifact_manifest_sha256": "7f2e3dd98a80ea8c6f172e4d7824fad29f4a63ae2c8f01683d4afdf66b218bdc",
+      "model_state_sha256_before": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2",
+      "model_state_sha256_after": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2",
+      "max_observed_device_memory_mib": 4184,
+      "observed_runtime_seconds_bounds": [1049, 1095],
+      "derived_rows_per_second_bounds": [50.05, 52.25]
+    },
+    "base1": {
+      "unified_handle": 87951,
+      "pid": 2380284,
+      "physical_gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "actual_exit_code": 0,
+      "checkpoint_sha256": "8ffb429b17820b63477987f5c7de151dfa9e0e2b12378e247aed0b0e41de2563",
+      "run_manifest_sha256": "11854d7a9f828b8b4b6710679fd420f5c8d243d1322231d723137419aa48e80f",
+      "artifact": "reports/p7_c_state_sufficiency_20260908_ops/pred_b1_train.pt",
+      "artifact_sha256": "c5e6efe92e593abb4bc2781fb610660a76853a35ac35139bf35355486b62ac9c",
+      "artifact_manifest_sha256": "4244f015229c868bcc25dd604e4f2d289ab9a00b580f2f2cf4615c36a26de920",
+      "model_state_sha256_before": "bfcd5e8f807013452d71bf00e824926d89f2a0582809336d2a144aa17e571b29",
+      "model_state_sha256_after": "bfcd5e8f807013452d71bf00e824926d89f2a0582809336d2a144aa17e571b29",
+      "max_observed_device_memory_mib": 4184,
+      "observed_runtime_seconds_bounds": [1049, 1095],
+      "derived_rows_per_second_bounds": [50.05, 52.25]
+    }
+  },
+  "completed_artifact_contract": {
+    "rows_per_base": 54810,
+    "keys": ["rows", "pred_state", "pred_history", "pred_plan"],
+    "shapes": {
+      "rows": [54810],
+      "pred_state": [54810, 6],
+      "pred_history": [54810, 4, 4],
+      "pred_plan": [54810, 6, 2]
+    },
+    "floating_dtype": "torch.float32",
+    "all_floating_values_finite": true,
+    "first_batch_immediate_repeat_bitwise": true,
+    "full_unmodified_forward": true,
+    "augment": false,
+    "batch": 8,
+    "workers": 4,
+    "optimizer_created": false,
+    "backward_called": false,
+    "weights_updated": false,
+    "final_validation_accessed": false
+  },
+  "resource_observation": {
+    "p8_joint_jobs_preserved": true,
+    "co_resident_p8_control_pid": 2372687,
+    "co_resident_p8_wide_pid": 2372677,
+    "memory_note": "4184 MiB is the maximum directly sampled nvidia-smi value for each extractor, not a claimed CUDA peak."
+  },
+  "boundaries": {
+    "accuracy_claimed": false,
+    "mlp_fit_executed": false,
+    "new_training_executed": false,
+    "final_rows_accessed": false,
+    "a_b_a_claimed": false
+  }
+}
