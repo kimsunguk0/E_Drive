@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "status": "running_stable_step20",
+  "experiment": "shared_status_a1_s0_matched_last2000",
+  "scope": "ZERO versus provided_causal_5d; seed 0; fixed 2000 updates; no automatic retry or follow-on",
+  "source": {
+    "source_commit": "0f861ae8e2bfac5ce2421fae331c4c91eba13c6b",
+    "source_manifest_commit": "93cea3827d3e67eff7d866f310e0e552356f080c",
+    "source_manifest": "/NHNHOME/data/sukim/adcl/reports/shared_status_a1_source_manifest_20260908_ops.json",
+    "source_manifest_sha256": "5148302e671c32fdf7858407dd7e4eddc38863edce68f0821434440314268df6",
+    "driver_sha256": "2cd93f2db49b9bfb326e182aace7e106d25c9e639d87612655b0ea20b44cc094",
+    "supervisor_sha256": "cb9a481d073b20e4267db16f8127a6c02ebd68c698e10f2bfe1f4c7570ee9b3f"
+  },
+  "inputs": {
+    "parent_checkpoint_sha256": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+    "parent_model_state_sha256": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2",
+    "parent_manifest_sha256": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0",
+    "overlay_manifest_sha256": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+    "train_overlay_sha256": "f76ac0ef4cf3f8626869ec63db6376ccfa2e0d135cf161c076d67854578b05f1",
+    "tune_overlay_sha256": "aff4c00cd36c35c03c1a43f9f0689c85bc75008be7e8444829ea9a10b9493c6f",
+    "train_rows": 54810,
+    "tune_rows": 1998,
+    "final136_rows_selected_for_status_or_training_or_evaluation_or_analysis": 0
+  },
+  "gates": {
+    "focused_remote_tests": "18 passed; actual rc 0",
+    "zero_cpu_preflight_sha256": "688e0e11e2d36df57a1bac6b096549f52b6847cef51daef4f1a317c5d5d4226b",
+    "provided_cpu_preflight_sha256": "03bd9d54588112defe151f9d3c9d9cff7feaf5fbb62af94f27ef8dee28b04c8e",
+    "paired_initial_model_state_sha256": "6a1153094803a4e312dd04f635f9b5fed00cd7bb9888d8b4d6d871b8c98fb4b8",
+    "paired_initial_fusion_state_sha256": "d9bf0272d7e401ba8d48c4577033fe69bfe8a053409a5189699ee8cc949ee99c",
+    "raw_pose_8row_parity_sha256": "c3613bde04edf9535e8d2a5c9b66fcd66a89d8636bc9ba0f2f5275d7fd336385",
+    "raw_pose_8row_parity": "8/8 TRAIN rows exact float32; max_abs_diff 0; actual rc 0",
+    "initial_train_microbatch_audit_sha256": "3ed23ec0c68741e4aa174b3343be36d14bcd6dc75520c8c24c4ac6398ce8490d",
+    "initial_train_microbatch_audit": "parent/ZERO/PROVIDED outputs bitwise exact; plan/occupancy/lane each has finite nonzero final-gamma weight and bias gradients; optimizer/eval absent; actual rc 0",
+    "smoke_attempt0_exit_code_preserved": false,
+    "smoke_attempt0_boundary": "both computations completed step 2, but detached shell omitted an exit-code sidecar; artifacts retained and not used as initializers",
+    "smoke_retry1_supervisor_receipt_sha256": "3e62ebacb19576ca2988f6d5ecff5461c9348a3bdb7c64488f642194213dc259",
+    "smoke_retry1": "ZERO rc 0 and PROVIDED rc 0; both result sets complete; step 2; nonfinite 0; same sample order; fusion state changed; never used as initializer"
+  },
+  "launch": {
+    "main_spec": "/NHNHOME/data/sukim/adcl/reports/shared_status_a1_main_spec_20260908_ops.json",
+    "main_spec_sha256": "d9d64ef448516d17c32e8393f88bda3a588cf2f36fa2d4f0f98bcfe83dda45c7",
+    "live_receipt": "/NHNHOME/data/sukim/adcl/reports/shared_status_a1_main_receipt_20260908_ops.json",
+    "supervisor_log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a1_main_supervisor.log",
+    "supervisor_pid": 2978605,
+    "started_utc": "2026-09-08T09:27:17.705108+00:00",
+    "started_kst": "2026-09-08T18:27:17.705108+09:00",
+    "jobs": {
+      "zero": {
+        "gpu_index": 0,
+        "gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+        "pid": 2978612,
+        "pgid": 2978612,
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a1_s0_zero_last2000",
+        "log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a1_zero_last2000.log",
+        "observed_step": 20,
+        "total_loss": -0.6757397651672363,
+        "grad_norm": 38.36713790893555,
+        "sample_order_sha256": "0baa594b811ef1fc52e03aaad0a511d789bdb70af890a401a48908fbe5aacac0",
+        "peak_reserved_bytes": 5962203136,
+        "nonfinite_count": 0
+      },
+      "provided": {
+        "gpu_index": 1,
+        "gpu_uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+        "pid": 2978613,
+        "pgid": 2978613,
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a1_s0_provided_last2000",
+        "log": "/NHNHOME/data/sukim/adcl/reports/shared_status_a1_provided_last2000.log",
+        "observed_step": 20,
+        "total_loss": -0.6751729249954224,
+        "grad_norm": 38.667232513427734,
+        "sample_order_sha256": "0baa594b811ef1fc52e03aaad0a511d789bdb70af890a401a48908fbe5aacac0",
+        "peak_reserved_bytes": 5962203136,
+        "nonfinite_count": 0
+      }
+    },
+    "estimated_terminal_kst": "2026-09-08T19:05:00+09:00 to 2026-09-08T19:10:00+09:00",
+    "terminal_contract": "LAST2000 plus one terminal tune evaluation; no BEST selection; supervisor exits after these two fixed jobs and launches nothing else"
+  }
+}
