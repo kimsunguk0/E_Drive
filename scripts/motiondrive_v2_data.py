@@ -15,9 +15,12 @@ from PIL import Image, ImageEnhance
 import torch
 from torch.utils.data import Dataset
 
+from models.motiondrive_v2_temporal_contract import CONTROL, temporal_contract
+
 CAMERA_ORDER = ("camera_front", "camera_front_right", "camera_front_left",
                 "camera_rear_wide", "camera_rear_left", "camera_rear_right")
-HISTORY_OFFSETS = np.asarray([1, 2, 5, 10], dtype=np.int64)
+HISTORY_OFFSETS = np.asarray(CONTROL.frame_offsets, dtype=np.int64)
+TEMPORAL_KEYS = ("history_transforms", "history_target", "history_valid", "time_offsets")
 GRID_SHAPE = (64, 48)
 GRID_EXTENT = (-10., 70., -32., 32.)
 MEAN = np.asarray([.485, .456, .406], np.float32)
@@ -94,13 +97,8 @@ def full_pose_matrices(xyz, rpy):
     return out
 
 
-def motion_targets(poses, times_seconds, current_index, past_indices):
-    """Full SE(3) alignment; causal quadratic fit over <=1 second for state.
-
-    state = vx,vy,ax,ay,yaw_rate,stop. Fit time is centered at current timestamp;
-    zero intercept is NOT imposed (otherwise pose noise at t0 biases derivatives).
-    Units m/s, m/s², rad/s; stop threshold = causal fitted planar speed <.2m/s.
-    """
+def history_targets(poses, times_seconds, current_index, past_indices):
+    """Compute only full-SE(3), pose/timestamp-derived history supervision."""
     poses, ts = np.asarray(poses, np.float64), np.asarray(times_seconds, np.float64)
     now = int(current_index)
     ids = np.asarray(past_indices, np.int64)
@@ -114,6 +112,25 @@ def motion_targets(poses, times_seconds, current_index, past_indices):
     valid_history = np.isfinite(history).all(1) & np.isfinite(dt) & (dt > 0) & (dt <= 3.001)
     if not valid_history.all():
         raise ValueError("Nonfinite/out-of-window pose history")
+    return dict(history_transforms=alignment.astype(np.float32),
+                history_target=history.astype(np.float32),
+                history_valid=np.repeat(valid_history[:, None], 4, axis=1),
+                time_offsets=dt.astype(np.float32))
+
+
+def motion_targets(poses, times_seconds, current_index, past_indices):
+    """Full SE(3) alignment; causal quadratic fit over <=1 second for state.
+
+    state = vx,vy,ax,ay,yaw_rate,stop. Fit time is centered at current timestamp;
+    zero intercept is NOT imposed (otherwise pose noise at t0 biases derivatives).
+    Units m/s, m/s², rad/s; stop threshold = causal fitted planar speed <.2m/s.
+    """
+    history_result = history_targets(poses, times_seconds, current_index, past_indices)
+    poses, ts = np.asarray(poses, np.float64), np.asarray(times_seconds, np.float64)
+    now = int(current_index)
+    ids = np.asarray(past_indices, np.int64)
+    if (ids >= now).any() or (ids < 0).any():
+        raise ValueError("History must be strictly causal")
     fit_ids = np.where((ts <= ts[now]) & (ts >= ts[now] - 1.001))[0]
     fit_ids = fit_ids[fit_ids <= now]
     state, state_valid = np.zeros(6, np.float32), np.zeros(6, bool)
@@ -130,18 +147,16 @@ def motion_targets(poses, times_seconds, current_index, past_indices):
             residual = fit_rel[:, :2, 3] - design @ position
             valid = np.isfinite(state).all() and np.sqrt(np.mean(residual ** 2)) < .25
             state_valid[:] = valid
-    return dict(history_transforms=alignment.astype(np.float32),
-                history_target=history.astype(np.float32),
-                history_valid=np.repeat(valid_history[:, None], 4, axis=1),
-                time_offsets=dt.astype(np.float32), state_target=state,
-                state_valid=state_valid)
+    return dict(**history_result, state_target=state, state_valid=state_valid)
 
 
 class MotionDriveDataset(Dataset):
     def __init__(self, data_root, split_manifest, split="train", supervision_root=None,
                  *, image_root=None, ego_cache=None, min_frame=30, frame_stride=1,
                  max_samples=0, augment=False, seed=0, allow_missing_supervision=False,
-                 calibration_path=None, scenes=None, frames=None):
+                 calibration_path=None, scenes=None, frames=None,
+                 history_contract="control", history_overlay_root=None,
+                 expected_history_overlay_sha256=None):
         self.root = Path(data_root)
         with open(split_manifest) as f:
             self.manifest = json.load(f)
@@ -149,8 +164,11 @@ class MotionDriveDataset(Dataset):
         validate_manifest(self.manifest)
         if split not in self.manifest["splits"]:
             raise KeyError(split)
-        if frame_stride < 1 or min_frame < int(HISTORY_OFFSETS.max()):
-            raise ValueError("frame_stride>=1 and min_frame>=10 required")
+        temporal = temporal_contract(history_contract)
+        self.history_contract = temporal
+        self.history_offsets = np.asarray(temporal.frame_offsets, dtype=np.int64)
+        if frame_stride < 1 or min_frame < int(self.history_offsets.max()):
+            raise ValueError(f"frame_stride>=1 and min_frame>={max(temporal.frame_offsets)} required")
         cache = Path(ego_cache) if ego_cache else self.root / "data/etri/ego_cache.npz"
         if not cache.exists() and ego_cache is None:
             cache = Path("/tmp/pm97/data/etri/ego_cache.npz")
@@ -186,6 +204,52 @@ class MotionDriveDataset(Dataset):
             raise ValueError("Supervision grid geometry mismatch")
         if contract.get("history_frame_offsets") != HISTORY_OFFSETS.tolist():
             raise ValueError("Supervision history offsets mismatch")
+        self.history_overlay_root = (Path(history_overlay_root).resolve()
+                                     if history_overlay_root is not None else None)
+        self.history_overlay_manifest = None
+        if self.history_overlay_root is None:
+            if temporal != CONTROL or expected_history_overlay_sha256 is not None:
+                raise ValueError("Wide history requires an explicitly SHA-pinned temporal overlay")
+        else:
+            if not isinstance(expected_history_overlay_sha256, str) or len(expected_history_overlay_sha256) != 64:
+                raise ValueError("Explicit history-overlay manifest SHA256 is required")
+            overlay_path = self.history_overlay_root / "overlay_manifest.json"
+            if sha256(overlay_path) != expected_history_overlay_sha256:
+                raise ValueError("History-overlay manifest SHA mismatch")
+            with overlay_path.open() as stream:
+                overlay = json.load(stream)
+            required_overlay = {"schema_version", "status", "temporal_contract",
+                                "producer",
+                                "split_manifest_sha256", "ego_cache_sha256",
+                                "base_supervision_manifest_sha256", "allowed_splits",
+                                "splits", "artifacts", "boundaries"}
+            if set(overlay) != required_overlay or overlay["schema_version"] != 1 or overlay["status"] != "frozen":
+                raise ValueError("History-overlay manifest schema/status mismatch")
+            producer = overlay["producer"]
+            if (not isinstance(producer, dict)
+                    or set(producer) != {"script", "script_sha256", "numpy"}
+                    or producer["script"] != "scripts/build_motiondrive_v2_history_overlay.py"
+                    or producer["script_sha256"] != sha256(
+                        Path(__file__).resolve().parent / "build_motiondrive_v2_history_overlay.py")):
+                raise ValueError("History-overlay producer source mismatch")
+            expected_temporal = {"name": temporal.name,
+                                 "frame_offsets": list(temporal.frame_offsets),
+                                 "nominal_seconds": list(temporal.nominal_seconds)}
+            if overlay["temporal_contract"] != expected_temporal:
+                raise ValueError("History-overlay temporal contract mismatch")
+            if (overlay["split_manifest_sha256"] != self.split_sha
+                    or overlay["ego_cache_sha256"] != self.cache_sha
+                    or overlay["base_supervision_manifest_sha256"] != sha256(
+                        self.supervision_root / "supervision_manifest.json")):
+                raise ValueError("History-overlay base data provenance mismatch")
+            if overlay["allowed_splits"] != ["train", "tune"] or split not in overlay["allowed_splits"]:
+                raise ValueError("History overlay may only serve train/tune")
+            declared = overlay["splits"].get(split, {})
+            rows_sha = __import__("hashlib").sha256(
+                np.asarray(self.rows, dtype="<i8").tobytes()).hexdigest()
+            if declared != {"rows": len(self.rows), "rows_sha256": rows_sha}:
+                raise ValueError("History-overlay selected rows mismatch")
+            self.history_overlay_manifest = overlay
         self.augment, self.seed, self.epoch = bool(augment), int(seed), 0
         self.allow_missing_supervision = allow_missing_supervision
         canonical_path = self.supervision_root / "calibration.npz"
@@ -203,6 +267,12 @@ class MotionDriveDataset(Dataset):
                    if not (self.supervision_root / f"{s}.npz").exists()]
         if missing and not self.allow_missing_supervision:
             raise FileNotFoundError(f"Missing supervision for {len(missing)} scenes: {missing[:4]}")
+        if self.history_overlay_manifest is not None:
+            required = sorted(set(self.scene_names[self.rows]))
+            artifacts = self.history_overlay_manifest["artifacts"]
+            if any(scene not in artifacts or artifacts[scene].get("split") != self.split
+                   for scene in required):
+                raise FileNotFoundError("History overlay lacks required split scenes")
 
     def set_epoch(self, epoch):
         self.epoch = int(epoch)
@@ -231,6 +301,61 @@ class MotionDriveDataset(Dataset):
         out["frame_lookup"] = {int(f): i for i, f in enumerate(out["frame"])}
         return out
 
+    @lru_cache(maxsize=4)
+    def _history_overlay(self, scene):
+        if self.history_overlay_manifest is None:
+            return None
+        from build_grouped_split_v2 import sha256
+        spec = self.history_overlay_manifest["artifacts"].get(scene)
+        if (not isinstance(spec, dict)
+                or set(spec) != {"split", "file", "sha256", "rows", "rows_sha256",
+                                 "arrays_sha256", "source_sha256"}
+                or spec["split"] != self.split or spec["file"] != f"{scene}.npz"):
+            raise ValueError(f"Malformed history-overlay artifact declaration: {scene}")
+        path = self.history_overlay_root / spec["file"]
+        if sha256(path) != spec["sha256"]:
+            raise ValueError(f"History-overlay artifact SHA mismatch: {scene}")
+        with np.load(path, allow_pickle=False) as source:
+            expected = {"row", "frame", "history_transforms", "history_target",
+                        "history_valid", "time_offsets"}
+            if set(source.files) != expected:
+                raise ValueError(f"History-overlay array keys mismatch: {scene}")
+            out = {key: source[key] for key in source.files}
+        n = len(out["row"])
+        if (n != spec["rows"] or out["row"].shape != (n,) or out["frame"].shape != (n,)
+                or out["history_transforms"].shape != (n, 4, 4, 4)
+                or out["history_target"].shape != (n, 4, 4)
+                or out["history_valid"].shape != (n, 4, 4)
+                or out["time_offsets"].shape != (n, 4)):
+            raise ValueError(f"History-overlay shapes mismatch: {scene}")
+        if (out["row"].dtype != np.int64 or out["frame"].dtype != np.int64
+                or out["history_transforms"].dtype != np.float32
+                or out["history_target"].dtype != np.float32
+                or out["history_valid"].dtype != np.bool_
+                or out["time_offsets"].dtype != np.float32
+                or any(not np.isfinite(out[key]).all() for key in TEMPORAL_KEYS)):
+            raise ValueError(f"History-overlay dtype/finite mismatch: {scene}")
+        rows = np.asarray(out["row"], dtype="<i8")
+        if (len(np.unique(rows)) != n
+                or __import__("hashlib").sha256(rows.tobytes()).hexdigest() != spec["rows_sha256"]):
+            raise ValueError(f"History-overlay row identity mismatch: {scene}")
+        if set(spec["arrays_sha256"]) != expected:
+            raise ValueError(f"History-overlay array digest keyset mismatch: {scene}")
+        for key, digest in spec["arrays_sha256"].items():
+            value = np.ascontiguousarray(out[key])
+            if __import__("hashlib").sha256(value.tobytes()).hexdigest() != digest:
+                raise ValueError(f"History-overlay array digest mismatch: {scene}/{key}")
+        base = self._supervision(scene)
+        base_lookup = {int(row): index for index, row in enumerate(base["row"])}
+        try:
+            base_indices = np.asarray([base_lookup[int(row)] for row in out["row"]], dtype=np.int64)
+        except KeyError as exc:
+            raise ValueError(f"History-overlay row absent from base C1: {scene}/{exc.args[0]}") from exc
+        if not np.array_equal(base["frame"][base_indices], out["frame"]):
+            raise ValueError(f"History-overlay row/frame differs from base C1: {scene}")
+        out["row_lookup"] = {int(row): index for index, row in enumerate(out["row"])}
+        return out
+
     def _image(self, scene, camera, frame, size, jitter):
         path = self.image_root / scene / camera / f"{frame:08d}.jpg"
         with Image.open(path) as f:
@@ -252,11 +377,18 @@ class MotionDriveDataset(Dataset):
         if frame not in supervision["frame_lookup"]:
             raise KeyError(f"Supervision missing requested frame: {scene}/{frame}")
         si = supervision["frame_lookup"][frame]
+        overlay = self._history_overlay(scene)
+        if overlay is not None:
+            if row not in overlay["row_lookup"]:
+                raise KeyError(f"History overlay missing requested row: {scene}/{frame}/{row}")
+            oi = overlay["row_lookup"][row]
+            if int(overlay["frame"][oi]) != frame:
+                raise ValueError(f"History-overlay row/frame mismatch: {scene}/{frame}/{row}")
         rng = np.random.default_rng(self.seed + self.epoch * 1000003 + row)
         jitter = rng.uniform(.9, 1.1, (6, 3)) if self.augment else [None] * 6
         # Same front-camera photometric parameters across all temporal images.
         images = torch.stack([self._image(scene, cam, frame, (768, 432), jitter[c]) for c, cam in enumerate(CAMERA_ORDER)])
-        history = torch.stack([self._image(scene, CAMERA_ORDER[0], frame - int(offset), (384, 216), jitter[0]) for offset in HISTORY_OFFSETS])
+        history = torch.stack([self._image(scene, CAMERA_ORDER[0], frame - int(offset), (384, 216), jitter[0]) for offset in self.history_offsets])
         result = dict(images=images, history_images=history,
                       lidar2img=torch.from_numpy(self.lidar2img.copy()),
                       goal_xy=torch.from_numpy(self.arr["goal"][row].astype(np.float32)),
@@ -265,10 +397,13 @@ class MotionDriveDataset(Dataset):
                       row=row, scen_idx=int(self.arr["scen_idx"][row]), frame=frame,
                       scenario=scene, session_id=self.manifest["scene_to_session"][scene],
                       proxy_weight=torch.tensor(float(supervision.get("proxy_weight", np.ones(len(supervision["frame"])))[si]), dtype=torch.float32))
-        for key in ("history_transforms", "time_offsets", "history_target", "history_valid",
-                    "state_target", "state_valid", "occ_target", "lane_target", "occ_valid", "lane_valid"):
-            if key not in supervision:
+        temporal_keys = {"history_transforms", "time_offsets", "history_target", "history_valid"}
+        for key in (*sorted(temporal_keys), "state_target", "state_valid", "occ_target",
+                    "lane_target", "occ_valid", "lane_valid"):
+            source = overlay if overlay is not None and key in temporal_keys else supervision
+            source_index = oi if source is overlay else si
+            if key not in source:
                 raise KeyError(f"{scene}: missing required {key}")
-            value = supervision[key][si]
+            value = source[key][source_index]
             result[key] = torch.from_numpy(np.asarray(value).copy())
         return result
