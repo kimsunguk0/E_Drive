@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "scope": "fixed aggregate CPU-only P7-C matched-24D diagnostic fit",
+  "execution_date": "2026-09-08",
+  "unified_handle": 15088,
+  "pid": 2390375,
+  "actual_exit_code": 0,
+  "command_contract": {
+    "single_aggregate_command": true,
+    "four_runs_sequential": ["base0_gt", "base0_pred", "base1_gt", "base1_pred"],
+    "cuda_visible_devices": "",
+    "omp_num_threads": 1,
+    "mkl_num_threads": 1,
+    "openblas_num_threads": 1,
+    "script_sha256": "1ddd1fcf2c47e04283d0ee2e789fd255c4d5c7d537c09bc2f944d53884800852",
+    "new_output_dir": "reports/p7_c_state_sufficiency_20260908_ops/fit"
+  },
+  "inputs": {
+    "gt_train_sha256": "96eb0d2c9fa895a79e62f85f5c4a626185930790ec778ee6eeef0ce055cb46ec",
+    "gt_tune_sha256": "8548f5df313eac452cc1ba34c894d5f68bcc1d7337d6122fe7012f6a7d485ea2",
+    "pred_b0_train_sha256": "5b06a432912324312bae97b4a14f796585a86b9532e2c57edc18694948e4699c",
+    "pred_b0_tune_sha256": "dc7e547345938a00407f0a739cb188849cf31f372499ad9ec029b39cc74bdad7",
+    "pred_b1_train_sha256": "c5e6efe92e593abb4bc2781fb610660a76853a35ac35139bf35355486b62ac9c",
+    "pred_b1_tune_sha256": "8b5fb837ceb1c75c36d388b891e76f17df574e072103ae92f7158b2ff2d92e6f"
+  },
+  "normalizer_provenance": {
+    "authoritative_b200_sha256": "13e94cae45e683756f0b24a073cfb72e66f13eb47cc8ca5a4791179a78fb380c",
+    "b200_runtime": "Python 3.12.3; Torch 2.10.0a0+b4e4ee81d3.nv25.12; NumPy 2.1.0",
+    "superseded_local_audit_sha256": "1ca871638f7c5a34b3c76a6bcdbec131c4cc8b922b0fdabca4364e1e0a95d170",
+    "local_audit_runtime": "Python 3.10.12; Torch 2.8.0+cu128; NumPy 2.2.6",
+    "scale_bytes_equal": true,
+    "mean_bytes_equal": true,
+    "std_different_columns": 9,
+    "std_max_ulp_difference": 2,
+    "std_max_absolute_difference": 1.1102230246251565e-16,
+    "std_max_relative_difference": 2.399405114799586e-16,
+    "std_clamp_hits": 0,
+    "normalized_fp32_total_elements": 1315440,
+    "normalized_fp32_different_elements": 0,
+    "authoritative_sha_verified_in_result": true,
+    "formula_or_hyperparameter_changed": false
+  },
+  "recipe": {
+    "architecture": "24-512-512-12 GELU+LayerNorm",
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "loss": "SmoothL1 beta=0.1",
+    "batch": 1024,
+    "epochs": 60,
+    "steps_each": 3240,
+    "selection": "LAST60 only",
+    "tune_passes_each": 1
+  },
+  "outputs": {
+    "result": {
+      "path": "reports/p7_c_state_sufficiency_20260908_ops/fit/result.json",
+      "sha256": "6edbb58e96347a8da7740365cb4ad5e0ee9e306948a420833f4100b9a9cc4f7a"
+    },
+    "base0_gt_checkpoint_sha256": "2ae83859ad4c572c4b89f35891347299ccc629e72430ebc1155743b8a8f47347",
+    "base0_pred_checkpoint_sha256": "f2f3f3b58354e9a33fb1cdf60581493ce973aa3abcd68c517f5e71ea5ae65356",
+    "base1_gt_checkpoint_sha256": "d87468e535db6b339144320ab8d642665a298e3c67a25a8c4b16fe7b55b5d1ba",
+    "base1_pred_checkpoint_sha256": "790174ed116715c10e8db89ccf9537bbb6a00a682e34b5fa5e5e4810377906ba"
+  },
+  "results": {
+    "base0_gt": {
+      "train_d3_in_sample": 0.08895253935436336,
+      "tune_d3": 0.0887658248724951,
+      "tune_ade1": 0.04099512036380391,
+      "tune_ade2": 0.08888518414100194,
+      "tune_ade3": 0.1364171645038458
+    },
+    "base0_pred": {
+      "train_d3_in_sample": 0.2309879280858585,
+      "tune_d3": 0.5714418412455627,
+      "tune_ade1": 0.41359147624563875,
+      "tune_ade2": 0.5980955268538024,
+      "tune_ade3": 0.7026384953692761
+    },
+    "base1_gt": {
+      "train_d3_in_sample": 0.08931956177432011,
+      "tune_d3": 0.08918161638506648,
+      "tune_ade1": 0.04081786113758355,
+      "tune_ade2": 0.08946456123510564,
+      "tune_ade3": 0.13726242085147478
+    },
+    "base1_pred": {
+      "train_d3_in_sample": 0.23053482120818922,
+      "tune_d3": 0.576809673092782,
+      "tune_ade1": 0.41809919645244303,
+      "tune_ade2": 0.6029849813730197,
+      "tune_ade3": 0.7093448136921359
+    },
+    "mean_gt_tune_d3": 0.08897372062878078,
+    "mean_pred_tune_d3": 0.5741257571691724,
+    "mean_direct_p7_c_tune_d3": 0.3276025124660528
+  },
+  "integrity": {
+    "all_result_numeric_values_finite": true,
+    "all_four_checkpoint_tensor_states_finite": true,
+    "all_four_checkpoint_steps": 3240,
+    "same_seed_gt_pred_initial_state_equal": true,
+    "same_seed_gt_pred_sample_order_equal": true,
+    "p8_jobs_preserved": true,
+    "no_final_validation_access": true
+  },
+  "interpretation_boundaries": {
+    "gt_arm_is_privileged_diagnostic": true,
+    "predicted_arm_is_non_submittable_diagnostic": true,
+    "not_a_mathematical_ceiling": true,
+    "does_not_isolate_production_decoder": true,
+    "result_has_aggregate_metrics_only": true,
+    "per_row_or_session_analysis_claimed": false,
+    "new_fit_or_sweep_authorized": false
+  }
+}

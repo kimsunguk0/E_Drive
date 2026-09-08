@@ -1,0 +1,268 @@
+{
+  "boundaries": {
+    "does_not_isolate_production_decoder": true,
+    "e26_family_on_different_grouped_split_not_e26_reproduction": true,
+    "no_final_validation_access": true,
+    "no_hyperparameter_or_epoch_selection": true,
+    "no_model_forward_in_fit_stage": true,
+    "raw_goal_path_differs_from_legal_P7_C_shared_scene_path": true,
+    "train_metrics_are_in_sample": true
+  },
+  "diagnostic_only": true,
+  "feature_names": [
+    "vx",
+    "vy",
+    "ax",
+    "ay",
+    "yaw_rate",
+    "stop_probability",
+    "history_0.1s_dx",
+    "history_0.1s_dy",
+    "history_0.1s_sin_yaw",
+    "history_0.1s_cos_yaw",
+    "history_0.2s_dx",
+    "history_0.2s_dy",
+    "history_0.2s_sin_yaw",
+    "history_0.2s_cos_yaw",
+    "history_0.5s_dx",
+    "history_0.5s_dy",
+    "history_0.5s_sin_yaw",
+    "history_0.5s_cos_yaw",
+    "history_1s_dx",
+    "history_1s_dy",
+    "history_1s_sin_yaw",
+    "history_1s_cos_yaw",
+    "goal_x_5s",
+    "goal_y_5s"
+  ],
+  "goal_contract": "same raw provided 5-second goal XY in both arms",
+  "inputs": {
+    "gt_train": {
+      "artifact": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/gt_train.pt",
+      "artifact_sha256": "96eb0d2c9fa895a79e62f85f5c4a626185930790ec778ee6eeef0ce055cb46ec",
+      "manifest": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/gt_train.pt.manifest.json",
+      "manifest_sha256": "0e16b881e77f16a1548d9eb86fe5077a20bba9ad447627870c297f598c075076"
+    },
+    "gt_tune": {
+      "artifact": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/gt_tune.pt",
+      "artifact_sha256": "8548f5df313eac452cc1ba34c894d5f68bcc1d7337d6122fe7012f6a7d485ea2",
+      "manifest": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/gt_tune.pt.manifest.json",
+      "manifest_sha256": "53f0cf2e532c20dfe1e957204ba409a9095a6cd59aff6494e4d8c5d5dfd5922e"
+    },
+    "pred0_train": {
+      "artifact": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/pred_b0_train.pt",
+      "artifact_sha256": "5b06a432912324312bae97b4a14f796585a86b9532e2c57edc18694948e4699c",
+      "manifest": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/pred_b0_train.pt.manifest.json",
+      "manifest_sha256": "7f2e3dd98a80ea8c6f172e4d7824fad29f4a63ae2c8f01683d4afdf66b218bdc"
+    },
+    "pred0_tune": {
+      "artifact": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/pred_b0_tune.pt",
+      "artifact_sha256": "dc7e547345938a00407f0a739cb188849cf31f372499ad9ec029b39cc74bdad7",
+      "manifest": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/pred_b0_tune.pt.manifest.json",
+      "manifest_sha256": "c00fa96a393a6edaf924ea22f1910f07250dbc49a280b0e213aca4ab781b289d"
+    },
+    "pred1_train": {
+      "artifact": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/pred_b1_train.pt",
+      "artifact_sha256": "c5e6efe92e593abb4bc2781fb610660a76853a35ac35139bf35355486b62ac9c",
+      "manifest": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/pred_b1_train.pt.manifest.json",
+      "manifest_sha256": "4244f015229c868bcc25dd604e4f2d289ab9a00b580f2f2cf4615c36a26de920"
+    },
+    "pred1_tune": {
+      "artifact": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/pred_b1_tune.pt",
+      "artifact_sha256": "8b5fb837ceb1c75c36d388b891e76f17df574e072103ae92f7158b2ff2d92e6f",
+      "manifest": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/pred_b1_tune.pt.manifest.json",
+      "manifest_sha256": "ad58f21b979a84c75ea4150edf8d5437ad8d9553e52388c90caf645f8fa2214f"
+    }
+  },
+  "mean_tune": {
+    "gt_d3": 0.08897372062878078,
+    "p7_c_reference_d3": 0.3276025124660528,
+    "pred_d3": 0.5741257571691724
+  },
+  "non_submittable": true,
+  "normalizer": {
+    "mean": [
+      1.1027298994590575,
+      -0.05226611477451735,
+      0.005345498947381729,
+      -0.00038128984588581635,
+      -0.0005624987190669823,
+      0.07263273125342092,
+      -0.11049255112284584,
+      0.005232639884040225,
+      2.6781274950813605e-05,
+      0.999983045064583,
+      -0.22097658700959188,
+      0.010465384412919531,
+      5.2636469152772155e-05,
+      0.9999322267099359,
+      -0.5523567185510343,
+      0.026156852581617936,
+      0.00012835943946277046,
+      0.9995786145435505,
+      -1.104304635066563,
+      0.05226394693551373,
+      0.0002565580565713362,
+      0.9983466614153976,
+      0.6866261494731456,
+      -0.020617934265987355
+    ],
+    "scale": [
+      10.0,
+      5.0,
+      3.0,
+      3.0,
+      0.5,
+      1.0,
+      10.0,
+      5.0,
+      1.0,
+      1.0,
+      10.0,
+      5.0,
+      1.0,
+      1.0,
+      10.0,
+      5.0,
+      1.0,
+      1.0,
+      10.0,
+      5.0,
+      1.0,
+      1.0,
+      80.0,
+      64.0
+    ],
+    "sha256": "13e94cae45e683756f0b24a073cfb72e66f13eb47cc8ca5a4791179a78fb380c",
+    "shared_across_gt_pred_and_both_seeds": true,
+    "source": "one canonical GT24 grouped-train54810 matrix",
+    "std": [
+      0.6049937117024695,
+      0.029523205457067443,
+      0.15056792968623386,
+      0.1201206031557155,
+      0.11895549389591244,
+      0.2595326908196516,
+      0.060735509771111945,
+      0.0030529366059087724,
+      0.005822458384825554,
+      0.00010121445296800342,
+      0.12146965328327279,
+      0.006185012681057869,
+      0.011635162679641499,
+      0.0004043203831126336,
+      0.3036808239482026,
+      0.01774823373680405,
+      0.02891922610778801,
+      0.0025012369889959507,
+      0.607432464039304,
+      0.047930375998148915,
+      0.05666366031406473,
+      0.009649240384933101,
+      0.3810811972436964,
+      0.06414402284851153
+    ]
+  },
+  "not_a_mathematical_ceiling": true,
+  "recipe": {
+    "architecture": "24-512-512-12 GELU+LayerNorm",
+    "batch": 1024,
+    "epochs": 60,
+    "loss": "SmoothL1 beta=0.1",
+    "lr": 0.001,
+    "optimizer": "AdamW",
+    "scheduler": "per-step CosineAnnealingLR T_max=3240",
+    "selection": "LAST60 only",
+    "steps": 3240,
+    "weight_decay": 0.0001
+  },
+  "runs": {
+    "base0": {
+      "gt": {
+        "checkpoint": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/fit/base0_gt_last60.pt",
+        "checkpoint_sha256": "2ae83859ad4c572c4b89f35891347299ccc629e72430ebc1155743b8a8f47347",
+        "final_model_state_sha256": "de5af39838e2306c8b4d6a10aa890cdafe6a59a0181d653e6d8e1ba1d1420ea7",
+        "initial_model_state_sha256": "32e0159adb3674fb1edadd53fa38f36cedb5cb2d86b841daf8727f9d179b85bd",
+        "sample_order_sha256": "37e9021a7f2073a0154f71ee90f0c35e091bd9fa06cfa5a376b580f278831160",
+        "steps": 3240,
+        "train_d3_in_sample": 0.08895253935436336,
+        "tune_official_d3": 0.0887658248724951,
+        "tune_per_horizon_ade": {
+          "ade1": 0.04099512036380391,
+          "ade2": 0.08888518414100194,
+          "ade3": 0.1364171645038458
+        }
+      },
+      "gt_minus_p7_c_tune_d3": -0.24182029753048032,
+      "p7_c_reference_tune_d3": 0.3305861224029754,
+      "pred": {
+        "checkpoint": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/fit/base0_pred_last60.pt",
+        "checkpoint_sha256": "f2f3f3b58354e9a33fb1cdf60581493ce973aa3abcd68c517f5e71ea5ae65356",
+        "final_model_state_sha256": "9dec327428442bc1f04db604ad98e2d7c2ee2f6d3746a5cdc8f57e46602a626a",
+        "initial_model_state_sha256": "32e0159adb3674fb1edadd53fa38f36cedb5cb2d86b841daf8727f9d179b85bd",
+        "sample_order_sha256": "37e9021a7f2073a0154f71ee90f0c35e091bd9fa06cfa5a376b580f278831160",
+        "steps": 3240,
+        "train_d3_in_sample": 0.2309879280858585,
+        "tune_official_d3": 0.5714418412455627,
+        "tune_per_horizon_ade": {
+          "ade1": 0.41359147624563875,
+          "ade2": 0.5980955268538024,
+          "ade3": 0.7026384953692761
+        }
+      },
+      "pred_minus_gt_tune_d3": 0.4826760163730677,
+      "pred_minus_p7_c_tune_d3": 0.24085571884258733
+    },
+    "base1": {
+      "gt": {
+        "checkpoint": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/fit/base1_gt_last60.pt",
+        "checkpoint_sha256": "d87468e535db6b339144320ab8d642665a298e3c67a25a8c4b16fe7b55b5d1ba",
+        "final_model_state_sha256": "c761d86d3d23a5bbfa6057bfee3e094a4b123e27de3085cd5cc87ac2430933bf",
+        "initial_model_state_sha256": "299b24ad795f942403a95737c3794b1ba4c6ed708529c542308c2d65de81bdd1",
+        "sample_order_sha256": "b7554721610a34cf43da93aadbf622abed4824c5204426d5971ce1020326f3f9",
+        "steps": 3240,
+        "train_d3_in_sample": 0.08931956177432011,
+        "tune_official_d3": 0.08918161638506648,
+        "tune_per_horizon_ade": {
+          "ade1": 0.04081786113758355,
+          "ade2": 0.08946456123510564,
+          "ade3": 0.13726242085147478
+        }
+      },
+      "gt_minus_p7_c_tune_d3": -0.23543728614406373,
+      "p7_c_reference_tune_d3": 0.3246189025291302,
+      "pred": {
+        "checkpoint": "/NHNHOME/data/sukim/adcl/reports/p7_c_state_sufficiency_20260908_ops/fit/base1_pred_last60.pt",
+        "checkpoint_sha256": "790174ed116715c10e8db89ccf9537bbb6a00a682e34b5fa5e5e4810377906ba",
+        "final_model_state_sha256": "d39fdac31e23219710d2082e3ecd6360f412bb00e9d410a11b7fdaaf053a33db",
+        "initial_model_state_sha256": "299b24ad795f942403a95737c3794b1ba4c6ed708529c542308c2d65de81bdd1",
+        "sample_order_sha256": "b7554721610a34cf43da93aadbf622abed4824c5204426d5971ce1020326f3f9",
+        "steps": 3240,
+        "train_d3_in_sample": 0.23053482120818922,
+        "tune_official_d3": 0.576809673092782,
+        "tune_per_horizon_ade": {
+          "ade1": 0.41809919645244303,
+          "ade2": 0.6029849813730197,
+          "ade3": 0.7093448136921359
+        }
+      },
+      "pred_minus_gt_tune_d3": 0.4876280567077155,
+      "pred_minus_p7_c_tune_d3": 0.25219077056365174
+    }
+  },
+  "runtime": {
+    "cuda_initialized": false,
+    "cuda_visible_devices": "",
+    "executable": "/usr/bin/python",
+    "numpy": "2.1.0",
+    "python": "3.12.3",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12"
+  },
+  "schema_version": 1,
+  "script_sha256": "1ddd1fcf2c47e04283d0ee2e789fd255c4d5c7d537c09bc2f944d53884800852",
+  "status": "completed",
+  "stop_contract": {
+    "gt": "binary float 0/1",
+    "prediction": "sigmoid(raw state_hat[5] logit)"
+  }
+}
