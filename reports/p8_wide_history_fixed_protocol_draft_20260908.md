@@ -42,7 +42,7 @@ All four pipelines begin from the same pinned public I0 model state. C and W are
 
 For each base seed 0 and 1:
 
-1. Run an arm-specific P0 auxiliary pretrain for exactly 2,000 updates from public I0, with the original P4 architecture: `goal_on=false`, `state_on=false`, `cross_cell_goal_mode=disabled`, planning loss weight 0. Preserve the original fixed P4 P0 recipe and its predeclared auxiliary monitoring; LAST2000 is the only initializer.
+1. Run an arm-specific P0 auxiliary pretrain for exactly 2,000 updates from public I0, with the original P4 architecture: `goal_on=false`, `state_on=false`, `cross_cell_goal_mode=disabled`, planning loss weight 0. Preserve the original fixed P4 P0 monitoring cadence: one auxiliary tune evaluation at step0, then evaluation and save every 250 updates through step2000. The historical history-position-MAE BEST artifact may be emitted as a nonselective diagnostic, but it is never chosen or consumed; LAST2000 is the only joint initializer.
 2. Load that arm's own P0 model weights only. Do not resume optimizer or step.
 3. Attach the P7 C zero-slot cross-cell branch for the first time, with a deterministic base-specific initialization. The branch state must be bitwise identical between C and W for the same base seed. Other initial weights legitimately differ because each P0 learned from its arm's temporal contract.
 4. Start a fresh joint optimizer at step0 and run exactly 6,000 updates. Use the original P7-C joint recipe: head/non-backbone `1e-4`, backbone `1e-5`, warmup200 cosine, weight decay `.01`, gradient clip5, batch16/microbatch2, fixed BN, BF16/FP32, all joint parameters trainable.
