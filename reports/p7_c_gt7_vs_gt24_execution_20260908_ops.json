@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "scope": "diagnostic-only matched CPU fits: canonical_full24, canonical_masked7, and a1_nominal_masked7 for seeds 0 and 1",
+  "source": {
+    "script": "scripts/run_motiondrive_v2_gt7_vs_gt24.py",
+    "script_sha256": "7045ca0e8a71df38864c05cba61241995b4038f278f6875ad063207086a20b73",
+    "test": "tests/test_motiondrive_v2_gt7_vs_gt24.py",
+    "test_sha256": "8b2c8e1a406831c26c3a888ce5075384e6781c4381815c2b15546a0b77ea49fc",
+    "protocol": "reports/motiondrive_v2_gt7_vs_gt24_protocol_20260908.md",
+    "protocol_sha256": "c119e207f99578dd1ff2bff57274bd302095e5d9580e675276cc4a7515df27e1",
+    "base_fit_script_sha256": "1ddd1fcf2c47e04283d0ee2e789fd255c4d5c7d537c09bc2f944d53884800852",
+    "training_helper_sha256": "6e3d5ecccee0a87cf6a85cd490ee192990fd2ca92f0c307040a93ca2cdc7077c"
+  },
+  "inputs": {
+    "gt_train": "reports/p7_c_state_sufficiency_20260908_ops/gt_train.pt",
+    "gt_train_sha256": "96eb0d2c9fa895a79e62f85f5c4a626185930790ec778ee6eeef0ce055cb46ec",
+    "gt_train_manifest_sha256": "0e16b881e77f16a1548d9eb86fe5077a20bba9ad447627870c297f598c075076",
+    "gt_tune": "reports/p7_c_state_sufficiency_20260908_ops/gt_tune.pt",
+    "gt_tune_sha256": "8548f5df313eac452cc1ba34c894d5f68bcc1d7337d6122fe7012f6a7d485ea2",
+    "gt_tune_manifest_sha256": "53f0cf2e532c20dfe1e957204ba409a9095a6cd59aff6494e4d8c5d5dfd5922e",
+    "normalizer_sha256": "13e94cae45e683756f0b24a073cfb72e66f13eb47cc8ca5a4791179a78fb380c",
+    "status_overlay_manifest_sha256": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+    "status_overlay_train_sha256": "f76ac0ef4cf3f8626869ec63db6376ccfa2e0d135cf161c076d67854578b05f1",
+    "status_overlay_tune_sha256": "aff4c00cd36c35c03c1a43f9f0689c85bc75008be7e8444829ea9a10b9493c6f",
+    "train_rows": 54810,
+    "tune_rows": 1998,
+    "row_frame_join_exact": true
+  },
+  "runtime": {
+    "host": "B200 data host",
+    "cuda_visible_devices": "",
+    "gpu_used": false,
+    "omp_threads": 1,
+    "mkl_threads": 1,
+    "openblas_threads": 1,
+    "focused_test": "7 passed in 1.58s",
+    "focused_test_actual_exit_code": 0,
+    "help_actual_exit_code": 0,
+    "seed0_exec_handle": 26839,
+    "seed1_exec_handle": 96863,
+    "seed0_remote_python_pid": 3073731,
+    "seed1_remote_python_pid": 3073723,
+    "seed0_actual_exit_code": 0,
+    "seed1_actual_exit_code": 0
+  },
+  "recipe": {
+    "architecture": "same 24-512-512-12 GELU+LayerNorm MLP for all arms",
+    "arms": ["canonical_full24", "canonical_masked7", "a1_nominal_masked7"],
+    "masked_normalized_indices": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+    "retained": "physical state first5 plus provided raw 5-second goal2",
+    "steps_per_arm": 3240,
+    "selection": "LAST60 only",
+    "terminal_tune_passes_per_arm": 1,
+    "same_seed_initial_state_and_sample_order_across_arms": true
+  },
+  "results": {
+    "seed0": {
+      "result_path": "reports/p7_c_gt7_vs_gt24_20260908_ops/seed0/result.json",
+      "result_sha256": "374eff2c05583a3bc41606bc5000ff0ee6f802f454f66602783088af062f3ac2",
+      "train_d3": {"canonical_full24": 0.08895253935436336, "canonical_masked7": 0.10622743249169202, "a1_nominal_masked7": 0.09669104858557817},
+      "tune_d3": {"canonical_full24": 0.0887658248724951, "canonical_masked7": 0.09559705607061442, "a1_nominal_masked7": 0.09502588374591717},
+      "canonical_masked7_minus_full24": 0.00683123119811932,
+      "a1_nominal_minus_canonical_masked7": -0.00057117232469725
+    },
+    "seed1": {
+      "result_path": "reports/p7_c_gt7_vs_gt24_20260908_ops/seed1/result.json",
+      "result_sha256": "b6bd8035a9d78d8256ab4d8903c2ee222c9739a3c0d5fc96acc3673f5fe0e4c0",
+      "train_d3": {"canonical_full24": 0.08931956177432011, "canonical_masked7": 0.10614057321602602, "a1_nominal_masked7": 0.09668692878474108},
+      "tune_d3": {"canonical_full24": 0.08918161638506648, "canonical_masked7": 0.09555807406000245, "a1_nominal_masked7": 0.09481482951469752},
+      "canonical_masked7_minus_full24": 0.00637645767493597,
+      "a1_nominal_minus_canonical_masked7": -0.0007432445453049302
+    },
+    "mean_tune_d3": {"canonical_full24": 0.08897372062878079, "canonical_masked7": 0.09557756506530844, "a1_nominal_masked7": 0.09492035663030735},
+    "mean_canonical_masked7_minus_full24": 0.006603844436527645,
+    "mean_a1_nominal_minus_canonical_masked7": -0.0006572084350010901
+  },
+  "boundaries": {
+    "diagnostic_only": true,
+    "privileged_non_submittable_inputs": true,
+    "no_image_model_forward": true,
+    "no_gpu": true,
+    "final136_rows_selected_or_trained_or_evaluated_or_analyzed": 0,
+    "no_epoch_or_arm_selection": true,
+    "no_follow_on_launched": true,
+    "existing_artifacts_overwritten": false
+  }
+}
