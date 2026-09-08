@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "status": "completed_p8_and_stopped_per_user",
+  "scope": "P8 matched control/wide history experiment only",
+  "protocol": {
+    "path": "reports/p8_wide_history_fixed_protocol_draft_20260908.md",
+    "sha256": "81e547b64e17468de79c4043ebd27092ff4707f50e6223dbe0d45fe6be202f10",
+    "train_rows": 54810,
+    "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "tune_rows": 1998,
+    "tune_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "final_rows_accessed": false,
+    "control_history_seconds": [0.1, 0.2, 0.5, 1.0],
+    "wide_history_seconds": [0.2, 0.5, 1.0, 2.0],
+    "future_planning_horizon_seconds": 3.0,
+    "future_waypoints": 6
+  },
+  "source_lineage": {
+    "seed0_p0_source_manifest_sha256": "6682ea02544fc8a39e5d78bdf90bf9735682b51f3f5c7f88db93d85729d77f75",
+    "seed0_p0_driver_sha256": "984acbc043f92ba12f3e8a35e1a57549a4dade13965e4683d36926f8c2a3d949",
+    "seed1_p0_and_all_joint_source_manifest_path": "reports/p8_wide_history_joint_source_manifest_20260908_ops.json",
+    "seed1_p0_and_all_joint_source_manifest_sha256": "4dcf2a95d619b52d9d61d375da108e3bc54c5e642789e8d6420e76372463dd3c",
+    "joint_driver_sha256": "c8aa61732be8499104e415ff626ccb63860464899b852d86f23072a1ce19a6d4",
+    "source_manifest_difference": "only the driver changed from 984acb to c8aa for canonical tuple/list model_config validation; computational model/training files were unchanged",
+    "control_overlay_manifest_sha256": "4b6094cbd016bb0c050a0fc275456573c50b90bb0849bc6ab7aad279f2beffe2",
+    "wide_overlay_manifest_sha256": "55e03d202d2d2dfcbe1c3eef7462e0d6f270bd0ab067e075a649e21ba092189c"
+  },
+  "p0": {
+    "base0": {
+      "control": {"actual_rc": 0, "step": 2000, "elapsed_seconds": 1283.35},
+      "wide": {"actual_rc": 0, "step": 2000, "elapsed_seconds": 1281.15}
+    },
+    "base1": {
+      "control": {
+        "handle": 91973,
+        "pid": 2396538,
+        "actual_rc": 0,
+        "step": 2000,
+        "elapsed_seconds": 3490.11,
+        "last_sha256": "b036e1b65f70167f48045b0f7324941905e8eb9e6e2efa0c5c27ddb679a0f0b2",
+        "model_state_sha256": "b16d5d9941a36934de84a714c1e216a6cf8e14b37639b3ed17b600fd437742ec",
+        "manifest_sha256": "7ad9ad3fcb9fc69a34d2f9935a0625f634ce19cefb601920d34e99ac92eb6c56",
+        "metrics_sha256": "45f98998d1474f7d9d49b51ee53fc16ca3fb19006ad3c7d361260af8e475e869"
+      },
+      "wide": {
+        "handle": 93992,
+        "pid": 2396434,
+        "actual_rc": 0,
+        "step": 2000,
+        "elapsed_seconds": 3457.49,
+        "last_sha256": "5bbcd7b369c68daf34fbcfe2842e4bba08f8ef702aef41b14881a861028c0d75",
+        "model_state_sha256": "7bf2f2c39fc20194239d2327731b31112f57f9f99e17a3b899c3cfb0bef8d050",
+        "manifest_sha256": "4c13c96aa2779200f86272a93696cbc51cc5fba11330373c0eebc3fc2be55465",
+        "metrics_sha256": "fefe9bb36ccda0fc499dca665f98c63a5e6ccb8bff9202da9387090a3642f40a"
+      }
+    },
+    "common_checks": {
+      "optimizer_states": 289,
+      "optimizer_step": 2000,
+      "optimizer_finite": true,
+      "branch_keys": 0,
+      "train_log_rows": 201,
+      "eval_steps": [0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000],
+      "best_artifact_selected_or_consumed": false,
+      "paired_sample_order_equal_at_all_logged_steps": true,
+      "base1_final_sample_order_sha256": "b847c2e5166e6432b2722b6b232702cef764b9b510bc922f9bc678f7dd400a31"
+    }
+  },
+  "joint": {
+    "base0": {
+      "branch_state_sha256": "f1546ec31589cad9d2bd6d8593afe66d40edb52a1b64947614f87052a6278862",
+      "control": {
+        "handle": 86862,
+        "pid": 2372687,
+        "actual_rc": 0,
+        "elapsed_seconds": 7248.20,
+        "official_d3": 0.3325562675514289,
+        "last_sha256": "64fbe491f0c2a473f9be2a327472f24ee32d7b7a80ea40783dc7e35e32ab3b6c",
+        "manifest_sha256": "5604928fab7db3ead1e73fbe7d2b21efe4d4e22fcb40d0fbebee9cdd6d297df5",
+        "metrics_sha256": "b30c8d3adfa30525cede2f8d0c5a098f49275b709e31553fe11aace7b2314129",
+        "final_eval_sha256": "c135f59b171727150113cba26e4572d86e0ea14261391c98eeaf62128970fdbf",
+        "peak_allocated_bytes": 5360902656,
+        "peak_reserved_bytes": 5949620224
+      },
+      "wide": {
+        "handle": 25784,
+        "pid": 2372677,
+        "actual_rc": 0,
+        "elapsed_seconds": 7623.38,
+        "official_d3": 0.3403412983925254,
+        "last_sha256": "9fefbc2c4c17edf647ef19aa527b20c43b50e50af413f8c0b52911cef3ff4368",
+        "manifest_sha256": "91235418389852b18bacf7b550c25c26a7ca951ae1d53d6bc30dd13336f9e730",
+        "metrics_sha256": "fbbee09bc946343055294519d963849a6f6f7f5c662aff6dd31bdcc5a3685f22",
+        "final_eval_sha256": "8b9b322e0b03543e4dc0a6843a4fe5b1aac936e756c29b6231909af39cda22d4",
+        "peak_allocated_bytes": 5360902656,
+        "peak_reserved_bytes": 5947523072
+      }
+    },
+    "base1": {
+      "branch_state_sha256": "68ee0d727e8f3142b600ad0da77075d51717990e7d9a6579f07923a67d1ba246",
+      "control_preflight_sha256": "d78337973557113448d2dd8559b096f4a6bfb98999f2783b9a73bf3c8c0277cd",
+      "wide_preflight_sha256": "8e4a692a3ea270a49f9ca13490c09e81be53b76268c56ec99ca83e9a39d61f9a",
+      "control": {
+        "handle": 99161,
+        "pid": 2479430,
+        "actual_rc": 0,
+        "elapsed_seconds": 4531.25770560652,
+        "official_d3": 0.3161155640374164,
+        "last_sha256": "ed90ed8e2e0d13a3b2bd12a25a36f56870f6e142de20284618fdadaa4e60b0b6",
+        "model_state_sha256": "287252b3952d72d823c6a304e85395af0ea91e68baff213e9846d4e23d98dc35",
+        "manifest_sha256": "b6a4c7d53b058e2209002ee14fe10db22f7fa1b89653d5e8c2822048b7336df6",
+        "metrics_sha256": "0c8808118472cf8d9d52878511afb5507c7a6039154ec60e2da568c8ffaa7fde",
+        "final_eval_sha256": "313c73200406f57651a91c4edd33630ef31ba648fc6dd15b830b52dffcd8e34c",
+        "peak_allocated_bytes": 5360902656,
+        "peak_reserved_bytes": 7226785792
+      },
+      "wide": {
+        "handle": 82110,
+        "pid": 2479440,
+        "actual_rc": 0,
+        "elapsed_seconds": 4534.637337420136,
+        "official_d3": 0.32836576001914414,
+        "last_sha256": "831b552b9c0a5e491d7ae62387b96fc13c9a51efe948668271bf8ae8a5afe11c",
+        "model_state_sha256": "610add96317d0d4815fd3a742ce5a66aa51516c8fc8f1df33a343fb62f42cd7c",
+        "manifest_sha256": "88950a5ad7cbd09f1a00aee5f39bd84f3fad7ac665c57c475758ed2a9c6f9fcb",
+        "metrics_sha256": "d9191afaf12ca61fc1917c215afa68070b9f04837d4f4017fa93c5b1dd4d28ce",
+        "final_eval_sha256": "489fddd87f942d88875b281d576add12d1b65e82d7a2fa03ca0d5e6264071c5b",
+        "peak_allocated_bytes": 5360902656,
+        "peak_reserved_bytes": 7228882944
+      }
+    },
+    "common_terminal_checks": {
+      "step": 6000,
+      "nonfinite_count": 0,
+      "optimizer_states_base1": 298,
+      "optimizer_step_base1": 6000,
+      "optimizer_finite_base1": true,
+      "train_log_rows": 601,
+      "terminal_eval_count": 1,
+      "terminal_eval_rows": 1998,
+      "initial_or_intermediate_eval_count": 0,
+      "best_artifact_selected_or_consumed": false,
+      "paired_sample_order_equal_at_all_logged_steps": true,
+      "base1_final_sample_order_sha256": "9d504f4913530f4e6599cd82c8f46251e4bb07dcd72c4fa4c772fb7dccd8a52c"
+    }
+  },
+  "terminal_analysis": {
+    "script_path": "reports/analyze_motiondrive_p8_terminal_20260908_ops.py",
+    "script_sha256": "9cf8ae8cfc21b47f4f444d6f5e61bc2c63749ba768ae18f6b11c31f5dedd8c01",
+    "result_path": "reports/p8_terminal_analysis_20260908_ops.json",
+    "result_sha256": "025343bfed19e3256395c791fed747c47a186f26138f0095bf9dd685f169742d",
+    "control_mean_d3": 0.32433591579442267,
+    "wide_mean_d3": 0.3343535292058348,
+    "observed_wide_minus_control": 0.010017613411412107,
+    "paired_shared_session_bootstrap_seed": 20260908,
+    "paired_shared_session_bootstrap_repeats": 10000,
+    "paired_shared_session_bootstrap_ci95": [-0.010807710827420878, 0.02750720517409697],
+    "seed0_wide_minus_control": 0.007785030841096496,
+    "seed1_wide_minus_control": 0.012250195981727718,
+    "preregistered_keep": false,
+    "reason": "wide is worse than matched control in both seeds; required both-seed W<C condition is false"
+  },
+  "preserved_operational_failures": [
+    "overlay shared-test collection rc2 caused by a moving unfinished trainer import; no producer output",
+    "old-source golden pre-forward packaging/config rc1 attempts; later exact replay passed",
+    "seed0 joint CPU preflight first attempts rc1 on checkpoint tuple versus sidecar list; output-free before model execution",
+    "seed0 joint launch first attempts rc1 because CUDA_VISIBLE_DEVICES did not scope the Python process; pre-CUDA and output-free",
+    "seed1 wide joint-preflight shell cwd/redirection rc1 before Python; output-free; unchanged Python argv later rc0"
+  ],
+  "stop_boundary": {
+    "user_instruction": "finish P8 only, then stop",
+    "p8_owned_pids_absent_after_completion": [2372687, 2372677, 2396538, 2396434, 2479430, 2479440],
+    "p9_tune_cache_pids_absent": [2428196, 2428179],
+    "p9_tune_cache_note": "both tune-only cache jobs had naturally completed before the stop request; no stop signal was sent",
+    "p9_train_extraction": false,
+    "p9_fit": false,
+    "post_p8_model_forward_or_experiment": false,
+    "foreign_gpu_processes_preserved": true,
+    "goal_claimed_complete": false
+  }
+}
