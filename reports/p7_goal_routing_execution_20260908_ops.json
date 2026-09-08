@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "status": "four_prescribed_runs_terminal_and_independent_cpu_analysis_completed",
+  "scope": "P7 base0/base1 x control_zero_slot/goal_real_slot, LAST6000 plus one tune1998 evaluation per run",
+  "source": {
+    "production_git_sha": "64e92694ccbe0a3c5a581e421e16a884b9c5a088",
+    "source_manifest_path": "reports/p7_goal_routing_source_manifest_20260908_ops.json",
+    "source_manifest_sha256": "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4",
+    "protocol_path": "MOTIONDRIVE_V2_P7_GOAL_ROUTING_PROTOCOL.md",
+    "protocol_sha256": "aa85ad0634fb65dfac0cd6490242fbbd319ad98c0baa081bd6702886c56db1ad",
+    "launch_contract_path": "reports/p7_goal_routing_main_launch_contract_20260908_ops.json",
+    "launch_contract_sha256": "f12227ba5df520e6c947ef5e664365f995d703dcccfddc477a13dfad6afc4457",
+    "launch_record_git_sha": "ca50e75",
+    "terminal_record_git_sha": "ecd66e89006c4f992b901baf54241781bf0983f6",
+    "runtime_13_file_closure_rechecked_exact_after_terminal": true,
+    "whole_head_equality_was_not_used_as_a_runtime_guard": true
+  },
+  "inputs": {
+    "base0_p0_last": {
+      "path": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/last.pth",
+      "sha256": "8e91c30947a040f267f01f0642db3f2725900545deeb6d4087c795b5eb398a0c"
+    },
+    "base0_p0_sidecar": {
+      "path": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0/manifest.json",
+      "sha256": "9e5ba7ce89c0c1a9e4fe49476ff72c63b451f2658766e74e84c7336a4591fd98"
+    },
+    "base1_p0_last": {
+      "path": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/last.pth",
+      "sha256": "6067ba9cc543e6e1be837d85883696bc7ad12c3da9b970edba3008e30eff83c5"
+    },
+    "base1_p0_sidecar": {
+      "path": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s1/manifest.json",
+      "sha256": "385ea53269e96d73c7d66f4196bc2e1205b0c6b7e9c7db537f983bc7aa37c421"
+    },
+    "grouped_split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "train_rows": 54810,
+    "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "tune_rows": 1998,
+    "tune_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "final_holdout_accessed": false,
+    "pre_post_input_sha256_exact": true
+  },
+  "runs": {
+    "base0_control": {
+      "arm": "control_zero_slot",
+      "physical_gpu": 4,
+      "gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "ssh_handle": 93303,
+      "remote_parent_pid": 2263237,
+      "trainer_pid": 2263271,
+      "actual_ssh_exit_code": 0,
+      "terminal_pid_absent": true,
+      "run_dir": "work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000",
+      "last_sha256": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+      "manifest_sha256": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0",
+      "final_eval_sha256": "67279fe06120ef752d44c915dbc01d022244b94d60ba27577ed62d1bace1afd0",
+      "metrics_sha256": "60772877bc0098436fd3d7d6f0f51fd885cf1bf1b3fc6f5897f50283c2f7e5b8",
+      "official_d3": 0.3305861224029754
+    },
+    "base0_goal": {
+      "arm": "goal_real_slot",
+      "physical_gpu": 5,
+      "gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "ssh_handle": 42490,
+      "remote_parent_pid": 2263378,
+      "trainer_pid": 2263415,
+      "actual_ssh_exit_code": 0,
+      "terminal_pid_absent": true,
+      "run_dir": "work_dirs/motiondrive_v2/p7_goal_routing_b0_goal_last6000",
+      "last_sha256": "ccf138c7a3485e99e13cfdd229f2b0a4e0122b8eabfb4404979dac1b00c7d309",
+      "manifest_sha256": "814b55535b860d5bd7cbd72b549a4951359bbd2569d5689a26356589068e9417",
+      "final_eval_sha256": "675b4d4337410e508ad3c0fb1dc2a00eb3ddc7f9cfca7ad334c749b27fa13d18",
+      "metrics_sha256": "7f813146823dfc176fbea10b66969377882c26ee5daf21bc66ed35dcdba52cce",
+      "official_d3": 0.42438935796852345
+    },
+    "base1_control": {
+      "arm": "control_zero_slot",
+      "physical_gpu": 4,
+      "gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "ssh_handle": 71732,
+      "remote_parent_pid": 2281551,
+      "trainer_pid": 2281553,
+      "actual_ssh_exit_code": 0,
+      "terminal_pid_absent": true,
+      "run_dir": "work_dirs/motiondrive_v2/p7_goal_routing_b1_control_last6000",
+      "last_sha256": "8ffb429b17820b63477987f5c7de151dfa9e0e2b12378e247aed0b0e41de2563",
+      "manifest_sha256": "11854d7a9f828b8b4b6710679fd420f5c8d243d1322231d723137419aa48e80f",
+      "final_eval_sha256": "703f46945496e2de9d5a9386e8596aa0fb01d6f47e627f9c8db33b0b58b6f795",
+      "metrics_sha256": "5ce47fd0ff13710444e991255f011482f7b9521ef1088082b9ffe41624d2318f",
+      "official_d3": 0.3246189025291302
+    },
+    "base1_goal": {
+      "arm": "goal_real_slot",
+      "physical_gpu": 5,
+      "gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "ssh_handle": 92797,
+      "remote_parent_pid": 2281552,
+      "trainer_pid": 2281563,
+      "actual_ssh_exit_code": 0,
+      "terminal_pid_absent": true,
+      "run_dir": "work_dirs/motiondrive_v2/p7_goal_routing_b1_goal_last6000",
+      "last_sha256": "1b4eda60b050b7c1859d2e7c915e6a1381b2e311964a790c24cfdaa68469b38e",
+      "manifest_sha256": "2dc48a1ec65b33fad79598942267bd4d122b8ec83569981a2208e4273dc37413",
+      "final_eval_sha256": "aa004dae9d86da8b32a916ff01b2ca7d72520e91f7c0a841e12801936aac0b3e",
+      "metrics_sha256": "c2f96b46e87b11276ebccbfc81963d8ed2d210902952654720f5b93d732c35f8",
+      "official_d3": 0.43498016116363153
+    }
+  },
+  "terminal_integrity": {
+    "manifest_status_completed_and_step6000_all": true,
+    "nonfinite_count_zero_all": true,
+    "last_checkpoint_step6000_epoch2_all": true,
+    "model_floating_tensors_finite_all": true,
+    "optimizer_floating_tensors_finite_all": true,
+    "optimizer_state_parameter_count_each": 298,
+    "optimizer_step_exact_each": 6000,
+    "fixed_batch_norm_modules_each": 53,
+    "train_log_events_each": 601,
+    "terminal_eval_events_each": 1,
+    "terminal_eval_rows_and_records_each": 1998,
+    "same_base_control_goal_full_logged_sample_order_exact": true,
+    "standalone_supervisor_artifact": false,
+    "exit_evidence": "Unified SSH handle return code covers the direct child command; no separate supervisor JSON was produced."
+  },
+  "post_terminal_resources": {
+    "owned_pids_absent": [2263237, 2263271, 2263378, 2263415, 2281551, 2281553, 2281552, 2281563],
+    "gpu4_memory_used_mib": 0,
+    "gpu5_memory_used_mib": 0,
+    "gpu4_utilization_percent": 0,
+    "gpu5_utilization_percent": 0,
+    "foreign_gpu_processes_modified": false
+  },
+  "analysis": {
+    "analyzer_path": "scripts/analyze_motiondrive_v2_p7_goal_routing_results.py",
+    "analyzer_sha256": "4ba2ba0050bb74f6de462daf9ef9b5b31a8d3bb70779532465a2ce78fea0213b",
+    "command_actual_exit_code": 0,
+    "gpu_used": false,
+    "model_forward_performed": false,
+    "output_path": "reports/p7_goal_routing_results_20260908_ops.json",
+    "output_sha256": "7f17f64a40495060d9b7e252604d34b8ae91134a587ba91d54ff4d83c6ff27f0",
+    "inputs_sha256_before_after_exact": true,
+    "keep": false
+  },
+  "boundaries": {
+    "no_new_training_or_gpu_evaluation_after_terminal": true,
+    "no_best_checkpoint_selection": true,
+    "no_threshold_or_hyperparameter_selection": true,
+    "control_is_not_neutral_attention": "C adds the same branch capacity and an ego-centered Gaussian source prior; G moves that source-prior center to the provided 5-second goal.",
+    "causal_scope": "G-C tests moving the source-prior center under this fixed branch and continuation recipe; C-P4 is confounded by capacity, ego prior, and optimization.",
+    "official_adoption_or_compliance_claim": false
+  }
+}
