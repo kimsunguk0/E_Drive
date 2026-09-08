@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "completed_cpu_train203_bank_feasibility",
+  "scope": "Frozen ONE K1024 train203-only fit followed by one fixed M12/two-selector analysis of two immutable C tune reports",
+  "source": {
+    "git_sha": "7fca9cbec76675fc41d4b33f5222cbc3b91a3f7e",
+    "script_path": "scripts/analyze_motiondrive_v2_train203_bank_feasibility.py",
+    "script_sha256": "b302c0db66baf4e6483fa8e2498a2c6f152f012747a553abb34ce6eb0474e33b",
+    "test_path": "tests/test_motiondrive_v2_train203_bank_feasibility.py",
+    "test_sha256": "3047bd87b16145d8be87a0474807f0671652b696ac438620e57a739d2eb465b1",
+    "b200_dedicated_test_actual_exit_code": 0,
+    "b200_dedicated_test_result": "25 passed in 2.01s"
+  },
+  "runtime": {
+    "interpreter": "/usr/bin/python",
+    "python": "3.12.3",
+    "numpy": "2.1.0",
+    "scipy": "1.16.3",
+    "sklearn": "1.8.0",
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": 1,
+    "MKL_NUM_THREADS": 1,
+    "OPENBLAS_NUM_THREADS": 1
+  },
+  "preflight_attempts": [
+    {
+      "scope": "train-only exact-trajectory uniqueness count",
+      "actual_exit_code": 1,
+      "failure": "NumPy void-view shape construction error after input loading; no bank fit, output, tune read, or final read"
+    },
+    {
+      "scope": "same train-only uniqueness count with a contiguous flattened row view",
+      "actual_exit_code": 0,
+      "train_rows": 54810,
+      "exact_zero_rows": 0,
+      "distinct_nonzero_full10_rows": 54810,
+      "fit_performed": false,
+      "tune_read": false,
+      "final_read": false
+    }
+  ],
+  "fit": {
+    "ssh_handle": 45036,
+    "remote_pid": 2310428,
+    "actual_exit_code": 0,
+    "pid_absent_after_exit": true,
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /usr/bin/python scripts/analyze_motiondrive_v2_train203_bank_feasibility.py fit --split-manifest data/etri/motiondrive_v2/grouped_split_rawtime.json --ego-cache /tmp/pm97/data/etri/ego_cache.npz --ego5-cache /tmp/pm97/data/etri/ego_cache_5s.npz --output-dir reports/p7_train203_bank_feasibility_20260908_ops/bank",
+    "fit_receipt_path": "reports/p7_train203_bank_feasibility_fit_receipt_20260908_ops.json",
+    "fit_receipt_sha256": "74dc42f7dd29c32bccddd2470b5f3b768c39f62b71ddec058f4e6f7ca8b8579f",
+    "bank_manifest_sha256_frozen_before_evaluate": "33d7e93c3c776363dc3636fca127a9b6a7bffbc622b6bfea61e9e5a030b8b16c",
+    "artifacts_sha256_frozen_before_evaluate": {
+      "bank.npy": "ee0e2267d29bb2253c5e0542d52b01cc5a0537ee66af10b55188afa3605aa469",
+      "cluster_ids.npy": "bf999e769fad0c3d6bd32b775165395531c8cbc1574dabdba7c08b0a9c00447d",
+      "cluster_support.npy": "2e18a7217d0e74d650d73c5aebcb56a474661737be874663d216c7b67315236d",
+      "source_rows.npy": "56718f763c84b3ea8d6b242d47f9f3298f0f0456bfd7cfbe30f32f01ef7c1ed4"
+    },
+    "bank_rows": 1024,
+    "unique_real_train_medoids": 1023,
+    "reserved_exact_zero_candidate": 1,
+    "fit_iterations": 6,
+    "tune_labels_or_predictions_accessed": false
+  },
+  "evaluate": {
+    "ssh_handle": 78783,
+    "remote_pid": 2311220,
+    "actual_exit_code": 0,
+    "pid_absent_after_exit": true,
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /usr/bin/python scripts/analyze_motiondrive_v2_train203_bank_feasibility.py evaluate --split-manifest data/etri/motiondrive_v2/grouped_split_rawtime.json --ego-cache /tmp/pm97/data/etri/ego_cache.npz --ego5-cache /tmp/pm97/data/etri/ego_cache_5s.npz --bank-manifest reports/p7_train203_bank_feasibility_20260908_ops/bank/bank_manifest.json 33d7e93c3c776363dc3636fca127a9b6a7bffbc622b6bfea61e9e5a030b8b16c --p7-source-manifest reports/p7_goal_routing_source_manifest_20260908_ops.json 880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4 --c0-eval work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/final_eval.json 67279fe06120ef752d44c915dbc01d022244b94d60ba27577ed62d1bace1afd0 --c0-manifest work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/manifest.json cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0 --c1-eval work_dirs/motiondrive_v2/p7_goal_routing_b1_control_last6000/final_eval.json 703f46945496e2de9d5a9386e8596aa0fb01d6f47e627f9c8db33b0b58b6f795 --c1-manifest work_dirs/motiondrive_v2/p7_goal_routing_b1_control_last6000/manifest.json 11854d7a9f828b8b4b6710679fd420f5c8d243d1322231d723137419aa48e80f --output reports/p7_train203_bank_feasibility_20260908_ops/tune_feasibility.json",
+    "output_path": "reports/p7_train203_bank_feasibility_20260908_ops/tune_feasibility.json",
+    "output_sha256": "32947a5bb83df6d12d8ab47427b854c761d3fcd10d4c62480dbd2e9b8e5585c7",
+    "bank_artifacts_sha256_before_after_exact": true,
+    "all_pinned_input_sha256_validated": true
+  },
+  "result": {
+    "rows": 1998,
+    "direct_c_two_base_mean_d3": 0.3276025205850601,
+    "prefix_nearest_m12_two_base_mean_d3": 0.34455539286136627,
+    "prefix_nearest_minus_direct": 0.01695287227630615,
+    "goal_endpoint_nearest_two_base_mean_d3": 0.3303413838148117,
+    "goal_endpoint_nearest_minus_direct": 0.0027388707967475057,
+    "goal_endpoint_nearest_minus_prefix_nearest": -0.014214009046554565,
+    "endpoint_changes_prefix_choice_rows_each_base": 1663,
+    "shortlist_gt_oracle_two_base_mean_d3": 0.19271010905504227,
+    "full_bank_metricwise_oracle_d3": 0.11486042937706172
+  },
+  "boundaries": {
+    "final_rows_accessed": false,
+    "gpu_used": false,
+    "neural_training": false,
+    "new_model_forward": false,
+    "threshold_m_or_bank_sweep": false,
+    "selector_or_model_adopted": false,
+    "interpretation": "The fixed goal-endpoint selector improves on prefix-nearest but remains worse than direct C. Shortlist and full-bank GT oracles are non-deployable representation ceilings, not selectors or performance claims."
+  }
+}

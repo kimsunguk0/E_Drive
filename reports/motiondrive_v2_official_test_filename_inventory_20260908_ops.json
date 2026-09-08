@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "completed_read_only_filename_inventory",
+  "scope": "B200 official test tar headers and repository contract files only; no image, parquet, label, prediction, metric, or final-holdout content was opened",
+  "actual_exit_code": 0,
+  "command": "SSH to B200, then /usr/bin/python -u inline inventory using os.listdir and tarfile.getmembers; require six camera directories, exact integer frame filename set -30..0, three named root parquet files, and 189 regular member files for each sorted *.tar archive",
+  "digest_method": {
+    "archive_names_sha256": "SHA256 of sorted archive basenames joined by newline",
+    "archive_member_names_sha256": "SHA256 of sorted archives in which every sorted regular-member filename is represented as archive basename + NUL + member filename, all records joined by newline"
+  },
+  "host": {
+    "root": "/NHNHOME/data/sukim/adcl/test",
+    "storage_form": "one uncompressed tar archive per clip",
+    "archive_count": 1125,
+    "archive_names_sha256": "f263f28e3401842b83ac6b3d00e4575bd2532e9e1d539abd67906bd607a2932e",
+    "archive_member_names_sha256": "1cdd74fdf7b2a00961a4fdb4cd9c5bd0467d367efc25e5f29df6ec11ac4b1521",
+    "total_member_files": 212625,
+    "archives_matching_exact_contract": 1125,
+    "anomaly_count": 0
+  },
+  "per_archive_filename_contract": {
+    "camera_directories": [
+      "camera_front",
+      "camera_front_left",
+      "camera_front_right",
+      "camera_rear_left",
+      "camera_rear_right",
+      "camera_rear_wide"
+    ],
+    "frames_per_camera": 31,
+    "frame_indices_inclusive": [-30, -29, -28, -27, -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0],
+    "root_files": [
+      "calibration.parquet",
+      "command.parquet",
+      "ego_pose.parquet"
+    ],
+    "member_file_count": 189
+  },
+  "official_repository_contract": {
+    "test_converter": {
+      "path": "dense_vocab_v1/tools/data_converter/etri_test_converter.py",
+      "sha256": "77a700dff251c4a1a8f45734ee50bf5e3e3c08a46ab28c110069ff2c9def2de2",
+      "selected_stream_frames": [-30, -25, -20, -15, -10, -5, 0]
+    },
+    "submission_runner": {
+      "path": "dense_vocab_v1/tools/etri_test_submit.py",
+      "sha256": "39520f5437f78bee37cab3b0009a1b9a0c05869e53a9123178b4a468c74e7323"
+    }
+  },
+  "p4_train8_fixture_reference": {
+    "builder_path": "scripts/build_motiondrive_v2_deploy_fixture.py",
+    "builder_sha256": "72b18e6b1911a1143f2472b1cf9ce8bdc50f1db19b56249289d325cca944633e",
+    "manifest_path": "reports/motiondrive_v2_deploy_fixture_train8_manifest.json",
+    "manifest_sha256": "da1e36a8b45815a8fb9b4f1053c7695cb754cdfa9eb4f2b6602fc0ff6ef67d27",
+    "b200_fixture_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8",
+    "input_parity_report_sha256": "5f60c0f6dbaaadb0774a2596f1c1f2e2be920b25f17bdd9e166ff323c7c00fa7",
+    "3090_execution_receipt_sha256": "3dd09bad49cfe5ea5d5142c534022ae25cad61456209f9649cc46c42252f6130",
+    "3090_host_fixture_root": "/home/intern/adcl_motiondrive_v2/measurements/deploy_inputs_cpu_cab53b1.lEi72Zr2/inputs/deploy_fixture_train8",
+    "3090_container_fixture_root": "/inputs/deploy_fixture_train8",
+    "mount_read_only": true
+  },
+  "boundaries": {
+    "raw_history_available": "All 1,125 test clip archives contain camera frame filenames for every integer frame from -30 through 0; -1 and -2 are present in all six cameras.",
+    "baseline_seven_frames_are_subsampling": true,
+    "official_test_container_mount_observed": false,
+    "container_path_limit": "No execution receipt mounting the actual official-test tar root into a container was found; only the P4 train8 test-shaped fixture host/container mapping is recorded.",
+    "archive_payload_sha256_computed": false,
+    "archive_payload_or_member_content_read": false
+  }
+}

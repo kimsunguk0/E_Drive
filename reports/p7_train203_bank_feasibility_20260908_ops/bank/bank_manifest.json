@@ -1,0 +1,110 @@
+{
+  "artifacts": {
+    "bank.npy": {
+      "bytes": 82048,
+      "path": "bank.npy",
+      "sha256": "ee0e2267d29bb2253c5e0542d52b01cc5a0537ee66af10b55188afa3605aa469"
+    },
+    "cluster_ids.npy": {
+      "bytes": 4224,
+      "path": "cluster_ids.npy",
+      "sha256": "bf999e769fad0c3d6bd32b775165395531c8cbc1574dabdba7c08b0a9c00447d"
+    },
+    "cluster_support.npy": {
+      "bytes": 8320,
+      "path": "cluster_support.npy",
+      "sha256": "2e18a7217d0e74d650d73c5aebcb56a474661737be874663d216c7b67315236d"
+    },
+    "source_rows.npy": {
+      "bytes": 8320,
+      "path": "source_rows.npy",
+      "sha256": "56718f763c84b3ea8d6b242d47f9f3298f0f0456bfd7cfbe30f32f01ef7c1ed4"
+    }
+  },
+  "environment": {
+    "expected_fit_runtime": {
+      "numpy": "2.1.0",
+      "python": "3.12.3",
+      "scipy": "1.16.3",
+      "sklearn": "1.8.0"
+    },
+    "numpy": "2.1.0",
+    "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Nov  6 2025, 13:44:16) [GCC 13.3.0]",
+    "scipy": "1.16.3",
+    "script_sha256": "b302c0db66baf4e6483fa8e2498a2c6f152f012747a553abb34ce6eb0474e33b",
+    "sklearn": "1.8.0",
+    "threads": {
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    }
+  },
+  "fit": {
+    "inertia": 1044.539306640625,
+    "n_iter": 6,
+    "unique_nonzero_bank_rows": 1023
+  },
+  "inputs": {
+    "ego": {
+      "bytes": 46728999,
+      "path": "/tmp/pm97/data/etri/ego_cache.npz",
+      "sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd"
+    },
+    "ego5": {
+      "bytes": 8370376,
+      "path": "/tmp/pm97/data/etri/ego_cache_5s.npz",
+      "sha256": "700d9443cbf38aaaeffbbd5dab789b5e448adf931e15939baa9d37779e4095c1"
+    },
+    "split": {
+      "bytes": 180747,
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+      "sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936"
+    }
+  },
+  "recipe": {
+    "bank_rows": 1024,
+    "cluster_rows": 1023,
+    "embedding": "flatten(sqrt([11,11,5,5,2,2]/36)*metric_xy_first6)",
+    "embedding_dtype": "float32",
+    "kmeans": {
+      "batch_size": 4096,
+      "compute_labels": true,
+      "init": "k-means++",
+      "max_iter": 200,
+      "max_no_improvement": 25,
+      "n_clusters": 1023,
+      "n_init": 3,
+      "random_state": 20260908,
+      "reassignment_ratio": 0.0,
+      "tol": 0.0,
+      "verbose": 0
+    },
+    "medoid": "unique full10 real train tensor; nearest squared embedding; ties source row",
+    "objective_boundary": "weighted squared K-means surrogate, not exact official D3",
+    "published_order": "support descending, source row ascending, original cluster id ascending",
+    "reserved_exact_zero_rows": 1,
+    "scaler": null,
+    "seed": 20260908,
+    "tail_used_in_fit": false,
+    "threadpool_limit": 1,
+    "trajectory_dtype": "float32"
+  },
+  "schema_version": 1,
+  "scope": {
+    "final_rows_accessed": false,
+    "gpu_used": false,
+    "shared_ego5_bytes_include_unselected_rows": true,
+    "train_rows_only": true,
+    "tune_labels_accessed": false,
+    "unselected_rows_used_for_fit_statistics_metrics_or_selection": false
+  },
+  "status": "bank_frozen_before_any_tune_label_or_prediction_access",
+  "train": {
+    "fut5_sha256": "ff6128c41260bd6665b0f2b5cf198bd9a59da55927546888a2ca10823bf7a603",
+    "rows": 54810,
+    "rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "scenes": 203,
+    "selected_identity_sha256": "07ea3dcb51f89af25824ffcb12a4e2dc4effb8612ff05134e2a312fd68966341"
+  }
+}

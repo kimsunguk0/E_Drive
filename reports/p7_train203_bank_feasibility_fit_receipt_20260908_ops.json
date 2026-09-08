@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "fit_completed_and_bank_frozen_before_evaluate",
+  "scope": "ONE K1024 train203-only bank fit; no tune metric, final-row, GPU, or model-forward access",
+  "git_sha": "7fca9cbec76675fc41d4b33f5222cbc3b91a3f7e",
+  "script": {
+    "path": "scripts/analyze_motiondrive_v2_train203_bank_feasibility.py",
+    "sha256": "b302c0db66baf4e6483fa8e2498a2c6f152f012747a553abb34ce6eb0474e33b"
+  },
+  "test": {
+    "path": "tests/test_motiondrive_v2_train203_bank_feasibility.py",
+    "sha256": "3047bd87b16145d8be87a0474807f0671652b696ac438620e57a739d2eb465b1",
+    "b200_actual_exit_code": 0,
+    "result": "25 passed in 2.01s"
+  },
+  "fit": {
+    "ssh_handle": 45036,
+    "remote_pid": 2310428,
+    "actual_exit_code": 0,
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /usr/bin/python scripts/analyze_motiondrive_v2_train203_bank_feasibility.py fit --split-manifest data/etri/motiondrive_v2/grouped_split_rawtime.json --ego-cache /tmp/pm97/data/etri/ego_cache.npz --ego5-cache /tmp/pm97/data/etri/ego_cache_5s.npz --output-dir reports/p7_train203_bank_feasibility_20260908_ops/bank",
+    "pid_absent_after_exit": true,
+    "cuda_visible_devices": "",
+    "threads": {
+      "OMP_NUM_THREADS": 1,
+      "MKL_NUM_THREADS": 1,
+      "OPENBLAS_NUM_THREADS": 1
+    }
+  },
+  "frozen_bank": {
+    "manifest_path": "reports/p7_train203_bank_feasibility_20260908_ops/bank/bank_manifest.json",
+    "manifest_sha256": "33d7e93c3c776363dc3636fca127a9b6a7bffbc622b6bfea61e9e5a030b8b16c",
+    "artifacts": {
+      "bank.npy": "ee0e2267d29bb2253c5e0542d52b01cc5a0537ee66af10b55188afa3605aa469",
+      "cluster_ids.npy": "bf999e769fad0c3d6bd32b775165395531c8cbc1574dabdba7c08b0a9c00447d",
+      "cluster_support.npy": "2e18a7217d0e74d650d73c5aebcb56a474661737be874663d216c7b67315236d",
+      "source_rows.npy": "56718f763c84b3ea8d6b242d47f9f3298f0f0456bfd7cfbe30f32f01ef7c1ed4"
+    },
+    "bank_rows": 1024,
+    "unique_nonzero_bank_rows": 1023,
+    "reserved_exact_zero_rows": 1,
+    "fit_n_iter": 6,
+    "fit_inertia": 1044.539306640625
+  },
+  "inputs": {
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "ego_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "ego5_sha256": "700d9443cbf38aaaeffbbd5dab789b5e448adf931e15939baa9d37779e4095c1",
+    "train_rows": 54810,
+    "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "train_selected_identity_sha256": "07ea3dcb51f89af25824ffcb12a4e2dc4effb8612ff05134e2a312fd68966341"
+  },
+  "boundaries": {
+    "tune_labels_or_predictions_accessed_during_fit": false,
+    "final_rows_accessed": false,
+    "gpu_used": false,
+    "model_forward_performed": false,
+    "bank_manifest_and_all_four_artifact_hashes_frozen_before_evaluate": true
+  }
+}
