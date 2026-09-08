@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "frozen_pre_execution",
+  "purpose": "P8 train/tune-only history-overlay producer capsule",
+  "git_sha": "b5d49f258d2906e6ec9625f3722a0519e3b9bfab",
+  "producer_file_sha256": {
+    "models/motiondrive_v2_temporal_contract.py": "5cef257cbe53c566effc4e1e17379f1b0d7d530a89cd19c6574e3a152d9c2c14",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/build_motiondrive_v2_history_overlay.py": "fdfe0d1d0fced02c85f78036c13e643f0d40e38f4b43d866d7e2f6844987e649",
+    "scripts/motiondrive_v2_data.py": "6c89d4e3b1e17636ef79bdbeae6750b35fea6a87978eaa7bebbdc5c2cf9ee4b6"
+  },
+  "reviewed_test_evidence": {
+    "tests/test_motiondrive_v2_data.py": "6aab3beccb4637e17849003d05c927f5f2d688ced3a3f6b10c462adeff940452",
+    "tests/test_motiondrive_v2_wide_history.py": "bfbb003c1b48d398ba300899d3f7f07c84a256a5a2599b8caa2d236fc6ddae3f",
+    "independent_local_actual": "36 passed; rc0",
+    "remote_test_capsule_actual": "rc2 during collection because the shared working test advanced to 1f402708 and imported an unfinished absent trainer driver; no producer executed",
+    "remote_test_capsule_pass_claimed": false
+  },
+  "actual_remote_production_preflight": {
+    "rc": 0,
+    "checks": ["py_compile_four_files", "builder_help", "imports", "source_hashes", "input_hashes", "control_output_absent"],
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized": false,
+    "python": "3.12.3",
+    "executable": "/usr/bin/python",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "numpy": "2.1.0",
+    "pandas": "2.3.3",
+    "OMP_NUM_THREADS": 1,
+    "OPENBLAS_NUM_THREADS": 1,
+    "MKL_NUM_THREADS": 1
+  },
+  "input_sha256": {
+    "data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961"
+  },
+  "boundaries": {
+    "allowed_splits": ["train", "tune"],
+    "final_rows_accessed": false,
+    "gpu_used": false,
+    "base_supervision_is_immutable": true,
+    "control_must_pass_all_row_bitwise_parity_before_wide": true
+  }
+}
