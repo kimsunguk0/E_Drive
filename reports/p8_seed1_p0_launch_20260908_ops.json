@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "status": "live_through_step_120",
+  "scope": "P8 seed1 paired P0 startup",
+  "execution_date": "2026-09-08",
+  "source": {
+    "execution_source_manifest": "reports/p8_wide_history_joint_source_manifest_20260908_ops.json",
+    "execution_source_manifest_sha256": "4dcf2a95d619b52d9d61d375da108e3bc54c5e642789e8d6420e76372463dd3c",
+    "driver_sha256": "c8aa61732be8499104e415ff626ccb63860464899b852d86f23072a1ce19a6d4",
+    "historical_parent_manifest_sha256": "6682ea02544fc8a39e5d78bdf90bf9735682b51f3f5c7f88db93d85729d77f75",
+    "historical_parent_is_lineage_not_execution_source": true
+  },
+  "initializer": {
+    "path": "work_dirs/motiondrive_v2/p4_public_init_s0.pth",
+    "file_sha256": "06d2e68e15ca00d2c0f9ed3c965e198db603fe7e80007c39319d76eba9832e5a",
+    "model_state_sha256": "7ac28a8f26dc796be70ddb78edff1e1c128c64f43b5982747ba419d5d5200683",
+    "weights_only": true,
+    "step": 0
+  },
+  "cpu_preflight": {
+    "control_report": "reports/p8_b1_control_p0_cpu_preflight_20260908_ops.json",
+    "control_report_sha256": "a5438ad592b0b5c5782e376ab223b4039cf45c2a08b0a9eac7439ad845b78a0c",
+    "wide_report": "reports/p8_b1_wide_p0_cpu_preflight_20260908_ops.json",
+    "wide_report_sha256": "7d6776ab9d0f18393e29e1a72fa3e3e324244cea4e0ca09d82ce5472f5cdf1fa",
+    "actual_exit_code_both": 0,
+    "cuda_initialized_both": false,
+    "independent_review": "PASS"
+  },
+  "runs": {
+    "control": {
+      "unified_handle": 91973,
+      "pid": 2396538,
+      "physical_gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "run_dir": "work_dirs/motiondrive_v2/p8_wide_history_b1_control_p0_last2000",
+      "history_overlay_sha256": "4b6094cbd016bb0c050a0fc275456573c50b90bb0849bc6ab7aad279f2beffe2",
+      "latest_verified_step": 120,
+      "latest_total": -0.5757608413696289,
+      "latest_grad_norm": 8.978490829467773,
+      "peak_reserved_bytes": 5922357248,
+      "actual_exit_code": null
+    },
+    "wide": {
+      "unified_handle": 93992,
+      "pid": 2396434,
+      "physical_gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+      "run_dir": "work_dirs/motiondrive_v2/p8_wide_history_b1_wide_p0_last2000",
+      "history_overlay_sha256": "55e03d202d2d2dfcbe1c3eef7462e0d6f270bd0ab067e075a649e21ba092189c",
+      "latest_verified_step": 120,
+      "latest_total": -0.5152360200881958,
+      "latest_grad_norm": 9.957603454589844,
+      "peak_reserved_bytes": 5922357248,
+      "actual_exit_code": null
+    }
+  },
+  "paired_startup": {
+    "base_seed": 1,
+    "latest_common_sample_order_sha256": "4d7c119db5cc60bdac629ed2d0cfa641254b2f0f37605d370adf7e0d5c8c7c1d",
+    "all_logged_numeric_values_finite": true,
+    "initial_eval_count_each": 1,
+    "planned_eval_save_every": 250,
+    "planned_last_step": 2000,
+    "branch_enabled": false,
+    "joint_stage_launched": false
+  },
+  "resource_observation": {
+    "seed0_joint_jobs_preserved": true,
+    "gpu4_seed0_joint_pid": 2372687,
+    "gpu5_seed0_joint_pid": 2372677,
+    "gpu4_seed1_p0_pid": 2396434,
+    "gpu5_seed1_p0_pid": 2396538,
+    "foreign_gpus_0_3_preserved": true,
+    "gpus_6_7_unused": true
+  }
+}
