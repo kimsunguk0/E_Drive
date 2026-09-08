@@ -453,6 +453,41 @@ def test_joint_initializer_rejects_mixed_checkpoint_and_sidecar(tmp_path):
         p8.validate_initializer(args)
 
 
+def test_joint_initializer_accepts_torch_tuple_json_list_roundtrip(tmp_path):
+    model = {"tiny": torch.ones(1)}
+    temporal = temporal_contract("wide")
+    config = MotionDriveV2Config().to_dict()
+    config.update(history_contract="wide", history_frame_offsets=temporal.frame_offsets,
+                  nominal_history_seconds=temporal.nominal_seconds,
+                  cross_cell_goal_mode="disabled", goal_on=False, state_on=False)
+    embedded = {"git_sha": "1" * 40, "arguments": {"phase": "pretrain", "seed": 0},
+                "model_config": config, "loss_weights": {"plan": 0.},
+                "split_sha256": p8.EXPECTED_SPLIT_SHA256,
+                "history_overlay_manifest_sha256": "a" * 64,
+                "time_input": "nominal",
+                "time_input_policy": training.time_input_policy("nominal", WIDE.nominal_seconds),
+                "initial_model_state_sha256": p8.EXPECTED_I0_MODEL_SHA256,
+                "load_report": {"common_checkpoint_sha256": p8.EXPECTED_I0_FILE_SHA256},
+                "experimental_protocol": {"name": "p8_wide_history", "stage": "pretrain",
+                                          "arm": "wide"}}
+    checkpoint = tmp_path / "last.pth"
+    torch.save({"model": model, "optimizer": {}, "step": 2000, "manifest": embedded},
+               checkpoint)
+    # This is the actual storage boundary: tuple-valued Python config in the
+    # checkpoint, list-valued JSON after serialization and parsing.
+    sidecar = json.loads(json.dumps(embedded))
+    sidecar.update(status="completed", step=2000)
+    sidecar_path = tmp_path / "manifest.json"
+    sidecar_path.write_text(json.dumps(sidecar))
+    args = SimpleNamespace(stage="joint", arm="wide", base_seed=0, init=str(checkpoint),
+        expected_init_sha256=p8.file_sha(checkpoint),
+        expected_init_model_state_sha256=training.tensor_state_sha256(model),
+        init_manifest=str(sidecar_path), expected_init_manifest_sha256=p8.file_sha(sidecar_path))
+    loaded, receipt = p8.validate_initializer(args)
+    assert loaded["step"] == 2000
+    assert receipt["model_state_sha256"] == training.tensor_state_sha256(model)
+
+
 def test_main_cpu_preflight_path_builds_complete_protocol_without_cuda(monkeypatch, capsys):
     branch_sha = "f" * 64
     monkeypatch.setattr(p8, "validate_runtime_namespace", lambda args: {"gpu_used": False})

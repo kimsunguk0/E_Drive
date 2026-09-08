@@ -216,7 +216,18 @@ def validate_initializer(args) -> tuple[dict, dict]:
         immutable_fields = ("git_sha", "arguments", "model_config", "loss_weights", "split_sha256",
                             "history_overlay_manifest_sha256", "time_input", "time_input_policy",
                             "initial_model_state_sha256", "load_report", "experimental_protocol")
-        require(all(payload["manifest"].get(key) == sidecar.get(key) for key in immutable_fields),
+        # torch.save preserves tuples in the embedded Python config while the
+        # JSON sidecar necessarily represents the same sequences as lists.
+        # Canonical JSON therefore binds the complete config key/value tree
+        # without treating that serialization-only distinction as lineage drift.
+        embedded_config = json.dumps(payload["manifest"].get("model_config"),
+                                     sort_keys=True, separators=(",", ":"), allow_nan=False)
+        sidecar_config = json.dumps(sidecar.get("model_config"),
+                                    sort_keys=True, separators=(",", ":"), allow_nan=False)
+        strict_fields = tuple(key for key in immutable_fields if key != "model_config")
+        require(embedded_config == sidecar_config
+                and all(payload["manifest"].get(key) == sidecar.get(key)
+                        for key in strict_fields),
                 "P8 P0 embedded checkpoint and sidecar lineage mismatch")
     require(model_sha == args.expected_init_model_state_sha256,
             "P8 initializer model-state SHA mismatch")
