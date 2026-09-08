@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_preserved_pre_forward_failures",
+  "scope": "P8 old-source default-C migration golden; CPU FP32; first two approved train8 rows only",
+  "not_accuracy_training_or_evaluation": true,
+  "final_or_tune_rows_accessed": false,
+  "remote_repository": "/NHNHOME/data/sukim/adcl",
+  "remote_head_informational": "3098fd0d82cfeb3f526a85735365e8b729c05183",
+  "frozen_runtime_source_git": "64e92694ccbe0a3c5a581e421e16a884b9c5a088",
+  "frozen_runtime_source_manifest": {
+    "path": "reports/p7_goal_routing_source_manifest_20260908_ops.json",
+    "sha256": "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4",
+    "file_count": 13,
+    "preflight_and_postflight_exact": true
+  },
+  "inputs": {
+    "checkpoint": {
+      "path": "work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/last.pth",
+      "sha256": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+      "model_state_sha256": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2"
+    },
+    "run_manifest": {
+      "path": "work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000/manifest.json",
+      "sha256": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0"
+    },
+    "train8_fixture": {
+      "path": "checkpoints/motiondrive_v2/diagnostics/p1_gradient_train8.pt",
+      "sha256": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+      "selected_rows": [30, 180],
+      "selected_scenario": "20260112-105434"
+    },
+    "all_before_after_exact": true
+  },
+  "attempts": [
+    {
+      "kind": "report_directory_help_preflight",
+      "script_path": "reports/p8_old_c_golden_20260908_ops/capture_motiondrive_v2_p8_old_c_golden.py",
+      "script_sha256": "c75bb094f0fc4ec74fe3f9b605d8112996ff2fdcd258afad36d16145fa51d5ca",
+      "actual_rc": 1,
+      "failure": "ModuleNotFoundError: No module named 'models' because the reviewed script derives repo root from its intended scripts/ location",
+      "model_constructed": false,
+      "forward_count": 0,
+      "output_created": false
+    },
+    {
+      "kind": "first_forward_command",
+      "ssh_handle": 48510,
+      "script_path": "scripts/capture_motiondrive_v2_p8_old_c_golden.py",
+      "script_sha256": "c75bb094f0fc4ec74fe3f9b605d8112996ff2fdcd258afad36d16145fa51d5ca",
+      "actual_rc": 1,
+      "failure": "Embedded/external model configs differ: checkpoint tuples versus JSON lists for six sequence-valued fields; values were identical in the subsequent CPU-only diff probe",
+      "model_constructed": false,
+      "forward_count": 0,
+      "output_created": false
+    },
+    {
+      "kind": "canonical_config_diff_probe",
+      "actual_rc": 0,
+      "cuda_initialized": false,
+      "differing_representation_only_fields": [
+        "grid_size",
+        "heights",
+        "motion_grid",
+        "plan_output_scale",
+        "x_range",
+        "y_range"
+      ]
+    },
+    {
+      "kind": "reviewed_retry1",
+      "ssh_handle": 80956,
+      "child_pid": 2330769,
+      "script_path": "scripts/capture_motiondrive_v2_p8_old_c_golden_v2.py",
+      "script_sha256": "13abdced8beb3870b89787f7e960fb9f93ba2d3358f7e5f72e4d500dbc5adab0",
+      "actual_rc": 0,
+      "started_at_utc": "2026-09-08T01:30:27.246359+00:00",
+      "ended_at_utc": "2026-09-08T01:30:37.473902+00:00",
+      "output_path": "reports/p8_old_c_golden_20260908_ops/old_p7_c_b0_first2_fp32_retry1.json",
+      "output_sha256": "f4a3687089074c3022d16f51ceb58c9dcb7af267ad62b3bb907f0edcb47bdf23",
+      "input_tensor_tree_sha256": "f43a796e2741f2202bd49f058c1466c4ac0ce22f0bd36a9c38971df1392ea858",
+      "output_tensor_tree_sha256": "6943f60ce073e2850e6c0697d3f21929164ea04a8cc7c23ab0beb1d08f422b72",
+      "model_state_before_after_exact": true,
+      "source_and_input_before_after_exact": true
+    }
+  ],
+  "successful_runtime": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "python": "3.12.3",
+    "executable": "/usr/bin/python",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "numpy": "2.1.0",
+    "omp_threads": 1,
+    "openblas_threads": 1,
+    "mkl_threads": 1,
+    "cuda_initialized": false,
+    "precision": "fp32",
+    "inference_mode": true,
+    "batch_size": 2
+  },
+  "postflight": {
+    "owned_processes": 0,
+    "gpu4_used_mib": 0,
+    "gpu5_used_mib": 0,
+    "runtime_source_tracked_status_clean": true
+  },
+  "evidence_boundary": "This artifact is a deterministic old-source trained-C migration/function golden. It is not an accuracy metric, an I0-to-W compatibility proof, a learned P8 result, or a deployment/latency claim."
+}

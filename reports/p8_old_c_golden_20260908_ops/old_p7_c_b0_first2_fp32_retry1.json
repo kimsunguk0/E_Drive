@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "status": "completed_old_source_cpu_golden",
+  "purpose": "P8 default-C source/config migration parity only",
+  "not_accuracy_or_training": true,
+  "final_or_tune_rows_accessed": false,
+  "selected_train_rows": [
+    30,
+    180
+  ],
+  "selected_scenario": "20260112-105434",
+  "batch_size": 2,
+  "precision": "fp32",
+  "device": "cpu",
+  "source_manifest": {
+    "schema_version": 1,
+    "git_sha": "64e92694ccbe0a3c5a581e421e16a884b9c5a088",
+    "file_sha256": {
+      "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+      "models/motiondrive_v2/config.py": "a3c54cfd4016bb91c1325d6799ea0cffc36c60e7363ee1a88f33536f84ac24b3",
+      "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+      "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+      "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+      "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+      "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+      "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+      "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+      "scripts/motiondrive_v2_training.py": "3929538dcc58c786b242680e84ca768ecb3674ec7bfbbd784a8143fd7d1aed70",
+      "scripts/run_motiondrive_v2_p7_goal_routing.py": "75b6908715a9181309ec586a18f3026518b419c922d1ec67b2a9f729d5a4c8cc",
+      "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+      "scripts/train_motiondrive_v2.py": "52eac2a28ba12f4724b7f18a3c2d6889241a58ec5b665ef44bd0e2f5966268d2"
+    }
+  },
+  "repository_head_informational": "3098fd0d82cfeb3f526a85735365e8b729c05183",
+  "artifacts_sha256_before": {
+    "checkpoint": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+    "manifest": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0",
+    "fixture": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "source_manifest": "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4"
+  },
+  "artifacts_sha256_after": {
+    "checkpoint": "6145255ab2b1efd3deb169b873896e9b1b623ca49f11e5a46a71b138e3b0355e",
+    "manifest": "cf287d05ce6b2f4476c07ac5c2253cd9ecb3227bcc01404adbbba8463bb66de0",
+    "fixture": "4fb192ff6dd80ad44c8374b64afe55d49112327174ee8f7534ef4591cd2de1f3",
+    "source_manifest": "880c3cc36ababe31c58376ab815a239e337f130fc9b373a041fea6ad4a8d1ea4"
+  },
+  "source_sha256_before": {
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "a3c54cfd4016bb91c1325d6799ea0cffc36c60e7363ee1a88f33536f84ac24b3",
+    "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+    "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "scripts/motiondrive_v2_training.py": "3929538dcc58c786b242680e84ca768ecb3674ec7bfbbd784a8143fd7d1aed70",
+    "scripts/run_motiondrive_v2_p7_goal_routing.py": "75b6908715a9181309ec586a18f3026518b419c922d1ec67b2a9f729d5a4c8cc",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/train_motiondrive_v2.py": "52eac2a28ba12f4724b7f18a3c2d6889241a58ec5b665ef44bd0e2f5966268d2"
+  },
+  "source_sha256_after": {
+    "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+    "models/motiondrive_v2/config.py": "a3c54cfd4016bb91c1325d6799ea0cffc36c60e7363ee1a88f33536f84ac24b3",
+    "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+    "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/motiondrive_v2_data.py": "83b6c74177c131116f48feb968aa8f96821b5e820823843e8b2e97ba7af171ca",
+    "scripts/motiondrive_v2_training.py": "3929538dcc58c786b242680e84ca768ecb3674ec7bfbbd784a8143fd7d1aed70",
+    "scripts/run_motiondrive_v2_p7_goal_routing.py": "75b6908715a9181309ec586a18f3026518b419c922d1ec67b2a9f729d5a4c8cc",
+    "scripts/sparse_scoredrive.py": "3d8e89824d813c07588a64c6fb1a44600681d54adebe8af3807c3f9ad521e7db",
+    "scripts/train_motiondrive_v2.py": "52eac2a28ba12f4724b7f18a3c2d6889241a58ec5b665ef44bd0e2f5966268d2"
+  },
+  "historical_config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 2,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": true,
+    "state_on": true,
+    "plan_output_scale": [
+      10.0,
+      5.0
+    ],
+    "motion_input_mode": "low_feature",
+    "cross_cell_goal_mode": "zero"
+  },
+  "historical_config_canonical_sha256": "dfedb2221675a9a8e03cbdfe08000baf7b4b0dfc4d0dd0ae156db4a470a628f7",
+  "model_state_sha256_before": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2",
+  "model_state_sha256_after": "e79d545bbb09b4109c783a8cf4c861772bc5e52c62004ef5b37dc4ca63e938a2",
+  "input_tensor_tree_sha256": "f43a796e2741f2202bd49f058c1466c4ac0ce22f0bd36a9c38971df1392ea858",
+  "input_tensors": {
+    "goal_xy": {
+      "shape": [
+        2,
+        2
+      ],
+      "dtype": "torch.float32",
+      "sha256": "cfc7ed632f87a7101216534684f813b23416c884e27d097f4cdae8a1f8e9db9b"
+    },
+    "history_images": {
+      "shape": [
+        2,
+        4,
+        3,
+        216,
+        384
+      ],
+      "dtype": "torch.float32",
+      "sha256": "e94c4f7fc0d12ab462ff0ef823620108c3052826ea51d584569ee10275681b00"
+    },
+    "history_transforms": {
+      "shape": [
+        2,
+        4,
+        4,
+        4
+      ],
+      "dtype": "torch.float32",
+      "sha256": "196174819b7ee8ba06f5f60e794325a20485a01e93fd3209281109ba4585d4f1"
+    },
+    "images": {
+      "shape": [
+        2,
+        6,
+        3,
+        432,
+        768
+      ],
+      "dtype": "torch.float32",
+      "sha256": "4bbedc139611eae82d9a7c914b302b066201660a7e5b31baa758bd57d49bc1f9"
+    },
+    "lidar2img": {
+      "shape": [
+        2,
+        6,
+        4,
+        4
+      ],
+      "dtype": "torch.float32",
+      "sha256": "a390d4ce5f23b80ce40ddf6410dfdecf62c44796430bcc66942cbca379222aa2"
+    },
+    "time_offsets": {
+      "shape": [
+        2,
+        4
+      ],
+      "dtype": "torch.float32",
+      "sha256": "c39fe9743867d9d68ea438b59f145f395bc2019ecf9d0abda59744e9313e3301"
+    }
+  },
+  "output_tensor_tree_sha256": "6943f60ce073e2850e6c0697d3f21929164ea04a8cc7c23ab0beb1d08f422b72",
+  "outputs": {
+    "history_hat": {
+      "shape": [
+        2,
+        4,
+        4
+      ],
+      "dtype": "torch.float32",
+      "sha256": "667701c2b97e9378ba3f26252a08ee7e638c049055f7bb505973d8ab4f230dc4",
+      "values": [
+        [
+          [
+            -0.4470735788345337,
+            0.018288595601916313,
+            0.006652615964412689,
+            0.9968977570533752
+          ],
+          [
+            -1.2337965965270996,
+            0.02163628116250038,
+            0.017393149435520172,
+            1.0010415315628052
+          ],
+          [
+            -3.1366305351257324,
+            0.007707551121711731,
+            0.0367279089987278,
+            1.0051977634429932
+          ],
+          [
+            -5.871436595916748,
+            -0.05387770012021065,
+            0.0674290657043457,
+            1.007777452468872
+          ]
+        ],
+        [
+          [
+            -1.0770716667175293,
+            0.020549334585666656,
+            0.0008192285895347595,
+            0.9992527961730957
+          ],
+          [
+            -2.1996829509735107,
+            0.0451451912522316,
+            -0.00078636035323143,
+            1.0011104345321655
+          ],
+          [
+            -5.072278022766113,
+            0.11024508625268936,
+            0.004860308021306992,
+            1.000342845916748
+          ],
+          [
+            -10.620055198669434,
+            0.2772313356399536,
+            -0.0035763420164585114,
+            0.9995841383934021
+          ]
+        ]
+      ]
+    },
+    "history_logvar": {
+      "shape": [
+        2,
+        4,
+        4
+      ],
+      "dtype": "torch.float32",
+      "sha256": "7dfc457464941f5c05287eb041e65cb6ff357b0b04e5e85a4e58163052df7086"
+    },
+    "lane_logits": {
+      "shape": [
+        2,
+        1,
+        64,
+        48
+      ],
+      "dtype": "torch.float32",
+      "sha256": "09358f7bafbeff10c0e4aea12a1acb16bb541d57066af23dadf71c8f9bdf366b"
+    },
+    "motion_features": {
+      "shape": [
+        2,
+        192,
+        128
+      ],
+      "dtype": "torch.float32",
+      "sha256": "f91fdc4df760d1792737b28ce6eb870da592b63e2ee448f694b0675381893bb9"
+    },
+    "occ_logits": {
+      "shape": [
+        2,
+        1,
+        64,
+        48
+      ],
+      "dtype": "torch.float32",
+      "sha256": "08254e783d89fb87b0e0cc5300a827bdfc8412f7efd5139eac8d6e15d5ee4efa"
+    },
+    "plan_abs": {
+      "shape": [
+        2,
+        6,
+        2
+      ],
+      "dtype": "torch.float32",
+      "sha256": "47620e17dced3f1ab90e92be5d5a8e91b2dd99fb0af10bf8eba52d482b9cd934",
+      "values": [
+        [
+          [
+            2.956498861312866,
+            -0.14591377973556519
+          ],
+          [
+            5.913179397583008,
+            -0.39652758836746216
+          ],
+          [
+            8.893566131591797,
+            -0.7530477643013
+          ],
+          [
+            11.779675483703613,
+            -1.2685725688934326
+          ],
+          [
+            14.652710914611816,
+            -1.8805322647094727
+          ],
+          [
+            17.60936164855957,
+            -2.504871368408203
+          ]
+        ],
+        [
+          [
+            5.051359176635742,
+            -0.12500882148742676
+          ],
+          [
+            10.203095436096191,
+            -0.25646162033081055
+          ],
+          [
+            15.481334686279297,
+            -0.3939521312713623
+          ],
+          [
+            20.947303771972656,
+            -0.5488561987876892
+          ],
+          [
+            26.425018310546875,
+            -0.6880763173103333
+          ],
+          [
+            31.928747177124023,
+            -0.8693006038665771
+          ]
+        ]
+      ]
+    },
+    "scene_features": {
+      "shape": [
+        2,
+        3072,
+        128
+      ],
+      "dtype": "torch.float32",
+      "sha256": "624d421667c597ffac9ae83eaa85c71df655808303f401de58fd5c7ea30e9af4"
+    },
+    "scene_visible": {
+      "shape": [
+        2,
+        1,
+        64,
+        48
+      ],
+      "dtype": "torch.bool",
+      "sha256": "1fa534e18330a3afa49047eef81916289224b97f7c9d5de85de94c2aaa8b0416"
+    },
+    "state_hat": {
+      "shape": [
+        2,
+        6
+      ],
+      "dtype": "torch.float32",
+      "sha256": "0e13b95ddd76875af5dc8e8a8ef91b05d431f72fa5771c7ab02f986ac6daa27c",
+      "values": [
+        [
+          6.284074306488037,
+          -0.15454408526420593,
+          -0.6521488428115845,
+          -0.365005761384964,
+          -0.0724860280752182,
+          -5.374733924865723
+        ],
+        [
+          10.416814804077148,
+          -0.215630903840065,
+          -0.06168477237224579,
+          0.03440449386835098,
+          0.0038661491125822067,
+          -7.049773693084717
+        ]
+      ]
+    },
+    "state_logvar": {
+      "shape": [
+        2,
+        5
+      ],
+      "dtype": "torch.float32",
+      "sha256": "535cd9074fc6a730dc349aa5b5796cbd740ce916221ebe6c92244659f7441315"
+    }
+  },
+  "excluded_fixture_keys_not_indexed": [
+    "frame",
+    "gt_plan",
+    "history_target",
+    "history_valid",
+    "lane_target",
+    "lane_valid",
+    "occ_target",
+    "occ_valid",
+    "plan_valid",
+    "proxy_weight",
+    "row",
+    "scen_idx",
+    "scenario",
+    "session_id",
+    "state_target",
+    "state_valid"
+  ],
+  "runtime": {
+    "python": "3.12.3",
+    "executable": "/usr/bin/python",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "numpy": "2.1.0",
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized": false,
+    "torch_num_threads": 1,
+    "torch_num_interop_threads": 1,
+    "deterministic_algorithms": true,
+    "tf32_matmul": false,
+    "tf32_cudnn": false
+  },
+  "started_at_utc": "2026-09-08T01:30:27.246359+00:00",
+  "ended_at_utc": "2026-09-08T01:30:37.473902+00:00"
+}
