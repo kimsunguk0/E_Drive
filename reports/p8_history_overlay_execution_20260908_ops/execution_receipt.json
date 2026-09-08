@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "status": "control_and_wide_frozen",
+  "scope": "P8 train/tune-only history overlay production",
+  "remote_repository": "/NHNHOME/data/sukim/adcl",
+  "producer_commit": "b5d49f258d2906e6ec9625f3722a0519e3b9bfab",
+  "preflight_manifest_commit": "fb64dc25c5e31d50f796725ae266e1a3e660fe32",
+  "source_manifest": {
+    "path": "reports/p8_history_overlay_source_manifest_20260908_ops.json",
+    "sha256": "363266fbdafabafced8d47f3661c07f97846050fcf651ddbf26543a52c37ba64"
+  },
+  "producer_sha256": {
+    "models/motiondrive_v2_temporal_contract.py": "5cef257cbe53c566effc4e1e17379f1b0d7d530a89cd19c6574e3a152d9c2c14",
+    "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+    "scripts/build_motiondrive_v2_history_overlay.py": "fdfe0d1d0fced02c85f78036c13e643f0d40e38f4b43d866d7e2f6844987e649",
+    "scripts/motiondrive_v2_data.py": "6c89d4e3b1e17636ef79bdbeae6750b35fea6a87978eaa7bebbdc5c2cf9ee4b6"
+  },
+  "inputs_sha256_before_after": {
+    "data/etri/motiondrive_v2/grouped_split_rawtime.json": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "/tmp/pm97/data/etri/ego_cache.npz": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "data/etri/motiondrive_v2/train_tune_geometry_v2/supervision_manifest.json": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+    "data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961"
+  },
+  "runtime": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized": false,
+    "python": "3.12.3",
+    "executable": "/usr/bin/python",
+    "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+    "numpy": "2.1.0",
+    "pandas": "2.3.3",
+    "OMP_NUM_THREADS": 1,
+    "OPENBLAS_NUM_THREADS": 1,
+    "MKL_NUM_THREADS": 1
+  },
+  "preflight": {
+    "production_pycompile_import_help_rc": 0,
+    "input_and_source_pin_rc": 0,
+    "reviewed_local_tests": "36 passed; rc0",
+    "remote_moving_test_capsule_rc": 2,
+    "remote_moving_test_capsule_detail": "collection stopped because the shared test advanced from reviewed bfbb003c to 1f402708 and imported an unfinished absent trainer driver; producer did not execute in that command",
+    "remote_test_pass_claimed": false
+  },
+  "control": {
+    "history_contract": "control",
+    "frame_offsets": [1, 2, 5, 10],
+    "nominal_seconds": [0.1, 0.2, 0.5, 1.0],
+    "ssh_handle": 92797,
+    "child_pid": null,
+    "child_pid_limit": "process completed before the first PID observation",
+    "actual_os_rc": 0,
+    "output_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_history_control_20260908_ops",
+    "manifest_sha256": "4b6094cbd016bb0c050a0fc275456573c50b90bb0849bc6ab7aad279f2beffe2",
+    "artifact_count": 240,
+    "artifact_inventory_sha256": "2b4c93b85a8e908b8e7a42278634f6555434a0a5199f8e4b6b134640d68cf16a",
+    "audit_rc": 0,
+    "all_temporal_arrays_bitwise_equal_c1": true
+  },
+  "wide": {
+    "history_contract": "wide",
+    "frame_offsets": [2, 5, 10, 20],
+    "nominal_seconds": [0.2, 0.5, 1.0, 2.0],
+    "ssh_handle": 77563,
+    "child_pid": null,
+    "child_pid_limit": "process completed before the first PID observation",
+    "actual_os_rc": 0,
+    "output_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_history_wide_20260908_ops",
+    "manifest_sha256": "55e03d202d2d2dfcbe1c3eef7462e0d6f270bd0ab067e075a649e21ba092189c",
+    "control_barrier_sha256": "4b6094cbd016bb0c050a0fc275456573c50b90bb0849bc6ab7aad279f2beffe2",
+    "artifact_count": 240,
+    "artifact_inventory_sha256": "216444e6974e1764d2f47a2e6ab354cbdc583960d0903c362d0d55c819b1d9b2",
+    "audit_rc": 0,
+    "row_frame_identity_equal_control": true,
+    "all_history_valid": true,
+    "actual_time_offsets_seconds": {
+      "min": [0.18026293814182281, 0.48063695430755615, 0.9805400371551514, 1.9807019233703613],
+      "mean": [0.2002972149711279, 0.5007429888778598, 1.0014854526372043, 2.0029706120944297],
+      "max": [0.21976220607757568, 0.5322270393371582, 1.0635559558868408, 2.1257998943328857]
+    }
+  },
+  "shared_rows": {
+    "train": 54810,
+    "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+    "tune": 1998,
+    "tune_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88"
+  },
+  "postflight": {
+    "owned_processes": 0,
+    "producer_and_input_hashes_unchanged": true,
+    "gpu4_used_mib": 0,
+    "gpu5_used_mib": 0
+  },
+  "boundaries": {
+    "history_only": true,
+    "allowed_splits": ["train", "tune"],
+    "final_rows_accessed": false,
+    "state_stop_occ_lane_plan_recomputed": false,
+    "base_supervision_modified": false,
+    "gpu_or_model_forward_used": false,
+    "training_authorized_by_this_receipt": false
+  }
+}
