@@ -156,11 +156,14 @@ def restore_run_configuration(args, saved, explicit_options):
         settings["plan_output_scale"] = list(config.get("plan_output_scale", (1., 1.)))
     if hasattr(args, "cross_cell_goal_mode"):
         settings["cross_cell_goal_mode"] = config.get("cross_cell_goal_mode", "disabled")
+    if hasattr(args, "history_contract"):
+        settings["history_contract"] = config.get("history_contract", "control")
     if hasattr(args, "bn_policy"):
         settings["bn_policy"] = saved_args.get("bn_policy", "adaptive")
     if hasattr(args, "time_input"):
         settings["time_input"] = saved_args.get("time_input", "raw")
-        time_input_policy(settings["time_input"])
+        time_input_policy(settings["time_input"],
+                          config.get("nominal_history_seconds", (.1, .2, .5, 1.)))
         saved_time_policy = saved.get("time_input_policy", {})
         if not isinstance(saved_time_policy, dict):
             raise ValueError("Checkpoint time_input_policy must be a mapping")
@@ -186,7 +189,8 @@ def restore_run_configuration(args, saved, explicit_options):
 
 
 def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None,
-                                 cross_cell_goal_mode=None):
+                                 cross_cell_goal_mode=None, history_contract=None,
+                                 allow_legacy_history_override=False):
     """A fresh paired run inherits every architecture field, changing G/S only."""
     config = dict(saved.get("model_config", {}))
     if not config or "backbone_arch" not in config:
@@ -196,13 +200,32 @@ def initialization_configuration(saved, *, goal_on, state_on, explicit_arch=None
     config.update(goal_on=bool(goal_on), state_on=bool(state_on))
     if cross_cell_goal_mode is not None:
         config["cross_cell_goal_mode"] = cross_cell_goal_mode
+    if history_contract is not None:
+        from models.motiondrive_v2_temporal_contract import temporal_contract
+        temporal = temporal_contract(history_contract)
+        temporal_keys = {"history_contract", "history_frame_offsets", "nominal_history_seconds"}
+        present = temporal_keys & set(config)
+        if present and present != temporal_keys:
+            raise ValueError("Checkpoint has a partial temporal contract")
+        if present:
+            saved_temporal = temporal_contract(config["history_contract"])
+            if (tuple(config["history_frame_offsets"]) != saved_temporal.frame_offsets
+                    or tuple(config["nominal_history_seconds"]) != saved_temporal.nominal_seconds):
+                raise ValueError("Checkpoint temporal contract is internally inconsistent")
+            if saved_temporal.name != temporal.name:
+                raise ValueError("A trained checkpoint temporal contract cannot be overridden")
+        elif temporal.name != "control" and not allow_legacy_history_override:
+            raise ValueError("Only the exact neutral public initializer may acquire wide history metadata")
+        config.update(history_contract=temporal.name,
+                      history_frame_offsets=temporal.frame_offsets,
+                      nominal_history_seconds=temporal.nominal_seconds)
     return config
 
 
 @torch.inference_mode()
 def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0,
-             detailed_records=False):
-    time_input_policy(time_input)
+             detailed_records=False, nominal_history_seconds=(.1, .2, .5, 1.)):
+    time_input_policy(time_input, nominal_history_seconds)
     model.eval()
     records, state_errors, history_errors = [], [], []
     iou_counts = {"occ": [0, 0], "lane": [0, 0]}
@@ -210,7 +233,8 @@ def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0,
         check_cuda_headroom(device, min_free_mib)
         batch = to_device(raw, device)
         with autocast(device, precision):
-            out = model(**model_inputs(batch, time_input=time_input))
+            out = model(**model_inputs(batch, time_input=time_input,
+                                       nominal_history_seconds=nominal_history_seconds))
         if not torch.isfinite(out["plan_abs"]).all():
             raise FloatingPointError("Nonfinite validation prediction")
         d3 = weighted_d3(out["plan_abs"], batch["gt_plan"]).cpu().numpy()
@@ -334,6 +358,9 @@ def arguments(argv=None):
     p.add_argument("--arch", choices=["resnet34", "resnet50"], default="resnet50")
     p.add_argument("--motion-input-mode", choices=["legacy", "high_feature", "low_feature"])
     p.add_argument("--cross-cell-goal-mode", choices=["disabled", "zero", "real"])
+    p.add_argument("--history-contract", choices=["control", "wide"])
+    p.add_argument("--history-overlay-root")
+    p.add_argument("--expected-history-overlay-sha256")
     p.add_argument("--plan-output-scale", type=float, nargs=2, metavar=("X", "Y"),
                    help="Internal neural output units; inverse-rescale last Linear to preserve initial predictions")
     p.add_argument("--train-stride", type=int, default=1)
@@ -351,6 +378,65 @@ def arguments(argv=None):
 
 def _validate_experimental_protocol(experiment):
     if experiment is None:
+        return None
+    if isinstance(experiment, dict) and experiment.get("name") == "p8_wide_history":
+        required = {"schema_version", "name", "stage", "arm", "temporal_contract",
+                    "history_overlay_manifest_sha256", "expected_initial_checkpoint_sha256",
+                    "expected_p0_model_state_sha256", "expected_initial_model_state_sha256",
+                    "expected_optimizer_groups", "expected_branch_state_sha256", "branch",
+                    "expected_missing_state_keys", "train_data", "tune_data", "source",
+                    "fresh_optimizer_step_zero", "all_model_parameters_trainable",
+                    "p0_branch_disabled", "joint_branch_zero", "final_validation_accessed"}
+        if set(experiment) != required:
+            raise ValueError("P8 experimental protocol must be complete")
+        from models.motiondrive_v2_temporal_contract import temporal_contract
+        temporal = temporal_contract(experiment["arm"])
+        expected_temporal = {"name": temporal.name,
+                             "frame_offsets": list(temporal.frame_offsets),
+                             "nominal_seconds": list(temporal.nominal_seconds)}
+        stage = experiment["stage"]
+        expected_branch = {
+            "mode": "disabled" if stage == "pretrain" else "zero",
+            "sigma_m": [10., 32. / 3.], "pool_size": 4, "source_cells": 192,
+            "destination_cells": 3072, "attention_dim": 32, "cosine_scale": 8.,
+            "attention_precision": "fp32_autocast_disabled",
+            "goal_enters_distance_score_only": True,
+            "new_value_projection_adds_goal_or_position": False,
+            "output_bias": False, "output_weight_zero_initialized_at_joint": True}
+        if (experiment["schema_version"] != 1 or stage not in ("pretrain", "joint")
+                or experiment["temporal_contract"] != expected_temporal
+                or experiment["fresh_optimizer_step_zero"] is not True
+                or experiment["all_model_parameters_trainable"] is not True
+                or experiment["p0_branch_disabled"] is not True
+                or experiment["joint_branch_zero"] is not True
+                or experiment["final_validation_accessed"] is not False
+                or experiment["branch"] != expected_branch):
+            raise ValueError("Unsupported P8 experimental protocol")
+        for key in ("history_overlay_manifest_sha256", "expected_initial_checkpoint_sha256",
+                    "expected_p0_model_state_sha256", "expected_initial_model_state_sha256"):
+            if not isinstance(experiment[key], str) or len(experiment[key]) != 64:
+                raise ValueError(f"P8 {key} must be a full SHA256")
+        if experiment["expected_optimizer_groups"] != [
+                {"name": "backbone", "base_lr": 1e-5},
+                {"name": "head", "base_lr": 1e-4}]:
+            raise ValueError("P8 optimizer group contract mismatch")
+        missing = experiment["expected_missing_state_keys"]
+        branch_sha = experiment["expected_branch_state_sha256"]
+        if stage == "pretrain" and (missing != [] or branch_sha is not None):
+            raise ValueError("P8 P0 must use the branch-disabled legacy graph")
+        if stage == "joint" and (not isinstance(missing, list) or not missing
+                or len(missing) != len(set(missing))
+                or not all(key.startswith("scene_encoder.cross_cell_goal_residual.") for key in missing)
+                or not isinstance(branch_sha, str) or len(branch_sha) != 64):
+            raise ValueError("P8 joint must add exactly the new residual state")
+        if experiment["train_data"] != {"rows": 54810,
+                "rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854"}:
+            raise ValueError("P8 fixed train rows contract mismatch")
+        if experiment["tune_data"] != {"rows": 1998,
+                "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88"}:
+            raise ValueError("P8 fixed tune rows contract mismatch")
+        if not isinstance(experiment["source"], dict) or not experiment["source"]:
+            raise ValueError("P8 source provenance is required")
         return None
     if isinstance(experiment, dict) and experiment.get("name") == "p7_cross_cell_goal_routing":
         required = {"schema_version", "name", "arm", "last_only_final_eval",
@@ -457,6 +543,31 @@ def _validate_experimental_runtime_args(args):
 
 
 def _validate_experimental_runtime(args, experiment):
+    if experiment.get("name") == "p8_wide_history":
+        stage, arm = experiment["stage"], experiment["arm"]
+        steps = 2000 if stage == "pretrain" else 6000
+        expected = {"phase": stage if stage == "pretrain" else "joint",
+                    "goal_on": 0 if stage == "pretrain" else 1,
+                    "state_on": 0 if stage == "pretrain" else 1,
+                    "steps": steps, "batch": 16, "microbatch": 2, "eval_batch": 4,
+                    "eval_every": 250 if stage == "pretrain" else 6000,
+                    "save_every": 250 if stage == "pretrain" else 6000,
+                    "lr": 1e-4, "backbone_lr": 1e-5, "weight_decay": .01,
+                    "warmup": 200, "grad_clip": 5., "alpha_occ": .2,
+                    "alpha_lane": .2, "alpha_motion": .2, "uncertainty": 1,
+                    "precision": "bf16", "time_input": "nominal", "bn_policy": "fixed",
+                    "arch": "resnet50", "motion_input_mode": "low_feature",
+                    "cross_cell_goal_mode": "disabled" if stage == "pretrain" else "zero",
+                    "history_contract": arm, "train_stride": 1, "eval_stride": 5,
+                    "max_train_samples": 0, "max_eval_samples": 0, "eval_split": "tune"}
+        if any(getattr(args, key) != value for key, value in expected.items()):
+            raise ValueError("P8 fixed stage recipe mismatch")
+        if (not args.init or args.resume or args.pretrained or args.eval_only
+                or args.train_scenes or args.eval_scenes
+                or not args.history_overlay_root
+                or args.expected_history_overlay_sha256 != experiment["history_overlay_manifest_sha256"]):
+            raise ValueError("P8 requires pinned overlay, weights-only init, full train+tune, fresh optimizer")
+        return
     if experiment.get("name") == "p7_cross_cell_goal_routing":
         mode = {"control_zero_slot": "zero", "goal_real_slot": "real"}[experiment["arm"]]
         expected = {"phase": "joint", "goal_on": 1, "state_on": 1, "steps": 6000,
@@ -490,29 +601,41 @@ def _validate_experimental_runtime(args, experiment):
 
 def _training_schedule_actions(step, args, experiment):
     """Return evaluation/periodic-save decisions without changing default policy."""
-    evaluate_now = step == args.steps or (experiment is None and step % args.eval_every == 0)
-    periodic_save = experiment is None and step % args.save_every == 0
+    periodic_protocol = (experiment is None or
+                         (experiment.get("name") == "p8_wide_history"
+                          and experiment.get("stage") == "pretrain"))
+    evaluate_now = step == args.steps or (periodic_protocol and step % args.eval_every == 0)
+    periodic_save = periodic_protocol and step % args.save_every == 0
     return evaluate_now, periodic_save
 
 
 def _load_initial_model_state(model, common, experiment=None):
     """Load a weights-only initializer, narrowly permitting P7's new keys."""
-    if experiment is not None and experiment.get("name") == "p7_cross_cell_goal_routing":
+    if experiment is not None and (experiment.get("name") == "p7_cross_cell_goal_routing"
+                                   or (experiment.get("name") == "p8_wide_history"
+                                       and experiment.get("stage") == "joint")):
         incompatible = model.load_state_dict(common["model"], strict=False)
         expected_missing = experiment["expected_missing_state_keys"]
         if list(incompatible.missing_keys) != expected_missing or incompatible.unexpected_keys:
             raise ValueError("P7 P0 load must miss exactly the new residual state")
-        if tensor_state_sha256(common["model"]) != experiment["expected_p0_model_state_sha256"]:
-            raise ValueError("P7 P0 model tensor SHA mismatch")
+        expected_p0 = experiment["expected_p0_model_state_sha256"]
+        if tensor_state_sha256(common["model"]) != expected_p0:
+            raise ValueError("P7/P8 P0 model tensor SHA mismatch")
         branch = model.scene_encoder.cross_cell_goal_residual
         if branch.output.bias is not None:
             raise ValueError("P7 output projection must be bias-free")
         if bool(branch.output.weight.count_nonzero()):
             raise ValueError("P7 initial output projection must be exactly zero")
-        return {"p7_old_checkpoint_load": {
+        load_name = ("p7_old_checkpoint_load" if experiment.get("name") == "p7_cross_cell_goal_routing"
+                     else "p8_p0_checkpoint_load")
+        return {load_name: {
             "strict_existing_keys": True, "missing_keys": expected_missing,
             "unexpected_keys": [], "weights_only": True}}
     model.load_state_dict(common["model"], strict=True)
+    if (experiment is not None and experiment.get("name") == "p8_wide_history"
+            and tensor_state_sha256(common["model"]) != experiment[
+                "expected_p0_model_state_sha256"]):
+        raise ValueError("P8 P0 public-I0 model tensor SHA mismatch")
     return {}
 
 
@@ -559,6 +682,10 @@ def run_training(argv=None, *, experiment=None):
         if expected_split_sha != sha256(args.split_manifest):
             raise ValueError("Initialization/resume split lineage mismatch or missing")
         load_report["common_checkpoint_sha256"] = sha256(args.resume or args.init)
+        if (experiment is not None and experiment.get("name") == "p8_wide_history"
+                and load_report["common_checkpoint_sha256"]
+                != experiment["expected_initial_checkpoint_sha256"]):
+            raise ValueError("P8 initializer checkpoint SHA mismatch")
     if common is not None and (args.resume or args.eval_only):
         config = MotionDriveV2Config(**restore_run_configuration(args, common["manifest"], explicit))
     elif common is not None:
@@ -566,12 +693,22 @@ def run_training(argv=None, *, experiment=None):
             common["manifest"], goal_on=args.goal_on, state_on=args.state_on,
             explicit_arch=args.arch if "--arch" in explicit else None,
             cross_cell_goal_mode=args.cross_cell_goal_mode
-            if "--cross-cell-goal-mode" in explicit else None))
+            if "--cross-cell-goal-mode" in explicit else None,
+            history_contract=args.history_contract
+            if "--history-contract" in explicit else None,
+            allow_legacy_history_override=(experiment is not None
+                and experiment.get("name") == "p8_wide_history"
+                and experiment.get("stage") == "pretrain")))
         args.arch = config.backbone_arch
     else:
         config = MotionDriveV2Config(backbone_arch=args.arch, goal_on=bool(args.goal_on),
                                     state_on=bool(args.state_on),
-                                    cross_cell_goal_mode=args.cross_cell_goal_mode or "disabled")
+                                    cross_cell_goal_mode=args.cross_cell_goal_mode or "disabled",
+                                    history_contract=args.history_contract or "control",
+                                    history_frame_offsets=(2, 5, 10, 20)
+                                    if args.history_contract == "wide" else (1, 2, 5, 10),
+                                    nominal_history_seconds=(.2, .5, 1., 2.)
+                                    if args.history_contract == "wide" else (.1, .2, .5, 1.))
     if args.phase == "pretrain":
         config.goal_on = False
         config.state_on = False
@@ -615,22 +752,23 @@ def run_training(argv=None, *, experiment=None):
     ], weight_decay=args.weight_decay)
     if experiment is not None:
         if initial_state_sha != experiment["expected_initial_model_state_sha256"]:
-            raise ValueError("P6 same-base initial state SHA mismatch")
+            raise ValueError("Experimental initial model state SHA mismatch")
         actual_groups = [{"name": "backbone", "base_lr": optimizer.param_groups[0]["base_lr"]},
                          {"name": "head", "base_lr": optimizer.param_groups[1]["base_lr"]}]
         if actual_groups != experiment["expected_optimizer_groups"]:
-            raise ValueError("P6 optimizer group LR mismatch")
+            raise ValueError("Experimental optimizer group LR mismatch")
         if args.resume:
             raise ValueError("Experimental run uses weights-only --init and a fresh optimizer")
         if optimizer.state or not all(param.requires_grad for param in model.parameters()):
-            raise ValueError("P6 must begin at optimizer step0 with every model parameter trainable")
+            raise ValueError("Experimental run must begin at optimizer step0 with every model parameter trainable")
     weights = LossWeights(plan=0. if args.phase == "pretrain" else 1.,
                           occupancy=args.alpha_occ, lane=args.alpha_lane,
                           motion=args.alpha_motion, uncertainty=bool(args.uncertainty))
     manifest = {
         "schema_version": 1, "git_sha": source_sha(), "arguments": vars(args),
         "model_config": dataclasses.asdict(config), "loss_weights": dataclasses.asdict(weights),
-        "time_input": args.time_input, "time_input_policy": time_input_policy(args.time_input),
+        "time_input": args.time_input, "time_input_policy": time_input_policy(
+            args.time_input, config.nominal_history_seconds),
         "split_sha256": sha256(args.split_manifest), "load_report": load_report,
         "torch": torch.__version__, "numpy": np.__version__,
         "device": str(device), "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
@@ -649,6 +787,9 @@ def run_training(argv=None, *, experiment=None):
                         "inference_policy": "eval running statistics for both arms"},
         "status": "starting", "pid": os.getpid(),
     }
+    if args.history_overlay_root:
+        manifest["history_overlay_manifest_sha256"] = sha256(
+            Path(args.history_overlay_root) / "overlay_manifest.json")
     if experiment is not None:
         manifest["experimental_protocol"] = experiment
     atomic_json(run_dir / "manifest.json", manifest)
@@ -657,7 +798,10 @@ def run_training(argv=None, *, experiment=None):
         kwargs = dict(data_root=args.data_root, split_manifest=args.split_manifest,
                       split=split, supervision_root=args.supervision_root,
                       min_frame=30, frame_stride=stride, max_samples=maximum,
-                      augment=(split == "train" and not args.eval_only), seed=args.seed)
+                      augment=(split == "train" and not args.eval_only), seed=args.seed,
+                      history_contract=config.history_contract,
+                      history_overlay_root=args.history_overlay_root,
+                      expected_history_overlay_sha256=args.expected_history_overlay_sha256)
         if scenes:
             kwargs["scenes"] = scenes
         return MotionDriveDataset(**kwargs)
@@ -666,7 +810,8 @@ def run_training(argv=None, *, experiment=None):
                              num_workers=args.workers, pin_memory=device.type == "cuda")
     if args.eval_only:
         report, records = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input,
-                                   min_free_mib=args.cuda_min_free_mib)
+                                   min_free_mib=args.cuda_min_free_mib,
+                                   nominal_history_seconds=config.nominal_history_seconds)
         atomic_json(run_dir / "evaluation.json", {"report": report, "records": records})
         print(json.dumps(report), flush=True)
         manifest.update(status="completed", evaluation=report)
@@ -684,7 +829,7 @@ def run_training(argv=None, *, experiment=None):
                     else experiment["train_data"])
         if len(training) != declared["rows"] or manifest["train_rows_sha256"] != declared["rows_sha256"]:
             raise ValueError("Experimental train rows differ from the pinned protocol")
-        if experiment.get("name") == "p7_cross_cell_goal_routing":
+        if experiment.get("name") in ("p7_cross_cell_goal_routing", "p8_wide_history"):
             declared_tune = experiment["tune_data"]
             if (len(evaluation) != declared_tune["rows"]
                     or manifest["eval_rows_sha256"] != declared_tune["rows_sha256"]):
@@ -719,16 +864,20 @@ def run_training(argv=None, *, experiment=None):
         return {"model": model.state_dict(), "optimizer": optimizer.state_dict(),
                 "step": step, "epoch": epoch, "best_metric": best,
                 "manifest": manifest, "rng": rng}
-    if not args.resume and experiment is None:
+    periodic_protocol = (experiment is None or
+                         (experiment.get("name") == "p8_wide_history"
+                          and experiment.get("stage") == "pretrain"))
+    if not args.resume and periodic_protocol:
         atomic_checkpoint(run_dir / "initial.pth", checkpoint())
     started = time.monotonic()
     sample_order_digest = hashlib.sha256()
     manifest["status"] = "running"
     atomic_json(run_dir / "manifest.json", manifest)
     with (run_dir / "metrics.jsonl").open("a", buffering=1) as log:
-        if not args.resume and experiment is None:
+        if not args.resume and periodic_protocol:
             initial_report, _ = evaluate(model, eval_loader, device, args.precision, time_input=args.time_input,
-                                          min_free_mib=args.cuda_min_free_mib)
+                                          min_free_mib=args.cuda_min_free_mib,
+                                          nominal_history_seconds=config.nominal_history_seconds)
             atomic_json(run_dir / "initial_eval.json", initial_report)
             log.write(json.dumps({"kind": "initial_eval", "step": 0, **initial_report}, allow_nan=False) + "\n")
             print(json.dumps({"kind": "initial_eval", "step": 0, **initial_report}), flush=True)
@@ -757,7 +906,9 @@ def run_training(argv=None, *, experiment=None):
                         check_cuda_headroom(device, args.cuda_min_free_mib)
                         batch = to_device(slice_batch(raw, start, start + args.microbatch), device)
                         with autocast(device, args.precision):
-                            output = model(**model_inputs(batch, time_input=args.time_input))
+                            output = model(**model_inputs(
+                                batch, time_input=args.time_input,
+                                nominal_history_seconds=config.nominal_history_seconds))
                         loss, micro_parts = compute_loss(output, batch, weights, normalizers=normalizers,
                                                          stop_class_weights=stop_class_weights)
                         if not bool(torch.isfinite(loss)):
@@ -770,7 +921,9 @@ def run_training(argv=None, *, experiment=None):
                     check_cuda_headroom(device, args.cuda_min_free_mib)
                     batch = to_device(raw, device)
                     with autocast(device, args.precision):
-                        output = model(**model_inputs(batch, time_input=args.time_input))
+                        output = model(**model_inputs(
+                            batch, time_input=args.time_input,
+                            nominal_history_seconds=config.nominal_history_seconds))
                     loss, parts = compute_loss(output, batch, weights,
                                                stop_class_weights=stop_class_weights)
                     if not bool(torch.isfinite(loss)):
@@ -794,7 +947,10 @@ def run_training(argv=None, *, experiment=None):
                     report, eval_records = evaluate(model, eval_loader, device, args.precision,
                                                     time_input=args.time_input,
                                                     min_free_mib=args.cuda_min_free_mib,
-                                                    detailed_records=experiment is not None)
+                                                    detailed_records=experiment is not None and not (
+                                                        experiment.get("name") == "p8_wide_history"
+                                                        and experiment.get("stage") == "pretrain"),
+                                                    nominal_history_seconds=config.nominal_history_seconds)
                     # Pretrain selection is task quality, not an untrained planner's D3.
                     if args.phase == "pretrain":
                         motion_value = report["history_position_mae_by_offset"]
@@ -810,7 +966,10 @@ def run_training(argv=None, *, experiment=None):
                     log.write(json.dumps(row, allow_nan=False) + "\n")
                     print(json.dumps(row, allow_nan=False), flush=True)
                     atomic_json(run_dir / "latest_eval.json", row)
-                    if experiment is not None:
+                    terminal_experiment = (experiment is not None and not (
+                        experiment.get("name") == "p8_wide_history"
+                        and experiment.get("stage") == "pretrain"))
+                    if terminal_experiment:
                         best = score
                         atomic_json(run_dir / "final_eval.json", {"report": row, "records": eval_records})
                     elif score < best:

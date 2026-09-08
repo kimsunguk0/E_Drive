@@ -100,8 +100,10 @@ def verify_deployment_lineage(checkpoint, *, source_path, source_sha256,
         raise ValueError("Explicit training arguments are required")
     # Import only the training policy helper, never the OpenCV-dependent adapter.
     from scripts.motiondrive_v2_training import time_input_policy
+    config = manifest.get("model_config", {})
     if (args.get("time_input") != "nominal" or manifest.get("time_input") != "nominal"
-            or manifest.get("time_input_policy") != time_input_policy("nominal")):
+            or manifest.get("time_input_policy") != time_input_policy(
+                "nominal", config.get("nominal_history_seconds", (.1, .2, .5, 1.)))):
         raise ValueError("Deployment requires consistent explicit nominal time_input/policy")
     if manifest.get("supervision_manifest_sha256") != C1_SUPERVISION_SHA256:
         raise ValueError("Deployment requires the verified C1 supervision manifest SHA256")
@@ -204,10 +206,20 @@ def stream_sha256(stream):
 
 
 def validate_complete_config(saved):
-    """Require every current config field explicitly, including default values."""
+    """Require complete current config or the one explicit legacy-control schema.
+
+    Historical P4/P7 manifests predate serialized temporal fields.  Their exact
+    old keyset migrates only to the fixed control contract; partial omissions or
+    an implicit wide contract remain invalid.
+    """
     if not isinstance(saved, dict):
         raise ValueError("manifest.model_config must be a complete dictionary")
     required = {field.name for field in dataclasses.fields(MotionDriveV2Config)}
+    temporal = {"history_contract", "history_frame_offsets", "nominal_history_seconds"}
+    if set(saved) == required - temporal:
+        saved = {**saved, "history_contract": "control",
+                 "history_frame_offsets": [1, 2, 5, 10],
+                 "nominal_history_seconds": [.1, .2, .5, 1.]}
     missing, extra = required - saved.keys(), saved.keys() - required
     if missing or extra:
         raise ValueError(f"Incomplete/unknown model_config: missing={sorted(missing)}, "
@@ -306,7 +318,7 @@ def prepare_bundle(checkpoint, *, source_path, source_sha256, source_bytes,
             raise ValueError("Checkpoint epoch must be a nonnegative integer")
         bundle["epoch"] = source["epoch"] = epoch
     if verification is not None:
-        bundle["input_contract"] = input_contract()
+        bundle["input_contract"] = input_contract(config.history_contract)
         bundle["deployment_provenance"] = verification
     return bundle
 

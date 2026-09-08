@@ -28,6 +28,7 @@ from .motiondrive_v2_input_contract import (
     CAMERA_ORDER, PAST_FRAMES, POSE_FRAMES, NOMINAL_SECONDS, INPUT_KEYS,
     CURRENT_WH, HISTORY_WH, CROP_WH, input_contract, require_input_contract,
 )
+from .motiondrive_v2_temporal_contract import temporal_contract
 
 CALIBRATION_COLUMNS = ("camera_name", "K", "distortion", "is_fisheye", "image_width",
                        "image_height", "euler", "translation")
@@ -131,7 +132,7 @@ def build_camera_geometry(records: Sequence[Mapping]) -> tuple[CameraGeometry, .
     return tuple(result)
 
 
-def pose_geometry(records: Sequence[Mapping]) -> tuple[np.ndarray, np.ndarray]:
+def pose_geometry(records: Sequence[Mapping], history_contract: str = "control") -> tuple[np.ndarray, np.ndarray]:
     """Read only current/past RPY and goal XYZ; future orientation is never used."""
     rows = {}
     for row in records:
@@ -153,7 +154,9 @@ def pose_geometry(records: Sequence[Mapping]) -> tuple[np.ndarray, np.ndarray]:
         return matrix
 
     current = pose(0)
-    past = np.stack([pose(frame) for frame in PAST_FRAMES])
+    temporal = temporal_contract(history_contract)
+    past_frames = tuple(-offset for offset in temporal.frame_offsets)
+    past = np.stack([pose(frame) for frame in past_frames])
     alignment = np.linalg.inv(past) @ current
     goal_xyz = _finite_array([rows[50][k] for k in ("x", "y", "z")], (3,), "provided goal XYZ")
     goal = (current[:3, :3].T @ (goal_xyz - current[:3, 3]))[:2]
@@ -201,20 +204,22 @@ class PreparedClip:
 
 
 def prepare_clip_from_records(calibration_rows: Sequence[Mapping], ego_pose_rows: Sequence[Mapping],
-                              image_loader: Callable[[str, int], bytes]) -> PreparedClip:
+                              image_loader: Callable[[str, int], bytes],
+                              history_contract: str = "control") -> PreparedClip:
     """Fixture-friendly core. The loader is called for exactly ten allowed images.
 
     No arbitrary model-input dictionary or future label is accepted. There is no
     persistent clip state: interleaving calls A/B/A cannot reuse neural features.
     """
-    alignments, goal = pose_geometry(ego_pose_rows)
+    temporal = temporal_contract(history_contract)
+    alignments, goal = pose_geometry(ego_pose_rows, temporal.name)
     cameras = build_camera_geometry(calibration_rows)
     pixels, history, image_provenance = [], [], {}
     for camera in cameras:
         image, provenance = cache_compatible_image(image_loader(camera.name, 0), camera)
         pixels.append(normalize_image(image, CURRENT_WH))
         image_provenance[f"{camera.name}/frame_0.jpg"] = provenance
-    for frame in PAST_FRAMES:
+    for frame in (-offset for offset in temporal.frame_offsets):
         image, provenance = cache_compatible_image(image_loader(CAMERA_ORDER[0], frame), cameras[0])
         history.append(normalize_image(image, HISTORY_WH))
         image_provenance[f"{CAMERA_ORDER[0]}/frame_{frame}.jpg"] = provenance
@@ -224,12 +229,12 @@ def prepare_clip_from_records(calibration_rows: Sequence[Mapping], ego_pose_rows
         # Historical sampling uses this SAME current768 geometry; do not halve K again.
         "lidar2img": torch.from_numpy(np.stack([camera.lidar2img for camera in cameras])).unsqueeze(0),
         "history_transforms": torch.from_numpy(alignments).unsqueeze(0),
-        "time_offsets": torch.tensor([NOMINAL_SECONDS], dtype=torch.float32),
+        "time_offsets": torch.tensor([temporal.nominal_seconds], dtype=torch.float32),
         "goal_xy": torch.from_numpy(goal).unsqueeze(0),
     }
     if any(tensor.dtype != torch.float32 or not torch.isfinite(tensor).all() for tensor in inputs.values()):
         raise ValueError("Prepared model inputs must be finite CPU float32")
-    metadata = {"input_contract": input_contract(), "cpu_only": True,
+    metadata = {"input_contract": input_contract(temporal.name), "cpu_only": True,
                 "opencv_version": cv2.__version__, "pillow_version": PIL_VERSION,
                 "adapter_source_sha256": _sha(Path(__file__).read_bytes()),
                 "images": image_provenance,
@@ -242,7 +247,7 @@ def prepare_clip_from_records(calibration_rows: Sequence[Mapping], ego_pose_rows
     return PreparedClip(inputs, metadata)
 
 
-def prepare_clip_inputs(clip_dir: str | Path) -> PreparedClip:
+def prepare_clip_inputs(clip_dir: str | Path, history_contract: str = "control") -> PreparedClip:
     """Read official test-shaped files only; command/status/annotations are ignored.
 
     Parquet projection reads only these named columns, not any optional timestamp
@@ -259,7 +264,7 @@ def prepare_clip_inputs(clip_dir: str | Path) -> PreparedClip:
     def read_image(camera, frame):
         return (directory / camera / f"frame_{frame}.jpg").read_bytes()
 
-    result = prepare_clip_from_records(calibration, poses, read_image)
+    result = prepare_clip_from_records(calibration, poses, read_image, history_contract)
     result.metadata.update(clip_id=directory.name, clip_dir=str(directory.resolve()),
                            source_sha256={"calibration.parquet": _sha(calibration_path.read_bytes()),
                                           "ego_pose.parquet": _sha(pose_path.read_bytes())})
@@ -277,8 +282,12 @@ def compare_input_fixture(prepared: PreparedClip, fixture: Mapping, *, projectio
     for tolerance in (projection_atol, pose_atol):
         if not np.isfinite(tolerance) or tolerance < 0:
             raise ValueError("Parity tolerances must be finite and nonnegative")
-    require_input_contract(prepared.metadata.get("input_contract"))
-    require_input_contract(fixture.get("metadata", {}).get("input_contract"))
+    prepared_contract = prepared.metadata.get("input_contract")
+    fixture_contract = fixture.get("metadata", {}).get("input_contract")
+    require_input_contract(prepared_contract)
+    require_input_contract(fixture_contract)
+    if prepared_contract != fixture_contract:
+        raise ValueError("Prepared input and fixture temporal contracts differ")
     reference = fixture.get("inputs", {})
     if set(reference) != set(INPUT_KEYS) or set(prepared.inputs) != set(INPUT_KEYS):
         raise ValueError("Parity fixture must contain exactly six model inputs, not a labeled batch")
@@ -301,6 +310,6 @@ def compare_input_fixture(prepared: PreparedClip, fixture: Mapping, *, projectio
                          "max_abs": maximum, "mean_abs": float(delta.mean()), "atol": tolerance,
                          "rtol": 0., "pass": bitwise if strict_pixels_or_time else maximum <= tolerance}
     return {"all_pass": all(row["pass"] for row in results.values()), "inputs": results,
-            "input_contract": input_contract(),
+            "input_contract": dict(prepared_contract),
             "scope": "Train-fixture CPU input parity only; no generalization or model-output claim",
             "projection_note": "Absolute matrix-entry tolerance; not universal projected pixel error or bitwise equality."}

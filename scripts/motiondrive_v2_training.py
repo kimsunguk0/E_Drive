@@ -60,16 +60,24 @@ class LossWeights:
     uncertainty: bool = True
 
 
-def time_input_policy(mode: str) -> dict:
+def time_input_policy(mode: str, nominal_history_seconds=NOMINAL_HISTORY_SECONDS) -> dict:
     if mode not in TIME_INPUT_MODES:
         raise ValueError("time_input must be raw or nominal")
-    return {"mode": mode, "scope": "model input time_offsets only; same for training and every evaluation",
+    nominal = tuple(float(value) for value in nominal_history_seconds)
+    if nominal not in (NOMINAL_HISTORY_SECONDS, (.2, .5, 1., 2.)):
+        raise ValueError("Only the fixed control/wide nominal history times are supported")
+    result = {"mode": mode, "scope": "model input time_offsets only; same for training and every evaluation",
             "source": "dataset-provided raw offsets, unchanged" if mode == "raw" else "fixed nominal frame-offset seconds",
-            "nominal_history_seconds": list(NOMINAL_HISTORY_SECONDS), "nominal_dtype": "float32",
+            "nominal_history_seconds": list(nominal), "nominal_dtype": "float32",
             "supervision_and_dataset_modified": False}
+    if nominal == (.2, .5, 1., 2.):
+        result["supervision_and_dataset_modified"] = True
+        result["temporal_contract"] = "wide; aligned pose-derived history supervision supplied by pinned overlay"
+    return result
 
 
-def model_inputs(batch: Mapping[str, object], time_input: str = "raw") -> dict[str, Tensor]:
+def model_inputs(batch: Mapping[str, object], time_input: str = "raw",
+                 nominal_history_seconds=NOMINAL_HISTORY_SECONDS) -> dict[str, Tensor]:
     """Whitelist inputs; raw preserves tensor identity/RNG and never edits GT."""
     if time_input not in TIME_INPUT_MODES:
         raise ValueError("time_input must be raw or nominal")
@@ -78,10 +86,11 @@ def model_inputs(batch: Mapping[str, object], time_input: str = "raw") -> dict[s
         raise KeyError(f"Missing model inputs: {sorted(missing)}")
     inputs = {key: batch[key] for key in MODEL_INPUTS}
     if time_input == "nominal":
+        policy = time_input_policy(time_input, nominal_history_seconds)
         raw = inputs["time_offsets"]
         if not isinstance(raw, Tensor) or raw.ndim != 2 or raw.shape != (len(inputs["images"]), 4):
             raise ValueError("Nominal timing requires exactly four historical offsets [B,4]")
-        inputs["time_offsets"] = torch.tensor(NOMINAL_HISTORY_SECONDS, dtype=torch.float32,
+        inputs["time_offsets"] = torch.tensor(policy["nominal_history_seconds"], dtype=torch.float32,
                                                device=raw.device).expand(raw.shape[0], -1)
     return inputs
 

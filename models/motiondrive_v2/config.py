@@ -2,6 +2,8 @@
 from dataclasses import asdict, dataclass
 import math
 
+from models.motiondrive_v2_temporal_contract import validate_temporal_contract
+
 
 def validated_plan_output_scale(value):
     """A fixed XY unit conversion, not a learned state or a postprocessor."""
@@ -36,6 +38,10 @@ class MotionDriveV2Config:
     state_on: bool = True
     plan_output_scale: tuple[float, float] = (1.0, 1.0)
     motion_input_mode: str = "legacy"
+    # Serialized data/input semantics. Defaults preserve historical checkpoints.
+    history_contract: str = "control"
+    history_frame_offsets: tuple[int, ...] = (1, 2, 5, 10)
+    nominal_history_seconds: tuple[float, ...] = (.1, .2, .5, 1.)
     # P7-only branch mode. Disabled preserves the legacy state-dict and graph.
     # Both experimental arms retain the existing per-cell real-goal path;
     # only the new branch's distance-score slot differs.
@@ -47,7 +53,8 @@ class MotionDriveV2Config:
         return asdict(self)
 
     def __post_init__(self):
-        for name in ("grid_size", "motion_grid", "x_range", "y_range", "heights"):
+        for name in ("grid_size", "motion_grid", "x_range", "y_range", "heights",
+                     "history_frame_offsets", "nominal_history_seconds"):
             setattr(self, name, tuple(getattr(self, name)))
         if self.channels % self.planner_heads:
             raise ValueError("channels must be divisible by planner_heads")
@@ -60,3 +67,5 @@ class MotionDriveV2Config:
             raise ValueError("motion_input_mode must be legacy, high_feature or low_feature")
         if self.cross_cell_goal_mode not in ("disabled", "zero", "real"):
             raise ValueError("cross_cell_goal_mode must be disabled, zero or real")
+        validate_temporal_contract(self.history_contract, self.history_frame_offsets,
+                                   self.nominal_history_seconds)

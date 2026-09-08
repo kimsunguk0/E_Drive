@@ -39,11 +39,15 @@ def validate_bundle_contract(bundle: Mapping) -> None:
     from scripts.export_motiondrive_v2_inference import (
         C1_CANONICAL_SHA256, C1_SUPERVISION_SHA256, RAWTIME_SPLIT_SHA256,
     )
-    if (not isinstance(bundle, Mapping) or bundle.get("format") != "motiondrive_v2_inference" or
-            bundle.get("format_version") != 1 or bundle.get("input_contract") != input_contract()):
+    if not isinstance(bundle, Mapping) or bundle.get("format") != "motiondrive_v2_inference" or bundle.get("format_version") != 1:
         raise ValueError("A verified geometry_v2/nominal inference bundle is required")
     provenance = bundle.get("deployment_provenance", {})
     manifest, source = bundle.get("manifest", {}), bundle.get("source_checkpoint", {})
+    if not manifest or not provenance or not source:
+        raise ValueError("A verified geometry_v2/nominal inference bundle is required")
+    history_contract = manifest.get("model_config", {}).get("history_contract", "control")
+    if bundle.get("input_contract") != input_contract(history_contract):
+        raise ValueError("Deployment input/temporal contract mismatch")
     selected = provenance.get("selected_checkpoint_sha256")
     if (provenance.get("mode") != "geometry-v2-nominal" or
             provenance.get("status") != "input_contract_lineage_verified" or
@@ -68,9 +72,11 @@ def validate_bundle_contract(bundle: Mapping) -> None:
         if not isinstance(evidence.get(role), Mapping) or evidence[role].get("sha256") != expected:
             raise ValueError(f"Missing or wrong packaged input lineage: {role}")
     from scripts.motiondrive_v2_training import time_input_policy
+    nominal_seconds = manifest.get("model_config", {}).get(
+        "nominal_history_seconds", (.1, .2, .5, 1.))
     if (manifest.get("time_input") != "nominal" or
             manifest.get("arguments", {}).get("time_input") != "nominal" or
-            manifest.get("time_input_policy") != time_input_policy("nominal") or
+            manifest.get("time_input_policy") != time_input_policy("nominal", nominal_seconds) or
             manifest.get("supervision_manifest_sha256") != C1_SUPERVISION_SHA256 or
             manifest.get("split_sha256") != RAWTIME_SPLIT_SHA256 or
             manifest.get("model_config", {}).get("n_history") != 4):
@@ -138,7 +144,7 @@ def validate_clip_inputs(inputs: Mapping, contract: Mapping) -> None:
                 value.device.type != "cpu" or value.dtype != torch.float32 or
                 value.requires_grad or not torch.isfinite(value).all()):
             raise ValueError(f"Expected finite detached CPU float32 {name}{shape}")
-    nominal = torch.tensor([NOMINAL_SECONDS], dtype=torch.float32)
+    nominal = torch.tensor([contract["nominal_seconds"]], dtype=torch.float32)
     if not torch.equal(inputs["time_offsets"].contiguous().view(torch.uint8), nominal.view(torch.uint8)):
         raise ValueError("Deployment time_offsets must be exactly nominal float32")
 
