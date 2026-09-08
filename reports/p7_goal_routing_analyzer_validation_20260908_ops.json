@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "scope": "CPU-only validation of the frozen terminal-results analyzer; no model forward, training, evaluation, or final-holdout access",
+  "files": {
+    "scripts/analyze_motiondrive_v2_p7_goal_routing_results.py": "4ba2ba0050bb74f6de462daf9ef9b5b31a8d3bb70779532465a2ce78fea0213b",
+    "tests/test_motiondrive_v2_p7_goal_routing_results.py": "b7cf8883c8915aa86e3b463d569a311b583f3814098448e6030488d24d42fd91"
+  },
+  "environment": {
+    "interpreter": "/usr/bin/python",
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "attempts": [
+    {
+      "stage": "pre_staging_presence_check",
+      "actual_exit_code": 4,
+      "result": "pytest reported that the requested test file did not exist; zero tests ran",
+      "interpretation": "preserved operational ordering evidence, not a test result"
+    },
+    {
+      "stage": "post_staging_dedicated_tests",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONDONTWRITEBYTECODE=1 /usr/bin/python -m pytest -q tests/test_motiondrive_v2_p7_goal_routing_results.py",
+      "actual_exit_code": 0,
+      "result": "19 passed in 1.25s"
+    },
+    {
+      "stage": "post_staging_compile",
+      "command": "/usr/bin/python -m py_compile scripts/analyze_motiondrive_v2_p7_goal_routing_results.py",
+      "actual_exit_code": 0
+    }
+  ],
+  "result_inputs": "PENDING until all four prescribed P7 terminal evaluations exist",
+  "claims": [
+    "This validates only the analyzer code and its dedicated tests.",
+    "It is not a P7 metric result, KEEP decision, training success receipt, or compliance result."
+  ]
+}
