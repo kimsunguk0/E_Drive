@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "experiment": "motiondrive_v2_pv_screen_b0_main_last2000",
+  "source_pins": {
+    "scripts/run_motiondrive_v2_pv_screen.py": "b7673fda8a0c8ad413a358dc1c4080e905be343d3f13c662e0c7bd005628a688",
+    "scripts/supervise_motiondrive_v2_pv_screen.py": "ee93342c8f2322f599a84a050bdf199634bba52bcf37315eb05ccc2c7595efc2"
+  },
+  "jobs": [
+    {
+      "name": "direct",
+      "gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+      "argv": [
+        "/usr/bin/python", "scripts/run_motiondrive_v2_pv_screen.py",
+        "--arm", "direct",
+        "--init", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000/last.pth",
+        "--init-manifest", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000/manifest.json",
+        "--bank-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/bank/bank_manifest.json",
+        "--expected-bank-manifest-sha256", "1dbf1b8ade61d9b4a67fab644bcca920438869866ad8bf82823a28551969e6ea",
+        "--bank-npz", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/bank/factorized_bank_P512_V128.npz",
+        "--expected-bank-npz-sha256", "851cb3543402d9dfda43aa1c22eba5a0793803e53038e8be57c8b058701f57eb",
+        "--oracle-gate-report", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/gate/gate_report.json",
+        "--expected-oracle-gate-report-sha256", "0751496fc273b2ea1628db1dc2f0a0bc3cb440dfa98dfcdf280e43646621e57e",
+        "--source-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_source_manifest_r2_20260909_ops.json",
+        "--expected-source-manifest-sha256", "db78b1b082dbe1d2ec3d3e6bb66ced1b5195643adf89e8bab6708272e0e5d466",
+        "--data-root", "/tmp/pm97",
+        "--split-manifest", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256", "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000",
+        "--seed", "0", "--gpu", "0", "--workers", "4",
+        "--cuda-memory-limit-mib", "12000", "--cuda-min-free-mib", "8192",
+        "--expected-physical-gpu-uuid", "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+        "--expected-initial-state-sha256", "54d4c68897cc2a079d71c130bc53e014a9907f89cbb3d98b8ee8d94ac1e2e077"
+      ],
+      "log": "/NHNHOME/data/sukim/adcl/reports/pv_screen_b0_direct_last2000_20260909_ops.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000",
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000/metrics.jsonl",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000/final_eval.json"
+      ]
+    },
+    {
+      "name": "pv",
+      "gpu_uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+      "argv": [
+        "/usr/bin/python", "scripts/run_motiondrive_v2_pv_screen.py",
+        "--arm", "pv",
+        "--init", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000/last.pth",
+        "--init-manifest", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000/manifest.json",
+        "--bank-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/bank/bank_manifest.json",
+        "--expected-bank-manifest-sha256", "1dbf1b8ade61d9b4a67fab644bcca920438869866ad8bf82823a28551969e6ea",
+        "--bank-npz", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/bank/factorized_bank_P512_V128.npz",
+        "--expected-bank-npz-sha256", "851cb3543402d9dfda43aa1c22eba5a0793803e53038e8be57c8b058701f57eb",
+        "--oracle-gate-report", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/gate/gate_report.json",
+        "--expected-oracle-gate-report-sha256", "0751496fc273b2ea1628db1dc2f0a0bc3cb440dfa98dfcdf280e43646621e57e",
+        "--source-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_source_manifest_r2_20260909_ops.json",
+        "--expected-source-manifest-sha256", "db78b1b082dbe1d2ec3d3e6bb66ced1b5195643adf89e8bab6708272e0e5d466",
+        "--data-root", "/tmp/pm97",
+        "--split-manifest", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256", "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_last2000",
+        "--seed", "0", "--gpu", "0", "--workers", "4",
+        "--cuda-memory-limit-mib", "12000", "--cuda-min-free-mib", "8192",
+        "--expected-physical-gpu-uuid", "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+        "--expected-initial-state-sha256", "210184194e0380e3feb705d6528cb21fdd0f017cdd07fcfd70fedce2b6aa0338",
+        "--expected-selector-state-sha256", "d1cc77a4ed76cef34f82c42e21462486980301caf47a876ff4fde849a43ebad8"
+      ],
+      "log": "/NHNHOME/data/sukim/adcl/reports/pv_screen_b0_pv_last2000_20260909_ops.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_last2000",
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_last2000/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_last2000/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_last2000/metrics.jsonl",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_last2000/final_eval.json"
+      ]
+    },
+    {
+      "name": "pv_residual",
+      "gpu_uuid": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+      "argv": [
+        "/usr/bin/python", "scripts/run_motiondrive_v2_pv_screen.py",
+        "--arm", "pv_residual",
+        "--init", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000/last.pth",
+        "--init-manifest", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000/manifest.json",
+        "--bank-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/bank/bank_manifest.json",
+        "--expected-bank-manifest-sha256", "1dbf1b8ade61d9b4a67fab644bcca920438869866ad8bf82823a28551969e6ea",
+        "--bank-npz", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/bank/factorized_bank_P512_V128.npz",
+        "--expected-bank-npz-sha256", "851cb3543402d9dfda43aa1c22eba5a0793803e53038e8be57c8b058701f57eb",
+        "--oracle-gate-report", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_factorized_bank_20260909_ops/gate/gate_report.json",
+        "--expected-oracle-gate-report-sha256", "0751496fc273b2ea1628db1dc2f0a0bc3cb440dfa98dfcdf280e43646621e57e",
+        "--source-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_pv_source_manifest_r2_20260909_ops.json",
+        "--expected-source-manifest-sha256", "db78b1b082dbe1d2ec3d3e6bb66ced1b5195643adf89e8bab6708272e0e5d466",
+        "--data-root", "/tmp/pm97",
+        "--split-manifest", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256", "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_residual_last2000",
+        "--seed", "0", "--gpu", "0", "--workers", "4",
+        "--cuda-memory-limit-mib", "12000", "--cuda-min-free-mib", "8192",
+        "--expected-physical-gpu-uuid", "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
+        "--expected-initial-state-sha256", "80b450fe59a5903365cbef20e41c67fbe6a4e7cf46dc6ab6b4edbe80b27a52a1",
+        "--expected-selector-state-sha256", "d1cc77a4ed76cef34f82c42e21462486980301caf47a876ff4fde849a43ebad8",
+        "--expected-residual-state-sha256", "df51a4562b4e02c3d22a1eca80579eabbe0510c54eae09f16ad38976f36c7e11"
+      ],
+      "log": "/NHNHOME/data/sukim/adcl/reports/pv_screen_b0_pv_residual_last2000_20260909_ops.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_residual_last2000",
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_residual_last2000/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_residual_last2000/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_residual_last2000/metrics.jsonl",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_pv_residual_last2000/final_eval.json"
+      ]
+    }
+  ]
+}

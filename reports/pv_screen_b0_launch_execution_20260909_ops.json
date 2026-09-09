@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "experiment": "motiondrive_v2_pv_screen_b0",
+  "status": "main_running_handoff",
+  "shared_gpu_authorized_by_user": true,
+  "automatic_retry": false,
+  "follow_on_stage": null,
+  "source": {
+    "computational_commit": "3e5b2f6e6f9416d836b2d3fc4bd4875a55c976aa",
+    "source_manifest": "reports/motiondrive_v2_pv_source_manifest_r2_20260909_ops.json",
+    "source_manifest_sha256": "db78b1b082dbe1d2ec3d3e6bb66ced1b5195643adf89e8bab6708272e0e5d466",
+    "driver_sha256": "b7673fda8a0c8ad413a358dc1c4080e905be343d3f13c662e0c7bd005628a688",
+    "head_sha256": "9a5fdabad6cdaddda2b86585d6f1d36c9c12c388474cecc55cb98c5441973d50",
+    "supervisor_commit": "ddf8f944839b30ec391f05333c324b05ff1a433d",
+    "supervisor_sha256": "ee93342c8f2322f599a84a050bdf199634bba52bcf37315eb05ccc2c7595efc2"
+  },
+  "parent": {
+    "checkpoint": "work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000/last.pth",
+    "checkpoint_sha256": "43c9cdd172fe3e1212fd97a46b27b2f0abd879e3c360b7426281202825590cb0",
+    "model_state_sha256": "54d4c68897cc2a079d71c130bc53e014a9907f89cbb3d98b8ee8d94ac1e2e077",
+    "sidecar_sha256": "fd44bc485bb504952166f91059fd4756bed64944c1f97b143e0d10e87197493b",
+    "smoke_checkpoints_used_as_initializer": false
+  },
+  "bank": {
+    "manifest_sha256": "1dbf1b8ade61d9b4a67fab644bcca920438869866ad8bf82823a28551969e6ea",
+    "npz_sha256": "851cb3543402d9dfda43aa1c22eba5a0793803e53038e8be57c8b058701f57eb",
+    "oracle_gate_report_sha256": "0751496fc273b2ea1628db1dc2f0a0bc3cb440dfa98dfcdf280e43646621e57e",
+    "oracle_weighted_d3": 0.10488697052943036,
+    "oracle_gate_passed": true
+  },
+  "preflight": {
+    "native_return_codes": {"direct": 0, "pv": 0, "pv_residual": 0},
+    "initial_model_state_sha256": {
+      "direct": "54d4c68897cc2a079d71c130bc53e014a9907f89cbb3d98b8ee8d94ac1e2e077",
+      "pv": "210184194e0380e3feb705d6528cb21fdd0f017cdd07fcfd70fedce2b6aa0338",
+      "pv_residual": "80b450fe59a5903365cbef20e41c67fbe6a4e7cf46dc6ab6b4edbe80b27a52a1"
+    },
+    "selector_state_sha256": "d1cc77a4ed76cef34f82c42e21462486980301caf47a876ff4fde849a43ebad8",
+    "residual_state_sha256": "df51a4562b4e02c3d22a1eca80579eabbe0510c54eae09f16ad38976f36c7e11"
+  },
+  "preserved_startup_failures": [
+    {
+      "receipt": "reports/pv_screen_b0_smoke_receipt_20260909_ops.json",
+      "receipt_sha256": "f3c139f7dfb8606b4f80b400a6aab4a3b3318424f78dbcc5aeac28422d25e838",
+      "native_return_codes": {"direct": 1, "pv": 1, "pv_residual": 1},
+      "boundary": "before update 0",
+      "error": "missing expected_optimizer_groups experiment metadata"
+    },
+    {
+      "receipt": "reports/pv_screen_b0_smoke_r2_receipt_20260909_ops.json",
+      "receipt_sha256": "11a72517f6692192b69440d8708e2bceb5b3320fbbc3f3f5e5d2294e5bfe7788",
+      "native_return_codes": {"direct": 1, "pv": 1, "pv_residual": 1},
+      "boundary": "before model construction, CUDA initialization, or update 0",
+      "error": "fresh run-directory basename did not contain the required literal smoke_only"
+    }
+  ],
+  "authoritative_smoke": {
+    "receipt": "reports/pv_screen_b0_smoke_only_r2_retry1_receipt_20260909_ops.json",
+    "receipt_sha256": "0a2607b00c25b285ad3da73dff72d113eb9b1a8a7b240765e58bf53b47b30474",
+    "status": "completed",
+    "native_return_codes": {"direct": 0, "pv": 0, "pv_residual": 0},
+    "step": 2,
+    "nonfinite_count": {"direct": 0, "pv": 0, "pv_residual": 0},
+    "sample_order_sha256": {
+      "step1": "6f781b051be11ae350e63349beb872542371334607e0d23ae849ca89c1095910",
+      "step2": "478b3bb3af398cf6668d5df92e51c0ef7fc13c4e76167f733e74fa0c9a9f0ca0"
+    },
+    "pv_and_pv_residual_step1_equal": {
+      "plan_d3": 17.24386978149414,
+      "pv_expected_d3": 9.704273223876953,
+      "pv_soft_ce": 11.131153106689453
+    },
+    "common_step1_auxiliary_components_identical": true,
+    "peak_reserved_bytes": {
+      "direct": 5947523072,
+      "pv": 5993660416,
+      "pv_residual": 5995757568
+    },
+    "selector_last_state_changed": {"pv": true, "pv_residual": true},
+    "residual_last_state_changed": true,
+    "residual_final_nonzero_elements": {"weight": 128, "bias": 4},
+    "tune_forward_or_evaluation": false
+  },
+  "main_launch": {
+    "started_utc": "2026-09-09T02:33:35.410157+00:00",
+    "supervisor_pid": 3297949,
+    "spec": "reports/pv_screen_b0_main_spec_20260909_ops.json",
+    "spec_sha256": "5c69f530c5bfd7ede0b198a3d99f969c0818799cda30e96a3bcea805829b5fee",
+    "live_receipt": "reports/pv_screen_b0_main_receipt_20260909_ops.json",
+    "local_receipt_snapshot_sha256": "4147efcfa74022af5e4180d3dde1e68d4a79dea8e9cf1845537c2846ef8940ca",
+    "jobs": {
+      "direct": {"pid": 3297952, "pgid": 3297952, "gpu": 0, "minimum_verified_step": 30},
+      "pv": {"pid": 3297953, "pgid": 3297953, "gpu": 1, "minimum_verified_step": 30},
+      "pv_residual": {"pid": 3297954, "pgid": 3297954, "gpu": 5, "minimum_verified_step": 60}
+    },
+    "common_verified_step30_sample_order_sha256": "93633fe133aa6e5e5411f2ad8cd950de1651950223944f3edb5d850ccf08f5be",
+    "all_observed_losses_and_gradients_finite": true,
+    "prelaunch_gpu_memory_mib": {
+      "gpu0": {"used": 103604, "free": 79028},
+      "gpu1": {"used": 103592, "free": 79040},
+      "gpu5": {"used": 0, "free": 182632}
+    },
+    "required_free_mib_per_job": 20192,
+    "shared_workload_changes_throughput_not_the_update_count_recipe": true,
+    "latency_benchmark": false
+  },
+  "validation": {
+    "focused_tests": 28,
+    "focused_test_native_return_code": 0,
+    "final136_rows_selected_trained_evaluated_or_analyzed": 0
+  }
+}
