@@ -49,10 +49,10 @@ def make_spec(root: Path) -> tuple[Path, dict]:
 
 def snapshots():
     return [
-        {"index": "4", "uuid": sup.GPU4, "name": "B200",
+        {"index": "0", "uuid": sup.GPU0, "name": "B200",
          "memory_total_mib": "183359", "memory_used_mib": "0",
          "memory_free_mib": "182632", "utilization_percent": "0"},
-        {"index": "5", "uuid": sup.GPU5, "name": "B200",
+        {"index": "1", "uuid": sup.GPU1, "name": "B200",
          "memory_total_mib": "183359", "memory_used_mib": "0",
          "memory_free_mib": "182632", "utilization_percent": "0"},
     ]
@@ -76,7 +76,7 @@ def test_validate_exact_three_mapping_and_reject_stale_result(tmp_path, monkeypa
 def test_validate_rejects_gpu_mapping_and_duplicate_controlled_option(tmp_path):
     _path, spec = make_spec(tmp_path)
     receipt = tmp_path / "receipt.json"
-    spec["jobs"][0]["gpu_uuid"] = sup.GPU5
+    spec["jobs"][0]["gpu_uuid"] = sup.GPU1
     with pytest.raises(RuntimeError, match="mapping mismatch"):
         sup.validate_spec(spec, tmp_path, receipt)
     spec["jobs"][0]["gpu_uuid"] = sup.JOB_GPU[spec["jobs"][0]["name"]]

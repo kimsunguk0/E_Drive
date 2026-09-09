@@ -15,12 +15,12 @@ import time
 
 
 DRIVER = "scripts/run_motiondrive_v2_early_precision.py"
-GPU4 = "GPU-4b804d68-fd61-af14-393a-573c533d5006"
-GPU5 = "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8"
+GPU0 = "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24"
+GPU1 = "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015"
 JOB_GPU = {
-    "continuation_control": GPU4,
-    "ordered_motion_residual": GPU5,
-    "early_delta_aux": GPU4,
+    "continuation_control": GPU0,
+    "ordered_motion_residual": GPU1,
+    "early_delta_aux": GPU0,
 }
 FIXED_ENV = {
     "PYTHONDONTWRITEBYTECODE": "1",
@@ -71,11 +71,11 @@ def gpu_snapshot() -> list[dict]:
     for line in result.stdout.splitlines():
         fields = [field.strip() for field in line.split(",")]
         require(len(fields) == 7, "Unexpected nvidia-smi output")
-        if fields[1] in {GPU4, GPU5}:
+        if fields[1] in {GPU0, GPU1}:
             rows.append(dict(zip(
                 ("index", "uuid", "name", "memory_total_mib", "memory_used_mib",
                  "memory_free_mib", "utilization_percent"), fields)))
-    require({row["uuid"] for row in rows} == {GPU4, GPU5},
+    require({row["uuid"] for row in rows} == {GPU0, GPU1},
             "Approved physical GPUs are missing")
     return rows
 
@@ -233,7 +233,7 @@ def run(spec_path: Path, receipt: Path) -> int:
     receipt.parent.mkdir(parents=True, exist_ok=True)
     snapshots = gpu_snapshot()
     by_uuid = {row["uuid"]: row for row in snapshots}
-    for gpu_uuid in {GPU4, GPU5}:
+    for gpu_uuid in {GPU0, GPU1}:
         require(int(by_uuid[gpu_uuid]["memory_used_mib"]) == 0,
                 f"Approved GPU not empty at launch: {gpu_uuid}")
         job_count = sum(job["gpu_uuid"] == gpu_uuid for job in jobs)
@@ -249,9 +249,9 @@ def run(spec_path: Path, receipt: Path) -> int:
         "supervisor_source_sha256": sha256(Path(__file__).resolve()),
         "source_pins_verified": verified, "gpu_snapshot_before": snapshots,
         "aggregate_memory_gate": {
-            GPU4: {"jobs": 2, "allocator_cap_mib_each": 12000,
+            GPU0: {"jobs": 2, "allocator_cap_mib_each": 12000,
                    "reserve_mib": 8192, "required_free_mib": 32192},
-            GPU5: {"jobs": 1, "allocator_cap_mib_each": 12000,
+            GPU1: {"jobs": 1, "allocator_cap_mib_each": 12000,
                    "reserve_mib": 8192, "required_free_mib": 20192}},
         "started_utc": timestamp(), "automatic_retry": False,
         "follow_on_stage": None, "jobs": {},

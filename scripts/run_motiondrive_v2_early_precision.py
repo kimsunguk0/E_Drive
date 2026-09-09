@@ -38,9 +38,9 @@ PARENT = {
     "source_manifest_sha256": "d140972b85e8424066284d93945cad54351b6dc0cd3a266ec67a10e208a52418",
 }
 GPU_ASSIGNMENTS = {
-    "continuation_control": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
-    "ordered_motion_residual": "GPU-1e9aea73-4e6b-2cb5-b788-f3d99e6dc6f8",
-    "early_delta_aux": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+    "continuation_control": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+    "ordered_motion_residual": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+    "early_delta_aux": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
 }
 DELTA_BETA_METRES = .1
 DELTA_ALPHA = .2
