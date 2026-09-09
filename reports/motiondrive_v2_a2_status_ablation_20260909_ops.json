@@ -1,0 +1,66 @@
+{
+ "arms": {
+  "provided_causal_5d": {
+   "aux_state_vx_mae": 1.014847203852759,
+   "aux_state_vx_std": 1.3091807564171716,
+   "history_position_mae_by_offset": [
+    0.11213629645580012,
+    0.21109116917903264,
+    0.50981376954593,
+    1.0060213782215814
+   ],
+   "n": 1998,
+   "official_d3": 0.29393242273919723,
+   "plan_implied_v0_mae_same_definition": 0.2545772765008888,
+   "plan_implied_v0_mae_vs_gt_speed": 0.2768107434552241,
+   "plan_implied_v0_std_same_definition": 0.35862678817881094,
+   "plan_implied_v0_std_vs_gt_speed": 0.3808233772962814,
+   "recomputed_d3": 0.2939324181146296,
+   "session_mean_d3": 0.3140461617917078,
+   "state_mae_vx_vy_ax_ay_yawrate": [
+    1.0148472040593326,
+    0.04116775506284196,
+    0.2878966422938463,
+    0.07776397035028473,
+    0.0074597220779948955
+   ]
+  },
+  "zero": {
+   "aux_state_vx_mae": 1.014847203852759,
+   "aux_state_vx_std": 1.3091807564171716,
+   "history_position_mae_by_offset": [
+    0.11213629645580012,
+    0.21109116917903264,
+    0.50981376954593,
+    1.0060213782215814
+   ],
+   "n": 1998,
+   "official_d3": 0.5628451861914721,
+   "plan_implied_v0_mae_same_definition": 0.3650400134837888,
+   "plan_implied_v0_mae_vs_gt_speed": 0.3763004289111242,
+   "plan_implied_v0_std_same_definition": 0.44330424580139105,
+   "plan_implied_v0_std_vs_gt_speed": 0.45187153430014415,
+   "recomputed_d3": 0.562845175296573,
+   "session_mean_d3": 0.5541042502365046,
+   "state_mae_vx_vy_ax_ay_yawrate": [
+    1.0148472040593326,
+    0.04116775506284196,
+    0.2878966422938463,
+    0.07776397035028473,
+    0.0074597220779948955
+   ]
+  }
+ },
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000/last.pth",
+ "checkpoint_sha256": "a72a958a097d895afcfa82075814765c76c96f59f5f59e93e21504be83c8b14d",
+ "delta_zero_minus_provided": {
+  "official_d3": 0.26891276345227483,
+  "plan_implied_v0_mae": 0.09948968545590009
+ },
+ "diagnostic": "a2_provided_status_evaluation_ablation",
+ "final136_accessed": false,
+ "overlay_manifest_sha256": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+ "schema_version": 1,
+ "training_performed": false,
+ "zero_arm_is_off_training_distribution": true
+}

@@ -1,0 +1,42 @@
+{
+ "arms": {
+  "status=provided_causal_5d|images=blank": {
+   "lane_iou": 0.05702325106705595,
+   "occ_iou": 0.137796145398781,
+   "official_d3": 4.235932366685705,
+   "plan_implied_v0_mae": 2.847123004629289,
+   "session_mean_d3": 4.515507974256895
+  },
+  "status=provided_causal_5d|images=real": {
+   "lane_iou": 0.4936075571306136,
+   "occ_iou": 0.43505980623348584,
+   "official_d3": 0.29393242273919723,
+   "plan_implied_v0_mae": 0.2768107434552241,
+   "session_mean_d3": 0.3140461617917078
+  },
+  "status=zero|images=blank": {
+   "lane_iou": 0.060533254456338496,
+   "occ_iou": 0.1374867113374736,
+   "official_d3": 4.109636312744042,
+   "plan_implied_v0_mae": 2.8034340157619644,
+   "session_mean_d3": 4.355934746562479
+  },
+  "status=zero|images=real": {
+   "lane_iou": 0.49446495337880914,
+   "occ_iou": 0.43418911768284574,
+   "official_d3": 0.5628451861914721,
+   "plan_implied_v0_mae": 0.3763004289111242,
+   "session_mean_d3": 0.5541042502365046
+  }
+ },
+ "blank_definition": "zeros after normalization (a solid dataset-mean colour frame)",
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000/last.pth",
+ "checkpoint_sha256": "a72a958a097d895afcfa82075814765c76c96f59f5f59e93e21504be83c8b14d",
+ "diagnostic": "organizer_image_contribution_self_check",
+ "final136_accessed": false,
+ "image_removal_delta_at_provided_status": 3.9419999439465077,
+ "image_removal_ratio_at_provided_status": 14.411245711549821,
+ "off_training_distribution": true,
+ "schema_version": 1,
+ "training_performed": false
+}
