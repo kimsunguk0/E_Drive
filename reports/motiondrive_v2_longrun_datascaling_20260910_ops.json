@@ -1,0 +1,119 @@
+{
+ "data_scaling": {
+  "along_share_of_gain": 0.73,
+  "axis_split_holdout": {
+   "15": {
+    "along": 0.1207,
+    "cross": 0.0809
+   },
+   "30": {
+    "along": 0.1092,
+    "cross": 0.0737
+   },
+   "45": {
+    "along": 0.097,
+    "cross": 0.0663
+   },
+   "60": {
+    "along": 0.0919,
+    "cross": 0.0658
+   }
+  },
+  "caveat": "four points, one seed each; the asymptote is not identified",
+  "eval": "pinned 12-session holdout (1728 rows)",
+  "extrapolation": {
+   "120_sessions": [
+    -0.017,
+    -0.021
+   ],
+   "89_sessions": [
+    -0.01,
+    -0.012
+   ]
+  },
+  "holdout_d3": {
+   "15": 0.170513,
+   "30": 0.154058,
+   "45": 0.136682,
+   "60": 0.13118
+  },
+  "implied_v0_mae_holdout": {
+   "15": 0.1728,
+   "30": 0.1584,
+   "45": 0.1415,
+   "60": 0.1334
+  },
+  "log_linear_slope_per_efold": -0.0294,
+  "tune_d3": {
+   "15": 0.312862,
+   "60": 0.281549
+  },
+  "updates": 6850
+ },
+ "date": "2026-09-10",
+ "eval_set_disagreement": {
+  "longrun_holdout_s0": {
+   "holdout": 0.196542,
+   "tune": 0.275266
+  },
+  "note": "the two evaluation sets reverse the ordering of these checkpoints",
+  "scale60": {
+   "holdout": 0.13118,
+   "tune": 0.281549
+  }
+ },
+ "latency_3090": {
+  "budget": {
+   "dev_3090_median_ms": 80.0,
+   "official_4090_ms": 100.0
+  },
+  "p7_trained_measured_median_ms": 38.69,
+  "resolution_sweep_random_init": {
+   "hist_216x384": 32.9,
+   "hist_288x512": 35.66,
+   "hist_324x576": 37.62,
+   "hist_432x768": 43.55,
+   "hist_432x768_cur_540x960": 51.93
+  }
+ },
+ "longrun": {
+  "final": {
+   "holdout_s0_holdout": 0.196542,
+   "holdout_s0_tune": 0.275266,
+   "holdout_s1_holdout": 0.195971,
+   "long_s0": 0.272286,
+   "long_s1": 0.269895
+  },
+  "note": "intermediate evals ran at un-annealed LR; the flat mid-curve is not evidence",
+  "parent_tune_d3": 0.28064,
+  "protocol": "reports/motiondrive_v2_longrun_protocol_20260909.md",
+  "seed_spread_at_end": 0.002391,
+  "updates": 68500
+ },
+ "schema_version": 1,
+ "selector_history": {
+  "abandoned_for": "dense VAD trunk latency 586.6 ms on 3090, not accuracy",
+  "current_trunk_latency_ms": 32.9,
+  "phase_a_chain": [
+   0.5389,
+   0.3516,
+   0.2411,
+   0.2345
+  ],
+  "phase_a_residual_regret": "longitudinal velocity/timing, same wall found today"
+ },
+ "stop_gate": {
+  "all_subsets_improve": true,
+  "existing_stop_logit_auc": 0.7201,
+  "leave_one_session_out_worst": -0.0217,
+  "oracle_delta": -0.045,
+  "single_threshold_delta": -0.0171,
+  "stop_target_label_auc": 0.755
+ },
+ "tune_resolving_power": {
+  "ci95_width": 0.1547,
+  "largest_session_error_share": 0.343,
+  "row_bootstrap_sd": 0.0055,
+  "session_bootstrap_sd": 0.0403
+ }
+}

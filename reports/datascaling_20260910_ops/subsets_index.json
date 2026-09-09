@@ -1,0 +1,26 @@
+{
+ "15": {
+  "artifact": "/NHNHOME/data/sukim/adcl/reports/datascaling_20260910_ops/subset_15sessions.json",
+  "sha256": "3471bc611ad52aea2c5955e9eed8c05d9b08c77ab6636ad2e685f6336ac06e3e",
+  "scenes": 57,
+  "sessions": 15
+ },
+ "30": {
+  "artifact": "/NHNHOME/data/sukim/adcl/reports/datascaling_20260910_ops/subset_30sessions.json",
+  "sha256": "9875d5803b76da6cc8ebbd60ea54106b165220dca93986df8b3e71ef19e56608",
+  "scenes": 90,
+  "sessions": 30
+ },
+ "45": {
+  "artifact": "/NHNHOME/data/sukim/adcl/reports/datascaling_20260910_ops/subset_45sessions.json",
+  "sha256": "66f808358d8a52c01195b89a289526ac275eb6be0a392f7089661a26f5a9b732",
+  "scenes": 134,
+  "sessions": 45
+ },
+ "60": {
+  "artifact": "/NHNHOME/data/sukim/adcl/reports/datascaling_20260910_ops/subset_60sessions.json",
+  "sha256": "70b17755eb57e84fd10a59cbbba20a6303a689b801e917e80863ec29591b4b05",
+  "scenes": 171,
+  "sessions": 60
+ }
+}
