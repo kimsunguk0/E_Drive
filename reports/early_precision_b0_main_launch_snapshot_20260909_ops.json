@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment": "motiondrive_v2_early_precision_b0_main_last2000",
+  "status": "running_stable_launch_snapshot",
+  "captured_utc": "2026-09-09T00:23:25.446247+00:00",
+  "started_utc": "2026-09-09T00:22:14.673689+00:00",
+  "started_kst": "2026-09-09T09:22:14.673689+09:00",
+  "approximate_terminal_window_kst": "2026-09-09T09:58:00+09:00 to 2026-09-09T10:05:00+09:00, including the single terminal tune evaluation; workload contention may change this estimate",
+  "source_git_head": "af9eb349837827ed0815c3fb65a36373ebd91b92",
+  "source_manifest_sha256": "c3ec0bda1c5037a8e977d93072e8143a481c5a546da16971630a3a0a5249662a",
+  "driver_sha256": "210ef85336b4949f93db3bba9a795be15f88bfe86a1cae1b89347cf1851a220a",
+  "supervisor_sha256": "6bc76025dcc9711a776b7e383b60e7972755fc52ab75301c67381d7fe157af4b",
+  "spec_sha256": "dcddde86b323afe21064063b5a627bca5e191a88ce8f1949c35e46f5bf597a13",
+  "parent_checkpoint_sha256": "2cd1241979da921756c714f2b16ab97d4a63d0586cf666fc57960560107bbfea",
+  "parent_model_state_sha256": "96c16d73f8ee1de790680edd45da08539395920e90eec9487ade789e5040ad9a",
+  "status_overlay_manifest_sha256": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+  "supervisor": {
+    "pid": 3247517,
+    "receipt": "/NHNHOME/data/sukim/adcl/reports/early_precision_b0_main_receipt_20260909_ops.json",
+    "spec": "/NHNHOME/data/sukim/adcl/reports/early_precision_b0_main_spec_20260909_ops.json",
+    "automatic_retry": false,
+    "follow_on_stage": null
+  },
+  "jobs": {
+    "continuation_control": {
+      "pid": 3247520,
+      "pgid": 3247520,
+      "physical_gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+      "captured_step": 50,
+      "captured_elapsed_seconds": 55.21133659593761,
+      "captured_total_loss": -0.8190165162086487,
+      "captured_grad_norm": 49.31011962890625,
+      "captured_peak_reserved_bytes": 5947523072,
+      "step20_sample_order_sha256": "0baa594b811ef1fc52e03aaad0a511d789bdb70af890a401a48908fbe5aacac0",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000",
+      "log": "/NHNHOME/data/sukim/adcl/reports/early_precision_b0_continuation_control_main_20260909_ops.log"
+    },
+    "ordered_motion_residual": {
+      "pid": 3247521,
+      "pgid": 3247521,
+      "physical_gpu_uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+      "captured_step": 110,
+      "captured_elapsed_seconds": 62.8456941191107,
+      "captured_total_loss": -0.7137104272842407,
+      "captured_grad_norm": 57.700279235839844,
+      "captured_peak_reserved_bytes": 5949620224,
+      "step20_sample_order_sha256": "0baa594b811ef1fc52e03aaad0a511d789bdb70af890a401a48908fbe5aacac0",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_ordered_motion_residual_last2000",
+      "log": "/NHNHOME/data/sukim/adcl/reports/early_precision_b0_ordered_motion_residual_main_20260909_ops.log"
+    },
+    "early_delta_aux": {
+      "pid": 3247522,
+      "pgid": 3247522,
+      "physical_gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+      "captured_step": 50,
+      "captured_elapsed_seconds": 57.21735445596278,
+      "captured_total_loss": -0.7696963548660278,
+      "captured_grad_norm": 71.19306182861328,
+      "captured_peak_reserved_bytes": 5947523072,
+      "step20_sample_order_sha256": "0baa594b811ef1fc52e03aaad0a511d789bdb70af890a401a48908fbe5aacac0",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_early_delta_aux_last2000",
+      "log": "/NHNHOME/data/sukim/adcl/reports/early_precision_b0_early_delta_aux_main_20260909_ops.log"
+    }
+  },
+  "observed_at_capture": {
+    "all_jobs_live": true,
+    "all_jobs_at_least_step20": true,
+    "all_logged_numeric_values_finite": true,
+    "shared_step20_sample_order": true,
+    "gpu0_memory_used_mib": 13184,
+    "gpu1_memory_used_mib": 6596
+  },
+  "data_scope": {
+    "train_rows": 54810,
+    "tune_rows": 1998,
+    "terminal_tune_evaluations_per_job": 1,
+    "best_checkpoint_selection": false,
+    "final136_rows_selected_trained_evaluated_or_analyzed": 0
+  },
+  "note": "This immutable file is a launch snapshot, not a terminal receipt. The durable supervisor receipt remains mutable until all three child processes exit and all declared terminal artifacts exist."
+}

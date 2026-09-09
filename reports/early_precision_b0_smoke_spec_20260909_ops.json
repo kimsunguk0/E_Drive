@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "experiment": "motiondrive_v2_early_precision_b0_smoke_only",
+  "source_pins": {
+    "scripts/run_motiondrive_v2_early_precision.py": "210ef85336b4949f93db3bba9a795be15f88bfe86a1cae1b89347cf1851a220a",
+    "scripts/supervise_motiondrive_v2_fixed_three_jobs.py": "6bc76025dcc9711a776b7e383b60e7972755fc52ab75301c67381d7fe157af4b",
+    "reports/motiondrive_v2_early_precision_source_manifest_20260909_ops.json": "c3ec0bda1c5037a8e977d93072e8143a481c5a546da16971630a3a0a5249662a",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/last.pth": "2cd1241979da921756c714f2b16ab97d4a63d0586cf666fc57960560107bbfea",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/manifest.json": "37a06fbd939a293304458bbf9601ee7117f5772323395fb698b5183031f58312",
+    "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops/overlay_manifest.json": "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699"
+  },
+  "jobs": [
+    {
+      "name": "continuation_control",
+      "gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+      "argv": [
+        "/usr/bin/python", "scripts/run_motiondrive_v2_early_precision.py",
+        "--arm", "continuation_control",
+        "--init", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/last.pth",
+        "--init-manifest", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/manifest.json",
+        "--source-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_early_precision_source_manifest_20260909_ops.json",
+        "--expected-source-manifest-sha256", "c3ec0bda1c5037a8e977d93072e8143a481c5a546da16971630a3a0a5249662a",
+        "--data-root", "/tmp/pm97",
+        "--split-manifest", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256", "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_smoke_only",
+        "--seed", "0", "--gpu", "0", "--workers", "4",
+        "--cuda-memory-limit-mib", "12000", "--cuda-min-free-mib", "8192",
+        "--expected-physical-gpu-uuid", "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+        "--expected-initial-state-sha256", "96c16d73f8ee1de790680edd45da08539395920e90eec9487ade789e5040ad9a",
+        "--smoke-only"
+      ],
+      "log": "/NHNHOME/data/sukim/adcl/reports/early_precision_b0_continuation_control_smoke_20260909_ops.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_smoke_only",
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_smoke_only/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_smoke_only/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_continuation_control_smoke_only/metrics.jsonl"
+      ]
+    },
+    {
+      "name": "ordered_motion_residual",
+      "gpu_uuid": "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+      "argv": [
+        "/usr/bin/python", "scripts/run_motiondrive_v2_early_precision.py",
+        "--arm", "ordered_motion_residual",
+        "--init", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/last.pth",
+        "--init-manifest", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/manifest.json",
+        "--source-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_early_precision_source_manifest_20260909_ops.json",
+        "--expected-source-manifest-sha256", "c3ec0bda1c5037a8e977d93072e8143a481c5a546da16971630a3a0a5249662a",
+        "--data-root", "/tmp/pm97",
+        "--split-manifest", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256", "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_ordered_motion_residual_smoke_only",
+        "--seed", "0", "--gpu", "0", "--workers", "4",
+        "--cuda-memory-limit-mib", "12000", "--cuda-min-free-mib", "8192",
+        "--expected-physical-gpu-uuid", "GPU-041334c0-089c-6ff5-b0b5-59ff445fa015",
+        "--expected-initial-state-sha256", "d531f8622db75781d4b4bbf10603aedcfb329beb5bdfac943d3c04124e06263a",
+        "--expected-ordered-residual-state-sha256", "2f959b9ed5192cb1cd915179b94a002c090a15c15ee30f7af059e65758c0c140",
+        "--smoke-only"
+      ],
+      "log": "/NHNHOME/data/sukim/adcl/reports/early_precision_b0_ordered_motion_residual_smoke_20260909_ops.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_ordered_motion_residual_smoke_only",
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_ordered_motion_residual_smoke_only/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_ordered_motion_residual_smoke_only/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_ordered_motion_residual_smoke_only/metrics.jsonl"
+      ]
+    },
+    {
+      "name": "early_delta_aux",
+      "gpu_uuid": "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+      "argv": [
+        "/usr/bin/python", "scripts/run_motiondrive_v2_early_precision.py",
+        "--arm", "early_delta_aux",
+        "--init", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/last.pth",
+        "--init-manifest", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000/manifest.json",
+        "--source-manifest", "/NHNHOME/data/sukim/adcl/reports/motiondrive_v2_early_precision_source_manifest_20260909_ops.json",
+        "--expected-source-manifest-sha256", "c3ec0bda1c5037a8e977d93072e8143a481c5a546da16971630a3a0a5249662a",
+        "--data-root", "/tmp/pm97",
+        "--split-manifest", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+        "--supervision-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+        "--status-overlay-root", "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops",
+        "--expected-status-overlay-sha256", "8852f1e7ce80895b09ac400e8332d99d9feb6918a8a18e0893738300a3021699",
+        "--run-dir", "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_early_delta_aux_smoke_only",
+        "--seed", "0", "--gpu", "0", "--workers", "4",
+        "--cuda-memory-limit-mib", "12000", "--cuda-min-free-mib", "8192",
+        "--expected-physical-gpu-uuid", "GPU-5d2254f9-41a7-62dd-2b38-de82459acb24",
+        "--expected-initial-state-sha256", "96c16d73f8ee1de790680edd45da08539395920e90eec9487ade789e5040ad9a",
+        "--smoke-only"
+      ],
+      "log": "/NHNHOME/data/sukim/adcl/reports/early_precision_b0_early_delta_aux_smoke_20260909_ops.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_early_delta_aux_smoke_only",
+      "result_paths": [
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_early_delta_aux_smoke_only/last.pth",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_early_delta_aux_smoke_only/manifest.json",
+        "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/early_precision_b0_early_delta_aux_smoke_only/metrics.jsonl"
+      ]
+    }
+  ]
+}
