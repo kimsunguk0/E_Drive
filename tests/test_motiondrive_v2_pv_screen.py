@@ -308,3 +308,28 @@ def test_arm_names_and_interpretation_contract():
     assert set(run.GPU_ASSIGNMENTS) == set(run.ARMS)
     assert "provided_causal_5d" in Path(run.__file__).read_text()
     assert "single-seed system/trainability screen" in Path(run.__file__).read_text()
+
+
+def test_experiment_supplies_every_generic_trainer_direct_key():
+    args = type("Args", (), {
+        "arm": "pv", "expected_status_overlay_sha256": "o", "smoke_only": True,
+    })()
+    experiment = run.build_experiment(
+        args, {"sha256": "s"},
+        {"train_rows": 54810, "train_rows_sha256": "t",
+         "tune_rows": 1998, "tune_rows_sha256": "v"},
+        {"checkpoint_sha256": "p"},
+        {"manifest": "m", "manifest_sha256": "h", "npz": "b", "npz_sha256": "n",
+         "oracle_gate_report": "g", "oracle_gate_report_sha256": "q",
+         "oracle_artifact": "a", "oracle_artifact_sha256": "z",
+         "oracle_weighted_d3": .1, "p_count": 512, "v_count": 128,
+         "candidate_count": 65025},
+        {"initial_model_state_sha256": "i", "selector_state_sha256": "j",
+         "residual_state_sha256": None, "missing_keys": ["factorized_pv_head.x"]})
+    # train_motiondrive_v2.run_training directly indexes both fields for every
+    # experiment before constructing data loaders or taking update 1.
+    assert experiment["expected_initial_model_state_sha256"] == "i"
+    assert experiment["expected_optimizer_groups"] == [
+        {"name": "backbone", "base_lr": 5e-6},
+        {"name": "head", "base_lr": 5e-5},
+    ]

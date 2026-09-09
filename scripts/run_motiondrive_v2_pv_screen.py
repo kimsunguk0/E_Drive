@@ -348,6 +348,8 @@ def build_experiment(args, source, data, parent, bank, prepared):
             "train_data": {"rows": data["train_rows"], "rows_sha256": data["train_rows_sha256"]},
             "tune_data": {"rows": data["tune_rows"], "rows_sha256": data["tune_rows_sha256"]},
             "expected_initial_model_state_sha256": prepared["initial_model_state_sha256"],
+            "expected_optimizer_groups": [{"name": "backbone", "base_lr": 5e-6},
+                                          {"name": "head", "base_lr": 5e-5}],
             "expected_selector_state_sha256": prepared["selector_state_sha256"],
             "expected_residual_state_sha256": prepared["residual_state_sha256"],
             "expected_missing_state_keys": prepared["missing_keys"],
