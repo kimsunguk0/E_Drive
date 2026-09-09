@@ -232,8 +232,6 @@ def run(spec_path: Path, receipt: Path) -> int:
     by_uuid = {row["uuid"]: row for row in snapshots}
     aggregate_memory_gate = {}
     for gpu_uuid in APPROVED_GPUS:
-        require(int(by_uuid[gpu_uuid]["memory_used_mib"]) == 0,
-                f"Approved GPU not empty at launch: {gpu_uuid}")
         job_count = sum(job["gpu_uuid"] == gpu_uuid for job in jobs)
         required_free = job_count * 12000 + 8192
         require(int(by_uuid[gpu_uuid]["memory_free_mib"]) >= required_free,

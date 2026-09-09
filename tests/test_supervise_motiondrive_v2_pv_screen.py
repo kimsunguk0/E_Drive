@@ -121,6 +121,41 @@ def test_run_records_three_clean_exits_and_distinct_gpu_gates(tmp_path, monkeypa
                for job in result["jobs"].values())
 
 
+def test_shared_gpu_with_foreign_usage_passes_when_free_memory_is_sufficient(
+        tmp_path, monkeypatch):
+    spec_path, _spec = make_spec(tmp_path)
+    receipt = tmp_path / "receipt.json"
+    shared = snapshots()
+    for row in shared:
+        if row["uuid"] in (sup.GPU0, sup.GPU1):
+            row["memory_used_mib"] = "32400"
+            row["memory_free_mib"] = "150000"
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(sup, "gpu_snapshot", lambda: shared)
+    monkeypatch.setattr(sup.subprocess, "Popen", ImmediateProcess)
+    monkeypatch.setattr(sup.time, "sleep", lambda _seconds: None)
+    assert sup.run(spec_path, receipt) == 0
+    result = json.loads(receipt.read_text())
+    before = {row["uuid"]: row for row in result["gpu_snapshot_before"]}
+    assert before[sup.GPU0]["memory_used_mib"] == "32400"
+    assert before[sup.GPU1]["memory_free_mib"] == "150000"
+
+
+def test_shared_gpu_rejects_insufficient_free_memory(tmp_path, monkeypatch):
+    spec_path, _spec = make_spec(tmp_path)
+    receipt = tmp_path / "receipt.json"
+    constrained = snapshots()
+    for row in constrained:
+        if row["uuid"] == sup.GPU0:
+            row["memory_used_mib"] = "32400"
+            row["memory_free_mib"] = "20191"
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(sup, "gpu_snapshot", lambda: constrained)
+    with pytest.raises(RuntimeError, match="Insufficient aggregate guarded free memory"):
+        sup.run(spec_path, receipt)
+    assert not receipt.exists()
+
+
 class WaitingProcess:
     def __init__(self, argv, **_kwargs):
         self.argv = argv
