@@ -46,3 +46,6 @@ scripts/*.pre_*
 .local_deps/
 .pytest_cache/
 /reports/fixtures/
+
+# Pinned upstream source is fetched by the task bootstrap.
+/third_party/SparseDriveV2/
