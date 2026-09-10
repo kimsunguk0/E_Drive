@@ -1,0 +1,25 @@
+{
+ "original": {
+  "head_d3": 0.13827431201934814,
+  "shortlist_oracle_d3": 0.07145977765321732,
+  "selection_regret": 0.06681452691555023,
+  "base_d3": 0.33592426776885986,
+  "cache_mean_base_d3": 0.3359242622229269,
+  "cache_mean_oracle": 0.07145977763386574,
+  "n": 1998
+ },
+ "different_scene_images": {
+  "head_d3": 0.42643246054649353,
+  "shortlist_oracle_d3": 0.3696417808532715,
+  "selection_regret": 0.056790728121995926,
+  "base_d3": 0.649794340133667,
+  "cache_mean_base_d3": 0.6497943159527902,
+  "cache_mean_oracle": 0.36964176199221954,
+  "n": 1998
+ },
+ "delta_substituted_minus_original": {
+  "head_d3": 0.2881581485271454,
+  "shortlist_oracle_d3": 0.29818200320005417,
+  "base_d3": 0.31387007236480713
+ }
+}
