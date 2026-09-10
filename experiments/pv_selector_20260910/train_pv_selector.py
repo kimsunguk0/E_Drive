@@ -22,7 +22,7 @@ import torch
 import torch.nn.functional as F
 
 from pv_selector import SceneResidualSelector
-from pv_status import load_status8
+from pv_status import load_status8, add_correlated_noise
 
 
 WEIGHTS = [11/36, 11/36, 5/36, 5/36, 2/36, 2/36]
@@ -108,9 +108,16 @@ class Cache:
         a = self.arrays['rows']
         return a.cpu().numpy() if torch.is_tensor(a) else np.asarray(a)
 
-    def attach_status8(self, split):
+    def attach_status8(self, split, vx_mae=0.0, seed=0):
         """Bind the causal status overlay for final selection, aligned to rows."""
         status8, provenance = load_status8(self.directory, split, self.rows_cpu())
+        if vx_mae > 0:
+            frames = np.load(self.directory / 'frame.npy', allow_pickle=False)
+            sessions = np.asarray(self.arrays['session_index'].cpu()
+                                  if torch.is_tensor(self.arrays['session_index'])
+                                  else self.arrays['session_index'])
+            status8, noise = add_correlated_noise(status8, sessions, frames, vx_mae, seed)
+            provenance = dict(provenance, degraded=noise)
         self.status8 = torch.from_numpy(status8).to(self.device)
         self.status_provenance = provenance
 
@@ -194,6 +201,8 @@ def main():
     # 'zero' also removes the provided goal from the learned features, so the
     # head learns only from image tokens, candidate geometry and base score.
     p.add_argument('--goal', choices=('real', 'zero'), default='real')
+    # Degrade the provided status to the accuracy an image estimator would have.
+    p.add_argument('--status-vx-mae', type=float, default=0.0)
     p.add_argument('--steps', type=int, default=4000)
     p.add_argument('--batch', type=int, default=128)
     p.add_argument('--eval-batch', type=int, default=64)
@@ -247,8 +256,8 @@ def main():
         if a.goal == 'zero':
             train.drop_goal = tune.drop_goal = True
         if a.status == 'real':
-            train.attach_status8('train')
-            tune.attach_status8('tune')
+            train.attach_status8('train', a.status_vx_mae, a.seed)
+            tune.attach_status8('tune', a.status_vx_mae, a.seed + 1000)
         head = SceneResidualSelector(mode=a.mode).cuda()
         optimizer = torch.optim.AdamW(head.parameters(), lr=a.lr, weight_decay=a.weight_decay)
         sources = {}
