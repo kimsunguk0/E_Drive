@@ -234,10 +234,16 @@ def _overlay_for_dataset(base, split, overlay):
     return {split: {key: value[indices] for key, value in source.items()}}
 
 
-def status_dataset(base, split, overlay):
+def status_dataset(base, split, overlay, augmentable=False):
+    """Attach the flip wrapper only where the caller says augmentation belongs.
+
+    Holdout arms build BOTH the training set and the evaluation set with
+    split == "train" and separate them by scene list, so keying augmentation
+    off the split alone silently mirrors half of the evaluation rows.
+    """
     aligned = _overlay_for_dataset(base, split, overlay)
     ds = a1.SharedStatusDataset(base, split, aligned, "provided_causal_5d")
-    if split == "train" and _FLIP["on"]:
+    if augmentable and _FLIP["on"]:
         from motiondrive_v2_flip_augment import FlipAugmented
         ds = FlipAugmented(ds, _FLIP["wf"], _FLIP["wh"], p=0.5, seed=0)
     return ds
@@ -265,8 +271,8 @@ def validate_data(args):
         evaluation = MotionDriveDataset(
             split="train", frame_stride=5, augment=False,
             scenes=holdout["holdout_scenes"], **common)
-        status_dataset(training, "train", overlay)
-        status_dataset(evaluation, "train", overlay)
+        status_dataset(training, "train", overlay, augmentable=True)
+        status_dataset(evaluation, "train", overlay, augmentable=False)
         result.update(
             train_rows=len(training), train_rows_sha256=a1.rows_sha(training.rows),
             eval_rows=len(evaluation), eval_rows_sha256=a1.rows_sha(evaluation.rows),
@@ -395,6 +401,7 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
             requested = list(scenes or [])
             require(requested in (expected_train_scenes, expected_eval_scenes),
                     "holdout arm dataset scenes differ from the pinned artifact")
+            augmentable = requested == expected_train_scenes
             if requested == expected_eval_scenes:
                 # The old trainer derives augmentation from split == "train".
                 # Held-out train-split evaluation must remain deterministic.
@@ -406,8 +413,9 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
             require(split in ("train", "tune") and scenes is None
                     and ((split == "train") == bool(kwargs.get("augment"))),
                     "long arm must use full train and tune datasets")
+            augmentable = split == "train"
         base = originals["dataset"](**kwargs)
-        return status_dataset(base, split, overlay)
+        return status_dataset(base, split, overlay, augmentable=augmentable)
 
     def train_inputs(batch, time_input="raw",
                      nominal_history_seconds=(.1, .2, .5, 1.)):
