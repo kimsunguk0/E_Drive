@@ -39,6 +39,10 @@ class ImageTemporalFusion(nn.Module):
         nn.init.zeros_(self.output.bias)
         self.state_head = nn.Sequential(nn.LayerNorm(channels), nn.Linear(channels, 128),
                                         nn.GELU(), nn.Linear(128, 4))
+        # 'provided' conditions on the supplied causal status; the two state_hat
+        # modes condition on the network's own image-inferred state instead, so
+        # no supplied value reaches the graph (Q10: image-derived is allowed).
+        self.status_source = "provided"
 
     def forward(self, current: torch.Tensor, history: torch.Tensor,
                 time_offsets: torch.Tensor, perception_status: torch.Tensor):
@@ -58,8 +62,16 @@ class ImageTemporalFusion(nn.Module):
         # Unconditioned pass is mandatory in all arms. State aux cannot copy raw status.
         unconditioned = self.attention(query, keys, values, need_weights=False)[0]
         state = self.state_head((now + unconditioned).mean(1)).float()
+        if self.status_source == "provided":
+            source = perception_status.float()
+        elif self.status_source == "state_hat":
+            source = state
+        elif self.status_source == "state_hat_detached":
+            source = state.detach()
+        else:
+            raise ValueError("Unknown status_source: " + str(self.status_source))
         with torch.autocast(device_type=current.device.type, enabled=False):
-            condition = self.status_condition(perception_status.float() / self.status_scale.float())
+            condition = self.status_condition(source / self.status_scale.float())
         # This query belongs to image feature fusion, upstream of every planner query.
         conditioned = self.attention(query + condition[:, None].to(query.dtype),
                                      keys, values, need_weights=False)[0]

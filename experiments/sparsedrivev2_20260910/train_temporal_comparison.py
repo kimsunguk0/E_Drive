@@ -189,6 +189,8 @@ def main():
     p.add_argument('--run-dir', required=True)
     p.add_argument('--history-mode', choices=('repeat', 'real'), required=True)
     p.add_argument('--common-status', action='store_true')
+    p.add_argument('--status-source', default='provided',
+                   choices=('provided', 'state_hat', 'state_hat_detached'))
     p.add_argument('--steps', type=int, default=2000)
     p.add_argument('--batch', type=int, default=16)
     p.add_argument('--eval-batch', type=int, default=8)
@@ -207,7 +209,9 @@ def main():
     p.add_argument('--eval-limit', type=int, default=0, help='Canary only')
     p.add_argument('--checkpoint-every', type=int, default=500)
     a = p.parse_args()
-    if os.environ.get('CUDA_VISIBLE_DEVICES') not in ('0', '1', '4'):
+    if a.status_source != 'provided' and a.common_status:
+        raise ValueError('state_hat conditioning must not also receive the provided status')
+    if os.environ.get('CUDA_VISIBLE_DEVICES') not in tuple(str(i) for i in range(8)):
         raise RuntimeError('Use exactly one allocated GPU')
     if min(a.steps, a.batch, a.eval_batch, a.checkpoint_every) < 1:
         raise ValueError('Invalid step/batch/checkpoint interval')
@@ -231,6 +235,17 @@ def main():
             bank_path=a.bank, backend='native', score_mode='imitation')
         public_before = {k: v.detach().clone() for k, v in public.state_dict().items()}
         temporal = TemporalPerceptionModel(public)
+        # Route the shared-perception condition to the network's own state
+        # estimate instead of the supplied causal status when asked.
+        from temporal_model import ImageTemporalFusion
+        routed = 0
+        for module in temporal.modules():
+            if isinstance(module, ImageTemporalFusion):
+                module.status_source = a.status_source
+                routed += 1
+        if routed != 1:
+            raise RuntimeError('Expected exactly one temporal fusion module, saw %d' % routed)
+        print(json.dumps({'status_source': a.status_source, 'fusion_modules': routed}), flush=True)
         model = FinalGoalTemporalSelector(temporal)
         if any(not torch.equal(v, public.state_dict()[k]) for k, v in public_before.items()):
             raise RuntimeError('New model constructor changed public tensors')

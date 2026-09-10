@@ -20,9 +20,13 @@ import time
 import numpy as np
 import torch
 
-EVALUATOR_SHA = '9007a4517adaf663d402535bdd56dd5d8340ad675db0f3a3ef44d8d867529242'
+EVALUATOR_SHA = 'd639ff8ee41d3aea186cfced9f136a5072f1707caeea561429d838ce63afd4f5'
 C_CHECKPOINT_SHA = 'b9dcc56af7c2c4c3cfc80d844fe862a2d8f730d7b8d7a813ee997d33abfec2ff'
 B_CHECKPOINT_SHA = '79fdd63655a1bc1b4c07d5e956c7916554a6e49ea354e6ea9bb419d2ce702fc9'
+LONGER_BASE_SHA = {
+    'temporal_c_long8k_s0_v1': '7d1807ad0cc26c266615868a29007edcba6e4121c8b6d967e3b197f411a8dd11',
+    'temporal_b_long8k_s0_v1': '09a6dab7a9ed1a5ca3cda254684a47baad57fd4c9b16ddeabefecc61dfaad2d5',
+}
 TOKEN_SOURCE_SHA = 'be8d9eef8e1e9f087852c1a81d0f5f4437e618a146d02d5037de60181b360ae5'
 WEIGHTS = np.asarray([11, 11, 5, 5, 2, 2], dtype=np.float64) / 36.
 SCHEMA = 'frozen_c_candidate_token_cache_v1'
@@ -385,7 +389,7 @@ def arguments():
     p.add_argument('--base', default='/NHNHOME/data/sukim/adcl')
     p.add_argument('--evaluator-source', default=str(Path(__file__).with_name('evaluate_temporal_checkpoint.py')))
     p.add_argument('--token-source', default=str(Path(__file__).with_name('c_scene_selector.py')))
-    p.add_argument('--gpu', type=int, choices=(0, 1, 4))
+    p.add_argument('--gpu', type=int, choices=tuple(range(8)))
     p.add_argument('--image-donor-mapping', default=None,
                    help='different-scene image substitution control')
     p.add_argument('--audit-only', action='store_true')
@@ -416,7 +420,7 @@ def main():
     require(a.batch == 8 and a.workers >= 0 and a.limit >= 0, 'Frozen cache requires batch8 and valid limits')
     require(sha(a.evaluator_source) == EVALUATOR_SHA, 'Strict evaluator source changed')
     require(sha(a.token_source) == TOKEN_SOURCE_SHA, 'Frozen token wrapper source changed')
-    require(a.audit_only or a.gpu in (0, 1, 4), 'Cache task runs on an allocated GPU')
+    require(a.audit_only or a.gpu in tuple(range(8)), 'Cache task runs on an allocated GPU')
     require(not a.audit_only or os.environ.get('CUDA_VISIBLE_DEVICES', '') == '', 'CPU audit must hide GPUs')
     torch.set_num_threads(4)
     random.seed(0); np.random.seed(0); torch.manual_seed(0)
@@ -428,7 +432,8 @@ def main():
     plan = ev.inspect_checkpoint(a.checkpoint, worktree=a.worktree, base=a.base)
     # Arm B carries no status anywhere, so the C identity pin is widened to the
     # two frozen temporal terminals and the arm is recorded in the manifest.
-    require(plan.receipt['checkpoint_sha256'] in (C_CHECKPOINT_SHA, B_CHECKPOINT_SHA),
+    require(plan.receipt['checkpoint_sha256'] in (C_CHECKPOINT_SHA, B_CHECKPOINT_SHA)
+            or plan.receipt['checkpoint_sha256'] in LONGER_BASE_SHA.values(),
             'Frozen temporal checkpoint identity mismatch')
     arm_common_status = plan.manifest['arguments']['common_status']
     require(isinstance(arm_common_status, bool)
