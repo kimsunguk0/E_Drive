@@ -82,6 +82,7 @@ class Cache:
             raise ValueError('Unexpected scene token shape')
         self.status8 = None
         self.status_provenance = None
+        self.drop_goal = False
 
     def field(self, key, index):
         a = self.arrays[key]
@@ -93,6 +94,11 @@ class Cache:
 
     def inputs(self, index):
         ids = self.field('candidate_ids', index).long()
+        if self.drop_goal:
+            return dict(candidate_ids=ids, candidate_xy=self.bank[ids],
+                        candidate_valid=self.field('candidate_valid', index).bool(),
+                        scores=self.field('scores', index).float(),
+                        candidate_tokens=self.field('token', index)), None
         return dict(candidate_ids=ids, candidate_xy=self.bank[ids],
                     candidate_valid=self.field('candidate_valid', index).bool(),
                     scores=self.field('scores', index).float(),
@@ -185,6 +191,9 @@ def main():
     # 'real' routes the provided causal status into the 32 selection features
     # only; 'zero' keeps the four state slots at zero as before.
     p.add_argument('--status', choices=('real', 'zero'), required=True)
+    # 'zero' also removes the provided goal from the learned features, so the
+    # head learns only from image tokens, candidate geometry and base score.
+    p.add_argument('--goal', choices=('real', 'zero'), default='real')
     p.add_argument('--steps', type=int, default=4000)
     p.add_argument('--batch', type=int, default=128)
     p.add_argument('--eval-batch', type=int, default=64)
@@ -235,6 +244,8 @@ def main():
                 raise RuntimeError('Cache and inference bank have different provenance')
             if hashlib.sha256(cache.rows_cpu().astype(np.int64).tobytes()).hexdigest() != expected_rows:
                 raise RuntimeError('Cache row population/order differs from original split')
+        if a.goal == 'zero':
+            train.drop_goal = tune.drop_goal = True
         if a.status == 'real':
             train.attach_status8('train')
             tune.attach_status8('tune')
@@ -265,7 +276,8 @@ def main():
                                       'selection only' if a.status == 'real' else 'constant zero'),
                         train_status_provenance=train.status_provenance,
                         tune_status_provenance=tune.status_provenance,
-                        goal='final completed-candidate selection only',
+                        goal=('final completed-candidate selection only'
+                              if a.goal == 'real' else 'absent from the learned head'),
                         augmentation='fixed no-augmentation cached C features',
                         validation='repeated exploratory TUNE; fixed terminal and predeclared intermediate checkpoints',
                         rng_seed=a.seed + 1)
