@@ -49,8 +49,9 @@ CASES = (("noflip60", "clean", False, 0.1301326504978567),
          ("flip60", "mirrored", True, 0.1794939921108178))
 
 
-def make_args(arm, run_dir):
-    checkpoint = REPO / f"work_dirs/motiondrive_v2/flipscreen_{arm}/last.pth"
+def make_args(arm, run_dir, checkpoint=None):
+    checkpoint = (Path(checkpoint) if checkpoint
+                  else REPO / f"work_dirs/motiondrive_v2/flipscreen_{arm}/last.pth")
     if not checkpoint.exists():
         raise SystemExit(f"missing checkpoint {checkpoint}")
     return argparse.Namespace(
@@ -70,11 +71,11 @@ def make_args(arm, run_dir):
     )
 
 
-def run_case(arm, label, mirror_eval):
+def run_case(arm, label, mirror_eval, checkpoint=None):
     run_dir = Path(f"/tmp/reeval_{arm}_{label}")
     if run_dir.exists():
         shutil.rmtree(run_dir)
-    args = make_args(arm, run_dir)
+    args = make_args(arm, run_dir, checkpoint)
     _data, overlay, holdout = fs.validate_data(args)  # sets _FLIP from the arm
     fs._FLIP["on"] = mirror_eval
     command = fs.trainer_argv(args, holdout) + ["--eval-only"]
@@ -102,13 +103,21 @@ def run_case(arm, label, mirror_eval):
             fs.status_dataset = original_status_dataset
 
     report = json.loads((run_dir / "evaluation.json").read_text())["report"]
-    return {"arm": arm, "holdout": label, "mirrored_eval": mirror_eval,
+    return {"arm": arm, "checkpoint": str(args.init),
+            "holdout": label, "mirrored_eval": mirror_eval,
             "official_d3": report.get("official_d3"),
             "session_mean_d3": report.get("session_mean_d3"),
             "n": report.get("n")}
 
 
 def main():
+    # `--checkpoint PATH LABEL` scores any checkpoint on the clean holdout,
+    # borrowing an arm's scene wiring; otherwise run the three pinned cases.
+    if sys.argv[1:2] == ["--checkpoint"]:
+        path, label = sys.argv[2], sys.argv[3]
+        row = run_case("noflip60", label, False, checkpoint=path)
+        print("RESULT " + json.dumps(row), flush=True)
+        return
     selected = sys.argv[1:]
     rows = []
     for arm, label, mirror_eval, recorded in CASES:
