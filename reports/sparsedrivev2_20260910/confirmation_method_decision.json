@@ -1,0 +1,23 @@
+{
+  "schema": "sparsedrivev2_confirmation_method_decision_v1",
+  "declared_unix": 1789013326.0806804,
+  "chosen_objective": "soft_ce",
+  "base_goal_mode": "none",
+  "feature_goal_mode": "selection",
+  "base_terminal_step": 2000,
+  "head_terminal_step": 2000,
+  "head_settings": {
+    "batch": 128,
+    "seed": 0,
+    "lr": 0.001,
+    "warmup": 100,
+    "weight_decay": 0.0001,
+    "temperature": 0.1,
+    "eval_every": 250
+  },
+  "reason": "Fixed terminal primary live tune D3 0.1307486145; CE and centered-D3 statistically similar, CE lower point estimate. No late average or tune-best checkpoint.",
+  "held_results_observed": false,
+  "confirmation": "Refit bank and model from public initialization on train171, then identical CE training; original tune37 for reporting; freeze exact artifacts before held12.",
+  "evaluation": "One held prediction pass at batch1; evaluate same-checkpoint base decision plus final head in that pass if supported; posthoc statistics only. Do not tune on held results.",
+  "interpretation": "These sessions were in primary train203 and historical development. Group-excluded retraining confirmation, not an external never-used lockbox."
+}
