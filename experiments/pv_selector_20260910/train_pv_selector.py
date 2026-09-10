@@ -83,6 +83,7 @@ class Cache:
         self.status8 = None
         self.status_provenance = None
         self.drop_goal = False
+        self.lead = None
 
     def field(self, key, index):
         a = self.arrays[key]
@@ -124,6 +125,22 @@ class Cache:
     def status_of(self, index):
         return None if self.status8 is None else self.status8[index]
 
+    def attach_lead(self, directory, split):
+        """Bind ground-truth lead-vehicle context, aligned to the cache rows."""
+        bundle = np.load(Path(directory) / ('lead_%s.npz' % split), allow_pickle=False)
+        if not np.array_equal(bundle['rows'], self.rows_cpu()):
+            raise ValueError('Lead-feature rows differ from the cache rows')
+        features = bundle['features'].astype(np.float32)
+        if not np.isfinite(features).all():
+            raise ValueError('Nonfinite lead features')
+        self.lead = torch.from_numpy(features).to(self.device)
+        return {'path': str(Path(directory).resolve()), 'names': [str(x) for x in bundle['names']],
+                'dim': int(features.shape[1]), 'present_fraction': float(features[:, 0].mean()),
+                'source': 'annotation ground truth, oracle probe'}
+
+    def lead_of(self, index):
+        return None if self.lead is None else self.lead[index]
+
 
 def cost_loss(scores, costs, valid, temperature, expected_weight=0.):
     if scores.shape != costs.shape or valid.shape != scores.shape:
@@ -147,7 +164,7 @@ def evaluate(head, cache, directory, step, batch=64, limit=0, prefix='eval'):
     for start in range(0, n, batch):
         index = torch.arange(start, min(start + batch, n), device=cache.device)
         inp, goal = cache.inputs(index)
-        out = head(inp, goal_xy=goal, status=cache.status_of(index))
+        out = head(inp, goal_xy=goal, status=cache.status_of(index), lead=cache.lead_of(index))
         costs = cache.field('d3', index)
         valid = inp['candidate_valid']
         selected = out['scores'].masked_fill(~valid, -torch.inf).argmax(-1)
@@ -203,6 +220,8 @@ def main():
     p.add_argument('--goal', choices=('real', 'zero'), default='real')
     # Degrade the provided status to the accuracy an image estimator would have.
     p.add_argument('--status-vx-mae', type=float, default=0.0)
+    # Oracle probe: ground-truth lead-vehicle context as extra row features.
+    p.add_argument('--lead-cache', default=None)
     p.add_argument('--steps', type=int, default=4000)
     p.add_argument('--batch', type=int, default=128)
     p.add_argument('--eval-batch', type=int, default=64)
@@ -215,7 +234,7 @@ def main():
     p.add_argument('--expected-weight', type=float, default=0.)
     p.add_argument('--stream-cpu', action='store_true')
     a = p.parse_args()
-    if os.environ.get('CUDA_VISIBLE_DEVICES') not in ('0', '1', '4'):
+    if os.environ.get('CUDA_VISIBLE_DEVICES') not in ('0', '1', '2', '3', '4', '5', '6', '7'):
         raise RuntimeError('Only an allocated individual GPU is allowed')
     if min(a.steps, a.batch, a.eval_batch, a.eval_every) < 1:
         raise ValueError('Invalid steps/batch')
@@ -258,7 +277,12 @@ def main():
         if a.status == 'real':
             train.attach_status8('train', a.status_vx_mae, a.seed)
             tune.attach_status8('tune', a.status_vx_mae, a.seed + 1000)
-        head = SceneResidualSelector(mode=a.mode).cuda()
+        lead_receipt = None
+        if a.lead_cache:
+            lead_receipt = train.attach_lead(a.lead_cache, 'train')
+            tune.attach_lead(a.lead_cache, 'tune')
+        head = SceneResidualSelector(mode=a.mode,
+                                     lead_dim=lead_receipt['dim'] if lead_receipt else 0).cuda()
         optimizer = torch.optim.AdamW(head.parameters(), lr=a.lr, weight_decay=a.weight_decay)
         sources = {}
         for name in ('train_pv_selector.py', 'pv_selector.py', 'pv_status.py'):
@@ -283,6 +307,7 @@ def main():
                         base_frozen=True, raw_status_input=(a.status == 'real'),
                         status_route=('provided causal vx,vy,ax,ay to final completed-candidate '
                                       'selection only' if a.status == 'real' else 'constant zero'),
+                        lead_features=lead_receipt,
                         train_status_provenance=train.status_provenance,
                         tune_status_provenance=tune.status_provenance,
                         goal=('final completed-candidate selection only'
@@ -313,7 +338,7 @@ def main():
             head.train()
             inp, goal = train.inputs(index)
             optimizer.zero_grad(set_to_none=True)
-            out = head(inp, goal_xy=goal, status=train.status_of(index))
+            out = head(inp, goal_xy=goal, status=train.status_of(index), lead=train.lead_of(index))
             # Labels first enter only after inference output has been produced.
             costs = train.field('d3', index)
             loss, ce, expected = cost_loss(out['scores'], costs, inp['candidate_valid'], a.temperature, a.expected_weight)

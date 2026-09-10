@@ -223,18 +223,20 @@ class SceneResidualSelector(nn.Module):
     is retained unless it is one of scores/trajectory/selected_candidate_id.
     Input tokens can be BF16, FP16, or FP32; feature/head arithmetic is FP32.
     """
-    def __init__(self, *, mode="real"):
+    def __init__(self, *, mode="real", lead_dim=0):
         super().__init__()
         if mode not in ("real", "zero"):
             raise ValueError("mode must be real or zero")
         self.mode = mode
+        # Per-row scene context (lead vehicle) broadcast over candidates.
+        self.lead_dim = int(lead_dim)
         self.token_projection = nn.Sequential(nn.LayerNorm(256), nn.Linear(256, 64), nn.GELU())
-        self.score_head = nn.Sequential(nn.Linear(96, 128), nn.ReLU(),
+        self.score_head = nn.Sequential(nn.Linear(96 + self.lead_dim, 128), nn.ReLU(),
                                         nn.Linear(128, 64), nn.ReLU(), nn.Linear(64, 1))
         nn.init.zeros_(self.score_head[-1].weight)
         nn.init.zeros_(self.score_head[-1].bias)
 
-    def forward(self, output, goal_xy=None, status=None):
+    def forward(self, output, goal_xy=None, status=None, lead=None):
         xy, old_scores, valid = _candidate_contract(output)
         ids = _candidate_ids(output, old_scores)
         tokens = output["candidate_tokens"]
@@ -250,7 +252,14 @@ class SceneResidualSelector(nn.Module):
             if self.mode == "zero":
                 safe_tokens = torch.zeros_like(safe_tokens)
             scene = self.token_projection(safe_tokens)
-            residual = self.score_head(torch.cat((features32, scene), -1)).squeeze(-1)
+            parts = [features32, scene]
+            if self.lead_dim:
+                if lead is None or lead.shape != (features32.shape[0], self.lead_dim):
+                    raise ValueError("lead must be [B,lead_dim] when lead_dim is set")
+                parts.append(lead.float()[:, None].expand(-1, features32.shape[1], -1))
+            elif lead is not None:
+                raise ValueError("lead given but the head was built without lead_dim")
+            residual = self.score_head(torch.cat(parts, -1)).squeeze(-1)
             residual = torch.where(valid, residual, 0.)
             scores = old_scores.float() + residual
             winner = scores.masked_fill(~valid, -torch.inf).argmax(-1)
