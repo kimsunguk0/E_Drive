@@ -1,0 +1,22 @@
+{
+ "provided_causal": {
+  "official_d3": 0.13827431201934814,
+  "vx_mae_vs_provided": 0.0,
+  "selection_regret": 0.06681452691555023
+ },
+ "p7_image_b0": {
+  "official_d3": 0.6479795575141907,
+  "vx_mae_vs_provided": 0.983984112739563,
+  "selection_regret": 0.5765197277069092
+ },
+ "p7_image_b1": {
+  "official_d3": 0.6447306871414185,
+  "vx_mae_vs_provided": 0.9736868739128113,
+  "selection_regret": 0.5732709169387817
+ },
+ "zeros": {
+  "official_d3": 0.867431640625,
+  "vx_mae_vs_provided": 10.530259132385254,
+  "selection_regret": 0.7959719300270081
+ }
+}
