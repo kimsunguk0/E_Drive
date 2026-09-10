@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "source_sha256": "97e4ac40747147528255c79377baa2046d37c2fcc0b73642656de504ae1b1a48",
+  "artifacts": {
+    "status_sensitivity.png": "25963439a91715823c21204c53eef7358e04cc69236db9a316dd891fa4488ae8",
+    "aggregate.json": "43eb4519b8b330c9c4c4a28eaf406e6c2ce0ae8cdc51cbd53cda4b904d0f64cc",
+    "RESULTS_KO.md": "e1f0fc5129f6b328985b79bf32d02b68b4f506f3cf96c770d20a7ab16261f68b"
+  }
+}
