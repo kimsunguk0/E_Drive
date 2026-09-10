@@ -99,3 +99,27 @@ CPU synthetic 8개 테스트 PASS: repeat tensor 독립성과 현재영상 보�
 실제 원격 데이터 CPU 통합도 PASS했습니다. train rows `[30,111299]`, tune `[14730,111595]`, augmentation on/epoch3에서 현재 영상과 모든 공통 label이 두 history 모드 사이에 bitwise 동일합니다. real history는 frozen PlanDataset의 같은 RNG·과거 frame 전처리와 bitwise 동일합니다. 최종 source SHA `4fc75a…`에서 aux cache 수정 후 재검증했고, per-item hash 호출을 강제로 오류 처리해도 실제 네 행이 통과했습니다. CUDA는 초기화하지 않았고 원격 소스 파일은 작성하지 않았습니다.
 
 완료된 것은 데이터 준비와 CPU 계약 검증입니다. 새 architecture 학습 성능·GPU 처리량·전체 latency·공통 perception 조건의 실제 모델 경로는 아직 이 자료로 확인되지 않았습니다. 이후 subgroup 학습은 원 `PlanDataset`의 explicit rows 제한을 유지해야 하며, cache가 존재한다는 사실이 해당 run의 학습 행 사용 허가를 확대하지는 않습니다.
+
+## GT 없는 raw 배포 입력 adapter
+
+추가 구현 `temporal_deployment.py`의 SHA256은 `cc0339425ab2bc43553b4b16ae4c0811f248f96a370417afb0740b4c47425f20`, `test_temporal_deployment.py`는 `c655c9a737e8410fa42dc8b248332f1b493cf3e3f3b8b51f1a43e8e75c9df6f5`입니다. 모델·checkpoint 로딩은 포함하지 않습니다. bundle에는 기존 `models.motiondrive_v2_inputs` 및 그 입력/시간 계약 모듈을 함께 제공해야 합니다.
+
+```python
+with TemporalRawInputAdapter(
+    history_mode="real", common_status=False,
+    goal_mode="selection", camera_workers=3,
+) as adapter:
+    prepared = adapter.prepare_clip(official_clip_directory)
+    temporal_model_inputs = prepared.inputs
+    final_selector_only = prepared.selector_inputs  # goal_xy만; 모델 입력과 별개
+```
+
+`prepare_records(calibration_rows, pose_rows_or_None, image_loader)`도 제공합니다. image_loader는 `(camera_name, relative_frame)`을 받아 raw JPEG bytes를 반환합니다. real은 current3와 front−1/−5의5개, repeat는 current3의3개만 읽습니다. 기존 stateless helper의 undistort → crop1920×1080 → resize768×432 → OpenCV JPEG quality95 encode/PIL decode → PIL512×256 resize → normalization을 그대로 적용합니다. geometry만 calibration 전체 값의 SHA를 key로 cache하며 영상·신경망 특징을 캐시하지 않습니다.
+
+A/B에서는 causal state fit을 호출하지 않습니다. goal=none이면 pose iterable을 소비하지 않고 disk pose 파일도 열지 않습니다. goal=selection이면 current0 XYZ/RPY와 provided+50 XYZ만 사용합니다. C에서만 −10…0의11개 pose로 nominal causal 상태4D를 계산하여 `inputs['perception_status']`에 넣습니다. 모든 arm에서 `status8`과 `goal_xy`는 model inputs에 없으며 goal은 별도 selector_inputs에만 있습니다. 미래 pose orientation은 읽지 않으며 과거 영상 pose warp도 없습니다. train GT·aux 캐시·status 캐시를 읽는 경로가 없습니다.
+
+Synthetic CPU7개 테스트가 통과했습니다. A/B pose 접근 차단, 정확한 이미지 read 집합, C의 알려진 속도/가속도 복원, future goal 변경의 모델 입력 불변, 필요한 pose 누락/중복/nonfinite 거부, calibration cache 무효화, 이미지 특징 재사용 금지, disk pose 읽기 생략 및 C의 frame filtering을 확인했습니다.
+
+실제 raw parity는 primary tune row14730(`20260113-102709`, frame30) 하나에서 A repeat/B real/C real을 확인했습니다. 원 tar `/NHNHOME/data/sukim/adcl/train/20260113-102709.tar`의 current3와 front29/25 JPEG를 읽었습니다. current/history images, projection, image_hw, time_offsets 모두 `TemporalPlanDataset` 대비 max absolute difference=0이었고, C 상태와 별도 goal도0이었습니다. 재구성 JPEG SHA는 실제 cache JPEG와5개 모두 일치했습니다. 기존 `reports/sparsedrivev2_20260910/public_init/bundle_raw_tune14730`의 official-shaped parquet/JPEG interface에서 repeat C의 `prepare_clip`과 records 입력도 정확히 일치했습니다. 이 bundle은 기존 current3 fixture라 real history의 disk 경로는 실제 raw tar를 이용한 records 검증으로 확인했습니다.
+
+위 검증은 CPU 입력 parity이며 GPU forward·checkpoint·전체 지연 측정이 아닙니다. 단일 실제 행의 픽셀 일치를 전체 데이터 또는 다른 OpenCV/Pillow 환경의 bitwise 보장으로 확대하지 않습니다. 원격 파일을 수정하거나 GPU를 사용하지 않았습니다.

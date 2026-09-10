@@ -1,0 +1,205 @@
+{
+  "schema": "adcl_axis_error_diagnostics_v1",
+  "status": "completed",
+  "official_time_weights": [
+    0.3055555555555556,
+    0.3055555555555556,
+    0.1388888888888889,
+    0.1388888888888889,
+    0.05555555555555555,
+    0.05555555555555555
+  ],
+  "axes": "current ego x forward, y left",
+  "purpose": "Supplementary error shape evidence; shortlist oracle and selection regret remain primary",
+  "inputs": {
+    "frozen_baseline": {
+      "path": "/home/a/adcl_status_20260910/results/full_shard2_v1/baseline.npz",
+      "sha256": "5159873c022581127457425a5a212f4abe23e6e56dc1516c26642b01eb24509f",
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "keys": [
+        "baseline_candidates_retained",
+        "baseline_winner_present",
+        "candidate_id",
+        "d3",
+        "error_xy",
+        "oracle_candidate_id",
+        "point_l2",
+        "pred",
+        "rows",
+        "shortlist_oracle"
+      ],
+      "error_xy_dtype": "float64"
+    },
+    "frozen_p7_b0_both": {
+      "path": "/home/a/adcl_status_20260910/results/full_shard2_v1/empirical_p7_status__both.npz",
+      "sha256": "a516d1a79395f71907d27765a1243084f43ef5179b66c52dc3cff6a16e333817",
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "keys": [
+        "baseline_candidates_retained",
+        "baseline_winner_present",
+        "candidate_id",
+        "d3",
+        "error_xy",
+        "oracle_candidate_id",
+        "point_l2",
+        "pred",
+        "rows",
+        "shortlist_oracle"
+      ],
+      "error_xy_dtype": "float64"
+    }
+  },
+  "results": {
+    "frozen_baseline": {
+      "n": 1998,
+      "horizons": [
+        {
+          "seconds": 0.5,
+          "mean_abs_ex_m": 0.034511100902151856,
+          "mean_abs_ey_m": 0.010399113295843872,
+          "mean_euclidean_l2_m": 0.0382570648510307,
+          "mean_ex_m": -0.0004858376175308751,
+          "mean_ey_m": 0.001741046219560214,
+          "longitudinal_squared_error_energy_fraction": 0.9045035897448346
+        },
+        {
+          "seconds": 1.0,
+          "mean_abs_ex_m": 0.07031250370204538,
+          "mean_abs_ey_m": 0.02831402120183476,
+          "mean_euclidean_l2_m": 0.08263646201808716,
+          "mean_ex_m": -0.0008976898967977524,
+          "mean_ey_m": 0.004052297928310864,
+          "longitudinal_squared_error_energy_fraction": 0.8350977603177282
+        },
+        {
+          "seconds": 1.5,
+          "mean_abs_ex_m": 0.11873349097063797,
+          "mean_abs_ey_m": 0.053574115731467434,
+          "mean_euclidean_l2_m": 0.14419873933489072,
+          "mean_ex_m": -0.0022237877732066836,
+          "mean_ey_m": 0.006163728730475318,
+          "longitudinal_squared_error_energy_fraction": 0.8030799929603748
+        },
+        {
+          "seconds": 2.0,
+          "mean_abs_ex_m": 0.18431735327526444,
+          "mean_abs_ey_m": 0.08337753631957383,
+          "mean_euclidean_l2_m": 0.22470637762481227,
+          "mean_ex_m": -0.005541234545296709,
+          "mean_ey_m": 0.00884312435913966,
+          "longitudinal_squared_error_energy_fraction": 0.7937956142752811
+        },
+        {
+          "seconds": 2.5,
+          "mean_abs_ex_m": 0.2665161004932059,
+          "mean_abs_ey_m": 0.11801599736371861,
+          "mean_euclidean_l2_m": 0.32347130818204706,
+          "mean_ex_m": -0.012360420602777554,
+          "mean_ey_m": 0.01255689539125531,
+          "longitudinal_squared_error_energy_fraction": 0.788378470992778
+        },
+        {
+          "seconds": 3.0,
+          "mean_abs_ex_m": 0.36697154684175026,
+          "mean_abs_ey_m": 0.15994349830454213,
+          "mean_euclidean_l2_m": 0.4428265627009429,
+          "mean_ex_m": -0.024229183009797258,
+          "mean_ey_m": 0.016237069813730347,
+          "longitudinal_squared_error_energy_fraction": 0.7820324900454727
+        }
+      ],
+      "official_d3_recomputed_m": 0.13074861450346642,
+      "weighted_mean_abs_ex_m": 0.10931358795959983,
+      "weighted_mean_abs_ey_m": 0.046292270307394245,
+      "longitudinal_squared_error_energy_fraction": 0.7874463457706944,
+      "squared_error_energy_sum_x_m2": 1405.0486686742975,
+      "squared_error_energy_sum_y_m2": 379.2616862098052,
+      "energy_aggregation": "sum over samples and six horizons, no temporal weights",
+      "weighted_abs_definition": "mean_n sum_t w_t abs(error_axis[n,t]); metres",
+      "energy_fraction_definition": "sum_n,t(ex^2) / sum_n,t(ex^2 + ey^2); null if denominator=0",
+      "interpretation": "Separate axis error/energy diagnostics; not additive Euclidean contributions or probabilities",
+      "saved_shortlist_oracle_m": 0.09049407642885522,
+      "selection_regret_m": 0.0402545380746112,
+      "max_d3_recomputation_roundoff": 2.220446049250313e-16
+    },
+    "frozen_p7_b0_both": {
+      "n": 1998,
+      "horizons": [
+        {
+          "seconds": 0.5,
+          "mean_abs_ex_m": 0.4828071719482562,
+          "mean_abs_ey_m": 0.016660484410830657,
+          "mean_euclidean_l2_m": 0.4837874677824117,
+          "mean_ex_m": 0.00828406688595886,
+          "mean_ey_m": -5.8244956189436915e-05,
+          "longitudinal_squared_error_energy_fraction": 0.9986811192245575
+        },
+        {
+          "seconds": 1.0,
+          "mean_abs_ex_m": 0.9495272353703924,
+          "mean_abs_ey_m": 0.04062878304103379,
+          "mean_euclidean_l2_m": 0.9532716097525976,
+          "mean_ex_m": 0.01674733526791063,
+          "mean_ey_m": -0.0023185954742994917,
+          "longitudinal_squared_error_energy_fraction": 0.9977246860319547
+        },
+        {
+          "seconds": 1.5,
+          "mean_abs_ex_m": 1.400017905111858,
+          "mean_abs_ey_m": 0.07426914311317605,
+          "mean_euclidean_l2_m": 1.4089360367778667,
+          "mean_ex_m": 0.02622948486061279,
+          "mean_ey_m": -0.004554973128286072,
+          "longitudinal_squared_error_energy_fraction": 0.9961567558649859
+        },
+        {
+          "seconds": 2.0,
+          "mean_abs_ex_m": 1.837005889108618,
+          "mean_abs_ey_m": 0.11708485078085275,
+          "mean_euclidean_l2_m": 1.8534309308456742,
+          "mean_ex_m": 0.03609528086555521,
+          "mean_ey_m": -0.005130595521445452,
+          "longitudinal_squared_error_energy_fraction": 0.9940851691894523
+        },
+        {
+          "seconds": 2.5,
+          "mean_abs_ex_m": 2.262468519505119,
+          "mean_abs_ey_m": 0.16780016536663855,
+          "mean_euclidean_l2_m": 2.288687639276052,
+          "mean_ex_m": 0.045883318350246595,
+          "mean_ey_m": -0.003991620982294154,
+          "longitudinal_squared_error_energy_fraction": 0.9916121465445256
+        },
+        {
+          "seconds": 3.0,
+          "mean_abs_ex_m": 2.681811990334015,
+          "mean_abs_ey_m": 0.23063598163570714,
+          "mean_euclidean_l2_m": 2.7206201866411113,
+          "mean_ex_m": 0.054368182121989024,
+          "mean_ey_m": -0.006218960689785582,
+          "longitudinal_squared_error_energy_fraction": 0.9883330352446755
+        }
+      ],
+      "official_d3_recomputed_m": 1.1705027873010314,
+      "weighted_mean_abs_ex_m": 1.161926624202383,
+      "weighted_mean_abs_ey_m": 0.06621733904014845,
+      "longitudinal_squared_error_energy_fraction": 0.9915366632252012,
+      "squared_error_energy_sum_x_m2": 68585.43165371104,
+      "squared_error_energy_sum_y_m2": 585.4161802169026,
+      "energy_aggregation": "sum over samples and six horizons, no temporal weights",
+      "weighted_abs_definition": "mean_n sum_t w_t abs(error_axis[n,t]); metres",
+      "energy_fraction_definition": "sum_n,t(ex^2) / sum_n,t(ex^2 + ey^2); null if denominator=0",
+      "interpretation": "Separate axis error/energy diagnostics; not additive Euclidean contributions or probabilities",
+      "saved_shortlist_oracle_m": 1.1128569230725114,
+      "selection_regret_m": 0.057645864228520256,
+      "max_d3_recomputation_roundoff": 8.881784197001252e-16
+    }
+  },
+  "limitations": [
+    "Axis absolute errors are not additive contributions to Euclidean L2 or D3.",
+    "Squared-error fraction is unweighted across horizons and is neither D3 fraction nor probability.",
+    "This descriptive diagnostic does not establish which signals are observable or rule-compliant.",
+    "Frozen interventions and new matched training have different causal interpretations."
+  ],
+  "analyzer_sha256": "70f87fa164554185189321d6cbdbd22d1f978a8cdb3101354371d7b93b706645"
+}
