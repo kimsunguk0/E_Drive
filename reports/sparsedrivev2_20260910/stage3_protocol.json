@@ -1,0 +1,30 @@
+{
+  "declared_unix": 1789011976.9175298,
+  "stage": "frozen image-model candidate-relative fine selection",
+  "primary_parent": "dense2000_none_s0_v1/last.pth",
+  "primary_parent_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+  "reason": "Two2kterminals/lateaverages\u2248.194; chosenlowestterminalnone. Learnedshortlistoracle.09049,fineregret.10341. CPU8rowdiagnostic showsmostlyvelocityKL; noevidenceBF16scorecastingmaincause.",
+  "arms": [
+    "soft_ce",
+    "centered_d3"
+  ],
+  "features": "32D candidate-relative velocity/acceleration,causalstatus,providedgoal,centeredbasescore; noGTinput",
+  "head": "32\u2192128\u219264\u21921,12545parameters,lastlayerzero,basefrozen",
+  "coordinates": "immutable existing200candidatebankrows; nointerpolation/generation/refinement",
+  "sampled_train_rows": 10962,
+  "allowed_bank_train_rows": 54810,
+  "tune_rows": 1998,
+  "train_sampling": "frame%5==0 withinoriginaltrain203",
+  "batch": 128,
+  "steps": 2000,
+  "seed": 0,
+  "head_lr": 0.001,
+  "weight_decay": 0.0001,
+  "warmup": 100,
+  "temperature": 0.1,
+  "eval_every": 250,
+  "precision": "FP32head;BF16frozenbasecache",
+  "primary": "terminal2000,eachhorizonandpairedsessionCI",
+  "secondary": "tune-bestseparately;noneuntrainedheadbaselineexactoriginalpredictions",
+  "confirmation": "Newtrain171 NONEbasefromsamepublicinit2k, same171onlybank; relativeheadmethodchosenontuneappliedsameway;held12unopeneduntilfinalchoice"
+}
