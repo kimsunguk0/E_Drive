@@ -1,0 +1,27 @@
+{
+  "name": "dense_none_cpu8_v1",
+  "pid": 3859816,
+  "device": "cpu",
+  "command": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/selection_diagnostics.py",
+    "--checkpoint",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/diagnostic_snapshots_01/dense2000_none_s0_v1.pth",
+    "--checkpoint-sha256",
+    "b7c14eff4e704803d112365c6912767a87f62fe69bff2ae42eb974ace0071fc7",
+    "--source-dir",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/dense2000_none_s0_v1/source/experiments/sparsedrivev2_20260910",
+    "--device",
+    "cpu",
+    "--precision",
+    "fp32",
+    "--threads",
+    "4",
+    "--limit",
+    "8",
+    "--output-dir",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/selection_diagnostics/dense_none_cpu8_v1"
+  ],
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/selection_diagnostics/dense_none_cpu8_v1.log",
+  "launched": "2026-09-10T12:20:45.486283"
+}

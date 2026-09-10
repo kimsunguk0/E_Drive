@@ -1,0 +1,485 @@
+{
+  "device": "NVIDIA B200",
+  "physical_gpu": 0,
+  "checkpoint_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+  "opencv_threads": 1,
+  "torch_threads": 4,
+  "scope": "B200 only, no RTX4090 inference claim; batch1",
+  "loadavg_start": [
+    2.5751953125,
+    2.908203125,
+    4.0986328125
+  ],
+  "samples": [
+    {
+      "row": 14730,
+      "scene": "20260113-102709",
+      "frame": 30,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 14930,
+      "scene": "20260113-102709",
+      "frame": 230,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 19965,
+      "scene": "20260122-134906",
+      "frame": 165,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 20200,
+      "scene": "20260122-134936",
+      "frame": 100,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 20435,
+      "scene": "20260122-135506",
+      "frame": 35,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 20635,
+      "scene": "20260122-135506",
+      "frame": 235,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 20870,
+      "scene": "20260122-135546",
+      "frame": 170,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 21105,
+      "scene": "20260122-135616",
+      "frame": 105,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 21340,
+      "scene": "20260122-135646",
+      "frame": 40,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 21540,
+      "scene": "20260122-135646",
+      "frame": 240,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 21775,
+      "scene": "20260122-135800",
+      "frame": 175,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 22010,
+      "scene": "20260122-135830",
+      "frame": 110,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 22245,
+      "scene": "20260122-135900",
+      "frame": 45,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 22445,
+      "scene": "20260122-135900",
+      "frame": 245,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 36480,
+      "scene": "20260209-153550",
+      "frame": 180,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 36715,
+      "scene": "20260209-153620",
+      "frame": 115,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 40550,
+      "scene": "20260210-100504",
+      "frame": 50,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 40750,
+      "scene": "20260210-100504",
+      "frame": 250,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 40985,
+      "scene": "20260210-100534",
+      "frame": 185,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 41220,
+      "scene": "20260210-100614",
+      "frame": 120,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 41455,
+      "scene": "20260210-100644",
+      "frame": 55,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 41655,
+      "scene": "20260210-100644",
+      "frame": 255,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 41890,
+      "scene": "20260210-100754",
+      "frame": 190,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 42125,
+      "scene": "20260210-100854",
+      "frame": 125,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 42360,
+      "scene": "20260210-101004",
+      "frame": 60,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 42560,
+      "scene": "20260210-101004",
+      "frame": 260,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 42795,
+      "scene": "20260210-101034",
+      "frame": 195,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 43030,
+      "scene": "20260210-101114",
+      "frame": 130,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 43265,
+      "scene": "20260210-101214",
+      "frame": 65,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 43465,
+      "scene": "20260210-101214",
+      "frame": 265,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 76100,
+      "scene": "20260213-134648",
+      "frame": 200,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 76335,
+      "scene": "20260213-134718",
+      "frame": 135,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 76570,
+      "scene": "20260213-134758",
+      "frame": 70,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 76770,
+      "scene": "20260213-134758",
+      "frame": 270,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 77005,
+      "scene": "20260213-134828",
+      "frame": 205,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 77240,
+      "scene": "20260213-134938",
+      "frame": 140,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 77475,
+      "scene": "20260213-135038",
+      "frame": 75,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 77675,
+      "scene": "20260213-135038",
+      "frame": 275,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 94710,
+      "scene": "20260219-103747",
+      "frame": 210,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 98845,
+      "scene": "20260219-110038",
+      "frame": 145,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99080,
+      "scene": "20260219-110108",
+      "frame": 80,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99280,
+      "scene": "20260219-110108",
+      "frame": 280,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99515,
+      "scene": "20260219-110218",
+      "frame": 215,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99750,
+      "scene": "20260219-90551",
+      "frame": 150,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99985,
+      "scene": "20260219-90621",
+      "frame": 85,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 100185,
+      "scene": "20260219-90621",
+      "frame": 285,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 110320,
+      "scene": "20260220-134317",
+      "frame": 220,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 110555,
+      "scene": "20260220-134347",
+      "frame": 155,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 111390,
+      "scene": "20260303-142827",
+      "frame": 90,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 111595,
+      "scene": "20260303-142827",
+      "frame": 295,
+      "raw_cache_inputs_exact": true
+    }
+  ],
+  "timing": {
+    "raw_prepare": {
+      "n": 50,
+      "mean_ms": 40.571898743510246,
+      "p50_ms": 40.41079618036747,
+      "p95_ms": 42.58635398000478,
+      "min_ms": 38.82480040192604,
+      "max_ms": 44.34840567409992
+    },
+    "h2d": {
+      "n": 50,
+      "mean_ms": 0.36085475236177444,
+      "p50_ms": 0.36263931542634964,
+      "p95_ms": 0.3838011063635349,
+      "min_ms": 0.24052336812019348,
+      "max_ms": 0.4607830196619034
+    },
+    "model_only": {
+      "n": 50,
+      "mean_ms": 16.951082423329353,
+      "p50_ms": 16.97392575442791,
+      "p95_ms": 17.147369869053364,
+      "min_ms": 15.83004742860794,
+      "max_ms": 17.383862286806107
+    },
+    "bank_check_and_d2h": {
+      "n": 50,
+      "mean_ms": 0.14228235930204391,
+      "p50_ms": 0.14133751392364502,
+      "p95_ms": 0.15080999583005905,
+      "min_ms": 0.12725964188575745,
+      "max_ms": 0.16263313591480255
+    },
+    "full_warm_raw": {
+      "n": 50,
+      "mean_ms": 58.027838952839375,
+      "p50_ms": 57.88658186793327,
+      "p95_ms": 59.32035660371184,
+      "min_ms": 56.45853467285633,
+      "max_ms": 62.079500406980515
+    }
+  },
+  "timing_boundary": "in-memory raw JPEG bytes -> calibrated normalized tensors -> H2D -> native bf16 model -> all-candidate/final bank equality checks -> six XY CPU; excludes parquet/tar/file I/O and cold map/extension/model initialization",
+  "fixed_bank_rows_exact": true,
+  "selected_ids": [
+    815374,
+    610334,
+    239372,
+    8745,
+    8615,
+    978622,
+    800944,
+    658604,
+    130533,
+    225124,
+    842755,
+    533289,
+    281976,
+    605889,
+    286961,
+    960559,
+    887495,
+    1004395,
+    504172,
+    496068,
+    865448,
+    603891,
+    776012,
+    162253,
+    1014784,
+    1035608,
+    121332,
+    137957,
+    386075,
+    496222,
+    13557,
+    347643,
+    373861,
+    721886,
+    532860,
+    681124,
+    610791,
+    597425,
+    770780,
+    727983,
+    887381,
+    1032230,
+    597850,
+    283995,
+    313466,
+    1000270,
+    926770,
+    101741,
+    923462,
+    823729
+  ],
+  "peak_cuda_allocated_bytes": 1371811840,
+  "peak_cuda_reserved_bytes": 1501560832,
+  "flops": {
+    "raw_torch_counter": 137656417280,
+    "raw_torch_gflops": 137.65641728,
+    "operators": {
+      "aten.addmm": 37532808192,
+      "aten.convolution": 97429487616,
+      "aten.bmm": 56887296,
+      "aten._scaled_dot_product_flash_attention": 2637234176
+    },
+    "native_dfa_all_camera_upper": 38191104000,
+    "counter_plus_native_upper": 175847521280,
+    "counter_plus_native_upper_gflops": 175.84752128,
+    "convention": "MAC/FMA=2; native scalar arithmetic21 per valid camera-point/level/channel",
+    "limitation": "native contribution is conservative all-camera bound; standard unregistered elementwise/reduction ops and any unregistered attention dispatch are not silently treated as exact total",
+    "projection_matmul_extra_added": false,
+    "core_interpolation_subset_extra_added": false,
+    "no_submission_json_written": true
+  },
+  "source_sha256": {
+    "deployment.py": "4c0bc4930980d2424a255965e82beb5c225042227750fd2bfb4789994cc33302",
+    "public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+    "profile_deployment_gpu.py": "a94a8714880be736278fd4896f5712a728ecc464a92e6a540ecd6121df25d24b",
+    "dfa_flops_supplement.py": "98f9f1d219b96f320ed6c3f54c14c86f1491df565a89ca6b8aa919c07c811fee"
+  },
+  "passed": true,
+  "provenance": {
+    "checkpoint_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+    "checkpoint_step": 2000,
+    "bank_sha256": "4aff9b40696f91383bfbec377f388e6209d619fa509e51a2019b19af977b5e04",
+    "public_checkpoint_sha256": "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735",
+    "public_initializer_file_rechecked": false,
+    "source_sha256": {
+      "experiments/sparsedrivev2_20260910/public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7"
+    },
+    "deployment_sha256": "4c0bc4930980d2424a255965e82beb5c225042227750fd2bfb4789994cc33302",
+    "strict_state_dict_load": true,
+    "checkpoint_weights_only": true,
+    "bank_rows_immutable": true,
+    "status_mode": "causal_selection",
+    "goal_mode": "selection",
+    "path_filter": [
+      128,
+      20
+    ],
+    "velocity_filter": [
+      64,
+      10
+    ],
+    "output": "six cumulative current rear-axle ego XY metres at .5..3s; no cumsum",
+    "relative_selector": {
+      "relative_checkpoint_sha256": "5ec5bc6286610d35f7239c0f0cb41caee3c5fd1cc0b033cb384c04bbb3aed374",
+      "relative_step": 2000,
+      "relative_objective": "soft_ce",
+      "relative_source_sha256": "7fa75415a40691f555cca27ab9fe88331725177f19887c01a0e887121e2ac59f",
+      "relative_trainer_sha256": "8177d10846d229c0adef97db094a0482278aee3d1fd7aaf524f739f1f104a577",
+      "cache_manifest_sha256": "e9455b8e6577ff2a9d488dfc6780129df5b336d247adeeaabded246180b9e298",
+      "cache_manifest_path": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/cache/sparsedrivev2_20260910/features_primary_none2000_v1/manifest.json",
+      "base_checkpoint_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+      "bank_sha256": "4aff9b40696f91383bfbec377f388e6209d619fa509e51a2019b19af977b5e04",
+      "base_goal_mode": "none",
+      "feature_goal_mode": "selection",
+      "strict_relative_head_load": true,
+      "relative_parameters": 12545,
+      "runtime_feature_or_label_files_opened": false
+    },
+    "base_goal_mode": "none"
+  },
+  "loadavg_end": [
+    2.78125,
+    2.94384765625,
+    4.09716796875
+  ]
+}

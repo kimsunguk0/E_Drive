@@ -1,0 +1,19 @@
+{
+  "bank_sha256": "73c29e27f321a99e6654ebdeb0877fd260c2b22983fdffce58358335bdaa207f",
+  "train_rows_sha256": "701e7ea7b76acd6b0d99845a0f400c9b65a5c470131d2d3b6324192e09c28a35",
+  "scene_intersections": {
+    "confirmation12": 0,
+    "historical_val": 0,
+    "reserve136": 0,
+    "tune": 0,
+    "val": 0
+  },
+  "runtime_sha256": {
+    "experiments/sparsedrivev2_20260910/train.py": "be221f0574a562e8449bffd90a6dd7a9f817b25159b006270de3f61b4cc9e08d",
+    "experiments/sparsedrivev2_20260910/data.py": "54bcd88b1c2567d8aab3337fd82f5e6be50a4950e51957ba1df2908185f1eddb",
+    "experiments/sparsedrivev2_20260910/losses.py": "f21c779742e0018b56d0b55123d5fbbfe1474127d8f56279221f28fd003fff17",
+    "experiments/sparsedrivev2_20260910/public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+    "experiments/sparsedrivev2_20260910/goal_selector.py": "b302b6db5e497ce26fb8fa7ecc817a1f2e1984a1c7dc21a1ed65fd94e16d581d"
+  },
+  "held_evaluation_performed": false
+}

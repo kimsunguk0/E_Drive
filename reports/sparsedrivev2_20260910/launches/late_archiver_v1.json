@@ -1,0 +1,26 @@
+{
+  "pid": 3860412,
+  "started_unix": 1789010482.2776053,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/archive_late_checkpoints.py",
+    "--root",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910",
+    "--directory",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/late_snapshots_v1",
+    "--run",
+    "dense2000_none_s0_v1",
+    "--run",
+    "dense2000_selection_s0_v1",
+    "--run",
+    "confirmation2000_selection_s0_v1",
+    "--step",
+    "1500",
+    "--step",
+    "1750",
+    "--step",
+    "2000"
+  ],
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/launches/late_archiver_v1.log",
+  "kind": "CPU-only archive observer; doesnotmodifytraining"
+}

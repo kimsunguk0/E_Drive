@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "base_checkpoint_sha256": "44c94c3ee755e81291d88c6b68263aead15b10cd2ab8ba217a1f91a434b38670",
+  "bank_sha256": "73c29e27f321a99e6654ebdeb0877fd260c2b22983fdffce58358335bdaa207f",
+  "cache_manifest_sha256": "932063648f72aaa37f2d34ac329613187cede31597e93eb8a7822de7c2c33bc4",
+  "head_checkpoint_sha256": "13d7f6efcf9299d764333c8aed49b2a19b1f50227259cb33764151bc60ca098a",
+  "terminal_predictions_sha256": "2121a004c1fb930ddeb4ae8a6eaa46fb0081181c2617d869eb0710db8bd93d1b",
+  "head_manifest_sha256": "c8f34ee570a92321fbc1177b2451e3a95eb4c47f25d55f51b650e666a8af2505",
+  "base_zero_head_bitwise_equal": [
+    "rows",
+    "pred",
+    "candidate_id"
+  ],
+  "independent_metric_bitwise_equal": [
+    "error_xy",
+    "point_l2",
+    "d3"
+  ],
+  "selected_candidates_valid_and_immutable": true,
+  "terminal_tune_d3": 0.13129295165046478,
+  "base_tune_d3": 0.19212104380130768,
+  "terminal_tune_point_l2": [
+    0.037190672878994184,
+    0.08171375912001407,
+    0.145020230923206,
+    0.22692416940958332,
+    0.3272234233924964,
+    0.4522143294893485
+  ],
+  "scope": "Existing tune only; cached head predictions; no separate live confirmation-head image evaluation in this pipeline",
+  "held_population_evaluated": false,
+  "gpu1_status_csv": "1, 0, 0",
+  "all_child_exitcodes": {
+    "cache_exit": 0,
+    "head_exit": 0
+  }
+}

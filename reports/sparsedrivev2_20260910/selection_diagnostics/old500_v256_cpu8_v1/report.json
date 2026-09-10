@@ -1,0 +1,3291 @@
+{
+  "checkpoint": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/pilot500_causal_selection_s0_v1/last.pth",
+  "checkpoint_sha256": "0e92346d2f3b063f11326a28305b5513fe1f348d5d3250484cd4969330cf2b2e",
+  "checkpoint_step": 500,
+  "bank_sha256": "0dceecbe8004c706de6f05e6a0ed1ef4ee603e5db54164f9c81d35359b4d475c",
+  "source_dir": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/pilot500_causal_selection_s0_v1/source/experiments/sparsedrivev2_20260910",
+  "source_sha256": {
+    "data.py": "ad3f52cd097e7711b8edbcb8b43d282f36cd72aa93257ccaf37672ce4a8d55a1",
+    "public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+    "losses.py": "f21c779742e0018b56d0b55123d5fbbfe1474127d8f56279221f28fd003fff17"
+  },
+  "device": "cpu",
+  "precision": "fp32",
+  "threads": 4,
+  "temperature": 0.1,
+  "n": 8,
+  "row_selection": "deterministic uniform indices across original tune rows before seeing predictions",
+  "rows_sha256": "6960e074988ed35e240780f2a0a835cc0ac9a5bfe04d0d950f920bd600ac180b",
+  "status_mode": "causal_selection",
+  "goal_mode": "none",
+  "summary": {
+    "fine_ce": 5.148398537539951,
+    "target_entropy": 4.599885208372174,
+    "model_entropy": 5.048407521068101,
+    "fine_kl_q_p": 0.5485133291677763,
+    "ce_minus_uniform": -0.1499188290080855,
+    "target_effective_count": 105.255555054763,
+    "model_effective_count": 157.20052620442453,
+    "selected_cost": 0.38453773874789476,
+    "oracle_cost": 0.12836388614960015,
+    "top1_regret": 0.2561738472431898,
+    "expected_cost_model": 0.3889956721894483,
+    "expected_cost_target": 0.22183206830676294,
+    "expected_cost_uniform": 0.42731126211583614,
+    "logit_spread": 2.5745787620544434,
+    "logit_std": 0.7622247561812401,
+    "selected_probability": 0.01296596165861632,
+    "target_probability_at_selected": 0.011362608411544482,
+    "score_cost_spearman_mean": 0.506343096077402
+  },
+  "soft_target_probability_calibration": [
+    {
+      "p_lo": 0,
+      "p_hi": 0.0025,
+      "count": 519,
+      "mean_model_p": 0.0016191821726989917,
+      "mean_target_q": 0.002634750591172969
+    },
+    {
+      "p_lo": 0.0025,
+      "p_hi": 0.005,
+      "count": 436,
+      "mean_model_p": 0.003616413672615461,
+      "mean_target_q": 0.0033065382504881757
+    },
+    {
+      "p_lo": 0.005,
+      "p_hi": 0.0075,
+      "count": 285,
+      "mean_model_p": 0.006206991170814989,
+      "mean_target_q": 0.0054021118634677056
+    },
+    {
+      "p_lo": 0.0075,
+      "p_hi": 0.01,
+      "count": 199,
+      "mean_model_p": 0.008949298080601588,
+      "mean_target_q": 0.008390780261356026
+    },
+    {
+      "p_lo": 0.01,
+      "p_hi": 0.025,
+      "count": 161,
+      "mean_model_p": 0.012627237822278854,
+      "mean_target_q": 0.012307742937082235
+    }
+  ],
+  "records": [
+    {
+      "target_entropy": 4.627637900283631,
+      "model_entropy": 5.057110336158697,
+      "fine_ce": 4.9208966877425535,
+      "fine_kl_q_p": 0.29325878745892275,
+      "uniform_ce": 5.298317366548036,
+      "ce_minus_uniform": -0.3774206788054828,
+      "target_effective_count": 102.27220143307144,
+      "model_effective_count": 157.13579002610413,
+      "score_cost_spearman": 0.7142713567839197,
+      "selected_cost": 0.2040901482105255,
+      "oracle_cost": 0.19938123226165771,
+      "top1_regret": 0.004708915948867798,
+      "expected_cost_model": 0.37282351995380447,
+      "expected_cost_target": 0.2890409092209586,
+      "expected_cost_uniform": 0.4484311640262604,
+      "selected_probability": 0.013465323208638812,
+      "target_probability_at_selected": 0.02286540315221041,
+      "cost_spread": 0.48717498779296875,
+      "logit_spread": 2.342082977294922,
+      "logit_std": 0.6534298658370972,
+      "within_0.01m": {
+        "candidate_count": 19,
+        "model_mass": 0.24247402310256644,
+        "target_mass": 0.44127417030133936,
+        "selected_hit": true
+      },
+      "within_0.02m": {
+        "candidate_count": 20,
+        "model_mass": 0.25585800431323585,
+        "target_mass": 0.4624173703616894,
+        "selected_hit": true
+      },
+      "within_0.05m": {
+        "candidate_count": 20,
+        "model_mass": 0.25585800431323585,
+        "target_mass": 0.4624173703616894,
+        "selected_hit": true
+      },
+      "within_0.1m": {
+        "candidate_count": 20,
+        "model_mass": 0.25585800431323585,
+        "target_mass": 0.4624173703616894,
+        "selected_hit": true
+      },
+      "row": 14730,
+      "scenario": "20260113-102709",
+      "session": "session_019_20260113-102709",
+      "selected_candidate_id": 170574,
+      "oracle_candidate_id": 250190,
+      "selected_path": 666,
+      "selected_velocity": 78,
+      "oracle_given_selected_path": 0.2040901482105255,
+      "oracle_given_selected_velocity": 0.19938123226165771,
+      "global_path_at_gt_progress_min": 0.015369540080428123,
+      "global_velocity_progress_min": 0.1983966827392578,
+      "selected_path_at_gt_progress_cost": 0.04461444541811943,
+      "selected_velocity_progress_cost": 0.1983966827392578,
+      "selected_weighted_abs_xy": [
+        0.19890625609291926,
+        0.04394940038522085
+      ],
+      "oracle_weighted_abs_xy": [
+        0.19855589336819118,
+        0.016134796664118767
+      ],
+      "marginals": {
+        "path": {
+          "ids": [
+            72,
+            96,
+            229,
+            233,
+            251,
+            274,
+            313,
+            342,
+            398,
+            445,
+            582,
+            648,
+            653,
+            666,
+            761,
+            830,
+            854,
+            928,
+            955,
+            977
+          ],
+          "model_mass": [
+            0.04848899738261286,
+            0.05033901229527295,
+            0.05039387464976166,
+            0.05096874454187828,
+            0.04541634299958831,
+            0.05116023201750314,
+            0.04812563066380621,
+            0.05009877872766782,
+            0.04988266843080746,
+            0.047254422346085345,
+            0.05142860431518176,
+            0.05095381711742145,
+            0.05060140445162781,
+            0.051516766092854875,
+            0.04992396228806164,
+            0.05101506527145294,
+            0.051203506266450365,
+            0.05053047688417061,
+            0.05020788365232858,
+            0.05048980960546593
+          ],
+          "target_mass": [
+            0.05131025089484077,
+            0.051033246192167286,
+            0.05178016915840187,
+            0.05137632883153843,
+            0.04906777385341874,
+            0.051684705901715235,
+            0.04877786577868022,
+            0.05106624762714808,
+            0.0485094780778183,
+            0.04765880032868175,
+            0.0509654603073644,
+            0.05010128461847085,
+            0.051599336516499755,
+            0.04958786385916429,
+            0.05139204805911354,
+            0.04962026665812636,
+            0.045845282071764984,
+            0.048212594601581706,
+            0.048502219982863366,
+            0.05190877668064046
+          ],
+          "model_entropy": 2.995268458806839,
+          "target_entropy": 2.9951876608688615,
+          "kl_target_model": 0.0007759497424451828
+        },
+        "velocity": {
+          "ids": [
+            6,
+            54,
+            65,
+            72,
+            78,
+            101,
+            167,
+            173,
+            182,
+            228
+          ],
+          "model_mass": [
+            0.11388533649735703,
+            0.052372033619490756,
+            0.028758615980980493,
+            0.06662550893956072,
+            0.2558580043132359,
+            0.0613530797241447,
+            0.07722556202956238,
+            0.23251511522909415,
+            0.04808895102178155,
+            0.06331779264479229
+          ],
+          "target_mass": [
+            0.03449595465145522,
+            0.012019076707937006,
+            0.011080399242920362,
+            0.006663316857525663,
+            0.4624173703616894,
+            0.11630862984382742,
+            0.13634936974855727,
+            0.1210707906112559,
+            0.0037748850146140764,
+            0.09582020696021804
+          ],
+          "model_entropy": 2.062061687709317,
+          "target_entropy": 1.6325553536026074,
+          "kl_target_model": 0.2918677821281831
+        },
+        "target_path_velocity_mutual_information": 0.00010511418783831772,
+        "model_path_velocity_mutual_information": 0.00021981035745888278
+      },
+      "geometry": {
+        "exact_unique_trajectories": 200,
+        "within_0.001m": {
+          "mean_neighbors_including_self": 1.0,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0
+        },
+        "within_0.01m": {
+          "mean_neighbors_including_self": 4.24,
+          "oracle_neighbors_including_self": 5,
+          "fraction_pairs_excluding_diagonal": 0.01628140703517588
+        },
+        "within_0.025m": {
+          "mean_neighbors_including_self": 9.24,
+          "oracle_neighbors_including_self": 11,
+          "fraction_pairs_excluding_diagonal": 0.041407035175879396
+        },
+        "within_0.05m": {
+          "mean_neighbors_including_self": 17.08,
+          "oracle_neighbors_including_self": 18,
+          "fraction_pairs_excluding_diagonal": 0.08080402010050251
+        },
+        "within_0.1m": {
+          "mean_neighbors_including_self": 21.65,
+          "oracle_neighbors_including_self": 20,
+          "fraction_pairs_excluding_diagonal": 0.10376884422110552
+        }
+      },
+      "coarse": [
+        {
+          "path": {
+            "target_entropy": 6.099684356940729,
+            "model_entropy": 6.140650241829245,
+            "fine_ce": 6.208187709277561,
+            "fine_kl_q_p": 0.1085033523368315,
+            "uniform_ce": 6.931471805599453,
+            "ce_minus_uniform": -0.7232840963218923,
+            "target_effective_count": 445.7170603801572,
+            "model_effective_count": 464.3554160276011,
+            "score_cost_spearman": 0.9035131495422358,
+            "selected_cost": 0.0535581111907959,
+            "oracle_cost": 0.015369540080428123,
+            "top1_regret": 0.038188569247722626,
+            "expected_cost_model": 0.1483930756991661,
+            "expected_cost_target": 0.11027282264838269,
+            "expected_cost_uniform": 1.0747230052947998,
+            "selected_probability": 0.005549728300568434,
+            "target_probability_at_selected": 0.003955939168489253,
+            "cost_spread": 9.620628356933594,
+            "logit_spread": 7.631588459014893,
+            "logit_std": 2.104250431060791,
+            "within_0.01m": {
+              "candidate_count": 12,
+              "model_mass": 0.043342469822285824,
+              "target_mass": 0.06607706959768223,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 20,
+              "model_mass": 0.07705421313820093,
+              "target_mass": 0.10667784697994208,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 56,
+              "model_mass": 0.19994054273771394,
+              "target_mass": 0.2541000507594707,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 174,
+              "model_mass": 0.5242885973307452,
+              "target_mass": 0.5739827637253565,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.9757155334162733,
+            "model_entropy": 2.419929925548421,
+            "fine_ce": 2.340693831897713,
+            "fine_kl_q_p": 0.3649782984814396,
+            "uniform_ce": 5.545177444479562,
+            "ce_minus_uniform": -3.2044836125818494,
+            "target_effective_count": 7.211778076292887,
+            "model_effective_count": 11.245071295068168,
+            "score_cost_spearman": 0.9450446326390476,
+            "selected_cost": 0.1983966827392578,
+            "oracle_cost": 0.1983966827392578,
+            "top1_regret": 0.0,
+            "expected_cost_model": 0.4070768268202707,
+            "expected_cost_target": 0.3079272603920951,
+            "expected_cost_uniform": 6.298576354980469,
+            "selected_probability": 0.2384442237896234,
+            "target_probability_at_selected": 0.41461298634295324,
+            "cost_spread": 19.571767807006836,
+            "logit_spread": 12.909266471862793,
+            "logit_std": 2.8862192630767822,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.2384442237896234,
+              "target_mass": 0.41461298634295324,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.2384442237896234,
+              "target_mass": 0.41461298634295324,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.2384442237896234,
+              "target_mass": 0.41461298634295324,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 1,
+              "model_mass": 0.2384442237896234,
+              "target_mass": 0.41461298634295324,
+              "selected_hit": true
+            }
+          }
+        },
+        {
+          "path": {
+            "target_entropy": 4.78201826651442,
+            "model_entropy": 4.828942205443832,
+            "fine_ce": 4.814190035756911,
+            "fine_kl_q_p": 0.03217176924249099,
+            "uniform_ce": 4.852030263919617,
+            "ce_minus_uniform": -0.037840228162705714,
+            "target_effective_count": 119.34497710932361,
+            "model_effective_count": 125.07858320862643,
+            "score_cost_spearman": 0.7892270188610144,
+            "selected_cost": 0.015961669385433197,
+            "oracle_cost": 0.015369540080428123,
+            "top1_regret": 0.0005921293050050735,
+            "expected_cost_model": 0.07494356633062906,
+            "expected_cost_target": 0.06702583027542056,
+            "expected_cost_uniform": 0.08126281201839447,
+            "selected_probability": 0.010290281831895029,
+            "target_probability_at_selected": 0.013962548268058766,
+            "cost_spread": 0.15188011527061462,
+            "logit_spread": 1.2451658248901367,
+            "logit_std": 0.23661954700946808,
+            "within_0.01m": {
+              "candidate_count": 12,
+              "model_mass": 0.11462703320807188,
+              "target_mass": 0.16013511836657376,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 20,
+              "model_mass": 0.1876804729374973,
+              "target_mass": 0.25852946804746735,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 45,
+              "model_mass": 0.4053925660540956,
+              "target_mass": 0.5063787442673937,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 101,
+              "model_mass": 0.8486022627736606,
+              "target_mass": 0.8844070002158622,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.9757154409964433,
+            "model_entropy": 2.473460417694394,
+            "fine_ce": 2.324794917005309,
+            "fine_kl_q_p": 0.3490794760088656,
+            "uniform_ce": 4.1588830833596715,
+            "ce_minus_uniform": -1.8340881663543627,
+            "target_effective_count": 7.2117774097816145,
+            "model_effective_count": 11.86342832153025,
+            "score_cost_spearman": 0.9038461538461537,
+            "selected_cost": 0.1983966827392578,
+            "oracle_cost": 0.1983966827392578,
+            "top1_regret": 0.0,
+            "expected_cost_model": 0.41113750961269235,
+            "expected_cost_target": 0.30792725161525,
+            "expected_cost_uniform": 1.302489995956421,
+            "selected_probability": 0.2250238073576489,
+            "target_probability_at_selected": 0.4146129882714752,
+            "cost_spread": 2.7457051277160645,
+            "logit_spread": 10.337855339050293,
+            "logit_std": 2.920180559158325,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.2250238073576489,
+              "target_mass": 0.4146129882714752,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.2250238073576489,
+              "target_mass": 0.4146129882714752,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.2250238073576489,
+              "target_mass": 0.4146129882714752,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 1,
+              "model_mass": 0.2250238073576489,
+              "target_mass": 0.4146129882714752,
+              "selected_hit": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "target_entropy": 4.753958907242092,
+      "model_entropy": 4.880181046399857,
+      "fine_ce": 4.945837716505709,
+      "fine_kl_q_p": 0.191878809263617,
+      "uniform_ce": 5.298317366548036,
+      "ce_minus_uniform": -0.3524796500423273,
+      "target_effective_count": 116.04277895790574,
+      "model_effective_count": 131.65449730104942,
+      "score_cost_spearman": 0.7690647266181656,
+      "selected_cost": 0.2716967463493347,
+      "oracle_cost": 0.26790910959243774,
+      "top1_regret": 0.0037876367568969727,
+      "expected_cost_model": 0.38615500358914684,
+      "expected_cost_target": 0.3504896232475672,
+      "expected_cost_uniform": 0.5005028247833252,
+      "selected_probability": 0.016551637823390385,
+      "target_probability_at_selected": 0.018948506973044246,
+      "cost_spread": 0.6376908421516418,
+      "logit_spread": 3.2605884075164795,
+      "logit_std": 1.0089716911315918,
+      "within_0.01m": {
+        "candidate_count": 20,
+        "model_mass": 0.31578524025364496,
+        "target_mass": 0.3831721063601161,
+        "selected_hit": true
+      },
+      "within_0.02m": {
+        "candidate_count": 20,
+        "model_mass": 0.31578524025364496,
+        "target_mass": 0.3831721063601161,
+        "selected_hit": true
+      },
+      "within_0.05m": {
+        "candidate_count": 20,
+        "model_mass": 0.31578524025364496,
+        "target_mass": 0.3831721063601161,
+        "selected_hit": true
+      },
+      "within_0.1m": {
+        "candidate_count": 51,
+        "model_mass": 0.5442586255166398,
+        "target_mass": 0.6354461569683071,
+        "selected_hit": true
+      },
+      "row": 21105,
+      "scenario": "20260122-135616",
+      "session": "session_027_20260122-135506",
+      "selected_candidate_id": 137811,
+      "oracle_candidate_id": 86867,
+      "selected_path": 538,
+      "selected_velocity": 83,
+      "oracle_given_selected_path": 0.2716967463493347,
+      "oracle_given_selected_velocity": 0.26790910959243774,
+      "global_path_at_gt_progress_min": 0.0030223987996578217,
+      "global_velocity_progress_min": 0.26786288619041443,
+      "selected_path_at_gt_progress_cost": 0.039903223514556885,
+      "selected_velocity_progress_cost": 0.26786288619041443,
+      "selected_weighted_abs_xy": [
+        0.2670535511440701,
+        0.04451077452136411
+      ],
+      "oracle_weighted_abs_xy": [
+        0.2677258915371365,
+        0.009188808914687898
+      ],
+      "marginals": {
+        "path": {
+          "ids": [
+            33,
+            129,
+            247,
+            294,
+            339,
+            536,
+            538,
+            550,
+            583,
+            604,
+            612,
+            643,
+            672,
+            691,
+            757,
+            790,
+            867,
+            900,
+            957,
+            1000
+          ],
+          "model_mass": [
+            0.050598629586240146,
+            0.05173837229524442,
+            0.04985019480853365,
+            0.0506195405348819,
+            0.049528343368815494,
+            0.04970851365471965,
+            0.05200372103106372,
+            0.04975843406430155,
+            0.04894124220369449,
+            0.05143943373798637,
+            0.049307441537273,
+            0.049826007483192526,
+            0.04965336685617045,
+            0.050850251751174816,
+            0.050826010578613315,
+            0.04643813715939278,
+            0.04998797734155866,
+            0.05021876246601568,
+            0.04974116521462189,
+            0.048964454326505674
+          ],
+          "target_mass": [
+            0.051297046654851956,
+            0.04732134733889903,
+            0.051260310452328164,
+            0.05096801250902839,
+            0.0514434067671587,
+            0.04782019065549059,
+            0.04948768173312189,
+            0.0510837843386696,
+            0.05143087234111263,
+            0.05073112026268892,
+            0.051245535883465386,
+            0.0514161446355646,
+            0.05134133548053629,
+            0.04823279104771359,
+            0.049605066591793555,
+            0.047662433103444174,
+            0.04718443343320304,
+            0.049436437031807515,
+            0.05138224173632105,
+            0.049649808002801124
+          ],
+          "model_entropy": 2.9954574354036083,
+          "target_entropy": 2.995262782583645,
+          "kl_target_model": 0.0007475571082814157
+        },
+        "velocity": {
+          "ids": [
+            9,
+            43,
+            74,
+            83,
+            129,
+            158,
+            176,
+            183,
+            220,
+            229
+          ],
+          "model_mass": [
+            0.19675315307475558,
+            0.1899090271248571,
+            0.014190447004488987,
+            0.315785240253645,
+            0.01907112832544965,
+            0.03670393850695107,
+            0.09799633820637271,
+            0.05726286801418067,
+            0.04694702574804373,
+            0.025380833741255784
+          ],
+          "target_mass": [
+            0.1715962474535871,
+            0.11447870569103964,
+            0.0006775800721434706,
+            0.3831721063601161,
+            0.05014419755056015,
+            0.09017114115441083,
+            0.021256922628332148,
+            0.14129163088525223,
+            0.022697090683554647,
+            0.004514377521003942
+          ],
+          "model_entropy": 1.8848106801701772,
+          "target_entropy": 1.7587747813064867,
+          "kl_target_model": 0.19099131708792497
+        },
+        "target_path_velocity_mutual_information": 7.865664803929917e-05,
+        "model_path_velocity_mutual_information": 8.706917392853342e-05
+      },
+      "geometry": {
+        "exact_unique_trajectories": 200,
+        "within_0.001m": {
+          "mean_neighbors_including_self": 1.0,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0
+        },
+        "within_0.01m": {
+          "mean_neighbors_including_self": 3.0,
+          "oracle_neighbors_including_self": 7,
+          "fraction_pairs_excluding_diagonal": 0.010050251256281407
+        },
+        "within_0.025m": {
+          "mean_neighbors_including_self": 10.06,
+          "oracle_neighbors_including_self": 11,
+          "fraction_pairs_excluding_diagonal": 0.045527638190954775
+        },
+        "within_0.05m": {
+          "mean_neighbors_including_self": 16.43,
+          "oracle_neighbors_including_self": 16,
+          "fraction_pairs_excluding_diagonal": 0.07753768844221105
+        },
+        "within_0.1m": {
+          "mean_neighbors_including_self": 20.0,
+          "oracle_neighbors_including_self": 20,
+          "fraction_pairs_excluding_diagonal": 0.09547738693467336
+        }
+      },
+      "coarse": [
+        {
+          "path": {
+            "target_entropy": 5.870159253750291,
+            "model_entropy": 6.096923508037699,
+            "fine_ce": 5.974574532962517,
+            "fine_kl_q_p": 0.10441527921222615,
+            "uniform_ce": 6.931471805599453,
+            "ce_minus_uniform": -0.9568972726369358,
+            "target_effective_count": 354.30540023883657,
+            "model_effective_count": 444.4882000523492,
+            "score_cost_spearman": 0.9607160499070165,
+            "selected_cost": 0.010864965617656708,
+            "oracle_cost": 0.0030223987996578217,
+            "top1_regret": 0.007842566817998886,
+            "expected_cost_model": 0.11531258586026293,
+            "expected_cost_target": 0.06142196048686373,
+            "expected_cost_uniform": 1.8345084190368652,
+            "selected_probability": 0.004609730680485216,
+            "target_probability_at_selected": 0.0046793816443480305,
+            "cost_spread": 15.228123664855957,
+            "logit_spread": 7.9539618492126465,
+            "logit_std": 2.3940818309783936,
+            "within_0.01m": {
+              "candidate_count": 25,
+              "model_mass": 0.08273205008321828,
+              "target_mass": 0.12000104811145394,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 62,
+              "model_mass": 0.19551791291015985,
+              "target_mass": 0.2812782647902051,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 145,
+              "model_mass": 0.43844361620860806,
+              "target_mass": 0.5801344536185601,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 245,
+              "model_mass": 0.7059381682572774,
+              "target_mass": 0.8262573054817102,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.9911808497515897,
+            "model_entropy": 1.913645301145665,
+            "fine_ce": 2.3245023542558405,
+            "fine_kl_q_p": 0.3333215045042508,
+            "uniform_ce": 5.545177444479562,
+            "ce_minus_uniform": -3.220675090223722,
+            "target_effective_count": 7.3241774109563185,
+            "model_effective_count": 6.77775076370083,
+            "score_cost_spearman": 0.9304896715495535,
+            "selected_cost": 0.26786288619041443,
+            "oracle_cost": 0.26786288619041443,
+            "top1_regret": 0.0,
+            "expected_cost_model": 0.3899744169756427,
+            "expected_cost_target": 0.3650139549006782,
+            "expected_cost_uniform": 5.946361541748047,
+            "selected_probability": 0.3690806028794767,
+            "target_probability_at_selected": 0.3607138974701474,
+            "cost_spread": 16.168582916259766,
+            "logit_spread": 14.234664916992188,
+            "logit_std": 2.8883440494537354,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.3690806028794767,
+              "target_mass": 0.3607138974701474,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.3690806028794767,
+              "target_mass": 0.3607138974701474,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.3690806028794767,
+              "target_mass": 0.3607138974701474,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 3,
+              "model_mass": 0.5871620395288457,
+              "target_mass": 0.656859403343264,
+              "selected_hit": true
+            }
+          }
+        },
+        {
+          "path": {
+            "target_entropy": 4.8157421792713695,
+            "model_entropy": 4.848349566965094,
+            "fine_ce": 4.846948725872745,
+            "fine_kl_q_p": 0.031206546601375784,
+            "uniform_ce": 4.852030263919617,
+            "ce_minus_uniform": -0.005081538046871614,
+            "target_effective_count": 123.43839173743721,
+            "model_effective_count": 127.5297367689509,
+            "score_cost_spearman": 0.40346319355429405,
+            "selected_cost": 0.039903223514556885,
+            "oracle_cost": 0.0034982834476977587,
+            "top1_regret": 0.036404941231012344,
+            "expected_cost_model": 0.0410039081458523,
+            "expected_cost_target": 0.034369498561741554,
+            "expected_cost_uniform": 0.042011797428131104,
+            "selected_probability": 0.008891199472960765,
+            "target_probability_at_selected": 0.007665086905180649,
+            "cost_spread": 0.14609894156455994,
+            "logit_spread": 0.5782567262649536,
+            "logit_std": 0.09083772450685501,
+            "within_0.01m": {
+              "candidate_count": 20,
+              "model_mass": 0.16379346657016206,
+              "target_mass": 0.2107639735612639,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 43,
+              "model_mass": 0.3449594109306281,
+              "target_mass": 0.42971872741626177,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 86,
+              "model_mass": 0.6871800211283771,
+              "target_mass": 0.7745397628130678,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 123,
+              "model_mass": 0.964612155210837,
+              "target_mass": 0.9834177966628321,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.9911808378787728,
+            "model_entropy": 1.999361455319101,
+            "fine_ce": 2.255365314991201,
+            "fine_kl_q_p": 0.2641844771124282,
+            "uniform_ce": 4.1588830833596715,
+            "ce_minus_uniform": -1.9035177683684705,
+            "target_effective_count": 7.324177323997701,
+            "model_effective_count": 7.384339362545545,
+            "score_cost_spearman": 0.8808608058608057,
+            "selected_cost": 0.26786288619041443,
+            "oracle_cost": 0.26786288619041443,
+            "top1_regret": 0.0,
+            "expected_cost_model": 0.3962855241080681,
+            "expected_cost_target": 0.3650139537678041,
+            "expected_cost_uniform": 1.4107348918914795,
+            "selected_probability": 0.3441828300999089,
+            "target_probability_at_selected": 0.36071389766640366,
+            "cost_spread": 2.5373730659484863,
+            "logit_spread": 10.727838516235352,
+            "logit_std": 2.9449303150177,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.3441828300999089,
+              "target_mass": 0.36071389766640366,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.3441828300999089,
+              "target_mass": 0.36071389766640366,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.3441828300999089,
+              "target_mass": 0.36071389766640366,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 3,
+              "model_mass": 0.5717772681883312,
+              "target_mass": 0.6568594037006462,
+              "selected_hit": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "target_entropy": 4.577891048785636,
+      "model_entropy": 5.206316395504331,
+      "fine_ce": 5.137546614046624,
+      "fine_kl_q_p": 0.5596555652609876,
+      "uniform_ce": 5.298317366548036,
+      "ce_minus_uniform": -0.1607707525014126,
+      "target_effective_count": 97.30895781078463,
+      "model_effective_count": 182.42085277031117,
+      "score_cost_spearman": 0.4603360084002101,
+      "selected_cost": 0.3377886414527893,
+      "oracle_cost": 0.14511239528656006,
+      "top1_regret": 0.19267624616622925,
+      "expected_cost_model": 0.36288508216791265,
+      "expected_cost_target": 0.21982836275622142,
+      "expected_cost_uniform": 0.4113004207611084,
+      "selected_probability": 0.008252250536800938,
+      "target_probability_at_selected": 0.0031590187057923343,
+      "cost_spread": 0.6094158887863159,
+      "logit_spread": 1.6870925426483154,
+      "logit_std": 0.49822819232940674,
+      "within_0.01m": {
+        "candidate_count": 14,
+        "model_mass": 0.09369945647694353,
+        "target_mass": 0.2921795241564916,
+        "selected_hit": false
+      },
+      "within_0.02m": {
+        "candidate_count": 19,
+        "model_mass": 0.1265551337501483,
+        "target_mass": 0.3862695184482254,
+        "selected_hit": false
+      },
+      "within_0.05m": {
+        "candidate_count": 34,
+        "model_mass": 0.22116827647765064,
+        "target_mass": 0.6226889906458806,
+        "selected_hit": false
+      },
+      "within_0.1m": {
+        "candidate_count": 40,
+        "model_mass": 0.25862363108059566,
+        "target_mass": 0.6967858731316959,
+        "selected_hit": false
+      },
+      "row": 36480,
+      "scenario": "20260209-153550",
+      "session": "session_040_20260209-153550",
+      "selected_candidate_id": 184846,
+      "oracle_candidate_id": 31437,
+      "selected_path": 722,
+      "selected_velocity": 14,
+      "oracle_given_selected_path": 0.14638903737068176,
+      "oracle_given_selected_velocity": 0.33776038885116577,
+      "global_path_at_gt_progress_min": 0.009314659982919693,
+      "global_velocity_progress_min": 0.14396971464157104,
+      "selected_path_at_gt_progress_cost": 0.01832651160657406,
+      "selected_velocity_progress_cost": 0.3385387063026428,
+      "selected_weighted_abs_xy": [
+        0.33540578683217365,
+        0.03678411038385497
+      ],
+      "oracle_weighted_abs_xy": [
+        0.14372744825151232,
+        0.01815557314289941
+      ],
+      "marginals": {
+        "path": {
+          "ids": [
+            122,
+            124,
+            223,
+            280,
+            307,
+            309,
+            388,
+            446,
+            454,
+            500,
+            539,
+            625,
+            640,
+            656,
+            722,
+            758,
+            853,
+            904,
+            911,
+            1010
+          ],
+          "model_mass": [
+            0.05277201305284795,
+            0.053676610622553224,
+            0.045236490085743944,
+            0.04902217221804115,
+            0.05119798339009443,
+            0.04558189365555444,
+            0.05188611544389044,
+            0.05085219930609478,
+            0.043759783465887284,
+            0.04787997628968311,
+            0.05357219407278244,
+            0.048483047671526266,
+            0.049202339626888456,
+            0.04899989173946395,
+            0.05373421394005095,
+            0.05224066096157781,
+            0.04743244332540608,
+            0.05304755522207727,
+            0.053322452368336826,
+            0.04809996354149928
+          ],
+          "target_mass": [
+            0.05951455168971729,
+            0.05965262417650778,
+            0.046554521663116105,
+            0.043342563886579956,
+            0.055968689757468625,
+            0.04206639629671194,
+            0.037911354559324865,
+            0.05170228712577171,
+            0.03771310743242223,
+            0.036838192024826154,
+            0.057970657927891106,
+            0.052587888207764714,
+            0.04522366661411495,
+            0.04818927502017842,
+            0.059081288549248843,
+            0.05730911076624808,
+            0.044978988244672564,
+            0.05946040905362695,
+            0.05566027730774176,
+            0.0482741496960661
+          ],
+          "model_entropy": 2.9939179652123515,
+          "target_entropy": 2.9835532681062285,
+          "kl_target_model": 0.006859932252134785
+        },
+        "velocity": {
+          "ids": [
+            14,
+            35,
+            54,
+            55,
+            72,
+            169,
+            171,
+            182,
+            205,
+            234
+          ],
+          "model_mass": [
+            0.1540705675723815,
+            0.035340525774816556,
+            0.04628544349422423,
+            0.1176876994491623,
+            0.07178135447237469,
+            0.13571810870810663,
+            0.1317802899996809,
+            0.0597095849872692,
+            0.12290552237248902,
+            0.12472090316949506
+          ],
+          "target_mass": [
+            0.059507509828130155,
+            0.07412415405639998,
+            0.0010618354205600004,
+            0.043713904043584724,
+            0.002491845548063903,
+            0.3393831726657314,
+            0.028467265192600892,
+            0.004383676059786609,
+            0.3574027004659645,
+            0.08946393671917797
+          ],
+          "model_entropy": 2.213109708616917,
+          "target_entropy": 1.5953706345634178,
+          "kl_target_model": 0.5503945874044318
+        },
+        "target_path_velocity_mutual_information": 0.0010328538840100876,
+        "model_path_velocity_mutual_information": 0.0007112783249372256
+      },
+      "geometry": {
+        "exact_unique_trajectories": 200,
+        "within_0.001m": {
+          "mean_neighbors_including_self": 1.0,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0
+        },
+        "within_0.01m": {
+          "mean_neighbors_including_self": 1.51,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0025628140703517588
+        },
+        "within_0.025m": {
+          "mean_neighbors_including_self": 4.83,
+          "oracle_neighbors_including_self": 5,
+          "fraction_pairs_excluding_diagonal": 0.019246231155778896
+        },
+        "within_0.05m": {
+          "mean_neighbors_including_self": 10.25,
+          "oracle_neighbors_including_self": 8,
+          "fraction_pairs_excluding_diagonal": 0.04648241206030151
+        },
+        "within_0.1m": {
+          "mean_neighbors_including_self": 19.68,
+          "oracle_neighbors_including_self": 16,
+          "fraction_pairs_excluding_diagonal": 0.09386934673366834
+        }
+      },
+      "coarse": [
+        {
+          "path": {
+            "target_entropy": 5.163356529507215,
+            "model_entropy": 6.233405201284283,
+            "fine_ce": 5.723314602464439,
+            "fine_kl_q_p": 0.5599580729572233,
+            "uniform_ce": 6.931471805599453,
+            "ce_minus_uniform": -1.2081572031350145,
+            "target_effective_count": 174.75002593173033,
+            "model_effective_count": 509.4874402774639,
+            "score_cost_spearman": 0.8814093233674271,
+            "selected_cost": 0.01849505677819252,
+            "oracle_cost": 0.009314659982919693,
+            "top1_regret": 0.009180396795272827,
+            "expected_cost_model": 0.3383180102695209,
+            "expected_cost_target": 0.11924103143673889,
+            "expected_cost_uniform": 0.9617499709129333,
+            "selected_probability": 0.008878820115452029,
+            "target_probability_at_selected": 0.015671730685547256,
+            "cost_spread": 7.866414546966553,
+            "logit_spread": 5.944427013397217,
+            "logit_std": 1.306926965713501,
+            "within_0.01m": {
+              "candidate_count": 9,
+              "model_mass": 0.04916208010506424,
+              "target_mass": 0.14611815276969858,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 13,
+              "model_mass": 0.06800045553241559,
+              "target_mass": 0.2063860344940943,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 30,
+              "model_mass": 0.15562380296167858,
+              "target_mass": 0.4156985118195093,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 62,
+              "model_mass": 0.2984312101650231,
+              "target_mass": 0.6738323614645676,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 2.1003899961347896,
+            "model_entropy": 2.7799551291179396,
+            "fine_ce": 2.8073364532103318,
+            "fine_kl_q_p": 0.7069464570755422,
+            "uniform_ce": 5.545177444479562,
+            "ce_minus_uniform": -2.7378409912692305,
+            "target_effective_count": 8.16935530837524,
+            "model_effective_count": 16.1182976895664,
+            "score_cost_spearman": 0.9759870679789423,
+            "selected_cost": 0.3385387063026428,
+            "oracle_cost": 0.14396971464157104,
+            "top1_regret": 0.19456899166107178,
+            "expected_cost_model": 0.41851127058811666,
+            "expected_cost_target": 0.23407600940359688,
+            "expected_cost_uniform": 6.727308750152588,
+            "selected_probability": 0.1373878350121526,
+            "target_probability_at_selected": 0.043066193417268,
+            "cost_spread": 20.911222457885742,
+            "logit_spread": 11.539875030517578,
+            "logit_std": 2.9187827110290527,
+            "within_0.01m": {
+              "candidate_count": 2,
+              "model_mass": 0.18757545806262865,
+              "target_mass": 0.5906268769734355,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 2,
+              "model_mass": 0.18757545806262865,
+              "target_mass": 0.5906268769734355,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 2,
+              "model_mass": 0.18757545806262865,
+              "target_mass": 0.5906268769734355,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 2,
+              "model_mass": 0.18757545806262865,
+              "target_mass": 0.5906268769734355,
+              "selected_hit": false
+            }
+          }
+        },
+        {
+          "path": {
+            "target_entropy": 4.418614652754313,
+            "model_entropy": 4.783472179797694,
+            "fine_ce": 4.69293286026934,
+            "fine_kl_q_p": 0.27431820751502745,
+            "uniform_ce": 4.852030263919617,
+            "ce_minus_uniform": -0.1590974036502768,
+            "target_effective_count": 82.98124785014151,
+            "model_effective_count": 119.51862055750456,
+            "score_cost_spearman": 0.7211305163889397,
+            "selected_cost": 0.12443767488002777,
+            "oracle_cost": 0.009314659982919693,
+            "top1_regret": 0.11512301862239838,
+            "expected_cost_model": 0.1496058735218445,
+            "expected_cost_target": 0.07322512455192218,
+            "expected_cost_uniform": 0.18375128507614136,
+            "selected_probability": 0.013645638542179787,
+            "target_probability_at_selected": 0.007221156520320976,
+            "cost_spread": 0.46916162967681885,
+            "logit_spread": 2.5474400520324707,
+            "logit_std": 0.4319254457950592,
+            "within_0.01m": {
+              "candidate_count": 9,
+              "model_mass": 0.09953154647814924,
+              "target_mass": 0.1942213266657925,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 13,
+              "model_mass": 0.13871488503390672,
+              "target_mass": 0.2743298396874313,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 29,
+              "model_mass": 0.2990065570923367,
+              "target_mass": 0.5381274358625715,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 54,
+              "model_mass": 0.5325374142540918,
+              "target_mass": 0.8120239237117763,
+              "selected_hit": false
+            }
+          },
+          "velocity": {
+            "target_entropy": 2.1003893161991174,
+            "model_entropy": 2.668335436288268,
+            "fine_ce": 2.779515250872847,
+            "fine_kl_q_p": 0.6791259346737295,
+            "uniform_ce": 4.1588830833596715,
+            "ce_minus_uniform": -1.3793678324868246,
+            "target_effective_count": 8.169349753741034,
+            "model_effective_count": 14.415952937924494,
+            "score_cost_spearman": 0.8535714285714284,
+            "selected_cost": 0.3385387063026428,
+            "oracle_cost": 0.14396971464157104,
+            "top1_regret": 0.19456899166107178,
+            "expected_cost_model": 0.39931768483565966,
+            "expected_cost_target": 0.23407594557411224,
+            "expected_cost_uniform": 1.2285652160644531,
+            "selected_probability": 0.16766096991638121,
+            "target_probability_at_selected": 0.043066195210579916,
+            "cost_spread": 2.8706390857696533,
+            "logit_spread": 9.725872039794922,
+            "logit_std": 2.861760139465332,
+            "within_0.01m": {
+              "candidate_count": 2,
+              "model_mass": 0.2074993069650178,
+              "target_mass": 0.5906269015676273,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 2,
+              "model_mass": 0.2074993069650178,
+              "target_mass": 0.5906269015676273,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 2,
+              "model_mass": 0.2074993069650178,
+              "target_mass": 0.5906269015676273,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 2,
+              "model_mass": 0.2074993069650178,
+              "target_mass": 0.5906269015676273,
+              "selected_hit": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "target_entropy": 3.71450348291303,
+      "model_entropy": 4.968791142459006,
+      "fine_ce": 6.26058769592818,
+      "fine_kl_q_p": 2.54608421301515,
+      "uniform_ce": 5.298317366548036,
+      "ce_minus_uniform": 0.9622703293801438,
+      "target_effective_count": 41.03820585457164,
+      "model_effective_count": 143.85288457550075,
+      "score_cost_spearman": -0.41692942323558096,
+      "selected_cost": 1.6155860424041748,
+      "oracle_cost": 0.1338452845811844,
+      "top1_regret": 1.4817407131195068,
+      "expected_cost_model": 1.10916735575832,
+      "expected_cost_target": 0.2435998626472456,
+      "expected_cost_uniform": 0.8808596134185791,
+      "selected_probability": 0.017188702221459722,
+      "target_probability_at_selected": 2.6813367660528658e-08,
+      "cost_spread": 1.5146211385726929,
+      "logit_spread": 3.2208425998687744,
+      "logit_std": 0.8696529865264893,
+      "within_0.01m": {
+        "candidate_count": 1,
+        "model_mass": 0.002124442541065217,
+        "target_mass": 0.07302468807115933,
+        "selected_hit": false
+      },
+      "within_0.02m": {
+        "candidate_count": 2,
+        "model_mass": 0.004030294295543292,
+        "target_mass": 0.1340603355538002,
+        "selected_hit": false
+      },
+      "within_0.05m": {
+        "candidate_count": 4,
+        "model_mass": 0.007963250089932674,
+        "target_mass": 0.24063184731635398,
+        "selected_hit": false
+      },
+      "within_0.1m": {
+        "candidate_count": 12,
+        "model_mass": 0.022180443490333802,
+        "target_mass": 0.5406766976050453,
+        "selected_hit": false
+      },
+      "row": 41655,
+      "scenario": "20260210-100644",
+      "session": "session_046_20260210-100504",
+      "selected_candidate_id": 115151,
+      "oracle_candidate_id": 45813,
+      "selected_path": 449,
+      "selected_velocity": 207,
+      "oracle_given_selected_path": 0.3494904637336731,
+      "oracle_given_selected_velocity": 1.6069526672363281,
+      "global_path_at_gt_progress_min": 0.03340872749686241,
+      "global_velocity_progress_min": 0.10466941446065903,
+      "selected_path_at_gt_progress_cost": 0.32853972911834717,
+      "selected_velocity_progress_cost": 1.6195805072784424,
+      "selected_weighted_abs_xy": [
+        1.5768620438045926,
+        0.3053579359418816
+      ],
+      "oracle_weighted_abs_xy": [
+        0.07506875859366523,
+        0.1094921739358041
+      ],
+      "marginals": {
+        "path": {
+          "ids": [
+            126,
+            178,
+            216,
+            235,
+            279,
+            290,
+            303,
+            338,
+            364,
+            399,
+            449,
+            452,
+            496,
+            525,
+            562,
+            593,
+            595,
+            615,
+            754,
+            1019
+          ],
+          "model_mass": [
+            0.05482327023290843,
+            0.046467430901895236,
+            0.045583461332364066,
+            0.045333842075116704,
+            0.050117904800056304,
+            0.04740869055218895,
+            0.049531430737656874,
+            0.0560707576622152,
+            0.0488661851257526,
+            0.05128611571136702,
+            0.0529112125274967,
+            0.05074140921832036,
+            0.051512889916496045,
+            0.05045434985952749,
+            0.048508287928976705,
+            0.04553881548554807,
+            0.04759977509811883,
+            0.05482471698744701,
+            0.054705038858253154,
+            0.04771441498829435
+          ],
+          "target_mass": [
+            0.009378350082764867,
+            0.17418715865425916,
+            0.005579913900800324,
+            0.015386140847835818,
+            0.0015697936471018345,
+            0.1108359865721201,
+            0.0755727434886128,
+            0.01190052720273978,
+            0.04563097970222311,
+            0.0047939709606842715,
+            0.020095305369832582,
+            0.025053473617977634,
+            0.051725660109301734,
+            0.05985854700942363,
+            0.04089057623457343,
+            0.13785546413847288,
+            0.11524030296141054,
+            0.015878204268799056,
+            0.023302427077367006,
+            0.05526447415369944
+          ],
+          "model_entropy": 2.9936055020901033,
+          "target_entropy": 2.5686381235115463,
+          "kl_target_model": 0.4624138029262586
+        },
+        "velocity": {
+          "ids": [
+            20,
+            25,
+            32,
+            69,
+            84,
+            120,
+            143,
+            179,
+            207,
+            245
+          ],
+          "model_mass": [
+            0.03247627766132414,
+            0.02971389588419633,
+            0.12158952789956295,
+            0.01937042488014715,
+            0.07970056472128254,
+            0.16821725255170913,
+            0.039725507162232124,
+            0.1563003179996412,
+            0.30328895947439133,
+            0.049617271765513206
+          ],
+          "target_mass": [
+            0.003995227107455364,
+            0.24582568416687686,
+            0.011217651947368746,
+            8.590609843139301e-07,
+            0.0006928679437188882,
+            0.00041370152818981474,
+            0.3167752825888187,
+            6.56817580207779e-06,
+            5.326376490269258e-07,
+            0.4210716248431362
+          ],
+          "model_entropy": 1.9789300194562478,
+          "target_entropy": 1.1540817990931975,
+          "kl_target_model": 2.0366064367663856
+        },
+        "target_path_velocity_mutual_information": 0.008216439691713706,
+        "model_path_velocity_mutual_information": 0.003744379087345706
+      },
+      "geometry": {
+        "exact_unique_trajectories": 200,
+        "within_0.001m": {
+          "mean_neighbors_including_self": 1.0,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0
+        },
+        "within_0.01m": {
+          "mean_neighbors_including_self": 1.09,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0004522613065326633
+        },
+        "within_0.025m": {
+          "mean_neighbors_including_self": 1.87,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.004371859296482412
+        },
+        "within_0.05m": {
+          "mean_neighbors_including_self": 3.26,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.01135678391959799
+        },
+        "within_0.1m": {
+          "mean_neighbors_including_self": 5.78,
+          "oracle_neighbors_including_self": 4,
+          "fraction_pairs_excluding_diagonal": 0.024020100502512562
+        }
+      },
+      "coarse": [
+        {
+          "path": {
+            "target_entropy": 5.8533552153541555,
+            "model_entropy": 6.201405356010455,
+            "fine_ce": 7.384709525919816,
+            "fine_kl_q_p": 1.5313543105656606,
+            "uniform_ce": 6.931471805599453,
+            "ce_minus_uniform": 0.453237720320363,
+            "target_effective_count": 348.40138328167745,
+            "model_effective_count": 493.4420157437943,
+            "score_cost_spearman": -0.5211083233495458,
+            "selected_cost": 0.23043720424175262,
+            "oracle_cost": 0.03340872749686241,
+            "top1_regret": 0.19702847301959991,
+            "expected_cost_model": 0.6761170934096281,
+            "expected_cost_target": 0.26805919574230097,
+            "expected_cost_uniform": 0.6679049730300903,
+            "selected_probability": 0.015992976121718263,
+            "target_probability_at_selected": 0.004181290699394539,
+            "cost_spread": 4.514156341552734,
+            "logit_spread": 5.198212146759033,
+            "logit_std": 0.9802160263061523,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.005523799754393287,
+              "target_mass": 0.02999122221701481,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.005523799754393287,
+              "target_mass": 0.02999122221701481,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 2,
+              "model_mass": 0.014280798883380436,
+              "target_mass": 0.050418230802099895,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 6,
+              "model_mass": 0.03777108511610642,
+              "target_mass": 0.09950586900304584,
+              "selected_hit": false
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.5099578656669217,
+            "model_entropy": 2.4222591217082856,
+            "fine_ce": 4.36941038962823,
+            "fine_kl_q_p": 2.8594525239613087,
+            "uniform_ce": 5.545177444479562,
+            "ce_minus_uniform": -1.175767054851332,
+            "target_effective_count": 4.52654006754931,
+            "model_effective_count": 11.271293798768415,
+            "score_cost_spearman": 0.9813322556649117,
+            "selected_cost": 1.6195805072784424,
+            "oracle_cost": 0.10466941446065903,
+            "top1_regret": 1.5149110555648804,
+            "expected_cost_model": 1.171251950762313,
+            "expected_cost_target": 0.16218382940001513,
+            "expected_cost_uniform": 8.014556884765625,
+            "selected_probability": 0.3145995732082903,
+            "target_probability_at_selected": 1.034761542556198e-07,
+            "cost_spread": 23.335735321044922,
+            "logit_spread": 10.888355255126953,
+            "logit_std": 2.3914201259613037,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.019061185341287125,
+              "target_mass": 0.3926590047016826,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.019061185341287125,
+              "target_mass": 0.3926590047016826,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 2,
+              "model_mass": 0.03234955703945602,
+              "target_mass": 0.6708671119720035,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 3,
+              "model_mass": 0.040480539375066675,
+              "target_mass": 0.8910345651524498,
+              "selected_hit": false
+            }
+          }
+        },
+        {
+          "path": {
+            "target_entropy": 3.491517971542196,
+            "model_entropy": 4.4997628338592595,
+            "fine_ce": 4.2637901180737545,
+            "fine_kl_q_p": 0.7722721465315585,
+            "uniform_ce": 4.852030263919617,
+            "ce_minus_uniform": -0.5882401458458624,
+            "target_effective_count": 32.83575363426084,
+            "model_effective_count": 89.99578481632243,
+            "score_cost_spearman": 0.7311962094854422,
+            "selected_cost": 0.20322377979755402,
+            "oracle_cost": 0.03340872749686241,
+            "top1_regret": 0.1698150485754013,
+            "expected_cost_model": 0.4276880583992692,
+            "expected_cost_target": 0.1678106356321444,
+            "expected_cost_uniform": 0.6697425842285156,
+            "selected_probability": 0.02670681575624599,
+            "target_probability_at_selected": 0.021372517458509755,
+            "cost_spread": 1.661020040512085,
+            "logit_spread": 3.577779769897461,
+            "logit_std": 0.9170432090759277,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.015384794044882891,
+              "target_mass": 0.11677586208347797,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.015384794044882891,
+              "target_mass": 0.11677586208347797,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 2,
+              "model_mass": 0.04016700711859049,
+              "target_mass": 0.19631185164900578,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 6,
+              "model_mass": 0.11783922560312274,
+              "target_mass": 0.3874428174722417,
+              "selected_hit": false
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.5099576887547763,
+            "model_entropy": 2.5160317143378816,
+            "fine_ce": 3.816978731601684,
+            "fine_kl_q_p": 2.3070210428469076,
+            "uniform_ce": 4.1588830833596715,
+            "ce_minus_uniform": -0.3419043517579876,
+            "target_effective_count": 4.526539266749466,
+            "model_effective_count": 12.379374170687004,
+            "score_cost_spearman": 0.7037545787545787,
+            "selected_cost": 1.6195805072784424,
+            "oracle_cost": 0.10466941446065903,
+            "top1_regret": 1.5149110555648804,
+            "expected_cost_model": 1.1201670595408184,
+            "expected_cost_target": 0.16218381266717713,
+            "expected_cost_uniform": 1.696060061454773,
+            "selected_probability": 0.3150683693391103,
+            "target_probability_at_selected": 1.0347615524731094e-07,
+            "cost_spread": 4.6945085525512695,
+            "logit_spread": 8.580484390258789,
+            "logit_std": 2.021584987640381,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.033083650486174024,
+              "target_mass": 0.39265900846483426,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.033083650486174024,
+              "target_mass": 0.39265900846483426,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 2,
+              "model_mass": 0.05471702571485195,
+              "target_mass": 0.6708671184014365,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 3,
+              "model_mass": 0.07202160674938882,
+              "target_mass": 0.891034573691916,
+              "selected_hit": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "target_entropy": 4.488483312693223,
+      "model_entropy": 4.815898526672738,
+      "fine_ce": 4.717959025866408,
+      "fine_kl_q_p": 0.22947571317318527,
+      "uniform_ce": 5.298317366548036,
+      "ce_minus_uniform": -0.5803583406816282,
+      "target_effective_count": 88.98637896596054,
+      "model_effective_count": 123.4576925179886,
+      "score_cost_spearman": 0.7300427510687768,
+      "selected_cost": 0.14613881707191467,
+      "oracle_cost": 0.056928850710392,
+      "top1_regret": 0.08920996636152267,
+      "expected_cost_model": 0.1985884772692279,
+      "expected_cost_target": 0.1358509946044401,
+      "expected_cost_uniform": 0.36857008934020996,
+      "selected_probability": 0.01718231887062593,
+      "target_probability_at_selected": 0.01013904428363644,
+      "cost_spread": 0.6012012958526611,
+      "logit_spread": 4.202479362487793,
+      "logit_std": 1.3248060941696167,
+      "within_0.01m": {
+        "candidate_count": 10,
+        "model_mass": 0.08833813360424249,
+        "target_mass": 0.23355667801443067,
+        "selected_hit": false
+      },
+      "within_0.02m": {
+        "candidate_count": 12,
+        "model_mass": 0.10634293841456058,
+        "target_mass": 0.27691530699193817,
+        "selected_hit": false
+      },
+      "within_0.05m": {
+        "candidate_count": 15,
+        "model_mass": 0.135617738130829,
+        "target_mass": 0.3329215748732897,
+        "selected_hit": false
+      },
+      "within_0.1m": {
+        "candidate_count": 50,
+        "model_mass": 0.5658169151135487,
+        "target_mass": 0.7589535574372941,
+        "selected_hit": true
+      },
+      "row": 43265,
+      "scenario": "20260210-101214",
+      "session": "session_046_20260210-100504",
+      "selected_candidate_id": 199015,
+      "oracle_candidate_id": 123919,
+      "selected_path": 777,
+      "selected_velocity": 103,
+      "oracle_given_selected_path": 0.0926666185259819,
+      "oracle_given_selected_velocity": 0.12668690085411072,
+      "global_path_at_gt_progress_min": 0.010253505781292915,
+      "global_velocity_progress_min": 0.0543227456510067,
+      "selected_path_at_gt_progress_cost": 0.06805858016014099,
+      "selected_velocity_progress_cost": 0.12518204748630524,
+      "selected_weighted_abs_xy": [
+        0.125713136461046,
+        0.06766930595040321
+      ],
+      "oracle_weighted_abs_xy": [
+        0.053878227869669594,
+        0.017153614925013647
+      ],
+      "marginals": {
+        "path": {
+          "ids": [
+            0,
+            99,
+            111,
+            134,
+            138,
+            414,
+            484,
+            516,
+            638,
+            684,
+            701,
+            753,
+            777,
+            804,
+            833,
+            905,
+            938,
+            950,
+            968,
+            998
+          ],
+          "model_mass": [
+            0.04975971145638728,
+            0.04850359661107684,
+            0.05266803277897007,
+            0.0501942019018311,
+            0.05660821619505686,
+            0.0460593946253928,
+            0.04916073690893275,
+            0.05021850776562254,
+            0.047870624084588906,
+            0.04699437018890094,
+            0.05031975285126532,
+            0.04730776096156191,
+            0.06046671632415972,
+            0.04957331330895604,
+            0.04801096096585231,
+            0.045891607041105474,
+            0.045086025205876665,
+            0.05863247973180186,
+            0.051484512678820434,
+            0.0451894784138399
+          ],
+          "target_mass": [
+            0.05635139801846136,
+            0.0553505799392408,
+            0.05592781946640466,
+            0.050533833050384,
+            0.0492762018063225,
+            0.05646903856991416,
+            0.05959902619576851,
+            0.05374818459529053,
+            0.055436404871366904,
+            0.03324478675188494,
+            0.05629747948276619,
+            0.03388094942199206,
+            0.045557103771832815,
+            0.05868355393659286,
+            0.05854813744612488,
+            0.038656443435338084,
+            0.03487334998593766,
+            0.05704207258646693,
+            0.05452050039298037,
+            0.03600313627492962
+          ],
+          "model_entropy": 2.992381756655737,
+          "target_entropy": 2.9781150344175185,
+          "kl_target_model": 0.015855347710654527
+        },
+        "velocity": {
+          "ids": [
+            15,
+            57,
+            103,
+            127,
+            134,
+            135,
+            162,
+            170,
+            174,
+            200
+          ],
+          "model_mass": [
+            0.17685414452723908,
+            0.22100137303306158,
+            0.28319377890410635,
+            0.017803715841408867,
+            0.02408196103122486,
+            0.046471974142749985,
+            0.16348172960481352,
+            0.005655215266228549,
+            0.05245353405258233,
+            0.009002573596584669
+          ],
+          "target_mass": [
+            0.396572261863387,
+            0.2270594658721608,
+            0.21596268625776885,
+            0.0014482683875425176,
+            0.0013079917162152192,
+            0.06682240479036892,
+            0.07451694222500167,
+            0.004876005164091853,
+            0.00459886883691457,
+            0.006835104886548416
+          ],
+          "model_entropy": 1.8237354964949186,
+          "target_entropy": 1.5116495070235765,
+          "kl_target_model": 0.21233355189310876
+        },
+        "target_path_velocity_mutual_information": 0.0012812287478718432,
+        "model_path_velocity_mutual_information": 0.0002187264779180964
+      },
+      "geometry": {
+        "exact_unique_trajectories": 200,
+        "within_0.001m": {
+          "mean_neighbors_including_self": 1.0,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0
+        },
+        "within_0.01m": {
+          "mean_neighbors_including_self": 1.27,
+          "oracle_neighbors_including_self": 2,
+          "fraction_pairs_excluding_diagonal": 0.0013567839195979898
+        },
+        "within_0.025m": {
+          "mean_neighbors_including_self": 3.08,
+          "oracle_neighbors_including_self": 3,
+          "fraction_pairs_excluding_diagonal": 0.010452261306532663
+        },
+        "within_0.05m": {
+          "mean_neighbors_including_self": 8.55,
+          "oracle_neighbors_including_self": 11,
+          "fraction_pairs_excluding_diagonal": 0.037939698492462315
+        },
+        "within_0.1m": {
+          "mean_neighbors_including_self": 16.05,
+          "oracle_neighbors_including_self": 18,
+          "fraction_pairs_excluding_diagonal": 0.07562814070351759
+        }
+      },
+      "coarse": [
+        {
+          "path": {
+            "target_entropy": 4.816331627000809,
+            "model_entropy": 5.055643754877927,
+            "fine_ce": 4.989222321647528,
+            "fine_kl_q_p": 0.17289069464671858,
+            "uniform_ce": 6.931471805599453,
+            "ce_minus_uniform": -1.942249483951925,
+            "target_effective_count": 123.51117366563639,
+            "model_effective_count": 156.90550652392525,
+            "score_cost_spearman": 0.8102964849617337,
+            "selected_cost": 0.03485855460166931,
+            "oracle_cost": 0.010253505781292915,
+            "top1_regret": 0.024605048820376396,
+            "expected_cost_model": 0.14215067459588665,
+            "expected_cost_target": 0.09788546849477625,
+            "expected_cost_uniform": 6.588390350341797,
+            "selected_probability": 0.012633162625492668,
+            "target_probability_at_selected": 0.015206041118693734,
+            "cost_spread": 39.417015075683594,
+            "logit_spread": 14.399317741394043,
+            "logit_std": 4.339835166931152,
+            "within_0.01m": {
+              "candidate_count": 3,
+              "model_mass": 0.033089211803038136,
+              "target_mass": 0.055515472500615975,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 12,
+              "model_mass": 0.12220017364866513,
+              "target_mass": 0.20515616449847374,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 27,
+              "model_mass": 0.2624844853430559,
+              "target_mass": 0.40991210228620284,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 60,
+              "model_mass": 0.5244521781022697,
+              "target_mass": 0.7077986315520709,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.485872955243745,
+            "model_entropy": 1.8455187331062184,
+            "fine_ce": 1.7133816797689072,
+            "fine_kl_q_p": 0.22750872452516213,
+            "uniform_ce": 5.545177444479562,
+            "ce_minus_uniform": -3.8317957647106553,
+            "target_effective_count": 4.418821162690311,
+            "model_effective_count": 6.331383236805354,
+            "score_cost_spearman": 0.7265299553673609,
+            "selected_cost": 0.12518204748630524,
+            "oracle_cost": 0.0543227456510067,
+            "top1_regret": 0.07085929811000824,
+            "expected_cost_model": 0.18308902978102592,
+            "expected_cost_target": 0.11541980343723712,
+            "expected_cost_uniform": 13.240108489990234,
+            "selected_probability": 0.29610980992954505,
+            "target_probability_at_selected": 0.20525639054082323,
+            "cost_spread": 25.63072967529297,
+            "logit_spread": 14.563684463500977,
+            "logit_std": 2.965128183364868,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.17674561537304187,
+              "target_mass": 0.41690271682689595,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.17674561537304187,
+              "target_mass": 0.41690271682689595,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.17674561537304187,
+              "target_mass": 0.41690271682689595,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 3,
+              "model_mass": 0.709412252328868,
+              "target_mass": 0.8489062307933427,
+              "selected_hit": true
+            }
+          }
+        },
+        {
+          "path": {
+            "target_entropy": 4.600337371591502,
+            "model_entropy": 4.761143574759894,
+            "fine_ce": 4.697866061521998,
+            "fine_kl_q_p": 0.09752868993049546,
+            "uniform_ce": 4.852030263919617,
+            "ce_minus_uniform": -0.1541642023976193,
+            "target_effective_count": 99.51788448610021,
+            "model_effective_count": 116.87950996029079,
+            "score_cost_spearman": 0.8116301959348104,
+            "selected_cost": 0.02000509202480316,
+            "oracle_cost": 0.010253505781292915,
+            "top1_regret": 0.009751586243510246,
+            "expected_cost_model": 0.11092678500829105,
+            "expected_cost_target": 0.08373659135585179,
+            "expected_cost_uniform": 0.1410531997680664,
+            "selected_probability": 0.013210839443466812,
+            "target_probability_at_selected": 0.019005585329943116,
+            "cost_spread": 0.3431366980075836,
+            "logit_spread": 1.8845772743225098,
+            "logit_std": 0.4991876780986786,
+            "within_0.01m": {
+              "candidate_count": 3,
+              "model_mass": 0.03756030367606192,
+              "target_mass": 0.059809663788473286,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 12,
+              "model_mass": 0.14359612786811907,
+              "target_mass": 0.22102525062090195,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 27,
+              "model_mass": 0.30434916777250753,
+              "target_mass": 0.4416193164940106,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 60,
+              "model_mass": 0.6014649298949882,
+              "target_mass": 0.7625477416696965,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.4858729552437453,
+            "model_entropy": 1.9179448875845244,
+            "fine_ce": 1.7358401146451745,
+            "fine_kl_q_p": 0.24996715940142922,
+            "uniform_ce": 4.1588830833596715,
+            "ce_minus_uniform": -2.4230429687144968,
+            "target_effective_count": 4.418821162690312,
+            "model_effective_count": 6.806955027107624,
+            "score_cost_spearman": 0.9855311355311354,
+            "selected_cost": 0.12518204748630524,
+            "oracle_cost": 0.0543227456510067,
+            "top1_regret": 0.07085929811000824,
+            "expected_cost_model": 0.19776752198848985,
+            "expected_cost_target": 0.11541980343723715,
+            "expected_cost_uniform": 4.59464168548584,
+            "selected_probability": 0.27565878944084377,
+            "target_probability_at_selected": 0.20525639054082326,
+            "cost_spread": 19.177400588989258,
+            "logit_spread": 11.372241973876953,
+            "logit_std": 3.342237949371338,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.17386958135484062,
+              "target_mass": 0.41690271682689606,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.17386958135484062,
+              "target_mass": 0.41690271682689606,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.17386958135484062,
+              "target_mass": 0.41690271682689606,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 3,
+              "model_mass": 0.6704872718287522,
+              "target_mass": 0.8489062307933429,
+              "selected_hit": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "target_entropy": 5.017503076125815,
+      "model_entropy": 5.187584898842962,
+      "fine_ce": 5.283895757084711,
+      "fine_kl_q_p": 0.2663926809588961,
+      "uniform_ce": 5.298317366548036,
+      "ce_minus_uniform": -0.014421609463325602,
+      "target_effective_count": 151.03371289882656,
+      "model_effective_count": 179.0356411952336,
+      "score_cost_spearman": 0.0982839570989275,
+      "selected_cost": 0.3361084461212158,
+      "oracle_cost": 0.14938506484031677,
+      "top1_regret": 0.18672338128089905,
+      "expected_cost_model": 0.28597971836419295,
+      "expected_cost_target": 0.2362958873696702,
+      "expected_cost_uniform": 0.3020569980144501,
+      "selected_probability": 0.009911525632030831,
+      "target_probability_at_selected": 0.0024403137456969017,
+      "cost_spread": 0.4342910349369049,
+      "logit_spread": 1.6283996105194092,
+      "logit_std": 0.4942425489425659,
+      "within_0.01m": {
+        "candidate_count": 16,
+        "model_mass": 0.1311814339068414,
+        "target_mass": 0.2457577925963278,
+        "selected_hit": false
+      },
+      "within_0.02m": {
+        "candidate_count": 19,
+        "model_mass": 0.1540265222417572,
+        "target_mass": 0.28699479626574154,
+        "selected_hit": false
+      },
+      "within_0.05m": {
+        "candidate_count": 20,
+        "model_mass": 0.162515342641212,
+        "target_mass": 0.299530803338075,
+        "selected_hit": false
+      },
+      "within_0.1m": {
+        "candidate_count": 47,
+        "model_mass": 0.2710364686024913,
+        "target_mass": 0.5116185781553005,
+        "selected_hit": false
+      },
+      "row": 77240,
+      "scenario": "20260213-134938",
+      "session": "session_076_20260213-134648",
+      "selected_candidate_id": 175318,
+      "oracle_candidate_id": 175260,
+      "selected_path": 684,
+      "selected_velocity": 214,
+      "oracle_given_selected_path": 0.14938506484031677,
+      "oracle_given_selected_velocity": 0.3361084461212158,
+      "global_path_at_gt_progress_min": 0.004162894561886787,
+      "global_velocity_progress_min": 0.14890065789222717,
+      "selected_path_at_gt_progress_cost": 0.007206020876765251,
+      "selected_velocity_progress_cost": 0.33598801493644714,
+      "selected_weighted_abs_xy": [
+        0.335716168085734,
+        0.014387296719683543
+      ],
+      "oracle_weighted_abs_xy": [
+        0.14862693680657282,
+        0.011109955194923613
+      ],
+      "marginals": {
+        "path": {
+          "ids": [
+            238,
+            382,
+            430,
+            448,
+            487,
+            526,
+            544,
+            665,
+            684,
+            753,
+            780,
+            788,
+            791,
+            813,
+            837,
+            841,
+            905,
+            979,
+            988,
+            998
+          ],
+          "model_mass": [
+            0.049038170333972925,
+            0.05174873312418119,
+            0.04974370636153549,
+            0.0487010083697428,
+            0.05202953430047707,
+            0.050412988274921695,
+            0.04643481497425767,
+            0.04820867252641407,
+            0.053466485594636536,
+            0.053026403571499056,
+            0.046714038734141455,
+            0.05215737957705903,
+            0.04652819459426475,
+            0.052049675111927075,
+            0.04797116909745102,
+            0.049159229532414916,
+            0.052847031013676694,
+            0.0492786613100504,
+            0.04793728579630594,
+            0.052546817801070435
+          ],
+          "target_mass": [
+            0.05093419524795048,
+            0.05047055696479832,
+            0.05017622254036169,
+            0.04619490511692977,
+            0.05192550932870805,
+            0.051337389564034885,
+            0.04643923982235299,
+            0.04875520646996422,
+            0.052072635410521505,
+            0.051667777218092105,
+            0.05069404475760615,
+            0.05154235494884493,
+            0.047088882790356244,
+            0.043138923267547674,
+            0.05144857860180443,
+            0.051457483700030324,
+            0.05156122288763587,
+            0.05108824517175425,
+            0.05099639907877993,
+            0.05101022711192619
+          ],
+          "model_entropy": 2.9947009673086114,
+          "target_entropy": 2.9945963381363656,
+          "kl_target_model": 0.0014923469088434541
+        },
+        "velocity": {
+          "ids": [
+            5,
+            38,
+            74,
+            139,
+            156,
+            164,
+            176,
+            203,
+            214,
+            229
+          ],
+          "model_mass": [
+            0.11963644597979692,
+            0.04366679048092243,
+            0.05670458030351016,
+            0.044033014910766013,
+            0.162515342641212,
+            0.13391193353744474,
+            0.08342842520883144,
+            0.09471529398883477,
+            0.18670216990525954,
+            0.07468600304342217
+          ],
+          "target_mass": [
+            0.05292101140098785,
+            0.06919620584536897,
+            0.1067844565959184,
+            0.004765388464536057,
+            0.299530803338075,
+            0.06903113402144906,
+            0.06557727280045017,
+            0.11353777680531928,
+            0.04767900754907107,
+            0.17097694317882411
+          ],
+          "model_entropy": 2.1930730711109625,
+          "target_entropy": 2.0230860972001805,
+          "kl_target_model": 0.26440614241203186
+        },
+        "target_path_velocity_mutual_information": 0.00017935921073153338,
+        "model_path_velocity_mutual_information": 0.00018913957661226277
+      },
+      "geometry": {
+        "exact_unique_trajectories": 200,
+        "within_0.001m": {
+          "mean_neighbors_including_self": 1.0,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0
+        },
+        "within_0.01m": {
+          "mean_neighbors_including_self": 2.1,
+          "oracle_neighbors_including_self": 2,
+          "fraction_pairs_excluding_diagonal": 0.005527638190954774
+        },
+        "within_0.025m": {
+          "mean_neighbors_including_self": 6.27,
+          "oracle_neighbors_including_self": 10,
+          "fraction_pairs_excluding_diagonal": 0.026482412060301507
+        },
+        "within_0.05m": {
+          "mean_neighbors_including_self": 13.85,
+          "oracle_neighbors_including_self": 16,
+          "fraction_pairs_excluding_diagonal": 0.06457286432160804
+        },
+        "within_0.1m": {
+          "mean_neighbors_including_self": 20.35,
+          "oracle_neighbors_including_self": 20,
+          "fraction_pairs_excluding_diagonal": 0.09723618090452261
+        }
+      },
+      "coarse": [
+        {
+          "path": {
+            "target_entropy": 5.964300163698252,
+            "model_entropy": 6.095442027495881,
+            "fine_ce": 6.071966171091654,
+            "fine_kl_q_p": 0.10766600739340237,
+            "uniform_ce": 6.931471805599453,
+            "ce_minus_uniform": -0.8595056345077987,
+            "target_effective_count": 389.2805000939493,
+            "model_effective_count": 443.8301869700426,
+            "score_cost_spearman": 0.9089074122916816,
+            "selected_cost": 0.052773475646972656,
+            "oracle_cost": 0.004162894561886787,
+            "top1_regret": 0.04861058294773102,
+            "expected_cost_model": 0.1190950793297428,
+            "expected_cost_target": 0.0694512133492928,
+            "expected_cost_uniform": 1.5631804466247559,
+            "selected_probability": 0.004680855782966987,
+            "target_probability_at_selected": 0.0030350639414332753,
+            "cost_spread": 13.702215194702148,
+            "logit_spread": 8.90218734741211,
+            "logit_std": 2.352505922317505,
+            "within_0.01m": {
+              "candidate_count": 15,
+              "model_mass": 0.05138893301924762,
+              "target_mass": 0.06991279649322664,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 40,
+              "model_mass": 0.13482739259448706,
+              "target_mass": 0.1754754764892396,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 142,
+              "model_mass": 0.4372150367726966,
+              "target_mass": 0.5287683042410416,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 260,
+              "model_mass": 0.7317171291370494,
+              "target_mass": 0.8078304840270821,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 2.1988714286718833,
+            "model_entropy": 2.510980553208644,
+            "fine_ce": 2.5009704637376515,
+            "fine_kl_q_p": 0.3020990350657682,
+            "uniform_ce": 5.545177444479562,
+            "ce_minus_uniform": -3.0442069807419108,
+            "target_effective_count": 9.014833873260368,
+            "model_effective_count": 12.317001616597699,
+            "score_cost_spearman": 0.9538781757839322,
+            "selected_cost": 0.33598801493644714,
+            "oracle_cost": 0.14890065789222717,
+            "top1_regret": 0.18708735704421997,
+            "expected_cost_model": 0.320270906966887,
+            "expected_cost_target": 0.2450051086656749,
+            "expected_cost_uniform": 5.9208598136901855,
+            "selected_probability": 0.19099864930799443,
+            "target_probability_at_selected": 0.04465895234185706,
+            "cost_spread": 17.144290924072266,
+            "logit_spread": 12.56555461883545,
+            "logit_std": 2.808955669403076,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.1569150260962403,
+              "target_mass": 0.2900137564948888,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.1569150260962403,
+              "target_mass": 0.2900137564948888,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.1569150260962403,
+              "target_mass": 0.2900137564948888,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 3,
+              "model_mass": 0.30222534385661937,
+              "target_mass": 0.5615131159449184,
+              "selected_hit": false
+            }
+          }
+        },
+        {
+          "path": {
+            "target_entropy": 4.8115619673780365,
+            "model_entropy": 4.839669756093686,
+            "fine_ce": 4.836517030572422,
+            "fine_kl_q_p": 0.02495506319438512,
+            "uniform_ce": 4.852030263919617,
+            "ce_minus_uniform": -0.015513233347195232,
+            "target_effective_count": 122.92347009480868,
+            "model_effective_count": 126.42759289305071,
+            "score_cost_spearman": 0.5832379600805713,
+            "selected_cost": 0.03770488500595093,
+            "oracle_cost": 0.004162894561886787,
+            "top1_regret": 0.03354199230670929,
+            "expected_cost_model": 0.044654706080082276,
+            "expected_cost_target": 0.03921282698795393,
+            "expected_cost_uniform": 0.04772433638572693,
+            "selected_probability": 0.010327753424092806,
+            "target_probability_at_selected": 0.008258745763775796,
+            "cost_spread": 0.1341688334941864,
+            "logit_spread": 0.8598389625549316,
+            "logit_std": 0.16689033806324005,
+            "within_0.01m": {
+              "candidate_count": 14,
+              "model_mass": 0.12087398123235596,
+              "target_mass": 0.15310450596188505,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 34,
+              "model_mass": 0.2894999866192342,
+              "target_mass": 0.3506088958161592,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 87,
+              "model_mass": 0.7194529602404641,
+              "target_mass": 0.7881827657322935,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 120,
+              "model_mass": 0.9511481944471702,
+              "target_mass": 0.9701969304084378,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 2.1988713975048992,
+            "model_entropy": 2.5010310596859946,
+            "fine_ce": 2.5122584557417165,
+            "fine_kl_q_p": 0.31338705823681723,
+            "uniform_ce": 4.1588830833596715,
+            "ce_minus_uniform": -1.646624627617955,
+            "target_effective_count": 9.01483359229519,
+            "model_effective_count": 12.195061316835014,
+            "score_cost_spearman": 0.9084249084249083,
+            "selected_cost": 0.33598801493644714,
+            "oracle_cost": 0.14890065789222717,
+            "top1_regret": 0.18708735704421997,
+            "expected_cost_model": 0.31673666067878575,
+            "expected_cost_target": 0.24500510570928075,
+            "expected_cost_uniform": 1.433056116104126,
+            "selected_probability": 0.17767825816392793,
+            "target_probability_at_selected": 0.044658952413447264,
+            "cost_spread": 5.042232036590576,
+            "logit_spread": 10.505962371826172,
+            "logit_std": 3.247009038925171,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.15840255207846693,
+              "target_mass": 0.2900137569597932,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.15840255207846693,
+              "target_mass": 0.2900137569597932,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.15840255207846693,
+              "target_mass": 0.2900137569597932,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 3,
+              "model_mass": 0.30396275118114,
+              "target_mass": 0.5615131168450478,
+              "selected_hit": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "target_entropy": 4.818078986010434,
+      "model_entropy": 5.113447756429263,
+      "fine_ce": 4.944577394230948,
+      "fine_kl_q_p": 0.12649840822051406,
+      "uniform_ce": 5.298317366548036,
+      "ce_minus_uniform": -0.3537399723170882,
+      "target_effective_count": 123.72718069368312,
+      "model_effective_count": 166.2425317012619,
+      "score_cost_spearman": 0.9139398484962126,
+      "selected_cost": 0.1118202954530716,
+      "oracle_cost": 0.027465524151921272,
+      "top1_regret": 0.08435477316379547,
+      "expected_cost_model": 0.19412046418881704,
+      "expected_cost_target": 0.15068412957343758,
+      "expected_cost_uniform": 0.2605336308479309,
+      "selected_probability": 0.010729149446004707,
+      "target_probability_at_selected": 0.011921155968702555,
+      "cost_spread": 0.46472036838531494,
+      "logit_spread": 2.3520026206970215,
+      "logit_std": 0.6927876472473145,
+      "within_0.01m": {
+        "candidate_count": 2,
+        "model_mass": 0.01851465756297168,
+        "target_mass": 0.05465742141308212,
+        "selected_hit": false
+      },
+      "within_0.02m": {
+        "candidate_count": 2,
+        "model_mass": 0.01851465756297168,
+        "target_mass": 0.05465742141308212,
+        "selected_hit": false
+      },
+      "within_0.05m": {
+        "candidate_count": 11,
+        "model_mass": 0.10854707580350573,
+        "target_mass": 0.23313226962011907,
+        "selected_hit": false
+      },
+      "within_0.1m": {
+        "candidate_count": 26,
+        "model_mass": 0.2592204469574931,
+        "target_mass": 0.4154876771924287,
+        "selected_hit": true
+      },
+      "row": 99515,
+      "scenario": "20260219-110218",
+      "session": "session_097_20260219-110038",
+      "selected_candidate_id": 81180,
+      "oracle_candidate_id": 180252,
+      "selected_path": 317,
+      "selected_velocity": 28,
+      "oracle_given_selected_path": 0.1118202954530716,
+      "oracle_given_selected_velocity": 0.027465524151921272,
+      "global_path_at_gt_progress_min": 0.0022709325421601534,
+      "global_velocity_progress_min": 0.01973896659910679,
+      "selected_path_at_gt_progress_cost": 0.10929813981056213,
+      "selected_velocity_progress_cost": 0.01973896659910679,
+      "selected_weighted_abs_xy": [
+        0.021866016917758517,
+        0.10901618500550589
+      ],
+      "oracle_weighted_abs_xy": [
+        0.020080871052212186,
+        0.016822101341353524
+      ],
+      "marginals": {
+        "path": {
+          "ids": [
+            33,
+            93,
+            247,
+            253,
+            317,
+            350,
+            410,
+            600,
+            672,
+            691,
+            704,
+            742,
+            756,
+            810,
+            867,
+            910,
+            929,
+            953,
+            996,
+            1017
+          ],
+          "model_mass": [
+            0.05050335275461267,
+            0.04924335177780655,
+            0.05017132872380489,
+            0.05059165366884873,
+            0.05195329371814712,
+            0.049249386822112544,
+            0.05092725330089872,
+            0.05084368801375914,
+            0.04960944935019598,
+            0.05098962265562602,
+            0.04714310258985389,
+            0.049840383470599235,
+            0.05096391061478555,
+            0.04643287813484818,
+            0.05036755539768644,
+            0.051511635011549345,
+            0.04817382164269779,
+            0.04869856168823337,
+            0.05072977792727412,
+            0.05205599273666016
+          ],
+          "target_mass": [
+            0.05632017022039278,
+            0.05716077061870143,
+            0.056103013313150374,
+            0.04965510952641661,
+            0.03877614493508378,
+            0.05049359144484833,
+            0.04305319953904046,
+            0.04266595885850978,
+            0.056769240877964276,
+            0.042136788448974914,
+            0.0684621236155823,
+            0.054848569554681315,
+            0.04854631956159236,
+            0.06675320587171095,
+            0.038606208734927996,
+            0.036262922817388216,
+            0.057545611533508886,
+            0.059373261339902644,
+            0.05142982189530743,
+            0.025037967292315083
+          ],
+          "model_entropy": 2.995305090388402,
+          "target_entropy": 2.972591933651139,
+          "kl_target_model": 0.028870970776297994
+        },
+        "velocity": {
+          "ids": [
+            28,
+            45,
+            79,
+            87,
+            92,
+            124,
+            132,
+            181,
+            226,
+            231
+          ],
+          "model_mass": [
+            0.2028704577510368,
+            0.05811454512868109,
+            0.19679165191962014,
+            0.04600246565078513,
+            0.1178108073346599,
+            0.041644201469361514,
+            0.0724175857980408,
+            0.021181349415100373,
+            0.13137083107337946,
+            0.11179610445933534
+          ],
+          "target_mass": [
+            0.34807319459109626,
+            0.03138555864347759,
+            0.1811818745125214,
+            0.030512572943722786,
+            0.13212881214913486,
+            0.006754783569417342,
+            0.03496398019745175,
+            0.01008941586537972,
+            0.11561306775663899,
+            0.10929673977115914
+          ],
+          "model_entropy": 2.1182180709196956,
+          "target_entropy": 1.848147371866705,
+          "kl_target_model": 0.09375299966361751
+        },
+        "target_path_velocity_mutual_information": 0.0026603195074095254,
+        "model_path_velocity_mutual_information": 7.540487883517244e-05
+      },
+      "geometry": {
+        "exact_unique_trajectories": 200,
+        "within_0.001m": {
+          "mean_neighbors_including_self": 1.0,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0
+        },
+        "within_0.01m": {
+          "mean_neighbors_including_self": 2.35,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0067839195979899495
+        },
+        "within_0.025m": {
+          "mean_neighbors_including_self": 7.48,
+          "oracle_neighbors_including_self": 2,
+          "fraction_pairs_excluding_diagonal": 0.03256281407035176
+        },
+        "within_0.05m": {
+          "mean_neighbors_including_self": 13.51,
+          "oracle_neighbors_including_self": 9,
+          "fraction_pairs_excluding_diagonal": 0.0628643216080402
+        },
+        "within_0.1m": {
+          "mean_neighbors_including_self": 19.42,
+          "oracle_neighbors_including_self": 19,
+          "fraction_pairs_excluding_diagonal": 0.09256281407035176
+        }
+      },
+      "coarse": [
+        {
+          "path": {
+            "target_entropy": 5.815374454647075,
+            "model_entropy": 5.968504955110145,
+            "fine_ce": 5.967699833782763,
+            "fine_kl_q_p": 0.15232537913568844,
+            "uniform_ce": 6.931471805599453,
+            "ce_minus_uniform": -0.9637719718166897,
+            "target_effective_count": 335.4169734329908,
+            "model_effective_count": 390.92078951827455,
+            "score_cost_spearman": 0.80113489959588,
+            "selected_cost": 0.042616281658411026,
+            "oracle_cost": 0.0022709325421601534,
+            "top1_regret": 0.04034534841775894,
+            "expected_cost_model": 0.14105893308141604,
+            "expected_cost_target": 0.06745910115599062,
+            "expected_cost_uniform": 2.063343048095703,
+            "selected_probability": 0.0047997551835193995,
+            "target_probability_at_selected": 0.0038221344354536584,
+            "cost_spread": 16.946468353271484,
+            "logit_spread": 7.533450126647949,
+            "logit_std": 2.3415396213531494,
+            "within_0.01m": {
+              "candidate_count": 20,
+              "model_mass": 0.06840791835458872,
+              "target_mass": 0.10748414654718205,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 46,
+              "model_mass": 0.1566486888281853,
+              "target_mass": 0.234261051127283,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 117,
+              "model_mass": 0.3789890347297707,
+              "target_mass": 0.526021412755454,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 210,
+              "model_mass": 0.6334750617525855,
+              "target_mass": 0.782680821029301,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.8068401153230096,
+            "model_entropy": 2.306062906341673,
+            "fine_ce": 1.96237418396889,
+            "fine_kl_q_p": 0.15553406864588037,
+            "uniform_ce": 5.545177444479562,
+            "ce_minus_uniform": -3.5828032605106723,
+            "target_effective_count": 6.091169596928693,
+            "model_effective_count": 10.034838679573674,
+            "score_cost_spearman": 0.932394426642252,
+            "selected_cost": 0.01973896659910679,
+            "oracle_cost": 0.01973896659910679,
+            "top1_regret": 0.0,
+            "expected_cost_model": 0.18521028457054184,
+            "expected_cost_target": 0.11178503698856779,
+            "expected_cost_uniform": 6.035302639007568,
+            "selected_probability": 0.2240089120368741,
+            "target_probability_at_selected": 0.41214526310257477,
+            "cost_spread": 15.370013236999512,
+            "logit_spread": 13.408186912536621,
+            "logit_std": 2.9890975952148438,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.2240089120368741,
+              "target_mass": 0.41214526310257477,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.2240089120368741,
+              "target_mass": 0.41214526310257477,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.2240089120368741,
+              "target_mass": 0.41214526310257477,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 2,
+              "model_mass": 0.3904688139304724,
+              "target_mass": 0.5738911607531241,
+              "selected_hit": true
+            }
+          }
+        },
+        {
+          "path": {
+            "target_entropy": 4.7645370216092235,
+            "model_entropy": 4.842960929026928,
+            "fine_ce": 4.862318539083187,
+            "fine_kl_q_p": 0.09778151747396358,
+            "uniform_ce": 4.852030263919617,
+            "ce_minus_uniform": 0.010288275163570226,
+            "target_effective_count": 117.27680808890163,
+            "model_effective_count": 126.84437343701038,
+            "score_cost_spearman": -0.11854513825306721,
+            "selected_cost": 0.11846794188022614,
+            "oracle_cost": 0.0022709325421601534,
+            "top1_regret": 0.11619701236486435,
+            "expected_cost_model": 0.06439615089347502,
+            "expected_cost_target": 0.04569841765467583,
+            "expected_cost_uniform": 0.06439648568630219,
+            "selected_probability": 0.009914507617085466,
+            "target_probability_at_selected": 0.004118640013745511,
+            "cost_spread": 0.18409371376037598,
+            "logit_spread": 0.8341567516326904,
+            "logit_std": 0.14364413917064667,
+            "within_0.01m": {
+              "candidate_count": 16,
+              "model_mass": 0.12371269454081599,
+              "target_mass": 0.19851488970172967,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 32,
+              "model_mass": 0.2413305903590242,
+              "target_mass": 0.3784554463220089,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 63,
+              "model_mass": 0.48937148916425205,
+              "target_mass": 0.6698385387121325,
+              "selected_hit": false
+            },
+            "within_0.1m": {
+              "candidate_count": 97,
+              "model_mass": 0.7626090301525099,
+              "target_mass": 0.8876275559017238,
+              "selected_hit": false
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.8068401125092184,
+            "model_entropy": 2.2903070605910143,
+            "fine_ce": 1.9774525646548025,
+            "fine_kl_q_p": 0.17061245214558407,
+            "uniform_ce": 4.1588830833596715,
+            "ce_minus_uniform": -2.181430518704869,
+            "target_effective_count": 6.091169579789414,
+            "model_effective_count": 9.877970350956653,
+            "score_cost_spearman": 0.9323260073260073,
+            "selected_cost": 0.01973896659910679,
+            "oracle_cost": 0.01973896659910679,
+            "top1_regret": 0.0,
+            "expected_cost_model": 0.18337356591763956,
+            "expected_cost_target": 0.11178503671907102,
+            "expected_cost_uniform": 1.3269495964050293,
+            "selected_probability": 0.20768374877040696,
+            "target_probability_at_selected": 0.4121452631515472,
+            "cost_spread": 3.832188844680786,
+            "logit_spread": 11.118050575256348,
+            "logit_std": 3.249356508255005,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.20768374877040696,
+              "target_mass": 0.4121452631515472,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.20768374877040696,
+              "target_mass": 0.4121452631515472,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.20768374877040696,
+              "target_mass": 0.4121452631515472,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 2,
+              "model_mass": 0.39117668131811506,
+              "target_mass": 0.5738911608213157,
+              "selected_hit": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "target_entropy": 4.801024952923536,
+      "model_entropy": 5.157930066077952,
+      "fine_ce": 4.975887408914473,
+      "fine_kl_q_p": 0.17486245599093753,
+      "uniform_ce": 5.298317366548036,
+      "ce_minus_uniform": -0.3224299576335632,
+      "target_effective_count": 121.63502382330027,
+      "model_effective_count": 173.8043195479468,
+      "score_cost_spearman": 0.7817355433885849,
+      "selected_cost": 0.05307277292013168,
+      "oracle_cost": 0.04688362777233124,
+      "top1_regret": 0.0061891451478004456,
+      "expected_cost_model": 0.20224575622416494,
+      "expected_cost_target": 0.14886677703456275,
+      "expected_cost_uniform": 0.24623535573482513,
+      "selected_probability": 0.010446785529979217,
+      "target_probability_at_selected": 0.021427397649905318,
+      "cost_spread": 0.3361354470252991,
+      "logit_spread": 1.903141975402832,
+      "logit_std": 0.5556790232658386,
+      "within_0.01m": {
+        "candidate_count": 15,
+        "model_mass": 0.14951511663631695,
+        "target_mass": 0.3295418662543281,
+        "selected_hit": true
+      },
+      "within_0.02m": {
+        "candidate_count": 18,
+        "model_mass": 0.1786682289693673,
+        "target_mass": 0.38984259246203484,
+        "selected_hit": true
+      },
+      "within_0.05m": {
+        "candidate_count": 20,
+        "model_mass": 0.19823000574322447,
+        "target_mass": 0.425168939522822,
+        "selected_hit": true
+      },
+      "within_0.1m": {
+        "candidate_count": 38,
+        "model_mass": 0.3722803907733554,
+        "target_mass": 0.5852057426352097,
+        "selected_hit": true
+      },
+      "row": 111595,
+      "scenario": "20260303-142827",
+      "session": "session_112_20260303-142827",
+      "selected_candidate_id": 199833,
+      "oracle_candidate_id": 124057,
+      "selected_path": 780,
+      "selected_velocity": 153,
+      "oracle_given_selected_path": 0.05307277292013168,
+      "oracle_given_selected_velocity": 0.04688362777233124,
+      "global_path_at_gt_progress_min": 0.006636507343500853,
+      "global_velocity_progress_min": 0.043469034135341644,
+      "selected_path_at_gt_progress_cost": 0.027070291340351105,
+      "selected_velocity_progress_cost": 0.043469034135341644,
+      "selected_weighted_abs_xy": [
+        0.043148795763651535,
+        0.0276458573838075
+      ],
+      "oracle_weighted_abs_xy": [
+        0.04298851225111219,
+        0.01806481182575226
+      ],
+      "marginals": {
+        "path": {
+          "ids": [
+            111,
+            138,
+            157,
+            196,
+            334,
+            414,
+            416,
+            430,
+            484,
+            498,
+            704,
+            726,
+            777,
+            780,
+            810,
+            833,
+            837,
+            929,
+            950,
+            992
+          ],
+          "model_mass": [
+            0.052774582761941725,
+            0.05099690119099856,
+            0.04532361508309083,
+            0.04894689361034143,
+            0.04909463314172541,
+            0.04883205771351465,
+            0.052498715785260275,
+            0.0477103373898403,
+            0.047797828924436285,
+            0.0499296205410653,
+            0.050939197284561206,
+            0.05189312721714526,
+            0.0489069728964262,
+            0.05232217529216179,
+            0.05010155505139808,
+            0.0485510499607516,
+            0.0492072615973925,
+            0.05050655298285455,
+            0.05188567932391392,
+            0.05178124225118009
+          ],
+          "target_mass": [
+            0.05082263427162363,
+            0.05077249825795595,
+            0.048634458795196574,
+            0.04584652508905111,
+            0.05165621085197806,
+            0.05115063260385321,
+            0.051624291172374805,
+            0.05042554608188052,
+            0.05216514187750813,
+            0.04968245039709512,
+            0.050054510547529005,
+            0.05140441405804928,
+            0.05114887454330502,
+            0.050419060009644294,
+            0.050343590579401284,
+            0.05193430943158333,
+            0.04861429445532495,
+            0.04332735983587518,
+            0.051893218912029394,
+            0.048079978228741306
+          ],
+          "model_entropy": 2.9950178976536512,
+          "target_entropy": 2.994776728134151,
+          "kl_target_model": 0.0015397725928579914
+        },
+        "velocity": {
+          "ids": [
+            1,
+            34,
+            66,
+            96,
+            116,
+            153,
+            168,
+            202,
+            223,
+            235
+          ],
+          "model_mass": [
+            0.09241110562073272,
+            0.19357859785967285,
+            0.08865480213067745,
+            0.11592724952895476,
+            0.05269881753775374,
+            0.19823000574322447,
+            0.09687715908622363,
+            0.08568420995953638,
+            0.04057017033088026,
+            0.03536788220234373
+          ],
+          "target_mass": [
+            0.04013829997028728,
+            0.1763968090778276,
+            0.10163564780018394,
+            0.09016674588457273,
+            0.042901056189178166,
+            0.4251689395228219,
+            0.04322409508173898,
+            0.031667307009928744,
+            0.01639642013452601,
+            0.03230467932893478
+          ],
+          "model_entropy": 2.163348982497263,
+          "target_entropy": 1.806562671316925,
+          "kl_target_model": 0.17277924587548774
+        },
+        "target_path_velocity_mutual_information": 0.00031444652754064606,
+        "model_path_velocity_mutual_information": 0.000436814072962477
+      },
+      "geometry": {
+        "exact_unique_trajectories": 200,
+        "within_0.001m": {
+          "mean_neighbors_including_self": 1.0,
+          "oracle_neighbors_including_self": 1,
+          "fraction_pairs_excluding_diagonal": 0.0
+        },
+        "within_0.01m": {
+          "mean_neighbors_including_self": 2.29,
+          "oracle_neighbors_including_self": 5,
+          "fraction_pairs_excluding_diagonal": 0.006482412060301508
+        },
+        "within_0.025m": {
+          "mean_neighbors_including_self": 9.23,
+          "oracle_neighbors_including_self": 14,
+          "fraction_pairs_excluding_diagonal": 0.04135678391959799
+        },
+        "within_0.05m": {
+          "mean_neighbors_including_self": 20.67,
+          "oracle_neighbors_including_self": 19,
+          "fraction_pairs_excluding_diagonal": 0.09884422110552764
+        },
+        "within_0.1m": {
+          "mean_neighbors_including_self": 28.24,
+          "oracle_neighbors_including_self": 20,
+          "fraction_pairs_excluding_diagonal": 0.13688442211055277
+        }
+      },
+      "coarse": [
+        {
+          "path": {
+            "target_entropy": 5.576074805190345,
+            "model_entropy": 5.811990712609134,
+            "fine_ce": 5.728091069967188,
+            "fine_kl_q_p": 0.15201626477684282,
+            "uniform_ce": 6.931471805599453,
+            "ce_minus_uniform": -1.2033807356322654,
+            "target_effective_count": 264.0331874254435,
+            "model_effective_count": 334.28392696930933,
+            "score_cost_spearman": 0.8609107225877977,
+            "selected_cost": 0.053405992686748505,
+            "oracle_cost": 0.006636507343500853,
+            "top1_regret": 0.046769484877586365,
+            "expected_cost_model": 0.12962088824914242,
+            "expected_cost_target": 0.07975906323717966,
+            "expected_cost_uniform": 3.0380313396453857,
+            "selected_probability": 0.005782207607373628,
+            "target_probability_at_selected": 0.004929369943084867,
+            "cost_spread": 22.59246063232422,
+            "logit_spread": 11.048788070678711,
+            "logit_std": 3.50176739692688,
+            "within_0.01m": {
+              "candidate_count": 8,
+              "model_mass": 0.03167683739104215,
+              "target_mass": 0.05962770113144089,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 30,
+              "model_mass": 0.12612987455933813,
+              "target_mass": 0.20893162233070678,
+              "selected_hit": false
+            },
+            "within_0.05m": {
+              "candidate_count": 78,
+              "model_mass": 0.3136610649211499,
+              "target_mass": 0.48030866154180074,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 146,
+              "model_mass": 0.544077413028881,
+              "target_mass": 0.7394681460204131,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.8673596174680567,
+            "model_entropy": 2.3892555188994873,
+            "fine_ce": 2.047080279689145,
+            "fine_kl_q_p": 0.1797206622210883,
+            "uniform_ce": 5.545177444479562,
+            "ce_minus_uniform": -3.4980971647904173,
+            "target_effective_count": 6.471187411887477,
+            "model_effective_count": 10.905372076723935,
+            "score_cost_spearman": 0.8901479171435109,
+            "selected_cost": 0.043469034135341644,
+            "oracle_cost": 0.043469034135341644,
+            "top1_regret": 0.0,
+            "expected_cost_model": 0.22082105279732323,
+            "expected_cost_target": 0.14686010244847597,
+            "expected_cost_uniform": 7.02326774597168,
+            "selected_probability": 0.21154351924690923,
+            "target_probability_at_selected": 0.43454797142189233,
+            "cost_spread": 16.653484344482422,
+            "logit_spread": 14.479177474975586,
+            "logit_std": 3.3356471061706543,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.21154351924690923,
+              "target_mass": 0.43454797142189233,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.21154351924690923,
+              "target_mass": 0.43454797142189233,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.21154351924690923,
+              "target_mass": 0.43454797142189233,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 2,
+              "model_mass": 0.40243538953662555,
+              "target_mass": 0.6036060991191622,
+              "selected_hit": true
+            }
+          }
+        },
+        {
+          "path": {
+            "target_entropy": 4.752341117409983,
+            "model_entropy": 4.826345426804948,
+            "fine_ce": 4.795754240874613,
+            "fine_kl_q_p": 0.04341312346462978,
+            "uniform_ce": 4.852030263919617,
+            "ce_minus_uniform": -0.056276023045003676,
+            "target_effective_count": 115.85519790429075,
+            "model_effective_count": 124.7542031694282,
+            "score_cost_spearman": 0.7762200146493317,
+            "selected_cost": 0.027070291340351105,
+            "oracle_cost": 0.007944942452013493,
+            "top1_regret": 0.019125349819660187,
+            "expected_cost_model": 0.06385108682937321,
+            "expected_cost_target": 0.05156737862282254,
+            "expected_cost_uniform": 0.0737626776099205,
+            "selected_probability": 0.011612972972930834,
+            "target_probability_at_selected": 0.011027421499916904,
+            "cost_spread": 0.23394745588302612,
+            "logit_spread": 1.329456090927124,
+            "logit_std": 0.24861109256744385,
+            "within_0.01m": {
+              "candidate_count": 10,
+              "model_mass": 0.09164474215021667,
+              "target_mass": 0.1246016953460857,
+              "selected_hit": false
+            },
+            "within_0.02m": {
+              "candidate_count": 29,
+              "model_mass": 0.2668494185300375,
+              "target_mass": 0.34112740203740577,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 68,
+              "model_mass": 0.6061936451818032,
+              "target_mass": 0.7154216916109027,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 93,
+              "model_mass": 0.8002780997725043,
+              "target_mass": 0.8822156546092583,
+              "selected_hit": true
+            }
+          },
+          "velocity": {
+            "target_entropy": 1.8673596174562632,
+            "model_entropy": 2.347836436020808,
+            "fine_ce": 2.059255702271395,
+            "fine_kl_q_p": 0.19189608481513187,
+            "uniform_ce": 4.1588830833596715,
+            "ce_minus_uniform": -2.0996273810882764,
+            "target_effective_count": 6.471187411811159,
+            "model_effective_count": 10.462908047603973,
+            "score_cost_spearman": 0.9445054945054944,
+            "selected_cost": 0.043469034135341644,
+            "oracle_cost": 0.043469034135341644,
+            "top1_regret": 0.0,
+            "expected_cost_model": 0.2165021592523455,
+            "expected_cost_target": 0.14686010244733783,
+            "expected_cost_uniform": 1.540445327758789,
+            "selected_probability": 0.20377551795629478,
+            "target_probability_at_selected": 0.4345479714220713,
+            "cost_spread": 4.640817165374756,
+            "logit_spread": 12.080480575561523,
+            "logit_std": 3.616231918334961,
+            "within_0.01m": {
+              "candidate_count": 1,
+              "model_mass": 0.20377551795629478,
+              "target_mass": 0.4345479714220713,
+              "selected_hit": true
+            },
+            "within_0.02m": {
+              "candidate_count": 1,
+              "model_mass": 0.20377551795629478,
+              "target_mass": 0.4345479714220713,
+              "selected_hit": true
+            },
+            "within_0.05m": {
+              "candidate_count": 1,
+              "model_mass": 0.20377551795629478,
+              "target_mass": 0.4345479714220713,
+              "selected_hit": true
+            },
+            "within_0.1m": {
+              "candidate_count": 2,
+              "model_mass": 0.4032251613696915,
+              "target_mass": 0.6036060991194108,
+              "selected_hit": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "seconds": 28.720826387405396,
+  "warning": "small tune subset; entropy/KL describe temperature-defined labels, not calibrated driving probabilities; CPU fp32 rows/candidates may differ from native CUDA bf16; no causal claim or held evaluation",
+  "diagnostics_code_sha256": "bbf27216b4cbbe26b78c83a0fc6de325620863a30bb6ab96ade945664f2be576"
+}

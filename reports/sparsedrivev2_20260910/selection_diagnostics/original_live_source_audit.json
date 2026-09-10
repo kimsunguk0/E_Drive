@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "gpu_used": false,
+  "held_data_read": false,
+  "remote_source_archive": "reports/sparsedrivev2_20260910/public_init/relative_v1_measured_source",
+  "measured_live_source": {
+    "evaluate_relative_selector.py": {
+      "local_path": "/home/a/adcl_analysis_20260910/claim_audit/measured_source/evaluate_relative_selector.py",
+      "sha256": "b0306cfafdf5bc69a56f77f7e3678bd40fbecbd17c48aa0fdde41751a3722a92",
+      "matches_measured_receipt": true
+    },
+    "relative_artifact.py": {
+      "local_path": "/home/a/adcl_analysis_20260910/claim_audit/measured_source/relative_artifact.py",
+      "sha256": "7f9159c8fd756a5bec82d23a844832c362f1094e61cb6909f652e83f3beb61a1",
+      "matches_measured_receipt": true
+    },
+    "relative_selector.py": {
+      "local_path": "/home/a/adcl_analysis_20260910/claim_audit/measured_source/relative_selector.py",
+      "sha256": "7fa75415a40691f555cca27ab9fe88331725177f19887c01a0e887121e2ac59f",
+      "matches_measured_receipt": true
+    }
+  }
+}

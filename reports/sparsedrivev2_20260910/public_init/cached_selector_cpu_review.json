@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "torch": "2.8.0+cu128",
+  "checks": [
+    "centered risk invariant to candidate-common score and cost shifts",
+    "negative cost / temperature optimum reaches zero loss",
+    "invalid candidates receive zero loss gradient; valid score gradient sums zero",
+    "soft CE remains finite with valid logits below -10000 and masked invalid candidate",
+    "zero final head gives exact zero residual; last-layer then hidden-layer gradients flow",
+    "changed status/goal changes scores without modifying candidate coordinates/IDs",
+    "selected trajectory exactly equals an existing valid candidate row",
+    "frozen base parameters remain frozen",
+    "independent nested official D3 matches explicit time weights"
+  ],
+  "source_sha256": {
+    "train_cached_selector.py": "8177d10846d229c0adef97db094a0482278aee3d1fd7aaf524f739f1f104a577",
+    "relative_selector.py": "7fa75415a40691f555cca27ab9fe88331725177f19887c01a0e887121e2ac59f"
+  },
+  "scope_limit": "Cache producer and actual artifacts are not executed by this synthetic check; separately reviewed."
+}

@@ -1,0 +1,26 @@
+{
+  "checkpoint_sha256": "e28425a4e8f0af6fa2f26e60188cb065035b42e45ded985ef3b906ce3e6538e0",
+  "checkpoint_step": 2,
+  "bank_sha256": "4aff9b40696f91383bfbec377f388e6209d619fa509e51a2019b19af977b5e04",
+  "public_checkpoint_sha256": "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735",
+  "public_initializer_file_rechecked": false,
+  "source_sha256": {
+    "experiments/sparsedrivev2_20260910/public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+    "experiments/sparsedrivev2_20260910/goal_selector.py": "b302b6db5e497ce26fb8fa7ecc817a1f2e1984a1c7dc21a1ed65fd94e16d581d"
+  },
+  "deployment_sha256": "e3c0c99a60eef6feedf5890348c3dca0336307b07bcaf7015ce96d17a5d1df7b",
+  "strict_state_dict_load": true,
+  "checkpoint_weights_only": true,
+  "bank_rows_immutable": true,
+  "status_mode": "causal_selection",
+  "goal_mode": "selection",
+  "path_filter": [
+    128,
+    20
+  ],
+  "velocity_filter": [
+    64,
+    10
+  ],
+  "output": "six cumulative current rear-axle ego XY metres at .5..3s; no cumsum"
+}

@@ -1,0 +1,13 @@
+{
+  "pid": 3890483,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/run_confirmation_pipeline.py",
+    "--protocol",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/confirmation_pipeline_v1/protocol.json"
+  ],
+  "protocol_sha256": "51a0a1ce41e37bba805cb34d16042c5c82e87983e14c7f2f691f58db4bf3c0ac",
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/confirmation_pipeline_v1/controller.log",
+  "started_unix": 1789013486.7549543,
+  "cuda_visible_devices": ""
+}

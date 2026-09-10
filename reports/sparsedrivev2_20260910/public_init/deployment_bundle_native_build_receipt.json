@@ -1,0 +1,39 @@
+{
+  "tested_arch": "sm100",
+  "generated_files": {
+    "third_party/SparseDriveV2/.etri_extension/torch_2.7.1_cu128/deformable_aggregation_cuda.cuda.o": {
+      "sha256": "ce8f3266f29439fa136c7b9d0dfe042be599753df0d5ee86da5b54963bb9db08",
+      "bytes": 184368
+    },
+    "third_party/SparseDriveV2/.etri_extension/torch_2.7.1_cu128/deformable_aggregation_cuda.cu": {
+      "sha256": "e8456e17911b4a3a44bbb39bb93a0df2141d33ba970a04f121946ba80f971dc9",
+      "bytes": 10828
+    },
+    "third_party/SparseDriveV2/.etri_extension/torch_2.7.1_cu128/deformable_aggregation.cpp": {
+      "sha256": "f26a08d2bcc51ae45cae96f5719178d67ef25f806124fb6f36ed8dfdc004a5a0",
+      "bytes": 4083
+    },
+    "third_party/SparseDriveV2/.etri_extension/torch_2.7.1_cu128/build.ninja": {
+      "sha256": "f18b9a07898be0fbd6346b4eb770c9b7f682defcb0322803e2f7a8ecf169fad8",
+      "bytes": 2750
+    },
+    "third_party/SparseDriveV2/.etri_extension/torch_2.7.1_cu128/deformable_aggregation.o": {
+      "sha256": "ac656f436e4dc19c948e98ac94adce5ec5f1134b48c3f8eaa59dfab8fa17fed7",
+      "bytes": 315536
+    },
+    "third_party/SparseDriveV2/.etri_extension/torch_2.7.1_cu128/.ninja_log": {
+      "sha256": "0053edeb4cc572424ba382fe7d7ba128bc69c7d641a9fef077ee416c83267965",
+      "bytes": 237
+    },
+    "third_party/SparseDriveV2/.etri_extension/torch_2.7.1_cu128/.ninja_deps": {
+      "sha256": "9a9e087e4065872cf54d28e43896a2ff39915acd3886dd5e4e2874f26cb2a9ba",
+      "bytes": 605484
+    },
+    "third_party/SparseDriveV2/.etri_extension/torch_2.7.1_cu128/etri_sparsedrive_dfa.so": {
+      "sha256": "e88f7f7080c3b17964232481cf66c65c1fce42ea0673627c5ef1d18e6db09de8",
+      "bytes": 310376
+    }
+  },
+  "build_cache_removed_after_validation": true,
+  "future_rtx4090_requires_arch": "sm89"
+}

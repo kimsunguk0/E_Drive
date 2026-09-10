@@ -1,0 +1,135 @@
+{
+  "scope": "forward-only analytic DFA arithmetic supplement, no GPU, not __flops__",
+  "convention": "one scalar multiply/add/subtract/divide/exp = 1; MAC/FMA = 2 FLOPs",
+  "exclusions": [
+    "floor/conversion/index/comparison/mask/load/store",
+    "backward",
+    "kernel launch/compiler instruction count",
+    "all non-DFA model operations"
+  ],
+  "architecture": {
+    "batch": 1,
+    "cameras": 3,
+    "levels": 4,
+    "channels": 256,
+    "groups": 8,
+    "xy_offsets_per_height": 2,
+    "fixed_heights": [
+      0,
+      -0.25,
+      -0.5,
+      0.25,
+      0.5
+    ],
+    "path_points": 50,
+    "trajectory_points": 8
+  },
+  "native_kernel_per_visit": {
+    "normalized_to_feature_coordinates": "2 multiply + 2 subtract = 4",
+    "bilinear_fractional_offsets": "4 subtract = 4",
+    "four_neighbor_coefficients": "4 multiply = 4",
+    "four_neighbor_weighted_value": "4 multiply + 3 add = 7",
+    "learned_weight_and_camera_level_accumulate": "1 multiply + 1 add = 2",
+    "total": "11 multiply + 10 add/subtract = 21",
+    "core_subset": "7 interpolation value + 2 learned accumulation = 9, included in 21"
+  },
+  "stages": [
+    {
+      "name": "decoder0_path",
+      "anchors": 1024,
+      "sample_points_per_anchor": 500,
+      "query_points": 512000,
+      "camera_points": 1536000,
+      "valid_camera_points_assumed": 1536000,
+      "all_camera_visibility_upper_bound": true,
+      "native_channel_level_visits": 1572864000,
+      "native_kernel_flops": 33030144000,
+      "native_interpolation_and_accumulation_subset_flops": 14155776000,
+      "torch_projection_matmul_flops_normally_counted": 49152000,
+      "torch_projection_division_scalar_ops": 6144000,
+      "torch_stable_softmax_nominal_scalar_ops": 196599808,
+      "torch_native_output_point_reduction_adds": 130809856,
+      "torch_anchor_plus_offset_adds": 1024000,
+      "torch_feature_plus_camera_embedding_adds": 786432,
+      "torch_residual_adds": 262144
+    },
+    {
+      "name": "decoder1_path",
+      "anchors": 128,
+      "sample_points_per_anchor": 500,
+      "query_points": 64000,
+      "camera_points": 192000,
+      "valid_camera_points_assumed": 192000,
+      "all_camera_visibility_upper_bound": true,
+      "native_channel_level_visits": 196608000,
+      "native_kernel_flops": 4128768000,
+      "native_interpolation_and_accumulation_subset_flops": 1769472000,
+      "torch_projection_matmul_flops_normally_counted": 6144000,
+      "torch_projection_division_scalar_ops": 768000,
+      "torch_stable_softmax_nominal_scalar_ops": 24574976,
+      "torch_native_output_point_reduction_adds": 16351232,
+      "torch_anchor_plus_offset_adds": 128000,
+      "torch_feature_plus_camera_embedding_adds": 98304,
+      "torch_residual_adds": 32768
+    },
+    {
+      "name": "decoder1_trajectory",
+      "anchors": 200,
+      "sample_points_per_anchor": 80,
+      "query_points": 16000,
+      "camera_points": 48000,
+      "valid_camera_points_assumed": 48000,
+      "all_camera_visibility_upper_bound": true,
+      "native_channel_level_visits": 49152000,
+      "native_kernel_flops": 1032192000,
+      "native_interpolation_and_accumulation_subset_flops": 442368000,
+      "torch_projection_matmul_flops_normally_counted": 1536000,
+      "torch_projection_division_scalar_ops": 192000,
+      "torch_stable_softmax_nominal_scalar_ops": 6142400,
+      "torch_native_output_point_reduction_adds": 4044800,
+      "torch_anchor_plus_offset_adds": 32000,
+      "torch_feature_plus_camera_embedding_adds": 153600,
+      "torch_residual_adds": 51200
+    }
+  ],
+  "totals": {
+    "query_points": 592000,
+    "camera_points": 1776000,
+    "valid_camera_points_assumed": 1776000,
+    "native_channel_level_visits": 1818624000,
+    "native_kernel_flops": 38191104000,
+    "native_interpolation_and_accumulation_subset_flops": 16367616000,
+    "torch_projection_matmul_flops_normally_counted": 56832000,
+    "torch_projection_division_scalar_ops": 7104000,
+    "torch_stable_softmax_nominal_scalar_ops": 227317184,
+    "torch_native_output_point_reduction_adds": 151205888,
+    "torch_anchor_plus_offset_adds": 1184000,
+    "torch_feature_plus_camera_embedding_adds": 1038336,
+    "torch_residual_adds": 346112
+  },
+  "native_kernel_upper_gflops": 38.191104,
+  "double_count_policy": [
+    "Native kernel opaque to unregistered PyBind: add this bound once to raw Torch counter for conservative supplemental bound.",
+    "Do not add the 9-FLOP interpolation subset on top of the 21-FLOP kernel total.",
+    "Projection matmul is normally dispatched as aten.bmm/mm and already counted: do not add again.",
+    "Softmax/divisions/reductions/adds are separate diagnostics; add only after checking measured operator coverage.",
+    "Linear layers, convolutions, attention, camera encoders, keypoint/weight/output projections belong in actual Torch counter.",
+    "Exp nominal scalar-op count is not a device instruction-cost model."
+  ],
+  "visibility": "For an exact source-arithmetic native count, substitute per-stage strict normalized 0<xy<1 camera-point count. Native kernel does not itself test depth. All-camera count is a conservative upper bound; learned coordinates change the actual count.",
+  "source_pin": "swc-17/SparseDriveV2@696ef77924eb9e0a4b4047d013a50e9854bfa026",
+  "source_files": [
+    "experiments/sparsedrivev2_20260910/public_model.py",
+    "third_party/SparseDriveV2/navsim/agents/sparsedrive/ops/src/deformable_aggregation_cuda.cu"
+  ],
+  "self_test": "PASS arithmetic invariants and zero visibility",
+  "torch_version": "2.7.1+cu128",
+  "flop_registry_relevant_ops": [
+    "aten._scaled_mm",
+    "aten.addmm",
+    "aten.baddbmm",
+    "aten.bmm",
+    "aten.mm"
+  ],
+  "script_sha256": "98f9f1d219b96f320ed6c3f54c14c86f1491df565a89ca6b8aa919c07c811fee"
+}

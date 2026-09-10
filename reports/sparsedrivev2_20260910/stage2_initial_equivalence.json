@@ -1,0 +1,13 @@
+{
+  "checked_unix": 1789009847.9434202,
+  "n": 1998,
+  "bitwise_equal": {
+    "rows": true,
+    "pred": true,
+    "d3": true,
+    "shortlist_oracle": true,
+    "point_l2": true,
+    "error_xy": true,
+    "candidate_id": true
+  }
+}

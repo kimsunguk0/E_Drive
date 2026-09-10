@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "train": {
+    "rows": 54810,
+    "scenes": 203,
+    "max_abs_metres": 3.81438590579819e-06
+  },
+  "tune": {
+    "rows": 1998,
+    "scenes": 37,
+    "max_abs_metres": 3.8064893743694483e-06
+  },
+  "fixture": {
+    "row": 14730,
+    "scene": "20260113-102709",
+    "frame": 30,
+    "raw_test_shaped_adapter_goal_max_abs_error": 0.0,
+    "future_orientation_nan_is_unused": true,
+    "input_frames": [
+      -30,
+      -29,
+      -28,
+      -27,
+      -26,
+      -25,
+      -24,
+      -23,
+      -22,
+      -21,
+      -20,
+      -19,
+      -18,
+      -17,
+      -16,
+      -15,
+      -14,
+      -13,
+      -12,
+      -11,
+      -10,
+      -9,
+      -8,
+      -7,
+      -6,
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      50
+    ]
+  },
+  "formula": "goal_xy = (R_current.T @ (XYZ_frame_plus_50 - XYZ_current))[:2]",
+  "needed_data": [
+    "current XYZ",
+    "current roll/pitch/yaw",
+    "provided future +50 XYZ"
+  ],
+  "not_used": [
+    "future orientation",
+    "intermediate future XYZ",
+    "future status",
+    "new trajectory generation"
+  ],
+  "same_as_raw_serving_adapter": "/NHNHOME/data/sukim/adcl/models/motiondrive_v2_inputs.py",
+  "raw_serving_adapter_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+  "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+  "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "scope": "Checks equivalence of cached training/tune goal to the already-provided +50 input semantics; does not assert blanket official approval of a model."
+}

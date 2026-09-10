@@ -63,7 +63,7 @@ GT native 경로를 2m 간격으로 샘플링하고 GT 속도를 함께 쓰는 �
 
 CPU NumPy float64에서 11개 tune 세션의 대표 프레임마다 **전체 1,048,576개 후보를 독립 완전탐색**했다. 실제 유리수 D3 가중치로 계산한 값과 CUDA float32 oracle의 최대 차이는 **6.68e-9**였다. 별도 검토 agent는 P1024×V512 progress6 사전의 8개 경로×전체 512개 속도를 재합성해 저장 궤적·mask와 bitwise 일치도 확인했다.
 
-모든 생성·평가 파일은 새 worktree 안의 아래 위치에 저장했다. GPU 작업은 허가된 물리 GPU4의 UUID `GPU-4b804d68-fd61-af14-393a-573c533d5006`만 사용했으며 각 시작 전에 idle을 확인하고 고유 PID/log receipt를 남겼다. GPU 작업은 모두 끝났다.
+모든 생성·평가 파일은 새 worktree 안의 아래 위치에 저장했다. 위 은행 oracle GPU 작업은 허가된 물리 GPU4의 UUID `GPU-4b804d68-fd61-af14-393a-573c533d5006`만 사용했으며 각 시작 전에 idle을 확인하고 고유 PID/log receipt를 남겼다. 은행 oracle 작업은 종료했고, 아래의 별도 확인용 모델 학습이 이어진다.
 
 - `cache/sparsedrivev2_20260910/bank/`: train/tune native 추출, 각 사전 NPZ, SHA 포함 sidecar.
 - `reports/sparsedrivev2_20260910/bank/oracle_comparison_summary.json`: 전체 비교와 paired session bootstrap.
@@ -86,3 +86,27 @@ CUDA_VISIBLE_DEVICES=GPU-4b804d68-fd61-af14-393a-573c533d5006 \
   --tune cache/sparsedrivev2_20260910/bank/tune_native100m_v8.npz \
   --device cuda:0 --coarse-mode d3 --output NEW_ORACLE.npz
 ```
+
+## 사전 크기의 계산·메모리 비용
+
+동일 공개 가중치, 실제 current frame 1개, 3cam 512×256, FP32, CPU 4 threads에서 1회 warmup 뒤 3번씩 측정했다. CPU `grid_sample` reference 경로의 측정이므로 **B200 native CUDA 지연시간이나 학습 peak 메모리로 해석할 수 없다**. 원시 측정은 `cpu_model_timing_memory.json`, 재현 코드는 보고서 폴더의 `bench_cpu.py`이다.
+
+| P1024 고정 | 실제 모델의 사전 buffer | 전체 CPU forward 중앙값 | 첫 velocity branch 중앙값 |
+|---|---:|---:|---:|
+| V256 | 32.594MiB | 3.996s | 5.03ms |
+| V512 | 64.602MiB | 4.095s | 9.32ms |
+| V1024 | 128.617MiB | 4.128s | 18.92ms |
+
+학습 parameter storage는 세 경우 모두 159.488MiB이다. 사전은 gradient와 Adam state가 없는 FP32 buffer이므로 V256→V1024의 사전 추가 상주 메모리는 약 96.02MiB이다. 이 계산에는 feature activation, backward, optimizer 등 전체 학습 메모리가 포함되지 않는다.
+
+실제 forward는 첫 stage에서 P1024/V전체를 처리한 뒤 P128/V64, 마지막에는 P20×V10=200개로 줄인다. 사전의 100만 조합을 모두 final DFA로 처리하지 않는다. 따라서 사전 해상도를 높여 얻는 oracle 개선에 비해, 최종 후보 재평가 비용은 유지된다. 다만 첫 velocity top64가 V256에서는 25%, V1024에서는 6.25%를 남기므로 학습된 coarse 선택의 손실을 확인해야 한다.
+
+추천 순서는 V1024 progress6 사전으로 동일 학습 조건을 비교하고 `실제 shortlist oracle − 전체 bank oracle`과 `최종 선택 D3 − shortlist oracle`을 각각 기록하는 것이다. 앞의 차이가 크면 첫 velocity 보존 개수를 64→128로 넓히는 실험이 후보가 된다. 최종 20×10 개수는 그대로 유지할 수 있다. 정답 기반 top64가 좋다는 결과만으로 학습된 top64의 충분성을 단정하지 않는다.
+
+## confirmation12 준비: train171만 사용한 별도 사전
+
+확인용 실험을 위해 기존 train203의 일부인 **train171, 46,170행**만 다시 추출했다. row SHA는 `701e7ea7b76acd6b0d99845a0f400c9b65a5c470131d2d3b6324192e09c28a35`이다. 원래 train203 경로를 재사용하지 않고, 이 fold의 유효 100m 경로 33,847행에서 새 P1024 경로를, 전체 46,170행에서 새 progress6 V1024를 학습했다. 경로 12회·속도 13회 반복으로 적합했다.
+
+새 사전은 `cache/sparsedrivev2_20260910/bank/confirmation12_train171_p1024_v1024_native100m_progress6.npz`이며 SHA256은 **`73c29e27f321a99e6654ebdeb0877fd260c2b22983fdffce58358335bdaa207f`**이다. 모든 first6/8 후보가 유효하고 exact stop, 재합성 bitwise 검증이 통과했다. 모든 확인·tune·reserve 집합과의 장면 교집합은 0이다. 감사는 `confirmation12_train171_bank_audit.json`과 `confirmation12_prelaunch_contract.json`에 저장했다. **이 사전으로 confirmation12나 reserve의 oracle을 평가하지 않았다.**
+
+같은 fold의 public-initialized status+goal selection 모델을 GPU4에서 준비했다. `confirmation_canary_goal_s0_v1`의 batch16/eval8, train16행/tune8행, 2-step 실행은 returncode 0으로 통과했다. 이어 `confirmation2000_selection_s0_v1`을 2000 steps, batch16, eval8, workers4, warmup100, eval every250, seed0으로 시작했다. 초기화와 학습 모두 train171 경계를 따르고, 주기적 평가는 원 tune1998만 사용한다. 확인 세션은 고정할 checkpoint를 고른 뒤의 별도 평가를 위해 아직 열지 않았다. 이 실행의 시작은 확인 일반화 성능을 입증한 것이 아니다.

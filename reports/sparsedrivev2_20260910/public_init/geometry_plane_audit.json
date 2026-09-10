@@ -1,0 +1,117 @@
+{
+  "train_rows": 54810,
+  "train_scenes": 203,
+  "calibration_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+  "manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "raw_calibration_example": "/tmp/pm97/data/etri/meta_train/20260112-105434/calibration/calibration.parquet",
+  "camera_to_ego_translation_metres": {
+    "camera_front_left": [
+      1.36,
+      0.648,
+      1.539
+    ],
+    "camera_front": [
+      2.224,
+      0.015,
+      1.29
+    ],
+    "camera_front_right": [
+      1.324,
+      -0.632,
+      1.54
+    ]
+  },
+  "camera_to_ego_euler_degrees": {
+    "camera_front_left": [
+      -107.340767,
+      -9.530718,
+      -30.146983
+    ],
+    "camera_front": [
+      -79.075293,
+      -0.172113,
+      -91.248411
+    ],
+    "camera_front_right": [
+      -107.261168,
+      10.043584,
+      -151.976108
+    ]
+  },
+  "reconstructed_projection_max_abs_error_at_512x256": 1.7197025954374112e-05,
+  "gt_xy_full_se3_parity_max_abs_metres": 3.8146805110272908e-06,
+  "cached_goal_vs_raw_plus50_xyz_max_abs_metres": 3.81438590579819e-06,
+  "goal_input_contract": "Only provided future +50 XYZ and current XYZ/RPY are required; neither future orientation nor intermediate future poses enter this formula.",
+  "dfa_ground_height": 0.0,
+  "dfa_fixed_z_levels": [
+    0.0,
+    -0.25,
+    -0.5,
+    0.25,
+    0.5
+  ],
+  "dfa_learned_offsets": "XY only; two offsets per base point per fixed Z; no learned Z",
+  "future_ego_local_z_metres_all_8steps": {
+    "min": -2.8403645111231826,
+    "p50": -0.10370509726357494,
+    "p90": -0.00011862901153019896,
+    "p95": 0.005907553441361214,
+    "p99": 0.1609199956468112,
+    "max": 1.532354276468841
+  },
+  "absolute_future_ego_local_z_metres_3s": {
+    "min": 3.923854844117039e-09,
+    "p50": 0.0881456693415122,
+    "p90": 0.290114412933919,
+    "p95": 0.3780777860212903,
+    "p99": 0.5998885041449582,
+    "max": 1.8502887703349489
+  },
+  "absolute_future_ego_local_z_metres_4s": {
+    "min": 3.923854844117039e-09,
+    "p50": 0.10902463535652471,
+    "p90": 0.37810479779827594,
+    "p95": 0.4986431687194284,
+    "p99": 0.8200074372140791,
+    "max": 2.8403645111231826
+  },
+  "absolute_z_over_half_m_fraction_3s": 0.02012710575928967,
+  "absolute_z_over_half_m_fraction_4s": 0.049623700054734536,
+  "projection_vs_true_future_ego_z": {
+    "interpretation": "Train-only diagnostic at actual future ego XY; not predicted path accuracy or proof of physical road height.",
+    "z0_error_pixels_both_visible_allcams_3s": {
+      "min": 2.6804333850192076e-05,
+      "p50": 2.646193947393007,
+      "p90": 4.780729313676928,
+      "p95": 5.724085996433673,
+      "p99": 8.525148820473682,
+      "max": 33.16848116613459
+    },
+    "z0_error_pixels_both_visible_allcams_4s": {
+      "min": 2.6804333850192076e-05,
+      "p50": 2.570476258940147,
+      "p90": 4.766204443069741,
+      "p95": 5.763407413470036,
+      "p99": 8.868265723054055,
+      "max": 33.16848116613459
+    },
+    "best_of_five_z_error_pixels_truevisible_4s": {
+      "min": 6.441003024385648e-06,
+      "p50": 1.0579556144916455,
+      "p90": 3.3235705857165287,
+      "p95": 4.121828823497648,
+      "p99": 5.821656369363482,
+      "max": 21.954932239693093
+    }
+  },
+  "origin_contract": "Both GT and camera projection use current ego XYZ/RPY origin. No rear-axle/lidar height shift is inserted by these code paths.",
+  "physical_limit": "The inspected code does not independently identify the physical ego reference point or certify road surface equals z=0. Fixed height levels approximate local geometry.",
+  "source_references": {
+    "public_ground_z": "third_party/SparseDriveV2/navsim/agents/sparsedrive/blocks.py:SparsePoint3DKeyPointsGenerator and ground_height=0 in DFA",
+    "public_levels": "third_party/SparseDriveV2/navsim/agents/sparsedrive/sparsedrive_config.py:fix_height and num_learnable_pts",
+    "adapter": "experiments/sparsedrivev2_20260910/public_model.py:SparsePoint3DKeyPointsGenerator",
+    "calibration": "scripts/derive_motiondrive_v2_geometry.py:camera_projection",
+    "raw_adapter": "models/motiondrive_v2_inputs.py:build_camera_geometry and pose_geometry",
+    "native_gt": "scripts/build_scene_supervision_v2.py:build_scene full-pose cache parity"
+  }
+}

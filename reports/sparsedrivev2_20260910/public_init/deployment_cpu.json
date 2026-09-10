@@ -1,0 +1,614 @@
+{
+  "device": "cpu",
+  "opencv": "4.8.1",
+  "pillow": "12.2.0",
+  "samples": [
+    {
+      "split": "train",
+      "row": 30,
+      "scene": "20260112-105434",
+      "frame": 30,
+      "status_max_abs": 0.0,
+      "goal_max_abs": 0.0,
+      "projection_max_abs": 0.0,
+      "raw_image_reads": 3,
+      "prepare_seconds": 0.11744959093630314,
+      "images": {
+        "camera_front_left": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.31372547149658203,
+            "normalized_mean_abs": 0.011291880160570145,
+            "rgb_255_mean_abs": 0.6507415771484375,
+            "rgb_255_max_abs": 17.999998092651367,
+            "psnr_db": 47.54668933808067,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.3938692808151245,
+            "normalized_mean_abs": 0.012236297130584717,
+            "rgb_255_mean_abs": 0.7056757807731628,
+            "rgb_255_max_abs": 22.999996185302734,
+            "psnr_db": 46.835250114333846,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front_right": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.26143789291381836,
+            "normalized_mean_abs": 0.014348435215651989,
+            "rgb_255_mean_abs": 0.8273976445198059,
+            "rgb_255_max_abs": 14.999999046325684,
+            "psnr_db": 46.369007533606556,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        }
+      }
+    },
+    {
+      "split": "train",
+      "row": 36209,
+      "scene": "20260209-153230",
+      "frame": 209,
+      "status_max_abs": 0.0,
+      "goal_max_abs": 0.0,
+      "projection_max_abs": 0.0,
+      "raw_image_reads": 3,
+      "prepare_seconds": 0.044454969465732574,
+      "images": {
+        "camera_front_left": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.348583847284317,
+            "normalized_mean_abs": 0.012649244628846645,
+            "rgb_255_mean_abs": 0.7292633056640625,
+            "rgb_255_max_abs": 19.999996185302734,
+            "psnr_db": 47.00736173569812,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.29112082719802856,
+            "normalized_mean_abs": 0.013293438591063023,
+            "rgb_255_mean_abs": 0.7664794921875,
+            "rgb_255_max_abs": 17.0,
+            "psnr_db": 46.33342042332035,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front_right": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.24400877952575684,
+            "normalized_mean_abs": 0.014956034719944,
+            "rgb_255_mean_abs": 0.8623784184455872,
+            "rgb_255_max_abs": 14.00000286102295,
+            "psnr_db": 46.04815421349409,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        }
+      }
+    },
+    {
+      "split": "train",
+      "row": 69119,
+      "scene": "20260213-111554",
+      "frame": 119,
+      "status_max_abs": 0.0,
+      "goal_max_abs": 0.0,
+      "projection_max_abs": 0.0,
+      "raw_image_reads": 3,
+      "prepare_seconds": 0.0420781746506691,
+      "images": {
+        "camera_front_left": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.15686288475990295,
+            "normalized_mean_abs": 0.01078642625361681,
+            "rgb_255_mean_abs": 0.6217778325080872,
+            "rgb_255_max_abs": 9.000007629394531,
+            "psnr_db": 48.09246022898157,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.17124751210212708,
+            "normalized_mean_abs": 0.008063024841248989,
+            "rgb_255_mean_abs": 0.46479544043540955,
+            "rgb_255_max_abs": 9.999998092651367,
+            "psnr_db": 49.86547066912209,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front_right": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.11987327039241791,
+            "normalized_mean_abs": 0.012138540856540203,
+            "rgb_255_mean_abs": 0.7001088261604309,
+            "rgb_255_max_abs": 6.999999523162842,
+            "psnr_db": 47.850168640971226,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        }
+      }
+    },
+    {
+      "split": "train",
+      "row": 111299,
+      "scene": "20260303-142507",
+      "frame": 299,
+      "status_max_abs": 0.0,
+      "goal_max_abs": 0.0,
+      "projection_max_abs": 0.0,
+      "raw_image_reads": 3,
+      "prepare_seconds": 0.045664142817258835,
+      "images": {
+        "camera_front_left": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.17429205775260925,
+            "normalized_mean_abs": 0.011524987407028675,
+            "rgb_255_mean_abs": 0.6643803715705872,
+            "rgb_255_max_abs": 10.000006675720215,
+            "psnr_db": 47.567001815896674,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.24400870501995087,
+            "normalized_mean_abs": 0.010377143509685993,
+            "rgb_255_mean_abs": 0.5983327031135559,
+            "rgb_255_max_abs": 13.999999046325684,
+            "psnr_db": 48.05310763120568,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front_right": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.1917210817337036,
+            "normalized_mean_abs": 0.012472710572183132,
+            "rgb_255_mean_abs": 0.7192306518554688,
+            "rgb_255_max_abs": 10.999996185302734,
+            "psnr_db": 47.366137261924806,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        }
+      }
+    },
+    {
+      "split": "tune",
+      "row": 14730,
+      "scene": "20260113-102709",
+      "frame": 30,
+      "status_max_abs": 0.0,
+      "goal_max_abs": 0.0,
+      "projection_max_abs": 0.0,
+      "raw_image_reads": 3,
+      "prepare_seconds": 0.04300038516521454,
+      "images": {
+        "camera_front_left": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.24400871992111206,
+            "normalized_mean_abs": 0.01586356945335865,
+            "rgb_255_mean_abs": 0.9145863652229309,
+            "rgb_255_max_abs": 14.0,
+            "psnr_db": 45.452283449948396,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.32537031173706055,
+            "normalized_mean_abs": 0.014785503037273884,
+            "rgb_255_mean_abs": 0.8525187373161316,
+            "rgb_255_max_abs": 18.999998092651367,
+            "psnr_db": 45.63699343834395,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front_right": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.17429190874099731,
+            "normalized_mean_abs": 0.013094750232994556,
+            "rgb_255_mean_abs": 0.7550506591796875,
+            "rgb_255_max_abs": 9.999998092651367,
+            "psnr_db": 47.204537649456284,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        }
+      }
+    },
+    {
+      "split": "tune",
+      "row": 40615,
+      "scene": "20260210-100504",
+      "frame": 115,
+      "status_max_abs": 0.0,
+      "goal_max_abs": 0.0,
+      "projection_max_abs": 0.0,
+      "raw_image_reads": 3,
+      "prepare_seconds": 0.04140419326722622,
+      "images": {
+        "camera_front_left": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.1917211413383484,
+            "normalized_mean_abs": 0.012594620697200298,
+            "rgb_255_mean_abs": 0.7259750366210938,
+            "rgb_255_max_abs": 11.000006675720215,
+            "psnr_db": 47.298355194310716,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.1742919385433197,
+            "normalized_mean_abs": 0.009401344694197178,
+            "rgb_255_mean_abs": 0.5419921875,
+            "rgb_255_max_abs": 9.999999046325684,
+            "psnr_db": 49.027651974295374,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front_right": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.13943356275558472,
+            "normalized_mean_abs": 0.013613291084766388,
+            "rgb_255_mean_abs": 0.7852096557617188,
+            "rgb_255_max_abs": 8.0,
+            "psnr_db": 47.132160408272455,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        }
+      }
+    },
+    {
+      "split": "tune",
+      "row": 76705,
+      "scene": "20260213-134758",
+      "frame": 205,
+      "status_max_abs": 0.0,
+      "goal_max_abs": 0.0,
+      "projection_max_abs": 0.0,
+      "raw_image_reads": 3,
+      "prepare_seconds": 0.04093819297850132,
+      "images": {
+        "camera_front_left": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.18837228417396545,
+            "normalized_mean_abs": 0.01215002965182066,
+            "rgb_255_mean_abs": 0.7004445195198059,
+            "rgb_255_max_abs": 10.999999046325684,
+            "psnr_db": 47.41939211488318,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.25687140226364136,
+            "normalized_mean_abs": 0.008603914640843868,
+            "rgb_255_mean_abs": 0.49599966406822205,
+            "rgb_255_max_abs": 15.000005722045898,
+            "psnr_db": 49.52743268340346,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front_right": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.15686273574829102,
+            "normalized_mean_abs": 0.012744725681841373,
+            "rgb_255_mean_abs": 0.734893798828125,
+            "rgb_255_max_abs": 8.999999046325684,
+            "psnr_db": 47.28516300430263,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        }
+      }
+    },
+    {
+      "split": "tune",
+      "row": 111595,
+      "scene": "20260303-142827",
+      "frame": 295,
+      "status_max_abs": 0.0,
+      "goal_max_abs": 0.0,
+      "projection_max_abs": 0.0,
+      "raw_image_reads": 3,
+      "prepare_seconds": 0.041171612218022346,
+      "images": {
+        "camera_front_left": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.2962964177131653,
+            "normalized_mean_abs": 0.014010791666805744,
+            "rgb_255_mean_abs": 0.8076451420783997,
+            "rgb_255_max_abs": 17.0000057220459,
+            "psnr_db": 46.409812701363634,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.3137255907058716,
+            "normalized_mean_abs": 0.013469905592501163,
+            "rgb_255_mean_abs": 0.7767003178596497,
+            "rgb_255_max_abs": 18.000003814697266,
+            "psnr_db": 46.44071647461229,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        },
+        "camera_front_right": {
+          "cache_equivalent_vs_archived": {
+            "normalized_max_abs": 0.0,
+            "normalized_mean_abs": 0.0,
+            "rgb_255_mean_abs": 0.0,
+            "rgb_255_max_abs": 0.0,
+            "psnr_db": null,
+            "tensor_exact": true
+          },
+          "omit_q95_vs_archived": {
+            "normalized_max_abs": 0.33115464448928833,
+            "normalized_mean_abs": 0.012978178448975086,
+            "rgb_255_mean_abs": 0.7485097050666809,
+            "rgb_255_max_abs": 18.999996185302734,
+            "psnr_db": 46.88774945968035,
+            "tensor_exact": false
+          },
+          "reencoded_jpeg_sha_matches_archive": true
+        }
+      }
+    }
+  ],
+  "source_sha256": {
+    "deployment.py": "e3c0c99a60eef6feedf5890348c3dca0336307b07bcaf7015ce96d17a5d1df7b",
+    "test_deployment_cpu.py": "5fb22b541127d4aba2641411c7e974d08cc7e0c6b7b88a4f1935afd0270ed849"
+  },
+  "trained_entry": {
+    "passed": true,
+    "checkpoint_sha256": "0e92346d2f3b063f11326a28305b5513fe1f348d5d3250484cd4969330cf2b2e",
+    "candidate_id": 216867,
+    "trajectory_shape": [
+      6,
+      2
+    ],
+    "raw_to_model_seconds_cpu": 4.904668759554625,
+    "fixed_bank_row_exact": true,
+    "strict_load": {
+      "checkpoint_sha256": "0e92346d2f3b063f11326a28305b5513fe1f348d5d3250484cd4969330cf2b2e",
+      "checkpoint_step": 500,
+      "bank_sha256": "0dceecbe8004c706de6f05e6a0ed1ef4ee603e5db54164f9c81d35359b4d475c",
+      "public_checkpoint_sha256": "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735",
+      "public_initializer_file_rechecked": false,
+      "source_sha256": {
+        "experiments/sparsedrivev2_20260910/public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7"
+      },
+      "deployment_sha256": "e3c0c99a60eef6feedf5890348c3dca0336307b07bcaf7015ce96d17a5d1df7b",
+      "strict_state_dict_load": true,
+      "checkpoint_weights_only": true,
+      "bank_rows_immutable": true,
+      "status_mode": "causal_selection",
+      "goal_mode": "none",
+      "path_filter": [
+        128,
+        20
+      ],
+      "velocity_filter": [
+        64,
+        10
+      ],
+      "output": "six cumulative current rear-axle ego XY metres at .5..3s; no cumsum"
+    },
+    "raw_metadata_only": true
+  },
+  "passed": true,
+  "raw_test_shaped_disk_interface_exact": true,
+  "repeated_input_exact": true,
+  "disabled_goal_not_read": true,
+  "no_gpu_used": true,
+  "hidden_test_clips_read": false
+}

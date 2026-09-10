@@ -1,0 +1,25 @@
+{
+  "name": "old500_v256_cpu8_v1",
+  "pid": 3859815,
+  "device": "cpu",
+  "command": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/selection_diagnostics.py",
+    "--checkpoint",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/pilot500_causal_selection_s0_v1/last.pth",
+    "--launch-receipt",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/launches/pilot500_causal_selection_s0_v1.json",
+    "--device",
+    "cpu",
+    "--precision",
+    "fp32",
+    "--threads",
+    "4",
+    "--limit",
+    "8",
+    "--output-dir",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/selection_diagnostics/old500_v256_cpu8_v1"
+  ],
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/selection_diagnostics/old500_v256_cpu8_v1.log",
+  "launched": "2026-09-10T12:20:45.484760"
+}

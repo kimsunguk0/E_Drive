@@ -1,0 +1,67 @@
+{
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/longrun_long_s1/last.pth",
+  "checkpoint_sha256": "062b6e65d519c5de3c4e5706fc4ea9ea615d3493f228022b7fd51009fdcdae87",
+  "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "status_sha256": "aff4c00cd36c35c03c1a43f9f0689c85bc75008be7e8444829ea9a10b9493c6f",
+  "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "n": 1998,
+  "source_root": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910",
+  "physical_gpu": 0,
+  "pid": 3828378,
+  "torch": "2.7.1+cu128",
+  "model_config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 2,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": true,
+    "state_on": true,
+    "plan_output_scale": [
+      10.0,
+      5.0
+    ],
+    "motion_input_mode": "low_feature",
+    "history_contract": "control",
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "cross_cell_goal_mode": "zero"
+  },
+  "time_input": "nominal",
+  "selection": "existing terminal long_s1, fixed before this evaluation"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "late_average_eval_selection_v1",
+  "status": "completed",
+  "gpu": 1,
+  "supervisor_pid": 3873128,
+  "child_pid": 3873129,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/evaluate_checkpoint.py",
+    "--checkpoint",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/late_averages_v1/dense2000_selection_s0_v1.pth",
+    "--population",
+    "tune",
+    "--output",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/late_average_eval_selection_v1",
+    "--batch",
+    "8",
+    "--workers",
+    "4",
+    "--dump-coarse"
+  ],
+  "started_unix": 1789011740.2545621,
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/launches/late_average_eval_selection_v1.log",
+  "returncode": 0,
+  "finished_unix": 1789011794.0534914,
+  "elapsed_seconds": 53.798929929733276
+}

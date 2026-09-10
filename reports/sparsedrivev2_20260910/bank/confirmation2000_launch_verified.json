@@ -1,0 +1,77 @@
+{
+  "name": "confirmation2000_selection_s0_v1",
+  "status_at_audit": "running",
+  "supervisor_pid": 3854474,
+  "child_pid": 3854475,
+  "physical_gpu": 4,
+  "git_sha": "a8876de46c2e7b9d1ba94058e9c86ed4c87ab839",
+  "public_checkpoint_sha256": "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735",
+  "bank_sha256": "73c29e27f321a99e6654ebdeb0877fd260c2b22983fdffce58358335bdaa207f",
+  "train_rows": 46170,
+  "train_rows_sha256": "701e7ea7b76acd6b0d99845a0f400c9b65a5c470131d2d3b6324192e09c28a35",
+  "train_scenes": 171,
+  "train_sessions": 60,
+  "validation_rows": 1998,
+  "validation_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "runtime_sha256": {
+    "experiments/sparsedrivev2_20260910/train.py": "be221f0574a562e8449bffd90a6dd7a9f817b25159b006270de3f61b4cc9e08d",
+    "experiments/sparsedrivev2_20260910/data.py": "54bcd88b1c2567d8aab3337fd82f5e6be50a4950e51957ba1df2908185f1eddb",
+    "experiments/sparsedrivev2_20260910/losses.py": "f21c779742e0018b56d0b55123d5fbbfe1474127d8f56279221f28fd003fff17",
+    "experiments/sparsedrivev2_20260910/public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+    "experiments/sparsedrivev2_20260910/goal_selector.py": "b302b6db5e497ce26fb8fa7ecc817a1f2e1984a1c7dc21a1ed65fd94e16d581d"
+  },
+  "copied_runtime_bitwise_matches_canary": true,
+  "first_training_step": {
+    "step": 1,
+    "epoch": 0,
+    "seconds": 31.622302770614624,
+    "grad_norm": 210.41551208496094,
+    "lr": 1.0000000000000002e-06,
+    "loss": 13.312944412231445,
+    "fine_ce": 5.53702449798584,
+    "path_ce": 11.063594818115234,
+    "velocity_ce": 4.488245487213135,
+    "shortlist_oracle": 0.23103049397468567,
+    "selected_d3": 0.4938591718673706
+  },
+  "latest_logged_step_at_audit": 130,
+  "initial_tune_eval": {
+    "step": 0,
+    "n": 1998,
+    "official_d3": 0.4618854224681854,
+    "shortlist_oracle_d3": 0.24462255835533142,
+    "selection_regret": 0.21726281940937042,
+    "point_l2_metres_05_to_30": [
+      0.10839343816041946,
+      0.26397770643234253,
+      0.49948498606681824,
+      0.8225672245025635,
+      1.2328307628631592,
+      1.727932333946228
+    ],
+    "prefix_ade_1_2_3s": [
+      0.18618550896644592,
+      0.4236059784889221,
+      0.7758647203445435
+    ],
+    "three_second_endpoint_l2": 1.7279340028762817,
+    "session_d3": {
+      "session_019_20260113-102709": 0.40476398087210125,
+      "session_026_20260122-134906": 0.41385059986539463,
+      "session_027_20260122-135506": 0.2957873521397314,
+      "session_040_20260209-153550": 0.3861247150710336,
+      "session_046_20260210-100504": 0.7123037163409646,
+      "session_076_20260213-134648": 0.35730218157793087,
+      "session_092_20260219-103747": 0.6162426471710205,
+      "session_097_20260219-110038": 0.30699135190634813,
+      "session_087_20260219-90551": 0.3538595375915368,
+      "session_108_20260220-134317": 0.4961456490197667,
+      "session_112_20260303-142827": 0.5104558103614383
+    }
+  },
+  "held_evaluation_performed": false,
+  "reserve_evaluation_performed": false,
+  "launch_receipt": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/launches/confirmation2000_selection_s0_v1.json",
+  "run_dir": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/confirmation2000_selection_s0_v1",
+  "warning": "training candidate only; no confirmed generalization claim until chosen checkpoint is evaluated on untouched held sessions"
+}

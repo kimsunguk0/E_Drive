@@ -1,0 +1,30 @@
+{
+  "name": "cache_confirmation_none2000_v1",
+  "status": "completed",
+  "gpu": 1,
+  "supervisor_pid": 3894996,
+  "child_pid": 3895000,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/cache_selection_features.py",
+    "--checkpoint",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/confirmation2000_none_s0_v1/last.pth",
+    "--train-rows",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/split_audit/rows/confirmation12_train.npy",
+    "--output",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/cache/sparsedrivev2_20260910/features_confirmation_none2000_v1",
+    "--batch",
+    "16",
+    "--eval-batch",
+    "8",
+    "--workers",
+    "4",
+    "--reference-predictions",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/confirmation2000_none_s0_v1/eval_002000.npz"
+  ],
+  "started_unix": 1789013950.1458714,
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/launches/cache_confirmation_none2000_v1.log",
+  "returncode": 0,
+  "finished_unix": 1789014103.5459042,
+  "elapsed_seconds": 153.40003275871277
+}

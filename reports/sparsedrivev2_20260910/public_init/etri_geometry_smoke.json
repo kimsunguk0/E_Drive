@@ -1,0 +1,14 @@
+{
+  "cameras": [
+    2,
+    0,
+    1
+  ],
+  "path_ground_point_visible_fraction": [
+    0.19289062917232513,
+    0.6126562356948853,
+    0.17179687321186066
+  ],
+  "any_camera_visible_fraction": 0.9064062237739563,
+  "source_calibration": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz"
+}

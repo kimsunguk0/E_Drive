@@ -1,0 +1,23 @@
+{
+  "pid": 3836891,
+  "gpu_uuid": "GPU-4b804d68-fd61-af14-393a-573c533d5006",
+  "gpu_physical_index": 4,
+  "prelaunch_snapshot": "GPU-4b804d68-fd61-af14-393a-573c533d5006, 0, 0",
+  "command": [
+    "/usr/bin/python",
+    "experiments/sparsedrivev2_20260910/bank.py",
+    "oracle",
+    "--bank",
+    "cache/sparsedrivev2_20260910/bank/p1024_v256_native100m_v8.npz",
+    "--tune",
+    "cache/sparsedrivev2_20260910/bank/tune_native100m_v8.npz",
+    "--device",
+    "cuda:0",
+    "--coarse-mode",
+    "d3",
+    "--output",
+    "reports/sparsedrivev2_20260910/bank/p1024_v256_native100m_v8_oracle_d3coarse.npz"
+  ],
+  "log": "reports/sparsedrivev2_20260910/bank/oracle1024d3_20260910T114436.log",
+  "launch_time": "2026-09-10T11:44:36.267707"
+}

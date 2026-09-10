@@ -1,0 +1,16 @@
+{
+  "pid": 3828378,
+  "physical_gpu": 0,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/baseline_eval.py",
+    "--base",
+    "/NHNHOME/data/sukim/adcl",
+    "--checkpoint",
+    "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/longrun_long_s1/last.pth",
+    "--output",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/baseline_long_s1_tune"
+  ],
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/launches/baseline_long_s1_tune.log",
+  "launched_unix": 1789007582.7908623
+}

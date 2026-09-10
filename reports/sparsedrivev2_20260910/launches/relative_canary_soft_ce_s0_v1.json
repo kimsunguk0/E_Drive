@@ -1,0 +1,32 @@
+{
+  "name": "relative_canary_soft_ce_s0_v1",
+  "status": "completed",
+  "gpu": 0,
+  "supervisor_pid": 3878658,
+  "child_pid": 3878660,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/train_cached_selector.py",
+    "--cache",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/cache/sparsedrivev2_20260910/features_primary_none2000_v1",
+    "--run-dir",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/relative_canary_soft_ce_s0_v1",
+    "--objective",
+    "soft_ce",
+    "--steps",
+    "2",
+    "--batch",
+    "128",
+    "--eval-every",
+    "2",
+    "--warmup",
+    "1",
+    "--seed",
+    "0"
+  ],
+  "started_unix": 1789012264.7047076,
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/launches/relative_canary_soft_ce_s0_v1.log",
+  "returncode": 0,
+  "finished_unix": 1789012272.2005847,
+  "elapsed_seconds": 7.495877504348755
+}

@@ -1,0 +1,468 @@
+{
+  "device": "NVIDIA B200",
+  "physical_gpu": 1,
+  "checkpoint_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+  "opencv_threads": 1,
+  "torch_threads": 4,
+  "scope": "B200 only, no RTX4090 inference claim; batch1",
+  "loadavg_start": [
+    7.53564453125,
+    4.7646484375,
+    5.732421875
+  ],
+  "samples": [
+    {
+      "row": 14730,
+      "scene": "20260113-102709",
+      "frame": 30,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 14930,
+      "scene": "20260113-102709",
+      "frame": 230,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 19965,
+      "scene": "20260122-134906",
+      "frame": 165,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 20200,
+      "scene": "20260122-134936",
+      "frame": 100,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 20435,
+      "scene": "20260122-135506",
+      "frame": 35,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 20635,
+      "scene": "20260122-135506",
+      "frame": 235,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 20870,
+      "scene": "20260122-135546",
+      "frame": 170,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 21105,
+      "scene": "20260122-135616",
+      "frame": 105,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 21340,
+      "scene": "20260122-135646",
+      "frame": 40,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 21540,
+      "scene": "20260122-135646",
+      "frame": 240,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 21775,
+      "scene": "20260122-135800",
+      "frame": 175,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 22010,
+      "scene": "20260122-135830",
+      "frame": 110,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 22245,
+      "scene": "20260122-135900",
+      "frame": 45,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 22445,
+      "scene": "20260122-135900",
+      "frame": 245,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 36480,
+      "scene": "20260209-153550",
+      "frame": 180,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 36715,
+      "scene": "20260209-153620",
+      "frame": 115,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 40550,
+      "scene": "20260210-100504",
+      "frame": 50,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 40750,
+      "scene": "20260210-100504",
+      "frame": 250,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 40985,
+      "scene": "20260210-100534",
+      "frame": 185,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 41220,
+      "scene": "20260210-100614",
+      "frame": 120,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 41455,
+      "scene": "20260210-100644",
+      "frame": 55,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 41655,
+      "scene": "20260210-100644",
+      "frame": 255,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 41890,
+      "scene": "20260210-100754",
+      "frame": 190,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 42125,
+      "scene": "20260210-100854",
+      "frame": 125,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 42360,
+      "scene": "20260210-101004",
+      "frame": 60,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 42560,
+      "scene": "20260210-101004",
+      "frame": 260,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 42795,
+      "scene": "20260210-101034",
+      "frame": 195,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 43030,
+      "scene": "20260210-101114",
+      "frame": 130,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 43265,
+      "scene": "20260210-101214",
+      "frame": 65,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 43465,
+      "scene": "20260210-101214",
+      "frame": 265,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 76100,
+      "scene": "20260213-134648",
+      "frame": 200,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 76335,
+      "scene": "20260213-134718",
+      "frame": 135,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 76570,
+      "scene": "20260213-134758",
+      "frame": 70,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 76770,
+      "scene": "20260213-134758",
+      "frame": 270,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 77005,
+      "scene": "20260213-134828",
+      "frame": 205,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 77240,
+      "scene": "20260213-134938",
+      "frame": 140,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 77475,
+      "scene": "20260213-135038",
+      "frame": 75,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 77675,
+      "scene": "20260213-135038",
+      "frame": 275,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 94710,
+      "scene": "20260219-103747",
+      "frame": 210,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 98845,
+      "scene": "20260219-110038",
+      "frame": 145,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99080,
+      "scene": "20260219-110108",
+      "frame": 80,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99280,
+      "scene": "20260219-110108",
+      "frame": 280,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99515,
+      "scene": "20260219-110218",
+      "frame": 215,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99750,
+      "scene": "20260219-90551",
+      "frame": 150,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 99985,
+      "scene": "20260219-90621",
+      "frame": 85,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 100185,
+      "scene": "20260219-90621",
+      "frame": 285,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 110320,
+      "scene": "20260220-134317",
+      "frame": 220,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 110555,
+      "scene": "20260220-134347",
+      "frame": 155,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 111390,
+      "scene": "20260303-142827",
+      "frame": 90,
+      "raw_cache_inputs_exact": true
+    },
+    {
+      "row": 111595,
+      "scene": "20260303-142827",
+      "frame": 295,
+      "raw_cache_inputs_exact": true
+    }
+  ],
+  "timing": {
+    "raw_prepare": {
+      "n": 50,
+      "mean_ms": 40.09778007864952,
+      "p50_ms": 39.83584325760603,
+      "p95_ms": 41.39902042225003,
+      "min_ms": 38.32592070102692,
+      "max_ms": 42.75478236377239
+    },
+    "h2d": {
+      "n": 50,
+      "mean_ms": 0.335170179605484,
+      "p50_ms": 0.33386610448360443,
+      "p95_ms": 0.3471866250038147,
+      "min_ms": 0.322805717587471,
+      "max_ms": 0.36223605275154114
+    },
+    "model_only": {
+      "n": 50,
+      "mean_ms": 16.192832812666893,
+      "p50_ms": 16.183797270059586,
+      "p95_ms": 16.247261222451925,
+      "min_ms": 16.135770827531815,
+      "max_ms": 16.405994072556496
+    },
+    "bank_check_and_d2h": {
+      "n": 50,
+      "mean_ms": 0.14119736850261688,
+      "p50_ms": 0.13974402099847794,
+      "p95_ms": 0.14701494947075844,
+      "min_ms": 0.13489089906215668,
+      "max_ms": 0.1917872577905655
+    },
+    "full_warm_raw": {
+      "n": 50,
+      "mean_ms": 56.76867954432964,
+      "p50_ms": 56.49643484503031,
+      "p95_ms": 58.20538550615311,
+      "min_ms": 55.00180087983608,
+      "max_ms": 59.47783216834068
+    }
+  },
+  "timing_boundary": "in-memory raw JPEG bytes -> calibrated normalized tensors -> H2D -> native bf16 model -> all-candidate/final bank equality checks -> six XY CPU; excludes parquet/tar/file I/O and cold map/extension/model initialization",
+  "fixed_bank_rows_exact": true,
+  "selected_ids": [
+    883982,
+    853783,
+    238941,
+    648800,
+    625468,
+    978891,
+    992296,
+    259244,
+    78306,
+    225124,
+    1008338,
+    971223,
+    161352,
+    605889,
+    464113,
+    701115,
+    556743,
+    299883,
+    402539,
+    284044,
+    337064,
+    603384,
+    1003654,
+    162253,
+    1014784,
+    898922,
+    438772,
+    795739,
+    529315,
+    424867,
+    940529,
+    659154,
+    501726,
+    743525,
+    760578,
+    404644,
+    653369,
+    161153,
+    979676,
+    484516,
+    337005,
+    910374,
+    1020762,
+    390491,
+    314171,
+    658967,
+    926821,
+    201069,
+    1027343,
+    51147
+  ],
+  "peak_cuda_allocated_bytes": 1425444352,
+  "peak_cuda_reserved_bytes": 1545601024,
+  "flops": {
+    "raw_torch_counter": 137651476480,
+    "raw_torch_gflops": 137.65147648,
+    "operators": {
+      "aten.addmm": 37527867392,
+      "aten.convolution": 97429487616,
+      "aten.bmm": 56887296,
+      "aten._scaled_dot_product_flash_attention": 2637234176
+    },
+    "native_dfa_all_camera_upper": 38191104000,
+    "counter_plus_native_upper": 175842580480,
+    "counter_plus_native_upper_gflops": 175.84258048,
+    "convention": "MAC/FMA=2; native scalar arithmetic21 per valid camera-point/level/channel",
+    "limitation": "native contribution is conservative all-camera bound; standard unregistered elementwise/reduction ops and any unregistered attention dispatch are not silently treated as exact total",
+    "projection_matmul_extra_added": false,
+    "core_interpolation_subset_extra_added": false,
+    "no_submission_json_written": true
+  },
+  "source_sha256": {
+    "deployment.py": "e3c0c99a60eef6feedf5890348c3dca0336307b07bcaf7015ce96d17a5d1df7b",
+    "public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+    "profile_deployment_gpu.py": "c512fddc1aa95d7a04e26acc42cbc554749cf34463744c6737e2e58f5739c4f2",
+    "dfa_flops_supplement.py": "98f9f1d219b96f320ed6c3f54c14c86f1491df565a89ca6b8aa919c07c811fee"
+  },
+  "passed": true,
+  "provenance": {
+    "checkpoint_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+    "checkpoint_step": 2000,
+    "bank_sha256": "4aff9b40696f91383bfbec377f388e6209d619fa509e51a2019b19af977b5e04",
+    "public_checkpoint_sha256": "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735",
+    "public_initializer_file_rechecked": false,
+    "source_sha256": {
+      "experiments/sparsedrivev2_20260910/public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7"
+    },
+    "deployment_sha256": "e3c0c99a60eef6feedf5890348c3dca0336307b07bcaf7015ce96d17a5d1df7b",
+    "strict_state_dict_load": true,
+    "checkpoint_weights_only": true,
+    "bank_rows_immutable": true,
+    "status_mode": "causal_selection",
+    "goal_mode": "none",
+    "path_filter": [
+      128,
+      20
+    ],
+    "velocity_filter": [
+      64,
+      10
+    ],
+    "output": "six cumulative current rear-axle ego XY metres at .5..3s; no cumsum"
+  },
+  "loadavg_end": [
+    7.359375,
+    4.90966796875,
+    5.75927734375
+  ]
+}

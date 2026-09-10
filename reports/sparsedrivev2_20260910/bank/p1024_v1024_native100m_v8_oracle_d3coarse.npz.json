@@ -1,0 +1,329 @@
+{
+  "artifact_sha256": "84f9ec8e77156ef6ea73b09ddcc7246054d2a78825e32dc1cd744a7a2257725e",
+  "bank_sha256": "0d8f7bdc4e4cc5274b4e49a232836380dbe2e580fdc95376fef1ad284d82e6e7",
+  "coarse_cost": "root losses.coarse_costs: path evaluated at GT6 cumulative progress under D3; velocity GT6-vocabulary cumulative progress weighted absolute error; both metres",
+  "coarse_mode": "d3",
+  "coarse_path_min_mean": 0.009796557947993279,
+  "coarse_source": {
+    "data_sha256": "ad3f52cd097e7711b8edbcb8b43d282f36cd72aa93257ccaf37672ce4a8d55a1",
+    "losses_sha256": "f21c779742e0018b56d0b55123d5fbbfe1474127d8f56279221f28fd003fff17"
+  },
+  "coarse_velocity_min_mean": 0.05659773573279381,
+  "code_sha256": "4ce8f00b9353d541331bfba10b5ef6d19b15674704c25c0fd069ce7c937c7b25",
+  "device": "cuda:0",
+  "dtype": "float32",
+  "full_bank_pair_error_means": [
+    0.03851889818906784,
+    0.06292438507080078,
+    0.16576051712036133
+  ],
+  "full_bank_point_error_means": [
+    0.03341388329863548,
+    0.04362385347485542,
+    0.05233648791909218,
+    0.07351227104663849,
+    0.12044313549995422,
+    0.2110777497291565
+  ],
+  "invalid_candidate_policy": "all first6 positions must lie inside centre's observed arc length; no extrapolated candidate admitted",
+  "metric": "mean(sum_t([11,11,5,5,2,2]/36 * Euclidean(pred_t-GT_t)))",
+  "metrics": {
+    "coarse128x64": {
+      "distance3sec_bins": {
+        "0-0.1m": {
+          "mean": 0.0012089709052816033,
+          "n": 97
+        },
+        "0.1-5m": {
+          "mean": 0.07424754649400711,
+          "n": 63
+        },
+        "15-30m": {
+          "mean": 0.06557371467351913,
+          "n": 493
+        },
+        "30-50m": {
+          "mean": 0.058377936482429504,
+          "n": 1073
+        },
+        "5-15m": {
+          "mean": 0.08739084005355835,
+          "n": 113
+        },
+        "50-infm": {
+          "mean": 0.0573369525372982,
+          "n": 159
+        }
+      },
+      "full_winner_recall": 0.9459459459459459,
+      "mean": 0.05943642184138298,
+      "mean_all_rows": 0.05943642184138298,
+      "median": 0.052207693457603455,
+      "p90": 0.10522424429655075,
+      "p99": 0.1947949230670929,
+      "rows_with_valid_candidate": 1998,
+      "rows_without_valid_candidate": 0
+    },
+    "coarse1x1": {
+      "distance3sec_bins": {
+        "0-0.1m": {
+          "mean": 0.0022385790944099426,
+          "n": 97
+        },
+        "0.1-5m": {
+          "mean": 0.07425985485315323,
+          "n": 63
+        },
+        "15-30m": {
+          "mean": 0.06577344983816147,
+          "n": 493
+        },
+        "30-50m": {
+          "mean": 0.05859155207872391,
+          "n": 1073
+        },
+        "5-15m": {
+          "mean": 0.08764080703258514,
+          "n": 113
+        },
+        "50-infm": {
+          "mean": 0.057560790330171585,
+          "n": 159
+        }
+      },
+      "full_winner_recall": 0.6531531531531531,
+      "mean": 0.059682752937078476,
+      "mean_all_rows": 0.059682752937078476,
+      "median": 0.052482880651950836,
+      "p90": 0.1053365170955658,
+      "p99": 0.1947949230670929,
+      "rows_with_valid_candidate": 1998,
+      "rows_without_valid_candidate": 0
+    },
+    "coarse20x10": {
+      "distance3sec_bins": {
+        "0-0.1m": {
+          "mean": 0.0012090096715837717,
+          "n": 97
+        },
+        "0.1-5m": {
+          "mean": 0.07425354421138763,
+          "n": 63
+        },
+        "15-30m": {
+          "mean": 0.06557371467351913,
+          "n": 493
+        },
+        "30-50m": {
+          "mean": 0.058377936482429504,
+          "n": 1073
+        },
+        "5-15m": {
+          "mean": 0.08739174902439117,
+          "n": 113
+        },
+        "50-infm": {
+          "mean": 0.0573369525372982,
+          "n": 159
+        }
+      },
+      "full_winner_recall": 0.92992992992993,
+      "mean": 0.05943666025996208,
+      "mean_all_rows": 0.05943666025996208,
+      "median": 0.052218932658433914,
+      "p90": 0.10522424429655075,
+      "p99": 0.1947949230670929,
+      "rows_with_valid_candidate": 1998,
+      "rows_without_valid_candidate": 0
+    },
+    "coarse20x20": {
+      "distance3sec_bins": {
+        "0-0.1m": {
+          "mean": 0.0012090096715837717,
+          "n": 97
+        },
+        "0.1-5m": {
+          "mean": 0.07425354421138763,
+          "n": 63
+        },
+        "15-30m": {
+          "mean": 0.06557371467351913,
+          "n": 493
+        },
+        "30-50m": {
+          "mean": 0.058377936482429504,
+          "n": 1073
+        },
+        "5-15m": {
+          "mean": 0.08739174902439117,
+          "n": 113
+        },
+        "50-infm": {
+          "mean": 0.0573369525372982,
+          "n": 159
+        }
+      },
+      "full_winner_recall": 0.92992992992993,
+      "mean": 0.05943666025996208,
+      "mean_all_rows": 0.05943666025996208,
+      "median": 0.052218932658433914,
+      "p90": 0.10522424429655075,
+      "p99": 0.1947949230670929,
+      "rows_with_valid_candidate": 1998,
+      "rows_without_valid_candidate": 0
+    },
+    "coarse64x16": {
+      "distance3sec_bins": {
+        "0-0.1m": {
+          "mean": 0.0012089709052816033,
+          "n": 97
+        },
+        "0.1-5m": {
+          "mean": 0.07424949109554291,
+          "n": 63
+        },
+        "15-30m": {
+          "mean": 0.06557371467351913,
+          "n": 493
+        },
+        "30-50m": {
+          "mean": 0.058377936482429504,
+          "n": 1073
+        },
+        "5-15m": {
+          "mean": 0.08739084005355835,
+          "n": 113
+        },
+        "50-infm": {
+          "mean": 0.0573369525372982,
+          "n": 159
+        }
+      },
+      "full_winner_recall": 0.9429429429429429,
+      "mean": 0.059436485171318054,
+      "mean_all_rows": 0.059436485171318054,
+      "median": 0.052207693457603455,
+      "p90": 0.10522424429655075,
+      "p99": 0.1947949230670929,
+      "rows_with_valid_candidate": 1998,
+      "rows_without_valid_candidate": 0
+    },
+    "full_bank": {
+      "distance3sec_bins": {
+        "0-0.1m": {
+          "mean": 0.0012089709052816033,
+          "n": 97
+        },
+        "0.1-5m": {
+          "mean": 0.0742388367652893,
+          "n": 63
+        },
+        "15-30m": {
+          "mean": 0.06557371467351913,
+          "n": 493
+        },
+        "30-50m": {
+          "mean": 0.058377936482429504,
+          "n": 1073
+        },
+        "5-15m": {
+          "mean": 0.08739084005355835,
+          "n": 113
+        },
+        "50-infm": {
+          "mean": 0.0573369525372982,
+          "n": 159
+        }
+      },
+      "mean": 0.059436146169900894,
+      "mean_all_rows": 0.059436146169900894,
+      "median": 0.052207693457603455,
+      "p90": 0.10522424429655075,
+      "p99": 0.1947949230670929,
+      "rows_with_valid_candidate": 1998,
+      "rows_without_valid_candidate": 0
+    },
+    "path1_velocity_all": {
+      "distance3sec_bins": {
+        "0-0.1m": {
+          "mean": 0.00120985833927989,
+          "n": 97
+        },
+        "0.1-5m": {
+          "mean": 0.07425985485315323,
+          "n": 63
+        },
+        "15-30m": {
+          "mean": 0.0657384991645813,
+          "n": 493
+        },
+        "30-50m": {
+          "mean": 0.058581870049238205,
+          "n": 1073
+        },
+        "5-15m": {
+          "mean": 0.08749841153621674,
+          "n": 113
+        },
+        "50-infm": {
+          "mean": 0.057522162795066833,
+          "n": 159
+        }
+      },
+      "full_winner_recall": 0.6601601601601602,
+      "mean": 0.0596078559756279,
+      "mean_all_rows": 0.0596078559756279,
+      "median": 0.05243418738245964,
+      "p90": 0.1053365170955658,
+      "p99": 0.1947949230670929,
+      "rows_with_valid_candidate": 1998,
+      "rows_without_valid_candidate": 0
+    },
+    "path_all_velocity1": {
+      "distance3sec_bins": {
+        "0-0.1m": {
+          "mean": 0.0022368726786226034,
+          "n": 97
+        },
+        "0.1-5m": {
+          "mean": 0.0742388367652893,
+          "n": 63
+        },
+        "15-30m": {
+          "mean": 0.06557717174291611,
+          "n": 493
+        },
+        "30-50m": {
+          "mean": 0.05838247761130333,
+          "n": 1073
+        },
+        "5-15m": {
+          "mean": 0.08753323554992676,
+          "n": 113
+        },
+        "50-infm": {
+          "mean": 0.05735819414258003,
+          "n": 159
+        }
+      },
+      "full_winner_recall": 0.97997997997998,
+      "mean": 0.05949908494949341,
+      "mean_all_rows": 0.05949908494949341,
+      "median": 0.052207693457603455,
+      "p90": 0.10522424429655075,
+      "p99": 0.1947949230670929,
+      "rows_with_valid_candidate": 1998,
+      "rows_without_valid_candidate": 0
+    }
+  },
+  "oracle_warning": "every score uses held-out GT for candidate choice; this is coverage, never deployable model performance",
+  "paths": 1024,
+  "row_count": 1998,
+  "schema": "etri_fixed_metre_absolute_velocity_v1",
+  "seconds": 3.0488154888153076,
+  "tf32": false,
+  "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+  "tune_artifact_sha256": "cf79c35e1f88f6668bef6f309ddfb428dc4195bd9d2952316dd40e8ee715e995",
+  "tune_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "velocities": 1024
+}

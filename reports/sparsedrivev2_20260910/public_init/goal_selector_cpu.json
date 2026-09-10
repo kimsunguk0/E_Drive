@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "new_parameters": 512,
+  "public_base_reused_tensors": 396,
+  "all_original_parameter_objects_and_versions_preserved": true,
+  "zero_init_all_fp32_outputs_equal": true,
+  "goal_projection_gradient_norm": 13.229114532470703,
+  "nonzero_projection_goal_changes_scores": true,
+  "goal_changes_preserve_candidate_bytes_with_all_rows_retained": true,
+  "goal_changes_preserve_global_bank_row_bytes_after_pruning": true,
+  "exception_hook_cleanup": true,
+  "reentrant_rejected_and_cleaned": true,
+  "omitted_goal_equals_base_after_learning": true
+}

@@ -1,0 +1,254 @@
+{
+  "device": "CPU only; CUDA_VISIBLE_DEVICES empty",
+  "torch": "2.7.1+cu128",
+  "threads": 4,
+  "dtype": "float32",
+  "batch": 1,
+  "image_shape": [
+    1,
+    3,
+    3,
+    256,
+    512
+  ],
+  "warmup": 1,
+  "whole_repeats": 3,
+  "velocity_repeats": 7,
+  "public_model_sha256": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+  "source_row": 14730,
+  "public_parameter_reuse": 41808827,
+  "note": "CPU reference grid_sample, not B200 native latency or training memory; identical pretrained weights/current frame; bank buffers are nongradient fp32 and have no Adam states",
+  "results": {
+    "p1024_v256_native100m_v8": {
+      "bank_shapes": {
+        "path_vocab": [
+          1024,
+          50,
+          3
+        ],
+        "vel_vocab": [
+          256,
+          8
+        ],
+        "traj_vocab": [
+          1024,
+          256,
+          8,
+          3
+        ],
+        "traj_mask": [
+          1024,
+          256,
+          8
+        ]
+      },
+      "bank_buffer_bytes": {
+        "path_vocab": 614400,
+        "vel_vocab": 8192,
+        "traj_vocab": 25165824,
+        "traj_mask": 8388608
+      },
+      "bank_buffer_total_bytes": 34177024,
+      "parameter_bytes": 167235308,
+      "whole_forward_seconds": [
+        3.996430207043886,
+        3.9813076313585043,
+        4.118287777528167
+      ],
+      "whole_forward_median_seconds": 3.996430207043886,
+      "velocity_stage0_seconds": [
+        0.005480194464325905,
+        0.0050692688673734665,
+        0.00501922145485878,
+        0.005025830119848251,
+        0.005001092329621315,
+        0.005034703761339188,
+        0.004987332969903946
+      ],
+      "velocity_stage0_median_seconds": 0.005025830119848251,
+      "coarse_shapes": [
+        {
+          "paths": [
+            1,
+            1024
+          ],
+          "velocities": [
+            1,
+            256
+          ]
+        },
+        {
+          "paths": [
+            1,
+            128
+          ],
+          "velocities": [
+            1,
+            64
+          ]
+        }
+      ],
+      "final_candidate_shape": [
+        1,
+        200,
+        6,
+        2
+      ],
+      "process_peak_rss_kib_so_far": 1416048
+    },
+    "p1024_v512_native100m_progress6": {
+      "bank_shapes": {
+        "path_vocab": [
+          1024,
+          50,
+          3
+        ],
+        "vel_vocab": [
+          512,
+          8
+        ],
+        "traj_vocab": [
+          1024,
+          512,
+          8,
+          3
+        ],
+        "traj_mask": [
+          1024,
+          512,
+          8
+        ]
+      },
+      "bank_buffer_bytes": {
+        "path_vocab": 614400,
+        "vel_vocab": 16384,
+        "traj_vocab": 50331648,
+        "traj_mask": 16777216
+      },
+      "bank_buffer_total_bytes": 67739648,
+      "parameter_bytes": 167235308,
+      "whole_forward_seconds": [
+        4.094787580892444,
+        4.124466510489583,
+        4.0659830048680305
+      ],
+      "whole_forward_median_seconds": 4.094787580892444,
+      "velocity_stage0_seconds": [
+        0.010118022561073303,
+        0.009388383477926254,
+        0.009327784180641174,
+        0.00931817851960659,
+        0.009292632341384888,
+        0.00929909199476242,
+        0.009289568290114403
+      ],
+      "velocity_stage0_median_seconds": 0.00931817851960659,
+      "coarse_shapes": [
+        {
+          "paths": [
+            1,
+            1024
+          ],
+          "velocities": [
+            1,
+            512
+          ]
+        },
+        {
+          "paths": [
+            1,
+            128
+          ],
+          "velocities": [
+            1,
+            64
+          ]
+        }
+      ],
+      "final_candidate_shape": [
+        1,
+        200,
+        6,
+        2
+      ],
+      "process_peak_rss_kib_so_far": 1465188
+    },
+    "p1024_v1024_native100m_progress6": {
+      "bank_shapes": {
+        "path_vocab": [
+          1024,
+          50,
+          3
+        ],
+        "vel_vocab": [
+          1024,
+          8
+        ],
+        "traj_vocab": [
+          1024,
+          1024,
+          8,
+          3
+        ],
+        "traj_mask": [
+          1024,
+          1024,
+          8
+        ]
+      },
+      "bank_buffer_bytes": {
+        "path_vocab": 614400,
+        "vel_vocab": 32768,
+        "traj_vocab": 100663296,
+        "traj_mask": 33554432
+      },
+      "bank_buffer_total_bytes": 134864896,
+      "parameter_bytes": 167235308,
+      "whole_forward_seconds": [
+        4.103146728128195,
+        4.1829571556299925,
+        4.12825732678175
+      ],
+      "whole_forward_median_seconds": 4.12825732678175,
+      "velocity_stage0_seconds": [
+        0.02065577171742916,
+        0.01930563524365425,
+        0.018970152363181114,
+        0.018920576199889183,
+        0.01881217397749424,
+        0.01880846731364727,
+        0.01877923496067524
+      ],
+      "velocity_stage0_median_seconds": 0.018920576199889183,
+      "coarse_shapes": [
+        {
+          "paths": [
+            1,
+            1024
+          ],
+          "velocities": [
+            1,
+            1024
+          ]
+        },
+        {
+          "paths": [
+            1,
+            128
+          ],
+          "velocities": [
+            1,
+            64
+          ]
+        }
+      ],
+      "final_candidate_shape": [
+        1,
+        200,
+        6,
+        2
+      ],
+      "process_peak_rss_kib_so_far": 1538052
+    }
+  }
+}

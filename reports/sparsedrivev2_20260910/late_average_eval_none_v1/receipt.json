@@ -1,0 +1,205 @@
+{
+  "approval_sha256": null,
+  "audit_only": false,
+  "average_verification": {
+    "all_buffers_bitwise_identical": true,
+    "buffer_tensors": 112,
+    "parameter_tensors": 288,
+    "recomputed_average_bitwise_equal": true,
+    "source_sha256": [
+      "d66bf4781e07481f4b18b11983de41f1ebb8cad5ab8325c70764c36961cff298",
+      "44c802dbfc75a7bc937389a936ea1c7dacba4ca47216bff91f61649e31924eab",
+      "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1"
+    ],
+    "source_steps": [
+      1500,
+      1750,
+      2000
+    ]
+  },
+  "averaging": {
+    "method": "uniform learned-parameter average",
+    "postprocessor_path": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/average_checkpoints.py",
+    "postprocessor_sha256": "f532aa576c504fcfc37a2a26a85c40af50237f771a15ed4f7b6677d6e6291154",
+    "protocol_path": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_20260910/late_average_protocol.json",
+    "protocol_sha256": "3a55b4ae5c10ac38c14256b994a462b1302a2607bd6e3b4f84439bf66397685a",
+    "sources": [
+      {
+        "path": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/late_snapshots_v1/dense2000_none_s0_v1_step001500.pth",
+        "sha256": "d66bf4781e07481f4b18b11983de41f1ebb8cad5ab8325c70764c36961cff298",
+        "step": 1500
+      },
+      {
+        "path": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/late_snapshots_v1/dense2000_none_s0_v1_step001750.pth",
+        "sha256": "44c802dbfc75a7bc937389a936ea1c7dacba4ca47216bff91f61649e31924eab",
+        "step": 1750
+      },
+      {
+        "path": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/late_snapshots_v1/dense2000_none_s0_v1_step002000.pth",
+        "sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+        "step": 2000
+      }
+    ],
+    "steps": [
+      1500,
+      1750,
+      2000
+    ],
+    "version": 1
+  },
+  "bank": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/cache/sparsedrivev2_20260910/bank/p1024_v1024_native100m_progress6.npz",
+  "bank_sha256": "4aff9b40696f91383bfbec377f388e6209d619fa509e51a2019b19af977b5e04",
+  "bank_sidecar_sha256": "6d0b19813c6ae6de1efc7f056aa996fd1c55a5526481a79ccff1d9b7452c2b7a",
+  "batch": 8,
+  "checkpoint": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/late_averages_v1/dense2000_none_s0_v1.pth",
+  "checkpoint_bank_buffers_exact": true,
+  "checkpoint_sha256": "5a1cb1da1d949ffcecf8ecbd73a1af1d563ec8c226cd8538295a3821cc5edd3b",
+  "coarse_dump": true,
+  "ego_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+  "evaluation_input_contract": {
+    "allowed_rows": 1998,
+    "allowed_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "calibration": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz",
+    "calibration_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+    "camera_order": [
+      "camera_front_left",
+      "camera_front",
+      "camera_front_right"
+    ],
+    "ego_cache": "/tmp/pm97/data/etri/ego_cache.npz",
+    "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+    "goal_mode": "none",
+    "goal_source": null,
+    "image_wh": [
+      512,
+      256
+    ],
+    "metric_weights": [
+      0.3055555555555556,
+      0.3055555555555556,
+      0.1388888888888889,
+      0.1388888888888889,
+      0.05555555555555555,
+      0.05555555555555555
+    ],
+    "normalization": {
+      "mean": [
+        0.48500001430511475,
+        0.4560000002384186,
+        0.4059999883174896
+      ],
+      "rgb": true,
+      "std": [
+        0.2290000021457672,
+        0.2240000069141388,
+        0.22499999403953552
+      ]
+    },
+    "rows": 1998,
+    "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "scenes": [
+      "20260113-102709",
+      "20260122-134906",
+      "20260122-134936",
+      "20260122-135506",
+      "20260122-135546",
+      "20260122-135616",
+      "20260122-135646",
+      "20260122-135800",
+      "20260122-135830",
+      "20260122-135900",
+      "20260209-153550",
+      "20260209-153620",
+      "20260210-100504",
+      "20260210-100534",
+      "20260210-100614",
+      "20260210-100644",
+      "20260210-100754",
+      "20260210-100854",
+      "20260210-101004",
+      "20260210-101034",
+      "20260210-101114",
+      "20260210-101214",
+      "20260213-134648",
+      "20260213-134718",
+      "20260213-134758",
+      "20260213-134828",
+      "20260213-134938",
+      "20260213-135038",
+      "20260219-103747",
+      "20260219-110038",
+      "20260219-110108",
+      "20260219-110218",
+      "20260219-90551",
+      "20260219-90621",
+      "20260220-134317",
+      "20260220-134347",
+      "20260303-142827"
+    ],
+    "sessions": [
+      "session_019_20260113-102709",
+      "session_026_20260122-134906",
+      "session_027_20260122-135506",
+      "session_040_20260209-153550",
+      "session_046_20260210-100504",
+      "session_076_20260213-134648",
+      "session_087_20260219-90551",
+      "session_092_20260219-103747",
+      "session_097_20260219-110038",
+      "session_108_20260220-134317",
+      "session_112_20260303-142827"
+    ],
+    "split": "tune",
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+    "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+    "status_mode": "causal_selection",
+    "status_source": {
+      "command": "zero",
+      "fields": [
+        "vx",
+        "vy",
+        "ax",
+        "ay"
+      ],
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2_shared_status_a1_20260908_ops/tune.npz",
+      "sha256": "aff4c00cd36c35c03c1a43f9f0689c85bc75008be7e8444829ea9a10b9493c6f",
+      "use": "fixed complete trajectory selection only"
+    },
+    "target": "cumulative XY, current ego x-forward y-left, metres, .5..3s"
+  },
+  "evaluation_scenes": 37,
+  "evaluation_sessions": 11,
+  "evaluator_sha256": "4dd0d1f2c1e83ebc2b429e6b0e4e0c0d97caca84a6b219a0822344728e3f91f5",
+  "fit_rows": 54810,
+  "fit_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+  "fit_scenes": 203,
+  "fit_sessions": 72,
+  "goal_mode": "none",
+  "physical_gpu": "0",
+  "population": "tune",
+  "precision": "bf16",
+  "predictions_sha256": "93863baf706f763e81b5146d8f4201ad8035a3a66e4732ff0f112200b021fe80",
+  "preflight_future_labels_opened": false,
+  "public_checkpoint_sha256": "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735",
+  "rows": 1998,
+  "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "source_root": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_20260910/dense2000_none_s0_v1/source",
+  "source_sha256": {
+    "experiments/sparsedrivev2_20260910/data.py": "54bcd88b1c2567d8aab3337fd82f5e6be50a4950e51957ba1df2908185f1eddb",
+    "experiments/sparsedrivev2_20260910/goal_selector.py": "b302b6db5e497ce26fb8fa7ecc817a1f2e1984a1c7dc21a1ed65fd94e16d581d",
+    "experiments/sparsedrivev2_20260910/losses.py": "f21c779742e0018b56d0b55123d5fbbfe1474127d8f56279221f28fd003fff17",
+    "experiments/sparsedrivev2_20260910/public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+    "experiments/sparsedrivev2_20260910/train.py": "be221f0574a562e8449bffd90a6dd7a9f817b25159b006270de3f61b4cc9e08d",
+    "third_party/SparseDriveV2/navsim/agents/sparsedrive/ops/src/deformable_aggregation.cpp": "f26a08d2bcc51ae45cae96f5719178d67ef25f806124fb6f36ed8dfdc004a5a0",
+    "third_party/SparseDriveV2/navsim/agents/sparsedrive/ops/src/deformable_aggregation_cuda.cu": "7e67e187d98a7c48c3353d048ef766af68f0f863f86aff9191de73637dd78629",
+    "third_party/SparseDriveV2/navsim/agents/sparsedrive/ops/src/deformable_aggregation_cuda_ori.cu": "1ff4729853f8c855aca2f44d59080a93f0aee3b65f1b047cd2dc7bfa469bf0d4",
+    "third_party/SparseDriveV2/navsim/agents/sparsedrive/ops/src/deformable_aggregation_ori.cpp": "925cc48e13668f968c7d8ede6063157db467aa985ca52acaaa9b0a4c78933167",
+    "third_party/SparseDriveV2/navsim/agents/sparsedrive/ops/src/deformable_aggregation_with_depth.cpp": "b8117286b86b1d464dc7c52d5c477a954b7a537bafec2ecd76881c72ff1c72f5",
+    "third_party/SparseDriveV2/navsim/agents/sparsedrive/ops/src/deformable_aggregation_with_depth_cuda.cu": "9f23dc671a4a0e9a97babf486f620d3fa3eb5386f10d4947484cb7d7b0027d89"
+  },
+  "split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "status_mode": "causal_selection",
+  "step": 2000,
+  "strict_state_load": true,
+  "torch": "2.7.1+cu128"
+}

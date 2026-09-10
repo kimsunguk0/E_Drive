@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "synthetic_fixtures_only": true,
+  "checks": [
+    "valid metadata/FP32 head exact load; no referenced feature, label, bank or base file opened by head-only verifier",
+    "synthetic frozen decision accepts exact base/head/cache/rows/source/objective binding",
+    "all fifteen frozen-decision binding mutations rejected before any held data access",
+    "fit population including held rows rejected",
+    "wrong frozen base rejected",
+    "wrong frozen bank rejected",
+    "wrong base goal mode rejected",
+    "unrecognized trainer rejected",
+    "embedded/external provenance disagreement rejected",
+    "missing learned tensor rejected by strict load",
+    "nonfinite learned tensor rejected",
+    "zero-step head rejected",
+    "selected head SHA mismatch rejected"
+  ]
+}

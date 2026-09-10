@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "batch_rows": [
+    30,
+    36209
+  ],
+  "scenarios": [
+    "20260112-105434",
+    "20260209-153230"
+  ],
+  "status_mode": "causal_selection",
+  "status": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      6.426983833312988,
+      -0.14618919789791107,
+      -0.42921915650367737,
+      -0.49579155445098877
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      8.178200721740723,
+      -0.19093483686447144,
+      0.689287006855011,
+      -0.013870105147361755
+    ]
+  ],
+  "finite_gradient_tensors": 264,
+  "backbone_gradient_abs_sum": 2388.450927734375,
+  "bf16": true,
+  "candidate_count": 200,
+  "bank_row_identity": true,
+  "selected_ids_status": [
+    10926,
+    8969
+  ],
+  "selected_ids_zero": [
+    7695,
+    25487
+  ],
+  "loss": 44.05610656738281,
+  "backward_seconds": 0.26717472448945045,
+  "model_file_sha256": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7",
+  "checkpoint_coverage_reused": 396
+}

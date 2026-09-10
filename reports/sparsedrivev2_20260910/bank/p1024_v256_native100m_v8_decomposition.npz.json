@@ -1,0 +1,122 @@
+{
+  "artifact_sha256": "33270d29e52b77a0c7bda0a8ddc7d2c44fd40def78af693212c498ab603ece8a",
+  "bank_sha256": "0dceecbe8004c706de6f05e6a0ed1ef4ee603e5db54164f9c81d35359b4d475c",
+  "code_sha256": "0bae30ea457b26ab337819b89fc931857bfa7a7055854600b5619fe7f3de042a",
+  "gt_native_path_and_bank_velocity_oracle": {
+    "distance3sec_bins": {
+      "0-0.1m": {
+        "mean": 0.0015489731449633837,
+        "n": 97
+      },
+      "0.1-5m": {
+        "mean": 0.3154994249343872,
+        "n": 63
+      },
+      "15-30m": {
+        "mean": 0.11957995593547821,
+        "n": 493
+      },
+      "30-50m": {
+        "mean": 0.09678644686937332,
+        "n": 1073
+      },
+      "5-15m": {
+        "mean": 0.2024148553609848,
+        "n": 113
+      },
+      "50-infm": {
+        "mean": 0.08988428115844727,
+        "n": 159
+      }
+    },
+    "mean": 0.11010809242725372,
+    "median": 0.09069302678108215,
+    "p90": 0.19640029966831207,
+    "p99": 0.41637367010116577
+  },
+  "gt_native_path_and_gt_velocity": {
+    "distance3sec_bins": {
+      "0-0.1m": {
+        "mean": 0.0014901922550052404,
+        "n": 47
+      },
+      "0.1-5m": {
+        "mean": 0.0036431336775422096,
+        "n": 41
+      },
+      "15-30m": {
+        "mean": 0.0026128063909709454,
+        "n": 493
+      },
+      "30-50m": {
+        "mean": 0.0012621473288163543,
+        "n": 1073
+      },
+      "5-15m": {
+        "mean": 0.00508655421435833,
+        "n": 105
+      },
+      "50-infm": {
+        "mean": 0.0007752421661280096,
+        "n": 159
+      }
+    },
+    "mean": 0.001834805472753942,
+    "median": 0.0011102575808763504,
+    "p90": 0.0031654653139412403,
+    "p99": 0.02024805173277855,
+    "unrepresented_short_native_path_rows": 80,
+    "valid_rows": 1918
+  },
+  "native_sampling": "same extraction stations as bank, 2m for primary100m; physical arc length recomputed on sampled polygon",
+  "schema": "etri_fixed_metre_absolute_velocity_v1",
+  "seconds": 0.19377541542053223,
+  "short_native_policy": "only actually supported sampled stations used; no endpoint padding; zero velocity always valid",
+  "train_eligibility_audit": {
+    "all_train": {
+      "distance3sec_mean": 33.1713752746582,
+      "distance3sec_quantiles": [
+        0.0008410832961089909,
+        6.777948284149172,
+        34.15319633483887,
+        60.29825019836426,
+        69.54230499267578
+      ],
+      "moving_gt3_endpoint_direction_gt10deg_fraction": 0.04492969915953185,
+      "moving_gt3_endpoint_direction_gt30deg_fraction": 0.005282381588249155,
+      "rows": 54810,
+      "v0_mean": 11.05420970916748
+    },
+    "full100m_eligible": {
+      "distance3sec_mean": 38.33295822143555,
+      "distance3sec_quantiles": [
+        0.0008410832961089909,
+        16.521373176574706,
+        37.640846252441406,
+        61.67712173461914,
+        69.54230499267578
+      ],
+      "moving_gt3_endpoint_direction_gt10deg_fraction": 0.03801715438950555,
+      "moving_gt3_endpoint_direction_gt30deg_fraction": 0.0038849646821392534,
+      "rows": 40730,
+      "v0_mean": 12.704367637634277
+    },
+    "incomplete100m_excluded": {
+      "distance3sec_mean": 18.240169525146484,
+      "distance3sec_quantiles": [
+        0.001176586840301752,
+        0.0052935832645744085,
+        18.72987651824951,
+        36.51877899169922,
+        59.89580535888672
+      ],
+      "moving_gt3_endpoint_direction_gt10deg_fraction": 0.06921304501949663,
+      "moving_gt3_endpoint_direction_gt30deg_fraction": 0.010191421481744062,
+      "rows": 14080,
+      "v0_mean": 6.280701637268066
+    }
+  },
+  "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+  "tune_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "warning": "privileged GT path/speed replacement diagnostics; different candidate families, not additive causal error floors"
+}

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "tests": [
+    "successful exit accepted",
+    "failed exit rejected",
+    "wrong GPU rejected",
+    "initial receipt creation race handled",
+    "changed frozen source rejected"
+  ],
+  "source_sha256": {
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/train_cached_selector.py": "8177d10846d229c0adef97db094a0482278aee3d1fd7aaf524f739f1f104a577",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/cache_selection_features.py": "090ed16a514240eed4c2d8fc0beb337cf0a466af1d1e8473d24d29c095cc4df2",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/evaluate_checkpoint.py": "4dd0d1f2c1e83ebc2b429e6b0e4e0c0d97caca84a6b219a0822344728e3f91f5",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/average_checkpoints.py": "f532aa576c504fcfc37a2a26a85c40af50237f771a15ed4f7b6677d6e6291154",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/relative_selector.py": "7fa75415a40691f555cca27ab9fe88331725177f19887c01a0e887121e2ac59f",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/launch.py": "fbcb6215da240893114aa2a8e377b5a95188368ef696bdde6ab569ecf3c375da",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/experiments/sparsedrivev2_20260910/run_confirmation_pipeline.py": "07b4f7c8a5a58f43b778ff36f1c7e28ec5a90884caee7301d471c9333c02cf74"
+  },
+  "protocol_sha256": "51a0a1ce41e37bba805cb34d16042c5c82e87983e14c7f2f691f58db4bf3c0ac",
+  "base_manifest_sha256": "2e702ce4f3ab485dd06ed433e49bbeff781ac4fdb83a9890171f5a8cbe1ca69e",
+  "held_population_evaluated": false
+}

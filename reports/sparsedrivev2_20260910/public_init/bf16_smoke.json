@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "batch_size": 2,
+  "score_dtype": "torch.bfloat16",
+  "trajectory_dtype": "torch.float32",
+  "loss": 276.9644470214844,
+  "gradient_tensor_count": 264,
+  "seconds": 1.7454874105751514,
+  "bank_row_exact": true,
+  "torch": "2.7.1+cu128"
+}

@@ -1,0 +1,96 @@
+{
+  "verified": true,
+  "provenance": {
+    "checkpoint_sha256": "ecc2e5d4dd8124b0cfef6ce16cbd9af126830ebd19ebf6702a4382cab334239b",
+    "checkpoint_step": 2000,
+    "bank_sha256": "4aff9b40696f91383bfbec377f388e6209d619fa509e51a2019b19af977b5e04",
+    "public_checkpoint_sha256": "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735",
+    "public_initializer_file_rechecked": false,
+    "source_sha256": {
+      "experiments/sparsedrivev2_20260910/public_model.py": "2c7da9bc1fee9216513a606816c6f4e53d714812f0c4c33fe3ae7678a2b513c7"
+    },
+    "deployment_sha256": "16cfa9e3aa0d40f7f9f72f7d2abdbe3d88f782d3820d2310e260793d53fdfaea",
+    "strict_state_dict_load": true,
+    "checkpoint_weights_only": true,
+    "bank_rows_immutable": true,
+    "status_mode": "causal_selection",
+    "goal_mode": "selection",
+    "path_filter": [
+      128,
+      20
+    ],
+    "velocity_filter": [
+      64,
+      10
+    ],
+    "output": "six cumulative current rear-axle ego XY metres at .5..3s; no cumsum",
+    "export": {
+      "receipt_sha256": "24c84e7d416c9621eade73fffc97b421042ad10b16bd3f56adb837038b473dfc",
+      "artifact_sha256": "ecc2e5d4dd8124b0cfef6ce16cbd9af126830ebd19ebf6702a4382cab334239b",
+      "source_checkpoint_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+      "state_sha256": "9f3e42e16577ba744f92dbd6d5a6c62fb3575f2c827ec4f1582fdf4103766fce",
+      "state_tensor_count": 400,
+      "optimizer_removed": true,
+      "state_identity_exact": true,
+      "source_checkpoint_reopened_at_runtime": false
+    },
+    "source_checkpoint_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+    "relative_selector": {
+      "relative_checkpoint_sha256": "3828be0345abfbc5da0302816b9cec8956fda25bc191b7523c1643049bb006ee",
+      "relative_step": 2000,
+      "relative_objective": "soft_ce",
+      "relative_source_sha256": "7fa75415a40691f555cca27ab9fe88331725177f19887c01a0e887121e2ac59f",
+      "relative_trainer_sha256": "8177d10846d229c0adef97db094a0482278aee3d1fd7aaf524f739f1f104a577",
+      "cache_manifest_sha256": "e9455b8e6577ff2a9d488dfc6780129df5b336d247adeeaabded246180b9e298",
+      "cache_manifest_path": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/checkpoints/sparsedrivev2_20260910/deployment_primary_ce_v1/artifacts/cache_manifest.json",
+      "base_checkpoint_sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+      "bank_sha256": "4aff9b40696f91383bfbec377f388e6209d619fa509e51a2019b19af977b5e04",
+      "base_goal_mode": "none",
+      "feature_goal_mode": "selection",
+      "strict_relative_head_load": true,
+      "relative_parameters": 12545,
+      "runtime_feature_or_label_files_opened": false,
+      "export": {
+        "receipt_sha256": "f5d6799e673c4db408c0d195a04bd21d26c5e6def853ead9e4f1a11a84597469",
+        "artifact_sha256": "3828be0345abfbc5da0302816b9cec8956fda25bc191b7523c1643049bb006ee",
+        "source_checkpoint_sha256": "5ec5bc6286610d35f7239c0f0cb41caee3c5fd1cc0b033cb384c04bbb3aed374",
+        "state_sha256": "656ad3360ba835f6c57a528cf0aee5fa637a4a6d5eb99cd040d8693153761fa9",
+        "state_tensor_count": 6,
+        "optimizer_removed": true,
+        "state_identity_exact": true,
+        "source_checkpoint_reopened_at_runtime": false
+      },
+      "source_relative_checkpoint_sha256": "5ec5bc6286610d35f7239c0f0cb41caee3c5fd1cc0b033cb384c04bbb3aed374"
+    },
+    "base_goal_mode": "none"
+  },
+  "submission_written": false,
+  "trajectory": [
+    [
+      3.4698400497436523,
+      -0.0509718582034111
+    ],
+    [
+      7.112709999084473,
+      -0.040160171687603
+    ],
+    [
+      10.936695098876953,
+      0.029570814222097397
+    ],
+    [
+      14.930624961853027,
+      0.13131357729434967
+    ],
+    [
+      19.07622528076172,
+      0.26168590784072876
+    ],
+    [
+      23.36729621887207,
+      0.41094768047332764
+    ]
+  ],
+  "candidate_id": 815374,
+  "output_contract": "six cumulative current rear-axle ego XY metres at .5..3s, no cumsum"
+}

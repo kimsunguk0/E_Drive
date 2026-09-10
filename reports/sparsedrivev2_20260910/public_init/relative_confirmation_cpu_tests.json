@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "synthetic_only": true,
+  "held_files_opened": false,
+  "checks": [
+    "same-forward base scores choose an exact existing candidate, independent of head winner",
+    "invalid high-scoring base candidate is excluded",
+    "output candidate tensors and scores unchanged",
+    "export fingerprint supports scalar integer and BF16 state tensors",
+    "changed export state or retained optimizer rejected"
+  ]
+}
