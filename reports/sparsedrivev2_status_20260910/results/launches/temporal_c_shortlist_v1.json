@@ -1,0 +1,22 @@
+{
+  "name": "temporal_c_shortlist_v1",
+  "status": "completed",
+  "gpu": 4,
+  "supervisor_pid": 3957606,
+  "child_pid": 3957607,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "experiments/sparsedrivev2_20260910/diagnose_temporal_shortlist.py",
+    "--gpu",
+    "4",
+    "--checkpoint",
+    "work_dirs/sparsedrivev2_status_20260910/temporal_c_common_s0_v1/last.pth",
+    "--output",
+    "reports/sparsedrivev2_status_20260910/temporal_c_shortlist_v1"
+  ],
+  "started_unix": 1789021874.932977,
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_status_20260910/launches/temporal_c_shortlist_v1.log",
+  "returncode": 0,
+  "finished_unix": 1789021920.4400501,
+  "elapsed_seconds": 45.507073640823364
+}

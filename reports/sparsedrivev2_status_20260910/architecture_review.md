@@ -170,3 +170,11 @@ state/history aux는 **status 조건을 받기 전 image-only temporal 특징**�
 | `reports/motiondrive_v2_shared_status_a2_protocol_20260908.md` | `d8a8e80ee6517e3b71a2639a675b6be5a16ac3f546ac02890930e63552b28392` |
 | `reports/MOTIONDRIVE_P1_P8_RETROSPECTIVE_20260908.md` | `fa586d15f1cb97792a59c5539015e7f2822c1be1abea7850b161690ccde9d8e3` |
 | `reports/MOTIONDRIVE_V2_DIAGNOSTICS_20260909.md` | `d33c5386cfb318405bc33471def98a1cefd5373fd1cb432cb6ea6dd34e28ef08` |
+
+**구현 준비 결과 — 학습 효과와 구분**
+
+Root의 추가 구현 허가에 따라 같은 디렉터리의 `temporal_model.py`와 `test_temporal_model.py`를 작성했다. 구현은 위 3-arm 공통 image/FPN fusion이며, 클래스 `TemporalPerceptionModel(public)`은 원 public forward를 1회 scoped backbone hook으로 재사용한다. 모든 base tensor/parameter identity를 보존하고 원 planner status는 항상 0이다. Goal/GT 입력은 받지 않는다. State aux는 status condition 이전 이미지 attention에서 분기하며, occ/lane은 같은 fused FPN에서 calibration과 z=0/1m로 읽는다. Hook는 finally 제거 및 concurrent/reentrant guard를 갖는다.
+
+CPU 11 tests PASS: FP32/BF16 zero-init baseline parity와 finite gradient, 실제 pinned decoder+synthetic 작은 backbone/bank의 coarse/score/XY/ID exact parity, 상태 변경 시 aux_state 독립성과 perception/score 영향, bank row identity, 이미지 history 영향, 입력 whitelist, 64×48 grid/visibility, exception cleanup/deepcopy를 확인했다. 실제 대형 공개 checkpoint 로딩 및 GPU canary는 root가 별도로 수행하므로 이 CPU 결과와 구분한다. GPU는 사용하지 않았다.
+
+동결 소스 SHA256: `temporal_model.py=95684e777e18981f1beb2cc9485e08da9301e3e1a73fb2990eaaa9cd7330382a`, `test_temporal_model.py=8ef3c4d12a0125ff569a4731794e0d5eacca84042709257782b0507ee28a78d9`.

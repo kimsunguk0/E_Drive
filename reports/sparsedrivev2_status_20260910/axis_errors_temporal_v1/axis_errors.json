@@ -1,0 +1,298 @@
+{
+  "schema": "adcl_axis_error_diagnostics_v1",
+  "status": "completed",
+  "official_time_weights": [
+    0.3055555555555556,
+    0.3055555555555556,
+    0.1388888888888889,
+    0.1388888888888889,
+    0.05555555555555555,
+    0.05555555555555555
+  ],
+  "axes": "current ego x forward, y left",
+  "purpose": "Supplementary error shape evidence; shortlist oracle and selection regret remain primary",
+  "inputs": {
+    "temporal_A_repeat": {
+      "path": "/home/a/adcl_status_20260910/results/temporal_full_v1/temporal_a_repeat_s0_v1/eval_002000.npz",
+      "sha256": "fc5aaa83a4423a61375f30e969d7468345a78d198938e88ca58d23b7b612f5a1",
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "keys": [
+        "candidate_id",
+        "d3",
+        "error_xy",
+        "point_l2",
+        "pred",
+        "rows",
+        "scenario",
+        "session",
+        "shortlist_oracle",
+        "state_pred",
+        "state_target"
+      ],
+      "error_xy_dtype": "float32"
+    },
+    "temporal_B_history": {
+      "path": "/home/a/adcl_status_20260910/results/temporal_full_v1/temporal_b_history_s0_v1/eval_002000.npz",
+      "sha256": "16f27680423cf94c45f32516d8e9b0627ce10fd588d0d9bdf73c3742f81d2d0a",
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "keys": [
+        "candidate_id",
+        "d3",
+        "error_xy",
+        "point_l2",
+        "pred",
+        "rows",
+        "scenario",
+        "session",
+        "shortlist_oracle",
+        "state_pred",
+        "state_target"
+      ],
+      "error_xy_dtype": "float32"
+    },
+    "temporal_C_common": {
+      "path": "/home/a/adcl_status_20260910/results/temporal_full_v1/temporal_c_common_s0_v1/eval_002000.npz",
+      "sha256": "d2fc59b6665f79c0edd277976ed3918990f80ffb2745fb7be37dccda743a1bf5",
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "keys": [
+        "candidate_id",
+        "d3",
+        "error_xy",
+        "point_l2",
+        "pred",
+        "rows",
+        "scenario",
+        "session",
+        "shortlist_oracle",
+        "state_pred",
+        "state_target"
+      ],
+      "error_xy_dtype": "float32"
+    }
+  },
+  "results": {
+    "temporal_A_repeat": {
+      "n": 1998,
+      "horizons": [
+        {
+          "seconds": 0.5,
+          "mean_abs_ex_m": 0.4302189744442661,
+          "mean_abs_ey_m": 0.01708063018844854,
+          "mean_euclidean_l2_m": 0.43152905357477106,
+          "mean_ex_m": -0.03408210822533317,
+          "mean_ey_m": 0.0005676818465673734,
+          "longitudinal_squared_error_energy_fraction": 0.9983992534299392
+        },
+        {
+          "seconds": 1.0,
+          "mean_abs_ex_m": 0.8360056374834092,
+          "mean_abs_ey_m": 0.046696122722704486,
+          "mean_euclidean_l2_m": 0.8419077788258494,
+          "mean_ex_m": -0.06876584258052808,
+          "mean_ey_m": -0.0017564663647434216,
+          "longitudinal_squared_error_energy_fraction": 0.9963269442960275
+        },
+        {
+          "seconds": 1.5,
+          "mean_abs_ex_m": 1.2247103576733853,
+          "mean_abs_ey_m": 0.08964858896763929,
+          "mean_euclidean_l2_m": 1.2402398845836384,
+          "mean_ex_m": -0.10368915383921373,
+          "mean_ey_m": 0.002070619228178729,
+          "longitudinal_squared_error_energy_fraction": 0.9929094456872632
+        },
+        {
+          "seconds": 2.0,
+          "mean_abs_ex_m": 1.6038128700085046,
+          "mean_abs_ey_m": 0.1452650979721078,
+          "mean_euclidean_l2_m": 1.6343426313401848,
+          "mean_ex_m": -0.13822385906777626,
+          "mean_ey_m": 0.011711067301233355,
+          "longitudinal_squared_error_energy_fraction": 0.9882744616123943
+        },
+        {
+          "seconds": 2.5,
+          "mean_abs_ex_m": 1.9789588801983025,
+          "mean_abs_ey_m": 0.2145300979203318,
+          "mean_euclidean_l2_m": 2.031837461805752,
+          "mean_ex_m": -0.17264748762125134,
+          "mean_ey_m": 0.026917850984590517,
+          "longitudinal_squared_error_energy_fraction": 0.9823757330193483
+        },
+        {
+          "seconds": 3.0,
+          "mean_abs_ex_m": 2.3572099985181434,
+          "mean_abs_ey_m": 0.30734660324862334,
+          "mean_euclidean_l2_m": 2.4443372856011565,
+          "mean_ex_m": -0.2075467309844155,
+          "mean_ey_m": 0.056599397515303455,
+          "longitudinal_squared_error_energy_fraction": 0.974435939285941
+        }
+      ],
+      "official_d3_recomputed_m": 1.0370296453011045,
+      "weighted_mean_abs_ex_m": 1.0206506840846326,
+      "weighted_mean_abs_ey_m": 0.08110739219609248,
+      "longitudinal_squared_error_energy_fraction": 0.9821020726471105,
+      "squared_error_energy_sum_x_m2": 61978.38283508968,
+      "squared_error_energy_sum_y_m2": 1129.500307887656,
+      "energy_aggregation": "sum over samples and six horizons, no temporal weights",
+      "weighted_abs_definition": "mean_n sum_t w_t abs(error_axis[n,t]); metres",
+      "energy_fraction_definition": "sum_n,t(ex^2) / sum_n,t(ex^2 + ey^2); null if denominator=0",
+      "interpretation": "Separate axis error/energy diagnostics; not additive Euclidean contributions or probabilities",
+      "saved_shortlist_oracle_m": 0.919662325017358,
+      "selection_regret_m": 0.11736732028374641,
+      "max_d3_recomputation_roundoff": 5.310251101064978e-07
+    },
+    "temporal_B_history": {
+      "n": 1998,
+      "horizons": [
+        {
+          "seconds": 0.5,
+          "mean_abs_ex_m": 0.41176208692959826,
+          "mean_abs_ey_m": 0.015927365680221777,
+          "mean_euclidean_l2_m": 0.41289084048459856,
+          "mean_ex_m": -0.03767910241245377,
+          "mean_ey_m": 0.0008440961454014812,
+          "longitudinal_squared_error_energy_fraction": 0.9983343194563372
+        },
+        {
+          "seconds": 1.0,
+          "mean_abs_ex_m": 0.8044941395022296,
+          "mean_abs_ey_m": 0.043054507014561455,
+          "mean_euclidean_l2_m": 0.8094758537619431,
+          "mean_ex_m": -0.07337895290043667,
+          "mean_ey_m": 0.0010550828274499945,
+          "longitudinal_squared_error_energy_fraction": 0.9962053402658085
+        },
+        {
+          "seconds": 1.5,
+          "mean_abs_ex_m": 1.1819103000877496,
+          "mean_abs_ey_m": 0.08190052925053803,
+          "mean_euclidean_l2_m": 1.1946558931612647,
+          "mean_ex_m": -0.10661953674558514,
+          "mean_ey_m": 0.002877627882850544,
+          "longitudinal_squared_error_energy_fraction": 0.9928203387301671
+        },
+        {
+          "seconds": 2.0,
+          "mean_abs_ex_m": 1.5485294063947486,
+          "mean_abs_ey_m": 0.13195987501541942,
+          "mean_euclidean_l2_m": 1.573839967911304,
+          "mean_ex_m": -0.13677671684748552,
+          "mean_ey_m": 0.004915833631512269,
+          "longitudinal_squared_error_energy_fraction": 0.9883032262769003
+        },
+        {
+          "seconds": 2.5,
+          "mean_abs_ex_m": 1.908339068712539,
+          "mean_abs_ey_m": 0.19286627411827909,
+          "mean_euclidean_l2_m": 1.952235492117836,
+          "mean_ex_m": -0.16485259163630336,
+          "mean_ey_m": 0.008438792393774718,
+          "longitudinal_squared_error_energy_fraction": 0.9826439147650441
+        },
+        {
+          "seconds": 3.0,
+          "mean_abs_ex_m": 2.2652647809449302,
+          "mean_abs_ey_m": 0.26725062129594723,
+          "mean_euclidean_l2_m": 2.3372747745548947,
+          "mean_ex_m": -0.1915464056425869,
+          "mean_ey_m": 0.009387546921395703,
+          "longitudinal_squared_error_energy_fraction": 0.9758533945576839
+        }
+      ],
+      "official_d3_recomputed_m": 0.9963203743172295,
+      "weighted_mean_abs_ex_m": 0.982728464513265,
+      "weighted_mean_abs_ey_m": 0.07328712255002376,
+      "longitudinal_squared_error_energy_fraction": 0.9827038860985956,
+      "squared_error_energy_sum_x_m2": 56067.415146078165,
+      "squared_error_energy_sum_y_m2": 986.8164889159705,
+      "energy_aggregation": "sum over samples and six horizons, no temporal weights",
+      "weighted_abs_definition": "mean_n sum_t w_t abs(error_axis[n,t]); metres",
+      "energy_fraction_definition": "sum_n,t(ex^2) / sum_n,t(ex^2 + ey^2); null if denominator=0",
+      "interpretation": "Separate axis error/energy diagnostics; not additive Euclidean contributions or probabilities",
+      "saved_shortlist_oracle_m": 0.889414049995151,
+      "selection_regret_m": 0.10690632432207868,
+      "max_d3_recomputation_roundoff": 4.516473657290021e-07
+    },
+    "temporal_C_common": {
+      "n": 1998,
+      "horizons": [
+        {
+          "seconds": 0.5,
+          "mean_abs_ex_m": 0.10575500794672003,
+          "mean_abs_ey_m": 0.013982450535322996,
+          "mean_euclidean_l2_m": 0.10919004580191768,
+          "mean_ex_m": -0.005618725873067636,
+          "mean_ey_m": 0.002156607806123598,
+          "longitudinal_squared_error_energy_fraction": 0.9764581814829656
+        },
+        {
+          "seconds": 1.0,
+          "mean_abs_ex_m": 0.21124311853067104,
+          "mean_abs_ey_m": 0.042523675821277966,
+          "mean_euclidean_l2_m": 0.2254265611815794,
+          "mean_ex_m": -0.0039022177313228924,
+          "mean_ey_m": 0.009114944078369895,
+          "longitudinal_squared_error_energy_fraction": 0.9388998182724689
+        },
+        {
+          "seconds": 1.5,
+          "mean_abs_ex_m": 0.3277650875162978,
+          "mean_abs_ey_m": 0.08320878831331961,
+          "mean_euclidean_l2_m": 0.3598491290253152,
+          "mean_ex_m": 0.003579650209762353,
+          "mean_ey_m": 0.02054912886011094,
+          "longitudinal_squared_error_energy_fraction": 0.9019746265848427
+        },
+        {
+          "seconds": 2.0,
+          "mean_abs_ex_m": 0.4628993639213974,
+          "mean_abs_ey_m": 0.1325201849638841,
+          "mean_euclidean_l2_m": 0.5161293265159639,
+          "mean_ex_m": 0.014054967993022135,
+          "mean_ey_m": 0.030063261638448555,
+          "longitudinal_squared_error_energy_fraction": 0.8738987402211162
+        },
+        {
+          "seconds": 2.5,
+          "mean_abs_ex_m": 0.6196162612383702,
+          "mean_abs_ey_m": 0.18990618888297633,
+          "mean_euclidean_l2_m": 0.6973534321828204,
+          "mean_ex_m": 0.023225909971765428,
+          "mean_ey_m": 0.0316400324485403,
+          "longitudinal_squared_error_energy_fraction": 0.8527858503274535
+        },
+        {
+          "seconds": 3.0,
+          "mean_abs_ex_m": 0.8023880808326106,
+          "mean_abs_ey_m": 0.2611625151425865,
+          "mean_euclidean_l2_m": 0.9121211537843534,
+          "mean_ex_m": 0.028016805786751933,
+          "mean_ey_m": 0.022780803364651103,
+          "longitudinal_squared_error_energy_fraction": 0.8338813667464938
+        }
+      ],
+      "official_d3_recomputed_m": 0.31332289240164474,
+      "weighted_mean_abs_ex_m": 0.2856752870161594,
+      "weighted_mean_abs_ey_m": 0.07228749067665985,
+      "longitudinal_squared_error_energy_fraction": 0.8537405696644921,
+      "squared_error_energy_sum_x_m2": 5574.8083080242595,
+      "squared_error_energy_sum_y_m2": 955.0539312916947,
+      "energy_aggregation": "sum over samples and six horizons, no temporal weights",
+      "weighted_abs_definition": "mean_n sum_t w_t abs(error_axis[n,t]); metres",
+      "energy_fraction_definition": "sum_n,t(ex^2) / sum_n,t(ex^2 + ey^2); null if denominator=0",
+      "interpretation": "Separate axis error/energy diagnostics; not additive Euclidean contributions or probabilities",
+      "saved_shortlist_oracle_m": 0.1646117304018236,
+      "selection_regret_m": 0.14871116199982112,
+      "max_d3_recomputation_roundoff": 1.508176028508501e-07
+    }
+  },
+  "limitations": [
+    "Axis absolute errors are not additive contributions to Euclidean L2 or D3.",
+    "Squared-error fraction is unweighted across horizons and is neither D3 fraction nor probability.",
+    "This descriptive diagnostic does not establish which signals are observable or rule-compliant.",
+    "Frozen interventions and new matched training have different causal interpretations."
+  ],
+  "analyzer_sha256": "70f87fa164554185189321d6cbdbd22d1f978a8cdb3101354371d7b93b706645"
+}

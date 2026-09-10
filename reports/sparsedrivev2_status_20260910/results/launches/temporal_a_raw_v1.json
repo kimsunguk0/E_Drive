@@ -1,0 +1,33 @@
+{
+  "name": "temporal_a_raw_v1",
+  "status": "completed",
+  "gpu": 0,
+  "supervisor_pid": 3955019,
+  "child_pid": 3955021,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "reports/sparsedrivev2_status_20260910/raw_preflight_cpu_v1/final_source/verify_temporal_raw_inference.py",
+    "verify",
+    "--gpu",
+    "0",
+    "--checkpoint",
+    "work_dirs/sparsedrivev2_status_20260910/temporal_a_repeat_s0_v1/last.pth",
+    "--fixture",
+    "reports/sparsedrivev2_status_20260910/raw_preflight_cpu_v1/fixture_tune14730",
+    "--output",
+    "reports/sparsedrivev2_status_20260910/temporal_a_raw_v1",
+    "--base",
+    "/NHNHOME/data/sukim/adcl",
+    "--worktree",
+    "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910",
+    "--camera-workers",
+    "3",
+    "--opencv-threads",
+    "1"
+  ],
+  "started_unix": 1789021454.2064621,
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_status_20260910/launches/temporal_a_raw_v1.log",
+  "returncode": 0,
+  "finished_unix": 1789021473.8765037,
+  "elapsed_seconds": 19.670042037963867
+}

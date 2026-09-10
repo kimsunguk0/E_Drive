@@ -1,0 +1,8 @@
+{
+  "analyzer_sha256": "7d8455a7038de5224cae1ab2197e34ea71070c65d226de2d065e48620b88c2ba",
+  "status": "completed",
+  "output_sha256": {
+    "aggregate.json": "c7a5d81e529c115bcc8f8809c50862c3e5b302a10e1b40d8aedf31422780d294",
+    "RESULTS_KO.md": "d22ba1f933d99e23f82464ceb0a6cb7fc425eb78f0feed304c0fe504eaedb98b"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "full_shard2_v1",
+  "status": "completed",
+  "gpu": 4,
+  "supervisor_pid": 3922805,
+  "child_pid": 3922806,
+  "argv": [
+    "/NHNHOME/data/sukim/adcl/env/venv/bin/python",
+    "experiments/sparsedrivev2_20260910/run_status_sensitivity.py",
+    "--head",
+    "work_dirs/sparsedrivev2_20260910/relative2000_soft_ce_s0_v1/last.pth",
+    "--head-sha256",
+    "5ec5bc6286610d35f7239c0f0cb41caee3c5fd1cc0b033cb384c04bbb3aed374",
+    "--output",
+    "reports/sparsedrivev2_status_20260910/full_shard2_v1",
+    "--shard",
+    "2",
+    "--shards",
+    "3",
+    "--batch",
+    "8",
+    "--workers",
+    "4",
+    "--empirical-status",
+    "reports/sparsedrivev2_status_20260910/empirical_p7_b0_status.npz"
+  ],
+  "started_unix": 1789017909.529096,
+  "log": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/reports/sparsedrivev2_status_20260910/launches/full_shard2_v1.log",
+  "returncode": 0,
+  "finished_unix": 1789018122.6519845,
+  "elapsed_seconds": 213.12288880348206
+}

@@ -1,0 +1,10 @@
+{
+  "work_dirs/sparsedrivev2_20260910/dense2000_none_s0_v1/last.pth": {
+    "sha256": "bfe29df9f510c3ff76f36f41688a56faaadcc5c07071063504f4e244fcb29aa1",
+    "unchanged": true
+  },
+  "work_dirs/sparsedrivev2_20260910/relative2000_soft_ce_s0_v1/last.pth": {
+    "sha256": "5ec5bc6286610d35f7239c0f0cb41caee3c5fd1cc0b033cb384c04bbb3aed374",
+    "unchanged": true
+  }
+}

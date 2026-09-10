@@ -1,0 +1,255 @@
+{
+  "batch_size": 8,
+  "elapsed_seconds": 37.39333248138428,
+  "n": 1998,
+  "oracle_shapes": {
+    "all_p": [
+      1024,
+      10
+    ],
+    "all_v": [
+      20,
+      1024
+    ],
+    "current": [
+      20,
+      10
+    ]
+  },
+  "privileged_gt_diagnostic_not_selector_performance": true,
+  "status": "completed",
+  "summary": {
+    "all_p_oracle": {
+      "mean": 0.152347400080636,
+      "percentiles": {
+        "0": 0.0002715861168982023,
+        "10": 0.028109190596697375,
+        "100": 1.9757079534821662,
+        "25": 0.04713450415140764,
+        "50": 0.08193451934642407,
+        "75": 0.16839375249598998,
+        "90": 0.37185946470855785,
+        "95": 0.5176383423095906,
+        "99": 1.0157739292953758
+      },
+      "std": 0.20887201531255448
+    },
+    "all_v_oracle": {
+      "mean": 0.06789605151358041,
+      "percentiles": {
+        "0": 0.00023481159680304337,
+        "10": 0.02354103977541164,
+        "100": 1.5060296800038124,
+        "25": 0.03707060117393579,
+        "50": 0.05308289979914724,
+        "75": 0.07733306968780311,
+        "90": 0.11351606976421143,
+        "95": 0.1475426910814779,
+        "99": 0.35695708287550487
+      },
+      "std": 0.0782686136938555
+    },
+    "current_oracle": {
+      "mean": 0.16461172764634677,
+      "percentiles": {
+        "0": 0.0002715861168982023,
+        "10": 0.031576484969138306,
+        "100": 1.9757086297389403,
+        "25": 0.05185577445410017,
+        "50": 0.09289146318594824,
+        "75": 0.1890209552375542,
+        "90": 0.3826989017963299,
+        "95": 0.5350727108906782,
+        "99": 1.0813617553038892
+      },
+      "std": 0.21768124735950425
+    },
+    "d3": {
+      "mean": 0.3133228923812238,
+      "percentiles": {
+        "0": 0.00028965099704006723,
+        "10": 0.07515019960813218,
+        "100": 2.0660461477600407,
+        "25": 0.13919929443399398,
+        "50": 0.2457405840710306,
+        "75": 0.4130174330012574,
+        "90": 0.6392246688304581,
+        "95": 0.7793363331951032,
+        "99": 1.4048495833902617
+      },
+      "std": 0.2676231349984878
+    },
+    "interpretation": "Expanded oracles use GT to choose stored rows; not learned selector accuracy or an additive decomposition.",
+    "paired_set_note": "All-V keeps original image-selected paths; All-P keeps original image-selected velocities. Neither uses full all-P x all-V.",
+    "path_expansion_fraction_gain_gt_001": 0.12912912912912913,
+    "path_expansion_fraction_gain_gt_005": 0.043043043043043044,
+    "path_expansion_gain": {
+      "mean": 0.012264327565710768,
+      "percentiles": {
+        "0": 0.0,
+        "10": 0.0,
+        "100": 1.4534955166913626,
+        "25": 0.0,
+        "50": 0.00019027987673716357,
+        "75": 0.0027027964889764396,
+        "90": 0.016333695074506105,
+        "95": 0.04448738711334988,
+        "99": 0.25830836593181605
+      },
+      "std": 0.0667976041865431
+    },
+    "session": {
+      "session_019_20260113-102709": {
+        "all_p_oracle": 0.17993575229869188,
+        "all_v_oracle": 0.08637795700638173,
+        "current_oracle": 0.2003874526121844,
+        "d3": 0.33031480205171876,
+        "path_expansion_gain": 0.02045170031349244,
+        "velocity_expansion_gain": 0.1140094956058026
+      },
+      "session_026_20260122-134906": {
+        "all_p_oracle": 0.13234751462686642,
+        "all_v_oracle": 0.056538229453915456,
+        "current_oracle": 0.13755650650960177,
+        "d3": 0.2819819090326518,
+        "path_expansion_gain": 0.0052089918827353775,
+        "velocity_expansion_gain": 0.08101827705568633
+      },
+      "session_027_20260122-135506": {
+        "all_p_oracle": 0.12637451162987706,
+        "all_v_oracle": 0.06326018685279183,
+        "current_oracle": 0.13707161907519522,
+        "d3": 0.25869124080452355,
+        "path_expansion_gain": 0.010697107445318132,
+        "velocity_expansion_gain": 0.07381143222240337
+      },
+      "session_040_20260209-153550": {
+        "all_p_oracle": 0.11443378604752825,
+        "all_v_oracle": 0.05911229730292401,
+        "current_oracle": 0.12462733559851129,
+        "d3": 0.2967393843321058,
+        "path_expansion_gain": 0.01019354955098304,
+        "velocity_expansion_gain": 0.06551503829558727
+      },
+      "session_046_20260210-100504": {
+        "all_p_oracle": 0.17578918998922477,
+        "all_v_oracle": 0.07292132465591371,
+        "current_oracle": 0.1863613382786649,
+        "d3": 0.34613530067080933,
+        "path_expansion_gain": 0.010572148289440147,
+        "velocity_expansion_gain": 0.1134400136227512
+      },
+      "session_076_20260213-134648": {
+        "all_p_oracle": 0.11900114315364622,
+        "all_v_oracle": 0.0522920989125249,
+        "current_oracle": 0.12542174536133732,
+        "d3": 0.23249247585617244,
+        "path_expansion_gain": 0.006420602207691059,
+        "velocity_expansion_gain": 0.0731296464488124
+      },
+      "session_087_20260219-90551": {
+        "all_p_oracle": 0.15654474348957603,
+        "all_v_oracle": 0.08010897866309176,
+        "current_oracle": 0.16961900292834053,
+        "d3": 0.3657459473172471,
+        "path_expansion_gain": 0.013074259438764493,
+        "velocity_expansion_gain": 0.08951002426524876
+      },
+      "session_092_20260219-103747": {
+        "all_p_oracle": 0.4721544528744959,
+        "all_v_oracle": 0.1573789858801433,
+        "current_oracle": 0.5779172991876602,
+        "d3": 0.8122740941838621,
+        "path_expansion_gain": 0.10576284631316436,
+        "velocity_expansion_gain": 0.420538313307517
+      },
+      "session_097_20260219-110038": {
+        "all_p_oracle": 0.09960069442624428,
+        "all_v_oracle": 0.04660573750942909,
+        "current_oracle": 0.10459237406255369,
+        "d3": 0.21459171844403593,
+        "path_expansion_gain": 0.004991679636309392,
+        "velocity_expansion_gain": 0.05798663655312457
+      },
+      "session_108_20260220-134317": {
+        "all_p_oracle": 0.15125295706220218,
+        "all_v_oracle": 0.08922807728073404,
+        "current_oracle": 0.16750690103406163,
+        "d3": 0.43884815876390376,
+        "path_expansion_gain": 0.01625394397185945,
+        "velocity_expansion_gain": 0.07827882375332756
+      },
+      "session_112_20260303-142827": {
+        "all_p_oracle": 0.22028317185600169,
+        "all_v_oracle": 0.07281743718250289,
+        "current_oracle": 0.22428736830525564,
+        "d3": 0.3728056201689815,
+        "path_expansion_gain": 0.004004196449253956,
+        "velocity_expansion_gain": 0.15146993112275278
+      }
+    },
+    "velocity_expansion_fraction_gain_gt_001": 0.45495495495495497,
+    "velocity_expansion_fraction_gain_gt_005": 0.35985985985985985,
+    "velocity_expansion_gain": {
+      "mean": 0.09671567613276638,
+      "percentiles": {
+        "0": 0.0,
+        "10": 0.0,
+        "100": 1.8621702496116188,
+        "25": 0.0,
+        "50": 0.0,
+        "75": 0.10755872538855749,
+        "90": 0.3088246741964303,
+        "95": 0.441178834004318,
+        "99": 0.8920323749585604
+      },
+      "std": 0.20720927381978396
+    }
+  },
+  "training_reference_parity": {
+    "changed_candidate_id_count": 0,
+    "keys": {
+      "candidate_id": {
+        "actual_dtype": "int64",
+        "actual_shape": [
+          1998
+        ],
+        "byte_equal": true,
+        "expected_dtype": "int64",
+        "expected_shape": [
+          1998
+        ]
+      },
+      "pred": {
+        "actual_dtype": "float32",
+        "actual_shape": [
+          1998,
+          6,
+          2
+        ],
+        "byte_equal": true,
+        "expected_dtype": "float32",
+        "expected_shape": [
+          1998,
+          6,
+          2
+        ]
+      },
+      "rows": {
+        "actual_dtype": "int64",
+        "actual_shape": [
+          1998
+        ],
+        "byte_equal": true,
+        "expected_dtype": "int64",
+        "expected_shape": [
+          1998
+        ]
+      }
+    },
+    "max_absolute_xy_delta": 0.0,
+    "passed": true,
+    "path": "/NHNHOME/data/sukim/adcl/experiment_worktrees/sparsedrivev2_20260910/work_dirs/sparsedrivev2_status_20260910/temporal_c_common_s0_v1/eval_002000.npz",
+    "sha256": "d2fc59b6665f79c0edd277976ed3918990f80ffb2745fb7be37dccda743a1bf5"
+  }
+}
