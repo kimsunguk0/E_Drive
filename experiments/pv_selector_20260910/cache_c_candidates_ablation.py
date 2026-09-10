@@ -22,6 +22,7 @@ import torch
 
 EVALUATOR_SHA = '9007a4517adaf663d402535bdd56dd5d8340ad675db0f3a3ef44d8d867529242'
 C_CHECKPOINT_SHA = 'b9dcc56af7c2c4c3cfc80d844fe862a2d8f730d7b8d7a813ee997d33abfec2ff'
+B_CHECKPOINT_SHA = '79fdd63655a1bc1b4c07d5e956c7916554a6e49ea354e6ea9bb419d2ce702fc9'
 TOKEN_SOURCE_SHA = 'be8d9eef8e1e9f087852c1a81d0f5f4437e618a146d02d5037de60181b360ae5'
 WEIGHTS = np.asarray([11, 11, 5, 5, 2, 2], dtype=np.float64) / 36.
 SCHEMA = 'frozen_c_candidate_token_cache_v1'
@@ -425,9 +426,14 @@ def main():
     ev = module_from(a.evaluator_source, '_c_cache_strict_evaluator')
     gpu = None if a.audit_only else ev.check_gpu(a.gpu)
     plan = ev.inspect_checkpoint(a.checkpoint, worktree=a.worktree, base=a.base)
-    require(plan.receipt['checkpoint_sha256'] == C_CHECKPOINT_SHA, 'Frozen C checkpoint identity mismatch')
-    require(plan.manifest['arguments']['common_status'] is True
-            and plan.manifest['arguments']['history_mode'] == 'real', 'Only frozen terminal C is supported')
+    # Arm B carries no status anywhere, so the C identity pin is widened to the
+    # two frozen temporal terminals and the arm is recorded in the manifest.
+    require(plan.receipt['checkpoint_sha256'] in (C_CHECKPOINT_SHA, B_CHECKPOINT_SHA),
+            'Frozen temporal checkpoint identity mismatch')
+    arm_common_status = plan.manifest['arguments']['common_status']
+    require(isinstance(arm_common_status, bool)
+            and plan.manifest['arguments']['history_mode'] == 'real',
+            'Expected a real-history temporal arm')
     output.mkdir(parents=True)
     started = time.monotonic()
     try:
@@ -449,7 +455,8 @@ def main():
                 'd3_weights': WEIGHTS.tolist(), 'd3_float64_check_tolerance': {'atol': D3_ATOL, 'rtol': D3_RTOL},
                 'GT_passed_to_model': False, 'GT_access_in_cache_loop': 'postforward labels-only label_costs',
                 'outer_dataset_materializes_labels': True, 'planner_and_relative_status': 'constant zero',
-                'common_status_route': 'past-only causal4 to common perception only',
+                'common_status_route': ('past-only causal4 to common perception only'
+                                        if arm_common_status else 'none anywhere in the network'),
                 'goal_route': 'original final selector only; separate goal_xy for offline final scoring',
                 'gpu': gpu, 'canary': bool(a.limit), 'python': sys.version, 'torch': torch.__version__,
                 'numpy': np.__version__, 'pid': os.getpid()}
