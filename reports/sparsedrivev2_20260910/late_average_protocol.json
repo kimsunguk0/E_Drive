@@ -1,0 +1,19 @@
+{
+  "declared_unix": 1789010482.020025,
+  "reason": "Observed interim goal/non-goal rank reversal and longitudinal bias; assess whether a fixed late weight average reduces variability.",
+  "primary_comparison": "Unchanged single terminal step2000, original two-arm protocol",
+  "supplementary": "Uniform parameter average of1500,1750,2000, sameforbotharmsandconfirmationcandidate",
+  "steps": [
+    1500,
+    1750,
+    2000
+  ],
+  "learnable_parameters": "Average floating learned parameters only; all buffers includingbank mustbe bitwiseidentical and copied unchanged. No optimizer averaging.",
+  "selection": "Report single terminal and averaged separately; choosefinalconfigurationontuneonly beforeheldevaluation. Noheldscoresusedforaveragingchoice.",
+  "runs": [
+    "dense2000_none_s0_v1",
+    "dense2000_selection_s0_v1",
+    "confirmation2000_selection_s0_v1"
+  ],
+  "inference": "One model, no ensemble ofmultipleforwards"
+}
