@@ -105,6 +105,7 @@ def evaluate(model, dataset, args, directory, step):
     loader = DataLoader(dataset, batch_size=args.eval_batch, shuffle=False, num_workers=args.workers,
                         pin_memory=True)
     errors, oracle_errors, predictions, rows, sessions = [], [], [], [], []
+    point_errors, xy_errors = [], []
     ids = []
     for batch in loader:
         x = transfer(batch)
@@ -123,21 +124,29 @@ def evaluate(model, dataset, args, directory, step):
             raise RuntimeError("Validation sample has no complete candidate")
         oracle = costs.masked_fill(~valid.bool(), float("inf")).amin(-1)
         errors.append(d3(pred, x["gt_plan"]).cpu().numpy())
+        delta = pred - x["gt_plan"].float()
+        point_errors.append(torch.linalg.vector_norm(delta,dim=-1).cpu().numpy())
+        xy_errors.append(delta.cpu().numpy())
         oracle_errors.append(oracle.cpu().numpy())
         predictions.append(pred.cpu().numpy())
         rows.append(batch["row"].numpy())
         ids.append(output["selected_candidate_id"].cpu().numpy())
         sessions.extend(batch["session"])
     error, oracle = np.concatenate(errors), np.concatenate(oracle_errors)
+    point_error, xy_error = np.concatenate(point_errors), np.concatenate(xy_errors)
     by_session = {}
     for session, value in zip(sessions, error):
         by_session.setdefault(session, []).append(float(value))
     result = {"step": step, "n": len(error), "official_d3": float(error.mean()),
               "shortlist_oracle_d3": float(oracle.mean()),
               "selection_regret": float((error-oracle).mean()),
+              "point_l2_metres_05_to_30": point_error.mean(0).astype(float).tolist(),
+              "prefix_ade_1_2_3s": [float(point_error[:,:n].mean()) for n in (2,4,6)],
+              "three_second_endpoint_l2": float(point_error[:,-1].mean()),
               "session_d3": {k:float(np.mean(v)) for k,v in by_session.items()}}
     np.savez_compressed(directory / f"eval_{step:06d}.npz", rows=np.concatenate(rows),
                         pred=np.concatenate(predictions), d3=error, shortlist_oracle=oracle,
+                        point_l2=point_error, error_xy=xy_error,
                         candidate_id=np.concatenate(ids))
     atomic_json(directory / f"eval_{step:06d}.json", result)
     print(json.dumps({"evaluation": result}), flush=True)

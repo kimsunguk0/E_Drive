@@ -24,5 +24,7 @@
   "stop": "only numerical or provenance failure; do not terminate arm based on interim score",
   "confirmation": "171scene train-only independent bank and public init; confirmation held once for fixed chosen checkpoint later",
   "reserved_scenes_used_for_evaluation": false,
-  "zero_arm_retired_reason": "500step terminal2.68049; current singleframe public backbone cannot recover speed adequately in this test"
+  "zero_arm_retired_reason": "500step terminal2.68049; current singleframe public backbone cannot recover speed adequately in this test",
+  "goal_injection": "zero-init 2\u2192256(goal/50) added to status embedding; affects coarse pruning and fine score, never bank coordinates",
+  "secondary_horizons": "record each 0.5..3s point L2 and 1/2/3s prefix ADE; report 3s degradation if any"
 }
