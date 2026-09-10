@@ -18,6 +18,7 @@ from torch.utils.data import DataLoader
 from data import PlanDataset, d3, file_sha, model_inputs, rows_sha
 from losses import selection_loss
 from public_model import PublicSparseDriveV2
+from goal_selector import GoalConditionedSelector
 
 ROOT = Path(__file__).resolve().parents[2]
 PUBLIC_SHA = "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735"
@@ -108,7 +109,7 @@ def evaluate(model, dataset, args, directory, step):
     for batch in loader:
         x = transfer(batch)
         with autocast(args.precision):
-            output = model(**model_inputs(x))
+            output = model(**model_inputs(x, goal_selection=args.goal_mode == "selection"))
         verify_output(output)
         pred = output["trajectory"].float()
         if not torch.isfinite(pred).all():
@@ -151,6 +152,7 @@ def main():
     p.add_argument("--bank", required=True)
     p.add_argument("--run-dir", required=True)
     p.add_argument("--status-mode", choices=("zero", "causal_selection"), required=True)
+    p.add_argument("--goal-mode", choices=("none", "selection"), default="none")
     p.add_argument("--steps", type=int, default=500)
     p.add_argument("--batch", type=int, default=16)
     p.add_argument("--eval-batch", type=int, default=8)
@@ -180,7 +182,8 @@ def main():
     try:
         seed_all(args.seed)
         torch.set_num_threads(4)
-        common = dict(base=args.base, split_manifest=args.split_manifest, status_mode=args.status_mode)
+        common = dict(base=args.base, split_manifest=args.split_manifest, status_mode=args.status_mode,
+                      goal_mode=args.goal_mode)
         train = PlanDataset(**common, split="train", rows_file=args.train_rows,
                             augment=True, seed=args.seed, limit=args.train_limit)
         val = PlanDataset(**common, split=args.eval_split, rows_file=args.eval_rows, stride=5,
@@ -191,16 +194,21 @@ def main():
         initialization = verify_initialization(args.checkpoint,args.bank,train,val)
         model, coverage = PublicSparseDriveV2.from_public_checkpoint(
             args.checkpoint, bank_path=args.bank, backend="native", score_mode="imitation")
+        if args.goal_mode == "selection":
+            model = GoalConditionedSelector(model)
+            coverage["goal_adapter"] = {"new_parameter_elements": 512, "initialization": "zeros, no bias",
+                "normalization_metres": 50., "use": "fixed complete bank selection",
+                "state_dict_base_prefix": "base."}
         model.cuda()
         parameters = [(n,v) for n,v in model.named_parameters() if v.requires_grad]
-        backbone = [v for n,v in parameters if n.startswith("_backbone.")]
-        head = [v for n,v in parameters if not n.startswith("_backbone.")]
+        backbone = [v for n,v in parameters if n.removeprefix("base.").startswith("_backbone.")]
+        head = [v for n,v in parameters if not n.removeprefix("base.").startswith("_backbone.")]
         if not backbone or not head:
             raise ValueError("Public backbone/head parameter groups were not found")
         optimizer = torch.optim.AdamW([{"params":backbone,"lr":args.backbone_lr},
                                       {"params":head,"lr":args.lr}], weight_decay=args.weight_decay)
         base_lrs = [args.backbone_lr, args.lr]
-        runtime = [Path(__file__).with_name(name) for name in ("train.py","data.py","losses.py","public_model.py")]
+        runtime = [Path(__file__).with_name(name) for name in ("train.py","data.py","losses.py","public_model.py","goal_selector.py")]
         runtime.extend((ROOT/"third_party/SparseDriveV2/navsim/agents/sparsedrive/ops/src").glob("*"))
         runtime = [path for path in runtime if path.is_file()]
         sources = {str(path.relative_to(ROOT)):file_sha(path) for path in runtime}
@@ -215,8 +223,12 @@ def main():
                     "initialization_audit":initialization,
                     "train":train_meta, "validation":val_meta, "public_load_coverage":coverage,
                     "score_mode":"imitation", "bn":"fixed running stats; affine trainable",
+                    "training_rng_seed": args.seed + 1,
                     "loss":"fine D3 soft CE + 0.5*(mean path-at-GT-progress D3 CE + mean time-weighted progress-error CE); velocity auxiliary is not Euclidean D3"}
         atomic_json(directory / "manifest.json", manifest)
+        # Wrapper construction consumes RNG even with zero-initialized weights.
+        # Reset after all construction so both arms see the same shuffle/dropout RNG.
+        seed_all(args.seed + 1)
         loader = DataLoader(train,batch_size=args.batch,shuffle=True,num_workers=args.workers,
                             pin_memory=True,drop_last=False)
         iterator = iter(loader)
@@ -241,7 +253,7 @@ def main():
             x = transfer(batch)
             optimizer.zero_grad(set_to_none=True)
             with autocast(args.precision):
-                output = model(**model_inputs(x))
+                output = model(**model_inputs(x, goal_selection=args.goal_mode == "selection"))
             verify_output(output)
             with torch.autocast("cuda", enabled=False):
                 losses = selection_loss(output,x["gt_plan"],model._trajectory_head.path_vocab[..., :2],

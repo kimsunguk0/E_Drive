@@ -47,11 +47,13 @@ def d3(pred, gt):
 class PlanDataset(Dataset):
     def __init__(self, base, split_manifest, split, *, ego_cache="/tmp/pm97/data/etri/ego_cache.npz",
                  stride=None, rows_file=None, image_size=(512, 256), augment=False, seed=0,
-                 status_mode="zero", limit=0):
+                 status_mode="zero", goal_mode="none", limit=0):
         if split not in ("train", "tune"):
             raise ValueError("This screen does not open reserve/test populations")
         if status_mode not in ("zero", "causal_selection"):
             raise ValueError("Unknown status mode")
+        if goal_mode not in ("none", "selection"):
+            raise ValueError("Unknown goal mode")
         self.base = Path(base).resolve()
         self.split_manifest = Path(split_manifest).resolve()
         if file_sha(self.split_manifest) != EXPECTED_SPLIT_SHA:
@@ -59,6 +61,7 @@ class PlanDataset(Dataset):
         self.manifest = json.loads(self.split_manifest.read_text())
         self.split = split
         self.status_mode = status_mode
+        self.goal_mode = goal_mode
         self.augment, self.seed, self.epoch = bool(augment), int(seed), 0
         self.image_size = tuple(image_size)
         if len(self.image_size) != 2 or min(self.image_size) < 32:
@@ -71,6 +74,7 @@ class PlanDataset(Dataset):
             self.scen_idx = z["scen_idx"].astype(np.int64)
             self.frames = z["frame"].astype(np.int64)
             self.gt = z["fut"].astype(np.float32)
+            self.goal = z["goal"].astype(np.float32) if goal_mode == "selection" else None
         names = self.scenarios[self.scen_idx]
         stride = int(stride or (1 if split == "train" else 5))
         if stride < 1:
@@ -101,6 +105,9 @@ class PlanDataset(Dataset):
         self.rows = eligible
         if self.gt.shape[1:] != (6, 2) or not np.isfinite(self.gt[self.rows]).all():
             raise ValueError("Invalid future targets")
+        if self.goal is not None and (self.goal.shape != (len(self.gt), 2)
+                                     or not np.isfinite(self.goal[self.rows]).all()):
+            raise ValueError("Invalid provided goal input")
         self.image_root = self.base / "cache/etri_768"
         self.calibration_path = self.base / "data/etri/motiondrive_v2/train_tune_geometry_v2/calibration.npz"
         if file_sha(self.calibration_path) != EXPECTED_CALIBRATION_SHA:
@@ -154,6 +161,10 @@ class PlanDataset(Dataset):
                 "calibration": str(self.calibration_path), "calibration_sha256": file_sha(self.calibration_path),
                 "camera_order": list(CAMERAS), "image_wh": list(self.image_size),
                 "status_mode": self.status_mode, "status_source": self.status_source,
+                "goal_mode": self.goal_mode,
+                "goal_source": None if self.goal is None else {
+                    "path": str(self.ego_cache), "field": "goal", "frame": "current ego XY metres",
+                    "use": "provided goal for fixed complete trajectory selection only"},
                 "normalization": {"rgb": True, "mean": MEAN.tolist(), "std": STD.tolist()},
                 "target": "cumulative XY, current ego x-forward y-left, metres, .5..3s",
                 "metric_weights": list(TIME_WEIGHTS)}
@@ -179,14 +190,20 @@ class PlanDataset(Dataset):
                     image = transform(image).enhance(float(rng.uniform(.9, 1.1)))
             arr = (np.asarray(image, dtype=np.float32) / 255. - MEAN) / STD
             images.append(torch.from_numpy(arr.transpose(2, 0, 1).copy()))
-        return {"images": torch.stack(images), "lidar2img": self.projection.clone(),
+        result = {"images": torch.stack(images), "lidar2img": self.projection.clone(),
                 "image_hw": torch.tensor(self.image_size[::-1], dtype=torch.float32),
                 "status": torch.from_numpy(self.status[index].copy()),
                 "gt_plan": torch.from_numpy(self.gt[row].copy()), "row": row,
                 "frame": frame, "scenario": scene,
                 "session": self.manifest["scene_to_session"][scene]}
+        if self.goal is not None:
+            result["goal_xy"] = torch.from_numpy(self.goal[row].copy())
+        return result
 
 
-def model_inputs(batch):
+def model_inputs(batch, goal_selection=False):
     """Explicit deployed inputs; labels and sample identifiers cannot flow through."""
-    return {k: batch[k] for k in ("images", "lidar2img", "image_hw", "status")}
+    keys = ("images", "lidar2img", "image_hw", "status")
+    if goal_selection:
+        keys += ("goal_xy",)
+    return {k: batch[k] for k in keys}

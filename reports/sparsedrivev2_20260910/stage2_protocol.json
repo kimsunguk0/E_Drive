@@ -1,0 +1,28 @@
+{
+  "stage": "paired dense bank goal screen",
+  "declared_unix": 1789009287.7301478,
+  "arms": [
+    "causal_selection/no_goal",
+    "causal_selection/goal_selection"
+  ],
+  "public_init": "330072b133981f77b0b18b669216ad50b211552a82ea45ac52d507ec9021a735",
+  "bank_sha256": "4aff9b40696f91383bfbec377f388e6209d619fa509e51a2019b19af977b5e04",
+  "train": "original train203,54810rows",
+  "validation": "original tune37,1998rows,stride5",
+  "seed": 0,
+  "training_rng_seed": 1,
+  "steps": 2000,
+  "batch": 16,
+  "lr_head": 0.0001,
+  "lr_backbone": 1e-05,
+  "warmup": 100,
+  "eval_every": 250,
+  "temperature": 0.1,
+  "loss": "unchanged D3 soft CE",
+  "primary_comparison": "terminal2000,paired session bootstrap",
+  "secondary": "best checkpoint on tune with selection acknowledged",
+  "stop": "only numerical or provenance failure; do not terminate arm based on interim score",
+  "confirmation": "171scene train-only independent bank and public init; confirmation held once for fixed chosen checkpoint later",
+  "reserved_scenes_used_for_evaluation": false,
+  "zero_arm_retired_reason": "500step terminal2.68049; current singleframe public backbone cannot recover speed adequately in this test"
+}
