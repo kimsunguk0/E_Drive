@@ -498,10 +498,15 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
 
     def load_initial(model, common, experiment=None):
         require(tensor_state_sha256(common["model"]) == expected_parent_sha,
-                "long-training trainer A2 parent state mismatch")
-        incompatible = model.load_state_dict(common["model"], strict=True)
+                "q10 trainer parent state mismatch")
+        # Same drop as prepare_model: the A2 query tensors have no home here.
+        parent_state = {name: value for name, value in common["model"].items()
+                        if not name.startswith("shared_status_query_fusion.")}
+        require(len(parent_state) < len(common["model"]),
+                "expected an A2 parent whose query tensors can be dropped")
+        incompatible = model.load_state_dict(parent_state, strict=True)
         require(not incompatible.missing_keys and not incompatible.unexpected_keys,
-                "long-training trainer parent strict load failed")
+                "q10 trainer parent strict load failed after dropping A2 tensors")
         require(tensor_state_sha256(model.state_dict()) == expected_initial_sha,
                 "long-training trainer step-zero state mismatch")
         return {"long_training_parent_load": {
