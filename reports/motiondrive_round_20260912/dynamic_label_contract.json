@@ -1,0 +1,71 @@
+{
+ "actual_seconds_per_lag": {
+  "+10": {
+   "median": 1.0000693359375,
+   "p1": 0.9994385180664063,
+   "p99": 1.0627820361328126
+  },
+  "+5": {
+   "median": 0.499962890625,
+   "p1": 0.499621474609375,
+   "p99": 0.531527099609375
+  }
+ },
+ "classes": {
+  "Car": 199483,
+  "Cyclist": 839,
+  "Pedestrian": 16111,
+  "ego": 9600
+ },
+ "frames_examined": 8640,
+ "future_object_presence_rate": {
+  "+10": 0.9920138888888889,
+  "+5": 0.9920138888888889
+ },
+ "grid_axis_order": "axis0 forward x, axis1 left y; cell centers",
+ "grid_extent": [
+  -10.0,
+  70.0,
+  -32.0,
+  32.0
+ ],
+ "grid_shape": [
+  64,
+  48
+ ],
+ "moving_object_fraction_median": 0.6177248677248677,
+ "object_dimensions_note": "raw width[m] is longitudinal (heading-axis) extent; raw length[m] is lateral extent, matching source converter swap",
+ "occupancy_support_note": "NEGATIVES: valid-object center bounding rectangle padded by 3m, intersect camera-visible grid and radius<=40m; POSITIVES: any visible valid annotated footprint inside grid",
+ "scenes_inspected": [
+  "20260220-101927",
+  "20260212-100654",
+  "20260220-103655",
+  "20260112-105434",
+  "20260112-112649",
+  "20260112-154407",
+  "20260219-105554",
+  "20260113-103509",
+  "20260213-110818",
+  "20260205-155523",
+  "20260205-05659",
+  "20260212-95943",
+  "20260112-111149",
+  "20260205-155343",
+  "20260219-102531",
+  "20260213-105012",
+  "20260211-155531",
+  "20260213-111554",
+  "20260213-105112",
+  "20260213-134438",
+  "20260213-143904",
+  "20260211-160501",
+  "20260219-92801",
+  "20260220-100927"
+ ],
+ "track_length_frames_median": 82.68376068376068,
+ "tracks_per_scene_median": 80.0,
+ "world_frame_check_static_object_shift_m": {
+  "median_over_scenes": 0.050497161422335714,
+  "note": "Objects with |v| < 0.2 m/s re-expressed in one fixed ego frame move this far over 10 frames. Near zero means the raw coordinates are world-fixed and the ego row supplies the pose."
+ }
+}

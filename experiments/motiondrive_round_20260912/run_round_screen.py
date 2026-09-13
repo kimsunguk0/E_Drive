@@ -13,7 +13,7 @@ import numpy as np
 import torch
 from torch import nn
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]  # repo root: this file sits two levels down
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
@@ -34,10 +34,12 @@ NAME = "motiondrive_round_20260912"
 # which Q10 permits, and goal keeps its existing scene conditioning.
 #   c2   common two-layer continuation control
 #   c4   decoder depth 2 -> 4, identity-initialised, nothing else changed
-ARMS = ("c2", "c4")
+#   m8_gen  eight continuous candidates plus a base visual scorer
+ARMS = ("c2", "c4", "m8_gen")
 ARM_SEEDS = {arm: 0 for arm in ARMS}
 FLIP_P = {arm: 0.5 for arm in ARMS}
-PLANNER_LAYERS = {"c2": 2, "c4": 4}
+PLANNER_LAYERS = {"c2": 2, "c4": 4, "m8_gen": 2}
+MODES = {"m8_gen": 8}
 FLIP_ARMS = frozenset(arm for arm, p in FLIP_P.items() if p > 0)
 HOLDOUT_ARMS = frozenset()       # full train split, tune evaluation
 UPDATES = 6850
@@ -58,6 +60,7 @@ PARENT = {
 SOURCE_FILES = set(a2.SOURCE_FILES) | {
     "scripts/motiondrive_v2_flip_augment.py",
     "experiments/motiondrive_round_20260912/run_round_screen.py",
+    "experiments/motiondrive_round_20260912/multimode_continuous_planner.py",
     }
 
 
@@ -168,6 +171,7 @@ def validate_parent(args):
 
 
 _ARM = {"name": "c2"}
+_LIVE = {"planner": None}
 
 
 def expand_planner_depth(model, missing, layers):
@@ -204,6 +208,14 @@ def expand_planner_depth(model, missing, layers):
     return added
 
 
+def install_multimode(model, config, modes):
+    """Swap in the multi-mode planner, keeping every parent tensor name."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from multimode_continuous_planner import MultiModePlanner
+    model.planner = MultiModePlanner(config, modes=modes)
+    return model
+
+
 def make_model(config):
     # Avoid the package export replaced temporarily by patched_runtime.
     # Deliberately NOT wrapped in install_shared_status_query: this screen has
@@ -226,9 +238,13 @@ def prepare_model(payload, seed):
             "the pinned parent must already be A2-off")
     config.planner_layers = PLANNER_LAYERS[_ARM["name"]]
     model = make_model(config)
+    if _ARM["name"] in MODES:
+        install_multimode(model, config, MODES[_ARM["name"]])
     incompatible = model.load_state_dict(parent_state, strict=False)
     require(not incompatible.unexpected_keys, "parent carries tensors this arm has no home for")
-    added = expand_planner_depth(model, incompatible.missing_keys, PLANNER_LAYERS[_ARM["name"]])
+    new_names = [name for name in incompatible.missing_keys
+                 if not name.startswith(("planner.mode_embedding", "planner.candidate_scorer"))]
+    added = expand_planner_depth(model, new_names, PLANNER_LAYERS[_ARM["name"]])
     require(all(torch.equal(model.state_dict()[name], value)
                 for name, value in parent_state.items()),
             "parent tensors did not load exactly")
@@ -401,6 +417,7 @@ def build_experiment(args, source, data, parent, prepared):
         },
         "provided_status_used": False,
         "planner_layers": PLANNER_LAYERS[args.arm],
+        "candidate_modes": MODES.get(args.arm, 1),
         "flip_augmentation": {"probability": FLIP_P[args.arm],
                               "seed": args.seed,
                               "applied_to": "training dataset only"},
@@ -451,6 +468,7 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
         _expected_scene_arguments(arm, holdout))
     originals = {
         "model": model_api.MotionDriveV2,
+        "compute_loss": trainer.compute_loss,
         "dataset": data_api.MotionDriveDataset,
         "train_inputs": trainer.model_inputs,
         "eval_inputs": planning_eval.planning_model_inputs,
@@ -474,7 +492,11 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
         if config is None:
             config = MotionDriveV2Config()
         config.planner_layers = PLANNER_LAYERS[arm]
-        return make_model(config)
+        model = make_model(config)
+        if arm in MODES:
+            install_multimode(model, config, MODES[arm])
+            _LIVE["planner"] = model.planner
+        return model
 
     def dataset_factory(**kwargs):
         split = kwargs.get("split")
@@ -551,7 +573,10 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
         parent_state = common["model"]
         incompatible = model.load_state_dict(parent_state, strict=False)
         require(not incompatible.unexpected_keys, "parent carries tensors this arm cannot hold")
-        expand_planner_depth(model, incompatible.missing_keys, PLANNER_LAYERS[arm])
+        expand_planner_depth(model, [name for name in incompatible.missing_keys
+                                     if not name.startswith(("planner.mode_embedding",
+                                                             "planner.candidate_scorer"))],
+                             PLANNER_LAYERS[arm])
         require(tensor_state_sha256(model.state_dict()) == expected_initial_sha,
                 "long-training trainer step-zero state mismatch")
         return {"long_training_parent_load": {
@@ -568,6 +593,23 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
         due = step % EVAL_SAVE_EVERY == 0
         return due, due
 
+    def multimode_loss(outputs, batch, weights, *, normalizers=None, stop_class_weights=None):
+        loss, parts = originals["compute_loss"](outputs, batch, weights,
+                                                normalizers=normalizers,
+                                                stop_class_weights=stop_class_weights)
+        from multimode_continuous_planner import multimode_losses
+        planner = _LIVE["planner"]
+        pred = outputs["plan_abs"].float()
+        plan_valid = batch.get("plan_valid", torch.ones_like(pred[..., 0], dtype=torch.bool))
+        complete = plan_valid.bool().all(-1)
+        multi, extra = multimode_losses(planner, batch["gt_plan"], complete)
+        # Swap the single-output plan term for the relaxed winner-take-all one.
+        loss = loss - weights.plan * parts["plan_d3"] + weights.plan * multi
+        parts = {**parts, **extra, "total": loss}
+        return loss, parts
+
+    if arm in MODES:
+        trainer.compute_loss = multimode_loss
     model_api.MotionDriveV2 = model_factory
     data_api.MotionDriveDataset = dataset_factory
     trainer.model_inputs = train_inputs
@@ -582,6 +624,7 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
                "terminal_model_inputs": eval_inputs}
     finally:
         model_api.MotionDriveV2 = originals["model"]
+        trainer.compute_loss = originals["compute_loss"]
         data_api.MotionDriveDataset = originals["dataset"]
         trainer.model_inputs = originals["train_inputs"]
         planning_eval.planning_model_inputs = originals["eval_inputs"]
