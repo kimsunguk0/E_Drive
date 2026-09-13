@@ -1,0 +1,22 @@
+{
+ "dyn0": {
+  "h0_future_head_iou": 0.08789671039780715,
+  "h0_model_persistence_iou": 0.33614462297825465,
+  "h0_positive_rate": 0.10732318460941315,
+  "h1_future_head_iou": 0.11647873398657217,
+  "h1_model_persistence_iou": 0.3012837313451825,
+  "h1_positive_rate": 0.10697364807128906
+ },
+ "dyn1": {
+  "h0_future_head_iou": 0.3437155761180877,
+  "h0_model_persistence_iou": 0.34879669707664646,
+  "h0_positive_rate": 0.10732318460941315,
+  "h1_future_head_iou": 0.28786519330059185,
+  "h1_model_persistence_iou": 0.30847593371473464,
+  "h1_positive_rate": 0.10697364807128906
+ },
+ "gt_current_persistence_privileged": {
+  "h0_gt_current_persistence_iou": 0.4137263047620768,
+  "h1_gt_current_persistence_iou": 0.32286476229116745
+ }
+}

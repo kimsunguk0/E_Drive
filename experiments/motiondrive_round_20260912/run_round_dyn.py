@@ -662,7 +662,9 @@ def patched_runtime(arm, seed, overlay, holdout, expected_parent_sha,
                                        batch["future_valid"], POS_WEIGHT)
         coefficient = FUTURE_WEIGHT[arm]
         loss = loss + coefficient * future
-        return loss, {**parts, "future_bce": future, "future_weight": coefficient,
+        # Every reported part must be a tensor: the trainer detaches them.
+        return loss, {**parts, "future_bce": future,
+                      "future_weight": future.new_tensor(coefficient),
                       "total": loss}
 
     def _unused_multimode_loss(outputs, batch, weights, *, normalizers=None, stop_class_weights=None):
