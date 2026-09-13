@@ -1,0 +1,72 @@
+{
+ "double_flip_identity": {
+  "target": true,
+  "valid": true
+ },
+ "ego_cell_positive_rate": 0.03573573753237724,
+ "ego_frame_change_moves_target": {
+  "differs_as_expected": true,
+  "note": "a different transform does move it, which is why the current one is used"
+ },
+ "one_metre_shift": {
+  "cell_size_m": 1.25,
+  "measured_m": [
+   1.0000000000000009,
+   -0.2666666666666657
+  ]
+ },
+ "static_object_unmoved": {
+  "identical": true,
+  "note": "future boxes use the CURRENT transform, so ego motion cannot move a static object"
+ },
+ "train": {
+  "finite": true,
+  "positive_rate_inside_valid": [
+   0.1066247895359993,
+   0.10732585936784744
+  ],
+  "present_fraction": [
+   0.9945083014048531,
+   0.9946542601715016
+  ],
+  "rows": 54810,
+  "rows_with_no_valid_cell": [
+   2230,
+   2099
+  ],
+  "seconds_median": [
+   0.49995118379592896,
+   1.000058889389038
+  ],
+  "shape": [
+   2,
+   64,
+   48
+  ]
+ },
+ "tune": {
+  "finite": true,
+  "positive_rate_inside_valid": [
+   0.1070898249745369,
+   0.10684122145175934
+  ],
+  "present_fraction": [
+   1.0,
+   1.0
+  ],
+  "rows": 9990,
+  "rows_with_no_valid_cell": [
+   208,
+   202
+  ],
+  "seconds_median": [
+   0.4999367594718933,
+   1.0000468492507935
+  ],
+  "shape": [
+   2,
+   64,
+   48
+  ]
+ }
+}
