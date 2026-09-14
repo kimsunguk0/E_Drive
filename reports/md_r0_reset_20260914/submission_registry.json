@@ -1,23 +1,104 @@
 {
- "blocking": [
-  "The official test clips are not present on this node, so no submission file can be built yet.",
-  "No RTX4090 measurement exists for this model; T_infer must be the accumulated forward time over every frame processed, per the preserved Q&A.",
-  "The submission deadline and remaining submission count are unconfirmed."
+ "entries": {
+  "E1-EXP_terminal": {
+   "build_seconds": 1318.6033947151154,
+   "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+   "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+   "clips_available": 1125,
+   "clips_written": 1125,
+   "fixture_dry_run": {
+    "clips": 8,
+    "submission_sha256": "f47a275ecb580777660d2027396c249e5fd0fe505e127266546ccf4368181402"
+   },
+   "format": {
+    "container": "json object keyed by clip token",
+    "coordinates": "cumulative absolute positions as the model emits them",
+    "value": "[[x, y] x 6] float64 metres, current ego frame, 0.5 s steps to 3.0 s"
+   },
+   "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228",
+   "reproduction_manifest": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/reproduction_manifest.json",
+   "role": "current candidate",
+   "server_score_type": "UNKNOWN",
+   "server_submission_id": null,
+   "status": "SUBMISSION_FILE_BUILT_AND_VALIDATED_NOT_UPLOADED",
+   "submission_bytes": 319296,
+   "submission_file": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/submission/official_test_E1-EXP.json",
+   "submission_sha256": "4e73a341d2bf9e34b7f945c4acbbcdbc0178cd3898932e50100e80e896cecad1",
+   "v0_official_d3": 0.22559153860214878,
+   "validation": {
+    "all_finite": true,
+    "all_shapes_6x2": true,
+    "clip_state_isolation_max_abs_diff_m": 0.0,
+    "clip_state_isolation_pass": true,
+    "clip_token_matches_tar_name": true,
+    "cumsum_not_reapplied": {
+     "mean_endpoint_if_cumsum_were_applied_again_m": 79.07467023883937,
+     "mean_endpoint_m": 22.577730296315003,
+     "ratio": 3.502330358324169
+    },
+    "endpoint_distance_m": {
+     "max": 67.56156158447266,
+     "min": 0.0031524505466222763,
+     "p50": 22.578731536865234
+    },
+    "monotone_cumulative_distance_clips": 946
+   }
+  },
+  "R0": {
+   "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
+   "checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+   "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+   "note": "a file can be built with the same writer on request; the candidate is the better model, so quota is not spent on this one by default",
+   "role": "baseline, preserved",
+   "server_score_type": "UNKNOWN",
+   "server_submission_id": null,
+   "status": "NO_SUBMISSION_FILE_BUILT",
+   "v0_official_d3": 0.25854426847343837
+  }
+ },
+ "inputs_read_per_clip": {
+  "adapter": "models/motiondrive_v2_inputs.py prepare_clip_from_records",
+  "command_parquet_read": false,
+  "files_read_per_clip": [
+   "camera_front/frame_-1.jpg",
+   "camera_front/frame_-10.jpg",
+   "camera_front/frame_-2.jpg",
+   "camera_front/frame_-5.jpg",
+   "camera_front/frame_0.jpg",
+   "camera_front_left/frame_0.jpg",
+   "camera_front_right/frame_0.jpg",
+   "camera_rear_left/frame_0.jpg",
+   "camera_rear_right/frame_0.jpg",
+   "camera_rear_wide/frame_0.jpg"
+  ],
+  "future_pose_used": "the +50 frame target point, as a scene-feature condition only",
+  "parquets_read": [
+   "calibration.parquet",
+   "ego_pose.parquet"
+  ],
+  "provided_numeric_ego_status_used": false
+ },
+ "pending": [
+  "No RTX4090 timing exists, so the Error Score time term cannot be computed.",
+  "H confirmation is unopened.",
+  "Seed 1 replication is still running.",
+  "The candidate may change if EXP-LONG improves; a new candidate requires rebuilding this file and re-linking its SHA in this entry."
  ],
- "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
- "checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
- "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
- "raw_adapter": "models/motiondrive_v2_inputs.py (prepare_clip_inputs)",
- "raw_input_parity": "bitwise on 8 preregistered fixtures",
- "raw_output_parity_max_xy_diff_m": 0.0,
- "ready": [
-  "checkpoint identity and runtime source are pinned",
-  "the GT-free raw adapter reproduces both the model inputs and the model outputs at batch 1",
-  "the metric matches the two-stage ADE1/ADE2/ADE3 definition exactly"
- ],
- "runtime_source_git_sha": "ef49bad6e474406a9cf1daf2a26b3b7b79c7126d",
- "schema_version": 1,
- "server_score_type": "UNKNOWN",
- "server_submission_id": null,
- "status": "DEPLOYMENT_PENDING"
+ "runtime_source_git_sha": "e9869d54a2bc0a960bb7a3bf090feb308b9da1dd",
+ "schema_version": 2,
+ "upload_policy": {
+  "guide_document_values": {
+   "caveat": "these are document values; the live deadline, time zone and actual remaining count were not confirmed from the account screen",
+   "max_submissions_per_team": "5 per the printed guide page 4",
+   "submission_period_ends": "2026-09-23 per the printed guide page 1"
+  },
+  "quota_consumed": 0,
+  "requires": [
+   "user approval",
+   "confirmed remaining submission count",
+   "confirmed current submission form and field naming"
+  ],
+  "uploaded": false
+ },
+ "writer": "experiments/md_r0_reset_20260914/submit_official_test.py"
 }

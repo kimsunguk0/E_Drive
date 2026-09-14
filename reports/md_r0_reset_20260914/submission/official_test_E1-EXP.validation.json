@@ -1,0 +1,65 @@
+{
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+ "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+ "checks": {
+  "all_finite": true,
+  "all_shapes_6x2": true,
+  "clip_state_isolation_max_abs_diff_m": 0.0,
+  "clip_state_isolation_pass": true,
+  "clip_token_matches_tar_name": true,
+  "cumsum_not_reapplied": {
+   "mean_endpoint_if_cumsum_were_applied_again_m": 79.07467023883937,
+   "mean_endpoint_m": 22.577730296315003,
+   "ratio": 3.502330358324169
+  },
+  "endpoint_distance_m": {
+   "max": 67.56156158447266,
+   "min": 0.0031524505466222763,
+   "p50": 22.578731536865234
+  },
+  "monotone_cumulative_distance_clips": 946
+ },
+ "clips_available": 1125,
+ "clips_written": 1125,
+ "elapsed_seconds": 1318.6033947151154,
+ "format": {
+  "container": "json object keyed by clip token",
+  "coordinates": "cumulative absolute positions as the model emits them",
+  "value": "[[x, y] x 6] float64 metres, current ego frame, 0.5 s steps to 3.0 s"
+ },
+ "inputs": {
+  "adapter": "models/motiondrive_v2_inputs.py prepare_clip_from_records",
+  "command_parquet_read": false,
+  "files_read_per_clip": [
+   "camera_front/frame_-1.jpg",
+   "camera_front/frame_-10.jpg",
+   "camera_front/frame_-2.jpg",
+   "camera_front/frame_-5.jpg",
+   "camera_front/frame_0.jpg",
+   "camera_front_left/frame_0.jpg",
+   "camera_front_right/frame_0.jpg",
+   "camera_rear_left/frame_0.jpg",
+   "camera_rear_right/frame_0.jpg",
+   "camera_rear_wide/frame_0.jpg"
+  ],
+  "future_pose_used": "the +50 frame target point, as a scene-feature condition only",
+  "parquets_read": [
+   "calibration.parquet",
+   "ego_pose.parquet"
+  ],
+  "provided_numeric_ego_status_used": false
+ },
+ "label": "E1-EXP_terminal_official_test",
+ "limitations": [
+  "No upload was performed and no submission quota was consumed.",
+  "Field naming must be confirmed against the current official submission form.",
+  "No RTX4090 timing accompanies this file."
+ ],
+ "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228",
+ "schema_version": 1,
+ "status": "built_not_uploaded",
+ "submission_bytes": 319296,
+ "submission_file": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/submission/official_test_E1-EXP.json",
+ "submission_sha256": "4e73a341d2bf9e34b7f945c4acbbcdbc0178cd3898932e50100e80e896cecad1",
+ "test_root": "/NHNHOME/data/sukim/adcl/test"
+}

@@ -1,0 +1,251 @@
+{
+ "baseline_entry": "reports/md_r0_reset_20260914/baseline_registry.json (R0, preserved)",
+ "candidate": "E1-EXP_terminal",
+ "checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+ "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+ "checks": {
+  "forward_cost": {
+   "b200_median_ms": 15.020463943481445,
+   "flops_cutoff_gflops": 7053.0,
+   "forwards_per_clip": 1,
+   "profiler_gflops_total": 782.177663332,
+   "rtx4090_measured": false
+  },
+  "negative_controls": {
+   "goal_perturbed_5m_sigma": {
+    "d3": 0.4993569557608625,
+    "ratio_vs_normal": 2.213544407940742
+   },
+   "goal_zero": {
+    "d3": 5.510670839234146,
+    "ratio_vs_normal": 24.427645353618395
+   },
+   "image_swap_cross_scene": {
+    "d3": 1.1836188939270433,
+    "ratio_vs_normal": 5.246733731370919
+   },
+   "image_zero": {
+    "d3": 2.012698093528027,
+    "ratio_vs_normal": 8.921867530639764
+   },
+   "normal": {
+    "d3": 0.22559156887456067,
+    "ratio_vs_normal": 1.0
+   }
+  },
+  "raw_b1_input_output_parity": {
+   "fixtures": 8,
+   "inputs_bitwise_equal": true,
+   "max_plan_abs_xy_diff_m": 0.0
+  },
+  "submission_writer": {
+   "clip_state_isolation_pass": true,
+   "clips": 8,
+   "cumsum_not_reapplied_ratio": 3.501560614235343,
+   "submission_sha256": "f47a275ecb580777660d2027396c249e5fd0fe505e127266546ccf4368181402",
+   "validated_on": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8"
+  }
+ },
+ "information_contract": {
+  "command_vad_cmd": "off",
+  "goal": "shared scene-feature conditioning only, never a planner input",
+  "not_rgb_only": "past relative pose alignment remains, so this model must not be described as free of all ego-motion information",
+  "output": "six cumulative absolute XY points in the current ego frame",
+  "past_relative_pose": "image alignment only; the frames it aligns are always fed as images",
+  "provided_numeric_ego_status": "not an input anywhere"
+ },
+ "model_config": {
+  "backbone_arch": "resnet50",
+  "channels": 128,
+  "correlation_channels": 32,
+  "correlation_radius": 2,
+  "cross_cell_goal_mode": "zero",
+  "goal_on": true,
+  "grid_size": [
+   64,
+   48
+  ],
+  "heights": [
+   0.0,
+   1.0,
+   2.0
+  ],
+  "history_contract": "control",
+  "history_frame_offsets": [
+   1,
+   2,
+   5,
+   10
+  ],
+  "motion_grid": [
+   12,
+   16
+  ],
+  "motion_input_mode": "low_feature",
+  "n_history": 4,
+  "nominal_history_seconds": [
+   0.1,
+   0.2,
+   0.5,
+   1.0
+  ],
+  "plan_output_scale": [
+   10.0,
+   5.0
+  ],
+  "planner_heads": 4,
+  "planner_layers": 2,
+  "scene_attention_channels": 32,
+  "scene_chunk_size": 512,
+  "state_on": true,
+  "x_range": [
+   -10.0,
+   70.0
+  ],
+  "y_range": [
+   -32.0,
+   32.0
+  ]
+ },
+ "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228",
+ "pending": [
+  "H confirmation is unopened and stays unopened until the design is locked.",
+  "The official test clips are not on this node, so no real submission file exists yet.",
+  "No RTX4090 timing; the Error Score time term cannot be computed.",
+  "Deadline and remaining submission count are unconfirmed; no upload has been made.",
+  "Seed 1 replication pair is still running."
+ ],
+ "results": {
+  "checkpoint_selection": "best on V0 among planned steps == terminal (20554)",
+  "lane_iou": 0.4790912091738224,
+  "occ_iou": 0.457907294805833,
+  "paired_vs_r0": {
+   "bootstrap_sd": 0.011019524402660488,
+   "ci95": [
+    -0.059164318028776294,
+    -0.01685037232575579
+   ],
+   "delta": -0.032952729871289596,
+   "p_worse": 0.0,
+   "per_session_delta": {
+    "session_019_20260113-102709": -0.01253611646178696,
+    "session_026_20260122-134906": -0.05241703211019436,
+    "session_027_20260122-135506": -0.023709331887956493,
+    "session_040_20260209-153550": -0.032793720727096555,
+    "session_046_20260210-100504": -0.004222525540670311,
+    "session_076_20260213-134648": -0.04967466341101645,
+    "session_087_20260219-90551": -0.08223950279945577,
+    "session_092_20260219-103747": -0.21978520505406238,
+    "session_097_20260219-110038": -0.026562372751442003,
+    "session_108_20260220-134317": -0.03748458934326967,
+    "session_112_20260303-142827": 0.008865683580990191
+   },
+   "sessions": 11,
+   "sessions_improved": 10,
+   "verdict": "PRIORITY_CANDIDATE"
+  },
+  "paired_vs_t203": {
+   "bootstrap_sd": 0.009005316781030073,
+   "ci95": [
+    -0.06446823132804252,
+    -0.02940120919059021
+   ],
+   "delta": -0.04232850572741306,
+   "p_worse": 0.0,
+   "per_session_delta": {
+    "session_019_20260113-102709": -0.0026321160710520214,
+    "session_026_20260122-134906": -0.03720369564231347,
+    "session_027_20260122-135506": -0.022200303962799133,
+    "session_040_20260209-153550": -0.019480095132840453,
+    "session_046_20260210-100504": -0.029188931824777414,
+    "session_076_20260213-134648": -0.06312308283695192,
+    "session_087_20260219-90551": -0.09222490788885841,
+    "session_092_20260219-103747": -0.19894386579593024,
+    "session_097_20260219-110038": -0.03111949445748771,
+    "session_108_20260220-134317": -0.055679698612678935,
+    "session_112_20260303-142827": -0.036013509112375754
+   },
+   "sessions": 11,
+   "sessions_improved": 11,
+   "verdict": "PRIORITY_CANDIDATE"
+  },
+  "t0_train_probe_d3": 0.0858507263082883,
+  "v0_b1_official_d3": 0.2255915608831835,
+  "v0_b4_official_d3": 0.22559153860214878,
+  "v0_session_mean_d3": 0.23217431662808183,
+  "vx_mae": 0.8725151583851615
+ },
+ "schema_version": 1,
+ "status": "CANDIDATE_LOCKED_FOR_SUBMISSION_PREP",
+ "step": 20554,
+ "supersedes_baseline": false,
+ "training": {
+  "elapsed_seconds": 18476.002364337444,
+  "initializer": {
+   "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+   "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+   "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+   "source_checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+   "source_run": "q10_q10_flip50_s0"
+  },
+  "launcher": "experiments/md_r0_reset_20260914/train.py",
+  "nonfinite_count": 0,
+  "optimizer_checkpoint_preserved": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/last.pth",
+  "recipe": {
+   "auxiliary_weights": {
+    "lane": 0.2,
+    "motion": 0.2,
+    "occupancy": 0.2
+   },
+   "backbone_lr": 5e-06,
+   "batch": 16,
+   "bn_running_statistics": "fixed",
+   "command_input": "off",
+   "decay": "cosine",
+   "eval_batch": 4,
+   "eval_every": 3426,
+   "flip_probability": 0.5,
+   "grad_clip": 5.0,
+   "head_lr": 5e-05,
+   "microbatch": 2,
+   "optimizer": "fresh AdamW",
+   "precision": "bf16",
+   "provided_status_used": false,
+   "time_input": "nominal",
+   "updates": 20554,
+   "warmup": 200,
+   "weight_decay": 0.01
+  },
+  "runtime_source_git_sha": "e9869d54a2bc0a960bb7a3bf090feb308b9da1dd",
+  "split_manifest": {
+   "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+   "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+  },
+  "supervision": {
+   "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+   "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+  },
+  "train_data": {
+   "rows": 83700,
+   "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+   "scenes": 310
+  },
+  "tune_data": {
+   "rows": 1998,
+   "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+   "scenes": 37
+  }
+ },
+ "work_order_identifier_check": {
+  "expected": {
+   "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+   "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228"
+  },
+  "matches": true,
+  "measured": {
+   "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+   "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228"
+  },
+  "mismatch": {}
+ }
+}

@@ -1,0 +1,111 @@
+{
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+ "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+ "checks": {
+  "all_finite": true,
+  "all_shapes_6x2": true,
+  "clip_state_isolation_max_abs_diff_m": 0.0,
+  "clip_state_isolation_pass": true,
+  "cumsum_not_reapplied": {
+   "mean_endpoint_if_cumsum_were_applied_again_m": 119.94552679573243,
+   "mean_endpoint_m": 34.25487661361694,
+   "note": "the model already returns cumulative absolute XY; applying the example script's cumsum again would inflate the endpoint by this ratio",
+   "ratio": 3.501560614235343
+  },
+  "first_point_is_half_second_step_not_full_path": {
+   "mean_endpoint_m": 34.25487661361694,
+   "mean_first_point_m": 5.710431516170502
+  },
+  "monotone_cumulative_distance_clips": 8
+ },
+ "clips": 8,
+ "clips_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8",
+ "format": {
+  "container": "json object keyed by clip directory name",
+  "coordinates": "cumulative absolute positions as the model emits them",
+  "value": "[[x, y] x 6] float64, metres, current ego frame, 0.5 s steps to 3.0 s"
+ },
+ "inputs": {
+  "adapter": "models/motiondrive_v2_inputs.py prepare_clip_inputs",
+  "no_ground_truth_no_provided_status": true,
+  "reads": "calibration.parquet, ego_pose.parquet, ten JPEGs"
+ },
+ "label": "E1-EXP_fixture8_dryrun",
+ "limitations": [
+  "Validated on the clips under clips_root; running on the official test set is a separate step.",
+  "No upload was performed and no submission quota was consumed.",
+  "The exact official field naming must be confirmed against the current submission form."
+ ],
+ "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228",
+ "per_clip": [
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "fixture_000",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 17.278305053710938,
+   "first_point_distance_m": 3.1183810234069824,
+   "max_step_m": 3.118381023825788
+  },
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "fixture_001",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 32.27593994140625,
+   "first_point_distance_m": 5.22861385345459,
+   "max_step_m": 5.509289046732219
+  },
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "fixture_002",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 32.37650680541992,
+   "first_point_distance_m": 5.388498783111572,
+   "max_step_m": 5.460744787594103
+  },
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "fixture_003",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 35.60566329956055,
+   "first_point_distance_m": 5.96599006652832,
+   "max_step_m": 5.965989978309017
+  },
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "fixture_004",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 38.7657356262207,
+   "first_point_distance_m": 6.456573486328125,
+   "max_step_m": 6.522803530044802
+  },
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "fixture_005",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 39.08725357055664,
+   "first_point_distance_m": 6.381253719329834,
+   "max_step_m": 6.637038740752454
+  },
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "fixture_006",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 37.335567474365234,
+   "first_point_distance_m": 6.183995723724365,
+   "max_step_m": 6.27589118566658
+  },
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "fixture_007",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 41.31404113769531,
+   "first_point_distance_m": 6.960145473480225,
+   "max_step_m": 6.960145212395002
+  }
+ ],
+ "schema_version": 1,
+ "status": "validated_not_uploaded",
+ "submission_bytes": 2186,
+ "submission_file": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/submission/fixture8_E1-EXP.json",
+ "submission_sha256": "f47a275ecb580777660d2027396c249e5fd0fe505e127266546ccf4368181402"
+}

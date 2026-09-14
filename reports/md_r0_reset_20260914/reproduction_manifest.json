@@ -1,0 +1,181 @@
+{
+ "candidate": "E1-EXP_terminal",
+ "checkpoint": {
+  "contains": "model tensors and the run manifest; optimizer state kept separately",
+  "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228",
+  "optimizer_checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/last.pth",
+  "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+  "sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f"
+ },
+ "data_provenance": {
+  "initializer": {
+   "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+   "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+   "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+   "source_checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+   "source_run": "q10_q10_flip50_s0"
+  },
+  "split_manifest": {
+   "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+   "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+  },
+  "supervision": {
+   "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+   "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+  },
+  "train_data": {
+   "rows": 83700,
+   "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+   "scenes": 310
+  },
+  "tune_data": {
+   "rows": 1998,
+   "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+   "scenes": 37
+  }
+ },
+ "docker": {
+  "dockerfile": "experiments/md_r0_reset_20260914/Dockerfile",
+  "note": "records the environment actually used; it has not been built or tested here",
+  "status": "DRAFT_NOT_BUILT"
+ },
+ "environment": {
+  "cuda": "12.8",
+  "installed_distributions": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/environment_pip_freeze.txt",
+  "numpy": "1.26.4",
+  "python": "3.10.20",
+  "torch": "2.7.1+cu128",
+  "training_device": "NVIDIA B200",
+  "venv_python": "Python 3.10.20"
+ },
+ "how_to_reproduce_inference": [
+  "mount the repository, the checkpoint and the official test tars",
+  "python experiments/md_r0_reset_20260914/submit_official_test.py --init <ckpt> --test-root <tars> --out submission.json --label review --gpu 0",
+  "the writer reads only calibration.parquet, ego_pose.parquet and ten JPEGs per clip"
+ ],
+ "model_config": {
+  "backbone_arch": "resnet50",
+  "channels": 128,
+  "correlation_channels": 32,
+  "correlation_radius": 2,
+  "cross_cell_goal_mode": "zero",
+  "goal_on": true,
+  "grid_size": [
+   64,
+   48
+  ],
+  "heights": [
+   0.0,
+   1.0,
+   2.0
+  ],
+  "history_contract": "control",
+  "history_frame_offsets": [
+   1,
+   2,
+   5,
+   10
+  ],
+  "motion_grid": [
+   12,
+   16
+  ],
+  "motion_input_mode": "low_feature",
+  "n_history": 4,
+  "nominal_history_seconds": [
+   0.1,
+   0.2,
+   0.5,
+   1.0
+  ],
+  "plan_output_scale": [
+   10.0,
+   5.0
+  ],
+  "planner_heads": 4,
+  "planner_layers": 2,
+  "scene_attention_channels": 32,
+  "scene_chunk_size": 512,
+  "state_on": true,
+  "x_range": [
+   -10.0,
+   70.0
+  ],
+  "y_range": [
+   -32.0,
+   32.0
+  ]
+ },
+ "pending": [
+  "H confirmation is unopened and stays unopened until the design is locked.",
+  "The official test clips are not on this node, so no real submission file exists yet.",
+  "No RTX4090 timing; the Error Score time term cannot be computed.",
+  "Deadline and remaining submission count are unconfirmed; no upload has been made.",
+  "Seed 1 replication pair is still running."
+ ],
+ "pretrained_origin": {
+  "description": "public mmdetection3d nuImages weight cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim; the only external initialization in the lineage, applied before any ETRI training",
+  "file": "ckpt/backbones/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth",
+  "never_trained_on_tune_or_val": true,
+  "sha256": "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e"
+ },
+ "runtime_source_git_sha": "e9869d54a2bc0a960bb7a3bf090feb308b9da1dd",
+ "schema_version": 1,
+ "sources": {
+  "inference": {
+   "experiments/md_r0_reset_20260914/build_submission.py": "634624215444d56e8d7ca739b96e6832e5c1f6fad81a5217ff9bb69ea7108e68",
+   "experiments/md_r0_reset_20260914/submit_official_test.py": "79a06b98623eb6843495b1af79133b8c7dfced630eecd7af97c0955ed4660974",
+   "models/motiondrive_v2/__init__.py": "3a3e6c72029bda6edee171a07b863a1739dcd87717765ae3a6af48dbe007a47d",
+   "models/motiondrive_v2/config.py": "1ecb82e75ca9bb8ffe263ea51c97e79538d43e98c0f13f4a1bdc743cacd0bd50",
+   "models/motiondrive_v2/cross_cell_goal_residual.py": "92153cc2418ff6ae8091ff5f5b9cf32463d3c507e01ba75eb1275366571f0d60",
+   "models/motiondrive_v2/model.py": "d5507cf773342daea8cba0396232b5a0768d8ec84b080106552715b7dfb2b3e6",
+   "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+   "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+   "models/motiondrive_v2/scene_encoder.py": "99cad3d3fe52ba76842d7dbd03754e09b1d24928e2a05522b8f69b42de1d9808",
+   "models/motiondrive_v2_input_contract.py": "5b1381bf39a0e1772f2dc0b87f53c50e3ac5098da51f816a0763673ce026c175",
+   "models/motiondrive_v2_inputs.py": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "models/motiondrive_v2_temporal_contract.py": "5cef257cbe53c566effc4e1e17379f1b0d7d530a89cd19c6574e3a152d9c2c14"
+  },
+  "training": {
+   "experiments/md_r0_reset_20260914/contract_tests.py": "8a9771c6f6d6d114b8e2b4ad4cf776a492603af892289820fd19f14c1e8b8a95",
+   "experiments/md_r0_reset_20260914/evaluate.py": "4db9d1f4e5ee273f117c49d5f2da7853591048a169b8ac2ef3340044b50417c4",
+   "experiments/md_r0_reset_20260914/p3_rebind_init.py": "95a338b52fc2508a4f9c094017af65afc77fd2935712f9ce0a8cf44bc6239528",
+   "experiments/md_r0_reset_20260914/p3_rebind_reports.py": "dfa243dd9561d60e5769f38e9caa4066791accd0fc3f98aefbb4a4a9e5d46f86",
+   "experiments/md_r0_reset_20260914/p3_split.py": "7b250c638fc9533bd2367152f07fdbfa9e565ba87b788c3dc6bc0315778bc1ef",
+   "experiments/md_r0_reset_20260914/p3_supervision.py": "b0239a0f24e827bd03019b1b92455d7bfcb528c10cf31d9fc1e3672fe0640d9f",
+   "experiments/md_r0_reset_20260914/p3_supervision_finish.py": "a341b9f347d410cb6c15a98917c8f5b3d8d03b8d770b77c63e074c86e573ae19",
+   "experiments/md_r0_reset_20260914/train.py": "710a3d24430ab87ba3721026b5897853515512598623f0557f4ccfdb636b5783",
+   "scripts/build_grouped_split_v2.py": "5d3019cf730fe56a27ab7f204ee3f15bc8a4ffaef5df9fbf0635f086c84a49c1",
+   "scripts/build_scene_supervision_v2.py": "20f459b3941d00a4b34988e7e2676559f6719038d8b911b5caec6509fafa4e5d",
+   "scripts/motiondrive_v2_data.py": "6c89d4e3b1e17636ef79bdbeae6750b35fea6a87978eaa7bebbdc5c2cf9ee4b6",
+   "scripts/motiondrive_v2_flip_augment.py": "563981f95804e3e1272971e11d9547cb5bbadeb2e2a3026d3985cbda6565ad95",
+   "scripts/motiondrive_v2_training.py": "6e3d5ecccee0a87cf6a85cd490ee192990fd2ca92f0c307040a93ca2cdc7077c",
+   "scripts/train_motiondrive_v2.py": "655db8a24ba59ce21ba502e46f7862c6c4ba82446394b169b9f2dbe1e8b2272d"
+  }
+ },
+ "training_recipe": {
+  "auxiliary_weights": {
+   "lane": 0.2,
+   "motion": 0.2,
+   "occupancy": 0.2
+  },
+  "backbone_lr": 5e-06,
+  "batch": 16,
+  "bn_running_statistics": "fixed",
+  "command_input": "off",
+  "decay": "cosine",
+  "eval_batch": 4,
+  "eval_every": 3426,
+  "flip_probability": 0.5,
+  "grad_clip": 5.0,
+  "head_lr": 5e-05,
+  "microbatch": 2,
+  "optimizer": "fresh AdamW",
+  "precision": "bf16",
+  "provided_status_used": false,
+  "time_input": "nominal",
+  "updates": 20554,
+  "warmup": 200,
+  "weight_decay": 0.01
+ }
+}
