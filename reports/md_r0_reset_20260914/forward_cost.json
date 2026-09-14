@@ -1,4 +1,118 @@
 {
+ "E1-EXP_terminal": {
+  "batch": 1,
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+  "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+  "device": "NVIDIA B200",
+  "device_is_not_the_scored_device": true,
+  "flops_cutoff_gflops": 7053.0,
+  "flops_headroom_x": 9.017132974566051,
+  "forwards_per_clip": 1,
+  "input_shapes": {
+   "goal_xy": [
+    1,
+    2
+   ],
+   "history_images": [
+    1,
+    4,
+    3,
+    216,
+    384
+   ],
+   "history_transforms": [
+    1,
+    4,
+    4,
+    4
+   ],
+   "images": [
+    1,
+    6,
+    3,
+    432,
+    768
+   ],
+   "lidar2img": [
+    1,
+    6,
+    4,
+    4
+   ],
+   "time_offsets": [
+    1,
+    4
+   ]
+  },
+  "label": "E1-EXP_terminal",
+  "latency_ms": {
+   "max": 43.162017822265625,
+   "mean": 18.145438060760497,
+   "median": 15.020463943481445,
+   "min": 14.431136131286621,
+   "p90": 27.149539947509766,
+   "p95": 29.238344573974608,
+   "p99": 39.72511535644533,
+   "repeats": 100,
+   "std": 5.867645610122755
+  },
+  "limitations": [
+   "B200 timing is not the RTX4090 time used in the Error Score and must not be substituted for it.",
+   "The profiler counts convolution and matmul FLOPs; elementwise and layout operations are not included.",
+   "One clip, batch 1, warm cache; JPEG decode and preprocessing are outside the measured region, matching the operators' answer that only model forward is timed."
+  ],
+  "parameters": 26426936,
+  "peak_memory_mib": {
+   "allocated": 400.67919921875,
+   "reserved": 518.0
+  },
+  "precision": "bf16",
+  "profiler_flops_total": 782177663332,
+  "profiler_gflops_total": 782.177663332,
+  "schema_version": 1,
+  "top_flops_operators": [
+   {
+    "calls": 219,
+    "gflops": 781.49320704,
+    "name": "aten::conv2d"
+   },
+   {
+    "calls": 36,
+    "gflops": 0.471263104,
+    "name": "aten::addmm"
+   },
+   {
+    "calls": 16,
+    "gflops": 0.087228416,
+    "name": "aten::mm"
+   },
+   {
+    "calls": 9,
+    "gflops": 0.078447104,
+    "name": "aten::bmm"
+   },
+   {
+    "calls": 48,
+    "gflops": 0.026702052,
+    "name": "aten::mul"
+   },
+   {
+    "calls": 65,
+    "gflops": 0.020815616,
+    "name": "aten::add"
+   },
+   {
+    "calls": 101,
+    "gflops": 0.0,
+    "name": "aten::flatten"
+   },
+   {
+    "calls": 528,
+    "gflops": 0.0,
+    "name": "aten::view"
+   }
+  ]
+ },
  "R0": {
   "batch": 1,
   "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
@@ -67,6 +181,120 @@
    "gpu_shared_with_another_job": true,
    "observed_utilisation_of_the_other_job_percent": 86
   },
+  "parameters": 26426936,
+  "peak_memory_mib": {
+   "allocated": 400.67919921875,
+   "reserved": 518.0
+  },
+  "precision": "bf16",
+  "profiler_flops_total": 782177663332,
+  "profiler_gflops_total": 782.177663332,
+  "schema_version": 1,
+  "top_flops_operators": [
+   {
+    "calls": 219,
+    "gflops": 781.49320704,
+    "name": "aten::conv2d"
+   },
+   {
+    "calls": 36,
+    "gflops": 0.471263104,
+    "name": "aten::addmm"
+   },
+   {
+    "calls": 16,
+    "gflops": 0.087228416,
+    "name": "aten::mm"
+   },
+   {
+    "calls": 9,
+    "gflops": 0.078447104,
+    "name": "aten::bmm"
+   },
+   {
+    "calls": 48,
+    "gflops": 0.026702052,
+    "name": "aten::mul"
+   },
+   {
+    "calls": 65,
+    "gflops": 0.020815616,
+    "name": "aten::add"
+   },
+   {
+    "calls": 101,
+    "gflops": 0.0,
+    "name": "aten::flatten"
+   },
+   {
+    "calls": 528,
+    "gflops": 0.0,
+    "name": "aten::view"
+   }
+  ]
+ },
+ "R0_quiet": {
+  "batch": 1,
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
+  "checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+  "device": "NVIDIA B200",
+  "device_is_not_the_scored_device": true,
+  "flops_cutoff_gflops": 7053.0,
+  "flops_headroom_x": 9.017132974566051,
+  "forwards_per_clip": 1,
+  "input_shapes": {
+   "goal_xy": [
+    1,
+    2
+   ],
+   "history_images": [
+    1,
+    4,
+    3,
+    216,
+    384
+   ],
+   "history_transforms": [
+    1,
+    4,
+    4,
+    4
+   ],
+   "images": [
+    1,
+    6,
+    3,
+    432,
+    768
+   ],
+   "lidar2img": [
+    1,
+    6,
+    4,
+    4
+   ],
+   "time_offsets": [
+    1,
+    4
+   ]
+  },
+  "label": "R0_quiet",
+  "latency_ms": {
+   "max": 85.99734497070312,
+   "mean": 23.646974048614503,
+   "median": 18.145103454589844,
+   "min": 14.457728385925293,
+   "p90": 41.470172119140656,
+   "p95": 51.22917785644531,
+   "p99": 60.298433837890755,
+   "repeats": 100,
+   "std": 12.528804430369712
+  },
+  "limitations": [
+   "B200 timing is not the RTX4090 time used in the Error Score and must not be substituted for it.",
+   "The profiler counts convolution and matmul FLOPs; elementwise and layout operations are not included.",
+   "One clip, batch 1, warm cache; JPEG decode and preprocessing are outside the measured region, matching the operators' answer that only model forward is timed."
+  ],
   "parameters": 26426936,
   "peak_memory_mib": {
    "allocated": 400.67919921875,

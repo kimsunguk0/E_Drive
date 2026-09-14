@@ -1,0 +1,116 @@
+{
+ "E1-EXP_terminal": {
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+  "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+  "conditions": {
+   "goal_perturbed_5m_sigma": {
+    "d3_ratio_vs_normal": 2.213544407940742,
+    "max_abs_xy_diff_vs_normal_m": 7.830974578857422,
+    "mean_abs_xy_diff_vs_normal_m": 0.35360991954803467,
+    "official_d3": 0.4993569557608625,
+    "rows": 1998
+   },
+   "goal_zero": {
+    "d3_ratio_vs_normal": 24.427645353618395,
+    "max_abs_xy_diff_vs_normal_m": 39.07455825805664,
+    "mean_abs_xy_diff_vs_normal_m": 4.36588716506958,
+    "official_d3": 5.510670839234146,
+    "rows": 1998
+   },
+   "image_swap_cross_scene": {
+    "d3_ratio_vs_normal": 5.246733731370919,
+    "max_abs_xy_diff_vs_normal_m": 18.56808090209961,
+    "mean_abs_xy_diff_vs_normal_m": 0.8381929397583008,
+    "official_d3": 1.1836188939270433,
+    "rows": 1998
+   },
+   "image_zero": {
+    "d3_ratio_vs_normal": 8.921867530639764,
+    "max_abs_xy_diff_vs_normal_m": 9.68106460571289,
+    "mean_abs_xy_diff_vs_normal_m": 1.4912500381469727,
+    "official_d3": 2.012698093528027,
+    "rows": 1998
+   },
+   "normal": {
+    "d3_ratio_vs_normal": 1.0,
+    "max_abs_xy_diff_vs_normal_m": 0.0,
+    "mean_abs_xy_diff_vs_normal_m": 0.0,
+    "official_d3": 0.22559156887456067,
+    "rows": 1998
+   }
+  },
+  "eval_batch": 2,
+  "label": "E1-EXP_terminal",
+  "limitations": [
+   "Ablations are out-of-distribution inputs; the size of a degradation is not a linear measure of contribution.",
+   "This is evidence about where performance comes from, not an approval of the submission by the operators."
+  ],
+  "precision": "bf16",
+  "reading": {
+   "goal_is_a_reference_not_the_source": 24.427645353618395,
+   "images_carry_the_trajectory": 8.921867530639764,
+   "note": "A large image-ablation ratio is evidence the trajectory comes from the imagery. The goal rows show how much a goal change moves the output; goal enters the shared scene features only, never the planner."
+  },
+  "row_pairing": "row i paired with row i + n//2 so the swap crosses scenes",
+  "rows": 1998,
+  "schema_version": 1,
+  "split": "tune (V0)"
+ },
+ "R0": {
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
+  "checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+  "conditions": {
+   "goal_perturbed_5m_sigma": {
+    "d3_ratio_vs_normal": 2.01139485492015,
+    "max_abs_xy_diff_vs_normal_m": 7.429599761962891,
+    "mean_abs_xy_diff_vs_normal_m": 0.34812501072883606,
+    "official_d3": 0.52003461607565,
+    "rows": 1998
+   },
+   "goal_zero": {
+    "d3_ratio_vs_normal": 21.488533176871954,
+    "max_abs_xy_diff_vs_normal_m": 37.093299865722656,
+    "mean_abs_xy_diff_vs_normal_m": 4.325860023498535,
+    "official_d3": 5.555737140983738,
+    "rows": 1998
+   },
+   "image_swap_cross_scene": {
+    "d3_ratio_vs_normal": 5.402211034606377,
+    "max_abs_xy_diff_vs_normal_m": 21.009075164794922,
+    "mean_abs_xy_diff_vs_normal_m": 0.9702565670013428,
+    "official_d3": 1.396710712702253,
+    "rows": 1998
+   },
+   "image_zero": {
+    "d3_ratio_vs_normal": 7.950008309934646,
+    "max_abs_xy_diff_vs_normal_m": 19.53738021850586,
+    "mean_abs_xy_diff_vs_normal_m": 1.4942307472229004,
+    "official_d3": 2.055429101422862,
+    "rows": 1998
+   },
+   "normal": {
+    "d3_ratio_vs_normal": 1.0,
+    "max_abs_xy_diff_vs_normal_m": 0.0,
+    "mean_abs_xy_diff_vs_normal_m": 0.0,
+    "official_d3": 0.25854427080966896,
+    "rows": 1998
+   }
+  },
+  "eval_batch": 2,
+  "label": "R0",
+  "limitations": [
+   "Ablations are out-of-distribution inputs; the size of a degradation is not a linear measure of contribution.",
+   "This is evidence about where performance comes from, not an approval of the submission by the operators."
+  ],
+  "precision": "bf16",
+  "reading": {
+   "goal_is_a_reference_not_the_source": 21.488533176871954,
+   "images_carry_the_trajectory": 7.950008309934646,
+   "note": "A large image-ablation ratio is evidence the trajectory comes from the imagery. The goal rows show how much a goal change moves the output; goal enters the shared scene features only, never the planner."
+  },
+  "row_pairing": "row i paired with row i + n//2 so the swap crosses scenes",
+  "rows": 1998,
+  "schema_version": 1,
+  "split": "tune (V0)"
+ }
+}

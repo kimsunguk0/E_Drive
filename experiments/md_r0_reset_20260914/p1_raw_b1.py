@@ -39,6 +39,8 @@ def main() -> None:
     parser.add_argument("--init", required=True)
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--precision", choices=["bf16", "fp32"], default="bf16")
+    parser.add_argument("--label", default="R0",
+                        help="which model this is; only R0 is checked against the pinned registry")
     args = parser.parse_args()
 
     registry = json.loads(REGISTRY.read_text())
@@ -46,7 +48,8 @@ def main() -> None:
     clips = manifest["clips"]
 
     payload = torch.load(args.init, map_location="cpu", weights_only=False)
-    if mt.tensor_state_sha256(payload["model"]) != registry["model_state_sha256"]:
+    state_sha = mt.tensor_state_sha256(payload["model"])
+    if args.label == "R0" and state_sha != registry["model_state_sha256"]:
         raise SystemExit("checkpoint tensors differ from the pinned R0 registry")
     device = torch.device(f"cuda:{args.gpu}")
     config = MotionDriveV2Config(**payload["manifest"]["model_config"])
@@ -108,7 +111,7 @@ def main() -> None:
         "schema_version": 1,
         "purpose": "raw test-shaped B1 input AND output parity for R0",
         "checkpoint": str(Path(args.init).resolve()),
-        "checkpoint_sha256": registry["checkpoint_sha256"],
+        "checkpoint_sha256": trainer.sha256(args.init),
         "fixtures": len(results), "batch": 1, "precision": args.precision,
         "device": torch.cuda.get_device_name(device),
         "inputs_all_bitwise_equal": all(r["inputs_all_bitwise_equal"] for r in results),
@@ -123,8 +126,11 @@ def main() -> None:
             "The raw adapter decodes JPEG independently; bf16 autocast still applies to both paths.",
         ],
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload_out, indent=1, sort_keys=True) + "\n")
+    payload_out["label"] = args.label
+    payload_out["model_state_sha256"] = state_sha
+    out_path = OUT if args.label == "R0" else OUT.with_name(f"raw_b1_fixture_{args.label}.json")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(payload_out, indent=1, sort_keys=True) + "\n")
     print(json.dumps({k: payload_out[k] for k in
                       ("fixtures", "inputs_all_bitwise_equal", "max_plan_abs_xy_diff_m",
                        "max_d3_abs_diff", "mean_d3_dataset_path", "mean_d3_raw_adapter_path")},
