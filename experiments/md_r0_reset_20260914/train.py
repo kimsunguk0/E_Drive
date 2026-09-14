@@ -39,12 +39,20 @@ SUPERVISION = ROOT / "data/etri/motiondrive_v2/r0reset_tplus_geometry_v2"
 INIT = ROOT / "work_dirs/md_r0_reset_20260914/r0_init_tplus.pth"
 REGISTRY = ROOT / "reports/md_r0_reset_20260914/baseline_registry.json"
 
-ARMS = ("E1-T203", "E1-EXP")
-# Fixed compute for both arms: <= 6 exposures of the EXISTING train split.
-N0_ROWS = 54810
+ARMS = ("E1-T203", "E1-EXP", "E1-EXP-LONG")
+EXPANDED_ARMS = ("E1-EXP", "E1-EXP-LONG")
+N0_ROWS = 54810                                   # existing train split
+TPLUS_ROWS = 83700                                # expanded train split
 BATCH = 16
 MICROBATCH = 2
-UPDATES = math.ceil(6 * N0_ROWS / BATCH)          # 20554
+# E1 held compute fixed at <= 6 exposures of the EXISTING train split.
+# The LONG arm instead gives the EXPANDED split the same 6 exposures, so its
+# cosine horizon is longer from step one rather than being appended later.
+ARM_UPDATES = {
+    "E1-T203": math.ceil(6 * N0_ROWS / BATCH),    # 20554
+    "E1-EXP": math.ceil(6 * N0_ROWS / BATCH),     # 20554
+    "E1-EXP-LONG": math.ceil(6 * TPLUS_ROWS / BATCH),   # 31388
+}
 EVAL_EVERY = math.ceil(N0_ROWS / BATCH)           # 3426, one T203 exposure
 WARMUP = 200
 FLIP_P = 0.5
@@ -63,14 +71,19 @@ def build_datasets(arm, seed):
     common = dict(data_root="/tmp/pm97", split_manifest=str(NEW_SPLIT),
                   supervision_root=str(SUPERVISION), min_frame=30, max_samples=0,
                   seed=seed, history_contract="control")
-    scenes = sorted(base["splits"]["train"]) if arm == "E1-T203" else None
+    scenes = None if arm in EXPANDED_ARMS else sorted(base["splits"]["train"])
     training = MotionDriveDataset(split="train", frame_stride=1, augment=False,
                                   scenes=scenes, **common)
     evaluation = MotionDriveDataset(split="tune", frame_stride=5, augment=False, **common)
     return scenes, training, evaluation
 
 
+def experiment_rows(dataset):
+    return len(dataset)
+
+
 def build_experiment(arm, seed, scenes, training, evaluation):
+    updates = ARM_UPDATES[arm]
     registry = json.loads(REGISTRY.read_text())
     payload = torch.load(INIT, map_location="cpu", weights_only=False)
     initial_sha = tensor_state_sha256(payload["model"])
@@ -94,19 +107,24 @@ def build_experiment(arm, seed, scenes, training, evaluation):
         "expected_initial_model_state_sha256": initial_sha,
         "expected_optimizer_groups": [{"name": "backbone", "base_lr": BACKBONE_LR},
                                       {"name": "head", "base_lr": HEAD_LR}],
-        "recipe": {"updates": UPDATES, "eval_every": EVAL_EVERY, "warmup": WARMUP,
+        "recipe": {"updates": updates, "eval_every": EVAL_EVERY, "warmup": WARMUP,
                    "batch": BATCH, "microbatch": MICROBATCH, "eval_batch": 4,
                    "optimizer": "fresh AdamW", "backbone_lr": BACKBONE_LR,
                    "head_lr": HEAD_LR, "weight_decay": .01, "grad_clip": 5.0,
-                   "decay": "cosine", "precision": "bf16", "time_input": "nominal",
+                   "decay": "cosine", "cosine_horizon_updates": updates,
+                   "precision": "bf16", "time_input": "nominal",
                    "bn_running_statistics": "fixed",
                    "auxiliary_weights": {"occupancy": .2, "lane": .2, "motion": .2},
                    "flip_probability": FLIP_P, "command_input": "off",
                    "provided_status_used": False},
-        "fixed_compute_note": ("both arms run the same number of optimizer updates; "
-                               "the expanded arm therefore sees each of its samples "
-                               "fewer times. This is a fixed-compute data-scale "
-                               "contrast, not an equal-epoch contrast."),
+        "exposures_of_own_train": updates * BATCH / experiment_rows(training),
+        "budget_note": (
+            "E1's two arms share one update count, so the expanded arm sees each of its "
+            "samples fewer times: a fixed-compute data-scale contrast, not an equal-epoch "
+            "one. The LONG arm instead gives the expanded split the same six exposures, "
+            "with the cosine horizon set to its own total from step one. Comparing LONG "
+            "with the short expanded run is therefore a schedule-and-budget comparison, "
+            "not the causal effect of exposure count alone."),
         "checkpoint_selection": "lowest V0 official_d3 among planned eval steps; ties go to the earlier step",
         "provided_status_used": False,
     }
@@ -120,7 +138,7 @@ def trainer_argv(arm, seed, run_dir, scenes, gpu):
         "--run-dir", str(Path(run_dir).resolve()),
         "--phase", "joint", "--goal-on", "1", "--state-on", "1",
         "--cross-cell-goal-mode", "zero", "--history-contract", "control",
-        "--gpu", str(gpu), "--seed", str(seed), "--steps", str(UPDATES),
+        "--gpu", str(gpu), "--seed", str(seed), "--steps", str(ARM_UPDATES[arm]),
         "--batch", str(BATCH), "--microbatch", str(MICROBATCH), "--eval-batch", "4",
         "--workers", "4", "--eval-every", str(EVAL_EVERY),
         "--save-every", str(EVAL_EVERY), "--log-every", "50",
@@ -165,7 +183,7 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
             return originals["dataset"](**kwargs)
         if split != "train":
             raise ValueError("E1 uses only the train and tune splits")
-        expected = None if arm == "E1-EXP" else scenes
+        expected = None if arm in EXPANDED_ARMS else scenes
         if (list(requested) if requested else None) != (list(expected) if expected else None):
             raise ValueError("training dataset scenes differ from the pinned arm")
         if kwargs.get("augment") is not True:
@@ -182,7 +200,8 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         return None
 
     def validate_runtime(runtime_args, declared):
-        expected = {"phase": "joint", "goal_on": 1, "state_on": 1, "steps": UPDATES,
+        expected = {"phase": "joint", "goal_on": 1, "state_on": 1,
+                    "steps": ARM_UPDATES[arm],
                     "batch": BATCH, "microbatch": MICROBATCH, "eval_batch": 4,
                     "eval_every": EVAL_EVERY, "save_every": EVAL_EVERY,
                     "lr": HEAD_LR, "backbone_lr": BACKBONE_LR, "weight_decay": .01,
@@ -200,12 +219,12 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         if (runtime_args.seed != seed or not runtime_args.init or runtime_args.resume
                 or runtime_args.pretrained or runtime_args.eval_only or runtime_args.cpu):
             raise ValueError("E1 runtime flags mismatch")
-        expected_scenes = None if arm == "E1-EXP" else list(scenes)
+        expected_scenes = None if arm in EXPANDED_ARMS else list(scenes)
         if runtime_args.train_scenes != expected_scenes or runtime_args.eval_scenes is not None:
             raise ValueError("E1 scene arguments mismatch")
 
     def schedule(step, runtime_args, declared):
-        if (runtime_args.steps != UPDATES or runtime_args.eval_every != EVAL_EVERY
+        if (runtime_args.steps != ARM_UPDATES[arm] or runtime_args.eval_every != EVAL_EVERY
                 or runtime_args.save_every != EVAL_EVERY):
             raise ValueError("E1 schedule contract mismatch")
         due = step % EVAL_EVERY == 0 or step == runtime_args.steps
@@ -262,8 +281,9 @@ def main() -> None:
                "train_rows_sha256": experiment["train_data"]["rows_sha256"],
                "tune_rows": experiment["tune_data"]["rows"],
                "tune_rows_sha256": experiment["tune_data"]["rows_sha256"],
-               "updates": UPDATES, "eval_every": EVAL_EVERY,
-               "exposures_of_own_train": UPDATES * BATCH / experiment["train_data"]["rows"]}
+               "updates": ARM_UPDATES[args.arm], "eval_every": EVAL_EVERY,
+               "exposures_of_own_train": (ARM_UPDATES[args.arm] * BATCH
+                                          / experiment["train_data"]["rows"])}
     print("PLAN " + json.dumps(summary), flush=True)
     if args.dry_run:
         return

@@ -1,0 +1,143 @@
+{
+ "bootstrap": {
+  "resamples": 20000,
+  "seed": 0,
+  "shared_indices_across_seeds": true,
+  "unit": "session"
+ },
+ "caveats": [
+  "V0 is a repeatedly used development set; a good interval is not an independent confirmation.",
+  "Two seeds bound seed sensitivity loosely; they do not estimate the seed population.",
+  "H remains unopened."
+ ],
+ "comparisons": {
+  "seed0: R0 -> EXP": {
+   "bootstrap_sd": 0.011179800596214293,
+   "ci95": [
+    -0.059806627578985874,
+    -0.016771667947129695
+   ],
+   "delta": -0.032952729871289596,
+   "p_worse": 0.0,
+   "sessions_improved": 10
+  },
+  "seed0: T203 -> EXP": {
+   "bootstrap_sd": 0.009078939221568263,
+   "ci95": [
+    -0.0640530282605219,
+    -0.02913942493614741
+   ],
+   "delta": -0.04232850572741306,
+   "p_worse": 0.0,
+   "per_session_delta": {
+    "session_019_20260113-102709": -0.0026321160710520214,
+    "session_026_20260122-134906": -0.03720369564231347,
+    "session_027_20260122-135506": -0.022200303962799133,
+    "session_040_20260209-153550": -0.019480095132840453,
+    "session_046_20260210-100504": -0.029188931824777414,
+    "session_076_20260213-134648": -0.06312308283695192,
+    "session_087_20260219-90551": -0.09222490788885841,
+    "session_092_20260219-103747": -0.19894386579593024,
+    "session_097_20260219-110038": -0.03111949445748771,
+    "session_108_20260220-134317": -0.055679698612678935,
+    "session_112_20260303-142827": -0.036013509112375754
+   },
+   "sessions": 11,
+   "sessions_improved": 11
+  },
+  "seed1: R0 -> EXP": {
+   "bootstrap_sd": 0.010644661098636848,
+   "ci95": [
+    -0.05875432395501304,
+    -0.01742429230921798
+   ],
+   "delta": -0.03292264863876654,
+   "p_worse": 0.0,
+   "sessions_improved": 10
+  },
+  "seed1: T203 -> EXP": {
+   "bootstrap_sd": 0.008792447074606465,
+   "ci95": [
+    -0.06251843985752496,
+    -0.028464348171819892
+   ],
+   "delta": -0.041095199117957205,
+   "p_worse": 0.0,
+   "per_session_delta": {
+    "session_019_20260113-102709": -0.0015591649269616162,
+    "session_026_20260122-134906": -0.036973550622523936,
+    "session_027_20260122-135506": -0.024896446925898392,
+    "session_040_20260209-153550": -0.011924268022455551,
+    "session_046_20260210-100504": -0.028125994271357303,
+    "session_076_20260213-134648": -0.05923766533579723,
+    "session_087_20260219-90551": -0.08540934622632684,
+    "session_092_20260219-103747": -0.21043801707801996,
+    "session_097_20260219-110038": -0.02976875338289473,
+    "session_108_20260220-134317": -0.051695398399951284,
+    "session_112_20260303-142827": -0.03625273545859037
+   },
+   "sessions": 11,
+   "sessions_improved": 11
+  }
+ },
+ "design": "continuation replication from the same R0 weights with a different shuffle and augmentation seed; not two independently pretrained models",
+ "evaluation": {
+  "eval_batch": 4,
+  "precision": "bf16",
+  "row_identity_verified_across_all_runs": true,
+  "rows": 1998,
+  "sessions": 11,
+  "split": "tune (V0)"
+ },
+ "pooled_seed_mean": {
+  "bootstrap_sd": 0.00891965490051128,
+  "caveat": "two seeds do not make 11 tune sessions into 22 independent ones, and this is not an estimate of the training-seed population",
+  "ci95": [
+   -0.06324149743585618,
+   -0.028819214781021993
+  ],
+  "delta_mean_of_two_seeds": -0.04171185242268513,
+  "method": "the same session resample indices are applied to both seeds and the two seed differences are averaged",
+  "p_worse": 0.0
+ },
+ "question": "does a second continuation seed reproduce the data-expansion improvement?",
+ "reading": "terminal-to-terminal is the primary comparison; best-to-best is a development result of the pre-registered checkpoint rule",
+ "schema_version": 1,
+ "table": [
+  {
+   "EXP_best": 0.22559153860214878,
+   "EXP_best_step": 20554,
+   "EXP_minus_T203_best": -0.04198030081229867,
+   "EXP_minus_T203_terminal": -0.04232850572741306,
+   "EXP_probe_terminal": 0.0858507263082883,
+   "EXP_terminal": 0.22559153860214878,
+   "EXP_tune_b1_terminal": 0.2255915608831835,
+   "EXP_vx_mae": 0.8725151583851615,
+   "T203_best": 0.26757183941444745,
+   "T203_best_step": 13704,
+   "T203_probe_terminal": 0.07353783851736762,
+   "T203_terminal": 0.26792004432956185,
+   "T203_tune_b1_terminal": 0.26792005719318335,
+   "T203_vx_mae": 1.0955683673182885,
+   "seed": 0
+  },
+  {
+   "EXP_best": 0.22517298562620003,
+   "EXP_best_step": 13704,
+   "EXP_minus_T203_best": -0.037522214787869546,
+   "EXP_minus_T203_terminal": -0.041095199117957226,
+   "EXP_probe_terminal": 0.08579462981674897,
+   "EXP_terminal": 0.22562161983467183,
+   "EXP_tune_b1_terminal": 0.22562161430555103,
+   "EXP_vx_mae": 0.869704909673011,
+   "T203_best": 0.2626952004140696,
+   "T203_best_step": 13704,
+   "T203_probe_terminal": 0.07378127993509238,
+   "T203_terminal": 0.26671681895262905,
+   "T203_tune_b1_terminal": 0.2667168507688047,
+   "T203_vx_mae": 1.0898731684198488,
+   "seed": 1
+  }
+ ],
+ "verdict": "REPLICATED"
+}
