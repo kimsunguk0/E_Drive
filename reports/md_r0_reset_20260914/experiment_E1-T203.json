@@ -49,7 +49,7 @@
   "weight_decay": 0.01
  },
  "schema_version": 1,
- "seed": 0,
+ "seed": 1,
  "split_manifest": {
   "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
   "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"

@@ -48,7 +48,6 @@ UPDATES = math.ceil(6 * N0_ROWS / BATCH)          # 20554
 EVAL_EVERY = math.ceil(N0_ROWS / BATCH)           # 3426, one T203 exposure
 WARMUP = 200
 FLIP_P = 0.5
-FLIP_SEED = 0
 FLIP_WIDTHS = (768, 384)
 BACKBONE_LR = 5e-6
 HEAD_LR = 5e-5
@@ -172,7 +171,8 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         if kwargs.get("augment") is not True:
             raise ValueError("the training dataset must keep augmentation on")
         base = originals["dataset"](**kwargs)
-        return FlipAugmented(base, *FLIP_WIDTHS, p=FLIP_P, seed=FLIP_SEED)
+        # the flip stream follows the training seed, as in the original screens
+        return FlipAugmented(base, *FLIP_WIDTHS, p=FLIP_P, seed=seed)
 
     def validate_protocol(declared):
         if not isinstance(declared, dict) or declared.get("name") != NAME \

@@ -103,6 +103,8 @@ def main() -> None:
     parser.add_argument("--split-manifest", default=str(SPLIT_MANIFEST))
     parser.add_argument("--supervision-root", default=str(SUPERVISION))
     parser.add_argument("--scenes", nargs="+")
+    parser.add_argument("--scenes-file",
+                        help="newline-separated scene list; restricts the eval split")
     parser.add_argument("--run-dir", required=True)
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
@@ -150,8 +152,12 @@ def main() -> None:
         "--eval-split", args.eval_split, "--eval-only",
         "--cuda-memory-limit-mib", "12000", "--cuda-min-free-mib", "8192",
     ]
-    if args.scenes:
-        command.extend(("--eval-scenes", *args.scenes))
+    scenes = list(args.scenes or [])
+    if args.scenes_file:
+        scenes.extend(line.strip() for line in Path(args.scenes_file).read_text().splitlines()
+                      if line.strip())
+    if scenes:
+        command.extend(("--eval-scenes", *sorted(set(scenes))))
 
     try:
         trainer.evaluate = detailed_evaluate
