@@ -1,0 +1,14 @@
+{
+ "b1_vs_b4_abs_diff": 3.000000026176508e-09,
+ "historical_tune_d3": 0.25854426847343837,
+ "probe_minus_full": 0.003299004000000008,
+ "repeat_run_abs_diff": 0.0,
+ "reproduced_tune_d3": 0.258544264,
+ "reproduces_history_bitwise": true,
+ "schema_version": 1,
+ "tolerance_note": "repeat runs of the same configuration are bitwise identical, so any difference above ~3e-9 (the observed B1/B4 gap) is a real difference, not run-to-run noise",
+ "train_full_d3": 0.104942317,
+ "train_probe_d3": 0.108241321,
+ "tune_over_train_full_ratio": 2.4636797756237843,
+ "weighted_equals_two_stage": true
+}

@@ -1,0 +1,23 @@
+{
+ "declared_split_manifest_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+ "envelope": {
+  "added_train_scenes": 107,
+  "added_train_scenes_come_from_prior_val": true,
+  "initializer_declared_split_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "initializer_split_matches_prior": true,
+  "prior_manifest_sha256_recorded": true,
+  "removed_train_scenes": 0,
+  "train_is_superset": true,
+  "tune_identical": true,
+  "tune_never_enters_train": true,
+  "val_is_subset_of_prior_val": true,
+  "val_never_enters_train": true
+ },
+ "model_state_identical_to_r0": true,
+ "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+ "source": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
+ "source_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+ "status": "created_verified",
+ "target": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+ "target_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76"
+}

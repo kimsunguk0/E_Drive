@@ -1,0 +1,215 @@
+{
+ "a2_provided_status_route": {
+  "absent": true,
+  "checkpoint_parameters_matching_a2_markers": [],
+  "protocol_provided_status_used": false,
+  "protocol_status_route": "none anywhere; planner consumes image-inferred state only"
+ },
+ "checkpoint_keys": [
+  "best_metric",
+  "epoch",
+  "manifest",
+  "model",
+  "optimizer",
+  "rng",
+  "step"
+ ],
+ "checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
+ "checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+ "checkpoint_step": 6850,
+ "historical_auxiliary": {
+  "history_position_mae_by_offset": [
+   0.10708566921708586,
+   0.20498917828762886,
+   0.5035128785836585,
+   0.9913848205189872
+  ],
+  "lane_iou": 0.42373445571454627,
+  "occ_iou": 0.4338053779875754,
+  "state_mae_vx_vy_ax_ay_yawrate": [
+   0.9995741687707596,
+   0.06037359205668047,
+   0.2886797704801963,
+   0.07261541345956954,
+   0.007097254155346568
+  ]
+ },
+ "historical_eval_mode": {
+  "augmentation": "off (evaluation dataset is never augmented)",
+  "bn_running_statistics": "fixed",
+  "eval_batch": 4,
+  "eval_stride": 5,
+  "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+  "n_rows": 1998,
+  "n_sessions": 11,
+  "precision": "bf16",
+  "time_input": "nominal"
+ },
+ "historical_session_d3": {
+  "session_019_20260113-102709": 0.2695924008817033,
+  "session_026_20260122-134906": 0.2254928033798933,
+  "session_027_20260122-135506": 0.21719736062857525,
+  "session_040_20260209-153550": 0.21074527812500796,
+  "session_046_20260210-100504": 0.30156021161625784,
+  "session_076_20260213-134648": 0.21829274616399666,
+  "session_087_20260219-90551": 0.3141800428016318,
+  "session_092_20260219-103747": 0.600846864697006,
+  "session_097_20260219-110038": 0.18836891290122343,
+  "session_108_20260220-134317": 0.24381532485562343,
+  "session_112_20260303-142827": 0.2963849133639424
+ },
+ "historical_tune_d3": 0.25854426847343837,
+ "initial_model_state_sha256": "2e98d0f611682811dbc7fc104c7e984d1ec858bffe77a8b22d1224f76931ddf4",
+ "initial_parameter_count": 26426936,
+ "loss_weights": {
+  "lane": 0.2,
+  "motion": 0.2,
+  "occupancy": 0.2,
+  "plan": 1.0,
+  "uncertainty": true
+ },
+ "model_config": {
+  "backbone_arch": "resnet50",
+  "channels": 128,
+  "correlation_channels": 32,
+  "correlation_radius": 2,
+  "cross_cell_goal_mode": "zero",
+  "goal_on": true,
+  "grid_size": [
+   64,
+   48
+  ],
+  "heights": [
+   0.0,
+   1.0,
+   2.0
+  ],
+  "history_contract": "control",
+  "history_frame_offsets": [
+   1,
+   2,
+   5,
+   10
+  ],
+  "motion_grid": [
+   12,
+   16
+  ],
+  "motion_input_mode": "low_feature",
+  "n_history": 4,
+  "nominal_history_seconds": [
+   0.1,
+   0.2,
+   0.5,
+   1.0
+  ],
+  "plan_output_scale": [
+   10.0,
+   5.0
+  ],
+  "planner_heads": 4,
+  "planner_layers": 2,
+  "scene_attention_channels": 32,
+  "scene_chunk_size": 512,
+  "state_on": true,
+  "x_range": [
+   -10.0,
+   70.0
+  ],
+  "y_range": [
+   -32.0,
+   32.0
+  ]
+ },
+ "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+ "numpy": "1.26.4",
+ "parameter_count": 26536197,
+ "parent": {
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/controlflow_b0_direct_last4000/last.pth",
+  "checkpoint_sha256": "7e1b3f3a52e2703210edf24f546d0cb62b91723952076482866d89204bbb9449",
+  "fresh_optimizer": true,
+  "model_state_sha256": "ffaa7f42f55b25d73a187c71af1a1cd96a1f8f32b10ead17a5ccca460c4f192c",
+  "producer_git_sha": "f419e52e5f940a7b1465181e9d1d1621baad91d1",
+  "sidecar": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/controlflow_b0_direct_last4000/manifest.json",
+  "sidecar_sha256": "94fae557ff2ffadbd4dc7079cd228245bba9172c4d249a5498d2ca7fa1f31653",
+  "source_manifest_sha256": "6552a06ffa3ae743cc41c8b927853d373579759d0b8562d59e6dbbb2e0dd8039",
+  "step": 2000,
+  "weights_only": true
+ },
+ "preprocessing_id": {
+  "data_root": "/tmp/pm97",
+  "geometry_edition": "cache_meta_rear_wide_v2",
+  "image_cache": "/NHNHOME/data/sukim/adcl/cache/etri_768",
+  "supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+  "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+  "time_input_policy": {
+   "mode": "nominal",
+   "nominal_dtype": "float32",
+   "nominal_history_seconds": [
+    0.1,
+    0.2,
+    0.5,
+    1.0
+   ],
+   "scope": "model input time_offsets only; same for training and every evaluation",
+   "source": "fixed nominal frame-offset seconds",
+   "supervision_and_dataset_modified": false
+  }
+ },
+ "recipe": {
+  "auxiliary_weights": {
+   "lane": 0.2,
+   "motion": 0.2,
+   "occupancy": 0.2
+  },
+  "backbone_lr": 5e-06,
+  "batch": 16,
+  "bn_running_statistics": "fixed",
+  "cosine_decay_end_update": 6850,
+  "decay": "cosine",
+  "eval_batch": 4,
+  "eval_every": 3425,
+  "grad_clip": 5.0,
+  "head_lr": 5e-05,
+  "microbatch": 2,
+  "optimizer": "fresh AdamW",
+  "planning_path": "existing fp32",
+  "precision": "bf16",
+  "save_every": 3425,
+  "updates": 6850,
+  "warmup_updates": 100,
+  "weight_decay": 0.01
+ },
+ "run_name": "q10_q10_flip50_s0",
+ "runtime_source_id": {
+  "git_sha": "ef49bad6e474406a9cf1daf2a26b3b7b79c7126d",
+  "pinned_file_count": 31,
+  "pinned_file_drift": {},
+  "pinned_files_unchanged": true,
+  "source_manifest": "/NHNHOME/data/sukim/adcl/reports/q10_20260911_ops/source_manifest.json",
+  "source_manifest_sha256": "db1cf2423cd1c1afa800a31b534f16a32e9f7eaa3411047479fb3beb3266c499"
+ },
+ "schema_version": 1,
+ "server_score_type": "UNKNOWN",
+ "server_submission_id": null,
+ "torch": "2.7.1+cu128",
+ "train_split_id": {
+  "rows": 54810,
+  "rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+  "scenes": 203,
+  "sessions": 72,
+  "split": "train",
+  "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+  "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+  "train_scenes_argument": null
+ },
+ "tune_split_id": {
+  "eval_stride": 5,
+  "rows": 1998,
+  "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "scenes": 37,
+  "sessions": 11,
+  "split": "tune"
+ },
+ "written_by": "experiments/md_r0_reset_20260914/p0_registry.py"
+}

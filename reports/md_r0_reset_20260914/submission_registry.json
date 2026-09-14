@@ -1,0 +1,23 @@
+{
+ "blocking": [
+  "The official test clips are not present on this node, so no submission file can be built yet.",
+  "No RTX4090 measurement exists for this model; T_infer must be the accumulated forward time over every frame processed, per the preserved Q&A.",
+  "The submission deadline and remaining submission count are unconfirmed."
+ ],
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
+ "checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+ "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+ "raw_adapter": "models/motiondrive_v2_inputs.py (prepare_clip_inputs)",
+ "raw_input_parity": "bitwise on 8 preregistered fixtures",
+ "raw_output_parity_max_xy_diff_m": 0.0,
+ "ready": [
+  "checkpoint identity and runtime source are pinned",
+  "the GT-free raw adapter reproduces both the model inputs and the model outputs at batch 1",
+  "the metric matches the two-stage ADE1/ADE2/ADE3 definition exactly"
+ ],
+ "runtime_source_git_sha": "ef49bad6e474406a9cf1daf2a26b3b7b79c7126d",
+ "schema_version": 1,
+ "server_score_type": "UNKNOWN",
+ "server_submission_id": null,
+ "status": "DEPLOYMENT_PENDING"
+}

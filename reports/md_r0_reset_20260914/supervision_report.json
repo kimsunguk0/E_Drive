@@ -1,0 +1,57 @@
+{
+ "added_train_scenes": 107,
+ "canonical_calibration_sha256": "8bd130de0ab9081bcea486011abd071e8502c0ab0033c965fe448f70e612f961",
+ "dataset_counts": {
+  "train": {
+   "rows": 83700,
+   "scenes": 310
+  },
+  "tune": {
+   "rows": 1998,
+   "scenes": 37
+  },
+  "val": {
+   "rows": 7830,
+   "scenes": 29
+  }
+ },
+ "holdout_scene_reports_built": 29,
+ "holdout_scenes": 29,
+ "kept_scene_report_rebind": {
+  "all_required_scene_reports_name_new_split": true,
+  "already_correct": 0,
+  "npz_verified_identical_to_parent": 240,
+  "rebound": 240
+ },
+ "kept_scenes": 240,
+ "legacy_root_unchanged_train_rows": 54810,
+ "new_split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+ "new_split_manifest_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+ "output_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+ "parent_supervision_manifest_sha256": "ba1ba04ebd2ac40dea5a27fa89f46c6a17de8aa48ab29da20a62fb9e17718d93",
+ "parity_probe": {
+  "all_identical": true,
+  "results": {
+   "20260112-105434": {
+    "arrays_bitwise_identical": true,
+    "differing_arrays": []
+   },
+   "20260112-105504": {
+    "arrays_bitwise_identical": true,
+    "differing_arrays": []
+   },
+   "20260112-111049": {
+    "arrays_bitwise_identical": true,
+    "differing_arrays": []
+   }
+  },
+  "scenes": [
+   "20260112-105434",
+   "20260112-105504",
+   "20260112-111049"
+  ]
+ },
+ "schema_version": 1,
+ "status": "created_verified",
+ "supervision_manifest_sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+}

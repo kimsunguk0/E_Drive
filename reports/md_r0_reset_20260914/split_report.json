@@ -1,0 +1,179 @@
+{
+ "A": {
+  "rows_stride1": 28890,
+  "rows_stride5": 5778,
+  "scenes": 107,
+  "scenes_with_bounds": 107,
+  "sessions": [
+   "session_005_20260112-134817",
+   "session_012_20260112-161019",
+   "session_016_20260112-162549",
+   "session_017_20260113-92505",
+   "session_024_20260120-101339",
+   "session_028_20260122-140120",
+   "session_030_20260122-160614",
+   "session_033_20260205-154633",
+   "session_044_20260210-95754",
+   "session_049_20260210-104708",
+   "session_052_20260210-150438",
+   "session_055_20260211-153321",
+   "session_059_20260211-165355",
+   "session_067_20260213-104652",
+   "session_071_20260213-112204",
+   "session_072_20260213-112414",
+   "session_074_20260213-134008",
+   "session_078_20260213-135618",
+   "session_085_20260213-145114",
+   "session_091_20260219-103107",
+   "session_103_20260220-105107"
+  ]
+ },
+ "H": {
+  "rows_stride1": 7830,
+  "rows_stride5": 1566,
+  "scenes": 29,
+  "scenes_with_bounds": 29,
+  "sessions": [
+   "session_013_20260112-161629",
+   "session_021_20260113-103649",
+   "session_065_20260213-103832",
+   "session_066_20260213-104152",
+   "session_079_20260213-140218",
+   "session_082_20260213-144154",
+   "session_099_20260220-101717",
+   "session_107_20260220-133427",
+   "session_110_20260303-94300",
+   "session_113_20260303-143437"
+  ]
+ },
+ "T0": {
+  "rows_stride1": 54810,
+  "rows_stride5": 10962,
+  "scenes": 203,
+  "sessions": 72
+ },
+ "Tplus": {
+  "rows_stride1": 83700,
+  "rows_stride5": 16740,
+  "scenes": 310,
+  "sessions": 93
+ },
+ "V0": {
+  "rows_stride1": 9990,
+  "rows_stride5": 1998,
+  "scenes": 37,
+  "sessions": 11
+ },
+ "ancestor_lineage": [
+  {
+   "explicit_train_scenes": null,
+   "fitted_scenes": 203,
+   "pretrained": null,
+   "run": "work_dirs/motiondrive_v2/q10_q10_flip50_s0",
+   "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+   "status": "completed",
+   "train_rows": 54810
+  },
+  {
+   "explicit_train_scenes": null,
+   "fitted_scenes": 203,
+   "pretrained": null,
+   "run": "work_dirs/motiondrive_v2/controlflow_b0_direct_last4000",
+   "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+   "status": "completed",
+   "train_rows": 54810
+  },
+  {
+   "explicit_train_scenes": null,
+   "fitted_scenes": 203,
+   "pretrained": null,
+   "run": "work_dirs/motiondrive_v2/pv_screen_b0_direct_last2000",
+   "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+   "status": "completed",
+   "train_rows": 54810
+  },
+  {
+   "explicit_train_scenes": null,
+   "fitted_scenes": 203,
+   "pretrained": null,
+   "run": "work_dirs/motiondrive_v2/early_precision_b0_continuation_control_last2000",
+   "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+   "status": "completed",
+   "train_rows": 54810
+  },
+  {
+   "explicit_train_scenes": null,
+   "fitted_scenes": 203,
+   "pretrained": null,
+   "run": "work_dirs/motiondrive_v2/shared_status_a2_b0_provided_last2000",
+   "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+   "status": "completed",
+   "train_rows": 54810
+  },
+  {
+   "explicit_train_scenes": null,
+   "fitted_scenes": 203,
+   "pretrained": null,
+   "run": "work_dirs/motiondrive_v2/p7_goal_routing_b0_control_last6000",
+   "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+   "status": "completed",
+   "train_rows": 54810
+  },
+  {
+   "explicit_train_scenes": null,
+   "fitted_scenes": 203,
+   "pretrained": null,
+   "run": "work_dirs/motiondrive_v2/p4_fresh_pretrain_s0",
+   "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+   "status": "completed",
+   "train_rows": 54810
+  }
+ ],
+ "base_manifest": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+  "sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936"
+ },
+ "eligible_reserve_sessions": 31,
+ "expansion_ratio_rows_stride1": 1.5270935960591132,
+ "historical_val_caveat": "historical_val38 was repeatedly evaluated by the earlier dense-VAD / ScoreDrive line. Scenes of it that fall in A now enter TRAINING, which is allowed; H is therefore an ancestor-fit-excluded confirmation set, NOT a never-inspected blind set.",
+ "historical_val_moved_into_train": [
+  "20260112-134847",
+  "20260112-161409",
+  "20260112-162629",
+  "20260112-162729",
+  "20260113-92715",
+  "20260120-101409",
+  "20260122-140220",
+  "20260122-140300",
+  "20260122-160614",
+  "20260205-154703",
+  "20260210-100144",
+  "20260210-104708",
+  "20260210-150438",
+  "20260210-150648",
+  "20260210-95754",
+  "20260210-95824",
+  "20260211-153351",
+  "20260211-165505",
+  "20260213-104722",
+  "20260213-112204",
+  "20260213-112454",
+  "20260213-134118",
+  "20260213-135648",
+  "20260213-135758",
+  "20260213-145334",
+  "20260213-145404",
+  "20260213-145544",
+  "20260219-103217",
+  "20260220-105317"
+ ],
+ "holdout_rule": "sha256(\"edrive-r0-holdout-v1|\" + session_id), ascending, first 10",
+ "ineligible_reserve_sessions": [],
+ "new_manifest": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+  "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "written": true
+ },
+ "schema_version": 1,
+ "supervision_status": "A scenes still need supervision targets; see p3_supervision"
+}

@@ -1,0 +1,99 @@
+{
+ "augmentation": "off",
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
+ "checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+ "eval_batch": 4,
+ "eval_split": "tune",
+ "eval_stride": 5,
+ "metrics": {
+  "ade1": 0.158835204211467,
+  "ade2": 0.25746172059118533,
+  "ade3": 0.35933586700597325,
+  "ade6_unweighted": 0.3593358670059733,
+  "d3_p50": 0.20274441033513946,
+  "d3_p95": 0.6369525769331791,
+  "d3_p99": 1.0423865431656616,
+  "guide_two_stage_d3": 0.2585442639362085,
+  "official_d3_weighted": 0.2585442639362085,
+  "point_l2_by_timestep": [
+   0.11091060791473015,
+   0.20675980050820367,
+   0.3054084573759634,
+   0.4067680165658451,
+   0.5090315050589007,
+   0.6171368146121987
+  ],
+  "point_l2_p95_by_timestep": [
+   0.28105978119523906,
+   0.520237354239594,
+   0.7593891112723757,
+   1.094934675103096,
+   1.3711644986282239,
+   1.6227434150669333
+  ],
+  "rows": 1998,
+  "weighted_vs_two_stage_max_row_diff": 2.220446049250313e-16
+ },
+ "precision": "bf16",
+ "probe_per_session": 0,
+ "rows": 1998,
+ "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+ "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/tune_legacy_repeat",
+ "scenes": 37,
+ "session_d3": {
+  "session_019_20260113-102709": 0.2695924008817033,
+  "session_026_20260122-134906": 0.2254928033798933,
+  "session_027_20260122-135506": 0.21719736062857525,
+  "session_040_20260209-153550": 0.21074527812500796,
+  "session_046_20260210-100504": 0.30156021161625784,
+  "session_076_20260213-134648": 0.21829274616399666,
+  "session_087_20260219-90551": 0.3141800428016318,
+  "session_092_20260219-103747": 0.600846864697006,
+  "session_097_20260219-110038": 0.18836891290122343,
+  "session_108_20260220-134317": 0.24381532485562343,
+  "session_112_20260303-142827": 0.2963849133639424
+ },
+ "sessions": 11,
+ "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_rawtime.json",
+ "split_manifest_sha256": "f4e0f30c5c243e03f007a8da53fdc3dfa85a6b21b96c53723d35f94d0fbc7936",
+ "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/train_tune_geometry_v2",
+ "tag": "tune_legacy_repeat",
+ "time_input": "nominal",
+ "trainer_report": {
+  "history_position_mae_by_offset": [
+   0.10708566921708586,
+   0.20498917828762886,
+   0.5035128785836585,
+   0.9913848205189872
+  ],
+  "lane_iou": 0.42373445571454627,
+  "n": 1998,
+  "n_sessions": 11,
+  "occ_iou": 0.4338053779875754,
+  "official_d3": 0.25854426847343837,
+  "proxy_d3": 0.25854426847343837,
+  "proxy_is_not_official_sample_weight": true,
+  "session_d3": {
+   "session_019_20260113-102709": 0.2695924008817033,
+   "session_026_20260122-134906": 0.2254928033798933,
+   "session_027_20260122-135506": 0.21719736062857525,
+   "session_040_20260209-153550": 0.21074527812500796,
+   "session_046_20260210-100504": 0.30156021161625784,
+   "session_076_20260213-134648": 0.21829274616399666,
+   "session_087_20260219-90551": 0.3141800428016318,
+   "session_092_20260219-103747": 0.600846864697006,
+   "session_097_20260219-110038": 0.18836891290122343,
+   "session_108_20260220-134317": 0.24381532485562343,
+   "session_112_20260303-142827": 0.2963849133639424
+  },
+  "session_mean_d3": 0.280588805401351,
+  "state_mae_vx_vy_ax_ay_yawrate": [
+   0.9995741687707596,
+   0.06037359205668047,
+   0.2886797704801963,
+   0.07261541345956954,
+   0.007097254155346568
+  ],
+  "time_input": "nominal"
+ }
+}

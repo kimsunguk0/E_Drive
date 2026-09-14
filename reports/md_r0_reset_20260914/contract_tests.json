@@ -1,0 +1,254 @@
+{
+ "all_pass": true,
+ "checks": {
+  "augmentation_contract": {
+   "double_flip_max_abs_diff": 0.0,
+   "flip_wrapper_has_set_epoch": true,
+   "pass": true,
+   "per_key_max_abs_diff": {
+    "goal_xy": 0.0,
+    "gt_plan": 0.0,
+    "history_images": 0.0,
+    "history_target": 0.0,
+    "history_transforms": 0.0,
+    "images": 0.0,
+    "lane_target": 0.0,
+    "lane_valid": 0.0,
+    "lidar2img": 0.0,
+    "occ_target": 0.0,
+    "occ_valid": 0.0,
+    "state_target": 0.0,
+    "time_offsets": 0.0
+   },
+   "trainer_calls_set_epoch_per_epoch": true
+  },
+  "bn_policy": {
+   "adaptive_all_train": true,
+   "affine_weights_trainable": true,
+   "bn_modules": 53,
+   "fixed_all_eval": true,
+   "pass": true,
+   "registry_bn_modules": "fixed",
+   "reported_count_adaptive": 53,
+   "reported_count_fixed": 53
+  },
+  "fp32_projection": {
+   "device": "cuda",
+   "pass": true,
+   "plan_dtype_under_bf16_autocast": "torch.float32",
+   "plan_dtype_without_autocast": "torch.float32",
+   "planner_disables_autocast": true
+  },
+  "input_whitelist": {
+   "forward_signature": [
+    "images",
+    "history_images",
+    "lidar2img",
+    "history_transforms",
+    "time_offsets",
+    "goal_xy"
+   ],
+   "leaking_keys": [],
+   "model_inputs": [
+    "images",
+    "history_images",
+    "lidar2img",
+    "history_transforms",
+    "time_offsets",
+    "goal_xy"
+   ],
+   "pass": true,
+   "signature_matches_whitelist": true
+  },
+  "metric_identity": {
+   "identical_prediction_d3": 0.0,
+   "metric_precision": "weighted_d3 casts predictions to float32 (pred.float()); identities hold at float32 precision",
+   "note": "mean(ADE1,ADE2,ADE3) equals the [11,11,5,5,2,2]/36 weighting",
+   "one_mps_constant_velocity_error_d3": 1.2500001192092896,
+   "pass": true,
+   "tolerance_atol": 1e-06,
+   "unit_offset_d3": 1.0,
+   "weighted_vs_ade123_max_row_diff": 2.2626354057031506e-07,
+   "weights": [
+    0.3055555555555556,
+    0.3055555555555556,
+    0.1388888888888889,
+    0.1388888888888889,
+    0.05555555555555555,
+    0.05555555555555555
+   ]
+  },
+  "microbatch_equivalence": {
+   "cases": {
+    "b15": {
+     "dense_grad": 1.2178785800933838,
+     "dense_total": 2.561802625656128,
+     "invalid_rows": [],
+     "microbatches": {
+      "1": {
+       "grad": 1.2178784608840942,
+       "grad_abs_diff": 1.1920928955078125e-07,
+       "max_part_abs_diff": 2.4586915969848633e-07,
+       "pass": true,
+       "total": 2.5618023797869682,
+       "total_abs_diff": 2.4586915969848633e-07
+      },
+      "2": {
+       "grad": 1.2178784608840942,
+       "grad_abs_diff": 1.1920928955078125e-07,
+       "max_part_abs_diff": 1.7881393432617188e-07,
+       "pass": true,
+       "total": 2.5618024468421936,
+       "total_abs_diff": 1.7881393432617188e-07
+      },
+      "8": {
+       "grad": 1.2178784608840942,
+       "grad_abs_diff": 1.1920928955078125e-07,
+       "max_part_abs_diff": 2.384185791015625e-07,
+       "pass": true,
+       "total": 2.561802387237549,
+       "total_abs_diff": 2.384185791015625e-07
+      }
+     }
+    },
+    "b16": {
+     "dense_grad": 1.00575852394104,
+     "dense_total": 2.226837396621704,
+     "invalid_rows": [],
+     "microbatches": {
+      "1": {
+       "grad": 1.0057584047317505,
+       "grad_abs_diff": 1.1920928955078125e-07,
+       "max_part_abs_diff": 1.0058283805847168e-07,
+       "pass": true,
+       "total": 2.226837497204542,
+       "total_abs_diff": 1.0058283805847168e-07
+      },
+      "16": {
+       "grad": 1.00575852394104,
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 0.0,
+       "pass": true,
+       "total": 2.226837396621704,
+       "total_abs_diff": 0.0
+      },
+      "2": {
+       "grad": 1.00575852394104,
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 8.940696716308594e-08,
+       "pass": true,
+       "total": 2.2268374860286713,
+       "total_abs_diff": 8.940696716308594e-08
+      },
+      "8": {
+       "grad": 1.00575852394104,
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 5.960464477539063e-08,
+       "pass": true,
+       "total": 2.226837396621704,
+       "total_abs_diff": 0.0
+      }
+     }
+    },
+    "b16_with_invalid_rows": {
+     "dense_grad": 1.0383702516555786,
+     "dense_total": 2.285022735595703,
+     "invalid_rows": [
+      4,
+      5
+     ],
+     "microbatches": {
+      "1": {
+       "grad": 1.0383702516555786,
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 6.705522537231445e-08,
+       "pass": true,
+       "total": 2.2850227281451225,
+       "total_abs_diff": 7.450580596923828e-09
+      },
+      "16": {
+       "grad": 1.0383702516555786,
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 0.0,
+       "pass": true,
+       "total": 2.285022735595703,
+       "total_abs_diff": 0.0
+      },
+      "2": {
+       "grad": 1.0383702516555786,
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 7.450580596923828e-08,
+       "pass": true,
+       "total": 2.2850226759910583,
+       "total_abs_diff": 5.960464477539063e-08
+      },
+      "8": {
+       "grad": 1.038370132446289,
+       "grad_abs_diff": 1.1920928955078125e-07,
+       "max_part_abs_diff": 1.1920928955078125e-07,
+       "pass": true,
+       "total": 2.2850228548049927,
+       "total_abs_diff": 1.1920928955078125e-07
+      }
+     }
+    }
+   },
+   "pass": true,
+   "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-05
+   }
+  },
+  "microbatch_negative_control": {
+   "chunk_local_sum": 14.92615258693695,
+   "chunks": 8,
+   "dense": 1.8287471532821655,
+   "note": "negative control: chunk-local means over-count by ~chunks",
+   "pass": true,
+   "ratio": 8.161955336552712
+  },
+  "optimizer_groups": {
+   "every_trainable_parameter_grouped": true,
+   "fpn_note": "backbone_fpn.lat*/out* (the FPN lateral and output convolutions) are in the HEAD group, not the backbone group; only the encoder stem/stages use backbone_lr",
+   "fpn_tensors_in_head_group": [
+    "backbone_fpn.lat2.weight",
+    "backbone_fpn.lat3.weight",
+    "backbone_fpn.lat4.weight",
+    "backbone_fpn.out2.weight",
+    "backbone_fpn.out3.weight"
+   ],
+   "groups": [
+    {
+     "base_lr": 5e-06,
+     "elements": 23508032,
+     "name": "backbone",
+     "parameters": 159
+    },
+    {
+     "base_lr": 5e-05,
+     "elements": 2918904,
+     "name": "head",
+     "parameters": 139
+    }
+   ],
+   "no_parameter_in_two_groups": true,
+   "pass": true,
+   "total_trainable_parameters": 298
+  },
+  "reduction_algebra_fp64": {
+   "abs_diff": 5.551115123125783e-17,
+   "accumulated": 0.14695788401037763,
+   "dense": 0.14695788401037757,
+   "fully_masked_chunk_contribution": 0.0,
+   "pass": true,
+   "tolerance": {
+    "atol": 1e-12,
+    "rtol": 1e-10
+   }
+  }
+ },
+ "device": "cuda",
+ "runtime_source_git_sha": "ef49bad6e474406a9cf1daf2a26b3b7b79c7126d",
+ "schema_version": 1,
+ "torch": "2.7.1+cu128"
+}

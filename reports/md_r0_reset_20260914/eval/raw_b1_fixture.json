@@ -1,0 +1,734 @@
+{
+ "batch": 1,
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
+ "checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+ "clips": [
+  {
+   "clip_id": "fixture_000",
+   "d3_abs_diff": 0.0,
+   "d3_dataset_path": 0.047445397824048996,
+   "d3_raw_adapter_path": 0.047445397824048996,
+   "input_diffs": {
+    "goal_xy": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_transforms": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "lidar2img": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "time_offsets": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    }
+   },
+   "inputs_all_bitwise_equal": true,
+   "plan_dataset_xy": [
+    [
+     3.168031692504883,
+     -0.1450023204088211
+    ],
+    [
+     6.267736434936523,
+     -0.43560200929641724
+    ],
+    [
+     9.261399269104004,
+     -0.8705745935440063
+    ],
+    [
+     12.04047966003418,
+     -1.4414401054382324
+    ],
+    [
+     14.691486358642578,
+     -2.149437665939331
+    ],
+    [
+     17.02902603149414,
+     -3.07348370552063
+    ]
+   ],
+   "plan_max_abs_xy_diff_m": 0.0,
+   "plan_mean_abs_xy_diff_m": 0.0,
+   "plan_raw_xy": [
+    [
+     3.168031692504883,
+     -0.1450023204088211
+    ],
+    [
+     6.267736434936523,
+     -0.43560200929641724
+    ],
+    [
+     9.261399269104004,
+     -0.8705745935440063
+    ],
+    [
+     12.04047966003418,
+     -1.4414401054382324
+    ],
+    [
+     14.691486358642578,
+     -2.149437665939331
+    ],
+    [
+     17.02902603149414,
+     -3.07348370552063
+    ]
+   ],
+   "source_frame": 30,
+   "source_scene": "20260112-105434"
+  },
+  {
+   "clip_id": "fixture_001",
+   "d3_abs_diff": 0.0,
+   "d3_dataset_path": 0.023848257958889008,
+   "d3_raw_adapter_path": 0.023848257958889008,
+   "input_diffs": {
+    "goal_xy": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_transforms": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "lidar2img": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "time_offsets": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    }
+   },
+   "inputs_all_bitwise_equal": true,
+   "plan_dataset_xy": [
+    [
+     5.239173889160156,
+     -0.12084944546222687
+    ],
+    [
+     10.524894714355469,
+     -0.2569049298763275
+    ],
+    [
+     15.877785682678223,
+     -0.39772337675094604
+    ],
+    [
+     21.234573364257812,
+     -0.5412473678588867
+    ],
+    [
+     26.663944244384766,
+     -0.7058202028274536
+    ],
+    [
+     32.17101287841797,
+     -0.872786283493042
+    ]
+   ],
+   "plan_max_abs_xy_diff_m": 0.0,
+   "plan_mean_abs_xy_diff_m": 0.0,
+   "plan_raw_xy": [
+    [
+     5.239173889160156,
+     -0.12084944546222687
+    ],
+    [
+     10.524894714355469,
+     -0.2569049298763275
+    ],
+    [
+     15.877785682678223,
+     -0.39772337675094604
+    ],
+    [
+     21.234573364257812,
+     -0.5412473678588867
+    ],
+    [
+     26.663944244384766,
+     -0.7058202028274536
+    ],
+    [
+     32.17101287841797,
+     -0.872786283493042
+    ]
+   ],
+   "source_frame": 180,
+   "source_scene": "20260112-105434"
+  },
+  {
+   "clip_id": "fixture_002",
+   "d3_abs_diff": 0.0,
+   "d3_dataset_path": 0.15288826823234558,
+   "d3_raw_adapter_path": 0.15288826823234558,
+   "input_diffs": {
+    "goal_xy": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_transforms": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "lidar2img": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "time_offsets": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    }
+   },
+   "inputs_all_bitwise_equal": true,
+   "plan_dataset_xy": [
+    [
+     5.419695854187012,
+     -0.27361297607421875
+    ],
+    [
+     10.812688827514648,
+     -0.8233923316001892
+    ],
+    [
+     16.25687599182129,
+     -1.6960666179656982
+    ],
+    [
+     21.44351577758789,
+     -2.9535131454467773
+    ],
+    [
+     26.53168487548828,
+     -4.52925968170166
+    ],
+    [
+     31.777721405029297,
+     -5.6125335693359375
+    ]
+   ],
+   "plan_max_abs_xy_diff_m": 0.0,
+   "plan_mean_abs_xy_diff_m": 0.0,
+   "plan_raw_xy": [
+    [
+     5.419695854187012,
+     -0.27361297607421875
+    ],
+    [
+     10.812688827514648,
+     -0.8233923316001892
+    ],
+    [
+     16.25687599182129,
+     -1.6960666179656982
+    ],
+    [
+     21.44351577758789,
+     -2.9535131454467773
+    ],
+    [
+     26.53168487548828,
+     -4.52925968170166
+    ],
+    [
+     31.777721405029297,
+     -5.6125335693359375
+    ]
+   ],
+   "source_frame": 30,
+   "source_scene": "20260112-105504"
+  },
+  {
+   "clip_id": "fixture_003",
+   "d3_abs_diff": 0.0,
+   "d3_dataset_path": 0.08556700497865677,
+   "d3_raw_adapter_path": 0.08556700497865677,
+   "input_diffs": {
+    "goal_xy": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_transforms": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "lidar2img": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "time_offsets": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    }
+   },
+   "inputs_all_bitwise_equal": true,
+   "plan_dataset_xy": [
+    [
+     5.996429443359375,
+     -0.1572575569152832
+    ],
+    [
+     11.990962028503418,
+     -0.33998921513557434
+    ],
+    [
+     17.96076774597168,
+     -0.5488554239273071
+    ],
+    [
+     23.938505172729492,
+     -0.78049635887146
+    ],
+    [
+     29.91094970703125,
+     -1.0185185670852661
+    ],
+    [
+     35.839813232421875,
+     -1.2122554779052734
+    ]
+   ],
+   "plan_max_abs_xy_diff_m": 0.0,
+   "plan_mean_abs_xy_diff_m": 0.0,
+   "plan_raw_xy": [
+    [
+     5.996429443359375,
+     -0.1572575569152832
+    ],
+    [
+     11.990962028503418,
+     -0.33998921513557434
+    ],
+    [
+     17.96076774597168,
+     -0.5488554239273071
+    ],
+    [
+     23.938505172729492,
+     -0.78049635887146
+    ],
+    [
+     29.91094970703125,
+     -1.0185185670852661
+    ],
+    [
+     35.839813232421875,
+     -1.2122554779052734
+    ]
+   ],
+   "source_frame": 180,
+   "source_scene": "20260112-105504"
+  },
+  {
+   "clip_id": "fixture_004",
+   "d3_abs_diff": 0.0,
+   "d3_dataset_path": 0.04920772463083267,
+   "d3_raw_adapter_path": 0.04920772463083267,
+   "input_diffs": {
+    "goal_xy": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_transforms": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "lidar2img": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "time_offsets": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    }
+   },
+   "inputs_all_bitwise_equal": true,
+   "plan_dataset_xy": [
+    [
+     6.474005699157715,
+     -0.16242513060569763
+    ],
+    [
+     12.95694351196289,
+     -0.3161896765232086
+    ],
+    [
+     19.422075271606445,
+     -0.4651848077774048
+    ],
+    [
+     25.963119506835938,
+     -0.5904439687728882
+    ],
+    [
+     32.491764068603516,
+     -0.713327169418335
+    ],
+    [
+     38.89984893798828,
+     -0.8169990181922913
+    ]
+   ],
+   "plan_max_abs_xy_diff_m": 0.0,
+   "plan_mean_abs_xy_diff_m": 0.0,
+   "plan_raw_xy": [
+    [
+     6.474005699157715,
+     -0.16242513060569763
+    ],
+    [
+     12.95694351196289,
+     -0.3161896765232086
+    ],
+    [
+     19.422075271606445,
+     -0.4651848077774048
+    ],
+    [
+     25.963119506835938,
+     -0.5904439687728882
+    ],
+    [
+     32.491764068603516,
+     -0.713327169418335
+    ],
+    [
+     38.89984893798828,
+     -0.8169990181922913
+    ]
+   ],
+   "source_frame": 30,
+   "source_scene": "20260112-111049"
+  },
+  {
+   "clip_id": "fixture_005",
+   "d3_abs_diff": 0.0,
+   "d3_dataset_path": 0.06479346752166748,
+   "d3_raw_adapter_path": 0.06479346752166748,
+   "input_diffs": {
+    "goal_xy": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_transforms": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "lidar2img": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "time_offsets": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    }
+   },
+   "inputs_all_bitwise_equal": true,
+   "plan_dataset_xy": [
+    [
+     6.402096271514893,
+     -0.10565885901451111
+    ],
+    [
+     12.872662544250488,
+     -0.1349482536315918
+    ],
+    [
+     19.388208389282227,
+     -0.10088229179382324
+    ],
+    [
+     25.982696533203125,
+     -0.007062051445245743
+    ],
+    [
+     32.63103103637695,
+     0.14661400020122528
+    ],
+    [
+     39.245887756347656,
+     0.3218576908111572
+    ]
+   ],
+   "plan_max_abs_xy_diff_m": 0.0,
+   "plan_mean_abs_xy_diff_m": 0.0,
+   "plan_raw_xy": [
+    [
+     6.402096271514893,
+     -0.10565885901451111
+    ],
+    [
+     12.872662544250488,
+     -0.1349482536315918
+    ],
+    [
+     19.388208389282227,
+     -0.10088229179382324
+    ],
+    [
+     25.982696533203125,
+     -0.007062051445245743
+    ],
+    [
+     32.63103103637695,
+     0.14661400020122528
+    ],
+    [
+     39.245887756347656,
+     0.3218576908111572
+    ]
+   ],
+   "source_frame": 180,
+   "source_scene": "20260112-111049"
+  },
+  {
+   "clip_id": "fixture_006",
+   "d3_abs_diff": 0.0,
+   "d3_dataset_path": 0.0778416246175766,
+   "d3_raw_adapter_path": 0.0778416246175766,
+   "input_diffs": {
+    "goal_xy": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_transforms": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "lidar2img": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "time_offsets": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    }
+   },
+   "inputs_all_bitwise_equal": true,
+   "plan_dataset_xy": [
+    [
+     6.161192893981934,
+     -0.04132488742470741
+    ],
+    [
+     12.36473274230957,
+     -0.09140193462371826
+    ],
+    [
+     18.591508865356445,
+     -0.1096854954957962
+    ],
+    [
+     24.88917350769043,
+     -0.0858033075928688
+    ],
+    [
+     31.17731475830078,
+     -0.014889650046825409
+    ],
+    [
+     37.39543151855469,
+     0.10927288979291916
+    ]
+   ],
+   "plan_max_abs_xy_diff_m": 0.0,
+   "plan_mean_abs_xy_diff_m": 0.0,
+   "plan_raw_xy": [
+    [
+     6.161192893981934,
+     -0.04132488742470741
+    ],
+    [
+     12.36473274230957,
+     -0.09140193462371826
+    ],
+    [
+     18.591508865356445,
+     -0.1096854954957962
+    ],
+    [
+     24.88917350769043,
+     -0.0858033075928688
+    ],
+    [
+     31.17731475830078,
+     -0.014889650046825409
+    ],
+    [
+     37.39543151855469,
+     0.10927288979291916
+    ]
+   ],
+   "source_frame": 30,
+   "source_scene": "20260112-111149"
+  },
+  {
+   "clip_id": "fixture_007",
+   "d3_abs_diff": 0.0,
+   "d3_dataset_path": 0.07537335157394409,
+   "d3_raw_adapter_path": 0.07537335157394409,
+   "input_diffs": {
+    "goal_xy": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "history_transforms": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "images": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "lidar2img": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    },
+    "time_offsets": {
+     "bitwise_equal": true,
+     "max_abs": 0.0
+    }
+   },
+   "inputs_all_bitwise_equal": true,
+   "plan_dataset_xy": [
+    [
+     6.9509053230285645,
+     -0.10805945843458176
+    ],
+    [
+     13.895797729492188,
+     -0.13176394999027252
+    ],
+    [
+     20.796659469604492,
+     -0.09484945237636566
+    ],
+    [
+     27.671470642089844,
+     0.019604843109846115
+    ],
+    [
+     34.59052658081055,
+     0.15162751078605652
+    ],
+    [
+     41.352142333984375,
+     0.2962551712989807
+    ]
+   ],
+   "plan_max_abs_xy_diff_m": 0.0,
+   "plan_mean_abs_xy_diff_m": 0.0,
+   "plan_raw_xy": [
+    [
+     6.9509053230285645,
+     -0.10805945843458176
+    ],
+    [
+     13.895797729492188,
+     -0.13176394999027252
+    ],
+    [
+     20.796659469604492,
+     -0.09484945237636566
+    ],
+    [
+     27.671470642089844,
+     0.019604843109846115
+    ],
+    [
+     34.59052658081055,
+     0.15162751078605652
+    ],
+    [
+     41.352142333984375,
+     0.2962551712989807
+    ]
+   ],
+   "source_frame": 180,
+   "source_scene": "20260112-111149"
+  }
+ ],
+ "device": "NVIDIA B200",
+ "fixtures": 8,
+ "inputs_all_bitwise_equal": true,
+ "limitations": [
+  "Eight preregistered TRAIN clips; this is transport parity, not generalization.",
+  "No submission file is produced and no timing is claimed here.",
+  "The raw adapter decodes JPEG independently; bf16 autocast still applies to both paths."
+ ],
+ "max_d3_abs_diff": 0.0,
+ "max_plan_abs_xy_diff_m": 0.0,
+ "mean_d3_dataset_path": 0.07212063716724515,
+ "mean_d3_raw_adapter_path": 0.07212063716724515,
+ "precision": "bf16",
+ "purpose": "raw test-shaped B1 input AND output parity for R0",
+ "schema_version": 1
+}
