@@ -35,9 +35,10 @@
   }
  },
  "docker": {
-  "dockerfile": "experiments/md_r0_reset_20260914/Dockerfile",
-  "note": "records the environment actually used; it has not been built or tested here",
-  "status": "DRAFT_NOT_BUILT"
+  "dockerfile": "experiments/md_r0_reset_20260914/rtx4090/Dockerfile",
+  "image": "md-v2:4090",
+  "note": "built on a workstation that had only the NVIDIA driver, no CUDA toolkit and no docker; the image supplies the CUDA runtime and the pinned wheels",
+  "status": "BUILT_AND_RUN_ON_RTX4090"
  },
  "environment": {
   "cuda": "12.8",
@@ -118,6 +119,56 @@
   "file": "ckpt/backbones/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth",
   "never_trained_on_tune_or_val": true,
   "sha256": "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e"
+ },
+ "rtx4090_timing": {
+  "artifact": "reports/md_r0_reset_20260914/rtx4090_forward_cost.json",
+  "batch": 1,
+  "clips": 2,
+  "container": {
+   "base": "nvidia/cuda:12.8.0-cudnn-runtime-ubuntu22.04",
+   "dockerfile": "experiments/md_r0_reset_20260914/rtx4090/Dockerfile",
+   "host": "RTX 4090 workstation with driver only; CUDA toolkit supplied by the image",
+   "script": "experiments/md_r0_reset_20260914/rtx4090/measure_4090.py",
+   "status": "BUILT_AND_RUN",
+   "torch": "2.7.1+cu128"
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "flops": {
+   "cutoff_gflops": 7053.0,
+   "headroom_x": 9.017132974566051,
+   "note": "torch profiler counts convolution and matmul only; it is a reference figure for the registered operator range, not an official tool result",
+   "profiler_gflops_total": 782.177663332
+  },
+  "forwards_per_clip": 1,
+  "fp32_median_ms_range": [
+   23.85980796813965,
+   23.875696182250977
+  ],
+  "measured_by": "this project, inside a pinned container; not the organisers' measurement",
+  "median_ms_range": [
+   16.27230453491211,
+   16.52011203765869
+  ],
+  "peak_memory_mib": 384.61865234375,
+  "port_cross_check_vs_b200_submission": {
+   "clips": 2,
+   "max_abs_xy_diff_m": 0.0025836825370788574,
+   "mean_abs_xy_diff_m": 0.0009369148562351862,
+   "reading": "the container reproduces the B200 trajectories to a few millimetres; the residual is bf16 kernel differences between architectures, not a port error"
+  },
+  "precision": "bf16",
+  "repeats_per_clip": 200,
+  "t_infer_definition": "accumulated time of every model forward from reset to the final trajectory; this model consumes its four past frames inside ONE top-level forward, so the accumulation is over a single call, which internally runs several image encodings",
+  "time_penalty": {
+   "caveat": "this is our measurement on our own 4090; the organisers measure in their environment and may bracket the forward differently",
+   "formula": "Error = L2 * (1 + max(0, T_ms - 100) / 200)",
+   "multiplier_at_worst_p95": 1.0,
+   "penalty_start_ms": 100,
+   "reading": "the measured forward is far under the 100 ms point where the time term starts, so on this measurement the time term is inert"
+  },
+  "timed_region": "model forward only; tar read, JPEG decode, undistort and resize are outside it",
+  "warmup": 30,
+  "worst_p95_ms": 16.61849594116211
  },
  "runtime_source_git_sha": "e9869d54a2bc0a960bb7a3bf090feb308b9da1dd",
  "schema_version": 1,

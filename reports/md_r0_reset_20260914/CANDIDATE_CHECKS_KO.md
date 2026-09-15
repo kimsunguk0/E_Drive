@@ -64,3 +64,59 @@ model forward의 누적 시간"으로 정의했다. 이 구조는 과거 4프레
 **B200 수치를 RTX4090 실측값으로 쓰지 않는다.** 4090 실측은 아직 없고, Error Score의 시간
 항은 그 실측이 있어야 계산된다. 프로파일러는 conv/matmul을 세며 elementwise·layout 연산은
 포함하지 않는다.
+
+## 4. RTX 4090 실측 (2026-09-15)
+
+CUDA toolkit도 docker도 없고 드라이버만 있는 4090 워크스테이션에
+`nvidia/cuda:12.8.0-cudnn-runtime-ubuntu22.04` 기반 이미지를 세워 측정했다.
+wheel은 B200 수치를 낸 환경과 같은 버전으로 고정했다(torch 2.7.1+cu128, numpy 1.26.4,
+opencv 4.8.1.78, pillow 12.2.0, pyarrow 24.0.0, scipy 1.15.3).
+
+| 항목 | 값 |
+|---|---|
+| 장치 | NVIDIA GeForce RTX 4090 (sm_89, 23.5 GB), driver 595.91.07 |
+| **clip당 model forward** | **1회** |
+| **bf16 batch1 중앙값** | **16.272 / 16.520 ms** (clip 2개) |
+| bf16 p95 (최악) | **16.618 ms** |
+| fp32 중앙값 | 23.86 / 23.88 ms |
+| peak VRAM | 385 MiB |
+| 반복 | clip당 warmup 30 + 200회, CUDA event 계측, 매회 동기화 |
+
+### 시간 항
+
+```
+Error = L2 × (1 + max(0, T_ms − 100) / 200)
+```
+
+최악 p95인 **16.618 ms**에서 `max(0, 16.618 − 100) = 0`이므로 **배수 1.0** —
+이 측정에서는 시간 항이 작동하지 않는다. 감점이 시작되는 100 ms까지 **6배의 여유**가 있다.
+
+측정 구간은 **model forward만**이다. tar 읽기, JPEG 디코딩, undistort, resize는 제외했고,
+이는 "데이터 전처리·후처리는 포함되지 않으며 모델 forward 계산 속도까지만 측정한다"는
+질문4 답변을 따른 것이다. 질문4는 T_infer를 "초기화 이후 과거 시점 처리부터 마지막 궤적
+출력까지 수행되는 모든 model forward의 누적 시간"으로 정의하는데, 이 구조는 과거 4프레임을
+**같은 forward 안에서** 소비하므로 누적 대상이 1회다. 그 1회 안에서 내부적으로 여러 번의
+image encoding이 일어난다는 점은 명시해 둔다.
+
+**이것은 우리 4090에서 우리가 잰 값이다.** 운영국은 자기 환경에서 측정하며 forward를 다르게
+끊을 수 있다. warm cache, batch 1, deterministic cudnn, TF32 off 조건이다.
+
+### 포팅 교차검증
+
+같은 두 clip을 B200 제출 파일의 해당 항목과 비교했다.
+
+| | 최대 XY 차 | 평균 XY 차 | 끝점 (B200 / 4090) |
+|---|---:|---:|---|
+| clip 0022a88d… | 2.36e-03 m | 5.23e-04 m | 6.232 / 6.232 m |
+| clip 00017c73… | 2.58e-03 m | 9.37e-04 m | 14.668 / 14.667 m |
+
+**최대 2.6 mm** 차이다. bf16 커널이 아키텍처마다 다른 데서 오는 값이며 포팅 오류가 아니다.
+checkpoint SHA `019faf70…`와 model state SHA `d5b8f0ae…`가 후보 등록부와 일치한다.
+
+### 연산량
+
+프로파일러 기준 **782.2 GFLOPs**, 컷오프 7,053 대비 **9.02배 여유**. 이 값은 conv/matmul만
+세므로 등록 연산 범위의 참고값이고 공식 도구 결과가 아니다.
+
+재현 자료: `experiments/md_r0_reset_20260914/rtx4090/{Dockerfile,measure_4090.py}`,
+결과 원본 `reports/md_r0_reset_20260914/rtx4090_forward_cost.json`.

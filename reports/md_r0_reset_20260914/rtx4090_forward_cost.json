@@ -1,0 +1,153 @@
+{
+ "batch": 1,
+ "bf16_median_ms_across_clips": {
+  "max": 16.52011203765869,
+  "min": 16.27230453491211
+ },
+ "checkpoint": "/work/ckpt/ckpt_step20554.pth",
+ "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+ "clips": 2,
+ "device": "NVIDIA GeForce RTX 4090",
+ "driver_reported_by_torch": "12.8",
+ "flops_cutoff_gflops": 7053.0,
+ "flops_headroom_x": 9.017132974566051,
+ "flops_note": "torch profiler counts convolution and matmul only; it is a reference figure for the registered operator range, not an official tool result",
+ "forwards_per_clip": 1,
+ "limitations": [
+  "Our own timing on our own 4090; the organisers measure on their environment.",
+  "Warm cache, batch 1, deterministic cudnn, TF32 disabled to match the training-time settings.",
+  "The score's time term also depends on how the official harness brackets the forward."
+ ],
+ "measured_by": "this project, inside a pinned container; not the organisers' measurement",
+ "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228",
+ "parameters": 26426936,
+ "per_clip": [
+  {
+   "bf16": {
+    "max_ms": 17.23516845703125,
+    "mean_ms": 16.536093702316283,
+    "median_ms": 16.52011203765869,
+    "min_ms": 16.458751678466797,
+    "p90_ms": 16.5920352935791,
+    "p95_ms": 16.61849594116211,
+    "p99_ms": 17.02017967224121,
+    "peak_memory_mib": 384.61865234375,
+    "repeats": 200,
+    "std_ms": 0.08434712258703761
+   },
+   "clip": "0022a88d648a65c7",
+   "cross_check_vs_b200": {
+    "b200_endpoint_m": 6.231955026132992,
+    "max_abs_xy_diff_m": 0.0023573189973831177,
+    "mean_abs_xy_diff_m": 0.0005233806247512499,
+    "rtx4090_endpoint_m": 6.2319440841674805
+   },
+   "forwards_per_clip": 1,
+   "fp32": {
+    "max_ms": 24.13158416748047,
+    "mean_ms": 23.87623999595642,
+    "median_ms": 23.875696182250977,
+    "min_ms": 23.798015594482422,
+    "p90_ms": 23.900284576416016,
+    "p95_ms": 23.908556747436524,
+    "p99_ms": 23.956503715515137,
+    "peak_memory_mib": 532.35107421875,
+    "repeats": 200,
+    "std_ms": 0.028983831060701598
+   },
+   "prediction_xy": [
+    [
+     1.1397746801376343,
+     -0.0037681125104427338
+    ],
+    [
+     2.210632085800171,
+     -0.028118789196014404
+    ],
+    [
+     3.244947910308838,
+     -0.05050390958786011
+    ],
+    [
+     4.269376277923584,
+     -0.06480222940444946
+    ],
+    [
+     5.280047416687012,
+     -0.09890507906675339
+    ],
+    [
+     6.231627464294434,
+     -0.06282700598239899
+    ]
+   ]
+  },
+  {
+   "bf16": {
+    "max_ms": 16.858112335205078,
+    "mean_ms": 16.273767499923707,
+    "median_ms": 16.27230453491211,
+    "min_ms": 16.184192657470703,
+    "p90_ms": 16.297983169555664,
+    "p95_ms": 16.308274936676025,
+    "p99_ms": 16.447592525482175,
+    "peak_memory_mib": 384.1435546875,
+    "repeats": 200,
+    "std_ms": 0.05672617055415653
+   },
+   "clip": "00017c73feca4fde",
+   "cross_check_vs_b200": {
+    "b200_endpoint_m": 14.667895541332893,
+    "max_abs_xy_diff_m": 0.0025836825370788574,
+    "mean_abs_xy_diff_m": 0.0009369148562351862,
+    "rtx4090_endpoint_m": 14.66697883605957
+   },
+   "forwards_per_clip": 1,
+   "fp32": {
+    "max_ms": 24.20515251159668,
+    "mean_ms": 23.862429237365724,
+    "median_ms": 23.85980796813965,
+    "min_ms": 23.778303146362305,
+    "p90_ms": 23.893084907531737,
+    "p95_ms": 23.899333000183105,
+    "p99_ms": 23.96352882385254,
+    "peak_memory_mib": 532.35107421875,
+    "repeats": 200,
+    "std_ms": 0.04314936452191438
+   },
+   "prediction_xy": [
+    [
+     1.9121649265289307,
+     -0.04587586969137192
+    ],
+    [
+     4.035988807678223,
+     -0.12082621455192566
+    ],
+    [
+     6.412586212158203,
+     -0.21087363362312317
+    ],
+    [
+     8.979692459106445,
+     -0.34949374198913574
+    ],
+    [
+     11.686712265014648,
+     -0.4992249011993408
+    ],
+    [
+     14.650864601135254,
+     -0.6873379945755005
+    ]
+   ]
+  }
+ ],
+ "profiler_gflops_total": 782.177663332,
+ "repeats_per_clip": 200,
+ "schema_version": 1,
+ "t_infer_definition": "accumulated time of every model forward from reset to the final trajectory; this model consumes its four past frames inside ONE top-level forward, so the accumulation is over a single call, which internally runs several image encodings",
+ "timed_region": "model forward only; tar read, JPEG decode, undistort and resize are outside it",
+ "torch": "2.7.1+cu128",
+ "warmup": 30
+}
