@@ -1,0 +1,132 @@
+{
+ "definition": {
+  "b": "per-sample mean of delta_v over the six intervals",
+  "delta_v": "2 * (predicted interval chord length - GT interval chord length), m/s",
+  "identity": "sum delta_v^2 = 6 * sum b^2 + sum r^2, exact for equal intervals",
+  "r": "delta_v minus b, the time-varying residual"
+ },
+ "groups": {
+  "accel_or_decel": {
+   "common_component_energy_share": 0.6134859910386365,
+   "identity_residual": 1.4210854715202004e-14,
+   "large_common_rows": 45,
+   "large_common_sessions": 9,
+   "large_residual_rows": 45,
+   "large_residual_sessions": 6,
+   "mean_abs_b_ms": 0.16287347333933597,
+   "residual_component_energy_share": 0.3865140089613634,
+   "rms_residual_ms": 0.17679006461814287,
+   "rows": 449,
+   "rows_in_both_tails": 15,
+   "sessions": 11,
+   "signed_mean_b_ms": -0.006198959937292438,
+   "total_energy": 217.8452331477743
+  },
+  "all": {
+   "common_component_energy_share": 0.6742159464272985,
+   "identity_residual": 5.684341886080802e-14,
+   "large_common_rows": 200,
+   "large_common_sessions": 11,
+   "large_residual_rows": 200,
+   "large_residual_sessions": 11,
+   "mean_abs_b_ms": 0.1468562122303616,
+   "residual_component_energy_share": 0.3257840535727014,
+   "rms_residual_ms": 0.14415348692379845,
+   "rows": 1998,
+   "rows_in_both_tails": 53,
+   "sessions": 11,
+   "signed_mean_b_ms": 0.01616119597617005,
+   "total_energy": 764.6579629729408
+  },
+  "constant": {
+   "common_component_energy_share": 0.6259156885595595,
+   "identity_residual": 2.842170943040401e-14,
+   "large_common_rows": 141,
+   "large_common_sessions": 11,
+   "large_residual_rows": 141,
+   "large_residual_sessions": 11,
+   "mean_abs_b_ms": 0.12218961998479771,
+   "residual_component_energy_share": 0.37408431144044063,
+   "rms_residual_ms": 0.12381746456666509,
+   "rows": 1402,
+   "rows_in_both_tails": 40,
+   "sessions": 11,
+   "signed_mean_b_ms": -0.00826761144730372,
+   "total_energy": 344.74151226558206
+  },
+  "stop_or_depart": {
+   "common_component_energy_share": 0.82208873895911,
+   "identity_residual": 0.0,
+   "large_common_rows": 15,
+   "large_common_sessions": 2,
+   "large_residual_rows": 15,
+   "large_residual_sessions": 4,
+   "mean_abs_b_ms": 0.3331882672667633,
+   "residual_component_energy_share": 0.17791126104088992,
+   "rms_residual_ms": 0.2018922534762334,
+   "rows": 147,
+   "rows_in_both_tails": 6,
+   "sessions": 8,
+   "signed_mean_b_ms": 0.31744621647178156,
+   "total_energy": 202.0712175595845
+  }
+ },
+ "mean_correlation_offdiagonal": 0.6190477514455168,
+ "not_claimed": [
+  "this is not a causal attribution and not a sensor v0 diagnosis",
+  "b needs future GT and is never a model input or an inference-time correction",
+  "a common component does not imply a single global speed correction would help, because the signed mean of b across samples is near zero"
+ ],
+ "reading": "a high common-component share means the interval errors of one sample mostly move together, which is consistent with a persistent progress offset within that sample; it is not evidence about which input caused it",
+ "schema_version": 1,
+ "signed_delta_v_correlation_6x6": [
+  [
+   1.0,
+   0.8990984089856293,
+   0.7270522061424552,
+   0.5538788681902748,
+   0.3167064789838126,
+   0.07916105794029007
+  ],
+  [
+   0.8990984089856293,
+   1.0,
+   0.9086964548868888,
+   0.760777839976926,
+   0.5295758031373414,
+   0.2652901127534115
+  ],
+  [
+   0.7270522061424551,
+   0.9086964548868887,
+   0.9999999999999999,
+   0.8907558638508065,
+   0.7013014898308885,
+   0.3950713730823895
+  ],
+  [
+   0.5538788681902748,
+   0.760777839976926,
+   0.8907558638508065,
+   1.0,
+   0.8707081776995321,
+   0.5859797700883274
+  ],
+  [
+   0.3167064789838126,
+   0.5295758031373414,
+   0.7013014898308885,
+   0.8707081776995322,
+   1.0,
+   0.8016623661337803
+  ],
+  [
+   0.07916105794029006,
+   0.26529011275341147,
+   0.3950713730823895,
+   0.5859797700883272,
+   0.8016623661337803,
+   1.0
+  ]
+ ]
+}

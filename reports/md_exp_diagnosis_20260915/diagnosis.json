@@ -19,6 +19,7 @@
   "corr_state_vx_error_with_vbar0_error": 0.5527468915329108,
   "definitions": {
    "correlation": "a correlation between head error and plan error is diagnostic evidence, not causal proof; the planner also reads scene and motion features directly",
+   "first_segment_abs_speed_metric": "first_segment_mean_abs_speed_error_ms equals 2 * mean(|interval chord error|): it is a scalar progress-speed magnitude, not a velocity vector component, and it must not be described as comparing the same x-velocity the state head predicts",
    "first_segment_mean_speed": "gt_p[0]/0.5 is the mean velocity over the first 0.5 s, not the instantaneous velocity at t0",
    "state_label": "vx comes from a causal quadratic fit over <=1.001 s of past pose, so it is a fitted quantity, not a sensor reading"
   },
@@ -98,6 +99,13 @@
   "vbar0_error_mean_ms": 0.018922862545487192
  },
  "point_error_budget": {
+  "agreement": {
+   "do_not_conflate": true,
+   "internal_algebra_max_diff": 2.7755575615628914e-17,
+   "internal_algebra_meaning": "difference between the sum of the six weighted contributions and the recomputed mean D3; this is an algebraic identity check inside this analysis",
+   "vs_stored_row_d3_max_diff": 1.1074878947248123e-07,
+   "vs_stored_row_d3_meaning": "largest per-row difference between the D3 recomputed here and the D3 the evaluation stored; this is the reproduction check against the original run"
+  },
   "checks": {
    "exp_official_d3": 0.2255915343650338,
    "exp_plain_ade6_m": 0.3198330740690747,
@@ -339,6 +347,7 @@
  },
  "readout_vs_plan_relative": {
   "caveat": "the heads and the planner are asked for different quantities; this compares each against its own ground-truth magnitude and is not a claim that one computes the other",
+  "definition": "relative error = mean(absolute error) / mean(ground-truth magnitude), an aggregate ratio. It is NOT a per-row MAPE, and stopped or slow rows can be hidden inside the mean denominator.",
   "reading": "the motion readout heads carry a flat relative error of about 8.3 to 9.1 percent at every horizon, which is about 0.87 to 0.95 m/s of implied speed error whichever history pair is used, while the planner's own first-interval progress error is 1.58 percent. The planner does not inherit the readout's relative error.",
   "rows": [
    {
@@ -433,12 +442,14 @@
  },
  "regime_error_budget": {
   "classification_uses_future_gt": true,
+  "column_definitions": {
+   "mean_sum_abs_interval_chord_error_m": "per row, the SUM of |interval chord error| over the six intervals, then averaged; this is not the per-interval mean, which is about 0.0903 m",
+   "mean_sum_signed_interval_chord_error_m": "per row, the SUM of signed interval chord errors, then averaged; equals the cumulative chord error"
+  },
   "mutually_exclusive": true,
   "note": "regimes are labelled offline from the GT future trajectory; that labelling never reaches a model input",
   "rows": [
    {
-    "chord_abs_error_mean_m": 1.0555228951112232,
-    "chord_error_mean_m": 1.0336003817682307,
     "heading_error_mean_deg": 18.67390876621483,
     "l2_t0.5_m": 0.16757748499151098,
     "l2_t1.5_m": 0.4994028240198507,
@@ -447,6 +458,8 @@
     "l2_t2_m": 0.7028498042814413,
     "l2_t3_m": 1.0313747346328812,
     "mean_d3_m": 0.4309301773846028,
+    "mean_sum_abs_interval_chord_error_m": 1.0555228951112232,
+    "mean_sum_signed_interval_chord_error_m": 1.0336003817682307,
     "regime": "stop_hold",
     "row_share": 0.05805805805805806,
     "rows": 116,
@@ -454,8 +467,6 @@
     "share_of_total_d3": 0.11090384808979965
    },
    {
-    "chord_abs_error_mean_m": 1.210676543877812,
-    "chord_error_mean_m": 0.6482624896432544,
     "heading_error_mean_deg": 4.472933465724858,
     "l2_t0.5_m": 0.2231875892310201,
     "l2_t1.5_m": 0.634494395713348,
@@ -464,6 +475,8 @@
     "l2_t2_m": 0.8476909566451165,
     "l2_t3_m": 0.8540275278168913,
     "mean_d3_m": 0.5073934122415554,
+    "mean_sum_abs_interval_chord_error_m": 1.210676543877812,
+    "mean_sum_signed_interval_chord_error_m": 0.6482624896432544,
     "regime": "departing",
     "row_share": 0.015515515515515516,
     "rows": 31,
@@ -471,8 +484,6 @@
     "share_of_total_d3": 0.034897011460392945
    },
    {
-    "chord_abs_error_mean_m": 0.45955056838473407,
-    "chord_error_mean_m": -0.02480283434191115,
     "heading_error_mean_deg": 0.5041929580945559,
     "l2_t0.5_m": 0.07801776654844836,
     "l2_t1.5_m": 0.24213176162554997,
@@ -481,6 +492,8 @@
     "l2_t2_m": 0.32388380598362243,
     "l2_t3_m": 0.48399385812024254,
     "mean_d3_m": 0.1996339281722587,
+    "mean_sum_abs_interval_chord_error_m": 0.45955056838473407,
+    "mean_sum_signed_interval_chord_error_m": -0.02480283434191115,
     "regime": "constant",
     "row_share": 0.7017017017017017,
     "rows": 1402,
@@ -488,8 +501,6 @@
     "share_of_total_d3": 0.6209606557717614
    },
    {
-    "chord_abs_error_mean_m": 0.5897428137348889,
-    "chord_error_mean_m": 0.15745174111997615,
     "heading_error_mean_deg": 1.1974795003598457,
     "l2_t0.5_m": 0.07649009516441363,
     "l2_t1.5_m": 0.25070254755698734,
@@ -498,6 +509,8 @@
     "l2_t2_m": 0.346604889366797,
     "l2_t3_m": 0.5214494779273128,
     "mean_d3_m": 0.20854288528499923,
+    "mean_sum_abs_interval_chord_error_m": 0.5897428137348889,
+    "mean_sum_signed_interval_chord_error_m": 0.15745174111997615,
     "regime": "decelerating",
     "row_share": 0.12062062062062062,
     "rows": 241,
@@ -505,8 +518,6 @@
     "share_of_total_d3": 0.1115049477361523
    },
    {
-    "chord_abs_error_mean_m": 0.655067665263423,
-    "chord_error_mean_m": -0.22257629156464984,
     "heading_error_mean_deg": 1.0333022004762291,
     "l2_t0.5_m": 0.09277462000723576,
     "l2_t1.5_m": 0.30587463137380827,
@@ -515,13 +526,34 @@
     "l2_t2_m": 0.4372204661557043,
     "l2_t3_m": 0.7634559647932426,
     "mean_d3_m": 0.26379416660598004,
+    "mean_sum_abs_interval_chord_error_m": 0.655067665263423,
+    "mean_sum_signed_interval_chord_error_m": -0.22257629156464984,
     "regime": "accelerating",
     "row_share": 0.1041041041041041,
     "rows": 208,
     "sessions": 10,
     "share_of_total_d3": 0.12173353694189372
    }
-  ]
+  ],
+  "thresholds": {
+   "accelerating": "vbar[5] - vbar[0] >= +1.0 m/s and no interval step < -0.5 m/s",
+   "constant": "none of the above",
+   "decelerating": "vbar[5] - vbar[0] <= -1.0 m/s and no interval step > +0.5 m/s",
+   "departing": "total > 1.0 m and first-interval vbar < 1.0 m/s",
+   "labels_never_reach_a_model_input": true,
+   "labels_use_future_gt": true,
+   "precedence": "stop_hold, then departing, then transition, then accel/decel, then constant",
+   "stop_hold": "total GT chord over 3 s <= 1.0 m",
+   "transition": "both an interval step < -0.5 and one > +0.5 m/s"
+  }
+ },
+ "reproduction": {
+  "note": "the source pred/GT file is under work_dirs and is gitignored; its hash is recorded here so the reported numbers can be checked against it",
+  "producer": "experiments/md_r0_reset_20260914/diagnose_exp.py",
+  "producer_sha256": "9b3f13d12922339c74f05cc222160142d77de57fcb23055a7dd4770ceac2dc7d",
+  "rows": 1998,
+  "source_predictions": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/final_eval.json",
+  "source_predictions_sha256": "44974dcba60afcad17f1902df339397ea7ae3bcce382739f665f88c6a7e8ea3a"
  },
  "review_clips": {
   "first_segment_progress": [

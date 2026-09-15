@@ -1,0 +1,146 @@
+{
+ "all_pass": true,
+ "checks": {
+  "empty_and_partial_validity": {
+   "all_rows_invalid_length_term": 0.0,
+   "pass": true,
+   "total_is_finite": true
+  },
+  "geometry": {
+   "actual": [
+    5.0,
+    4.0,
+    3.0,
+    0.0,
+    3.0,
+    4.0
+   ],
+   "expected": [
+    5.0,
+    4.0,
+    3.0,
+    0.0,
+    3.0,
+    4.0
+   ],
+   "origin_is_the_first_interval_start": true,
+   "pass": true,
+   "stationary_gives_zero": true
+  },
+  "identity_and_direction_blindness": {
+   "identical_prediction_loss": 0.0,
+   "mirrored_path_d3": 4.452640056610107,
+   "mirrored_path_length_loss": 0.0,
+   "pass": true,
+   "reading": "a mirrored path has identical interval lengths, so the length term alone cannot see it; D3 does. This is why it is added to D3, never used in place of it"
+  },
+  "lambda_zero_is_identity": {
+   "bitwise_equal": true,
+   "lambda_zero": 2.737976551055908,
+   "original": 2.737976551055908,
+   "pass": true
+  },
+  "microbatch_equivalence": {
+   "cases": {
+    "b15": {
+     "dense_grad": 1.4268015623092651,
+     "dense_total": 2.579923629760742,
+     "invalid_rows": [],
+     "microbatches": {
+      "1": {
+       "grad_abs_diff": 1.1920928955078125e-07,
+       "max_part_abs_diff": 1.601874828338623e-07,
+       "pass": true,
+       "total_abs_diff": 1.0058283805847168e-07
+      },
+      "2": {
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 1.9371509552001953e-07,
+       "pass": true,
+       "total_abs_diff": 1.043081283569336e-07
+      },
+      "8": {
+       "grad_abs_diff": 1.1920928955078125e-07,
+       "max_part_abs_diff": 1.7881393432617188e-07,
+       "pass": true,
+       "total_abs_diff": 1.1920928955078125e-07
+      }
+     }
+    },
+    "b16": {
+     "dense_grad": 1.2043153047561646,
+     "dense_total": 2.500491142272949,
+     "invalid_rows": [],
+     "microbatches": {
+      "1": {
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 2.1792948246002197e-07,
+       "pass": true,
+       "total_abs_diff": 2.1792948246002197e-07
+      },
+      "16": {
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 0.0,
+       "pass": true,
+       "total_abs_diff": 0.0
+      },
+      "2": {
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 1.9371509552001953e-07,
+       "pass": true,
+       "total_abs_diff": 1.9371509552001953e-07
+      },
+      "8": {
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 3.5762786865234375e-07,
+       "pass": true,
+       "total_abs_diff": 3.5762786865234375e-07
+      }
+     }
+    },
+    "b16_with_invalid_rows": {
+     "dense_grad": 1.2969754934310913,
+     "dense_total": 2.492786169052124,
+     "invalid_rows": [
+      4,
+      5
+     ],
+     "microbatches": {
+      "1": {
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 1.601874828338623e-07,
+       "pass": true,
+       "total_abs_diff": 1.601874828338623e-07
+      },
+      "16": {
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 0.0,
+       "pass": true,
+       "total_abs_diff": 0.0
+      },
+      "2": {
+       "grad_abs_diff": 0.0,
+       "max_part_abs_diff": 1.9371509552001953e-07,
+       "pass": true,
+       "total_abs_diff": 1.9371509552001953e-07
+      },
+      "8": {
+       "grad_abs_diff": 1.1920928955078125e-07,
+       "max_part_abs_diff": 1.1920928955078125e-07,
+       "pass": true,
+       "total_abs_diff": 5.960464477539063e-08
+      }
+     }
+    }
+   },
+   "lambda": 0.25,
+   "pass": true,
+   "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-05
+   }
+  }
+ },
+ "lambda": 0.25,
+ "schema_version": 1
+}

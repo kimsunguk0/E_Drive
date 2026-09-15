@@ -28,6 +28,7 @@ import torch
 ROOT = Path("/NHNHOME/data/sukim/adcl")
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "experiments/md_r0_reset_20260914"))
 
 from build_grouped_split_v2 import sha256
 from motiondrive_v2_training import tensor_state_sha256
@@ -39,8 +40,11 @@ SUPERVISION = ROOT / "data/etri/motiondrive_v2/r0reset_tplus_geometry_v2"
 INIT = ROOT / "work_dirs/md_r0_reset_20260914/r0_init_tplus.pth"
 REGISTRY = ROOT / "reports/md_r0_reset_20260914/baseline_registry.json"
 
-ARMS = ("E1-T203", "E1-EXP", "E1-EXP-LONG")
-EXPANDED_ARMS = ("E1-EXP", "E1-EXP-LONG")
+ARMS = ("E1-T203", "E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN")
+EXPANDED_ARMS = ("E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN")
+# Interval-length auxiliary weight, added beside the unchanged D3 loss.
+# 0.25 is a starting value on a mean L1 in metres, not a tuned or guaranteed one.
+LENGTH_LAMBDA = {"E1-EXP-LEN": 0.25}
 N0_ROWS = 54810                                   # existing train split
 TPLUS_ROWS = 83700                                # expanded train split
 BATCH = 16
@@ -52,6 +56,7 @@ ARM_UPDATES = {
     "E1-T203": math.ceil(6 * N0_ROWS / BATCH),    # 20554
     "E1-EXP": math.ceil(6 * N0_ROWS / BATCH),     # 20554
     "E1-EXP-LONG": math.ceil(6 * TPLUS_ROWS / BATCH),   # 31388
+    "E1-EXP-LEN": math.ceil(6 * N0_ROWS / BATCH),       # 20554, matching E1-EXP exactly
 }
 EVAL_EVERY = math.ceil(N0_ROWS / BATCH)           # 3426, one T203 exposure
 WARMUP = 200
@@ -116,7 +121,8 @@ def build_experiment(arm, seed, scenes, training, evaluation):
                    "bn_running_statistics": "fixed",
                    "auxiliary_weights": {"occupancy": .2, "lane": .2, "motion": .2},
                    "flip_probability": FLIP_P, "command_input": "off",
-                   "provided_status_used": False},
+                   "provided_status_used": False,
+                   "interval_length_auxiliary_lambda": LENGTH_LAMBDA.get(arm, 0.0)},
         "exposures_of_own_train": updates * BATCH / experiment_rows(training),
         "budget_note": (
             "E1's two arms share one update count, so the expanded arm sees each of its "
@@ -125,6 +131,16 @@ def build_experiment(arm, seed, scenes, training, evaluation):
             "with the cosine horizon set to its own total from step one. Comparing LONG "
             "with the short expanded run is therefore a schedule-and-budget comparison, "
             "not the causal effect of exposure count alone."),
+        "interval_length_auxiliary": ({
+            "lambda": LENGTH_LAMBDA[arm],
+            "loss": ("sum_n complete[n] * sum_k |ell_pred - ell_gt| / (6 * plan_complete), "
+                     "with plan_complete the same full-effective-batch denominator the D3 "
+                     "loss uses"),
+            "added_to": "the existing total loss; the D3 and auxiliary weights are unchanged",
+            "never_replaces_d3": ("an interval norm carries no direction, so a mirrored path "
+                                  "scores identically under this term alone"),
+            "contract": "reports/md_exp_diagnosis_20260915/length_auxiliary_contract.json",
+        } if arm in LENGTH_LAMBDA else None),
         "checkpoint_selection": "lowest V0 official_d3 among planned eval steps; ties go to the earlier step",
         "provided_status_used": False,
     }
@@ -167,6 +183,7 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
 
     run_dir = Path(run_dir).resolve()
     originals = {
+        "compute_loss": trainer.compute_loss,
         "dataset": data_api.MotionDriveDataset,
         "protocol": trainer._validate_experimental_protocol,
         "runtime": trainer._validate_experimental_runtime,
@@ -245,6 +262,10 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         if Path(path).name == "latest_eval.json" and isinstance(data, dict) and "step" in data:
             originals["json"](run_dir / f"eval_step{int(data['step'])}.json", data)
 
+    lam = LENGTH_LAMBDA.get(arm, 0.0)
+    if lam:
+        from length_auxiliary import wrap_compute_loss
+        trainer.compute_loss = wrap_compute_loss(originals["compute_loss"], lam)
     data_api.MotionDriveDataset = dataset_factory
     trainer._validate_experimental_protocol = validate_protocol
     trainer._validate_experimental_runtime = validate_runtime
@@ -254,6 +275,7 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
     try:
         yield
     finally:
+        trainer.compute_loss = originals["compute_loss"]
         data_api.MotionDriveDataset = originals["dataset"]
         trainer._validate_experimental_protocol = originals["protocol"]
         trainer._validate_experimental_runtime = originals["runtime"]
