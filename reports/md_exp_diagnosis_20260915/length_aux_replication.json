@@ -1,0 +1,101 @@
+{
+ "action": "the effect is real and consistent, but at about -0.0017 it stays below this project's -0.005 candidate line; adopt only as a small, cheap improvement on top of the expanded-data model, and do not raise lambda in search of more",
+ "all_regime_deltas_non_positive_in_both_seeds": false,
+ "caveats": [
+  "V0 is a repeatedly used development set",
+  "two seeds bound seed sensitivity loosely, they do not estimate it",
+  "H remains unopened"
+ ],
+ "design": "each seed's arm is paired against its own control, so the shuffle and augmentation stream is identical inside each comparison",
+ "per_seed": {
+  "seed0": {
+   "ci95": [
+    -0.0035429089169820164,
+    -0.0012339989532436579
+   ],
+   "delta": -0.001947289704602758,
+   "p_worse": 0.0,
+   "sessions": 11,
+   "sessions_improved": 11
+  },
+  "seed1": {
+   "ci95": [
+    -0.002920792887639262,
+    -0.0004564760052316525
+   ],
+   "delta": -0.0014837061323659925,
+   "p_worse": 0.0034,
+   "sessions": 11,
+   "sessions_improved": 7
+  }
+ },
+ "pooled": {
+  "caveat": "two seeds do not make 11 sessions into 22 independent ones",
+  "ci95": [
+   -0.0029646695773061474,
+   -0.0010571378837940652
+  ],
+  "delta_mean_of_two_seeds": -0.0017154979184843752,
+  "method": "same session resample indices applied to both seeds, then averaged",
+  "p_worse": 0.0
+ },
+ "project_thresholds": {
+  "candidate": -0.005,
+  "note": "the operating lines used in the E1 round",
+  "priority": -0.01
+ },
+ "schema_version": 1,
+ "table": [
+  {
+   "accelerating_d3_delta": -0.006205775224951471,
+   "accelerating_signed_b_arm": -0.06492712059930004,
+   "accelerating_signed_b_control": -0.07419209718821661,
+   "arm_best": 0.2236442485855924,
+   "arm_best_step": 20554,
+   "arm_terminal": 0.2236442485855924,
+   "constant_d3_delta": -0.000494285658292487,
+   "constant_signed_b_arm": -0.005635259903996662,
+   "constant_signed_b_control": -0.008267611447303721,
+   "control_terminal": 0.22559153860214878,
+   "decelerating_d3_delta": -0.003469996953502169,
+   "decelerating_signed_b_arm": 0.04507793377355852,
+   "decelerating_signed_b_control": 0.05248391370665872,
+   "delta_terminal": -0.0019472900165563856,
+   "departing_d3_delta": -0.00826419263725875,
+   "departing_signed_b_arm": 0.20595647095563463,
+   "departing_signed_b_control": 0.21608749654775142,
+   "mean_abs_b_arm": 0.1426065520039035,
+   "mean_abs_b_control": 0.1468562122303616,
+   "seed": 0,
+   "stop_hold_d3_delta": -0.007020998728717642,
+   "stop_hold_signed_b_arm": 0.3288849442587917,
+   "stop_hold_signed_b_control": 0.3445334605894102
+  },
+  {
+   "accelerating_d3_delta": -2.75496343438153e-05,
+   "accelerating_signed_b_arm": -0.06514340330996661,
+   "accelerating_signed_b_control": -0.06913728344725262,
+   "arm_best": 0.2241379144583811,
+   "arm_best_step": 20554,
+   "arm_terminal": 0.2241379144583811,
+   "constant_d3_delta": -0.001221230688084357,
+   "constant_signed_b_arm": -0.00608481058404369,
+   "constant_signed_b_control": -0.008208003261393999,
+   "control_terminal": 0.22562161983467183,
+   "decelerating_d3_delta": 0.0016712001212292882,
+   "decelerating_signed_b_arm": 0.0403218909689066,
+   "decelerating_signed_b_control": 0.05177091148203987,
+   "delta_terminal": -0.0014837053762907226,
+   "departing_d3_delta": -0.02370403720699149,
+   "departing_signed_b_arm": 0.21164374070908615,
+   "departing_signed_b_control": 0.2163031209027723,
+   "mean_abs_b_arm": 0.14158626059373244,
+   "mean_abs_b_control": 0.14524164507336887,
+   "seed": 1,
+   "stop_hold_d3_delta": -0.007883475686456864,
+   "stop_hold_signed_b_arm": 0.32886366261967065,
+   "stop_hold_signed_b_control": 0.34636256059526616
+  }
+ ],
+ "verdict": "REPLICATED"
+}
