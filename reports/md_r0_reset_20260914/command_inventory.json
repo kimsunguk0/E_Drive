@@ -1,0 +1,262 @@
+{
+ "findings": {
+  "class_inventory_from_200_test_clips": {
+   "caveat": "200 of 1,125 clips; the tail classes are small enough that this is a rough count",
+   "command": {
+    "LANE_CHANGE_L": 3,
+    "LANE_CHANGE_R": 4,
+    "LANE_KEEP": 177,
+    "TURN_LEFT": 11,
+    "TURN_RIGHT": 3,
+    "U_TURN": 2
+   },
+   "imbalance": "LANE_KEEP is 88.5 percent; four of the six classes are under 3 percent each",
+   "missing_values": 0
+  },
+  "flip_mapping_now_determinable": {
+   "map_to_themselves": [
+    "LANE_KEEP",
+    "U_TURN"
+   ],
+   "swap_under_mirroring": [
+    [
+     "TURN_LEFT",
+     "TURN_RIGHT"
+    ],
+    [
+     "LANE_CHANGE_L",
+     "LANE_CHANGE_R"
+    ]
+   ],
+   "unit_test_required": "a double flip must return the original class",
+   "vad_cmd_if_ever_used": "[1,0,0] and [0,1,0] swap; [0,0,1] is fixed"
+  },
+  "practical_reading": "a command branch would be trained on a signal that is LANE_KEEP nearly nine times out of ten, so the contrast has to be read on the turning and lane-change rows as well as on overall D3",
+  "train_and_test_do_not_carry_the_same_command_fields": {
+   "consequence": "vad_cmd exists only on the test side. Using it as an input would mean reproducing the organisers' reduction rule for training, which is not verified anywhere. The six-class command string exists on both sides and is the only field matchable without inventing that rule.",
+   "join_required": "train commands must be matched to each anchor frame by timestamp",
+   "test": {
+    "columns": [
+     "command",
+     "vad_cmd"
+    ],
+    "file": "<clip>/command.parquet",
+    "meaning": "the command at the current frame, already reduced",
+    "rows_per_clip": 1
+   },
+   "train": {
+    "columns": [
+     "timestamp",
+     "command"
+    ],
+    "file": "meta_train/<scene>/meta/command.parquet",
+    "meaning": "a per-frame series; there is no vad_cmd column",
+    "rows_per_scene": 400
+   }
+  }
+ },
+ "flip_mapping_requirement": {
+  "issue": "the training augmentation mirrors the ego frame about y = 0, so any left/right command class has to be swapped in the same item, and a double flip must return the original class",
+  "unresolved_until_classes_are_known": true
+ },
+ "input_boundary_if_used": {
+  "allowed_form": "shared scene-feature conditioning only, as a small zero-init residual on the scene query context, mirroring how goal is used",
+  "control_design": "CMD0 versus CMD1 must carry the identical module and parameter count, differing only in whether the slots hold the real command or null, so capacity is not the contrast",
+  "forbidden": [
+   "raw command into the planner",
+   "command into the ego-state head or waypoint queries",
+   "filling a missing command from ground-truth future motion"
+  ]
+ },
+ "purpose": "pre-specification fact-find for a command experiment; no experiment started",
+ "schema_version": 1,
+ "status": "FACT_FIND_ONLY_NO_SPEC_NO_EXPERIMENT",
+ "test_set": {
+  "clips_inspected": 200,
+  "clips_missing_command_parquet": 0,
+  "clips_with_command_parquet": 200,
+  "column_sets": [
+   [
+    "command",
+    "vad_cmd"
+   ]
+  ],
+  "note": "one row per clip: the command at the current frame, not a per-frame series",
+  "rows_per_clip": [
+   1
+  ],
+  "values": {
+   "command": {
+    "distinct": [
+     "LANE_CHANGE_L",
+     "LANE_CHANGE_R",
+     "LANE_KEEP",
+     "TURN_LEFT",
+     "TURN_RIGHT",
+     "U_TURN"
+    ],
+    "distribution": {
+     "LANE_CHANGE_L": 3,
+     "LANE_CHANGE_R": 4,
+     "LANE_KEEP": 177,
+     "TURN_LEFT": 11,
+     "TURN_RIGHT": 3,
+     "U_TURN": 2
+    },
+    "n": 200,
+    "nulls": 0
+   },
+   "vad_cmd": {
+    "distinct": [
+     "[0, 0, 1]",
+     "[0, 1, 0]",
+     "[1, 0, 0]"
+    ],
+    "distribution": {
+     "[0, 0, 1]": 168,
+     "[0, 1, 0]": 7,
+     "[1, 0, 0]": 25
+    },
+    "n": 200,
+    "nulls": 0
+   }
+  }
+ },
+ "train_side": {
+  "meta_directory_contents_sample": [
+   "annotation",
+   "calibration",
+   "meta"
+  ],
+  "samples": [
+   {
+    "columns": [
+     "timestamp",
+     "command"
+    ],
+    "head": {
+     "command": [
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP"
+     ],
+     "timestamp": [
+      1768182869400.479,
+      1768182869500.415,
+      1768182869600.402,
+      1768182869700.265,
+      1768182869800.2778
+     ]
+    },
+    "path": "/tmp/pm97/data/etri/meta_train/20260112-105434/meta/command.parquet",
+    "rows": 400,
+    "scene": "20260112-105434"
+   },
+   {
+    "columns": [
+     "timestamp",
+     "command"
+    ],
+    "head": {
+     "command": [
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP"
+     ],
+     "timestamp": [
+      1768182899400.404,
+      1768182899500.3582,
+      1768182899600.2778,
+      1768182899700.376,
+      1768182899800.4639
+     ]
+    },
+    "path": "/tmp/pm97/data/etri/meta_train/20260112-105504/meta/command.parquet",
+    "rows": 400,
+    "scene": "20260112-105504"
+   },
+   {
+    "columns": [
+     "timestamp",
+     "command"
+    ],
+    "head": {
+     "command": [
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP"
+     ],
+     "timestamp": [
+      1768183844000.702,
+      1768183844100.707,
+      1768183844200.772,
+      1768183844300.7332,
+      1768183844400.6519
+     ]
+    },
+    "path": "/tmp/pm97/data/etri/meta_train/20260112-111049/meta/command.parquet",
+    "rows": 400,
+    "scene": "20260112-111049"
+   },
+   {
+    "columns": [
+     "timestamp",
+     "command"
+    ],
+    "head": {
+     "command": [
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP"
+     ],
+     "timestamp": [
+      1768183904000.353,
+      1768183904100.4282,
+      1768183904200.377,
+      1768183904300.538,
+      1768183904400.599
+     ]
+    },
+    "path": "/tmp/pm97/data/etri/meta_train/20260112-111149/meta/command.parquet",
+    "rows": 400,
+    "scene": "20260112-111149"
+   },
+   {
+    "columns": [
+     "timestamp",
+     "command"
+    ],
+    "head": {
+     "command": [
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP",
+      "LANE_KEEP"
+     ],
+     "timestamp": [
+      1768184074000.736,
+      1768184074100.6301,
+      1768184074200.5762,
+      1768184074300.534,
+      1768184074400.436
+     ]
+    },
+    "path": "/tmp/pm97/data/etri/meta_train/20260112-111439/meta/command.parquet",
+    "rows": 400,
+    "scene": "20260112-111439"
+   }
+  ],
+  "scenes_inspected": 40,
+  "scenes_with_command_parquet": 40,
+  "scenes_without": []
+ }
+}
