@@ -1,0 +1,49 @@
+{
+ "history_dump": {
+  "note": "one extra evaluation pass under the same conditions; the stored records carry plan and state but not history",
+  "sha256": "c812ac765ed8f25a2896b299bb0003a55a1007b728f5e95783f5db1c4186341d",
+  "source": "/NHNHOME/data/sukim/adcl/reports/md_exp_diagnosis_20260915/exp_v0_history.npz"
+ },
+ "latency_as_reported": {
+  "artifact": "reports/md_r0_reset_20260914/rtx4090_forward_cost.json",
+  "conditions": "RTX 4090, batch 1, bf16, one top-level forward per clip that internally consumes the four past frames; model forward only, input preparation excluded; warmup 30 and 200 repetitions",
+  "measured_here": true,
+  "value_ms": 16.272
+ },
+ "not_available": [
+  "command aligned to V0 rows was not joined in this pass; the training side carries a per-frame series and the test side a single reduced row, and no verified join exists yet (see command_inventory.json)"
+ ],
+ "not_copied_from_r0": [
+  "the 77.47 percent along-track share and the 0.1255 resampling oracle belong to R0 and are not reused here; the oracle also included endpoint clamping and is not a timing/shape split"
+ ],
+ "purpose": "limited diagnosis of the E1-EXP candidate; no training, no H, no new score",
+ "rows": {
+  "identical_rows_exp_vs_r0": true,
+  "r0_comparison": {
+   "n": 1998,
+   "sha256": "178305b43b03f06fcf8f6fc79da271e2ea3d8fc849ace6a06347e801f6c891ba",
+   "source": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/final_eval.json"
+  },
+  "t0_probe": {
+   "n": 3456,
+   "sessions": 72,
+   "sha256": "a7119349dad747e8beffc683662900c0ba2cbcdb6e78a84bc27ab5095bad8534",
+   "source": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/evals/E1-EXP_probe_step20554/evaluation.json"
+  },
+  "v0": {
+   "n": 1998,
+   "sessions": 11,
+   "sha256": "44974dcba60afcad17f1902df339397ea7ae3bcce382739f665f88c6a7e8ea3a",
+   "source": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/final_eval.json"
+  }
+ },
+ "schema_version": 1,
+ "target": {
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+  "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+  "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228",
+  "reported_v0_d3": 0.22559153860214878,
+  "run": "E1-EXP seed0 short terminal (step 20,554)",
+  "runtime_source_git_sha": "e9869d54a2bc0a960bb7a3bf090feb308b9da1dd"
+ }
+}

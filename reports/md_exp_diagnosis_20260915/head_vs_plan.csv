@@ -1,0 +1,14 @@
+metric,value
+state_vx_mae_ms,0.8725151581796365
+state_vx_bias_ms,-0.06946360515028298
+state_vx_valid_rows,1998
+first_segment_mean_speed_error_ms,0.018922862545487192
+first_segment_mean_abs_speed_error_ms,0.16678633010443397
+vbar0_error_mean_ms,0.018922862545487192
+vbar0_abs_error_mean_ms,0.16678633010443397
+corr_state_vx_error_with_vbar0_error,0.5527468915329108
+dvbar_abs_error_mean_ms2,"[0.15945893098161043, 0.14925288513201931, 0.17892647991900038, 0.19207264308859448, 0.2634273781199478]"
+definitions,"{""first_segment_mean_speed"": ""gt_p[0]/0.5 is the mean velocity over the first 0.5 s, not the instantaneous velocity at t0"", ""state_label"": ""vx comes from a causal quadratic fit over <=1.001 s of past pose, so it is a fitted quantity, not a sensor reading"", ""correlation"": ""a correlation between head error and plan error is diagnostic evidence, not causal proof; the planner also reads scene and motion features directly""}"
+history,"{""frame_offsets"": [1, 2, 5, 10], ""nominal_seconds"": [0.1, 0.2, 0.5, 1.0], ""position_mae_m_by_offset"": [0.09536326676607132, 0.18017363548278809, 0.44362199306488037, 0.8685458898544312], ""yaw_mae_deg_by_offset"": [0.09276499599218369, 0.11476311087608337, 0.18689700961112976, 0.3257923722267151], ""valid_fraction_by_offset"": [1.0, 1.0, 1.0, 1.0], ""target_definition"": ""[dx, dy, sin(yaw), cos(yaw)] of each past pose in the current ego frame""}"
+subset_d3,"{""state_vx_within_0.5ms"": {""rows"": 793, ""mean_d3_m"": 0.1886914774529643, ""share_of_total_d3"": 0.3319763841438736}, ""state_vx_beyond_0.5ms"": {""rows"": 1205, ""mean_d3_m"": 0.2498751402831011, ""share_of_total_d3"": 0.6680236158561265}, ""history_1s_within_0.25m"": {""rows"": 420, ""mean_d3_m"": 0.18462814400914282, ""share_of_total_d3"": 0.17203979339083947}, ""history_1s_beyond_0.25m"": {""rows"": 1578, ""mean_d3_m"": 0.2364943378818109, ""share_of_total_d3"": 0.8279602066091607}}"
+subset_boundaries,"{""vx_good_ms"": 0.5, ""history_good_m"": 0.25, ""fixed_before_looking_at_the_split"": true}"

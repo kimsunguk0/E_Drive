@@ -1,0 +1,64 @@
+{
+ "all_segment_lengths_replaced_d3": 0.06479878501676468,
+ "baseline_d3_on_subset": 0.2099720084738176,
+ "caveats": [
+  "single-segment reductions do NOT sum to the all-segment reduction; the points are cumulative and the effects interact",
+  "this is a sensitivity probe with GT substituted, not a reachable score and not a cause attribution",
+  "rows with any segment under the 1 cm direction threshold are excluded from the subset"
+ ],
+ "first_two_segment_lengths_replaced_d3": 0.10567199822534575,
+ "per_segment": [
+  {
+   "d3_with_this_segment_length_replaced": 0.14723860383762913,
+   "reduction_from_baseline": 0.06273340463618848,
+   "reduction_share_of_baseline": 0.29877032225469713,
+   "segment": 0,
+   "t_end_s": 0.5,
+   "t_start_s": 0.0
+  },
+  {
+   "d3_with_this_segment_length_replaced": 0.16242848600017212,
+   "reduction_from_baseline": 0.04754352247364549,
+   "reduction_share_of_baseline": 0.2264279073159121,
+   "segment": 1,
+   "t_end_s": 1.0,
+   "t_start_s": 0.5
+  },
+  {
+   "d3_with_this_segment_length_replaced": 0.18306687269840477,
+   "reduction_from_baseline": 0.026905135775412842,
+   "reduction_share_of_baseline": 0.1281367739013068,
+   "segment": 2,
+   "t_end_s": 1.5,
+   "t_start_s": 1.0
+  },
+  {
+   "d3_with_this_segment_length_replaced": 0.19463495207589623,
+   "reduction_from_baseline": 0.015337056397921378,
+   "reduction_share_of_baseline": 0.07304333805919577,
+   "segment": 3,
+   "t_end_s": 2.0,
+   "t_start_s": 1.5
+  },
+  {
+   "d3_with_this_segment_length_replaced": 0.20413892824755298,
+   "reduction_from_baseline": 0.005833080226264636,
+   "reduction_share_of_baseline": 0.027780275421768853,
+   "segment": 4,
+   "t_end_s": 2.5,
+   "t_start_s": 2.0
+  },
+  {
+   "d3_with_this_segment_length_replaced": 0.20762144141260408,
+   "reduction_from_baseline": 0.002350567061213532,
+   "reduction_share_of_baseline": 0.01119466865273442,
+   "segment": 5,
+   "t_end_s": 3.0,
+   "t_start_s": 2.5
+  }
+ ],
+ "schema_version": 1,
+ "subset_rows": 1859,
+ "subset_share": 0.9304304304304304,
+ "sum_of_single_segment_reductions": 0.16070276657064636
+}
