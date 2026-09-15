@@ -1,0 +1,112 @@
+{
+ "binning": "GT first-interval chord speed, an offline diagnostic quantity",
+ "bins": [
+  {
+   "gt_total_chord_mean_m": 0.5818991263879586,
+   "mean_abs_b_ms": 0.3568221211272689,
+   "mean_d3_m": 0.46794409540505083,
+   "mean_total_chord_error_m": 1.048644791405828,
+   "relative_total_chord_error_pct": 180.2107519760538,
+   "row_share": 0.06556556556556556,
+   "rows": 131,
+   "share_of_total_d3": 0.1360025293265376,
+   "signed_b_ms": 0.34954826380194265,
+   "v0_high_ms": 0.5,
+   "v0_low_ms": 0.0
+  },
+  {
+   "gt_total_chord_mean_m": 4.550956183900407,
+   "mean_abs_b_ms": 0.15574801386534645,
+   "mean_d3_m": 0.27023291417291945,
+   "mean_total_chord_error_m": 0.05417247757563706,
+   "relative_total_chord_error_pct": 1.190353749554416,
+   "row_share": 0.018018018018018018,
+   "rows": 36,
+   "share_of_total_d3": 0.02158352941006404,
+   "signed_b_ms": 0.018057492525212354,
+   "v0_high_ms": 2.0,
+   "v0_low_ms": 0.5
+  },
+  {
+   "gt_total_chord_mean_m": 10.854055006178678,
+   "mean_abs_b_ms": 0.21385960584739108,
+   "mean_d3_m": 0.26113463403144355,
+   "mean_total_chord_error_m": -0.013997732938775194,
+   "relative_total_chord_error_pct": -0.1289631656630354,
+   "row_share": 0.05055055055055055,
+   "rows": 101,
+   "share_of_total_d3": 0.058515048249754065,
+   "signed_b_ms": -0.004665910979591731,
+   "v0_high_ms": 5.0,
+   "v0_low_ms": 2.0
+  },
+  {
+   "gt_total_chord_mean_m": 19.879343928724033,
+   "mean_abs_b_ms": 0.14504815523749123,
+   "mean_d3_m": 0.22572822890403432,
+   "mean_total_chord_error_m": -0.03248761399315655,
+   "relative_total_chord_error_pct": -0.16342397470277975,
+   "row_share": 0.12412412412412413,
+   "rows": 248,
+   "share_of_total_d3": 0.12419933567837746,
+   "signed_b_ms": -0.010829204664385516,
+   "v0_high_ms": 8.0,
+   "v0_low_ms": 5.0
+  },
+  {
+   "gt_total_chord_mean_m": 28.888335545887237,
+   "mean_abs_b_ms": 0.12982562641097403,
+   "mean_d3_m": 0.2050722000167201,
+   "mean_total_chord_error_m": 0.08265476807248208,
+   "relative_total_chord_error_pct": 0.2861181390710114,
+   "row_share": 0.2017017017017017,
+   "rows": 403,
+   "share_of_total_d3": 0.18335533658879807,
+   "signed_b_ms": 0.027551589357494025,
+   "v0_high_ms": 11.0,
+   "v0_low_ms": 8.0
+  },
+  {
+   "gt_total_chord_mean_m": 36.76797211034859,
+   "mean_abs_b_ms": 0.11956320148802906,
+   "mean_d3_m": 0.18714176385424447,
+   "mean_total_chord_error_m": -0.029434937990179162,
+   "relative_total_chord_error_pct": -0.08005591905324173,
+   "row_share": 0.36686686686686687,
+   "rows": 733,
+   "share_of_total_d3": 0.30433816037640854,
+   "signed_b_ms": -0.009811645996726388,
+   "v0_high_ms": 14.0,
+   "v0_low_ms": 11.0
+  },
+  {
+   "gt_total_chord_mean_m": 52.95675625601902,
+   "mean_abs_b_ms": 0.12582881169250176,
+   "mean_d3_m": 0.2240711443230493,
+   "mean_total_chord_error_m": -0.1292365054191125,
+   "relative_total_chord_error_pct": -0.24404158138825505,
+   "row_share": 0.17317317317317318,
+   "rows": 346,
+   "share_of_total_d3": 0.1720060603700601,
+   "signed_b_ms": -0.04307883513970417,
+   "v0_high_ms": null,
+   "v0_low_ms": 14.0
+  }
+ ],
+ "not_claimed": [
+  "v0 here is a GT first-interval chord speed computed offline, not a sensor reading and not a model input",
+  "a chord length has no direction, so this is excessive predicted travel distance, not necessarily forward drift",
+  "binning by speed does not establish that speed causes the bias"
+ ],
+ "question": "does the travel-distance bias follow the regime label or the speed?",
+ "reading": "the over-prediction of travel distance is concentrated at low GT speed and is not confined to the rows the threshold labelling calls stop_hold or departing; congested crawling rows that fall under 'constant' show it too",
+ "schema_version": 1,
+ "slow_rows_under_2ms": {
+  "mean_d3_m": 0.42532372100770516,
+  "mean_total_chord_error_m": 0.8342675261490202,
+  "row_share": 0.08358358358358359,
+  "rows": 167,
+  "share_of_total_d3": 0.15758605873660167,
+  "signed_b_ms": 0.27808917538300676
+ }
+}

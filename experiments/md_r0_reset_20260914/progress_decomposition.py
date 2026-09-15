@@ -62,6 +62,8 @@ def decompose(delta_v, sessions):
         "residual_component_energy_share": residual_energy / total_energy,
         "mean_abs_b_ms": float(np.abs(b).mean()),
         "signed_mean_b_ms": float(b.mean()),
+        "mean_total_chord_error_m": float(3.0 * b.mean()),
+        "mean_abs_total_chord_error_m": float(3.0 * np.abs(b).mean()),
         "rms_residual_ms": float(np.sqrt((r ** 2).mean())),
         "large_common_rows": int(large_common.sum()),
         "large_common_sessions": int(len(set(sessions[large_common].tolist()))),
@@ -81,11 +83,17 @@ def main() -> None:
     delta_v = (ell_p - ell_g) / DT
     label = regimes(ell_g)
 
+    # The five regimes stay separate: merging accelerating with decelerating
+    # cancels two opposite signed biases and hides both.
     groups = {
-        "all": np.ones(len(delta_v), dtype=bool),
+        "stop_hold": label == "stop_hold",
+        "departing": label == "departing",
         "constant": label == "constant",
-        "stop_or_depart": np.isin(label, ["stop_hold", "departing"]),
-        "accel_or_decel": np.isin(label, ["accelerating", "decelerating"]),
+        "decelerating": label == "decelerating",
+        "accelerating": label == "accelerating",
+        "all": np.ones(len(delta_v), dtype=bool),
+        "SUMMARY_ONLY_stop_or_depart": np.isin(label, ["stop_hold", "departing"]),
+        "SUMMARY_ONLY_accel_or_decel": np.isin(label, ["accelerating", "decelerating"]),
     }
     results = {name: decompose(delta_v[mask], sessions[mask])
                for name, mask in groups.items() if mask.any()}
@@ -103,12 +111,22 @@ def main() -> None:
         "signed_delta_v_correlation_6x6": correlation.tolist(),
         "mean_correlation_offdiagonal": float(
             (correlation.sum() - np.trace(correlation)) / (36 - 6)),
+        "merged_groups_are_summary_only": (
+            "accelerating and decelerating carry opposite signed biases that cancel when "
+            "merged, and stop_hold and departing differ in magnitude; the five regimes are "
+            "the reporting unit and the SUMMARY_ONLY rows exist only for continuity"),
         "reading": ("a high common-component share means the interval errors of one sample "
                     "mostly move together, which is consistent with a persistent progress "
                     "offset within that sample; it is not evidence about which input caused it"),
         "not_claimed": [
             "this is not a causal attribution and not a sensor v0 diagnosis",
             "b needs future GT and is never a model input or an inference-time correction",
+            "b is an error component of a 3 s prediction against future GT, not a measurement "
+            "of the current v0",
+            "the common-component SHARE has a moving denominator: it can rise even when the "
+            "absolute common component falls, so judge on absolute D3, not on the ratio",
+            "a chord length carries no direction, so an over-large predicted length is an "
+            "excessive predicted travel distance, not necessarily forward drift",
             "a common component does not imply a single global speed correction would help, "
             "because the signed mean of b across samples is near zero",
         ],
