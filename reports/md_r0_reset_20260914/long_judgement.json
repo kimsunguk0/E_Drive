@@ -1,0 +1,109 @@
+{
+ "action": "do not extend LONG further; keep the short expanded run",
+ "best_to_best_delta": 0.0007633529174644049,
+ "caveats": [
+  "V0 is a repeatedly used development set; this is not an independent confirmation.",
+  "Single seed for the LONG arm.",
+  "H remains unopened and the candidate for submission is still chosen on V0."
+ ],
+ "design_note": "LONG sets its cosine horizon to its own total from step one, so this is a schedule-and-budget comparison, not the causal effect of exposure count alone",
+ "promotion_threshold": -0.005,
+ "question": "does giving the expanded split six exposures beat the fixed-compute run?",
+ "schema_version": 1,
+ "table": {
+  "E1-EXP (short)": {
+   "best_step": 20554,
+   "exposures_of_own_train": 3.929,
+   "train_probe_terminal": 0.0858507263082883,
+   "updates": 20554,
+   "v0_best": 0.22559153860214878,
+   "v0_terminal": 0.22559153860214878,
+   "vx_mae_terminal": 0.8725151583851615
+  },
+  "E1-EXP-LONG-s0": {
+   "best_step": 23982,
+   "exposures_of_own_train": 6.0001,
+   "train_probe_terminal": 0.07627159526983329,
+   "updates": 31388,
+   "v0_best": 0.2263548915196132,
+   "v0_terminal": 0.22894065366900368,
+   "vx_mae_terminal": 0.8875042753302501
+  },
+  "R0": {
+   "v0_terminal": 0.25854426847343837
+  }
+ },
+ "terminal_comparisons": {
+  "E1-EXP -> E1-EXP-LONG": {
+   "bootstrap_sd": 0.001377485221961332,
+   "ci95": [
+    0.0007751687380900595,
+    0.006267534376275916
+   ],
+   "delta": 0.0033491150668549076,
+   "p_worse": 0.9933,
+   "per_session_delta": {
+    "session_019_20260113-102709": -0.004363013224469291,
+    "session_026_20260122-134906": -0.00039944746014144685,
+    "session_027_20260122-135506": 0.0007824075861622102,
+    "session_040_20260209-153550": -9.060562243340192e-05,
+    "session_046_20260210-100504": 0.003206195226111622,
+    "session_076_20260213-134648": 0.00761751155656429,
+    "session_087_20260219-90551": 0.00023981242406147498,
+    "session_092_20260219-103747": 0.002490297097850729,
+    "session_097_20260219-110038": 0.006666511711147096,
+    "session_108_20260220-134317": -0.0032558092778479614,
+    "session_112_20260303-142827": 0.029558663635894104
+   },
+   "sessions": 11,
+   "sessions_improved": 4
+  },
+  "R0 -> E1-EXP-LONG": {
+   "bootstrap_sd": 0.011218579595512418,
+   "ci95": [
+    -0.05691441469738339,
+    -0.013137018642728293
+   ],
+   "delta": -0.02960361480443469,
+   "p_worse": 0.0,
+   "per_session_delta": {
+    "session_019_20260113-102709": -0.01689912968625625,
+    "session_026_20260122-134906": -0.05281647957033581,
+    "session_027_20260122-135506": -0.022926924301794282,
+    "session_040_20260209-153550": -0.03288432634952995,
+    "session_046_20260210-100504": -0.0010163303145586892,
+    "session_076_20260213-134648": -0.04205715185445216,
+    "session_087_20260219-90551": -0.08199969037539429,
+    "session_092_20260219-103747": -0.21729490795621165,
+    "session_097_20260219-110038": -0.019895861040294907,
+    "session_108_20260220-134317": -0.04074039862111763,
+    "session_112_20260303-142827": 0.03842434721688429
+   },
+   "sessions": 11,
+   "sessions_improved": 10
+  }
+ },
+ "v0_curves": {
+  "E1-EXP (short)": {
+   "10278": 0.23638382679395922,
+   "13704": 0.23104060400609258,
+   "17130": 0.2298779425871287,
+   "20554": 0.22559153860214878,
+   "3426": 0.28244969281680266,
+   "6852": 0.27197580553732953
+  },
+  "E1-EXP-LONG-s0": {
+   "10278": 0.23512196439589644,
+   "13704": 0.23351119620141922,
+   "17130": 0.22953925470824357,
+   "20556": 0.23098124189719976,
+   "23982": 0.2263548915196132,
+   "27408": 0.23232966121957377,
+   "30834": 0.2288592365422138,
+   "31388": 0.22894065366900368,
+   "3426": 0.23634486727498555,
+   "6852": 0.2482655034559006
+  }
+ },
+ "verdict": "TRAIN_BETTER_V0_NOT_BETTER"
+}
