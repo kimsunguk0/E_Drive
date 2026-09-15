@@ -1,0 +1,290 @@
+{
+ "action": "confirm with a second seed before considering adoption",
+ "arm": {
+  "best_d3": 0.2236442485855924,
+  "best_step": 20554,
+  "lambda": 0.25,
+  "run": "E1-EXP-LEN-s0",
+  "summary": {
+   "heading_error_mean_deg": 0.7690133335064872,
+   "interval_chord_mae_m": 0.08610507240312155,
+   "mean_abs_b_ms": 0.1426065520039035,
+   "official_d3": 0.22364424466043104,
+   "point_l2": [
+    0.0859924563628151,
+    0.17453039553587485,
+    0.2695936156831332,
+    0.36595919159597173,
+    0.458383120566423,
+    0.5454555796807787
+   ],
+   "regimes": {
+    "accelerating": {
+     "interval_chord_mae_m": 0.10140665595025666,
+     "mean_abs_b_ms": 0.1621981952306193,
+     "mean_d3_m": 0.25758839138102857,
+     "rows": 208,
+     "share_of_total_d3": 0.11990475656127547,
+     "signed_b_ms": -0.06492712059930004
+    },
+    "constant": {
+     "interval_chord_mae_m": 0.07311102342203463,
+     "mean_abs_b_ms": 0.11922606315077586,
+     "mean_d3_m": 0.1991396425139662,
+     "rows": 1402,
+     "share_of_total_d3": 0.6248165529163827,
+     "signed_b_ms": -0.005635259903996662
+    },
+    "decelerating": {
+     "interval_chord_mae_m": 0.09439573415221768,
+     "mean_abs_b_ms": 0.15467244957536755,
+     "mean_d3_m": 0.20507288833149706,
+     "rows": 241,
+     "share_of_total_d3": 0.1106043175873638,
+     "signed_b_ms": 0.04507793377355852
+    },
+    "departing": {
+     "interval_chord_mae_m": 0.19812512561980153,
+     "mean_abs_b_ms": 0.2626815967670431,
+     "mean_d3_m": 0.4991292196042967,
+     "rows": 31,
+     "share_of_total_d3": 0.03462752713702089,
+     "signed_b_ms": 0.20595647095563463
+    },
+    "stop_hold": {
+     "interval_chord_mae_m": 0.16855555656200572,
+     "mean_abs_b_ms": 0.33290117164655775,
+     "mean_d3_m": 0.4239091786558852,
+     "rows": 116,
+     "share_of_total_d3": 0.11004684579795729,
+     "signed_b_ms": 0.3288849442587917
+    }
+   },
+   "signed_b_ms": 0.017013819170677867,
+   "speed_bands": {
+    "0-0.5": {
+     "mean_d3_m": 0.46006332336453326,
+     "mean_total_chord_error_m": 1.0035754611317838,
+     "rows": 131,
+     "signed_b_ms": 0.3345251537105946
+    },
+    "0.5-2": {
+     "mean_d3_m": 0.2685660210360484,
+     "mean_total_chord_error_m": 0.042874281531350235,
+     "rows": 36,
+     "signed_b_ms": 0.014291427177116746
+    },
+    "11-14": {
+     "mean_d3_m": 0.184822049427437,
+     "mean_total_chord_error_m": -0.022800278971640216,
+     "rows": 733,
+     "signed_b_ms": -0.0076000929905467385
+    },
+    "14-inf": {
+     "mean_d3_m": 0.2258150789044736,
+     "mean_total_chord_error_m": -0.12743893694849986,
+     "rows": 346,
+     "signed_b_ms": -0.04247964564949996
+    },
+    "2-5": {
+     "mean_d3_m": 0.2551684804354404,
+     "mean_total_chord_error_m": -0.03207928278093672,
+     "rows": 101,
+     "signed_b_ms": -0.010693094260312239
+    },
+    "5-8": {
+     "mean_d3_m": 0.22335057410968046,
+     "mean_total_chord_error_m": -0.009072474502882656,
+     "rows": 248,
+     "signed_b_ms": -0.003024158167627552
+    },
+    "8-11": {
+     "mean_d3_m": 0.20380890888101802,
+     "mean_total_chord_error_m": 0.08750727164673344,
+     "rows": 403,
+     "signed_b_ms": 0.029169090548911147
+    }
+   }
+  },
+  "terminal_d3": 0.2236442485855924
+ },
+ "caveats": [
+  "V0 is a repeatedly used development set and this is a single seed",
+  "H remains unopened"
+ ],
+ "control": {
+  "best_d3": 0.22559153860214878,
+  "best_step": 20554,
+  "run": "E1-EXP",
+  "summary": {
+   "heading_error_mean_deg": 0.7821078075851432,
+   "interval_chord_mae_m": 0.09031061211656753,
+   "mean_abs_b_ms": 0.1468562122303616,
+   "official_d3": 0.2255915343650338,
+   "point_l2": [
+    0.08682179485597108,
+    0.17597415956463502,
+    0.27082583630601775,
+    0.36855241653627074,
+    0.46169817282633074,
+    0.5551260643252227
+   ],
+   "regimes": {
+    "accelerating": {
+     "interval_chord_mae_m": 0.10917794421057049,
+     "mean_abs_b_ms": 0.1726810098744599,
+     "mean_d3_m": 0.26379416660598004,
+     "rows": 208,
+     "share_of_total_d3": 0.12173353694189372,
+     "signed_b_ms": -0.07419209718821661
+    },
+    "constant": {
+     "interval_chord_mae_m": 0.07659176139745567,
+     "mean_abs_b_ms": 0.12218961998479771,
+     "mean_d3_m": 0.1996339281722587,
+     "rows": 1402,
+     "share_of_total_d3": 0.6209606557717614,
+     "signed_b_ms": -0.008267611447303721
+    },
+    "decelerating": {
+     "interval_chord_mae_m": 0.09829046895581484,
+     "mean_abs_b_ms": 0.15440887749159413,
+     "mean_d3_m": 0.20854288528499923,
+     "rows": 241,
+     "share_of_total_d3": 0.1115049477361523,
+     "signed_b_ms": 0.05248391370665872
+    },
+    "departing": {
+     "interval_chord_mae_m": 0.20177942397963539,
+     "mean_abs_b_ms": 0.2807518577832603,
+     "mean_d3_m": 0.5073934122415554,
+     "rows": 31,
+     "share_of_total_d3": 0.034897011460392945,
+     "signed_b_ms": 0.21608749654775142
+    },
+    "stop_hold": {
+     "interval_chord_mae_m": 0.17592048251853717,
+     "mean_abs_b_ms": 0.34720144566321665,
+     "mean_d3_m": 0.4309301773846028,
+     "rows": 116,
+     "share_of_total_d3": 0.11090384808979965,
+     "signed_b_ms": 0.3445334605894102
+    }
+   },
+   "signed_b_ms": 0.01616119597617005,
+   "speed_bands": {
+    "0-0.5": {
+     "mean_d3_m": 0.4679440954050509,
+     "mean_total_chord_error_m": 1.048644791405828,
+     "rows": 131,
+     "signed_b_ms": 0.34954826380194265
+    },
+    "0.5-2": {
+     "mean_d3_m": 0.27023291417291945,
+     "mean_total_chord_error_m": 0.05417247757563706,
+     "rows": 36,
+     "signed_b_ms": 0.018057492525212354
+    },
+    "11-14": {
+     "mean_d3_m": 0.18714176385424447,
+     "mean_total_chord_error_m": -0.029434937990179162,
+     "rows": 733,
+     "signed_b_ms": -0.009811645996726388
+    },
+    "14-inf": {
+     "mean_d3_m": 0.2240711443230493,
+     "mean_total_chord_error_m": -0.1292365054191125,
+     "rows": 346,
+     "signed_b_ms": -0.04307883513970417
+    },
+    "2-5": {
+     "mean_d3_m": 0.26113463403144355,
+     "mean_total_chord_error_m": -0.013997732938775194,
+     "rows": 101,
+     "signed_b_ms": -0.004665910979591731
+    },
+    "5-8": {
+     "mean_d3_m": 0.22572822890403435,
+     "mean_total_chord_error_m": -0.03248761399315655,
+     "rows": 248,
+     "signed_b_ms": -0.010829204664385516
+    },
+    "8-11": {
+     "mean_d3_m": 0.2050722000167201,
+     "mean_total_chord_error_m": 0.08265476807248208,
+     "rows": 403,
+     "signed_b_ms": 0.027551589357494025
+    }
+   }
+  },
+  "terminal_d3": 0.22559153860214878
+ },
+ "criteria": "reports/md_exp_diagnosis_20260915/LENGTH_AUX_CRITERIA.md",
+ "paired_terminal": {
+  "ci95": [
+   -0.0035429089169820164,
+   -0.0012339989532436579
+  ],
+  "delta": -0.001947289704602758,
+  "p_worse": 0.0,
+  "sessions": 11,
+  "sessions_improved": 11
+ },
+ "reading_rules": [
+  "the verdict is driven by the actual XY D3, not by the auxiliary value",
+  "the common-component share is not used as a success signal because its denominator moves; absolute magnitudes are compared instead",
+  "accelerating and decelerating are never merged here"
+ ],
+ "regime_deltas": {
+  "accelerating": {
+   "abs_signed_b_reduced": true,
+   "d3_delta": -0.006205775224951471,
+   "signed_b_arm": -0.06492712059930004,
+   "signed_b_control": -0.07419209718821661
+  },
+  "constant": {
+   "abs_signed_b_reduced": true,
+   "d3_delta": -0.000494285658292487,
+   "signed_b_arm": -0.005635259903996662,
+   "signed_b_control": -0.008267611447303721
+  },
+  "decelerating": {
+   "abs_signed_b_reduced": true,
+   "d3_delta": -0.003469996953502169,
+   "signed_b_arm": 0.04507793377355852,
+   "signed_b_control": 0.05248391370665872
+  },
+  "departing": {
+   "abs_signed_b_reduced": true,
+   "d3_delta": -0.00826419263725875,
+   "signed_b_arm": 0.20595647095563463,
+   "signed_b_control": 0.21608749654775142
+  },
+  "stop_hold": {
+   "abs_signed_b_reduced": true,
+   "d3_delta": -0.007020998728717642,
+   "signed_b_arm": 0.3288849442587917,
+   "signed_b_control": 0.3445334605894102
+  }
+ },
+ "schema_version": 1,
+ "v0_curves": {
+  "arm": {
+   "10278": 0.24709891099123857,
+   "13704": 0.23714688645621707,
+   "17130": 0.23124105376550355,
+   "20554": 0.2236442485855924,
+   "3426": 0.24033669233732335,
+   "6852": 0.24685772336428394
+  },
+  "control": {
+   "10278": 0.23638382679395922,
+   "13704": 0.23104060400609258,
+   "17130": 0.2298779425871287,
+   "20554": 0.22559153860214878,
+   "3426": 0.28244969281680266,
+   "6852": 0.27197580553732953
+  }
+ },
+ "verdict": "IMPROVES_INCLUDING_NORMAL_DRIVING"
+}
