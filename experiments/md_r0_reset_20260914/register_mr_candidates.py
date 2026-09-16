@@ -27,10 +27,28 @@ def file_sha256(path: Path) -> str:
 ROLES = {
     "DEV_BEST": {
         "run": "MR-NATIVE-s0", "step": 20554, "v0_official_d3": 0.191892,
-        "why": "lowest observed V0 among development candidates",
-        "caveat": ("a point-estimate choice only: MR-NATIVE minus MR-LOWDETAIL is "
-                   "-0.001871 with a paired CI of [-0.006395, +0.000975], which "
-                   "includes zero, so superiority over MR-LOWDETAIL is NOT established"),
+        "why": ("the MR-NATIVE recipe, whose gain over LEN replicated across two seeds "
+                "(-0.031753 and -0.033136, both CIs clear of zero)"),
+        "caveat": ("a point-estimate choice only. Three things were NOT established: "
+                   "superiority over MR-LOWDETAIL (-0.001871, CI includes zero), "
+                   "superiority of MR-W64 over this run (-0.001000, CI includes zero and "
+                   "the same order as the 0.000890 seed spread), and any ordering between "
+                   "the two MR-NATIVE seeds (-0.000890, CI includes zero)"),
+    },
+    "DEV_BEST_REPLICATE": {
+        "run": "MR-NATIVE-s1", "step": 20554, "v0_official_d3": 0.191002,
+        "why": "the seed replication; the recipe's gain survives a second seed",
+        "caveat": ("lower than seed 0 by 0.000890, which is inside its own CI; the seeds "
+                   "are not ordered by this evidence"),
+    },
+    "W64_ARM": {
+        "run": "MR-W64-s0", "step": 20554, "v0_official_d3": 0.190892,
+        "why": ("descriptor 32 -> 64 on the MR-NATIVE graph; preserved as the record of a "
+                "closed question"),
+        "caveat": ("lowest terminal number in the round, but NOT the best candidate: its "
+                   "advantage over the matched control is not established and is the same "
+                   "size as the control's seed spread. Reading it as best would be reading "
+                   "noise"),
     },
     "MR_REFERENCE": {
         "run": "MR-LOWDETAIL-s0", "step": 20554, "v0_official_d3": 0.193763,
@@ -123,10 +141,16 @@ def main() -> None:
         "roles": entries,
         "timing_contract": timing(),
         "open_decisions": {
-            "promote_dev_best_to_deploy": ("blocked: needs a seed replication, a fresh "
-                                           "4090 measurement, submission rebuild and "
-                                           "raw-B1 parity on the MR graph"),
+            "promote_dev_best_to_deploy": ("the seed replication, the 4090 measurement and "
+                                           "the raw-B1 parity are now done; what remains is "
+                                           "a full 1,125-clip submission rebuild and the "
+                                           "user's decision"),
             "native_vs_lowdetail": "unresolved by design; the primary CI includes zero",
+            "descriptor_width": ("closed for now: MR-W64 showed no established gain, so no "
+                                 "96/128 sweep follows"),
+            "weight_average": ("closed: the 50:50 average of the two MR-NATIVE seeds scored "
+                               "0.193545, worse than either seed, so no combination search "
+                               "follows"),
         },
         "holdout": {"H_opened": False,
                     "rule": "a candidate change must be logged before H is opened"},

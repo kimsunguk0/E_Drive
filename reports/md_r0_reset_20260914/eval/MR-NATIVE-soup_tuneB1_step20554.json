@@ -1,0 +1,100 @@
+{
+ "augmentation": "off",
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-soup/ckpt_step20554.pth",
+ "checkpoint_sha256": "0a03869cc18cff2aea7fc61be1c24b4addd98fa5439437ecb4f2482df5c3e7fa",
+ "eval_batch": 1,
+ "eval_split": "tune",
+ "eval_stride": 5,
+ "metrics": {
+  "ade1": 0.11087041010650558,
+  "ade2": 0.19253475667731035,
+  "ade3": 0.2772302177769145,
+  "ade6_unweighted": 0.2772302177769144,
+  "d3_p50": 0.1580107635968942,
+  "d3_p95": 0.4649126166167287,
+  "d3_p99": 0.7240583126817542,
+  "guide_two_stage_d3": 0.19354512818691014,
+  "official_d3_weighted": 0.19354512818691014,
+  "point_l2_by_timestep": [
+   0.073531066929019,
+   0.14820975328399238,
+   0.23066317643814627,
+   0.3177350300580842,
+   0.40414581348403644,
+   0.4890964664682098
+  ],
+  "point_l2_p95_by_timestep": [
+   0.18524185208188337,
+   0.3725578848256805,
+   0.5818432636097136,
+   0.8062262343969767,
+   1.0379148031704446,
+   1.2385180754243466
+  ],
+  "rows": 1998,
+  "weighted_vs_two_stage_max_row_diff": 2.220446049250313e-16
+ },
+ "mr_detail": "native",
+ "precision": "bf16",
+ "probe_per_session": 0,
+ "rows": 1998,
+ "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+ "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/evals/MR-NATIVE-soup_tuneB1_step20554",
+ "scenes": 37,
+ "session_d3": {
+  "session_019_20260113-102709": 0.26158174341199575,
+  "session_026_20260122-134906": 0.18229856100623254,
+  "session_027_20260122-135506": 0.18201274896858546,
+  "session_040_20260209-153550": 0.16529506334552058,
+  "session_046_20260210-100504": 0.21055996712400682,
+  "session_076_20260213-134648": 0.15566496156661966,
+  "session_087_20260219-90551": 0.19692852503309646,
+  "session_092_20260219-103747": 0.31121994354934607,
+  "session_097_20260219-110038": 0.15451334711210227,
+  "session_108_20260220-134317": 0.19826507954685776,
+  "session_112_20260303-142827": 0.3255750004340101
+ },
+ "sessions": 11,
+ "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+ "split_manifest_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+ "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+ "tag": "MR-NATIVE-soup_tuneB1_step20554",
+ "time_input": "nominal",
+ "trainer_report": {
+  "history_position_mae_by_offset": [
+   0.07869686523976328,
+   0.13863159860127713,
+   0.32574644460170593,
+   0.638874251999565
+  ],
+  "lane_iou": 0.47815077699063224,
+  "n": 1998,
+  "n_sessions": 11,
+  "occ_iou": 0.45597173311765177,
+  "official_d3": 0.19354513162202588,
+  "proxy_d3": 0.19354513162202588,
+  "proxy_is_not_official_sample_weight": true,
+  "session_d3": {
+   "session_019_20260113-102709": 0.26158174341199575,
+   "session_026_20260122-134906": 0.18229856100623254,
+   "session_027_20260122-135506": 0.18201274896858546,
+   "session_040_20260209-153550": 0.16529506334552058,
+   "session_046_20260210-100504": 0.21055996712400682,
+   "session_076_20260213-134648": 0.15566496156661966,
+   "session_087_20260219-90551": 0.19692852503309646,
+   "session_092_20260219-103747": 0.31121994354934607,
+   "session_097_20260219-110038": 0.15451334711210227,
+   "session_108_20260220-134317": 0.19826507954685776,
+   "session_112_20260303-142827": 0.3255750004340101
+  },
+  "session_mean_d3": 0.21308317646348848,
+  "state_mae_vx_vy_ax_ay_yawrate": [
+   0.6529130818923838,
+   0.04061303063499363,
+   0.2440315940291728,
+   0.06184118909083269,
+   0.007011412633056517
+  ],
+  "time_input": "nominal"
+ }
+}

@@ -1,0 +1,370 @@
+{
+ "limitations": [
+  "V0 is a development set that has been read many times.",
+  "One seed per arm except MR-NATIVE, which has two.",
+  "H is not opened."
+ ],
+ "mr_w64": {
+  "LEN-s0 -> MR-W64-s0": {
+   "arm": "MR-W64-s0",
+   "base": "LEN-s0",
+   "ci95": [
+    -0.06107595844211463,
+    -0.005648282052188603
+   ],
+   "ci_includes_zero": false,
+   "delta": -0.03275269528545186,
+   "p_worse": 0.0012,
+   "sessions": 11,
+   "sessions_improved": 8
+  },
+  "MR-NATIVE-s1 -> MR-W64-s0 (other seed, context only)": {
+   "arm": "MR-W64-s0",
+   "base": "MR-NATIVE-s1",
+   "ci95": [
+    -0.004113745597353876,
+    0.002960413664808177
+   ],
+   "ci_includes_zero": true,
+   "delta": -0.00010996550936321898,
+   "p_worse": 0.4898,
+   "sessions": 11,
+   "sessions_improved": 6
+  },
+  "PRIMARY MR-NATIVE-s0 -> MR-W64-s0": {
+   "arm": "MR-W64-s0",
+   "base": "MR-NATIVE-s0",
+   "ci95": [
+    -0.0034809666732083812,
+    0.0015469903155952611
+   ],
+   "ci_includes_zero": true,
+   "delta": -0.001000033639314664,
+   "p_worse": 0.20595,
+   "sessions": 11,
+   "sessions_improved": 7
+  },
+  "mr_native_seed_spread": 0.0008900681299514324,
+  "question": "does a wider correspondence descriptor reduce the planning error?",
+  "terminals": {
+   "MR-NATIVE-s0": 0.19189158301429385,
+   "MR-NATIVE-s1": 0.19100151488434242,
+   "MR-W64-s0": 0.19089154937497918
+  },
+  "verdict": {
+   "action": "no established gain from widening the descriptor at this budget; do not sweep 96/128 and do not read the sign of a difference this small",
+   "also_true": "MR-W64 still beats LEN by -0.032753, because it inherits the whole matching-graph change; that is not evidence about the descriptor",
+   "code": "NO_EFFECT_UNDER_THIS_SETTING",
+   "delta_vs_seed_spread": {
+    "delta": -0.001000033639314664,
+    "delta_exceeds_spread": true,
+    "seed_spread": 0.0008900681299514324
+   },
+   "reasons": [
+    "the paired CI of the primary comparison includes zero",
+    "the difference is the same order as the control's own seed spread (0.001000 vs 0.000890)"
+   ]
+  }
+ },
+ "regimes": {
+  "LEN-s0": {
+   "accelerating": {
+    "contribution_to_overall_mean_m": 0.02681600871233931,
+    "mean_d3_m": 0.25758839138102857,
+    "rows": 208,
+    "signed_b_ms": -0.06492712059930004
+   },
+   "constant": {
+    "contribution_to_overall_mean_m": 0.13973662602831863,
+    "mean_d3_m": 0.1991396425139662,
+    "rows": 1402,
+    "signed_b_ms": -0.005635259903996662
+   },
+   "decelerating": {
+    "contribution_to_overall_mean_m": 0.024736019063008405,
+    "mean_d3_m": 0.20507288833149706,
+    "rows": 241,
+    "signed_b_ms": 0.04507793377355852
+   },
+   "departing": {
+    "contribution_to_overall_mean_m": 0.007744247151017616,
+    "mean_d3_m": 0.4991292196042967,
+    "rows": 31,
+    "signed_b_ms": 0.20595647095563463
+   },
+   "stop_hold": {
+    "contribution_to_overall_mean_m": 0.024611343705747087,
+    "mean_d3_m": 0.4239091786558852,
+    "rows": 116,
+    "signed_b_ms": 0.3288849442587917
+   },
+   "transition": {
+    "rows": 0
+   }
+  },
+  "LEN-s1": {
+   "accelerating": {
+    "contribution_to_overall_mean_m": 0.027498728829492884,
+    "mean_d3_m": 0.26414644327560954,
+    "rows": 208,
+    "signed_b_ms": -0.06514340330996661
+   },
+   "constant": {
+    "contribution_to_overall_mean_m": 0.1391678491077527,
+    "mean_d3_m": 0.1983290745487089,
+    "rows": 1402,
+    "signed_b_ms": -0.00608481058404369
+   },
+   "decelerating": {
+    "contribution_to_overall_mean_m": 0.025115269032348994,
+    "mean_d3_m": 0.2082170436789763,
+    "rows": 241,
+    "signed_b_ms": 0.0403218909689066
+   },
+   "departing": {
+    "contribution_to_overall_mean_m": 0.007633000620754969,
+    "mean_d3_m": 0.4919592012989816,
+    "rows": 31,
+    "signed_b_ms": 0.21164374070908615
+   },
+   "stop_hold": {
+    "contribution_to_overall_mean_m": 0.024723062236783173,
+    "mean_d3_m": 0.4258334340439033,
+    "rows": 116,
+    "signed_b_ms": 0.32886366261967065
+   },
+   "transition": {
+    "rows": 0
+   }
+  },
+  "MR-LOWDETAIL-s0": {
+   "accelerating": {
+    "contribution_to_overall_mean_m": 0.0269338921828931,
+    "mean_d3_m": 0.25872075279529044,
+    "rows": 208,
+    "signed_b_ms": -0.050519140784937674
+   },
+   "constant": {
+    "contribution_to_overall_mean_m": 0.13198859099127774,
+    "mean_d3_m": 0.18809786362380382,
+    "rows": 1402,
+    "signed_b_ms": 0.009734560518687232
+   },
+   "decelerating": {
+    "contribution_to_overall_mean_m": 0.024389342458302928,
+    "mean_d3_m": 0.20219878104435374,
+    "rows": 241,
+    "signed_b_ms": 0.007378958820682708
+   },
+   "departing": {
+    "contribution_to_overall_mean_m": 0.005200872760817507,
+    "mean_d3_m": 0.33520463793914124,
+    "rows": 31,
+    "signed_b_ms": 0.1249561924537814
+   },
+   "stop_hold": {
+    "contribution_to_overall_mean_m": 0.0052502501357509805,
+    "mean_d3_m": 0.0904310325106074,
+    "rows": 116,
+    "signed_b_ms": 0.08905759994715622
+   },
+   "transition": {
+    "rows": 0
+   }
+  },
+  "MR-NATIVE-s0": {
+   "accelerating": {
+    "contribution_to_overall_mean_m": 0.025650730433024353,
+    "mean_d3_m": 0.24639499714030125,
+    "rows": 208,
+    "signed_b_ms": -0.04125219218119655
+   },
+   "constant": {
+    "contribution_to_overall_mean_m": 0.1312666398168475,
+    "mean_d3_m": 0.18706900595867426,
+    "rows": 1402,
+    "signed_b_ms": 0.007497000090040318
+   },
+   "decelerating": {
+    "contribution_to_overall_mean_m": 0.02483557030982978,
+    "mean_d3_m": 0.2058982136059747,
+    "rows": 241,
+    "signed_b_ms": 0.001980561297147519
+   },
+   "departing": {
+    "contribution_to_overall_mean_m": 0.005497222340088658,
+    "mean_d3_m": 0.35430484630635933,
+    "rows": 31,
+    "signed_b_ms": 0.17323440551161798
+   },
+   "stop_hold": {
+    "contribution_to_overall_mean_m": 0.004641420114503567,
+    "mean_d3_m": 0.0799444602480873,
+    "rows": 116,
+    "signed_b_ms": 0.08363454161039628
+   },
+   "transition": {
+    "rows": 0
+   }
+  },
+  "MR-NATIVE-s1": {
+   "accelerating": {
+    "contribution_to_overall_mean_m": 0.025972140338028953,
+    "mean_d3_m": 0.24948238651625887,
+    "rows": 208,
+    "signed_b_ms": -0.03867986700534522
+   },
+   "constant": {
+    "contribution_to_overall_mean_m": 0.1310495379748366,
+    "mean_d3_m": 0.18675961260607954,
+    "rows": 1402,
+    "signed_b_ms": 0.0077384326771091465
+   },
+   "decelerating": {
+    "contribution_to_overall_mean_m": 0.02495471355004372,
+    "mean_d3_m": 0.2068859654480803,
+    "rows": 241,
+    "signed_b_ms": 0.001212629704600689
+   },
+   "departing": {
+    "contribution_to_overall_mean_m": 0.005452122761256878,
+    "mean_d3_m": 0.3513981057093949,
+    "rows": 31,
+    "signed_b_ms": 0.15968478971354713
+   },
+   "stop_hold": {
+    "contribution_to_overall_mean_m": 0.003573000260176255,
+    "mean_d3_m": 0.0615418493088979,
+    "rows": 116,
+    "signed_b_ms": 0.07634545912951017
+   },
+   "transition": {
+    "rows": 0
+   }
+  },
+  "MR-W64-s0": {
+   "accelerating": {
+    "contribution_to_overall_mean_m": 0.025769774132436633,
+    "mean_d3_m": 0.24753850344523265,
+    "rows": 208,
+    "signed_b_ms": -0.03903677975807939
+   },
+   "constant": {
+    "contribution_to_overall_mean_m": 0.13241599986128325,
+    "mean_d3_m": 0.18870696699204273,
+    "rows": 1402,
+    "signed_b_ms": 0.00984755779747125
+   },
+   "decelerating": {
+    "contribution_to_overall_mean_m": 0.02438275569290911,
+    "mean_d3_m": 0.20214417375283156,
+    "rows": 241,
+    "signed_b_ms": 0.006995725475011929
+   },
+   "departing": {
+    "contribution_to_overall_mean_m": 0.005116145506388193,
+    "mean_d3_m": 0.32974382973431005,
+    "rows": 31,
+    "signed_b_ms": 0.1458476276812129
+   },
+   "stop_hold": {
+    "contribution_to_overall_mean_m": 0.0032068741819619925,
+    "mean_d3_m": 0.055235643237586736,
+    "rows": 116,
+    "signed_b_ms": 0.06160046102592985
+   },
+   "transition": {
+    "rows": 0
+   }
+  }
+ },
+ "replication": {
+  "LEN-s0 -> MR-NATIVE-s0 (round 1, for reference)": {
+   "arm": "MR-NATIVE-s0",
+   "base": "LEN-s0",
+   "ci95": [
+    -0.06006114906008189,
+    -0.005105910099343469
+   ],
+   "ci_includes_zero": false,
+   "delta": -0.0317526616461372,
+   "p_worse": 0.0009,
+   "sessions": 11,
+   "sessions_improved": 8
+  },
+  "LEN-s1 -> MR-NATIVE-s1": {
+   "arm": "MR-NATIVE-s1",
+   "base": "LEN-s1",
+   "ci95": [
+    -0.061989696951426455,
+    -0.005705682294674967
+   ],
+   "ci_includes_zero": false,
+   "delta": -0.033136394942790325,
+   "p_worse": 0.0005,
+   "sessions": 11,
+   "sessions_improved": 8
+  },
+  "MR-NATIVE-s0 -> MR-NATIVE-s1 (seed spread)": {
+   "arm": "MR-NATIVE-s1",
+   "base": "MR-NATIVE-s0",
+   "ci95": [
+    -0.0026455736945830725,
+    0.0013550734437340819
+   ],
+   "ci_includes_zero": true,
+   "delta": -0.0008900681299514445,
+   "p_worse": 0.21965,
+   "sessions": 11,
+   "sessions_improved": 7
+  },
+  "question": "does the MR gain survive a second seed?",
+  "reading": "both seeds beat their own LEN control with a CI clear of zero, and the two MR-NATIVE seeds differ by 0.000890, which is small beside the 0.033 gain",
+  "seed_spread": {
+   "LEN": 0.0004936651667017122,
+   "MR-NATIVE": 0.0008900681299514324
+  },
+  "terminals": {
+   "LEN-s0": 0.22364424466043104,
+   "LEN-s1": 0.22413790982713275,
+   "MR-NATIVE-s0": 0.19189158301429385,
+   "MR-NATIVE-s1": 0.19100151488434242
+  },
+  "verdict": "REPLICATED"
+ },
+ "resamples": 20000,
+ "rows": 1998,
+ "schema_version": 1,
+ "sessions": 11,
+ "state_slot0_mae_ms": {
+  "LEN-s0": 0.8717406751603276,
+  "LEN-s1": 0.8671225278067204,
+  "MR-LOWDETAIL-s0": 0.7871332458944226,
+  "MR-NATIVE-s0": 0.5699422223296542,
+  "MR-NATIVE-s1": 0.5774947410111292,
+  "MR-W64-s0": 0.5858147170201764
+ },
+ "train_probe_T0": {
+  "E1-EXP-LEN-s0": 0.08457140893045734,
+  "MR-LOWDETAIL-s0": 0.09177540924025275,
+  "MR-NATIVE-s0": 0.08969007585122346,
+  "MR-NATIVE-s1": 0.0899752943985,
+  "MR-W64-s0": 0.08950397934007771
+ },
+ "tune_b1": {
+  "E1-EXP-LEN-s0": 0.22364424924416346,
+  "MR-LOWDETAIL-s0": 0.19376295407782332,
+  "MR-NATIVE-s0": 0.1918915609787859,
+  "MR-NATIVE-s1": 0.19100151879899938,
+  "MR-NATIVE-soup": 0.19354512818691014,
+  "MR-W64-s0": 0.19089159559976654
+ },
+ "weight_average": {
+  "note": "evaluation only; a weight average of two seeds of the SAME graph, one model forward. Not a combination search.",
+  "official_d3": 0.19354512818691014,
+  "recipe": "reports/md_exp_diagnosis_20260915/mr_soup.json",
+  "vs_MR-NATIVE-s0": 0.0016535451726162886,
+  "vs_MR-NATIVE-s1": 0.002543613302567721,
+  "vs_better_seed": 0.002543613302567721
+ }
+}
