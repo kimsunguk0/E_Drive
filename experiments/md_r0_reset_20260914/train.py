@@ -41,23 +41,31 @@ INIT = ROOT / "work_dirs/md_r0_reset_20260914/r0_init_tplus.pth"
 REGISTRY = ROOT / "reports/md_r0_reset_20260914/baseline_registry.json"
 
 ARMS = ("E1-T203", "E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN",
-        "MR-NATIVE", "MR-LOWDETAIL", "MR-W64")
+        "MR-NATIVE", "MR-LOWDETAIL", "MR-W64", "MR-ADJ0", "MR-ADJ1")
 EXPANDED_ARMS = ("E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN",
-                 "MR-NATIVE", "MR-LOWDETAIL", "MR-W64")
+                 "MR-NATIVE", "MR-LOWDETAIL", "MR-W64", "MR-ADJ0", "MR-ADJ1")
 # The matching-resolution pair: the motion branch matches on a 768x432 canvas at
 # radius 4, which keeps the original search reach in original-image pixels while
 # quantising it four times more finely. The two arms differ ONLY in whether the
 # canvas kept its native detail or went through a 384x216 bottleneck first.
 MR_DETAIL = {"MR-NATIVE": "native", "MR-LOWDETAIL": "lowdetail",
-             "MR-W64": "native"}
+             "MR-W64": "native", "MR-ADJ0": "native", "MR-ADJ1": "native"}
 # MR-W64 keeps the MR-NATIVE graph exactly -- native 768x432 canvas, radius 4,
 # 81 offsets at both levels, unchanged pooling, unchanged 128D planner
 # interface -- and widens the matching descriptor alone.
 MR_DESCRIPTOR = {"MR-W64": 64}
+# MR-ADJ: three comparisons between neighbouring past frames, added to the four
+# existing t0-anchored ones, over the SAME five images. The two arms carry the
+# identical extra module and differ only in whether its mask lets the three new
+# edges be read, so the contrast isolates the information and not the capacity.
+ADJACENT_EDGES_ON = {"MR-ADJ0": False, "MR-ADJ1": True}
+# Both arms build the new module from this one seed, so their new parameters
+# start identical and the mask is the only difference at step zero.
+ADJACENT_INIT_SEED = 20260917
 # Interval-length auxiliary weight, added beside the unchanged D3 loss.
 # 0.25 is a starting value on a mean L1 in metres, not a tuned or guaranteed one.
 LENGTH_LAMBDA = {"E1-EXP-LEN": 0.25, "MR-NATIVE": 0.25, "MR-LOWDETAIL": 0.25,
-                 "MR-W64": 0.25}
+                 "MR-W64": 0.25, "MR-ADJ0": 0.25, "MR-ADJ1": 0.25}
 N0_ROWS = 54810                                   # existing train split
 TPLUS_ROWS = 83700                                # expanded train split
 BATCH = 16
@@ -73,6 +81,8 @@ ARM_UPDATES = {
     "MR-NATIVE": math.ceil(6 * N0_ROWS / BATCH),        # 20554
     "MR-LOWDETAIL": math.ceil(6 * N0_ROWS / BATCH),     # 20554
     "MR-W64": math.ceil(6 * N0_ROWS / BATCH),           # 20554, matching MR-NATIVE
+    "MR-ADJ0": math.ceil(6 * N0_ROWS / BATCH),          # 20554, matching MR-NATIVE
+    "MR-ADJ1": math.ceil(6 * N0_ROWS / BATCH),          # 20554, matching MR-NATIVE
 }
 # Both MR arms carry the length auxiliary, so the pair differs in detail alone.
 LENGTH_LAMBDA_MR = 0.25
@@ -175,6 +185,31 @@ def build_experiment(arm, seed, scenes, training, evaluation):
             "step_zero_parity_with_len": False,
             "smoke": "reports/md_exp_diagnosis_20260915/mr_smoke.json",
             "correlation_channels": MR_DESCRIPTOR.get(arm, 32),
+            "adjacent_edges": ({
+                "control": "MR-ADJ0 (the same module, the three new edges masked out)",
+                "changed": "the three adjacent-past comparisons become readable",
+                "timestamps_s": [0, -0.1, -0.2, -0.5, -1.0],
+                "star_edges": [[0, -0.1], [0, -0.2], [0, -0.5], [0, -1.0]],
+                "adjacent_edges": [[-0.1, -0.2], [-0.2, -0.5], [-0.5, -1.0]],
+                "pair_convention": "(reference, source); the source is the older frame, "
+                                   "matching local_correlation's argument order",
+                "new_observations": ("none: the same five images are read; only the number "
+                                     "of relations computed between them changes"),
+                "endpoint_encoding": ("[age_ref, age_src, dt, log dt] instead of [dt, log dt], "
+                                      "applied identically in both arms, because dt alone "
+                                      "cannot separate (0,-0.1) from (-0.1,-0.2) nor "
+                                      "(0,-0.5) from (-0.5,-1.0)"),
+                "star_path": "preserved bit for bit; the module contributes a residual",
+                "output_projection_init": "zeros, so step zero reproduces MR exactly",
+                "readouts": ("history still reads the four star edges and keeps its four "
+                             "existing targets; state and the planner consume the residual-"
+                             "updated motion feature"),
+                "masked_softmax_safety": "star edges are never masked, so no query sees an "
+                                         "all-masked memory",
+                "use_adjacent": ADJACENT_EDGES_ON[arm],
+                "new_module_seed": ADJACENT_INIT_SEED,
+                "smoke": "reports/md_exp_diagnosis_20260915/adj_smoke.json",
+            } if arm in ADJACENT_EDGES_ON else None),
             "descriptor_widening": ({
                 "control": "MR-NATIVE (correlation_channels 32)",
                 "changed": "correlation_channels 32 -> %d" % MR_DESCRIPTOR[arm],
@@ -250,7 +285,7 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         "train_inputs": trainer.model_inputs,
         "eval_inputs": planning_eval.planning_model_inputs,
         "model": model_api.MotionDriveV2,
-        "forward_parts": None, "forward": None,
+        "forward_parts": None, "forward": None, "encoder_forward": None,
         "protocol": trainer._validate_experimental_protocol,
         "runtime": trainer._validate_experimental_runtime,
         "schedule": trainer._training_schedule_actions,
@@ -351,6 +386,15 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
             report = mr.rebuild_correlation_fuse(model, mr.NEW_RADIUS)
             width = MR_DESCRIPTOR.get(arm)
             widening = mr.rebuild_descriptor(model, width) if width else None
+            adjacency = None
+            if arm in ADJACENT_EDGES_ON:
+                import adjacent_edges as adj
+                if originals["encoder_forward"] is None:
+                    originals["encoder_forward"] = type(model.motion_encoder).forward
+                # One fixed seed for both arms: the new module's weights are
+                # identical and only the mask differs.
+                torch.manual_seed(ADJACENT_INIT_SEED)
+                adjacency = adj.install(model, ADJACENT_EDGES_ON[arm])
             if originals["forward_parts"] is None:
                 originals["forward_parts"] = type(model).forward_parts
                 originals["forward"] = type(model).forward
@@ -359,12 +403,24 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
             rebuilt_prefixes = ["motion_encoder.correlation_fuse.0."]
             if widening is not None:
                 rebuilt_prefixes.extend(p + "." for p in widening["projections"])
+            if adjacency is not None:
+                # The adjacent module has no counterpart in R0 at all, so its
+                # tensors are new rather than rebuilt; they join the same set so
+                # the strict check below still covers every OTHER tensor.
+                rebuilt_prefixes.append("motion_encoder.adjacent_attention.")
             dropped = [k for k in state
                        if any(k.startswith(p) for p in rebuilt_prefixes)]
+            # Tensors that exist in R0 but must not be loaded are popped. The
+            # adjacent module's tensors have no R0 counterpart at all, so they
+            # are never in `state`; they only have to appear in the expected
+            # missing-key set below.
+            new_keys = ([k for k in model.state_dict()
+                         if k.startswith("motion_encoder.adjacent_attention.")]
+                        if adjacency is not None else [])
             for key in dropped:
                 state.pop(key)
             incompatible = model.load_state_dict(state, strict=False)
-            expected = sorted(dropped)
+            expected = sorted(dropped + new_keys)
             if sorted(incompatible.missing_keys) != expected or incompatible.unexpected_keys:
                 raise ValueError(f"MR load must miss exactly {expected}, got "
                                  f"{incompatible.missing_keys} / {incompatible.unexpected_keys}")
@@ -392,7 +448,7 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
                     "reinitialised": expected,
                 }
             return {"mr_load": {"reinitialised": expected, "rebuild": report,
-                                "widening": widening,
+                                "widening": widening, "adjacency": adjacency,
                                 "strict_for_every_other_tensor": True,
                                 "measured_step_zero_sha256": measured}}
 
@@ -422,6 +478,9 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         model_api.MotionDriveV2 = originals["model"]
         if detail:
             model_module.MotionDriveV2 = originals["model"]
+            if originals["encoder_forward"] is not None:
+                from models.motiondrive_v2.motion_encoder import MotionEncoder
+                MotionEncoder.forward = originals["encoder_forward"]
             if originals["forward_parts"] is not None:
                 from models.motiondrive_v2.model import MotionDriveV2 as _Real
                 _Real.forward_parts = originals["forward_parts"]

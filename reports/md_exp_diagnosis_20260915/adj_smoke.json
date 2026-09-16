@@ -1,0 +1,313 @@
+{
+ "arms_differ_once_projection_is_nonzero": 0.24229764938354492,
+ "arms_identical_at_step_zero": 0.0,
+ "endpoint_encoding": {
+  "collisions_separated_by_full_feature": true,
+  "dt_collisions": [
+   {
+    "dt": 0.1,
+    "edges": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ]
+    ]
+   },
+   {
+    "dt": 0.5,
+    "edges": [
+     [
+      0,
+      3
+     ],
+     [
+      3,
+      4
+     ]
+    ]
+   }
+  ],
+  "note": "dt alone cannot tell (0,-0.1) from (-0.1,-0.2), nor (0,-0.5) from (-0.5,-1.0); [age_ref, age_src, dt, log dt] does",
+  "pairs": [
+   {
+    "age_ref": 0.0,
+    "age_src": 0.10000000149011612,
+    "dt": 0.10000000149011612,
+    "edge": [
+     0,
+     1
+    ],
+    "kind": "star"
+   },
+   {
+    "age_ref": 0.0,
+    "age_src": 0.20000000298023224,
+    "dt": 0.20000000298023224,
+    "edge": [
+     0,
+     2
+    ],
+    "kind": "star"
+   },
+   {
+    "age_ref": 0.0,
+    "age_src": 0.5,
+    "dt": 0.5,
+    "edge": [
+     0,
+     3
+    ],
+    "kind": "star"
+   },
+   {
+    "age_ref": 0.0,
+    "age_src": 1.0,
+    "dt": 1.0,
+    "edge": [
+     0,
+     4
+    ],
+    "kind": "star"
+   },
+   {
+    "age_ref": 0.10000000149011612,
+    "age_src": 0.20000000298023224,
+    "dt": 0.10000000149011612,
+    "edge": [
+     1,
+     2
+    ],
+    "kind": "adjacent"
+   },
+   {
+    "age_ref": 0.20000000298023224,
+    "age_src": 0.5,
+    "dt": 0.30000001192092896,
+    "edge": [
+     2,
+     3
+    ],
+    "kind": "adjacent"
+   },
+   {
+    "age_ref": 0.5,
+    "age_src": 1.0,
+    "dt": 0.5,
+    "edge": [
+     3,
+     4
+    ],
+    "kind": "adjacent"
+   }
+  ]
+ },
+ "install": {
+  "adj0": {
+   "adjacent_edges": [
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "edges": [
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "new_parameters": 85120,
+   "output_projection_init": "zeros, so the step-zero model reproduces MR exactly",
+   "pair_convention": "(reference, source); source is the older frame",
+   "star_edges": [
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ],
+   "use_adjacent": false
+  },
+  "adj1": {
+   "adjacent_edges": [
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "edges": [
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "new_parameters": 85120,
+   "output_projection_init": "zeros, so the step-zero model reproduces MR exactly",
+   "pair_convention": "(reference, source); source is the older frame",
+   "star_edges": [
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ],
+   "use_adjacent": true
+  }
+ },
+ "no_nan": {
+  "adj0": true,
+  "adj1": true,
+  "mr": true
+ },
+ "pair_convention": {
+  "bins": 81,
+  "channels_ordered_dy_then_dx": true,
+  "expected": "a source shifted by +2 columns peaks at dx = +2, dy = 0",
+  "peak_bin": 42,
+  "peak_dx": 2,
+  "peak_dy": 0,
+  "reference_is_first_argument": true
+ },
+ "parameters": {
+  "adjacent_module": 85120,
+  "delta": 85120,
+  "total_adj": 26641080,
+  "total_mr": 26555960
+ },
+ "path_opens": {
+  "behind_projection_nonzero_later": true,
+  "behind_projection_zero_on_first_backward": true,
+  "grad_norms_per_step": {
+   "pair_time.0.weight": [
+    0.0,
+    0.000207486140425317,
+    0.0006882913876324892,
+    0.001068078214302659,
+    0.0007907400722615421,
+    0.0003386923926882446
+   ],
+   "to_out.weight": [
+    3.8601653575897217,
+    0.8921804428100586,
+    1.9506398439407349,
+    2.5441503524780273,
+    2.088576555252075,
+    1.1727732419967651
+   ],
+   "to_q.weight": [
+    0.0,
+    0.001012022839859128,
+    0.0035964553244411945,
+    0.005612259265035391,
+    0.004461579956114292,
+    0.0022260257974267006
+   ]
+  },
+  "moved": {
+   "pair_time.0.weight": 0.0002022385597229004,
+   "to_out.weight": 0.0003008601488545537,
+   "to_q.weight": 0.00021994858980178833
+  },
+  "reading": "to_out sees gradient immediately because the attended value is not zero; everything behind it is zero on the FIRST backward because to_out's weight is zero, and opens from the second update once to_out has moved. A check demanding non-zero gradient everywhere on the first backward would be wrong for this design.",
+  "to_out_zero_grad_on_first_backward_is_expected": true
+ },
+ "schema_version": 1,
+ "step_zero_reproduces_mr": {
+  "adj0_history_hat_max_abs_diff": 0.0,
+  "adj0_motion_features_max_abs_diff": 0.0,
+  "adj0_state_hat_max_abs_diff": 0.0,
+  "adj1_history_hat_max_abs_diff": 0.0,
+  "adj1_motion_features_max_abs_diff": 0.0,
+  "adj1_state_hat_max_abs_diff": 0.0,
+  "note": "the output projection starts at zero, so both arms must equal MR bit for bit at step zero; the history head must match too because it still reads only the four star edges"
+ }
+}
