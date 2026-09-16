@@ -41,15 +41,18 @@ INIT = ROOT / "work_dirs/md_r0_reset_20260914/r0_init_tplus.pth"
 REGISTRY = ROOT / "reports/md_r0_reset_20260914/baseline_registry.json"
 
 ARMS = ("E1-T203", "E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN",
-        "MR-NATIVE", "MR-LOWDETAIL", "MR-W64", "MR-ADJ0", "MR-ADJ1")
+        "MR-NATIVE", "MR-LOWDETAIL", "MR-W64", "MR-ADJ0", "MR-ADJ1",
+        "MR-NATIVE-LONG")
 EXPANDED_ARMS = ("E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN",
-                 "MR-NATIVE", "MR-LOWDETAIL", "MR-W64", "MR-ADJ0", "MR-ADJ1")
+                 "MR-NATIVE", "MR-LOWDETAIL", "MR-W64", "MR-ADJ0", "MR-ADJ1",
+                 "MR-NATIVE-LONG")
 # The matching-resolution pair: the motion branch matches on a 768x432 canvas at
 # radius 4, which keeps the original search reach in original-image pixels while
 # quantising it four times more finely. The two arms differ ONLY in whether the
 # canvas kept its native detail or went through a 384x216 bottleneck first.
 MR_DETAIL = {"MR-NATIVE": "native", "MR-LOWDETAIL": "lowdetail",
-             "MR-W64": "native", "MR-ADJ0": "native", "MR-ADJ1": "native"}
+             "MR-W64": "native", "MR-ADJ0": "native", "MR-ADJ1": "native",
+             "MR-NATIVE-LONG": "native"}
 # MR-W64 keeps the MR-NATIVE graph exactly -- native 768x432 canvas, radius 4,
 # 81 offsets at both levels, unchanged pooling, unchanged 128D planner
 # interface -- and widens the matching descriptor alone.
@@ -65,7 +68,8 @@ ADJACENT_INIT_SEED = 20260917
 # Interval-length auxiliary weight, added beside the unchanged D3 loss.
 # 0.25 is a starting value on a mean L1 in metres, not a tuned or guaranteed one.
 LENGTH_LAMBDA = {"E1-EXP-LEN": 0.25, "MR-NATIVE": 0.25, "MR-LOWDETAIL": 0.25,
-                 "MR-W64": 0.25, "MR-ADJ0": 0.25, "MR-ADJ1": 0.25}
+                 "MR-W64": 0.25, "MR-ADJ0": 0.25, "MR-ADJ1": 0.25,
+                 "MR-NATIVE-LONG": 0.25}
 N0_ROWS = 54810                                   # existing train split
 TPLUS_ROWS = 83700                                # expanded train split
 BATCH = 16
@@ -83,6 +87,12 @@ ARM_UPDATES = {
     "MR-W64": math.ceil(6 * N0_ROWS / BATCH),           # 20554, matching MR-NATIVE
     "MR-ADJ0": math.ceil(6 * N0_ROWS / BATCH),          # 20554, matching MR-NATIVE
     "MR-ADJ1": math.ceil(6 * N0_ROWS / BATCH),          # 20554, matching MR-NATIVE
+    # Every MR run so far had its BEST at the last planned eval and was still
+    # descending there, so the stopping point was never observed. This arm runs
+    # the same recipe to 8 exposures of the expanded pool, with the cosine
+    # horizon set to that total from step one rather than appended afterwards,
+    # so the schedule is not a confound.
+    "MR-NATIVE-LONG": math.ceil(8 * TPLUS_ROWS / BATCH),   # 41850
 }
 # Both MR arms carry the length auxiliary, so the pair differs in detail alone.
 LENGTH_LAMBDA_MR = 0.25

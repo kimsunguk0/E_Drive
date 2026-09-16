@@ -1,0 +1,148 @@
+{
+ "inputs_used": "test side: the provided vad_cmd one-hot and the ego poses shipped with each test clip. No test label or future trajectory is read.",
+ "provenance": {
+  "calibrated_on": {
+   "gap_percent": -0.3,
+   "leaderboard_test_L2_avg": 0.236238922,
+   "model": "v2a_goal epoch_2 (ruled DISALLOWED, goal in the planner's attention query)",
+   "note": "the calibration was measured on a different graph at a different error level; the weighting is reused, the agreement is NOT assumed to transfer",
+   "val_weighted": 0.23696
+  },
+  "constants": {
+   "DT": 0.1,
+   "GOAL_BINS": [
+    0.0,
+    1.0,
+    10.0,
+    30.0,
+    50.0,
+    70.0,
+    Infinity
+   ],
+   "GOAL_FRAME": 50,
+   "SPEED_BINS": [
+    0.0,
+    0.5,
+    2.0,
+    5.0,
+    10.0,
+    15.0,
+    Infinity
+   ],
+   "lateral_threshold_m": 2.0,
+   "weight_cap": 20.0
+  },
+  "recipe": "scripts/etri_split.py on the H200 (the original project)"
+ },
+ "purpose": "reproduce the importance weighting that made the 2026-09-01 val number land within -0.3% of the leaderboard, and apply it to the V0 rows we already score",
+ "reading": {
+  "candidate": "MR-NATIVE-s0",
+  "caveats": [
+   "This is a prediction from a reweighted development set, not a server score.",
+   "The -0.3% agreement was established on a different, disallowed graph.",
+   "V0 has been read many times; the weighting does not undo that."
+  ],
+  "leaderboard_first_place_2026_09_01": 0.130536583,
+  "our_only_submission_2026_09_01": 0.236238922,
+  "plain": 0.19189158301429385,
+  "test_matched": 0.17090045999995698
+ },
+ "schema_version": 1,
+ "scores": {
+  "LEN-s0": {
+   "delta": 0.058703720220044,
+   "v0_plain_d3": 0.22364424466043104,
+   "v0_test_matched_d3": 0.28234796488047503
+  },
+  "MR-LOWDETAIL-s0": {
+   "delta": -0.017754561186018425,
+   "v0_plain_d3": 0.1937629485290423,
+   "v0_test_matched_d3": 0.17600838734302388
+  },
+  "MR-NATIVE-s0": {
+   "delta": -0.020991123014336865,
+   "v0_plain_d3": 0.19189158301429385,
+   "v0_test_matched_d3": 0.17090045999995698
+  },
+  "MR-NATIVE-s1": {
+   "delta": -0.025197762924967143,
+   "v0_plain_d3": 0.19100151488434242,
+   "v0_test_matched_d3": 0.16580375195937527
+  },
+  "MR-W64-s0": {
+   "delta": -0.02660644563934389,
+   "v0_plain_d3": 0.19089154937497918,
+   "v0_test_matched_d3": 0.1642851037356353
+  }
+ },
+ "test": {
+  "cells": 37,
+  "clips": 1125,
+  "skipped_for_missing_poses": 0
+ },
+ "test_matched_comparisons": {
+  "LEN-s0 -> MR-NATIVE-s0": {
+   "ci95": [
+    -0.20131369779649644,
+    -0.01231674374429476
+   ],
+   "ci_includes_zero": false,
+   "delta": -0.11144750488051808,
+   "sessions": 11,
+   "sessions_improved": 8
+  },
+  "MR-LOWDETAIL-s0 -> MR-NATIVE-s0": {
+   "ci95": [
+    -0.014944651710046969,
+    0.0009098981266555105
+   ],
+   "ci_includes_zero": true,
+   "delta": -0.00510792734306688,
+   "sessions": 11,
+   "sessions_improved": 8
+  },
+  "MR-NATIVE-s0 -> MR-NATIVE-s1": {
+   "ci95": [
+    -0.012520132168918754,
+    0.004219974955865585
+   ],
+   "ci_includes_zero": true,
+   "delta": -0.005096708040581725,
+   "sessions": 11,
+   "sessions_improved": 5
+  },
+  "MR-NATIVE-s0 -> MR-W64-s0": {
+   "ci95": [
+    -0.01204350123300522,
+    0.0007254718767333288
+   ],
+   "ci_includes_zero": true,
+   "delta": -0.006615356264321688,
+   "sessions": 11,
+   "sessions_improved": 8
+  },
+  "MR-NATIVE-s1 -> MR-W64-s0": {
+   "ci95": [
+    -0.007284286845225389,
+    0.0018079083513783986
+   ],
+   "ci_includes_zero": true,
+   "delta": -0.001518648223739962,
+   "sessions": 11,
+   "sessions_improved": 6
+  }
+ },
+ "val": {
+  "cells": 35,
+  "rows": 1998,
+  "rows_with_zero_weight": 9,
+  "usable": 1998
+ },
+ "weighting": {
+  "effective_fraction": 0.4446,
+  "effective_n": 888.4,
+  "test_mass_covered_by_val": 0.99467,
+  "w_max": 8.332439678284182,
+  "w_min": 0.20341398852954148
+ }
+}
