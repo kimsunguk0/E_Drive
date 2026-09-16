@@ -1,0 +1,84 @@
+{
+ "displacement_halfres_px": {
+  "above_ground_z1": {
+   "0.1": {
+    "fraction_beyond_search_window": 0.017105263157894738,
+    "max_halfres_px": 25.859284626958402,
+    "median_halfres_px": 0.6001149654955039,
+    "p90_halfres_px": 6.289002729552496,
+    "samples": 760
+   },
+   "0.2": {
+    "fraction_beyond_search_window": 0.05789473684210526,
+    "max_halfres_px": 42.37022244733603,
+    "median_halfres_px": 1.10388546488816,
+    "p90_halfres_px": 11.724839050619615,
+    "samples": 760
+   },
+   "0.5": {
+    "fraction_beyond_search_window": 0.16447368421052633,
+    "max_halfres_px": 68.72352190964904,
+    "median_halfres_px": 2.477029582169303,
+    "p90_halfres_px": 22.190730387721633,
+    "samples": 760
+   },
+   "1.0": {
+    "fraction_beyond_search_window": 0.24473684210526317,
+    "max_halfres_px": 87.38975211506443,
+    "median_halfres_px": 4.071060360866676,
+    "p90_halfres_px": 34.88131424522773,
+    "samples": 760
+   }
+  },
+  "ground_z0": {
+   "0.1": {
+    "fraction_beyond_search_window": 0.030555555555555555,
+    "max_halfres_px": 28.920471130001413,
+    "median_halfres_px": 0.7391882185684339,
+    "p90_halfres_px": 6.877028968494911,
+    "samples": 720
+   },
+   "0.2": {
+    "fraction_beyond_search_window": 0.06805555555555555,
+    "max_halfres_px": 47.809057164114506,
+    "median_halfres_px": 1.3298122003898194,
+    "p90_halfres_px": 12.604438536725,
+    "samples": 720
+   },
+   "0.5": {
+    "fraction_beyond_search_window": 0.17916666666666667,
+    "max_halfres_px": 76.85759976311645,
+    "median_halfres_px": 2.913631642494372,
+    "p90_halfres_px": 24.887837010007324,
+    "samples": 720
+   },
+   "1.0": {
+    "fraction_beyond_search_window": 0.28055555555555556,
+    "max_halfres_px": 97.73728861906099,
+    "median_halfres_px": 5.281063860117537,
+    "p90_halfres_px": 39.16557532806372,
+    "samples": 720
+   }
+  }
+ },
+ "measured_on": {
+  "camera": "front",
+  "clips": 40,
+  "median_speed_ms": 5.980942726135254,
+  "points": "static ego-frame grid, forward [5.0, 10.0, 15.0, 20.0, 30.0, 40.0, 60.0] m by lateral [-3.0, 0.0, 3.0] m"
+ },
+ "not_claimed": [
+  "a displacement beyond the window does not make the branch useless: the coarse level has a wider reach in pixels, features are pooled and fused, and a saturated cost volume still carries a monotone cue",
+  "this is front-camera ground-plane geometry, not a measurement of what the network uses",
+  "no conclusion here about whether adding near or long observations helps"
+ ],
+ "reading": "displacement grows with the time gap and shrinks with distance ahead; the fraction beyond the search window says how often the local cost volume is asked for a match outside the offsets it can represent",
+ "schema_version": 1,
+ "search_window": {
+  "cell_stride_halfres_px": 8.0,
+  "correlation_radius_cells": 2,
+  "search_halfwidth_current_px": 32.0,
+  "search_halfwidth_halfres_px": 16.0,
+  "source": "reports/md_exp_diagnosis_20260915/motion_shape_trace.json"
+ }
+}

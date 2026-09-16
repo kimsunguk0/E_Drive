@@ -1,0 +1,461 @@
+{
+ "config": {
+  "backbone_arch": "resnet50",
+  "channels": 128,
+  "correlation_channels": 32,
+  "correlation_radius": 2,
+  "grid_size": [
+   64,
+   48
+  ],
+  "history_frame_offsets": [
+   1,
+   2,
+   5,
+   10
+  ],
+  "motion_grid": [
+   12,
+   16
+  ],
+  "motion_input_mode": "low_feature",
+  "n_history": 4,
+  "nominal_history_seconds": [
+   0.1,
+   0.2,
+   0.5,
+   1.0
+  ]
+ },
+ "derived": {
+  "correlation_feature_hw": [
+   27,
+   48
+  ],
+  "current_image_hw": [
+   432,
+   768
+  ],
+  "history_image_hw": [
+   216,
+   384
+  ],
+  "history_is_half_resolution": [
+   2,
+   2
+  ],
+  "pooling_after_correlation_to": [
+   12,
+   16
+  ],
+  "pooling_note": "correlation runs at the history feature resolution; the adaptive_avg_pool2d to motion_grid happens AFTER correlation_fuse, so the matching itself is not done at the motion grid",
+  "search_halfwidth_in_current_pixels": [
+   32.0,
+   32.0
+  ],
+  "state_history_head_pool": "adaptive_avg_pool2d to (3,4) before the heads",
+  "stride_in_current_image_pixels": [
+   16.0,
+   16.0
+  ],
+  "stride_on_history_image": [
+   8.0,
+   8.0
+  ]
+ },
+ "inputs": {
+  "goal_xy": [
+   1,
+   2
+  ],
+  "history_images": [
+   1,
+   4,
+   3,
+   216,
+   384
+  ],
+  "history_transforms": [
+   1,
+   4,
+   4,
+   4
+  ],
+  "images": [
+   1,
+   6,
+   3,
+   432,
+   768
+  ],
+  "lidar2img": [
+   1,
+   6,
+   4,
+   4
+  ],
+  "time_offsets": [
+   1,
+   4
+  ]
+ },
+ "limitations": [
+  "one clip, batch 1, inference mode; shapes only, no timing or quality claim",
+  "this records what the graph does, it does not say whether the resolution or the search radius is adequate"
+ ],
+ "local_correlation_calls": [
+  {
+   "bins": 25,
+   "current_in": [
+    4,
+    32,
+    27,
+    48
+   ],
+   "history_in": [
+    4,
+    32,
+    27,
+    48
+   ],
+   "out": [
+    4,
+    25,
+    27,
+    48
+   ],
+   "radius": 2
+  },
+  {
+   "bins": 25,
+   "current_in": [
+    4,
+    32,
+    14,
+    24
+   ],
+   "history_in": [
+    4,
+    32,
+    14,
+    24
+   ],
+   "out": [
+    4,
+    25,
+    14,
+    24
+   ],
+   "radius": 2
+  }
+ ],
+ "modules": {
+  "backbone_fpn": {
+   "in": [
+    [
+     5,
+     3,
+     216,
+     384
+    ]
+   ],
+   "out": [
+    [
+     [
+      5,
+      128,
+      27,
+      48
+     ],
+     [
+      5,
+      128,
+      14,
+      24
+     ]
+    ],
+    [
+     5,
+     128,
+     7,
+     12
+    ]
+   ]
+  },
+  "correlation_fuse": {
+   "in": [
+    [
+     4,
+     178,
+     27,
+     48
+    ]
+   ],
+   "out": [
+    4,
+    128,
+    27,
+    48
+   ]
+  },
+  "history_head": {
+   "in": [
+    [
+     4,
+     1536
+    ]
+   ],
+   "out": [
+    4,
+    4
+   ]
+  },
+  "motion_encoder": {
+   "in": [
+    null,
+    null,
+    [
+     1,
+     4
+    ]
+   ],
+   "out": {
+    "history_hat": [
+     1,
+     4,
+     4
+    ],
+    "history_logvar": [
+     1,
+     4,
+     4
+    ],
+    "motion_features": [
+     1,
+     192,
+     128
+    ],
+    "state_hat": [
+     1,
+     6
+    ],
+    "state_logvar": [
+     1,
+     5
+    ]
+   }
+  },
+  "planner": {
+   "in": [
+    [
+     1,
+     3072,
+     128
+    ],
+    [
+     1,
+     192,
+     128
+    ],
+    [
+     1,
+     6
+    ],
+    [
+     1,
+     4,
+     4
+    ]
+   ],
+   "out": [
+    1,
+    6,
+    2
+   ]
+  },
+  "scene_encoder": {
+   "in": [
+    null,
+    null,
+    [
+     1,
+     6,
+     128,
+     14,
+     24
+    ],
+    [
+     1,
+     6,
+     4,
+     4
+    ],
+    [
+     1,
+     4,
+     4,
+     4
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     1,
+     2
+    ],
+    null
+   ],
+   "out": {
+    "lane_logits": [
+     1,
+     1,
+     64,
+     48
+    ],
+    "occ_logits": [
+     1,
+     1,
+     64,
+     48
+    ],
+    "scene_features": [
+     1,
+     3072,
+     128
+    ],
+    "scene_visible": [
+     1,
+     1,
+     64,
+     48
+    ]
+   }
+  },
+  "state_head": {
+   "in": [
+    [
+     1,
+     1536
+    ]
+   ],
+   "out": [
+    1,
+    6
+   ]
+  },
+  "time_embed": {
+   "in": [
+    [
+     1,
+     4,
+     2
+    ]
+   ],
+   "out": [
+    1,
+    4,
+    128
+   ]
+  },
+  "token_refine": {
+   "in": [
+    [
+     1,
+     192,
+     128
+    ]
+   ],
+   "out": [
+    1,
+    192,
+    128
+   ]
+  }
+ },
+ "outputs": {
+  "history_hat": [
+   1,
+   4,
+   4
+  ],
+  "history_logvar": [
+   1,
+   4,
+   4
+  ],
+  "lane_logits": [
+   1,
+   1,
+   64,
+   48
+  ],
+  "motion_features": [
+   1,
+   192,
+   128
+  ],
+  "occ_logits": [
+   1,
+   1,
+   64,
+   48
+  ],
+  "plan_abs": [
+   1,
+   6,
+   2
+  ],
+  "scene_features": [
+   1,
+   3072,
+   128
+  ],
+  "scene_visible": [
+   1,
+   1,
+   64,
+   48
+  ],
+  "state_hat": [
+   1,
+   6
+  ],
+  "state_logvar": [
+   1,
+   5
+  ]
+ },
+ "pair_construction": {
+  "described": "the current front image is resized to the history size and stacked in front of the four past frames, so one backbone pass covers n_history+1 temporal images; the current feature for the motion branch is taken from that same stack",
+  "dt_is_positive_elapsed_time": true,
+  "dt_order_seconds": [
+   0.1,
+   0.2,
+   0.5,
+   1.0
+  ],
+  "mode": "low_feature"
+ },
+ "planner_inputs": {
+  "history_hat": [
+   1,
+   4,
+   4
+  ],
+  "motion_features": [
+   1,
+   192,
+   128
+  ],
+  "scene_features": [
+   1,
+   3072,
+   128
+  ],
+  "state_hat": [
+   1,
+   6
+  ]
+ }
+}

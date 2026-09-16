@@ -1,0 +1,149 @@
+{
+ "definitions": {
+  "best_equals_terminal": {
+   "note": "best coinciding with terminal removes the extra optimism of picking an interior checkpoint; it does not remove the development-set bias of having chosen the budget and the recipe on V0"
+  },
+  "constant": {
+   "is_not": "a zero-acceleration label",
+   "rule": "the default label for rows no other rule claimed"
+  },
+  "signed_b_vs_scatter": {
+   "not_established": "that the variance increased. b is a 3 s total-chord error over 3 and D3 is a weighted distance over six positions; a redistribution in time, a direction change or cancellation between samples could each produce this. Scatter growth is a hypothesis, not a measurement",
+   "observed": "in seed 1 the decelerating group's |mean b| fell further than in seed 0 while its D3 rose"
+  },
+  "speed_band_field": {
+   "correct_name": "gt_first_interval_progress_speed",
+   "definition": "GT chord length of the FUTURE [0, 0.5] s interval divided by 0.5",
+   "is_not": "the causal-quadratic-fit current vx the state head predicts, and not a sensor reading; the earlier phrase 'v0 < 0.5 m/s, 131 rows' means 'GT future first-interval progress speed below 0.5 m/s'",
+   "old_name": "v0",
+   "unaffected": "the separate observation that the history readout carries a flat ~8.3 percent relative error stands on its own and is not changed by this"
+  },
+  "stop_hold": {
+   "is_not": "an exact three-second standstill label; it admits creep",
+   "rule": "total GT chord over the 3 s horizon <= 1.0 m"
+  }
+ },
+ "purpose": "definition corrections and independently verified review claims",
+ "regime_contributions_seed0": {
+  "note": "group-internal delta and contribution to the overall mean are different quantities; only the contributions sum to the total",
+  "rows": [
+   {
+    "abs_mean_b_arm": 0.33290117164655775,
+    "abs_mean_b_control": 0.34720144566321665,
+    "abs_mean_b_rose": false,
+    "contribution_to_overall_mean_delta": -0.00040762555181744157,
+    "group_internal_d3_delta": -0.007020998728717642,
+    "regime": "stop_hold",
+    "rows": 116,
+    "signed_mean_b_arm": 0.3288849442587917,
+    "signed_mean_b_control": 0.3445334605894102
+   },
+   {
+    "abs_mean_b_arm": 0.2626815967670431,
+    "abs_mean_b_control": 0.2807518577832603,
+    "abs_mean_b_rose": false,
+    "contribution_to_overall_mean_delta": -0.00012822320908659814,
+    "group_internal_d3_delta": -0.00826419263725875,
+    "regime": "departing",
+    "rows": 31,
+    "signed_mean_b_arm": 0.20595647095563463,
+    "signed_mean_b_control": 0.21608749654775142
+   },
+   {
+    "abs_mean_b_arm": 0.11922606315077586,
+    "abs_mean_b_control": 0.12218961998479771,
+    "abs_mean_b_rose": false,
+    "contribution_to_overall_mean_delta": -0.00034684108755061175,
+    "group_internal_d3_delta": -0.000494285658292487,
+    "regime": "constant",
+    "rows": 1402,
+    "signed_mean_b_arm": -0.005635259903996662,
+    "signed_mean_b_control": -0.008267611447303721
+   },
+   {
+    "abs_mean_b_arm": 0.15467244957536755,
+    "abs_mean_b_control": 0.15440887749159413,
+    "abs_mean_b_rose": true,
+    "contribution_to_overall_mean_delta": -0.0004185531860830912,
+    "group_internal_d3_delta": -0.003469996953502169,
+    "regime": "decelerating",
+    "rows": 241,
+    "signed_mean_b_arm": 0.04507793377355852,
+    "signed_mean_b_control": 0.05248391370665872
+   },
+   {
+    "abs_mean_b_arm": 0.1621981952306193,
+    "abs_mean_b_control": 0.1726810098744599,
+    "abs_mean_b_rose": false,
+    "contribution_to_overall_mean_delta": -0.0006460466700650154,
+    "group_internal_d3_delta": -0.006205775224951471,
+    "regime": "accelerating",
+    "rows": 208,
+    "signed_mean_b_arm": -0.06492712059930004,
+    "signed_mean_b_control": -0.07419209718821661
+   }
+  ],
+  "sum_of_contributions": -0.001947289704602758
+ },
+ "schema_version": 1,
+ "speed_band_deltas_seed0": {
+  "field": "gt_first_interval_progress_speed",
+  "note": "the five regimes all improved, but not every condition did; the fast band is the counterexample",
+  "rows": [
+   {
+    "arm_d3": 0.46006332336453326,
+    "band": "0-0.5",
+    "control_d3": 0.4679440954050509,
+    "d3_delta": -0.007880772040517625,
+    "rows": 131
+   },
+   {
+    "arm_d3": 0.2685660210360484,
+    "band": "0.5-2",
+    "control_d3": 0.27023291417291945,
+    "d3_delta": -0.0016668931368710727,
+    "rows": 36
+   },
+   {
+    "arm_d3": 0.2551684804354404,
+    "band": "2-5",
+    "control_d3": 0.26113463403144355,
+    "d3_delta": -0.005966153596003165,
+    "rows": 101
+   },
+   {
+    "arm_d3": 0.22335057410968046,
+    "band": "5-8",
+    "control_d3": 0.22572822890403435,
+    "d3_delta": -0.002377654794353895,
+    "rows": 248
+   },
+   {
+    "arm_d3": 0.20380890888101802,
+    "band": "8-11",
+    "control_d3": 0.2050722000167201,
+    "d3_delta": -0.0012632911357020882,
+    "rows": 403
+   },
+   {
+    "arm_d3": 0.184822049427437,
+    "band": "11-14",
+    "control_d3": 0.18714176385424447,
+    "d3_delta": -0.0023197144268074787,
+    "rows": 733
+   },
+   {
+    "arm_d3": 0.2258150789044736,
+    "band": "14-inf",
+    "control_d3": 0.2240711443230493,
+    "d3_delta": 0.0017439345814243001,
+    "rows": 346
+   }
+  ]
+ },
+ "verified_review_claims": {
+  "contribution_sum_matches_total": true,
+  "decelerating_abs_mean_b_rose_seed0": true,
+  "fast_band_worsened_seed0": true
+ }
+}
