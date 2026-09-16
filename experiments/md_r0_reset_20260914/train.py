@@ -40,11 +40,18 @@ SUPERVISION = ROOT / "data/etri/motiondrive_v2/r0reset_tplus_geometry_v2"
 INIT = ROOT / "work_dirs/md_r0_reset_20260914/r0_init_tplus.pth"
 REGISTRY = ROOT / "reports/md_r0_reset_20260914/baseline_registry.json"
 
-ARMS = ("E1-T203", "E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN")
-EXPANDED_ARMS = ("E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN")
+ARMS = ("E1-T203", "E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN",
+        "MR-NATIVE", "MR-LOWDETAIL")
+EXPANDED_ARMS = ("E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN",
+                 "MR-NATIVE", "MR-LOWDETAIL")
+# The matching-resolution pair: the motion branch matches on a 768x432 canvas at
+# radius 4, which keeps the original search reach in original-image pixels while
+# quantising it four times more finely. The two arms differ ONLY in whether the
+# canvas kept its native detail or went through a 384x216 bottleneck first.
+MR_DETAIL = {"MR-NATIVE": "native", "MR-LOWDETAIL": "lowdetail"}
 # Interval-length auxiliary weight, added beside the unchanged D3 loss.
 # 0.25 is a starting value on a mean L1 in metres, not a tuned or guaranteed one.
-LENGTH_LAMBDA = {"E1-EXP-LEN": 0.25}
+LENGTH_LAMBDA = {"E1-EXP-LEN": 0.25, "MR-NATIVE": 0.25, "MR-LOWDETAIL": 0.25}
 N0_ROWS = 54810                                   # existing train split
 TPLUS_ROWS = 83700                                # expanded train split
 BATCH = 16
@@ -57,7 +64,11 @@ ARM_UPDATES = {
     "E1-EXP": math.ceil(6 * N0_ROWS / BATCH),     # 20554
     "E1-EXP-LONG": math.ceil(6 * TPLUS_ROWS / BATCH),   # 31388
     "E1-EXP-LEN": math.ceil(6 * N0_ROWS / BATCH),       # 20554, matching E1-EXP exactly
+    "MR-NATIVE": math.ceil(6 * N0_ROWS / BATCH),        # 20554
+    "MR-LOWDETAIL": math.ceil(6 * N0_ROWS / BATCH),     # 20554
 }
+# Both MR arms carry the length auxiliary, so the pair differs in detail alone.
+LENGTH_LAMBDA_MR = 0.25
 EVAL_EVERY = math.ceil(N0_ROWS / BATCH)           # 3426, one T203 exposure
 WARMUP = 200
 FLIP_P = 0.5
@@ -141,6 +152,22 @@ def build_experiment(arm, seed, scenes, training, evaluation):
                                   "scores identically under this term alone"),
             "contract": "reports/md_exp_diagnosis_20260915/length_auxiliary_contract.json",
         } if arm in LENGTH_LAMBDA else None),
+        "matching_resolution": ({
+            "detail": MR_DETAIL[arm],
+            "motion_canvas_wh": [768, 432],
+            "correlation_radius": 4,
+            "bins_per_level": 81,
+            "search_halfwidth_original_px": {"fine": 32, "coarse": 64},
+            "unchanged_reach": ("radius 4 on the 768x432 canvas reproduces the original "
+                                "fine +/-32 and coarse +/-64 original-image pixels, so only "
+                                "the quantisation changes, not the reach"),
+            "scene_branch": "untouched: its own backbone pass on the original 384x216 stack",
+            "lowdetail_recipe": ("768 -> 384 -> 768 with PIL bilinear, inside the loader's own "
+                                 "resize step, before jitter and normalisation"),
+            "reinitialised_module": "motion_encoder.correlation_fuse.0 (178 -> 290 in-channels)",
+            "step_zero_parity_with_len": False,
+            "smoke": "reports/md_exp_diagnosis_20260915/mr_smoke.json",
+        } if arm in MR_DETAIL else None),
         "checkpoint_selection": "lowest V0 official_d3 among planned eval steps; ties go to the earlier step",
         "provided_status_used": False,
     }
@@ -179,12 +206,24 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
     import models.motiondrive_v2 as model_api
     import motiondrive_v2_data as data_api
     import train_motiondrive_v2 as trainer
+    import motiondrive_v2_flip_augment as flip_module
+    import evaluate_motiondrive_v2_planning as planning_eval
     from motiondrive_v2_flip_augment import FlipAugmented
+    detail = MR_DETAIL.get(arm)
+    if detail:
+        import matching_resolution as mr
+        from models.motiondrive_v2 import MotionDriveV2Config
+        import models.motiondrive_v2.model as model_module
 
     run_dir = Path(run_dir).resolve()
     originals = {
         "compute_loss": trainer.compute_loss,
         "dataset": data_api.MotionDriveDataset,
+        "flip_item": flip_module.flip_item,
+        "train_inputs": trainer.model_inputs,
+        "eval_inputs": planning_eval.planning_model_inputs,
+        "model": model_api.MotionDriveV2,
+        "forward_parts": None, "forward": None,
         "protocol": trainer._validate_experimental_protocol,
         "runtime": trainer._validate_experimental_runtime,
         "schedule": trainer._training_schedule_actions,
@@ -197,7 +236,8 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         if split == "tune":
             if requested is not None or kwargs.get("augment"):
                 raise ValueError("the tune evaluation set takes no scene filter and no augmentation")
-            return originals["dataset"](**kwargs)
+            base = originals["dataset"](**kwargs)
+            return mr.MotionCanvasDataset(base, detail) if detail else base
         if split != "train":
             raise ValueError("E1 uses only the train and tune splits")
         expected = None if arm in EXPANDED_ARMS else scenes
@@ -206,6 +246,8 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         if kwargs.get("augment") is not True:
             raise ValueError("the training dataset must keep augmentation on")
         base = originals["dataset"](**kwargs)
+        if detail:
+            base = mr.MotionCanvasDataset(base, detail)
         # the flip stream follows the training seed, as in the original screens
         return FlipAugmented(base, *FLIP_WIDTHS, p=FLIP_P, seed=seed)
 
@@ -262,6 +304,70 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         if Path(path).name == "latest_eval.json" and isinstance(data, dict) and "step" in data:
             originals["json"](run_dir / f"eval_step{int(data['step'])}.json", data)
 
+    if detail:
+        flip_module.flip_item = mr.wrap_flip_item(originals["flip_item"])
+
+        def canvas_train_inputs(batch, **kwargs):
+            return mr.model_inputs_with_canvas(originals["train_inputs"], batch, **kwargs)
+
+        def canvas_eval_inputs(batch, time_input="raw"):
+            return mr.model_inputs_with_canvas(
+                originals["eval_inputs"], batch, time_input=time_input)
+
+        def model_factory(config=None):
+            built = originals["model"](config if config is not None else MotionDriveV2Config())
+            built._mr_pending_rebuild = True
+            return built
+
+        def load_initial(model, common, declared=None):
+            """R0 for everything except the resized fuse convolution."""
+            report = mr.rebuild_correlation_fuse(model, mr.NEW_RADIUS)
+            if originals["forward_parts"] is None:
+                originals["forward_parts"] = type(model).forward_parts
+                originals["forward"] = type(model).forward
+            mr.install(model, detail)
+            state = dict(common["model"])
+            dropped = [k for k in state if k.startswith("motion_encoder.correlation_fuse.0.")]
+            for key in dropped:
+                state.pop(key)
+            incompatible = model.load_state_dict(state, strict=False)
+            expected = sorted(dropped)
+            if sorted(incompatible.missing_keys) != expected or incompatible.unexpected_keys:
+                raise ValueError(f"MR load must miss exactly {expected}, got "
+                                 f"{incompatible.missing_keys} / {incompatible.unexpected_keys}")
+            # Every tensor except the resized fuse convolution is R0 bit for bit;
+            # that convolution is newly initialised, so the step-zero state SHA
+            # cannot equal R0's. The pinned-SHA check is therefore replaced by
+            # the measured value, and the real guarantee is the strict match on
+            # everything else, asserted just above.
+            loaded = {name: value for name, value in model.state_dict().items()
+                      if name not in set(expected)}
+            reference = {name: value for name, value in common["model"].items()
+                         if name not in set(expected)}
+            if tensor_state_sha256(loaded) != tensor_state_sha256(reference):
+                raise ValueError("MR load changed a tensor it was supposed to keep")
+            measured = tensor_state_sha256(model.state_dict())
+            if declared is not None:
+                declared["expected_initial_model_state_sha256"] = measured
+                declared["mr_step_zero_state"] = {
+                    "sha256_is_measured_not_pinned": True,
+                    "reason": ("motion_encoder.correlation_fuse.0 is rebuilt for 81 bins and "
+                               "newly initialised, so step-zero cannot match R0"),
+                    "every_other_tensor_matches_r0": True,
+                    "r0_model_state_sha256": tensor_state_sha256(common["model"]),
+                    "measured_step_zero_sha256": measured,
+                    "reinitialised": expected,
+                }
+            return {"mr_load": {"reinitialised": expected, "rebuild": report,
+                                "strict_for_every_other_tensor": True,
+                                "measured_step_zero_sha256": measured}}
+
+        trainer.model_inputs = canvas_train_inputs
+        planning_eval.planning_model_inputs = canvas_eval_inputs
+        model_api.MotionDriveV2 = model_factory
+        model_module.MotionDriveV2 = model_factory
+        trainer._load_initial_model_state = load_initial
+
     lam = LENGTH_LAMBDA.get(arm, 0.0)
     if lam:
         from length_auxiliary import wrap_compute_loss
@@ -276,6 +382,16 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         yield
     finally:
         trainer.compute_loss = originals["compute_loss"]
+        flip_module.flip_item = originals["flip_item"]
+        trainer.model_inputs = originals["train_inputs"]
+        planning_eval.planning_model_inputs = originals["eval_inputs"]
+        model_api.MotionDriveV2 = originals["model"]
+        if detail:
+            model_module.MotionDriveV2 = originals["model"]
+            if originals["forward_parts"] is not None:
+                from models.motiondrive_v2.model import MotionDriveV2 as _Real
+                _Real.forward_parts = originals["forward_parts"]
+                _Real.forward = originals["forward"]
         data_api.MotionDriveDataset = originals["dataset"]
         trainer._validate_experimental_protocol = originals["protocol"]
         trainer._validate_experimental_runtime = originals["runtime"]

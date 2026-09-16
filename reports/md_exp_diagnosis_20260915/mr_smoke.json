@@ -1,0 +1,155 @@
+{
+ "all_checks_pass": true,
+ "canvas_contract": {
+  "detail_actually_differs": true,
+  "lowdetail": {
+   "canvas_hw": [
+    432,
+    768
+   ],
+   "detail": "lowdetail",
+   "mean_abs_vertical_gradient": 0.028303006663918495,
+   "scene_history_hw": [
+    216,
+    384
+   ]
+  },
+  "native": {
+   "canvas_hw": [
+    432,
+    768
+   ],
+   "detail": "native",
+   "mean_abs_vertical_gradient": 0.05797679349780083,
+   "scene_history_hw": [
+    216,
+    384
+   ]
+  }
+ },
+ "cost_microbatch2": {
+  "forward_backward_s": {
+   "all": [
+    1.1159981489181519,
+    0.09036533534526825,
+    0.08637448586523533,
+    0.08623860031366348
+   ],
+   "median": 0.09036533534526825
+  },
+  "note": "microbatch 2, the training setting; effective batch stays 16",
+  "peak_memory_mib": 8461.49462890625
+ },
+ "flip_coverage": {
+  "double_flip_identity": true,
+  "unwrapped_would_leave_it_unflipped": true,
+  "wrapped_flips_canvas": true
+ },
+ "forward": {
+  "correlation_calls": [
+   {
+    "bins": 81,
+    "current_in": [
+     8,
+     32,
+     54,
+     96
+    ],
+    "out": [
+     8,
+     81,
+     54,
+     96
+    ],
+    "radius": 4
+   },
+   {
+    "bins": 81,
+    "current_in": [
+     8,
+     32,
+     27,
+     48
+    ],
+    "out": [
+     8,
+     81,
+     27,
+     48
+    ],
+    "radius": 4
+   }
+  ],
+  "history_hat": [
+   2,
+   4,
+   4
+  ],
+  "motion_canvas_hw": [
+   432,
+   768
+  ],
+  "motion_features": [
+   2,
+   192,
+   128
+  ],
+  "plan_abs": [
+   2,
+   6,
+   2
+  ],
+  "scene_features": [
+   2,
+   3072,
+   128
+  ],
+  "scene_history_input_hw": [
+   216,
+   384
+  ],
+  "state_hat": [
+   2,
+   6
+  ]
+ },
+ "module_change": {
+  "bins": 81,
+  "module": "motion_encoder.correlation_fuse.0",
+  "new_in_channels": 290,
+  "old_in_channels": 178,
+  "parameters": 334208,
+  "reinitialised": true
+ },
+ "schema_version": 1,
+ "search_reach": [
+  {
+   "feature_hw": [
+    54,
+    96
+   ],
+   "search_halfwidth_current_px": [
+    32.0,
+    32.0
+   ],
+   "stride_current_px": [
+    8.0,
+    8.0
+   ]
+  },
+  {
+   "feature_hw": [
+    27,
+    48
+   ],
+   "search_halfwidth_current_px": [
+    64.0,
+    64.0
+   ],
+   "stride_current_px": [
+    16.0,
+    16.0
+   ]
+  }
+ ]
+}

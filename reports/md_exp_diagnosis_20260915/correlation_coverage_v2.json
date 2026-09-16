@@ -1,0 +1,179 @@
+{
+ "levels": {
+  "coarse": {
+   "bins": 25,
+   "feature_hw": [
+    14,
+    24
+   ],
+   "nominal_stride_current_px": [
+    30.857142857142858,
+    32.0
+   ],
+   "nominal_stride_halfres_px": [
+    15.428571428571429,
+    16.0
+   ],
+   "search_halfwidth_current_px": [
+    61.714285714285715,
+    64.0
+   ],
+   "search_halfwidth_halfres_px": [
+    30.857142857142858,
+    32.0
+   ],
+   "stride_caveat": "nominal stride from the image size over the feature size; the true mapping follows the network's sampling and resize contract and is affected by padding and rounding",
+   "window_shape": "square, per-axis test"
+  },
+  "fine": {
+   "bins": 25,
+   "feature_hw": [
+    27,
+    48
+   ],
+   "nominal_stride_current_px": [
+    16.0,
+    16.0
+   ],
+   "nominal_stride_halfres_px": [
+    8.0,
+    8.0
+   ],
+   "search_halfwidth_current_px": [
+    32.0,
+    32.0
+   ],
+   "search_halfwidth_halfres_px": [
+    16.0,
+    16.0
+   ],
+   "stride_caveat": "nominal stride from the image size over the feature size; the true mapping follows the network's sampling and resize contract and is affected by padding and rounding",
+   "window_shape": "square, per-axis test"
+  }
+ },
+ "measured_on": {
+  "camera": "front",
+  "median_speed_ms": 11.228104591369629,
+  "roi": {
+   "forward_m": [
+    5.0,
+    8.0,
+    12.0,
+    20.0,
+    30.0,
+    45.0,
+    60.0
+   ],
+   "heights_m": {
+    "above_ground_z1": 1.0,
+    "ground_z0": 0.0
+   },
+   "lateral_m": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0
+   ]
+  },
+  "rows_used": 125,
+  "source": "tune (V0) dataset rows, stride 5",
+  "validity": "a point counts only if it has positive depth and lies inside the frame in BOTH views"
+ },
+ "per_axis_displacement_halfres_px": {
+  "above_ground_z1": {
+   "0.1": {
+    "beyond_both_windows": 0.018933333333333333,
+    "beyond_coarse_window": 0.018933333333333333,
+    "beyond_fine_window": 0.068,
+    "median_du_halfres_px": 0.9921523182161422,
+    "median_dv_halfres_px": 0.37706566642904704,
+    "p90_du_halfres_px": 12.86723065753659,
+    "p90_dv_halfres_px": 2.4508724390505883,
+    "samples_valid_in_both_views": 3750
+   },
+   "0.2": {
+    "beyond_both_windows": 0.044,
+    "beyond_coarse_window": 0.044,
+    "beyond_fine_window": 0.1424,
+    "median_du_halfres_px": 1.8716698318619933,
+    "median_dv_halfres_px": 0.6154350276562397,
+    "p90_du_halfres_px": 22.95509138531131,
+    "p90_dv_halfres_px": 4.183274418080032,
+    "samples_valid_in_both_views": 3750
+   },
+   "0.5": {
+    "beyond_both_windows": 0.13973333333333332,
+    "beyond_coarse_window": 0.13973333333333332,
+    "beyond_fine_window": 0.26666666666666666,
+    "median_du_halfres_px": 3.9698355848013023,
+    "median_dv_halfres_px": 1.2701379710858944,
+    "p90_du_halfres_px": 43.4744697574885,
+    "p90_dv_halfres_px": 6.866624925518207,
+    "samples_valid_in_both_views": 3750
+   },
+   "1.0": {
+    "beyond_both_windows": 0.19413333333333332,
+    "beyond_coarse_window": 0.19413333333333332,
+    "beyond_fine_window": 0.34453333333333336,
+    "median_du_halfres_px": 6.63345349528889,
+    "median_dv_halfres_px": 1.4370773289466143,
+    "p90_du_halfres_px": 61.39657673422523,
+    "p90_dv_halfres_px": 8.674492723664715,
+    "samples_valid_in_both_views": 3750
+   }
+  },
+  "ground_z0": {
+   "0.1": {
+    "beyond_both_windows": 0.0,
+    "beyond_coarse_window": 0.0,
+    "beyond_fine_window": 0.05171428571428571,
+    "median_du_halfres_px": 0.9268779570918184,
+    "median_dv_halfres_px": 0.7188957653145707,
+    "p90_du_halfres_px": 11.249096102345995,
+    "p90_dv_halfres_px": 6.8519264537795905,
+    "samples_valid_in_both_views": 3500
+   },
+   "0.2": {
+    "beyond_both_windows": 0.026285714285714287,
+    "beyond_coarse_window": 0.026285714285714287,
+    "beyond_fine_window": 0.14685714285714285,
+    "median_du_halfres_px": 1.7781351456003307,
+    "median_dv_halfres_px": 1.353581138352979,
+    "p90_du_halfres_px": 20.342826327643145,
+    "p90_dv_halfres_px": 11.750918200985819,
+    "samples_valid_in_both_views": 3500
+   },
+   "0.5": {
+    "beyond_both_windows": 0.1442857142857143,
+    "beyond_coarse_window": 0.1442857142857143,
+    "beyond_fine_window": 0.26885714285714285,
+    "median_du_halfres_px": 3.873842494783034,
+    "median_dv_halfres_px": 2.7337356451747468,
+    "p90_du_halfres_px": 39.52494725949376,
+    "p90_dv_halfres_px": 20.859360543906302,
+    "samples_valid_in_both_views": 3500
+   },
+   "1.0": {
+    "beyond_both_windows": 0.2077142857142857,
+    "beyond_coarse_window": 0.2077142857142857,
+    "beyond_fine_window": 0.3677142857142857,
+    "median_du_halfres_px": 6.574618032144656,
+    "median_dv_halfres_px": 4.070806206713485,
+    "p90_du_halfres_px": 57.30931760335324,
+    "p90_dv_halfres_px": 28.13512616021143,
+    "samples_valid_in_both_views": 3500
+   }
+  }
+ },
+ "reference_only": "the earlier 40-clip figure came from test inputs and is kept as a geometric reference; nothing is tuned to it, and H is not used",
+ "schema_version": 2,
+ "supersedes": "correlation_coverage.json, which used a Euclidean test and one stride",
+ "what_this_is": "geometric support of the search window for static ground points; it says how often the window is asked for an offset it cannot represent",
+ "what_this_is_not": [
+  "matching success: texture, occlusion, rotation and the ground-plane assumption are outside it",
+  "a share of D3 or a cause attribution",
+  "evidence that the cost volume responds monotonically beyond its range",
+  "a distribution to align the training sampler or model selection to"
+ ]
+}
