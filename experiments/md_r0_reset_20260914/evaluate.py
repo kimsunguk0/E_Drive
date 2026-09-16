@@ -25,6 +25,7 @@ import numpy as np
 ROOT = Path("/NHNHOME/data/sukim/adcl")
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "experiments/md_r0_reset_20260914"))
 
 import torch
 from torch.utils.data import Subset
@@ -105,6 +106,8 @@ def main() -> None:
     parser.add_argument("--scenes", nargs="+")
     parser.add_argument("--scenes-file",
                         help="newline-separated scene list; restricts the eval split")
+    parser.add_argument("--mr-detail", choices=["native", "lowdetail"],
+                        help="evaluate an MR arm: rebuild the 81-bin fuse and feed the canvas")
     parser.add_argument("--run-dir", required=True)
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
@@ -159,6 +162,52 @@ def main() -> None:
     if scenes:
         command.extend(("--eval-scenes", *sorted(set(scenes))))
 
+    mr_restore = {}
+    if args.mr_detail:
+        import matching_resolution as mr
+        import models.motiondrive_v2 as model_api
+        import models.motiondrive_v2.model as model_module
+        import motiondrive_v2_training as mt
+        import evaluate_motiondrive_v2_planning as planning_eval
+        from models.motiondrive_v2 import MotionDriveV2Config
+        mr_restore = {"model": model_api.MotionDriveV2,
+                      "train_inputs": trainer.model_inputs,
+                      "eval_inputs": planning_eval.planning_model_inputs,
+                      "loader": trainer._load_initial_model_state,
+                      "forward_parts": None, "forward": None}
+
+        canvas_factory = dataset_factory
+
+        def dataset_factory(**kwargs):  # noqa: F811 - wraps the one above
+            base = canvas_factory(**kwargs)
+            inner = base.dataset if isinstance(base, _RowSubset) else base
+            wrapped = mr.MotionCanvasDataset(inner, args.mr_detail)
+            if isinstance(base, _RowSubset):
+                return _RowSubset(wrapped, base.indices)
+            return wrapped
+
+        def model_factory(config=None):
+            return mr_restore["model"](config if config is not None else MotionDriveV2Config())
+
+        def load_initial(model, common, experiment=None):
+            mr.rebuild_correlation_fuse(model, mr.NEW_RADIUS)
+            if mr_restore["forward_parts"] is None:
+                mr_restore["forward_parts"] = type(model).forward_parts
+                mr_restore["forward"] = type(model).forward
+            mr.install(model, args.mr_detail)
+            incompatible = model.load_state_dict(common["model"], strict=True)
+            if incompatible.missing_keys or incompatible.unexpected_keys:
+                raise ValueError("MR checkpoint did not load strictly")
+            return {"mr_eval_strict_load": True}
+
+        trainer.model_inputs = lambda batch, **kw: mr.model_inputs_with_canvas(
+            mr_restore["train_inputs"], batch, **kw)
+        planning_eval.planning_model_inputs = lambda batch, time_input="raw": (
+            mr.model_inputs_with_canvas(mr_restore["eval_inputs"], batch, time_input=time_input))
+        model_api.MotionDriveV2 = model_factory
+        model_module.MotionDriveV2 = model_factory
+        trainer._load_initial_model_state = load_initial
+
     try:
         trainer.evaluate = detailed_evaluate
         data_api.MotionDriveDataset = dataset_factory
@@ -166,6 +215,19 @@ def main() -> None:
     finally:
         trainer.evaluate = original_evaluate
         data_api.MotionDriveDataset = original_dataset
+        if mr_restore:
+            import models.motiondrive_v2 as model_api
+            import models.motiondrive_v2.model as model_module
+            import evaluate_motiondrive_v2_planning as planning_eval
+            from models.motiondrive_v2.model import MotionDriveV2 as _Real
+            model_api.MotionDriveV2 = mr_restore["model"]
+            model_module.MotionDriveV2 = mr_restore["model"]
+            trainer.model_inputs = mr_restore["train_inputs"]
+            planning_eval.planning_model_inputs = mr_restore["eval_inputs"]
+            trainer._load_initial_model_state = mr_restore["loader"]
+            if mr_restore["forward_parts"] is not None:
+                _Real.forward_parts = mr_restore["forward_parts"]
+                _Real.forward = mr_restore["forward"]
 
     payload = json.loads((run_dir / "evaluation.json").read_text())
     report, records = payload["report"], payload["records"]
@@ -185,6 +247,7 @@ def main() -> None:
         "time_input": "nominal",
         "augmentation": "off",
         "probe_per_session": args.probe_per_session,
+        "mr_detail": args.mr_detail,
         "split_manifest": str(Path(args.split_manifest).resolve()),
         "split_manifest_sha256": trainer.sha256(args.split_manifest),
         "supervision_root": str(Path(args.supervision_root).resolve()),
