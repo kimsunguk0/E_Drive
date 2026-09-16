@@ -17,7 +17,7 @@
    },
    "model_state_sha256": "d5b8f0aefa4f88684fb3184499457cbd507336813c40d0fe7006a7b29c93b228",
    "reproduction_manifest": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/reproduction_manifest.json",
-   "role": "current candidate",
+   "role": "previous candidate, preserved as the deployment fallback",
    "rtx4090_timing": {
     "artifact": "reports/md_r0_reset_20260914/rtx4090_forward_cost.json",
     "batch": 1,
@@ -93,6 +93,75 @@
     },
     "monotone_cumulative_distance_clips": 946
    }
+  },
+  "MR-NATIVE-s0": {
+   "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s0/ckpt_step20554.pth",
+   "checkpoint_sha256": "2691327acde05007e819a3b3e68aa3f7f429a65c7ed4856a7f78e4b48226b544",
+   "checks_for_these_weights": {
+    "all_finite": true,
+    "all_shapes_6x2": true,
+    "clip_state_isolation_max_abs_diff_m": 0.0,
+    "clip_state_isolation_pass": true,
+    "cumsum_not_reapplied_ratio": 3.5007341845741413,
+    "raw_b1_input_output_parity": {
+     "artifact": "reports/md_r0_reset_20260914/eval/mr_raw_b1_fixture.json",
+     "fixtures": 8,
+     "inputs_all_bitwise_equal": true,
+     "max_plan_abs_xy_diff_m": 0.0,
+     "note": "includes the two MR canvas tensors"
+    }
+   },
+   "clips_written": 1125,
+   "difference_from_previous_candidate": {
+    "clips_compared": 1125,
+    "compared_with": "official_test_E1-EXP.json",
+    "max_abs_xy_diff_m": 4.671874642372131,
+    "mean_abs_xy_diff_m": 0.09392166386158378,
+    "mean_endpoint_m": {
+     "E1-EXP": 22.577730234435947,
+     "MR-NATIVE-s0": 22.468968968630076
+    },
+    "reading": "a sanity check that the new weights produce a different but comparable trajectory set; it is not an accuracy comparison, because the official test set has no ground truth here"
+   },
+   "graph_level_checks_linked_not_rebuilt": {
+    "bf16_median_ms_across_clips": [
+     24.274,
+     24.517
+    ],
+    "does_not_transfer_to": [
+     "MR-W64",
+     "MR-ADJ0",
+     "MR-ADJ1"
+    ],
+    "flops_headroom_x": 6.297750381822621,
+    "profiler_gflops_total": 1119.923714404,
+    "reason": "the FLOPs, timing and preprocessing were measured on this exact graph; only the weights changed",
+    "rtx4090_timing": "reports/md_r0_reset_20260914/rtx4090_mr_forward_cost.json",
+    "time_penalty_multiplier": 1.0
+   },
+   "limitations": [
+    "V0 0.191892 is a development-set number, not a server score and not an H score.",
+    "H has not been opened; this candidate is registered before any H evaluation."
+   ],
+   "role": "current candidate (replaces E1-EXP_terminal as the V0-selected model)",
+   "seed_choice": {
+    "chosen": "MR-NATIVE-s0",
+    "not_chosen": "MR-NATIVE-s1 (V0 0.191002)",
+    "rule": "the pre-registered rule fixes the checkpoint WITHIN a run (lowest V0 among planned eval steps) and says nothing about choosing between seeds; the E1-EXP precedent made seed 0 the candidate and seed 1 the replication check",
+    "why_not": "the seeds differ by 0.000890 with a paired CI of [-0.00265, +0.00136] that includes zero; switching on that would be selecting on noise, not on evidence"
+   },
+   "submission_file": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/submission/official_test_MR-NATIVE-s0.json",
+   "submission_sha256": "0720cc76228453c80aabab51fb22cf70e52a75b6df0b74726ca76f3527e8e830",
+   "upload": {
+    "blocked_on": [
+     "the current submission window",
+     "the remaining attempt count",
+     "explicit user approval"
+    ],
+    "performed": false
+   },
+   "v0_is_not_a_server_score": true,
+   "v0_official_d3": 0.191892
   },
   "R0": {
    "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/motiondrive_v2/q10_q10_flip50_s0/last.pth",
