@@ -1,0 +1,126 @@
+{
+ "correlation_magnitude": {
+  "C=32": {
+   "abs_mean": 0.12445931881666183,
+   "max": 0.7225377559661865,
+   "min": -0.6899980902671814,
+   "std": 0.16535289585590363
+  },
+  "C=64": {
+   "abs_mean": 0.08750582486391068,
+   "max": 0.5396289825439453,
+   "min": -0.5099227428436279,
+   "std": 0.11677603423595428
+  },
+  "bins_stay_bounded_in_[-1,1]": true,
+  "ratio_abs_mean_32_over_64": 1.422297532881055,
+  "sqrt2_for_reference": 1.4142135623730951
+ },
+ "gradient_reachability": {
+  "all_grad_norms_positive": true,
+  "fuse_max_abs_change": 0.0002509383484721184,
+  "grad_norms_per_step": {
+   "correlation_fuse.0.weight": [
+    32.286842346191406,
+    26.76372718811035,
+    23.526493072509766,
+    19.523038864135742,
+    16.03467559814453
+   ],
+   "projections.0.weight": [
+    3.0313758850097656,
+    2.60568904876709,
+    2.2563254833221436,
+    1.8866876363754272,
+    1.4907259941101074
+   ],
+   "projections.1.weight": [
+    4.319843292236328,
+    3.4973480701446533,
+    3.1178905963897705,
+    2.661827325820923,
+    2.1675548553466797
+   ]
+  },
+  "new_channels_learn": true,
+  "projection0_max_abs_change_channels_0_31": 0.0002503492869436741,
+  "projection0_max_abs_change_channels_32_63": 0.0002503432333469391
+ },
+ "graph": {
+  "MR-NATIVE (control)": {
+   "bins_per_level": 81,
+   "correlation_channels": 32,
+   "correlation_radius": 4,
+   "fuse_in_channels": 290,
+   "motion_grid": [
+    12,
+    16
+   ],
+   "projection_out_channels": [
+    32,
+    32
+   ],
+   "total_parameters": 26555960,
+   "widening": null
+  },
+  "MR-W64": {
+   "bins_per_level": 81,
+   "correlation_channels": 64,
+   "correlation_radius": 4,
+   "fuse_in_channels": 418,
+   "motion_grid": [
+    12,
+    16
+   ],
+   "projection_out_channels": [
+    64,
+    64
+   ],
+   "total_parameters": 26711608,
+   "widening": {
+    "bins_unchanged": 81,
+    "correlation_definition": "cosine (unchanged)",
+    "fuse_in_channels": [
+     290,
+     418
+    ],
+    "initialisation": "fresh nn.Conv2d default; no reshape, no zero-padding",
+    "new_correlation_channels": 64,
+    "old_correlation_channels": 32,
+    "parameters": 498048,
+    "projections": [
+     "motion_encoder.projections.0",
+     "motion_encoder.projections.1"
+    ]
+   }
+  }
+ },
+ "parameter_delta": 155648,
+ "post_groupnorm_statistics": {
+  "MR-NATIVE (control)": {
+   "motion_features_abs_mean": 0.44319677352905273,
+   "motion_features_std": 0.4886360168457031,
+   "state_hat_abs_mean": 0.3261813819408417
+  },
+  "MR-W64": {
+   "motion_features_abs_mean": 0.48318833112716675,
+   "motion_features_std": 0.5080749988555908,
+   "state_hat_abs_mean": 0.31875741481781006
+  }
+ },
+ "reinitialisation": {
+  "dropped": [
+   "motion_encoder.correlation_fuse.0.bias",
+   "motion_encoder.correlation_fuse.0.weight",
+   "motion_encoder.projections.0.weight",
+   "motion_encoder.projections.1.weight"
+  ],
+  "every_other_tensor_bitwise_r0": true,
+  "measured_step_zero_sha256": "6b666de24d343c6279e9c27db451ea19cf78460b8be7eec65943365df070b67c",
+  "missing_keys_match": true,
+  "no_unexpected_keys": true,
+  "r0_sha256": "820f5c71f8b014cebf542234f6b5f3115c9fa03e13f0112a1cd258c815984657",
+  "step_zero_parity_with_mr_native": false
+ },
+ "schema_version": 1
+}

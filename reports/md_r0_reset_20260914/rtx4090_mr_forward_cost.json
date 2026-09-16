@@ -1,0 +1,194 @@
+{
+ "batch": 1,
+ "bf16_median_ms_across_clips": {
+  "max": 24.51707172393799,
+  "min": 24.27393627166748
+ },
+ "checkpoint": "/work/ckpt/MR-NATIVE-s0_step20554.pth",
+ "checkpoint_sha256": "2691327acde05007e819a3b3e68aa3f7f429a65c7ed4856a7f78e4b48226b544",
+ "clips": 2,
+ "cuda": "12.8",
+ "detail": "native",
+ "device": "NVIDIA GeForce RTX 4090",
+ "flops_cutoff_gflops": 7053.0,
+ "flops_headroom_x": 6.297750381822621,
+ "flops_note": "torch profiler counts convolution and matmul only; a reference figure for the registered operator range, not an official tool result",
+ "forwards_per_clip": 1,
+ "graph": "MR (matching resolution): 768x432 motion canvas, radius 4, 81 bins per level",
+ "inherits_e1_exp_measurement": false,
+ "limitations": [
+  "Our own timing on our own 4090; the organisers measure on their environment.",
+  "Warm cache, batch 1, deterministic cudnn, TF32 disabled, matching the earlier run.",
+  "Two clips only; the spread across clips is reported, not a distribution over the test set."
+ ],
+ "measured_by": "this project, inside the pinned container; not the organisers' measurement",
+ "model_state_sha256": "f1ec26dbfcec260d11b93f50ff38f7e9192c6081457d0f4a58d7f4f2a0950f95",
+ "parameters": 26555960,
+ "per_clip": [
+  {
+   "bf16": {
+    "max_ms": 24.66489601135254,
+    "mean_ms": 24.521096839904786,
+    "median_ms": 24.51707172393799,
+    "min_ms": 24.455167770385742,
+    "p90_ms": 24.564325714111327,
+    "p95_ms": 24.588916206359862,
+    "p99_ms": 24.63743673324585,
+    "peak_memory_mib": 679.85009765625,
+    "repeats": 200,
+    "std_ms": 0.03772325763377277
+   },
+   "canvas_check": {
+    "current_canvas_equals_scene_front": true,
+    "current_canvas_max_abs_diff_vs_scene_front": 0.0,
+    "detail": "native",
+    "images_decoded": "the same ten images the base adapter reads; none added",
+    "motion_current_wh": [
+     768,
+     432
+    ],
+    "motion_history_frames": 4,
+    "note": "history_images stays 384x216 for the scene branch; the motion branch gets the 768x432 version of those same decoded frames"
+   },
+   "clip": "00017c73feca4fde",
+   "forwards_per_clip": 1,
+   "fp32": {
+    "max_ms": 38.019264221191406,
+    "mean_ms": 37.69302507400513,
+    "median_ms": 37.68918418884277,
+    "min_ms": 37.60844802856445,
+    "p90_ms": 37.74064598083496,
+    "p95_ms": 37.75799674987793,
+    "p99_ms": 37.83076747894287,
+    "peak_memory_mib": 651.44189453125,
+    "repeats": 200,
+    "std_ms": 0.04610480903880571
+   },
+   "prediction_xy": [
+    [
+     1.9161361455917358,
+     -0.021894853562116623
+    ],
+    [
+     4.03627347946167,
+     -0.06958674639463425
+    ],
+    [
+     6.402771949768066,
+     -0.1171782985329628
+    ],
+    [
+     8.962549209594727,
+     -0.21002113819122314
+    ],
+    [
+     11.637092590332031,
+     -0.2804993987083435
+    ],
+    [
+     14.508109092712402,
+     -0.3939741849899292
+    ]
+   ]
+  },
+  {
+   "bf16": {
+    "max_ms": 25.2128963470459,
+    "mean_ms": 24.286010847091674,
+    "median_ms": 24.27393627166748,
+    "min_ms": 24.191999435424805,
+    "p90_ms": 24.32512722015381,
+    "p95_ms": 24.34576654434204,
+    "p99_ms": 24.402166080474853,
+    "peak_memory_mib": 678.83544921875,
+    "repeats": 200,
+    "std_ms": 0.07430185207071
+   },
+   "canvas_check": {
+    "current_canvas_equals_scene_front": true,
+    "current_canvas_max_abs_diff_vs_scene_front": 0.0,
+    "detail": "native",
+    "images_decoded": "the same ten images the base adapter reads; none added",
+    "motion_current_wh": [
+     768,
+     432
+    ],
+    "motion_history_frames": 4,
+    "note": "history_images stays 384x216 for the scene branch; the motion branch gets the 768x432 version of those same decoded frames"
+   },
+   "clip": "0022a88d648a65c7",
+   "forwards_per_clip": 1,
+   "fp32": {
+    "max_ms": 38.02534484863281,
+    "mean_ms": 37.736563529968265,
+    "median_ms": 37.73553657531738,
+    "min_ms": 37.65129470825195,
+    "p90_ms": 37.764427947998044,
+    "p95_ms": 37.77582302093506,
+    "p99_ms": 37.82203842163086,
+    "peak_memory_mib": 650.23876953125,
+    "repeats": 200,
+    "std_ms": 0.038025320239047554
+   },
+   "prediction_xy": [
+    [
+     0.9828799962997437,
+     -0.00418439507484436
+    ],
+    [
+     1.9609564542770386,
+     -0.03158885985612869
+    ],
+    [
+     2.9177651405334473,
+     -0.06732303649187088
+    ],
+    [
+     3.930507183074951,
+     -0.1258385181427002
+    ],
+    [
+     4.9476542472839355,
+     -0.20333793759346008
+    ],
+    [
+     5.928413391113281,
+     -0.28806596994400024
+    ]
+   ]
+  }
+ ],
+ "profiler_gflops_total": 1119.923714404,
+ "rebuild": {
+  "bins": 81,
+  "module": "motion_encoder.correlation_fuse.0",
+  "new_in_channels": 290,
+  "old_in_channels": 290,
+  "parameters": 334208,
+  "reinitialised": true
+ },
+ "redundant_pass_variant": {
+  "bf16": {
+   "max_ms": 24.4486083984375,
+   "mean_ms": 24.36278802871704,
+   "median_ms": 24.36393642425537,
+   "min_ms": 24.30544090270996,
+   "p90_ms": 24.387951278686522,
+   "p95_ms": 24.39923725128174,
+   "p99_ms": 24.437642154693602,
+   "repeats": 200,
+   "std_ms": 0.023016705882538967
+  },
+  "max_abs_xy_diff_vs_as_trained_m": 0.00013959407806396484,
+  "profiler_gflops_total": 1058.948452708,
+  "status": "measured, NOT adopted; the as-trained graph is the registered one",
+  "valid_only_for": "native detail, where the current canvas IS the scene front camera",
+  "what": "drops the motion branch's backbone pass over the CURRENT canvas and reuses the front-camera features the scene branch already computed"
+ },
+ "repeats_per_clip": 200,
+ "schema_version": 1,
+ "t_infer_definition": "accumulated time of every model forward from reset to the final trajectory; this model consumes its four past frames inside ONE top-level forward",
+ "timed_region": "model forward only; tar read, JPEG decode, undistort and resize are outside it",
+ "torch": "2.7.1+cu128",
+ "warmup": 30
+}

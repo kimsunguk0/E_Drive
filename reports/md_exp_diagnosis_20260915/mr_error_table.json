@@ -1,0 +1,585 @@
+{
+ "deltas_vs_LEN": {
+  "MR-LOWDETAIL": {
+   "contribution_delta_sums_to_overall": -0.029881296131388787,
+   "groups": {
+    "accelerating": {
+     "contribution_delta_m": 0.00011788347055378956,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 208,
+     "signed_b_delta_ms": 0.01440797981436237,
+     "within_group_delta_d3_m": 0.0011323614142618732
+    },
+    "constant": {
+     "contribution_delta_m": -0.007748035037040885,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 1402,
+     "signed_b_delta_ms": 0.015369820422683894,
+     "within_group_delta_d3_m": -0.01104177889016239
+    },
+    "decelerating": {
+     "contribution_delta_m": -0.0003466766047054773,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 241,
+     "signed_b_delta_ms": -0.037698974952875816,
+     "within_group_delta_d3_m": -0.0028741072871433238
+    },
+    "departing": {
+     "contribution_delta_m": -0.0025433743902001094,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 31,
+     "signed_b_delta_ms": -0.08100027850185323,
+     "within_group_delta_d3_m": -0.16392458166515544
+    },
+    "stop_hold": {
+     "contribution_delta_m": -0.019361093569996105,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 116,
+     "signed_b_delta_ms": -0.2398273443116355,
+     "within_group_delta_d3_m": -0.33347814614527777
+    },
+    "transition": {
+     "rows": 0
+    }
+   },
+   "overall_d3_delta_m": -0.029881296131388735
+  },
+  "MR-NATIVE": {
+   "contribution_delta_sums_to_overall": -0.031752661646137194,
+   "groups": {
+    "accelerating": {
+     "contribution_delta_m": -0.0011652782793149588,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 208,
+     "signed_b_delta_ms": 0.023674928418103494,
+     "within_group_delta_d3_m": -0.011193394240727322
+    },
+    "constant": {
+     "contribution_delta_m": -0.008469986211471131,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 1402,
+     "signed_b_delta_ms": 0.013132259994036981,
+     "within_group_delta_d3_m": -0.012070636555291947
+    },
+    "decelerating": {
+     "contribution_delta_m": 9.955124682137564e-05,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 241,
+     "signed_b_delta_ms": -0.043097372476411,
+     "within_group_delta_d3_m": 0.0008253252744776507
+    },
+    "departing": {
+     "contribution_delta_m": -0.002247024810928958,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 31,
+     "signed_b_delta_ms": -0.03272206544401665,
+     "within_group_delta_d3_m": -0.14482437329793735
+    },
+    "stop_hold": {
+     "contribution_delta_m": -0.01996992359124352,
+     "note": "within-group delta is the change inside the group; contribution delta is n_g/N times it, which is what moves the overall mean. They are not the same number.",
+     "rows": 116,
+     "signed_b_delta_ms": -0.24525040264839543,
+     "within_group_delta_d3_m": -0.34396471840779785
+    },
+    "transition": {
+     "rows": 0
+    }
+   },
+   "overall_d3_delta_m": -0.03175266164613719
+  }
+ },
+ "group_definition": "unchanged from the existing producer (analyze_mr.regimes)",
+ "rows": 1998,
+ "runs": {
+  "LEN": {
+   "direction": {
+    "gt_defined_coverage_intervals": 0.9427761094427761,
+    "heading_error_mean_deg": 0.7690133335064872,
+    "heading_error_rms_deg": 5.228762004882913,
+    "note": "coverage is the share of the 6 intervals per row where both the GT and the prediction move more than 1 cm, the only intervals where a direction is defined for both",
+    "valid_coverage_intervals": 0.9423590256923591
+   },
+   "official_d3": 0.22364424466043104,
+   "progress": {
+    "b_rms_ms": 0.20102280300146005,
+    "interval_chord_mae_m": 0.08610507240312155,
+    "interval_chord_rms_m": 0.12081857242404045,
+    "mean_abs_b_ms": 0.1426065520039035,
+    "signed_b_ms": 0.017013819170677867
+   },
+   "readout_heads": {
+    "state_slot0_mae_ms": 0.8717406751603276,
+    "state_slot0_rms_ms": 1.1412875955040673,
+    "state_slot0_signed_ms": -0.06662727741521311,
+    "target": "gt_first_interval_progress_speed",
+    "target_definition": "the GT FUTURE first-interval progress speed, ell_gt[:,0]/0.5 -- this is not the current vx and is not called one"
+   },
+   "regimes": {
+    "accelerating": {
+     "contribution_to_overall_mean_m": 0.02681600871233931,
+     "heading_error_mean_deg": 1.0366214172758492,
+     "interval_chord_mae_m": 0.10140665595025666,
+     "mean_abs_b_ms": 0.1621981952306193,
+     "mean_d3_m": 0.25758839138102857,
+     "rows": 208,
+     "share_of_rows": 0.1041041041041041,
+     "signed_b_ms": -0.06492712059930004,
+     "state_slot0_mae_ms": 0.8577073508730302
+    },
+    "constant": {
+     "contribution_to_overall_mean_m": 0.13973662602831863,
+     "heading_error_mean_deg": 0.5134772464313128,
+     "interval_chord_mae_m": 0.07311102342203463,
+     "mean_abs_b_ms": 0.11922606315077586,
+     "mean_d3_m": 0.1991396425139662,
+     "rows": 1402,
+     "share_of_rows": 0.7017017017017017,
+     "signed_b_ms": -0.005635259903996662,
+     "state_slot0_mae_ms": 0.8795914058168333
+    },
+    "decelerating": {
+     "contribution_to_overall_mean_m": 0.024736019063008405,
+     "heading_error_mean_deg": 1.1600905282663219,
+     "interval_chord_mae_m": 0.09439573415221768,
+     "mean_abs_b_ms": 0.15467244957536755,
+     "mean_d3_m": 0.20507288833149706,
+     "rows": 241,
+     "share_of_rows": 0.12062062062062062,
+     "signed_b_ms": 0.04507793377355852,
+     "state_slot0_mae_ms": 0.8625326235759307
+    },
+    "departing": {
+     "contribution_to_overall_mean_m": 0.007744247151017616,
+     "heading_error_mean_deg": 4.549684870566888,
+     "interval_chord_mae_m": 0.19812512561980153,
+     "mean_abs_b_ms": 0.2626815967670431,
+     "mean_d3_m": 0.4991292196042967,
+     "rows": 31,
+     "share_of_rows": 0.015515515515515516,
+     "signed_b_ms": 0.20595647095563463,
+     "state_slot0_mae_ms": 0.8375697706505889
+    },
+    "stop_hold": {
+     "contribution_to_overall_mean_m": 0.024611343705747087,
+     "heading_error_mean_deg": 15.162777838056288,
+     "interval_chord_mae_m": 0.16855555656200572,
+     "mean_abs_b_ms": 0.33290117164655775,
+     "mean_d3_m": 0.4239091786558852,
+     "rows": 116,
+     "share_of_rows": 0.05805805805805806,
+     "signed_b_ms": 0.3288849442587917,
+     "state_slot0_mae_ms": 0.8302807229446255
+    },
+    "transition": {
+     "rows": 0,
+     "share_of_rows": 0.0
+    }
+   },
+   "residual": {
+    "d3_p50_m": 0.1752029480012448,
+    "d3_p90_m": 0.42460057698926973,
+    "d3_p99_m": 0.8281302182341799,
+    "d3_rms_m": 0.2838985802351879,
+    "point_l2_rms_m": 0.4645772550937472
+   },
+   "timesteps": [
+    {
+     "k": 1,
+     "mean_l2_m": 0.0859924563628151,
+     "t_s": 0.5,
+     "weight": 0.3055555555555556,
+     "weighted_contribution_m": 0.02627547277752684
+    },
+    {
+     "k": 2,
+     "mean_l2_m": 0.17453039553587485,
+     "t_s": 1.0,
+     "weight": 0.3055555555555556,
+     "weighted_contribution_m": 0.0533287319692951
+    },
+    {
+     "k": 3,
+     "mean_l2_m": 0.2695936156831332,
+     "t_s": 1.5,
+     "weight": 0.1388888888888889,
+     "weighted_contribution_m": 0.03744355773376851
+    },
+    {
+     "k": 4,
+     "mean_l2_m": 0.36595919159597173,
+     "t_s": 2.0,
+     "weight": 0.1388888888888889,
+     "weighted_contribution_m": 0.05082766549944052
+    },
+    {
+     "k": 5,
+     "mean_l2_m": 0.458383120566423,
+     "t_s": 2.5,
+     "weight": 0.05555555555555555,
+     "weighted_contribution_m": 0.025465728920356832
+    },
+    {
+     "k": 6,
+     "mean_l2_m": 0.5454555796807787,
+     "t_s": 3.0,
+     "weight": 0.05555555555555555,
+     "weighted_contribution_m": 0.03030308776004326
+    }
+   ]
+  },
+  "MR-LOWDETAIL": {
+   "direction": {
+    "gt_defined_coverage_intervals": 0.9427761094427761,
+    "heading_error_mean_deg": 0.7433211456516555,
+    "heading_error_rms_deg": 4.940740816739153,
+    "note": "coverage is the share of the 6 intervals per row where both the GT and the prediction move more than 1 cm, the only intervals where a direction is defined for both",
+    "valid_coverage_intervals": 0.9420253586920253
+   },
+   "official_d3": 0.1937629485290423,
+   "progress": {
+    "b_rms_ms": 0.16820476477089227,
+    "interval_chord_mae_m": 0.07609052209806319,
+    "interval_chord_rms_m": 0.10597231123487483,
+    "mean_abs_b_ms": 0.12354241465391755,
+    "signed_b_ms": 0.009570833433260427
+   },
+   "readout_heads": {
+    "state_slot0_mae_ms": 0.7871332458944226,
+    "state_slot0_rms_ms": 1.0612455078381966,
+    "state_slot0_signed_ms": -0.18046787380201232,
+    "target": "gt_first_interval_progress_speed",
+    "target_definition": "the GT FUTURE first-interval progress speed, ell_gt[:,0]/0.5 -- this is not the current vx and is not called one"
+   },
+   "regimes": {
+    "accelerating": {
+     "contribution_to_overall_mean_m": 0.0269338921828931,
+     "heading_error_mean_deg": 0.9745328368324846,
+     "interval_chord_mae_m": 0.10247171512996806,
+     "mean_abs_b_ms": 0.16395549741458962,
+     "mean_d3_m": 0.25872075279529044,
+     "rows": 208,
+     "share_of_rows": 0.1041041041041041,
+     "signed_b_ms": -0.050519140784937674,
+     "state_slot0_mae_ms": 0.6973150888314614
+    },
+    "constant": {
+     "contribution_to_overall_mean_m": 0.13198859099127774,
+     "heading_error_mean_deg": 0.5030061211091109,
+     "interval_chord_mae_m": 0.06999242055366921,
+     "mean_abs_b_ms": 0.11415456083713399,
+     "mean_d3_m": 0.18809786362380382,
+     "rows": 1402,
+     "share_of_rows": 0.7017017017017017,
+     "signed_b_ms": 0.009734560518687232,
+     "state_slot0_mae_ms": 0.8523764531214465
+    },
+    "decelerating": {
+     "contribution_to_overall_mean_m": 0.024389342458302928,
+     "heading_error_mean_deg": 1.1152062908942386,
+     "interval_chord_mae_m": 0.09256195851611201,
+     "mean_abs_b_ms": 0.14598821288795524,
+     "mean_d3_m": 0.20219878104435374,
+     "rows": 241,
+     "share_of_rows": 0.12062062062062062,
+     "signed_b_ms": 0.007378958820682708,
+     "state_slot0_mae_ms": 0.7037531003912455
+    },
+    "departing": {
+     "contribution_to_overall_mean_m": 0.005200872760817507,
+     "heading_error_mean_deg": 4.460350782617446,
+     "interval_chord_mae_m": 0.14921212079531435,
+     "mean_abs_b_ms": 0.2086445207717411,
+     "mean_d3_m": 0.33520463793914124,
+     "rows": 31,
+     "share_of_rows": 0.015515515515515516,
+     "signed_b_ms": 0.1249561924537814,
+     "state_slot0_mae_ms": 0.5221903668786962
+    },
+    "stop_hold": {
+     "contribution_to_overall_mean_m": 0.0052502501357509805,
+     "heading_error_mean_deg": 14.775694684769059,
+     "interval_chord_mae_m": 0.04872728484150797,
+     "mean_abs_b_ms": 0.09516523510956537,
+     "mean_d3_m": 0.0904310325106074,
+     "rows": 116,
+     "share_of_rows": 0.05805805805805806,
+     "signed_b_ms": 0.08905759994715622,
+     "state_slot0_mae_ms": 0.40367673255443526
+    },
+    "transition": {
+     "rows": 0,
+     "share_of_rows": 0.0
+    }
+   },
+   "residual": {
+    "d3_p50_m": 0.15455413119966172,
+    "d3_p90_m": 0.3621533269633451,
+    "d3_p99_m": 0.6964980556129325,
+    "d3_rms_m": 0.23716582466950611,
+    "point_l2_rms_m": 0.3965176625231165
+   },
+   "timesteps": [
+    {
+     "k": 1,
+     "mean_l2_m": 0.07389446548864623,
+     "t_s": 0.5,
+     "weight": 0.3055555555555556,
+     "weighted_contribution_m": 0.022578864454864126
+    },
+    {
+     "k": 2,
+     "mean_l2_m": 0.1494297368715332,
+     "t_s": 1.0,
+     "weight": 0.3055555555555556,
+     "weighted_contribution_m": 0.04565908626630181
+    },
+    {
+     "k": 3,
+     "mean_l2_m": 0.23109077365971853,
+     "t_s": 1.5,
+     "weight": 0.1388888888888889,
+     "weighted_contribution_m": 0.032095940786072016
+    },
+    {
+     "k": 4,
+     "mean_l2_m": 0.3175379368806368,
+     "t_s": 2.0,
+     "weight": 0.1388888888888889,
+     "weighted_contribution_m": 0.04410249123342178
+    },
+    {
+     "k": 5,
+     "mean_l2_m": 0.4028260582839753,
+     "t_s": 2.5,
+     "weight": 0.05555555555555555,
+     "weighted_contribution_m": 0.022379225460220847
+    },
+    {
+     "k": 6,
+     "mean_l2_m": 0.48505212590691044,
+     "t_s": 3.0,
+     "weight": 0.05555555555555555,
+     "weighted_contribution_m": 0.02694734032816169
+    }
+   ]
+  },
+  "MR-NATIVE": {
+   "direction": {
+    "gt_defined_coverage_intervals": 0.9427761094427761,
+    "heading_error_mean_deg": 0.7056877665689644,
+    "heading_error_rms_deg": 4.781323476778456,
+    "note": "coverage is the share of the 6 intervals per row where both the GT and the prediction move more than 1 cm, the only intervals where a direction is defined for both",
+    "valid_coverage_intervals": 0.9420253586920253
+   },
+   "official_d3": 0.19189158301429385,
+   "progress": {
+    "b_rms_ms": 0.16952770589764946,
+    "interval_chord_mae_m": 0.07572529526043228,
+    "interval_chord_rms_m": 0.10669322398550667,
+    "mean_abs_b_ms": 0.12276414888479702,
+    "signed_b_ms": 0.008748511923336498
+   },
+   "readout_heads": {
+    "state_slot0_mae_ms": 0.5699422223296542,
+    "state_slot0_rms_ms": 0.7860841090088361,
+    "state_slot0_signed_ms": -0.14748129877852398,
+    "target": "gt_first_interval_progress_speed",
+    "target_definition": "the GT FUTURE first-interval progress speed, ell_gt[:,0]/0.5 -- this is not the current vx and is not called one"
+   },
+   "regimes": {
+    "accelerating": {
+     "contribution_to_overall_mean_m": 0.025650730433024353,
+     "heading_error_mean_deg": 0.8352962502729516,
+     "interval_chord_mae_m": 0.10188141088391231,
+     "mean_abs_b_ms": 0.1611255535140603,
+     "mean_d3_m": 0.24639499714030125,
+     "rows": 208,
+     "share_of_rows": 0.1041041041041041,
+     "signed_b_ms": -0.04125219218119655,
+     "state_slot0_mae_ms": 0.4700577792066794
+    },
+    "constant": {
+     "contribution_to_overall_mean_m": 0.1312666398168475,
+     "heading_error_mean_deg": 0.4888802370192749,
+     "interval_chord_mae_m": 0.06953337781959774,
+     "mean_abs_b_ms": 0.1127079501463559,
+     "mean_d3_m": 0.18706900595867426,
+     "rows": 1402,
+     "share_of_rows": 0.7017017017017017,
+     "signed_b_ms": 0.007497000090040318,
+     "state_slot0_mae_ms": 0.626665519154531
+    },
+    "decelerating": {
+     "contribution_to_overall_mean_m": 0.02483557030982978,
+     "heading_error_mean_deg": 1.0466302221890373,
+     "interval_chord_mae_m": 0.09369307988008967,
+     "mean_abs_b_ms": 0.14763197698993288,
+     "mean_d3_m": 0.2058982136059747,
+     "rows": 241,
+     "share_of_rows": 0.12062062062062062,
+     "signed_b_ms": 0.001980561297147519,
+     "state_slot0_mae_ms": 0.4503420230263991
+    },
+    "departing": {
+     "contribution_to_overall_mean_m": 0.005497222340088658,
+     "heading_error_mean_deg": 4.266809771836189,
+     "interval_chord_mae_m": 0.14931005035303488,
+     "mean_abs_b_ms": 0.24984249999999864,
+     "mean_d3_m": 0.35430484630635933,
+     "rows": 31,
+     "share_of_rows": 0.015515515515515516,
+     "signed_b_ms": 0.17323440551161798,
+     "state_slot0_mae_ms": 0.2625621247265841
+    },
+    "stop_hold": {
+     "contribution_to_overall_mean_m": 0.004641420114503567,
+     "heading_error_mean_deg": 15.395252601940356,
+     "interval_chord_mae_m": 0.046666956477312185,
+     "mean_abs_b_ms": 0.08989383000978612,
+     "mean_d3_m": 0.0799444602480873,
+     "rows": 116,
+     "share_of_rows": 0.05805805805805806,
+     "signed_b_ms": 0.08363454161039628,
+     "state_slot0_mae_ms": 0.3941002661131122
+    },
+    "transition": {
+     "rows": 0,
+     "share_of_rows": 0.0
+    }
+   },
+   "residual": {
+    "d3_p50_m": 0.15810012117691238,
+    "d3_p90_m": 0.36398818611291694,
+    "d3_p99_m": 0.7025097271277422,
+    "d3_rms_m": 0.23538467632342314,
+    "point_l2_rms_m": 0.39124240333422033
+   },
+   "timesteps": [
+    {
+     "k": 1,
+     "mean_l2_m": 0.07374999615514703,
+     "t_s": 0.5,
+     "weight": 0.3055555555555556,
+     "weighted_contribution_m": 0.022534721047406038
+    },
+    {
+     "k": 2,
+     "mean_l2_m": 0.14859742583509608,
+     "t_s": 1.0,
+     "weight": 0.3055555555555556,
+     "weighted_contribution_m": 0.04540476900516825
+    },
+    {
+     "k": 3,
+     "mean_l2_m": 0.22944597784143328,
+     "t_s": 1.5,
+     "weight": 0.1388888888888889,
+     "weighted_contribution_m": 0.03186749692242129
+    },
+    {
+     "k": 4,
+     "mean_l2_m": 0.31410312909754695,
+     "t_s": 2.0,
+     "weight": 0.1388888888888889,
+     "weighted_contribution_m": 0.04362543459688152
+    },
+    {
+     "k": 5,
+     "mean_l2_m": 0.39672624103339693,
+     "t_s": 2.5,
+     "weight": 0.05555555555555555,
+     "weighted_contribution_m": 0.022040346724077606
+    },
+    {
+     "k": 6,
+     "mean_l2_m": 0.4755386649301047,
+     "t_s": 3.0,
+     "weight": 0.05555555555555555,
+     "weighted_contribution_m": 0.02641881471833915
+    }
+   ]
+  }
+ },
+ "same_rows_and_gt_for_every_run": true,
+ "schema_version": 1,
+ "timestep_deltas_vs_LEN": {
+  "MR-LOWDETAIL": [
+   {
+    "mean_l2_delta_m": -0.012097990874168879,
+    "t_s": 0.5,
+    "weighted_contribution_delta_m": -0.003696608322662713
+   },
+   {
+    "mean_l2_delta_m": -0.025100658664341663,
+    "t_s": 1.0,
+    "weighted_contribution_delta_m": -0.007669645702993291
+   },
+   {
+    "mean_l2_delta_m": -0.038502842023414696,
+    "t_s": 1.5,
+    "weighted_contribution_delta_m": -0.00534761694769649
+   },
+   {
+    "mean_l2_delta_m": -0.04842125471533493,
+    "t_s": 2.0,
+    "weighted_contribution_delta_m": -0.006725174266018735
+   },
+   {
+    "mean_l2_delta_m": -0.05555706228244772,
+    "t_s": 2.5,
+    "weighted_contribution_delta_m": -0.0030865034601359857
+   },
+   {
+    "mean_l2_delta_m": -0.0604034537738683,
+    "t_s": 3.0,
+    "weighted_contribution_delta_m": -0.0033557474318815714
+   }
+  ],
+  "MR-NATIVE": [
+   {
+    "mean_l2_delta_m": -0.012242460207668074,
+    "t_s": 0.5,
+    "weighted_contribution_delta_m": -0.003740751730120801
+   },
+   {
+    "mean_l2_delta_m": -0.02593296970077877,
+    "t_s": 1.0,
+    "weighted_contribution_delta_m": -0.007923962964126847
+   },
+   {
+    "mean_l2_delta_m": -0.040147637841699946,
+    "t_s": 1.5,
+    "weighted_contribution_delta_m": -0.005576060811347219
+   },
+   {
+    "mean_l2_delta_m": -0.05185606249842478,
+    "t_s": 2.0,
+    "weighted_contribution_delta_m": -0.007202230902558997
+   },
+   {
+    "mean_l2_delta_m": -0.061656879533026065,
+    "t_s": 2.5,
+    "weighted_contribution_delta_m": -0.0034253821962792266
+   },
+   {
+    "mean_l2_delta_m": -0.06991691475067402,
+    "t_s": 3.0,
+    "weighted_contribution_delta_m": -0.0038842730417041095
+   }
+  ]
+ },
+ "train_probe": {
+  "official_d3": {
+   "LEN": 0.08457140893045734,
+   "MR-LOWDETAIL": 0.09177540924025275,
+   "MR-NATIVE": 0.08969007585122346
+  },
+  "scope": "the fixed T0 probe only (3,456 rows of the EXISTING train split). It is not the whole expanded train pool, so a change here is evidence about T0 and is not called a train-wide improvement."
+ },
+ "tune_b1": {
+  "LEN": 0.22364424924416346,
+  "MR-LOWDETAIL": 0.19376295407782332,
+  "MR-NATIVE": 0.1918915609787859
+ }
+}

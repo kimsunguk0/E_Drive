@@ -40,11 +40,18 @@ def discover(root: Path):
 
 
 def predict(model, device, precision, clip_dir):
-    prepared = adapter.prepare_clip_inputs(clip_dir)
+    prepared = (mr_deploy.prepare_mr_clip_inputs(clip_dir, detail=MR_DETAIL[0])
+                if MR_DETAIL[0] else adapter.prepare_clip_inputs(clip_dir))
     inputs = {k: v.to(device) for k, v in prepared.inputs.items()}
     with torch.no_grad(), trainer.autocast(device, precision):
         plan = model(**inputs)["plan_abs"]
     return plan.float().cpu().numpy()[0], prepared.metadata
+
+
+import matching_resolution as mr
+import mr_deploy
+
+MR_DETAIL = [None]
 
 
 def main() -> None:
@@ -56,11 +63,17 @@ def main() -> None:
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--precision", choices=["bf16", "fp32"], default="bf16")
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--mr-detail", choices=["native", "lowdetail"],
+                        help="build with the matching-resolution graph")
     args = parser.parse_args()
 
     payload = torch.load(args.init, map_location="cpu", weights_only=False)
     config = MotionDriveV2Config(**payload["manifest"]["model_config"])
     model = MotionDriveV2(config)
+    MR_DETAIL[0] = args.mr_detail
+    if args.mr_detail:
+        mr.rebuild_correlation_fuse(model, mr.NEW_RADIUS)
+        mr.install(model, args.mr_detail)
     model.load_state_dict(payload["model"], strict=True)
     device = torch.device(f"cuda:{args.gpu}")
     model.to(device).eval()

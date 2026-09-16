@@ -41,17 +41,23 @@ INIT = ROOT / "work_dirs/md_r0_reset_20260914/r0_init_tplus.pth"
 REGISTRY = ROOT / "reports/md_r0_reset_20260914/baseline_registry.json"
 
 ARMS = ("E1-T203", "E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN",
-        "MR-NATIVE", "MR-LOWDETAIL")
+        "MR-NATIVE", "MR-LOWDETAIL", "MR-W64")
 EXPANDED_ARMS = ("E1-EXP", "E1-EXP-LONG", "E1-EXP-LEN",
-                 "MR-NATIVE", "MR-LOWDETAIL")
+                 "MR-NATIVE", "MR-LOWDETAIL", "MR-W64")
 # The matching-resolution pair: the motion branch matches on a 768x432 canvas at
 # radius 4, which keeps the original search reach in original-image pixels while
 # quantising it four times more finely. The two arms differ ONLY in whether the
 # canvas kept its native detail or went through a 384x216 bottleneck first.
-MR_DETAIL = {"MR-NATIVE": "native", "MR-LOWDETAIL": "lowdetail"}
+MR_DETAIL = {"MR-NATIVE": "native", "MR-LOWDETAIL": "lowdetail",
+             "MR-W64": "native"}
+# MR-W64 keeps the MR-NATIVE graph exactly -- native 768x432 canvas, radius 4,
+# 81 offsets at both levels, unchanged pooling, unchanged 128D planner
+# interface -- and widens the matching descriptor alone.
+MR_DESCRIPTOR = {"MR-W64": 64}
 # Interval-length auxiliary weight, added beside the unchanged D3 loss.
 # 0.25 is a starting value on a mean L1 in metres, not a tuned or guaranteed one.
-LENGTH_LAMBDA = {"E1-EXP-LEN": 0.25, "MR-NATIVE": 0.25, "MR-LOWDETAIL": 0.25}
+LENGTH_LAMBDA = {"E1-EXP-LEN": 0.25, "MR-NATIVE": 0.25, "MR-LOWDETAIL": 0.25,
+                 "MR-W64": 0.25}
 N0_ROWS = 54810                                   # existing train split
 TPLUS_ROWS = 83700                                # expanded train split
 BATCH = 16
@@ -66,6 +72,7 @@ ARM_UPDATES = {
     "E1-EXP-LEN": math.ceil(6 * N0_ROWS / BATCH),       # 20554, matching E1-EXP exactly
     "MR-NATIVE": math.ceil(6 * N0_ROWS / BATCH),        # 20554
     "MR-LOWDETAIL": math.ceil(6 * N0_ROWS / BATCH),     # 20554
+    "MR-W64": math.ceil(6 * N0_ROWS / BATCH),           # 20554, matching MR-NATIVE
 }
 # Both MR arms carry the length auxiliary, so the pair differs in detail alone.
 LENGTH_LAMBDA_MR = 0.25
@@ -167,6 +174,26 @@ def build_experiment(arm, seed, scenes, training, evaluation):
             "reinitialised_module": "motion_encoder.correlation_fuse.0 (178 -> 290 in-channels)",
             "step_zero_parity_with_len": False,
             "smoke": "reports/md_exp_diagnosis_20260915/mr_smoke.json",
+            "correlation_channels": MR_DESCRIPTOR.get(arm, 32),
+            "descriptor_widening": ({
+                "control": "MR-NATIVE (correlation_channels 32)",
+                "changed": "correlation_channels 32 -> %d" % MR_DESCRIPTOR[arm],
+                "unchanged": ("canvas 768x432, radius 4, 81 offsets at both levels, "
+                              "post-correlation pooling to 12x16, temporal layers, the "
+                              "128D planner interface, the scene branch and goal path, "
+                              "the state/history heads and their GT definitions, Tplus, "
+                              "the loss set with length lambda 0.25, augmentation and BN"),
+                "reinitialised": ("motion_encoder.projections.0/1 and "
+                                  "motion_encoder.correlation_fuse.0 (290 -> 418 in-channels)"),
+                "initialisation": "fresh nn.Conv2d default; no reshape of the 32-channel "
+                                  "tensors and no zero-padded channels",
+                "correlation_definition": "cosine, unchanged; bins stay bounded in [-1, 1]",
+                "init_magnitude_note": ("for uncorrelated features the typical bin magnitude "
+                                        "falls as 1/sqrt(C); measured and recorded, not "
+                                        "compensated, so the definition stays the one MR used"),
+                "step_zero_parity_with_mr_native": False,
+                "optimizer_group": "head (5e-5), the same group the 32-channel tensors were in",
+            } if arm in MR_DESCRIPTOR else None),
         } if arm in MR_DETAIL else None),
         "checkpoint_selection": "lowest V0 official_d3 among planned eval steps; ties go to the earlier step",
         "provided_status_used": False,
@@ -322,12 +349,18 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
         def load_initial(model, common, declared=None):
             """R0 for everything except the resized fuse convolution."""
             report = mr.rebuild_correlation_fuse(model, mr.NEW_RADIUS)
+            width = MR_DESCRIPTOR.get(arm)
+            widening = mr.rebuild_descriptor(model, width) if width else None
             if originals["forward_parts"] is None:
                 originals["forward_parts"] = type(model).forward_parts
                 originals["forward"] = type(model).forward
             mr.install(model, detail)
             state = dict(common["model"])
-            dropped = [k for k in state if k.startswith("motion_encoder.correlation_fuse.0.")]
+            rebuilt_prefixes = ["motion_encoder.correlation_fuse.0."]
+            if widening is not None:
+                rebuilt_prefixes.extend(p + "." for p in widening["projections"])
+            dropped = [k for k in state
+                       if any(k.startswith(p) for p in rebuilt_prefixes)]
             for key in dropped:
                 state.pop(key)
             incompatible = model.load_state_dict(state, strict=False)
@@ -359,6 +392,7 @@ def patched_runtime(arm, seed, scenes, experiment, run_dir):
                     "reinitialised": expected,
                 }
             return {"mr_load": {"reinitialised": expected, "rebuild": report,
+                                "widening": widening,
                                 "strict_for_every_other_tensor": True,
                                 "measured_step_zero_sha256": measured}}
 
@@ -431,7 +465,8 @@ def main() -> None:
     run_dir = Path(args.run_dir).resolve()
     # The trainer refuses a non-empty run directory, so the protocol copy is
     # written next to the reports first and into the run directory afterwards.
-    plan_path = ROOT / "reports/md_r0_reset_20260914" / f"experiment_{args.arm}.json"
+    plan_path = (ROOT / "reports/md_r0_reset_20260914"
+                 / f"experiment_{args.arm}-s{args.seed}.json")
     plan_path.write_text(json.dumps(experiment, indent=1, sort_keys=True) + "\n")
     with patched_runtime(args.arm, args.seed, scenes, experiment, run_dir):
         trainer.run_training(command, experiment=experiment)

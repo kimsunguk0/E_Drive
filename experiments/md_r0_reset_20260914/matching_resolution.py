@@ -119,6 +119,49 @@ def rebuild_correlation_fuse(model, radius):
             "parameters": int(sum(p.numel() for p in new.parameters()))}
 
 
+def rebuild_descriptor(model, correlation_channels):
+    """Widen the matching descriptor alone; the graph around it is untouched.
+
+    The two 1x1 projections and the first fuse convolution are built fresh at
+    the new width. The existing 32-channel tensors are NOT reshaped or padded
+    into the wider ones: a reshape would assign meaning to an arbitrary
+    regrouping of channels, and zero-padding the extra input channels on both
+    sides of the correlation would make their product identically zero, whose
+    gradient with respect to either side is also zero, so the new capacity
+    could never start learning. Fresh initialisation avoids both.
+
+    The correlation itself stays cosine (both sides L2-normalised over the
+    channel axis, then a dot product), exactly as before, so each bin remains
+    bounded in [-1, 1] and the definition does not change with width. The
+    typical magnitude of a bin still falls as 1/sqrt(C) for uncorrelated
+    features, which is measured and recorded rather than compensated.
+    """
+    encoder = model.motion_encoder
+    config = encoder.config
+    previous = config.correlation_channels
+    if correlation_channels == previous:
+        return None
+    channels = config.channels
+    n_levels = len(encoder.projections)
+    encoder.projections = nn.ModuleList(
+        [nn.Conv2d(channels, correlation_channels, 1, bias=False)
+         for _ in range(n_levels)])
+    object.__setattr__(config, "correlation_channels", correlation_channels)
+    bins = (2 * config.correlation_radius + 1) ** 2
+    old_fuse = encoder.correlation_fuse[0]
+    new_fuse = nn.Conv2d(2 * (bins + 2 * correlation_channels), channels, 3, padding=1)
+    encoder.correlation_fuse[0] = new_fuse
+    return {"old_correlation_channels": previous,
+            "new_correlation_channels": correlation_channels,
+            "projections": [f"motion_encoder.projections.{i}" for i in range(n_levels)],
+            "fuse_in_channels": [old_fuse.in_channels, new_fuse.in_channels],
+            "bins_unchanged": bins,
+            "initialisation": "fresh nn.Conv2d default; no reshape, no zero-padding",
+            "correlation_definition": "cosine (unchanged)",
+            "parameters": int(sum(p.numel() for p in encoder.projections.parameters())
+                              + sum(p.numel() for p in new_fuse.parameters()))}
+
+
 def install(model, detail):
     """Point the motion branch at the canvas tensors; leave the scene branch alone."""
     original_forward_parts = type(model).forward_parts

@@ -1,0 +1,92 @@
+{
+ "holdout": {
+  "H_opened": false,
+  "rule": "a candidate change must be logged before H is opened"
+ },
+ "open_decisions": {
+  "native_vs_lowdetail": "unresolved by design; the primary CI includes zero",
+  "promote_dev_best_to_deploy": "blocked: needs a seed replication, a fresh 4090 measurement, submission rebuild and raw-B1 parity on the MR graph"
+ },
+ "purpose": "freeze the MR round's candidates so later work cannot silently replace them; registration records what was run, not a claim that it generalises",
+ "roles": {
+  "DEPLOY_FALLBACK": {
+   "caveat": null,
+   "checkpoint_exists": true,
+   "checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP/ckpt_step20554.pth",
+   "checkpoint_sha256": "019faf708f006895aaad7ae57029e625daad091bcfbfc4ceb74d47f9daad245f",
+   "experiment_record": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/experiment_E1-EXP.json",
+   "experiment_record_sha256": "890d08cfeacea703ee8ad485a8bec60899c112568a948adc5bd52fce5bececfd",
+   "immutable": true,
+   "run": "E1-EXP",
+   "step": 20554,
+   "v0_official_d3": 0.225592,
+   "why": "unchanged: still the only model with a complete deployment set (submission build, raw-B1 parity, negative controls, 4090 timing)"
+  },
+  "DEV_BEST": {
+   "caveat": "a point-estimate choice only: MR-NATIVE minus MR-LOWDETAIL is -0.001871 with a paired CI of [-0.006395, +0.000975], which includes zero, so superiority over MR-LOWDETAIL is NOT established",
+   "checkpoint_exists": true,
+   "checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s0/ckpt_step20554.pth",
+   "checkpoint_sha256": "2691327acde05007e819a3b3e68aa3f7f429a65c7ed4856a7f78e4b48226b544",
+   "experiment_record": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/experiment_MR-NATIVE-s0.json",
+   "experiment_record_sha256": "7af81ce91b50565c020942fede7824ae158da1c98d3d149e85ac7caaeb77f7d2",
+   "immutable": true,
+   "run": "MR-NATIVE-s0",
+   "step": 20554,
+   "v0_official_d3": 0.191892,
+   "why": "lowest observed V0 among development candidates"
+  },
+  "LEN_CONTROL": {
+   "caveat": null,
+   "checkpoint_exists": true,
+   "checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/E1-EXP-LEN-s0/ckpt_step20554.pth",
+   "checkpoint_sha256": "4b22585432a099fec5e032e706794dc978c8f876267fe2e8b35402806e5c84f4",
+   "experiment_record": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/experiment_E1-EXP-LEN-s0.json",
+   "experiment_record_sha256": "25109c13619d6928c54682d4c9bef044c2abdc424ac18a8a1f3d0a09ca15be0e",
+   "immutable": true,
+   "run": "E1-EXP-LEN-s0",
+   "step": 20554,
+   "v0_official_d3": 0.223644,
+   "why": "the control both MR arms were measured against; preserved unchanged"
+  },
+  "MR_REFERENCE": {
+   "caveat": "not automatically the cheaper deployment model: both MR arms run the same 768x432 canvas and the same radius-4 graph, and the lowdetail arm additionally pays a 768->384->768 resize",
+   "checkpoint_exists": true,
+   "checkpoint_path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-LOWDETAIL-s0/ckpt_step20554.pth",
+   "checkpoint_sha256": "e42468705b6e82d8b117a893baec0e43d92422806a84d10e755d4668f4028721",
+   "experiment_record": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/experiment_MR-LOWDETAIL-s0.json",
+   "experiment_record_sha256": "19213c9431a9ebe1ee5d1fa7172cc9af3b4fb9295cb3c410f8fe760213b1c747",
+   "immutable": true,
+   "run": "MR-LOWDETAIL-s0",
+   "step": 20554,
+   "v0_official_d3": 0.193763,
+   "why": "preserved so the detail contrast stays reproducible"
+  }
+ },
+ "schema_version": 1,
+ "timing_contract": {
+  "bf16_median_ms_across_clips": {
+   "max": 24.51707172393799,
+   "min": 24.27393627166748
+  },
+  "deployment_checks": {
+   "raw_b1_input_output_parity": "reports/md_r0_reset_20260914/eval/mr_raw_b1_fixture.json",
+   "submission_path": "smoke-built on 12 official test clips with --mr-detail native"
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "flops_cutoff_gflops": 7053.0,
+  "flops_headroom_x": 6.297750381822621,
+  "forwards_per_clip": 1,
+  "headroom_to_penalty_threshold_x": 4.078790531185743,
+  "inherits_previous_4090_measurement": false,
+  "measurement": "reports/md_r0_reset_20260914/rtx4090_mr_forward_cost.json",
+  "previous_measurement": "reports/md_r0_reset_20260914/rtx4090_forward_cost.json",
+  "profiler_gflops_total": 1119.923714404,
+  "reading": "the MR graph is about 1.48x slower than E1-EXP and uses about 1.43x the FLOPs, but both stay far inside their limits: at ~24.5 ms the time multiplier is exactly 1.0, and the FLOPs headroom falls from 9.02x to 6.30x without approaching the cutoff",
+  "reason": "the MR arms changed the motion branch graph: a 768x432 canvas with its own backbone pass and radius 4 at both levels, so the E1-EXP figure does not transfer to any MR checkpoint",
+  "score_time_term": "x(1 + (T_ms - 100)/200), so T <= 100 ms carries no penalty",
+  "slower_than_e1_exp_x": 1.484074179887503,
+  "status": "MEASURED",
+  "time_penalty_multiplier": 1.0
+ },
+ "verdict": "MATCHING_GRAPH_HELPS_DETAIL_UNPROVEN"
+}
