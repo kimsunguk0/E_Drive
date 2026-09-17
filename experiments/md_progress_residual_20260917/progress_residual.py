@@ -2,8 +2,10 @@
 
 The coefficient head receives image-derived visual/motion features and a
 stop-gradient encoding of the model's own base trajectory.  It never receives
-raw goal, dynamic pose, or provided ego status.  The final trajectory remains
-inside the neural forward.
+raw goal, dynamic pose, or provided ego status.  The optional A2 arm uses a
+causal status only to condition the shared pre-attention scene query; image
+features remain the attention values consumed by all scene tasks.  The final
+trajectory remains inside the neural forward.
 """
 from __future__ import annotations
 
@@ -24,10 +26,12 @@ sys.path.insert(0, str(BASE_DIR))
 
 from models.motiondrive_v2.model import MotionDriveV2
 from models.motiondrive_v2.motion_encoder import MotionEncoder
+from models.motiondrive_v2.shared_status_query import SharedCausalStatusQuery
 from motiondrive_v2_data import CAMERA_ORDER, MEAN, STD
 
 
 SIDE_HISTORY_KEY = "side_history_images"
+PROVIDED_STATUS_KEY = "provided_status5"
 SIDE_CAMERA_INDICES = (1, 2)  # front-right, front-left in the canonical order
 SIDE_OFFSETS = (1, 2, 5)
 SIDE_TIMES = (.1, .2, .5)
@@ -149,11 +153,13 @@ class ResidualMotionDriveV2(MotionDriveV2):
     """MR-NATIVE plus an optional two-camera raw temporal branch."""
 
     def __init__(self, config, *, coefficient_count=1, side_enabled=False,
-                 side_auxiliary=False, progress_denoise=False, cap=1.0):
+                 side_auxiliary=False, progress_denoise=False,
+                 shared_status_query=False, cap=1.0):
         super().__init__(config)
         self.side_enabled = bool(side_enabled)
         self.side_auxiliary = bool(side_auxiliary)
         self.progress_denoise = bool(progress_denoise)
+        self.shared_status_query_enabled = bool(shared_status_query)
         self.coefficient_count = int(coefficient_count)
         if self.side_auxiliary and not self.side_enabled:
             raise ValueError("side auxiliary supervision requires side inputs")
@@ -178,6 +184,19 @@ class ResidualMotionDriveV2(MotionDriveV2):
         self.progress_refiner = ProgressRefiner(
             self.config.channels, coefficient_count, cap, self.side_enabled,
             self.config.planner_heads)
+        self._shared_status_context = None
+        if self.shared_status_query_enabled:
+            self.shared_status_query_fusion = SharedCausalStatusQuery(
+                self.config.scene_attention_channels)
+
+            def condition_query(_module, _inputs, output):
+                status = self._shared_status_context
+                if status is None:
+                    raise RuntimeError("shared-status query context is missing")
+                return self.shared_status_query_fusion(output, status)
+
+            handle = self.scene_encoder.query_context.register_forward_hook(condition_query)
+            object.__setattr__(self, "_shared_status_query_hook_handle", handle)
 
     @staticmethod
     def _visual_tokens(current_p4):
@@ -267,10 +286,21 @@ class ResidualMotionDriveV2(MotionDriveV2):
 
     def forward(self, images, history_images, lidar2img, history_transforms,
                 time_offsets, goal_xy, motion_current=None, motion_history=None,
-                side_history_images=None):
-        parts = self.forward_parts(images, history_images, lidar2img,
-                                   history_transforms, time_offsets, goal_xy,
-                                   motion_current, motion_history, side_history_images)
+                side_history_images=None, provided_status5=None):
+        if self.shared_status_query_enabled:
+            if provided_status5 is None:
+                raise ValueError("shared-status query arm requires provided_status5")
+            if self._shared_status_context is not None:
+                raise RuntimeError("shared-status query arm does not permit reentrant forward")
+            self._shared_status_context = provided_status5
+        elif provided_status5 is not None:
+            raise ValueError("non-status arm received provided_status5")
+        try:
+            parts = self.forward_parts(images, history_images, lidar2img,
+                                       history_transforms, time_offsets, goal_xy,
+                                       motion_current, motion_history, side_history_images)
+        finally:
+            self._shared_status_context = None
         base_plan = self.plan_from_features(parts["scene_features"], parts["motion_features"],
                                             parts["state_hat"], parts["history_hat"])
         coefficient = self.progress_refiner(
@@ -342,6 +372,45 @@ class SideHistoryDataset(torch.utils.data.Dataset):
                 self._image(scene, camera, frame - offset, jitter)
                 for offset in SIDE_OFFSETS]))
         item[SIDE_HISTORY_KEY] = torch.stack(cameras)
+        return item
+
+
+class CausalStatusDataset(torch.utils.data.Dataset):
+    """Expose the cached causal pose fit under an explicit inference input key.
+
+    ``state_target`` is the historical cache name.  Its first five values are
+    computed only from poses at t-1.0s..t by ``motion_targets``.  Copying them
+    before augmentation makes their input role explicit and lets the standard
+    mirror transform both labels and provided status consistently.
+    """
+
+    def __init__(self, base):
+        self.base = base
+
+    def __len__(self):
+        return len(self.base)
+
+    def __getattr__(self, name):
+        if name == "base":
+            raise AttributeError(name)
+        return getattr(self.base, name)
+
+    def set_epoch(self, epoch):
+        return self.base.set_epoch(epoch)
+
+    def __getitem__(self, index):
+        item = self.base[index]
+        status = item.get("state_target")
+        valid = item.get("state_valid")
+        if not isinstance(status, torch.Tensor) or status.shape != (6,):
+            raise ValueError("causal status source must be state_target [6]")
+        if not isinstance(valid, torch.Tensor) or valid.shape != (6,) \
+                or not bool(valid[:5].all()):
+            raise ValueError("causal status source must have five valid fields")
+        status5 = status[:5].clone()
+        if not bool(torch.isfinite(status5).all()):
+            raise ValueError("causal provided status must be finite")
+        item[PROVIDED_STATUS_KEY] = status5
         return item
 
 

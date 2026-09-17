@@ -26,7 +26,8 @@ from motiondrive_v2_training import tensor_state_sha256
 from motiondrive_v2_training import (HISTORY_SCALE, STATE_SCALE, masked_mean,
                                      regression_loss, weighted_d3)
 import matching_resolution as mr
-from progress_residual import (ResidualMotionDriveV2, SIDE_HISTORY_KEY, SIDE_OFFSETS,
+from progress_residual import (CausalStatusDataset, PROVIDED_STATUS_KEY,
+                               ResidualMotionDriveV2, SIDE_HISTORY_KEY, SIDE_OFFSETS,
                                SideHistoryDataset, wrap_flip_item)
 
 
@@ -52,13 +53,22 @@ JOINT_EVAL_EVERY = math.ceil(.5 * TRAIN_ROWS / BATCH)
 CUDA_MEMORY_LIMIT_MIB = 170_000
 
 ARMS = {
-    "FRONT-S": {"side": False, "coefficients": 1, "side_aux": False, "denoise": False},
-    "SIDE-S": {"side": True, "coefficients": 1, "side_aux": False, "denoise": False},
-    "SIDE-VA": {"side": True, "coefficients": 2, "side_aux": False, "denoise": False},
-    "SIDE-S-AUX": {"side": True, "coefficients": 1, "side_aux": True, "denoise": False},
-    "SIDE-VA-AUX": {"side": True, "coefficients": 2, "side_aux": True, "denoise": False},
-    "SIDE-S-AUX-DN": {"side": True, "coefficients": 1, "side_aux": True, "denoise": True},
-    "SIDE-VA-AUX-DN": {"side": True, "coefficients": 2, "side_aux": True, "denoise": True},
+    "FRONT-S": {"side": False, "coefficients": 1, "side_aux": False, "denoise": False,
+                "status_query": False},
+    "SIDE-S": {"side": True, "coefficients": 1, "side_aux": False, "denoise": False,
+               "status_query": False},
+    "SIDE-VA": {"side": True, "coefficients": 2, "side_aux": False, "denoise": False,
+                "status_query": False},
+    "SIDE-S-AUX": {"side": True, "coefficients": 1, "side_aux": True, "denoise": False,
+                   "status_query": False},
+    "SIDE-VA-AUX": {"side": True, "coefficients": 2, "side_aux": True, "denoise": False,
+                    "status_query": False},
+    "SIDE-S-AUX-DN": {"side": True, "coefficients": 1, "side_aux": True, "denoise": True,
+                      "status_query": False},
+    "SIDE-VA-AUX-DN": {"side": True, "coefficients": 2, "side_aux": True, "denoise": True,
+                       "status_query": False},
+    "STATUS-A2-S": {"side": False, "coefficients": 1, "side_aux": False,
+                    "denoise": False, "status_query": True},
 }
 STAGES = {
     "warmup": {"steps": WARMUP_STEPS, "eval_every": WARMUP_STEPS,
@@ -93,8 +103,11 @@ def experiment(arm, stage, seed, initializer, train, tune):
         "arm": arm,
         "stage": stage,
         "seed": seed,
-        "question": ("does short side temporal observation improve a base-plan-conditioned "
-                     "neural progress correction under the official PREFIX loss?"),
+        "question": (("does causal status conditioning of the shared image-attention query "
+                      "improve a base-plan-conditioned scalar progress correction?")
+                     if spec["status_query"] else
+                     ("does short side temporal observation improve a base-plan-conditioned "
+                      "neural progress correction under the official PREFIX loss?")),
         "initializer": {
             "path": str(initializer), "checkpoint_sha256": sha256(initializer),
             "model_state_sha256": tensor_state_sha256(payload["model"]),
@@ -150,11 +163,25 @@ def experiment(arm, stage, seed, initializer, train, tune):
             "goal_dependency": "indirect through detached goal-conditioned base plan",
             "side_motion_dynamic_pose_input": False,
             "side_calibration": "current fixed lidar2img only",
+            "shared_status_query": spec["status_query"],
+            "provided_status_fields": (["vx", "vy", "ax", "ay", "yaw_rate"]
+                                       if spec["status_query"] else []),
+            "provided_status_source": (
+                "causal quadratic fit from pose samples t-1.0s through t; no future pose; "
+                "cached under state_target by the frozen supervision generator"
+                if spec["status_query"] else "none"),
+            "provided_status_route": (
+                "zero-initialized delta to pre-attention query context; image values remain "
+                "the scene raster source shared by occupancy, lane and planning"
+                if spec["status_query"] else "none"),
+            "provided_status_direct_planner_or_residual_input": False,
             "final_inside_neural_forward": True,
             "new_module_seed": NEW_MODULE_SEED,
-            "zero_initialised": ["progress_refiner.output",
-                                 "side_state_delta", "side_history_delta"] if spec["side"]
-                                else ["progress_refiner.output"],
+            "zero_initialised": ((["progress_refiner.output", "side_state_delta",
+                                    "side_history_delta"] if spec["side"]
+                                   else ["progress_refiner.output"])
+                                  + (["shared_status_query_fusion.status_mlp[-1]"]
+                                     if spec["status_query"] else [])),
         },
         "comparison_contract": {
             "same_initializer": True, "same_rows": True, "same_sample_seed": True,
@@ -164,7 +191,7 @@ def experiment(arm, stage, seed, initializer, train, tune):
             "side_aux_scalar_vs_two_coefficient": ["SIDE-S-AUX", "SIDE-VA-AUX"],
             "side_denoise_scalar_vs_two_coefficient": ["SIDE-S-AUX-DN", "SIDE-VA-AUX-DN"],
         },
-        "provided_status_used": False,
+        "provided_status_used": spec["status_query"],
         "checkpoint_selection": "report every fixed endpoint; primary comparison at common terminal",
     }
 
@@ -288,6 +315,8 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
         split = kwargs.get("split")
         base_dataset = originals["dataset"](**kwargs)
         wrapped = mr.MotionCanvasDataset(base_dataset, "native")
+        if spec["status_query"]:
+            wrapped = CausalStatusDataset(wrapped)
         if spec["side"]:
             wrapped = SideHistoryDataset(wrapped)
         if split == "train":
@@ -302,12 +331,16 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
         inputs = mr.model_inputs_with_canvas(originals["train_inputs"], batch, **kwargs)
         if spec["side"]:
             inputs[SIDE_HISTORY_KEY] = batch[SIDE_HISTORY_KEY]
+        if spec["status_query"]:
+            inputs[PROVIDED_STATUS_KEY] = batch[PROVIDED_STATUS_KEY]
         return inputs
 
     def eval_inputs(batch, **kwargs):
         inputs = mr.model_inputs_with_canvas(originals["eval_inputs"], batch, **kwargs)
         if spec["side"]:
             inputs[SIDE_HISTORY_KEY] = batch[SIDE_HISTORY_KEY]
+        if spec["status_query"]:
+            inputs[PROVIDED_STATUS_KEY] = batch[PROVIDED_STATUS_KEY]
         return inputs
 
     def model_factory(config=None):
@@ -318,10 +351,12 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
             built = ResidualMotionDriveV2(
                 config, coefficient_count=spec["coefficients"],
                 side_enabled=spec["side"], side_auxiliary=spec["side_aux"],
-                progress_denoise=spec["denoise"], cap=CAP)
+                progress_denoise=spec["denoise"],
+                shared_status_query=spec["status_query"], cap=CAP)
         prefixes = ("progress_refiner.", "side_motion_encoder.", "side_calibration.",
                     "side_state_delta.", "side_history_delta.",
-                    "side_state_aux.", "side_history_aux.")
+                    "side_state_aux.", "side_history_aux.",
+                    "shared_status_query_fusion.")
         state["model"] = built
         state["new_parameter_ids"] = {
             id(parameter) for name, parameter in built.named_parameters()
@@ -348,6 +383,10 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
                 or bool(model.progress_refiner.output.bias.count_nonzero()):
             if stage == "warmup":
                 raise ValueError("new progress output must begin exactly at zero")
+        if spec["status_query"] and stage == "warmup":
+            final = model.shared_status_query_fusion.status_mlp[-1]
+            if bool(final.weight.count_nonzero()) or bool(final.bias.count_nonzero()):
+                raise ValueError("shared-status query output must begin exactly at zero")
         measured = tensor_state_sha256(model.state_dict())
         declared["expected_initial_model_state_sha256"] = measured
         declared["initial_load"] = {
@@ -380,7 +419,7 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
     def validate_protocol(value):
         if value is not declared or value.get("name") != "md_progress_residual_20260917" \
                 or value.get("arm") != arm or value.get("stage") != stage \
-                or value.get("provided_status_used") is not False:
+                or value.get("provided_status_used") is not spec["status_query"]:
             raise ValueError("progress residual protocol mismatch")
         return None
 
@@ -466,7 +505,8 @@ def run_stage(arm, stage, seed, initializer, run_dir, dry_run=False):
                "initializer": str(initializer), "run_dir": str(run_dir),
                "train_rows": len(train), "tune_rows": len(tune),
                "steps": STAGES[stage]["steps"], "microbatch": MICROBATCH,
-               "side": ARMS[arm]["side"], "coefficients": ARMS[arm]["coefficients"]}
+               "side": ARMS[arm]["side"], "coefficients": ARMS[arm]["coefficients"],
+               "status_query": ARMS[arm]["status_query"]}
     print("PLAN " + json.dumps(summary, sort_keys=True), flush=True)
     if dry_run:
         return
@@ -488,9 +528,13 @@ def main():
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--root-run-dir", required=True)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--warmup-only", action="store_true",
+                        help="run the fixed 1000-step screen and stop before joint training")
     parser.add_argument("--joint-only", action="store_true",
                         help="resume the fixed joint stage from a completed warmup/last.pth")
     args = parser.parse_args()
+    if args.warmup_only and args.joint_only:
+        parser.error("--warmup-only and --joint-only are mutually exclusive")
     root = Path(args.root_run_dir).resolve()
     warmup = root / "warmup"
     joint = root / "joint"
@@ -505,6 +549,12 @@ def main():
                     "step": warmup_manifest.get("step"),
                 }, sort_keys=True), flush=True)
                 return
+        if args.warmup_only:
+            print("STOP " + json.dumps({
+                "arm": args.arm, "stage": "warmup",
+                "reason": "warmup-only gate",
+            }, sort_keys=True), flush=True)
+            return
     if args.dry_run and not args.joint_only:
         print("PLAN " + json.dumps({
             "arm": args.arm, "stage": "joint", "seed": args.seed,
@@ -512,6 +562,7 @@ def main():
             "steps": JOINT_STEPS, "microbatch": MICROBATCH,
             "side": ARMS[args.arm]["side"],
             "coefficients": ARMS[args.arm]["coefficients"],
+            "status_query": ARMS[args.arm]["status_query"],
         }, sort_keys=True), flush=True)
         return
     if not (warmup / "last.pth").exists():

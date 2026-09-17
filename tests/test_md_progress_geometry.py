@@ -1,6 +1,9 @@
 import torch
 
 from experiments.md_progress_residual_20260917.progress_residual import (
+    CausalStatusDataset,
+    PROVIDED_STATUS_KEY,
+    SharedCausalStatusQuery,
     apply_progress_correction,
     stable_predicted_directions,
 )
@@ -52,6 +55,38 @@ def test_short_segments_use_predicted_neighbour_only():
     unit = torch.tensor([2 ** -.5, 2 ** -.5])
     assert torch.allclose(directions[0], unit.expand(6, 2), atol=1e-6)
     assert (lengths[0, [0, 1, 4]] == 0).all()
+
+
+def test_shared_status_query_is_exact_zero_init_then_status_sensitive():
+    fusion = SharedCausalStatusQuery(32)
+    query = torch.randn(2, 7, 32)
+    status = torch.randn(2, 5)
+    initial = fusion(query, status)
+    assert torch.equal(initial, query)
+    with torch.no_grad():
+        fusion.status_mlp[-1].weight[0, 0] = 1.
+        fusion.status_mlp[0].weight[0].fill_(.25)
+        fusion.status_mlp[0].bias[0] = .5
+    changed = fusion(query, status)
+    zeroed = fusion(query, torch.zeros_like(status))
+    assert not torch.equal(changed, zeroed)
+
+
+def test_causal_status_dataset_exposes_a_separate_valid_input():
+    class Base(torch.utils.data.Dataset):
+        def __len__(self):
+            return 1
+
+        def __getitem__(self, _index):
+            return {"state_target": torch.arange(6, dtype=torch.float32),
+                    "state_valid": torch.ones(6, dtype=torch.bool)}
+
+        def set_epoch(self, epoch):
+            self.epoch = epoch
+
+    item = CausalStatusDataset(Base())[0]
+    assert torch.equal(item[PROVIDED_STATUS_KEY], item["state_target"][:5])
+    assert item[PROVIDED_STATUS_KEY].data_ptr() != item["state_target"].data_ptr()
 
 
 def test_side_auxiliary_loss_reaches_state_and_history_predictions():
