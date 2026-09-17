@@ -1,0 +1,98 @@
+{
+ "arm": "A3-DIRECT",
+ "comparison_contract": {
+  "same_full_update_budget": true,
+  "same_initializer_as_registered_mr": true,
+  "same_seed_and_sample_order_across_arms": true,
+  "same_train310_tune37_split": true
+ },
+ "expected_initial_model_state_sha256": "set_by_strict_loader_before_optimizer",
+ "expected_optimizer_groups": [
+  {
+   "base_lr": 5e-06,
+   "name": "backbone"
+  },
+  {
+   "base_lr": 5e-05,
+   "name": "head"
+  }
+ ],
+ "information_route": {
+  "fields": [
+   "vx",
+   "vy",
+   "ax",
+   "ay",
+   "yaw_rate"
+  ],
+  "progress_head_inputs": [],
+  "progress_head_raw_goal_pose_status_inputs": false,
+  "raw_status_direct_planner_input": false,
+  "shared_consumers": [
+   "occupancy",
+   "lane",
+   "image-state/history",
+   "planning"
+  ],
+  "shared_multiplicative_image_feature_conditioning": true,
+  "shared_query": true,
+  "source": "causal quadratic pose fit using t-1.0s through t; no future pose"
+ },
+ "initializer": {
+  "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+  "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+  "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+  "source": "q10_flip50 initializer used by registered MR"
+ },
+ "name": "md_shared_dynamics_factorized_20260917",
+ "planner": {
+  "candidate_bank_or_selector": false,
+  "coefficient_count": 0,
+  "coefficient_semantics": [],
+  "composition": "ordinary direct XY",
+  "direction_source": "direct XY output",
+  "factorized": false,
+  "proposal_length_gradient": "ordinary direct XY"
+ },
+ "provided_status_used": true,
+ "question": "can causal status improve the shared image representation when it is optimized with the registered MR graph from the start, and does forcing the final planner to separate path direction from progress improve V0?",
+ "recipe": {
+  "backbone_lr": 5e-06,
+  "batch": 16,
+  "correlation_radius": 4,
+  "eval_batch": 8,
+  "eval_every": 3426,
+  "flip_probability": 0.5,
+  "grad_clip": 5.0,
+  "head_lr": 5e-05,
+  "interval_length_auxiliary_lambda": 0.25,
+  "microbatch": 8,
+  "motion_canvas": "native 768x432",
+  "precision": "bf16",
+  "updates": 20554,
+  "warmup": 200,
+  "weight_decay": 0.01
+ },
+ "schema_version": 1,
+ "seed": 1,
+ "smoke": false,
+ "split_manifest": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+  "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+ },
+ "supervision": {
+  "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2/supervision_manifest.json",
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+  "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+ },
+ "train_data": {
+  "rows": 83700,
+  "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+  "scenes": 310
+ },
+ "tune_data": {
+  "rows": 1998,
+  "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "scenes": 37
+ }
+}

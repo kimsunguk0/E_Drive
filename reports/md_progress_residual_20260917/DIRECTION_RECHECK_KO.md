@@ -9,17 +9,20 @@
 주행 개선이 `0.001` 아래였으므로, 이 계열에서 head 크기·카메라·loss를 조금씩 바꾸는
 것은 주공격안이 될 수 없다.
 
-새 방향은 두 문제를 동시에 끊는다.
+새 방향은 두 문제를 순서대로 분리해 푼다.
 
 1. causal status는 planner/residual의 raw 인자가 아니라 occupancy·lane·state/history·
    planning이 공유하는 **영상 feature 형성 단계**에만 사용한다.
-2. planner의 최종 XY를 **경로 방향과 진행량으로 구조적으로 분리**하고, 기존 XY head가
-   종방향 오차를 대신 흡수하지 못하게 한다.
+2. 먼저 direct planner로 강한 base를 만든 뒤, 최종 XY를 **경로 방향과 진행량으로
+   구조적으로 분리**한다. 약한 초기값에서 두 단계를 한꺼번에 강제하지 않는다.
 
-GPU 1에는 같은 MR 초기화에서 A2 query를 처음부터 함께 학습하는 `A2-DIRECT`, GPU 3에는
-status-conditioned shared image feature와 연속 `delta_v+delta_a` progress planner를 함께
-학습하는 `A3-FP-VA`를 시작했다. GPU 0의 FULL 제출 안전망과 GPU 2의 honest old203→new107
-producer는 유지한다.
+GPU 1에는 같은 MR 초기화에서 A2 query를 처음부터 함께 학습하는 `A2-DIRECT`를 시작했다.
+GPU 3의 최초 `A3-FP-VA`는 재검토 뒤 step 350에서 보존 종료했다. MR 학습 전 초기값에서
+proposal 길이 gradient를 처음부터 막으면 status-conditioned perception과 factorization의
+효과가 섞이고, 아직 약한 base length를 두 progress 계수가 전부 떠맡기 때문이다. GPU 3은
+같은 shared query와 status-conditioned 공통 FPN을 쓰되 정상적인 direct XY 길이 학습을
+유지하는 `A3-DIRECT`로 교체한다. GPU 0의 FULL 제출 안전망과 GPU 2의 honest
+old203→new107 producer는 유지한다.
 
 ## 목표와 현재 간극
 
@@ -97,7 +100,23 @@ GPU 2의 old203 producer는 old203만 학습하고 한 번도 보지 않은 new1
 후속 progress 학습에 honest error distribution을 주기 위한 것이며, 그 자체가 최종 모델은
 아니다.
 
-## A3-FP-VA의 실제 구조
+## 보존 종료한 A3-FP-VA와 factorization의 새 위치
+
+2-step smoke의 거의 초기 예측을 대상으로 실제 A3 cap(`|delta_v|<=1`,
+`|delta_a|<=0.5`)과 동일한 배포 기하에서 oracle을 다시 계산했다.
+
+| 대상 | PREFIX |
+|---|---:|
+| MR 이전 초기 base | 0.477651 |
+| 해당 base의 `delta_v+delta_a` oracle | 0.222499 |
+| 등록 MR | 0.191002 |
+
+방향도 이후 학습되므로 `0.222499`가 완성 모델의 수학적 하한은 아니다. 하지만 등록 MR보다
+약한 초기 base에서 길이 학습을 차단하는 것이 불필요하게 어려운 문제를 만든다는 충분한
+경고다. 따라서 factorization은 폐기하지 않고, 강한 direct checkpoint 또는 GPU 2의 honest
+error distribution을 확보한 뒤 두 번째 단계에서 적용한다.
+
+아래는 보존한 factorized 구조의 정의다.
 
 ### 정보 경로
 
@@ -140,8 +159,9 @@ ego-forward `+x`, 짧은 segment는 가장 가까운 유효 predicted tangent를
 
 과거 P×V는 512 path × 128 velocity의 65,025개 고정 후보를 32차원 context로 argmax하는
 분류 문제였다. bank oracle `0.104887` 또는 다른 C 진단의 더 낮은 oracle이 있어도 selector
-regret와 train–tune 과적합이 컸다. A3는 candidate bank, shortlist, argmax가 없는 연속
-저차원 회귀이고, 이미 강한 MR의 경로 방향을 보존한다.
+regret와 train–tune 과적합이 컸다. factorized planner는 candidate bank, shortlist, argmax가
+없는 연속 저차원 회귀다. 다만 실제로 강한 MR 경로를 보존하려면 MR 이전 초기값이 아니라
+학습된 direct checkpoint 위에서 시작해야 한다.
 
 ## 규정 판단
 
@@ -155,17 +175,22 @@ status와 shared-feature goal conditioning의 간접 영향을 받는다. protoc
 
 ## 검증과 현재 GPU 배치
 
-새 factorized geometry 단위검사 5개가 통과했다. 두 arm의 실제 2-step smoke도 종료됐고,
+새 구조 단위검사 6개가 통과했다. 최초 두 arm의 실제 2-step smoke도 종료됐고,
 첫 optimizer step의 planning loss가 둘 다 `0.6594299078`로 같았다. 즉 zero-init query,
 multiplicative gates, progress output이 초기 MR 함수를 보존했다. A3 progress 계수는 2-step에서
-0이 아닌 값으로 변해 gradient 연결도 확인됐다.
+0이 아닌 값으로 변해 gradient 연결도 확인됐다. 이는 구현 parity 검사이며, 약한 초기 길이를
+차단한 채 끝까지 학습해야 한다는 성능 근거는 아니다.
+
+교체한 `A3-DIRECT`도 실제 2-step smoke를 통과했다. A2와 A3-DIRECT의 첫 optimizer step
+planning loss는 모두 `0.6594299078`로 같고, A3-DIRECT의 step-2 V0는 `0.477645`였다.
+이는 장기 성능 수치가 아니라 초기 parity와 전체 train/eval 경로의 실행 가능성 검사다.
 
 | GPU | 현재 실행 | 역할 |
 |---|---|---|
 | 0 | `MR-NATIVE-FULL-s1`, 24,931 update | 제출 안전망; 내부 tune은 in-fit 진단뿐 |
 | 1 | `A2-DIRECT-s1`, 20,554 update | status shared-query fresh control |
 | 2 | `OOF-MR-T203-s1`, 20,554 update | old203→new107 honest error producer |
-| 3 | `A3-FP-VA-s1`, 20,554 update | shared dynamics + 강제 path/progress 분리 주력 |
+| 3 | `A3-DIRECT-s1`, 20,554 update | shared query + 공통 FPN status conditioning 주력 |
 
 등록 MR seed1의 비교 곡선은 step 3426/6852/10278/13704/17130/20554에서 각각
 `0.254811/0.218241/0.222304/0.206502/0.192196/0.191002`다. 새 두 run도 같은 시점의
@@ -173,12 +198,17 @@ plain V0만 비교한다. 중간 곡선이 비단조였으므로 한 checkpoint�
 
 ## 다음 판정
 
-- A2가 크게 좋아지고 A3가 뒤처지면 shared-status co-adaptation은 유지하고, OOF 출력으로
-  scalar factorization을 다시 학습한다.
-- A3가 A2를 이기면 scalar/두 번째 seed로 재현한 뒤 FULL 계보를 만든다.
-- 둘 다 등록 MR 근처면 작은 adapter 탐색으로 돌아가지 않는다. 그때는 OOF에서 correction이
-  실제로 학습 가능한지 판정하고, 불가능하면 이번 데이터에서 0.13대 근거가 없다고 인정한다.
+- A2와 A3-DIRECT는 같은 seed·sample order·예산에서 비교한다. 차이는 공통 FPN의
+  multiplicative status conditioning뿐이다.
+- A3-DIRECT가 A2를 이기면 direct 계보를 끝까지 확보하고, 강한 checkpoint 위에서
+  factorization을 stage-2로 검증한다.
+- GPU 2의 honest new107 prediction에서 correction이 학습 가능하면, in-sample residual 대신
+  그 분포로 stage-2의 입력·보정 범위를 정한다.
+- 둘 다 등록 MR 근처면 작은 adapter 탐색으로 돌아가지 않는다. status 전달보다 데이터의
+  미래 progress 불확실성이 병목이라는 뜻이므로, 이 데이터에서 0.13대 근거가 없다고 인정한다.
 
-현재 `0.13`을 뒷받침하는 실현 모델은 아직 없다. 다만 oracle 표현력, 과거 A2의 `-0.0296`,
-그리고 direct base gradient 누수라는 구조적 결함을 한꺼번에 겨냥하는 첫 실험이 지금의 A3다.
-이는 최근 작은 residual 변형들과 다른 축이며, 3위 격차를 노릴 수 있는 최소한의 구조 변경이다.
+현재 `0.13`을 뒷받침하는 실현 모델은 아직 없다. 가장 근거가 강한 실험은 과거 A2의
+`-0.0296`을 현재 MR과 처음부터 공동 학습하는 A2-DIRECT와, 그 상태 정보를 공통 image
+feature 전체에 전달하는 A3-DIRECT다. Factorization은 좋은 base를 먼저 만든 뒤 적용한다.
+이 순서가 status 표현력, base 품질, progress 분리를 한 번에 섞지 않고 실제 성능으로 연결하는
+가장 짧은 경로다.

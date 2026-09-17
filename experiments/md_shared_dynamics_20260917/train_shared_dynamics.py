@@ -41,7 +41,7 @@ HEAD_LR = 5e-5
 BACKBONE_LR = 5e-6
 LENGTH_LAMBDA = 0.25
 CUDA_MEMORY_LIMIT_MIB = 170_000
-ARMS = ("A2-DIRECT", "A3-FP-S", "A3-FP-VA")
+ARMS = ("A2-DIRECT", "A3-DIRECT", "A3-FP-S", "A3-FP-VA")
 PROVIDED_STATUS_KEY = "provided_status5"
 
 
@@ -126,8 +126,9 @@ def build_experiment(arm: str, seed: int, train, tune, smoke: bool):
             "shared_query": True,
             "shared_multiplicative_image_feature_conditioning": arm.startswith("A3-"),
             "shared_consumers": ["occupancy", "lane", "image-state/history", "planning"],
-            "progress_head_inputs": ["planner decoded image evidence",
-                                     "detached model proposal coordinates/lengths"],
+            "progress_head_inputs": ([] if not coefficient_count else
+                                     ["planner decoded image evidence",
+                                      "detached model proposal coordinates/lengths"]),
             "progress_head_raw_goal_pose_status_inputs": False,
         },
         "planner": {
@@ -136,10 +137,12 @@ def build_experiment(arm: str, seed: int, train, tune, smoke: bool):
             "coefficient_semantics": ([] if not coefficient_count else
                                       (["delta_v"] if coefficient_count == 1
                                        else ["delta_v", "delta_a"])),
-            "direction_source": "current neural proposal segments",
+            "direction_source": ("direct XY output" if not coefficient_count else
+                                 "current neural proposal segments"),
             "proposal_length_gradient": ("ordinary direct XY" if not coefficient_count
                                          else "stopped; proposal receives direction gradient only"),
-            "composition": "neural forward cumulative direction times nonnegative progress",
+            "composition": ("ordinary direct XY" if not coefficient_count else
+                            "neural forward cumulative direction times nonnegative progress"),
             "candidate_bank_or_selector": False,
         },
         "recipe": {

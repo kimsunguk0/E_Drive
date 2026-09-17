@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import torch
 
-from factorized_model import (SharedStatusFeatureConditioner,
+from factorized_model import (SharedDynamicsMotionDriveV2,
+                              SharedStatusFeatureConditioner,
                               compose_factorized_plan)
 
 
@@ -57,3 +58,7 @@ def test_shared_conditioner_is_exact_identity_at_initialization():
         assert len(gates) == 3
         for gate in gates:
             torch.testing.assert_close(gate, torch.ones_like(gate), atol=0, rtol=0)
+
+
+def test_a3_direct_keeps_shared_feature_conditioning_without_factorization():
+    assert SharedDynamicsMotionDriveV2.VALID_ARMS["A3-DIRECT"] == 0

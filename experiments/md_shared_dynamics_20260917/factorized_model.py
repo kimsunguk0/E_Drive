@@ -160,7 +160,12 @@ class ContinuousProgressHead(nn.Module):
 class SharedDynamicsMotionDriveV2(MotionDriveV2):
     """MR graph with shared status perception and optional factorized progress."""
 
-    VALID_ARMS = {"A2-DIRECT": 0, "A3-FP-S": 1, "A3-FP-VA": 2}
+    VALID_ARMS = {
+        "A2-DIRECT": 0,
+        "A3-DIRECT": 0,
+        "A3-FP-S": 1,
+        "A3-FP-VA": 2,
+    }
 
     def __init__(self, config, *, arm: str):
         if arm not in self.VALID_ARMS:

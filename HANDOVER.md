@@ -20,14 +20,18 @@ flip50 비교에서 제공-status A2 `0.228957` 대 Q10 `0.258544`로 약 `0.029
 - GPU 1: `A2-DIRECT-s1`. 등록 MR과 같은 초기화·train310·20,554 update에서 shared
   status query를 처음부터 함께 학습하는 control.
 - GPU 2: `OOF-MR-T203-s1`. old203만 학습해 unseen new107의 honest residual 분포를 생성.
-- GPU 3: `A3-FP-VA-s1`. status는 공통 image feature 형성에만 쓰고, planner의 path
-  direction과 progress를 구조적으로 분리한다. 기존 XY proposal에는 direction gradient만
-  남고 progress는 별도 continuous `delta_v+delta_a` head가 담당한다.
+- GPU 3: `A3-DIRECT-s1`. A2의 shared query에 multiplicative status conditioning을
+  공통 image FPN 전체로 확장하되, direct XY planner의 정상적인 길이 gradient를 유지한다.
 
-A3는 과거 65,025개 P×V 후보 selector가 아니다. candidate bank와 argmax가 없고,
-MR proposal의 방향을 따라 연속 진행량을 회귀한다. 단위검사 5개와 두 arm의 실제
-2-step smoke가 통과했으며 첫 step planning loss가 `0.6594299078`로 정확히 같아
-초기 함수 보존을 확인했다.
+최초 `A3-FP-VA-s1`은 step 350에서 보존 종료했다. MR 이전 초기 base가 `0.477651`이고,
+실제 cap의 `delta_v+delta_a` oracle도 `0.222499`여서 등록 MR `0.191002`보다 나빴다.
+방향은 학습될 수 있지만, 약한 초기값에서 proposal 길이 gradient를 처음부터 막는 것은
+status 전달과 factorization을 불필요하게 섞는다. Factorization은 강한 direct checkpoint
+또는 GPU 2의 honest error distribution 위에서 stage-2로만 다시 검증한다.
+
+새 코드의 단위검사 6개와 `A3-DIRECT` 실제 2-step smoke가 통과했다. A2/A3-DIRECT의
+첫 step planning loss는 모두 `0.6594299078`로 같아 초기 함수 보존을 확인했다. 현재
+GPU1과 GPU3은 seed·sample order·budget이 같고, 공통 FPN status gate만 다르다.
 
 판정은 같은 plain V0와 같은 checkpoint budget에서 한다. 등록 MR seed1의
 step 3426/6852/10278/13704/17130/20554 값은
