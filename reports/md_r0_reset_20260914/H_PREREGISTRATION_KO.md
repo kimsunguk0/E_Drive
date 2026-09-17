@@ -182,3 +182,30 @@ MR-W64는 test-matched에서 0.164285로 가장 낮지만 대조군 대비 이�
   다른 추정기이며 컷오프 판정 기준이 아니다.
 - 제출 잔여: **5회 중 1회 사용, 4회 남음** (2026-09-01 `v2a_goal` 1회). 사이트 확인 필요.
 - **업로드는 사용자가 한다.** 이 문서를 쓰는 시점에 업로드하지 않았다.
+
+---
+
+# Revision 3 — 2026-09-17. **이 revision을 쓴 시점에도 H는 어떤 모델로도 평가된 적이 없다.**
+
+## R3.1 전체 자료 final-fit으로 전환
+
+Revision 2에서 다음 제출 후보로 미리 선언한 전체 자료 재학습을 시작한다. 분할 manifest의
+`historical_val` 9 scene은 `val` 29 scene의 부분집합이므로 이를 별도 더하지 않는다.
+
+- 고유 scene: `train 310 + tune 37 + val 29 = 376`
+- stride-1 유효 행: `101,520`
+- 고정 terminal: `ceil(20,554 * 101,520 / 83,700) = 24,931 update`
+- initializer: 기존 MR과 같은 pinned R0 weights; MR terminal 뒤에 update를 이어 붙이지 않음
+- schedule: 처음부터 24,931 update를 horizon으로 하는 새 cosine schedule
+- graph: 검증된 MR-NATIVE와 같은 native canvas/radius-4/length-auxiliary graph
+
+전체 자료 모델의 `tune` terminal 출력은 학습 집합과 겹치는 실행 진단일 뿐이다. checkpoint나
+recipe 선택에 사용하지 않고 terminal 24,931을 고정한다. FULL checkpoint, teacher, feature
+cache 또는 fitted statistic은 별도 DEV 실험으로 가져오지 않는다.
+
+## R3.2 H의 지위
+
+FULL 모델은 `val` 29 scene을 학습하므로 그 모델에 대해 H 확인 점수를 만들지 않는다.
+H를 평가해 고른 뒤 학습에 넣는 순서를 사용하지 않았으며, 이 revision 전까지 H 평가는 0회다.
+기존 train-310 DEV 계보는 FULL의 weights/cache를 받지 않으므로 V0 및 닫힌 H의 분리를 그대로
+유지한다. 향후 H를 실제 평가하려면 FULL과 분리된 DEV 후보에 대해서만 새 revision을 먼저 쓴다.

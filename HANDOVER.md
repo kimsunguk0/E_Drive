@@ -2,6 +2,20 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0A. 2026-09-17 후속 교정 — 아래의 오래된 수치보다 우선한다
+
+- 공개 leaderboard `mode=best` 재확인 기준 현재 제출은 14위이고 3위는 `0.1305365832`다.
+  아래의 8위 및 3위 `0.14664` 표기는 당시 불완전한 snapshot이다.
+- split의 `historical_val` 9 scene은 `val` 29 scene에 전부 포함된다. 전체 자료는 385가 아니라
+  **376 unique scene / 101,520 stride-1 rows**이며 동일 노출량 terminal은 **24,931 update**다.
+- `OPEN_ISSUE.md` 질문 10에는 답변이 있다. 영상에서 직접 추론한 ego history/status를
+  planner가 사용하는 것은 허용된다. raw provided history/status 입력과 구분한다.
+- 사용자는 서버 응답의 `elapsed_ms`는 채점 harness 시간이라며 이번 모델 판단에서 제외하도록
+  지시했다. 아래 미해결 문단을 다시 실험 우선순위로 올리지 않는다.
+- 최신 공격안은 `reports/md_progress_residual_20260917/EXECUTION_REVIEW_KO.md`를 따른다.
+  FULL과 DEV를 분리하고, FRONT/SIDE temporal + detached-base-plan-conditioned neural progress
+  residual을 비교한다. C/raw-status selector와 준비되지 않은 recurrent BEV는 제출 계보에서 제외한다.
+
 ---
 
 ## 0. 가장 먼저 알아야 할 것 — 2차 제출 결과와 교정
