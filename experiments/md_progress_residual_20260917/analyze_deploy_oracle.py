@@ -130,7 +130,9 @@ def main():
             }
             if args.save_record_coefficients:
                 result["arms"][name]["record_coefficients"] = coefficient.tolist()
-            print(name, json.dumps(result["arms"][name], sort_keys=True), flush=True)
+            summary = {key: value for key, value in result["arms"][name].items()
+                       if key != "record_coefficients"}
+            print(name, json.dumps(summary, sort_keys=True), flush=True)
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=1, sort_keys=True) + "\n")
