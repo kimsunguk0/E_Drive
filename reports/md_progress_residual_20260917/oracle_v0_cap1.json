@@ -1,0 +1,111 @@
+{
+ "arms": {
+  "scalar_dv": {
+   "all_zero_base_rows": 0,
+   "coefficient_abs_mean": [
+    0.141596097950946
+   ],
+   "coefficient_abs_quantiles": {
+    "0.5": [
+     0.11194064142621857
+    ],
+    "0.9": [
+     0.2931202914869277
+    ],
+    "0.95": [
+     0.3736676178047214
+    ],
+    "0.99": [
+     0.5916023231644078
+    ],
+    "1.0": [
+     0.9999999850335819
+    ]
+   },
+   "coefficient_mean": [
+    -0.016389055487259305
+   ],
+   "metrics": {
+    "L2_1s": 0.040706516242843584,
+    "L2_2s": 0.06846551588017749,
+    "L2_3s": 0.13354502553531888,
+    "PREFIX": 0.08090568588611331
+   },
+   "saturation_fraction": [
+    0.004004004004004004
+   ],
+   "short_base_segments": 4
+  },
+  "two_coefficient_dv_da": {
+   "all_zero_base_rows": 0,
+   "coefficient_abs_mean": [
+    0.16211998005218106,
+    0.09533898531846693
+   ],
+   "coefficient_abs_quantiles": {
+    "0.5": [
+     0.12508359581145945,
+     0.0707424953136398
+    ],
+    "0.9": [
+     0.34725068181515373,
+     0.20489983120281235
+    ],
+    "0.95": [
+     0.4371268567873443,
+     0.2626116198631504
+    ],
+    "0.99": [
+     0.7105883567921685,
+     0.46666664244660444
+    ],
+    "1.0": [
+     0.9999999999999998,
+     0.9999999806983347
+    ]
+   },
+   "coefficient_mean": [
+    -0.006883900956188921,
+    -0.01104136292504094
+   ],
+   "metrics": {
+    "L2_1s": 0.02795658865824829,
+    "L2_2s": 0.058808740940555035,
+    "L2_3s": 0.10511210640283124,
+    "PREFIX": 0.06395914533387818
+   },
+   "saturation_fraction": [
+    0.005005005005005005,
+    0.0005005005005005005
+   ],
+   "short_base_segments": 4
+  }
+ },
+ "base": {
+  "L2_1s": 0.11031646141263997,
+  "L2_2s": 0.19102524674557433,
+  "L2_3s": 0.2716628482387838,
+  "PREFIX": 0.19100151879899938
+ },
+ "cap_abs": 1.0,
+ "evaluation": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/evals/MR-NATIVE-s1_tuneB1_step20554/evaluation.json",
+ "geometry": {
+  "all_zero_fallback": "ego +x",
+  "coefficient_tie_break": "minimum L2",
+  "dt": 0.5,
+  "negative_interval": "clamp to zero",
+  "objective": "official PREFIX",
+  "short_eps": 0.001,
+  "short_fallback": "closest valid predicted segment",
+  "t_mid": [
+   0.25,
+   0.75,
+   1.25,
+   1.75,
+   2.25,
+   2.75
+  ]
+ },
+ "n": 1998,
+ "schema_version": 1
+}
