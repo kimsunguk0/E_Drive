@@ -106,6 +106,9 @@ def main() -> None:
     parser.add_argument("--scenes", nargs="+")
     parser.add_argument("--scenes-file",
                         help="newline-separated scene list; restricts the eval split")
+    parser.add_argument("--adj", choices=["off", "on"],
+                        help="evaluate an MR-ADJ checkpoint; 'off' is the masked "
+                             "control arm (MR-ADJ0), 'on' is MR-ADJ1")
     parser.add_argument("--mr-detail", choices=["native", "lowdetail"],
                         help="evaluate an MR arm: rebuild the 81-bin fuse and feed the canvas")
     parser.add_argument("--run-dir", required=True)
@@ -174,7 +177,8 @@ def main() -> None:
                       "train_inputs": trainer.model_inputs,
                       "eval_inputs": planning_eval.planning_model_inputs,
                       "loader": trainer._load_initial_model_state,
-                      "forward_parts": None, "forward": None}
+                      "forward_parts": None, "forward": None,
+                      "encoder_forward": None}
 
         canvas_factory = dataset_factory
 
@@ -195,6 +199,16 @@ def main() -> None:
                 mr_restore["forward_parts"] = type(model).forward_parts
                 mr_restore["forward"] = type(model).forward
             mr.install(model, args.mr_detail)
+            if args.adj:
+                # The ADJ arms add a module the MR graph does not have, so the
+                # checkpoint cannot load strictly against a plain MR model. The
+                # mask is what distinguishes the two arms, and it is a forward
+                # argument, not a tensor -- so it has to be passed explicitly
+                # here rather than inferred from the checkpoint.
+                import adjacent_edges as adj
+                if mr_restore["encoder_forward"] is None:
+                    mr_restore["encoder_forward"] = type(model.motion_encoder).forward
+                adj.install(model, args.adj == "on")
             incompatible = model.load_state_dict(common["model"], strict=True)
             if incompatible.missing_keys or incompatible.unexpected_keys:
                 raise ValueError("MR checkpoint did not load strictly")
@@ -247,7 +261,7 @@ def main() -> None:
         "time_input": "nominal",
         "augmentation": "off",
         "probe_per_session": args.probe_per_session,
-        "mr_detail": args.mr_detail,
+        "mr_detail": args.mr_detail, "adj": args.adj,
         "split_manifest": str(Path(args.split_manifest).resolve()),
         "split_manifest_sha256": trainer.sha256(args.split_manifest),
         "supervision_root": str(Path(args.supervision_root).resolve()),
