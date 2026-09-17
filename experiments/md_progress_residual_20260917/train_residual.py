@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import contextlib
+import gc
 import hashlib
 import json
 import math
@@ -404,12 +405,15 @@ def main():
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--root-run-dir", required=True)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--joint-only", action="store_true",
+                        help="resume the fixed joint stage from a completed warmup/last.pth")
     args = parser.parse_args()
     root = Path(args.root_run_dir).resolve()
     warmup = root / "warmup"
     joint = root / "joint"
-    run_stage(args.arm, "warmup", args.seed, MR_INIT, warmup, args.dry_run)
-    if args.dry_run:
+    if not args.joint_only:
+        run_stage(args.arm, "warmup", args.seed, MR_INIT, warmup, args.dry_run)
+    if args.dry_run and not args.joint_only:
         print("PLAN " + json.dumps({
             "arm": args.arm, "stage": "joint", "seed": args.seed,
             "initializer": str(warmup / "last.pth"), "run_dir": str(joint),
@@ -420,7 +424,14 @@ def main():
         return
     if not (warmup / "last.pth").exists():
         raise FileNotFoundError("warmup did not produce last.pth")
-    run_stage(args.arm, "joint", args.seed, warmup / "last.pth", joint, False)
+    # The next stage runs in the same process.  Release the warmup allocator
+    # reservation before the trainer performs its fresh-process headroom gate.
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    run_stage(args.arm, "joint", args.seed, warmup / "last.pth", joint, args.dry_run)
+    if args.dry_run:
+        return
     (root / "completed.json").write_text(json.dumps({
         "arm": args.arm, "seed": args.seed, "physical_gpu": args.gpu,
         "warmup": str(warmup), "joint": str(joint),
