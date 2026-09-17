@@ -1,0 +1,39 @@
+{
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/ckpt_step20554.pth",
+ "checks": {
+  "all_finite": true,
+  "all_shapes_6x2": true,
+  "clips_expected": 1125,
+  "clips_present": 1125,
+  "endpoint_m": {
+   "max": 68.27784636601757,
+   "p50": 22.5721105553408
+  },
+  "extra_clips": [],
+  "failures": [],
+  "flops": 729815613824,
+  "flops_cutoff_gflops": 7053.0,
+  "flops_passes_cutoff": true,
+  "flops_present": true,
+  "gflops": 729.815613824,
+  "interval_speed_max_ms": 23.233211766732932,
+  "missing_clips": [],
+  "n_extra": 0,
+  "n_missing": 0,
+  "n_nan_or_inf": 0
+ },
+ "flops_report": "/NHNHOME/data/sukim/adcl/reports/md_r0_reset_20260914/mr_flops_s1.json",
+ "format": {
+  "container": "submission.zip containing exactly one member, submission.json",
+  "coordinates": "cumulative absolute XY in metres, current ego frame, 0.5 s steps to 3.0 s",
+  "json": "top-level object: 1,125 clip tokens plus the integer __flops__",
+  "matches": "the packaging of the submission that scored on 2026-09-01"
+ },
+ "keys_in_json": 1126,
+ "label": "MR-NATIVE-s1",
+ "model_state_sha256": "cb04d745fc5af990447d03e2ea7bd098ce344c8356ad53268102e1da264616e2",
+ "schema_version": 1,
+ "submission_json_sha256": "df276afd91b2cb87b1a394f14d83c487906e2789c366c2f7022e2b9ecb36fbce",
+ "submission_zip_sha256": "82d8a75bba655d06c7e9eaeccabda7bfa5b2a0d97a718a7a99041bd37ce2349e",
+ "uploaded": false
+}
