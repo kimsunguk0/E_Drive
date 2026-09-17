@@ -23,7 +23,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from build_grouped_split_v2 import sha256
 from motiondrive_v2_training import tensor_state_sha256
-from motiondrive_v2_training import HISTORY_SCALE, STATE_SCALE, regression_loss
+from motiondrive_v2_training import (HISTORY_SCALE, STATE_SCALE, masked_mean,
+                                     regression_loss, weighted_d3)
 import matching_resolution as mr
 from progress_residual import (ResidualMotionDriveV2, SIDE_HISTORY_KEY, SIDE_OFFSETS,
                                SideHistoryDataset, wrap_flip_item)
@@ -43,6 +44,7 @@ NEW_MODULE_LR = 5e-5
 LENGTH_LAMBDA = .25
 CAP = 1.0
 SIDE_AUX_LAMBDA = .5
+DENOISE_LAMBDA = .5
 NEW_MODULE_SEED = 20260917
 WARMUP_STEPS = 1_000
 JOINT_STEPS = math.ceil(2 * TRAIN_ROWS / BATCH)  # 10,463, two complete exposures
@@ -50,11 +52,13 @@ JOINT_EVAL_EVERY = math.ceil(.5 * TRAIN_ROWS / BATCH)
 CUDA_MEMORY_LIMIT_MIB = 170_000
 
 ARMS = {
-    "FRONT-S": {"side": False, "coefficients": 1, "side_aux": False},
-    "SIDE-S": {"side": True, "coefficients": 1, "side_aux": False},
-    "SIDE-VA": {"side": True, "coefficients": 2, "side_aux": False},
-    "SIDE-S-AUX": {"side": True, "coefficients": 1, "side_aux": True},
-    "SIDE-VA-AUX": {"side": True, "coefficients": 2, "side_aux": True},
+    "FRONT-S": {"side": False, "coefficients": 1, "side_aux": False, "denoise": False},
+    "SIDE-S": {"side": True, "coefficients": 1, "side_aux": False, "denoise": False},
+    "SIDE-VA": {"side": True, "coefficients": 2, "side_aux": False, "denoise": False},
+    "SIDE-S-AUX": {"side": True, "coefficients": 1, "side_aux": True, "denoise": False},
+    "SIDE-VA-AUX": {"side": True, "coefficients": 2, "side_aux": True, "denoise": False},
+    "SIDE-S-AUX-DN": {"side": True, "coefficients": 1, "side_aux": True, "denoise": True},
+    "SIDE-VA-AUX-DN": {"side": True, "coefficients": 2, "side_aux": True, "denoise": True},
 }
 STAGES = {
     "warmup": {"steps": WARMUP_STEPS, "eval_every": WARMUP_STEPS,
@@ -128,6 +132,10 @@ def experiment(arm, stage, seed, initializer, train, tune):
             "side_enabled": spec["side"],
             "side_absolute_auxiliary": spec["side_aux"],
             "side_absolute_auxiliary_lambda": SIDE_AUX_LAMBDA if spec["side_aux"] else 0.,
+            "progress_plan_denoising": spec["denoise"],
+            "progress_plan_denoising_lambda": DENOISE_LAMBDA if spec["denoise"] else 0.,
+            "progress_plan_noise_cap": ([.5] if spec["coefficients"] == 1 else [.5, .2])
+                                       if spec["denoise"] else [],
             "side_cameras": (["camera_front_right", "camera_front_left"]
                              if spec["side"] else []),
             "side_history_seconds": ([.1, .2, .5] if spec["side"] else []),
@@ -154,6 +162,7 @@ def experiment(arm, stage, seed, initializer, train, tune):
             "front_vs_side_scalar": ["FRONT-S", "SIDE-S"],
             "side_scalar_vs_two_coefficient": ["SIDE-S", "SIDE-VA"],
             "side_aux_scalar_vs_two_coefficient": ["SIDE-S-AUX", "SIDE-VA-AUX"],
+            "side_denoise_scalar_vs_two_coefficient": ["SIDE-S-AUX-DN", "SIDE-VA-AUX-DN"],
         },
         "provided_status_used": False,
         "checkpoint_selection": "report every fixed endpoint; primary comparison at common terminal",
@@ -215,6 +224,31 @@ def wrap_side_auxiliary_loss(original, lam):
         parts = dict(parts)
         parts.update(side_state_aux=state, side_history_aux=history,
                      side_motion_aux=auxiliary, total=total)
+        return total, parts
+
+    return compute_loss
+
+
+def wrap_progress_denoise_loss(original, lam):
+    """Teach the shared refiner to undo synthetic base-plan progress errors."""
+    if lam <= 0:
+        raise ValueError("progress denoise weight must be positive")
+
+    def compute_loss(outputs, batch, weights, *, normalizers=None, stop_class_weights=None):
+        total, parts = original(outputs, batch, weights, normalizers=normalizers,
+                                stop_class_weights=stop_class_weights)
+        if "progress_denoise_plan" not in outputs or "plan_base_abs" not in outputs:
+            raise KeyError("denoise arm did not emit its reconstructed and base plans")
+        valid = batch.get("plan_valid", torch.ones_like(
+            outputs["progress_denoise_plan"][..., 0], dtype=torch.bool)).bool().all(-1)
+        error = weighted_d3(outputs["progress_denoise_plan"],
+                            outputs["plan_base_abs"].detach())
+        denoise = masked_mean(
+            error, valid,
+            normalizer=None if normalizers is None else normalizers["plan_complete"])
+        total = total + lam * denoise
+        parts = dict(parts)
+        parts.update(progress_denoise=denoise, total=total)
         return total, parts
 
     return compute_loss
@@ -283,7 +317,8 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
             torch.manual_seed(NEW_MODULE_SEED)
             built = ResidualMotionDriveV2(
                 config, coefficient_count=spec["coefficients"],
-                side_enabled=spec["side"], side_auxiliary=spec["side_aux"], cap=CAP)
+                side_enabled=spec["side"], side_auxiliary=spec["side_aux"],
+                progress_denoise=spec["denoise"], cap=CAP)
         prefixes = ("progress_refiner.", "side_motion_encoder.", "side_calibration.",
                     "side_state_delta.", "side_history_delta.",
                     "side_state_aux.", "side_history_aux.")
@@ -400,6 +435,8 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
     loss = wrap_compute_loss(originals["loss"], LENGTH_LAMBDA)
     if spec["side_aux"]:
         loss = wrap_side_auxiliary_loss(loss, SIDE_AUX_LAMBDA)
+    if spec["denoise"]:
+        loss = wrap_progress_denoise_loss(loss, DENOISE_LAMBDA)
     trainer.compute_loss = loss
     torch.optim.AdamW = adamw_factory
     try:

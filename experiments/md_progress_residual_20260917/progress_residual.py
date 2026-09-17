@@ -149,10 +149,11 @@ class ResidualMotionDriveV2(MotionDriveV2):
     """MR-NATIVE plus an optional two-camera raw temporal branch."""
 
     def __init__(self, config, *, coefficient_count=1, side_enabled=False,
-                 side_auxiliary=False, cap=1.0):
+                 side_auxiliary=False, progress_denoise=False, cap=1.0):
         super().__init__(config)
         self.side_enabled = bool(side_enabled)
         self.side_auxiliary = bool(side_auxiliary)
+        self.progress_denoise = bool(progress_denoise)
         self.coefficient_count = int(coefficient_count)
         if self.side_auxiliary and not self.side_enabled:
             raise ValueError("side auxiliary supervision requires side inputs")
@@ -276,8 +277,20 @@ class ResidualMotionDriveV2(MotionDriveV2):
             base_plan.detach(), parts["raw_visual_tokens"], parts["motion_features"],
             parts.get("side_motion_features"))
         final_plan, geometry = apply_progress_correction(base_plan, coefficient)
-        return {**parts, **geometry, "plan_base_abs": base_plan,
-                "progress_coeff": coefficient, "plan_abs": final_plan}
+        result = {**parts, **geometry, "plan_base_abs": base_plan,
+                  "progress_coeff": coefficient, "plan_abs": final_plan}
+        if self.training and self.progress_denoise:
+            scale = coefficient.new_tensor([.5] if self.coefficient_count == 1 else [.5, .2])
+            noise = (torch.rand_like(coefficient) * 2. - 1.) * scale
+            perturbed, _ = apply_progress_correction(base_plan.detach(), noise)
+            denoise_coefficient = self.progress_refiner(
+                perturbed.detach(), parts["raw_visual_tokens"], parts["motion_features"],
+                parts.get("side_motion_features"))
+            denoised, _ = apply_progress_correction(perturbed.detach(), denoise_coefficient)
+            result.update(progress_denoise_plan=denoised,
+                          progress_denoise_coeff=denoise_coefficient,
+                          progress_denoise_noise=noise)
+        return result
 
 
 class SideHistoryDataset(torch.utils.data.Dataset):

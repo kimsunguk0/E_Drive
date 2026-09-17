@@ -5,6 +5,7 @@ from experiments.md_progress_residual_20260917.progress_residual import (
     stable_predicted_directions,
 )
 from experiments.md_progress_residual_20260917.train_residual import (
+    wrap_progress_denoise_loss,
     wrap_side_auxiliary_loss,
 )
 
@@ -76,3 +77,20 @@ def test_side_auxiliary_loss_reaches_state_and_history_predictions():
     assert parts["side_motion_aux"] > 0
     assert state.grad is not None and torch.isfinite(state.grad).all() and state.grad.abs().sum() > 0
     assert history.grad is not None and torch.isfinite(history.grad).all() and history.grad.abs().sum() > 0
+
+
+def test_progress_denoise_loss_reaches_reconstructed_plan_only():
+    def base_loss(outputs, batch, weights, *, normalizers=None, stop_class_weights=None):
+        zero = outputs["plan_abs"].sum() * 0
+        return zero, {"total": zero}
+
+    denoised = torch.ones(2, 6, 2, requires_grad=True)
+    base = torch.zeros(2, 6, 2, requires_grad=True)
+    outputs = {"plan_abs": base, "plan_base_abs": base,
+               "progress_denoise_plan": denoised}
+    batch = {"plan_valid": torch.ones(2, 6, dtype=torch.bool)}
+    loss, parts = wrap_progress_denoise_loss(base_loss, .5)(outputs, batch, None)
+    loss.backward()
+    assert parts["progress_denoise"] > 0
+    assert denoised.grad is not None and torch.isfinite(denoised.grad).all()
+    assert base.grad is not None and torch.equal(base.grad, torch.zeros_like(base))
