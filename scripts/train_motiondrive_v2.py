@@ -228,6 +228,7 @@ def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0,
     time_input_policy(time_input, nominal_history_seconds)
     model.eval()
     records, state_errors, history_errors = [], [], []
+    base_d3_values, progress_coefficients = [], []
     iou_counts = {"occ": [0, 0], "lane": [0, 0]}
     for raw in loader:
         check_cuda_headroom(device, min_free_mib)
@@ -238,6 +239,18 @@ def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0,
         if not torch.isfinite(out["plan_abs"]).all():
             raise FloatingPointError("Nonfinite validation prediction")
         d3 = weighted_d3(out["plan_abs"], batch["gt_plan"]).cpu().numpy()
+        if "plan_base_abs" in out:
+            base = out["plan_base_abs"]
+            coefficient = out.get("progress_coeff")
+            if (not isinstance(base, torch.Tensor) or base.shape != out["plan_abs"].shape
+                    or not torch.isfinite(base).all()):
+                raise ValueError("plan_base_abs must be finite and match plan_abs")
+            if (not isinstance(coefficient, torch.Tensor) or coefficient.ndim != 2
+                    or len(coefficient) != len(base) or coefficient.shape[1] not in (1, 2)
+                    or not torch.isfinite(coefficient).all()):
+                raise ValueError("progress_coeff must be finite [B,1/2]")
+            base_d3_values.extend(weighted_d3(base, batch["gt_plan"]).cpu().tolist())
+            progress_coefficients.extend(coefficient.float().cpu().tolist())
         if not batch["plan_valid"].bool().all():
             raise ValueError("Validation contains invalid three-second ground truth")
         scenarios = raw["scenario"]
@@ -246,6 +259,10 @@ def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0,
         proxy = raw.get("proxy_weight", torch.ones(len(d3))).tolist()
         if detailed_records:
             detailed_pred = out["plan_abs"].float().cpu()
+            detailed_base = (out["plan_base_abs"].float().cpu()
+                             if "plan_base_abs" in out else None)
+            detailed_coefficient = (out["progress_coeff"].float().cpu()
+                                    if "progress_coeff" in out else None)
             detailed_gt = batch["gt_plan"].float().cpu()
             detailed_pred_state = out["state_hat"].float().cpu()
             detailed_gt_state = batch["state_target"].float().cpu()
@@ -274,6 +291,9 @@ def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0,
                               pred_state=detailed_pred_state[i].tolist(),
                               gt_state=detailed_gt_state[i].tolist(),
                               gt_state_valid=detailed_gt_state_valid[i].tolist())
+                if detailed_base is not None:
+                    record.update(base_abs_xy=detailed_base[i].tolist(),
+                                  progress_coeff=detailed_coefficient[i].tolist())
             records.append(record)
         err = (out["state_hat"][:, :5] - batch["state_target"][:, :5]).abs()
         mask = batch["state_valid"][:, :5].bool()
@@ -308,6 +328,16 @@ def evaluate(model, loader, device, precision, time_input="raw", min_free_mib=0,
         "history_position_mae_by_offset": finite_mean(history_errors),
         "session_d3": {k: float(np.mean(v)) for k, v in by_session.items()},
     }
+    if base_d3_values:
+        base_d3 = np.asarray(base_d3_values, dtype=float)
+        coefficient = np.asarray(progress_coefficients, dtype=float)
+        report.update(base_official_d3=float(base_d3.mean()),
+                      final_minus_base_d3=float(d3.mean() - base_d3.mean()),
+                      progress_coefficient_count=int(coefficient.shape[1]),
+                      progress_coefficient_mean=coefficient.mean(0).tolist(),
+                      progress_coefficient_abs_mean=np.abs(coefficient).mean(0).tolist(),
+                      progress_coefficient_abs_p99=np.quantile(
+                          np.abs(coefficient), .99, axis=0).tolist())
     for name, (inter, union) in iou_counts.items():
         report[f"{name}_iou"] = inter / union if union else None
     return report, records
