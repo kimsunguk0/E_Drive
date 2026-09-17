@@ -1,0 +1,170 @@
+{
+ "limitations": [
+  "V0 is a development set that has been read many times.",
+  "One seed per arm except MR-NATIVE, which has two.",
+  "The test-matched weighting predicts the server; it is not a server score.",
+  "H is not opened."
+ ],
+ "long_schedule": {
+  "MR-NATIVE-s0 -> MR-NATIVE-LONG-s0 (terminal)": {
+   "plain": {
+    "ci95": [
+     -0.0030897291111991786,
+     0.007214102850862801
+    ],
+    "ci_includes_zero": true,
+    "delta": 0.002763529371406193,
+    "p_worse": 0.8381,
+    "sessions": 11,
+    "sessions_improved": 4
+   },
+   "test_matched": {
+    "ci95": [
+     -0.003919317133940918,
+     0.013599682587767949
+    ],
+    "ci_includes_zero": true,
+    "delta": 0.007051173662012272,
+    "p_worse": 0.8767,
+    "sessions": 11,
+    "sessions_improved": 4
+   }
+  },
+  "note": "final_eval.json holds the TERMINAL checkpoint. LONG's best planned checkpoint was 0.193931 at 7.20 exposures, still above the short schedule's 0.191892 at 3.93, so the comparison does not depend on which of the two LONG checkpoints is used.",
+  "question": "does the same recipe reach a lower point when run to 8 exposures with the cosine horizon set to that total from step one?",
+  "verdict": {
+   "code": "LONGER_SCHEDULE_DOES_NOT_HELP",
+   "early_stopping_answer": "the current stopping point is not too early. There is no gain available from training longer under this schedule family, so an early-stopping study on a rebuilt split would not have found one either.",
+   "reading": "more compute on the same data does not help MR either, matching what the E1 lineage already showed. The short schedule's advantage is not that it stops early but that its cosine decay completes within the budget: at 3.93 exposures LONG is at 0.214189 while the short run finished at 0.191892, and LONG never recovers that."
+  }
+ },
+ "mr_adj": {
+  "MODULE ALONE MR-NATIVE-s0 -> MR-ADJ0-s0": {
+   "plain": {
+    "ci95": [
+     -0.0023200005184730046,
+     0.0025405948367739637
+    ],
+    "ci_includes_zero": true,
+    "delta": -0.0001484880407234237,
+    "p_worse": 0.41665,
+    "sessions": 11,
+    "sessions_improved": 7
+   },
+   "test_matched": {
+    "ci95": [
+     -0.004900408447530685,
+     0.0025143068123422434
+    ],
+    "ci_includes_zero": true,
+    "delta": -0.0019173264064918903,
+    "p_worse": 0.18735,
+    "sessions": 11,
+    "sessions_improved": 6
+   }
+  },
+  "PRACTICAL MR-NATIVE-s0 -> MR-ADJ1-s0": {
+   "plain": {
+    "ci95": [
+     -0.002575134953372021,
+     -0.00014036471074373692
+    ],
+    "ci_includes_zero": false,
+    "delta": -0.0013763344442592443,
+    "p_worse": 0.01295,
+    "sessions": 11,
+    "sessions_improved": 8
+   },
+   "test_matched": {
+    "ci95": [
+     -0.008580966200539603,
+     0.00031751957450005326
+    ],
+    "ci_includes_zero": true,
+    "delta": -0.004397743143573525,
+    "p_worse": 0.0574,
+    "sessions": 11,
+    "sessions_improved": 8
+   }
+  },
+  "PRIMARY MR-ADJ0-s0 -> MR-ADJ1-s0": {
+   "plain": {
+    "ci95": [
+     -0.0033147543597288184,
+     0.00115967859187265
+    ],
+    "ci_includes_zero": true,
+    "delta": -0.0012278464035358203,
+    "p_worse": 0.14495,
+    "sessions": 11,
+    "sessions_improved": 8
+   },
+   "test_matched": {
+    "ci95": [
+     -0.004836194619567821,
+     0.0016375638269859394
+    ],
+    "ci_includes_zero": true,
+    "delta": -0.0024804167370816345,
+    "p_worse": 0.1281,
+    "sessions": 11,
+    "sessions_improved": 8
+   }
+  },
+  "control_seed_spread": {
+   "plain": 0.0008900681299514324,
+   "test_matched": 0.00509670804058171
+  },
+  "question": "does reading the three comparisons between past frames reduce the planning error?",
+  "verdict": {
+   "action": "no established gain from the adjacent edges at this budget; close this ADJ setting and do not conclude that temporal relations in general cannot be used",
+   "code": "NO_ESTABLISHED_EFFECT",
+   "delta_vs_seed_spread": {
+    "exceeds": true,
+    "primary_delta": -0.0012278464035358203,
+    "seed_spread": 0.0008900681299514324
+   }
+  }
+ },
+ "resamples": 20000,
+ "rows": 1998,
+ "schema_version": 1,
+ "sessions": 11,
+ "terminals": {
+  "LEN-s0": {
+   "plain": 0.22364424466043104,
+   "test_matched": 0.28234796488047503
+  },
+  "MR-ADJ0-s0": {
+   "plain": 0.19174309497357042,
+   "test_matched": 0.16898313359346512
+  },
+  "MR-ADJ1-s0": {
+   "plain": 0.1905152485700346,
+   "test_matched": 0.1665027168563835
+  },
+  "MR-NATIVE-LONG-s0": {
+   "plain": 0.19465511238570002,
+   "test_matched": 0.17795163366196926
+  },
+  "MR-NATIVE-s0": {
+   "plain": 0.19189158301429385,
+   "test_matched": 0.17090045999995698
+  },
+  "MR-NATIVE-s1": {
+   "plain": 0.19100151488434242,
+   "test_matched": 0.16580375195937527
+  },
+  "MR-W64-s0": {
+   "plain": 0.19089154937497918,
+   "test_matched": 0.1642851037356353
+  }
+ },
+ "weighting": {
+  "effective_fraction": 0.4446,
+  "effective_n": 888.4,
+  "test_mass_covered_by_val": 0.99467,
+  "w_max": 8.332439678284182,
+  "w_min": 0.20341398852954148
+ }
+}
