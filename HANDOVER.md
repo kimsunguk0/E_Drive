@@ -2,6 +2,39 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0B. 2026-09-17 19시대 방향 전환 — 가장 먼저 읽을 것
+
+최근 `FRONT/SIDE residual`, auxiliary, denoise, 짧은 A2 warmup은 모두 일반 주행
+1,875행을 `0.001`도 고치지 못했다. 마지막 `STATUS-A2-S-SCENE` 두 seed도
+base→final `0.191341→0.189591`, `0.190334→0.189498`이었고, nonstop 개선은
+각각 `0.000960`, `0.000257`뿐이었다. 이 작은 post-hoc adapter 계열은 종료한다.
+
+그러나 status-conditioned shared perception 자체를 기각한 것은 아니다. 과거 깨끗한
+flip50 비교에서 제공-status A2 `0.228957` 대 Q10 `0.258544`로 약 `0.02959`의
+차이가 있었다. 현재 warmup은 완성된 MR에 zero-init 경로를 사후 부착한 조건이었다.
+
+새 주력은 `reports/md_progress_residual_20260917/DIRECTION_RECHECK_KO.md`와 커밋
+`e101dc3`에 기록돼 있다.
+
+- GPU 0: `MR-NATIVE-FULL-s1` 제출 안전망.
+- GPU 1: `A2-DIRECT-s1`. 등록 MR과 같은 초기화·train310·20,554 update에서 shared
+  status query를 처음부터 함께 학습하는 control.
+- GPU 2: `OOF-MR-T203-s1`. old203만 학습해 unseen new107의 honest residual 분포를 생성.
+- GPU 3: `A3-FP-VA-s1`. status는 공통 image feature 형성에만 쓰고, planner의 path
+  direction과 progress를 구조적으로 분리한다. 기존 XY proposal에는 direction gradient만
+  남고 progress는 별도 continuous `delta_v+delta_a` head가 담당한다.
+
+A3는 과거 65,025개 P×V 후보 selector가 아니다. candidate bank와 argmax가 없고,
+MR proposal의 방향을 따라 연속 진행량을 회귀한다. 단위검사 5개와 두 arm의 실제
+2-step smoke가 통과했으며 첫 step planning loss가 `0.6594299078`로 정확히 같아
+초기 함수 보존을 확인했다.
+
+판정은 같은 plain V0와 같은 checkpoint budget에서 한다. 등록 MR seed1의
+step 3426/6852/10278/13704/17130/20554 값은
+`0.254811/0.218241/0.222304/0.206502/0.192196/0.191002`다. 곡선이 비단조이므로
+첫 중간점 하나만 보고 중단하지 않는다. 3위에는 단일 서버 관측 환산으로 DEV 약
+`0.12355`가 필요하며, 작은 `0.001~0.005` 개선을 모으는 전략으로는 닿지 않는다.
+
 ## 0A. 2026-09-17 후속 교정 — 아래의 오래된 수치보다 우선한다
 
 - 공개 leaderboard `mode=best` 재확인 기준 현재 제출은 14위이고 3위는 `0.1305365832`다.
@@ -12,9 +45,8 @@
   planner가 사용하는 것은 허용된다. raw provided history/status 입력과 구분한다.
 - 사용자는 서버 응답의 `elapsed_ms`는 채점 harness 시간이라며 이번 모델 판단에서 제외하도록
   지시했다. 아래 미해결 문단을 다시 실험 우선순위로 올리지 않는다.
-- 최신 공격안은 `reports/md_progress_residual_20260917/EXECUTION_REVIEW_KO.md`를 따른다.
-  FULL과 DEV를 분리하고, FRONT/SIDE temporal + detached-base-plan-conditioned neural progress
-  residual을 비교한다. C/raw-status selector와 준비되지 않은 recurrent BEV는 제출 계보에서 제외한다.
+- `EXECUTION_REVIEW_KO.md`의 FRONT/SIDE residual 순서는 이후 실측으로 종료됐다. 최신 판단은
+  위 0B와 `DIRECTION_RECHECK_KO.md`의 fresh A2 / factorized A3 / OOF 순서를 따른다.
 
 ---
 
