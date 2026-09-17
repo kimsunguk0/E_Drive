@@ -148,10 +148,14 @@ class ProgressRefiner(nn.Module):
 class ResidualMotionDriveV2(MotionDriveV2):
     """MR-NATIVE plus an optional two-camera raw temporal branch."""
 
-    def __init__(self, config, *, coefficient_count=1, side_enabled=False, cap=1.0):
+    def __init__(self, config, *, coefficient_count=1, side_enabled=False,
+                 side_auxiliary=False, cap=1.0):
         super().__init__(config)
         self.side_enabled = bool(side_enabled)
+        self.side_auxiliary = bool(side_auxiliary)
         self.coefficient_count = int(coefficient_count)
+        if self.side_auxiliary and not self.side_enabled:
+            raise ValueError("side auxiliary supervision requires side inputs")
         if self.config.correlation_radius != 4:
             raise ValueError("Residual lineage requires the registered MR radius-4 config")
         if self.side_enabled:
@@ -164,6 +168,12 @@ class ResidualMotionDriveV2(MotionDriveV2):
             for module in (self.side_state_delta, self.side_history_delta):
                 nn.init.zeros_(module.weight)
                 nn.init.zeros_(module.bias)
+            if self.side_auxiliary:
+                c = self.config.channels
+                self.side_state_aux = nn.Sequential(
+                    nn.LayerNorm(2 * c), nn.Linear(2 * c, c), nn.GELU(), nn.Linear(c, 6))
+                self.side_history_aux = nn.Sequential(
+                    nn.LayerNorm(8), nn.Linear(8, 64), nn.GELU(), nn.Linear(64, 4))
         self.progress_refiner = ProgressRefiner(
             self.config.channels, coefficient_count, cap, self.side_enabled,
             self.config.planner_heads)
@@ -194,12 +204,23 @@ class ResidualMotionDriveV2(MotionDriveV2):
         calibration = lidar2img[:, list(SIDE_CAMERA_INDICES), :3].float().reshape(b, 2, 12)
         calibration = calibration / calibration.square().mean(-1, keepdim=True).sqrt().clamp_min(1e-6)
         tokens = tokens + self.side_calibration(calibration)[:, :, None]
-        state_feature = tokens.mean((1, 2))
+        camera_feature = tokens.mean(2)
+        state_feature = camera_feature.mean(1)
         state_delta = self.side_state_delta(state_feature) * self.side_motion_encoder.state_scale
-        raw_history = output["history_hat"].reshape(b, 2, len(SIDE_OFFSETS), 4).mean(1)
+        raw_history_by_camera = output["history_hat"].reshape(
+            b, 2, len(SIDE_OFFSETS), 4)
+        raw_history = raw_history_by_camera.mean(1)
         history_delta = self.side_history_delta(
             raw_history / self.side_motion_encoder.history_scale) * self.side_motion_encoder.history_scale
-        return tokens, state_delta, history_delta
+        state_aux = history_aux = None
+        if self.side_auxiliary:
+            state_aux = self.side_state_aux(camera_feature.flatten(1)) \
+                * self.side_motion_encoder.state_scale
+            normalized_history = (raw_history_by_camera /
+                                  self.side_motion_encoder.history_scale).transpose(1, 2)
+            history_aux = self.side_history_aux(normalized_history.flatten(2)) \
+                * self.side_motion_encoder.history_scale
+        return tokens, state_delta, history_delta, state_aux, history_aux
 
     def forward_parts(self, images, history_images, lidar2img, history_transforms,
                       time_offsets, goal_xy, motion_current=None, motion_history=None,
@@ -230,7 +251,7 @@ class ResidualMotionDriveV2(MotionDriveV2):
                                    images.shape[-2:])
         parts = {**scene, **motion, "raw_visual_tokens": self._visual_tokens(current_p4)}
         if self.side_enabled:
-            side, state_delta, history_delta = self._side_features(
+            side, state_delta, history_delta, state_aux, history_aux = self._side_features(
                 images, side_history_images, lidar2img, time_offsets)
             parts["side_motion_features"] = side
             parts["state_hat"] = parts["state_hat"] + state_delta
@@ -238,6 +259,9 @@ class ResidualMotionDriveV2(MotionDriveV2):
                 parts["history_hat"][:, :len(SIDE_OFFSETS)] + history_delta,
                 parts["history_hat"][:, len(SIDE_OFFSETS):],
             ], 1)
+            if self.side_auxiliary:
+                parts["side_state_aux_hat"] = state_aux
+                parts["side_history_aux_hat"] = history_aux
         return parts
 
     def forward(self, images, history_images, lidar2img, history_transforms,

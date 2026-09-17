@@ -23,8 +23,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from build_grouped_split_v2 import sha256
 from motiondrive_v2_training import tensor_state_sha256
+from motiondrive_v2_training import HISTORY_SCALE, STATE_SCALE, regression_loss
 import matching_resolution as mr
-from progress_residual import (ResidualMotionDriveV2, SIDE_HISTORY_KEY,
+from progress_residual import (ResidualMotionDriveV2, SIDE_HISTORY_KEY, SIDE_OFFSETS,
                                SideHistoryDataset, wrap_flip_item)
 
 
@@ -41,6 +42,7 @@ WORKERS = 8
 NEW_MODULE_LR = 5e-5
 LENGTH_LAMBDA = .25
 CAP = 1.0
+SIDE_AUX_LAMBDA = .5
 NEW_MODULE_SEED = 20260917
 WARMUP_STEPS = 1_000
 JOINT_STEPS = math.ceil(2 * TRAIN_ROWS / BATCH)  # 10,463, two complete exposures
@@ -48,9 +50,11 @@ JOINT_EVAL_EVERY = math.ceil(.5 * TRAIN_ROWS / BATCH)
 CUDA_MEMORY_LIMIT_MIB = 170_000
 
 ARMS = {
-    "FRONT-S": {"side": False, "coefficients": 1},
-    "SIDE-S": {"side": True, "coefficients": 1},
-    "SIDE-VA": {"side": True, "coefficients": 2},
+    "FRONT-S": {"side": False, "coefficients": 1, "side_aux": False},
+    "SIDE-S": {"side": True, "coefficients": 1, "side_aux": False},
+    "SIDE-VA": {"side": True, "coefficients": 2, "side_aux": False},
+    "SIDE-S-AUX": {"side": True, "coefficients": 1, "side_aux": True},
+    "SIDE-VA-AUX": {"side": True, "coefficients": 2, "side_aux": True},
 }
 STAGES = {
     "warmup": {"steps": WARMUP_STEPS, "eval_every": WARMUP_STEPS,
@@ -122,6 +126,8 @@ def experiment(arm, stage, seed, initializer, train, tune):
             "registered_base": "MR-NATIVE-s1 step20554",
             "front_history_seconds": [.1, .2, .5, 1.],
             "side_enabled": spec["side"],
+            "side_absolute_auxiliary": spec["side_aux"],
+            "side_absolute_auxiliary_lambda": SIDE_AUX_LAMBDA if spec["side_aux"] else 0.,
             "side_cameras": (["camera_front_right", "camera_front_left"]
                              if spec["side"] else []),
             "side_history_seconds": ([.1, .2, .5] if spec["side"] else []),
@@ -147,6 +153,7 @@ def experiment(arm, stage, seed, initializer, train, tune):
             "same_schedule": True, "same_final_prefix_loss": True,
             "front_vs_side_scalar": ["FRONT-S", "SIDE-S"],
             "side_scalar_vs_two_coefficient": ["SIDE-S", "SIDE-VA"],
+            "side_aux_scalar_vs_two_coefficient": ["SIDE-S-AUX", "SIDE-VA-AUX"],
         },
         "provided_status_used": False,
         "checkpoint_selection": "report every fixed endpoint; primary comparison at common terminal",
@@ -176,6 +183,41 @@ def trainer_argv(arm, stage, seed, initializer, run_dir):
         "--eval-split", "tune", "--cuda-memory-limit-mib", str(CUDA_MEMORY_LIMIT_MIB),
         "--cuda-min-free-mib", "8192",
     ]
+
+
+def wrap_side_auxiliary_loss(original, lam):
+    """Supervise side-only motion features even when the base fits train rows."""
+    if lam <= 0:
+        raise ValueError("side auxiliary weight must be positive")
+
+    def compute_loss(outputs, batch, weights, *, normalizers=None, stop_class_weights=None):
+        total, parts = original(outputs, batch, weights, normalizers=normalizers,
+                                stop_class_weights=stop_class_weights)
+        required = ("side_state_aux_hat", "side_history_aux_hat")
+        if any(name not in outputs for name in required):
+            raise KeyError("side auxiliary arm did not emit its direct motion predictions")
+        state_valid = batch.get("state_valid")
+        history_valid = batch.get("history_valid")
+        state = regression_loss(
+            outputs["side_state_aux_hat"][..., :5], batch["state_target"][..., :5],
+            None if state_valid is None else state_valid[..., :5], STATE_SCALE,
+            normalizer=None if normalizers is None else normalizers["state_valid"])
+        # The denominator deliberately remains the full four-offset count.  This
+        # makes microbatch contributions additive and gives the three-offset side
+        # auxiliary a fixed 3/4 weighting without changing trainer normalizers.
+        history = regression_loss(
+            outputs["side_history_aux_hat"], batch["history_target"][:, :len(SIDE_OFFSETS)],
+            None if history_valid is None else history_valid[:, :len(SIDE_OFFSETS)],
+            HISTORY_SCALE,
+            normalizer=None if normalizers is None else normalizers["history_valid"])
+        auxiliary = state + history
+        total = total + lam * auxiliary
+        parts = dict(parts)
+        parts.update(side_state_aux=state, side_history_aux=history,
+                     side_motion_aux=auxiliary, total=total)
+        return total, parts
+
+    return compute_loss
 
 
 @contextlib.contextmanager
@@ -241,9 +283,10 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
             torch.manual_seed(NEW_MODULE_SEED)
             built = ResidualMotionDriveV2(
                 config, coefficient_count=spec["coefficients"],
-                side_enabled=spec["side"], cap=CAP)
+                side_enabled=spec["side"], side_auxiliary=spec["side_aux"], cap=CAP)
         prefixes = ("progress_refiner.", "side_motion_encoder.", "side_calibration.",
-                    "side_state_delta.", "side_history_delta.")
+                    "side_state_delta.", "side_history_delta.",
+                    "side_state_aux.", "side_history_aux.")
         state["model"] = built
         state["new_parameter_ids"] = {
             id(parameter) for name, parameter in built.named_parameters()
@@ -354,7 +397,10 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
     trainer._training_schedule_actions = schedule_actions
     trainer.atomic_checkpoint = checkpoint
     trainer.atomic_json = atomic_json
-    trainer.compute_loss = wrap_compute_loss(originals["loss"], LENGTH_LAMBDA)
+    loss = wrap_compute_loss(originals["loss"], LENGTH_LAMBDA)
+    if spec["side_aux"]:
+        loss = wrap_side_auxiliary_loss(loss, SIDE_AUX_LAMBDA)
+    trainer.compute_loss = loss
     torch.optim.AdamW = adamw_factory
     try:
         yield

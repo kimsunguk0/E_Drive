@@ -4,6 +4,9 @@ from experiments.md_progress_residual_20260917.progress_residual import (
     apply_progress_correction,
     stable_predicted_directions,
 )
+from experiments.md_progress_residual_20260917.train_residual import (
+    wrap_side_auxiliary_loss,
+)
 
 
 def test_zero_is_exact_and_keeps_base_gradient():
@@ -48,3 +51,28 @@ def test_short_segments_use_predicted_neighbour_only():
     unit = torch.tensor([2 ** -.5, 2 ** -.5])
     assert torch.allclose(directions[0], unit.expand(6, 2), atol=1e-6)
     assert (lengths[0, [0, 1, 4]] == 0).all()
+
+
+def test_side_auxiliary_loss_reaches_state_and_history_predictions():
+    def base_loss(outputs, batch, weights, *, normalizers=None, stop_class_weights=None):
+        zero = outputs["plan_abs"].sum() * 0
+        return zero, {"total": zero}
+
+    state = torch.zeros(2, 6, requires_grad=True)
+    history = torch.zeros(2, 3, 4, requires_grad=True)
+    outputs = {
+        "plan_abs": torch.zeros(2, 6, 2, requires_grad=True),
+        "side_state_aux_hat": state,
+        "side_history_aux_hat": history,
+    }
+    batch = {
+        "state_target": torch.ones(2, 6),
+        "state_valid": torch.ones(2, 6, dtype=torch.bool),
+        "history_target": torch.ones(2, 4, 4),
+        "history_valid": torch.ones(2, 4, 4, dtype=torch.bool),
+    }
+    loss, parts = wrap_side_auxiliary_loss(base_loss, .5)(outputs, batch, None)
+    loss.backward()
+    assert parts["side_motion_aux"] > 0
+    assert state.grad is not None and torch.isfinite(state.grad).all() and state.grad.abs().sum() > 0
+    assert history.grad is not None and torch.isfinite(history.grad).all() and history.grad.abs().sum() > 0
