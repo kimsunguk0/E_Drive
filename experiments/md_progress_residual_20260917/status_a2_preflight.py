@@ -2,6 +2,7 @@
 """One-batch zero-init parity check for the STATUS-A2-S experiment."""
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 import sys
 
@@ -30,6 +31,9 @@ def batch_tensor(item, key, device):
 
 
 def main():
+    parser = argparse.ArgumentParser(allow_abbrev=False)
+    parser.add_argument("--scene-refiner", action="store_true")
+    args = parser.parse_args()
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required for the full-resolution parity preflight")
     device = torch.device("cuda:0")
@@ -42,7 +46,7 @@ def main():
     residual = ResidualMotionDriveV2(
         MotionDriveV2Config(**config_dict), coefficient_count=1,
         side_enabled=False, side_auxiliary=False, progress_denoise=False,
-        shared_status_query=True, cap=1.)
+        shared_status_query=True, scene_refiner=args.scene_refiner, cap=1.)
     incompatible = residual.load_state_dict(payload["model"], strict=False)
     allowed = ("progress_refiner.", "shared_status_query_fusion.")
     if incompatible.unexpected_keys or not incompatible.missing_keys \
@@ -79,6 +83,7 @@ def main():
     if residual._shared_status_context is not None:
         raise RuntimeError("shared-status context leaked beyond forward")
     print({"status": "passed", **comparisons,
+           "scene_refiner": args.scene_refiner,
            "provided_status5": status.float().cpu().tolist()[0],
            "missing_new_keys": len(incompatible.missing_keys)})
 

@@ -69,6 +69,9 @@ ARMS = {
                        "status_query": False},
     "STATUS-A2-S": {"side": False, "coefficients": 1, "side_aux": False,
                     "denoise": False, "status_query": True},
+    "STATUS-A2-S-SCENE": {"side": False, "coefficients": 1, "side_aux": False,
+                          "denoise": False, "status_query": True,
+                          "scene_refiner": True},
 }
 STAGES = {
     "warmup": {"steps": WARMUP_STEPS, "eval_every": WARMUP_STEPS,
@@ -164,6 +167,8 @@ def experiment(arm, stage, seed, initializer, train, tune):
             "side_motion_dynamic_pose_input": False,
             "side_calibration": "current fixed lidar2img only",
             "shared_status_query": spec["status_query"],
+            "shared_scene_features_to_progress_refiner": bool(
+                spec.get("scene_refiner", False)),
             "provided_status_fields": (["vx", "vy", "ax", "ay", "yaw_rate"]
                                        if spec["status_query"] else []),
             "provided_status_source": (
@@ -356,7 +361,8 @@ def patched_runtime(arm, stage, seed, declared, run_dir):
                 config, coefficient_count=spec["coefficients"],
                 side_enabled=spec["side"], side_auxiliary=spec["side_aux"],
                 progress_denoise=spec["denoise"],
-                shared_status_query=spec["status_query"], cap=CAP)
+                shared_status_query=spec["status_query"],
+                scene_refiner=spec.get("scene_refiner", False), cap=CAP)
         prefixes = ("progress_refiner.", "side_motion_encoder.", "side_calibration.",
                     "side_state_delta.", "side_history_delta.",
                     "side_state_aux.", "side_history_aux.",
@@ -510,7 +516,8 @@ def run_stage(arm, stage, seed, initializer, run_dir, dry_run=False):
                "train_rows": len(train), "tune_rows": len(tune),
                "steps": STAGES[stage]["steps"], "microbatch": MICROBATCH,
                "side": ARMS[arm]["side"], "coefficients": ARMS[arm]["coefficients"],
-               "status_query": ARMS[arm]["status_query"]}
+               "status_query": ARMS[arm]["status_query"],
+               "scene_refiner": bool(ARMS[arm].get("scene_refiner", False))}
     print("PLAN " + json.dumps(summary, sort_keys=True), flush=True)
     if dry_run:
         return
@@ -567,6 +574,7 @@ def main():
             "side": ARMS[args.arm]["side"],
             "coefficients": ARMS[args.arm]["coefficients"],
             "status_query": ARMS[args.arm]["status_query"],
+            "scene_refiner": bool(ARMS[args.arm].get("scene_refiner", False)),
         }, sort_keys=True), flush=True)
         return
     if not (warmup / "last.pth").exists():

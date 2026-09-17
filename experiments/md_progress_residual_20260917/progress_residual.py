@@ -93,22 +93,25 @@ def apply_progress_correction(base_plan: torch.Tensor, coefficients: torch.Tenso
 
 
 class ProgressRefiner(nn.Module):
-    """One learned query over raw visual/motion tokens and the detached plan."""
+    """One query over visual/motion, optional shared-scene, and detached plan."""
 
     def __init__(self, channels=128, coefficient_count=1, cap=1.0,
-                 side_enabled=False, heads=4):
+                 side_enabled=False, scene_enabled=False, heads=4):
         super().__init__()
         if coefficient_count not in (1, 2) or cap <= 0:
             raise ValueError("coefficient_count must be 1/2 and cap positive")
         self.coefficient_count = coefficient_count
         self.cap = float(cap)
         self.side_enabled = bool(side_enabled)
+        self.scene_enabled = bool(scene_enabled)
         self.plan_encoder = nn.Sequential(
             nn.Linear(18, channels), nn.GELU(), nn.Linear(channels, channels))
         self.visual_camera = nn.Parameter(torch.randn(6, channels) * .02)
         self.visual_type = nn.Parameter(torch.randn(1, 1, channels) * .02)
         self.front_type = nn.Parameter(torch.randn(1, 1, channels) * .02)
         self.side_type = nn.Parameter(torch.randn(1, 1, channels) * .02)
+        if self.scene_enabled:
+            self.scene_type = nn.Parameter(torch.randn(1, 1, channels) * .02)
         self.query = nn.Parameter(torch.randn(1, 1, channels) * .02)
         self.memory_norm = nn.LayerNorm(channels)
         self.attention = nn.MultiheadAttention(channels, heads, dropout=0., batch_first=True)
@@ -127,13 +130,21 @@ class ProgressRefiner(nn.Module):
         scale = plan.new_tensor([10., 5.])
         return torch.cat([(plan / scale).flatten(1), length / 10.], -1)
 
-    def forward(self, base_plan, visual_tokens, front_motion, side_motion=None):
+    def forward(self, base_plan, visual_tokens, front_motion, side_motion=None,
+                scene_features=None):
         if visual_tokens.ndim != 4 or visual_tokens.shape[1] != 6:
             raise ValueError("visual_tokens must be [B,6,N,C]")
         b, _, n, c = visual_tokens.shape
         visual = visual_tokens + self.visual_camera[None, :, None]
         visual = visual.reshape(b, 6 * n, c) + self.visual_type
         memory = [visual, front_motion.float() + self.front_type]
+        if self.scene_enabled:
+            if scene_features is None or scene_features.ndim != 3 \
+                    or scene_features.shape[0] != b or scene_features.shape[2] != c:
+                raise ValueError("scene refiner requires shared scene features [B,Q,C]")
+            memory.append(scene_features.float() + self.scene_type)
+        elif scene_features is not None:
+            raise ValueError("non-scene refiner received scene features")
         if self.side_enabled:
             if side_motion is None or side_motion.ndim != 4 or side_motion.shape[:2] != (b, 2):
                 raise ValueError("SIDE refiner requires [B,2,N,C] side motion")
@@ -154,12 +165,13 @@ class ResidualMotionDriveV2(MotionDriveV2):
 
     def __init__(self, config, *, coefficient_count=1, side_enabled=False,
                  side_auxiliary=False, progress_denoise=False,
-                 shared_status_query=False, cap=1.0):
+                 shared_status_query=False, scene_refiner=False, cap=1.0):
         super().__init__(config)
         self.side_enabled = bool(side_enabled)
         self.side_auxiliary = bool(side_auxiliary)
         self.progress_denoise = bool(progress_denoise)
         self.shared_status_query_enabled = bool(shared_status_query)
+        self.scene_refiner_enabled = bool(scene_refiner)
         self.coefficient_count = int(coefficient_count)
         if self.side_auxiliary and not self.side_enabled:
             raise ValueError("side auxiliary supervision requires side inputs")
@@ -183,7 +195,7 @@ class ResidualMotionDriveV2(MotionDriveV2):
                     nn.LayerNorm(8), nn.Linear(8, 64), nn.GELU(), nn.Linear(64, 4))
         self.progress_refiner = ProgressRefiner(
             self.config.channels, coefficient_count, cap, self.side_enabled,
-            self.config.planner_heads)
+            self.scene_refiner_enabled, self.config.planner_heads)
         self._shared_status_context = None
         if self.shared_status_query_enabled:
             self.shared_status_query_fusion = SharedCausalStatusQuery(
@@ -305,7 +317,8 @@ class ResidualMotionDriveV2(MotionDriveV2):
                                             parts["state_hat"], parts["history_hat"])
         coefficient = self.progress_refiner(
             base_plan.detach(), parts["raw_visual_tokens"], parts["motion_features"],
-            parts.get("side_motion_features"))
+            parts.get("side_motion_features"),
+            parts["scene_features"] if self.scene_refiner_enabled else None)
         final_plan, geometry = apply_progress_correction(base_plan, coefficient)
         result = {**parts, **geometry, "plan_base_abs": base_plan,
                   "progress_coeff": coefficient, "plan_abs": final_plan}
@@ -315,7 +328,8 @@ class ResidualMotionDriveV2(MotionDriveV2):
             perturbed, _ = apply_progress_correction(base_plan.detach(), noise)
             denoise_coefficient = self.progress_refiner(
                 perturbed.detach(), parts["raw_visual_tokens"], parts["motion_features"],
-                parts.get("side_motion_features"))
+                parts.get("side_motion_features"),
+                parts["scene_features"] if self.scene_refiner_enabled else None)
             denoised, _ = apply_progress_correction(perturbed.detach(), denoise_coefficient)
             result.update(progress_denoise_plan=denoised,
                           progress_denoise_coeff=denoise_coefficient,

@@ -1,7 +1,9 @@
+import pytest
 import torch
 
 from experiments.md_progress_residual_20260917.progress_residual import (
     CausalStatusDataset,
+    ProgressRefiner,
     PROVIDED_STATUS_KEY,
     SharedCausalStatusQuery,
     apply_progress_correction,
@@ -87,6 +89,19 @@ def test_causal_status_dataset_exposes_a_separate_valid_input():
     item = CausalStatusDataset(Base())[0]
     assert torch.equal(item[PROVIDED_STATUS_KEY], item["state_target"][:5])
     assert item[PROVIDED_STATUS_KEY].data_ptr() != item["state_target"].data_ptr()
+
+
+def test_scene_refiner_consumes_shared_scene_and_keeps_zero_output():
+    refiner = ProgressRefiner(channels=16, coefficient_count=1, cap=1.,
+                              side_enabled=False, scene_enabled=True, heads=4)
+    base = torch.randn(2, 6, 2)
+    visual = torch.randn(2, 6, 3, 16)
+    motion = torch.randn(2, 5, 16)
+    scene = torch.randn(2, 12, 16)
+    output = refiner(base, visual, motion, scene_features=scene)
+    assert torch.equal(output, torch.zeros_like(output))
+    with pytest.raises(ValueError, match="shared scene"):
+        refiner(base, visual, motion)
 
 
 def test_side_auxiliary_loss_reaches_state_and_history_predictions():
