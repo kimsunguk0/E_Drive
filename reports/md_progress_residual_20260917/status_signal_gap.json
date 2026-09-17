@@ -1,0 +1,140 @@
+{
+  "arms": {
+    "base_plan_only": {
+      "all": {
+        "coefficient_correlation": 0.15772188697789902,
+        "coefficient_mae_mps": 0.14157749252528234,
+        "n": 1998,
+        "prefix": 0.19126174226230216,
+        "strong_sign_accuracy": 0.6029411764705882,
+        "strong_sign_n_abs_oracle_ge_0p1": 1088
+      },
+      "buckets": {
+        "depart": {
+          "coefficient_correlation": -0.3329692239672106,
+          "coefficient_mae_mps": 0.3716855001158575,
+          "n": 24,
+          "prefix": 0.29600033190171626,
+          "strong_sign_accuracy": 0.95,
+          "strong_sign_n_abs_oracle_ge_0p1": 20
+        },
+        "nonstop": {
+          "coefficient_correlation": 0.08062203160056293,
+          "coefficient_mae_mps": 0.13797195494926406,
+          "n": 1875,
+          "prefix": 0.1992361543448115,
+          "strong_sign_accuracy": 0.5719960278053625,
+          "strong_sign_n_abs_oracle_ge_0p1": 1007
+        },
+        "steady": {
+          "coefficient_correlation": -0.6531604689040428,
+          "coefficient_mae_mps": 0.15408042962488339,
+          "n": 99,
+          "prefix": 0.014840037150676857,
+          "strong_sign_accuracy": 1.0,
+          "strong_sign_n_abs_oracle_ge_0p1": 61
+        }
+      }
+    },
+    "base_plan_plus_causal_pose_status": {
+      "all": {
+        "coefficient_correlation": 0.7109399749551423,
+        "coefficient_mae_mps": 0.09304210828343239,
+        "n": 1998,
+        "prefix": 0.13917626216649437,
+        "strong_sign_accuracy": 0.9255514705882353,
+        "strong_sign_n_abs_oracle_ge_0p1": 1088
+      },
+      "buckets": {
+        "depart": {
+          "coefficient_correlation": 0.04603115583713497,
+          "coefficient_mae_mps": 0.3388571007520716,
+          "n": 24,
+          "prefix": 0.2466084455796118,
+          "strong_sign_accuracy": 0.95,
+          "strong_sign_n_abs_oracle_ge_0p1": 20
+        },
+        "nonstop": {
+          "coefficient_correlation": 0.7471113998821443,
+          "coefficient_mae_mps": 0.08641402938700618,
+          "n": 1875,
+          "prefix": 0.1442222630321266,
+          "strong_sign_accuracy": 0.9205561072492552,
+          "strong_sign_n_abs_oracle_ge_0p1": 1007
+        },
+        "steady": {
+          "coefficient_correlation": -0.35456762646369466,
+          "coefficient_mae_mps": 0.1589823922385013,
+          "n": 99,
+          "prefix": 0.01756389827785606,
+          "strong_sign_accuracy": 1.0,
+          "strong_sign_n_abs_oracle_ge_0p1": 61
+        }
+      }
+    },
+    "base_plan_plus_image_predicted_state": {
+      "all": {
+        "coefficient_correlation": 0.0667293388607533,
+        "coefficient_mae_mps": 0.14569948541795008,
+        "n": 1998,
+        "prefix": 0.1958398536861436,
+        "strong_sign_accuracy": 0.6075367647058824,
+        "strong_sign_n_abs_oracle_ge_0p1": 1088
+      },
+      "buckets": {
+        "depart": {
+          "coefficient_correlation": -0.3903971447062431,
+          "coefficient_mae_mps": 0.3728608951862189,
+          "n": 24,
+          "prefix": 0.29916756825630747,
+          "strong_sign_accuracy": 0.95,
+          "strong_sign_n_abs_oracle_ge_0p1": 20
+        },
+        "nonstop": {
+          "coefficient_correlation": -0.002398813852919386,
+          "coefficient_mae_mps": 0.14235616559480538,
+          "n": 1875,
+          "prefix": 0.20403504110622833,
+          "strong_sign_accuracy": 0.5779543197616683,
+          "strong_sign_n_abs_oracle_ge_0p1": 1007
+        },
+        "steady": {
+          "coefficient_correlation": -0.6610302394914397,
+          "coefficient_mae_mps": 0.15395050394277687,
+          "n": 99,
+          "prefix": 0.015578827803893627,
+          "strong_sign_accuracy": 0.9836065573770492,
+          "strong_sign_n_abs_oracle_ge_0p1": 61
+        }
+      }
+    }
+  },
+  "base_prefix": 0.19100151045401165,
+  "direct_signal": {
+    "causal_pose_vx_minus_base_first_interval_speed_correlation": 0.6242544535145682,
+    "image_predicted_vx_minus_base_first_interval_speed_correlation": -0.07036404428638605
+  },
+  "evaluation": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup/final_eval.json",
+  "fit": {
+    "alpha": 1.0,
+    "coefficient_clip_mps": [
+      -1.0,
+      1.0
+    ],
+    "kind": "standardized leave-one-session-out ridge"
+  },
+  "n": 1998,
+  "official_prefix_weights": [
+    0.3055555555555556,
+    0.3055555555555556,
+    0.1388888888888889,
+    0.1388888888888889,
+    0.05555555555555555,
+    0.05555555555555555
+  ],
+  "oracle": "/NHNHOME/data/sukim/adcl/reports/md_progress_residual_20260917/oracle_FRONT-S_warmup_base_cap1_records.json",
+  "purpose": "diagnostic only; no fit sees rows from its held-out session",
+  "scalar_oracle_prefix": 0.08090570060371462,
+  "schema_version": 1,
+  "sessions": 11
+}
