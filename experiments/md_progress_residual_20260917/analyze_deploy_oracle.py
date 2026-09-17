@@ -84,20 +84,29 @@ def main():
     parser = argparse.ArgumentParser(allow_abbrev=False)
     parser.add_argument("--evaluation", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--plan-key", default="pred_abs_xy",
+                        help="record field to refine (use base_abs_xy for residual evaluations)")
+    parser.add_argument("--save-record-coefficients", action="store_true",
+                        help="store coefficients in evaluation-record order for error analysis")
     parser.add_argument("--cap", type=float, default=1.)
     parser.add_argument("--workers", type=int, default=32)
     args = parser.parse_args()
     source = json.loads(Path(args.evaluation).read_text())
     records = source["records"]
-    plan = np.asarray([record["pred_abs_xy"] for record in records], np.float64)
+    missing = [index for index, record in enumerate(records) if args.plan_key not in record]
+    if missing:
+        raise KeyError(f"{args.plan_key!r} absent from records, first index {missing[0]}")
+    plan = np.asarray([record[args.plan_key] for record in records], np.float64)
     target = np.asarray([record["gt_abs_xy"] for record in records], np.float64)
     result = {
-        "schema_version": 1, "evaluation": str(Path(args.evaluation).resolve()),
+        "schema_version": 2, "evaluation": str(Path(args.evaluation).resolve()),
+        "plan_key": args.plan_key,
         "n": len(records), "cap_abs": args.cap,
         "geometry": {"dt": DT, "t_mid": T_MID.tolist(), "short_eps": 1e-3,
                      "short_fallback": "closest valid predicted segment",
                      "all_zero_fallback": "ego +x", "negative_interval": "clamp to zero",
-                     "objective": "official PREFIX", "coefficient_tie_break": "minimum L2"},
+                     "objective": "official PREFIX",
+                     "coefficient_tie_break": "1e-8 times squared coefficient norm"},
         "base": metrics(plan, target), "arms": {},
     }
     context = mp.get_context("fork")
@@ -119,6 +128,8 @@ def main():
                 "all_zero_base_rows": int(sum(item["all_zero"] for item in solved)),
                 "short_base_segments": int(sum(item["short"] for item in solved)),
             }
+            if args.save_record_coefficients:
+                result["arms"][name]["record_coefficients"] = coefficient.tolist()
             print(name, json.dumps(result["arms"][name], sort_keys=True), flush=True)
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
