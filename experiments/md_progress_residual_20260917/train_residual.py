@@ -496,6 +496,15 @@ def main():
     joint = root / "joint"
     if not args.joint_only:
         run_stage(args.arm, "warmup", args.seed, MR_INIT, warmup, args.dry_run)
+        if not args.dry_run:
+            warmup_manifest = json.loads((warmup / "manifest.json").read_text())
+            if warmup_manifest.get("status") != "completed":
+                print("STOP " + json.dumps({
+                    "arm": args.arm, "stage": "warmup",
+                    "status": warmup_manifest.get("status"),
+                    "step": warmup_manifest.get("step"),
+                }, sort_keys=True), flush=True)
+                return
     if args.dry_run and not args.joint_only:
         print("PLAN " + json.dumps({
             "arm": args.arm, "stage": "joint", "seed": args.seed,
