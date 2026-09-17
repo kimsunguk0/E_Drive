@@ -1,0 +1,161 @@
+{
+  "decision": "legacy VO correlation is dominated by dynamic-pose alignment; the pose-free RAFT fit is too inaccurate and anti-correlated with the required progress residual",
+  "legacy_vo_counterfactual": {
+    "checkpoint": "work_dirs/sc_vo_w10/best.pth",
+    "modes": {
+      "actual": {
+        "mean_vector_change_vs_actual_m": 0.0,
+        "offsets": {
+          "0.5": {
+            "gt_speed_mean_mps": 8.821995,
+            "pred_speed_mean_mps": 9.548346,
+            "speed_corr": 0.987313,
+            "speed_mae_mps": 0.852112,
+            "vector_mae_m": 0.43413
+          },
+          "1.0": {
+            "gt_speed_mean_mps": 8.841207,
+            "pred_speed_mean_mps": 9.612243,
+            "speed_corr": 0.987853,
+            "speed_mae_mps": 0.886974,
+            "vector_mae_m": 0.908623
+          },
+          "1.5": {
+            "gt_speed_mean_mps": 8.861293,
+            "pred_speed_mean_mps": 9.518339,
+            "speed_corr": 0.986277,
+            "speed_mae_mps": 0.793983,
+            "vector_mae_m": 1.250755
+          }
+        }
+      },
+      "current_as_past": {
+        "mean_vector_change_vs_actual_m": 1.552888,
+        "offsets": {
+          "0.5": {
+            "gt_speed_mean_mps": 8.821995,
+            "pred_speed_mean_mps": 10.639259,
+            "speed_corr": 0.877159,
+            "speed_mae_mps": 1.966551,
+            "vector_mae_m": 0.992813
+          },
+          "1.0": {
+            "gt_speed_mean_mps": 8.841207,
+            "pred_speed_mean_mps": 10.590689,
+            "speed_corr": 0.894619,
+            "speed_mae_mps": 1.870848,
+            "vector_mae_m": 1.900015
+          },
+          "1.5": {
+            "gt_speed_mean_mps": 8.861293,
+            "pred_speed_mean_mps": 10.347742,
+            "speed_corr": 0.912018,
+            "speed_mae_mps": 1.639175,
+            "vector_mae_m": 2.535624
+          }
+        }
+      },
+      "identity_pose": {
+        "mean_vector_change_vs_actual_m": 7.64717,
+        "offsets": {
+          "0.5": {
+            "gt_speed_mean_mps": 8.821995,
+            "pred_speed_mean_mps": 2.656548,
+            "speed_corr": 0.077757,
+            "speed_mae_mps": 6.587665,
+            "vector_mae_m": 3.685304
+          },
+          "1.0": {
+            "gt_speed_mean_mps": 8.841207,
+            "pred_speed_mean_mps": 2.573508,
+            "speed_corr": 0.017111,
+            "speed_mae_mps": 6.708062,
+            "vector_mae_m": 7.401537
+          },
+          "1.5": {
+            "gt_speed_mean_mps": 8.861293,
+            "pred_speed_mean_mps": 2.523316,
+            "speed_corr": 0.025314,
+            "speed_mae_mps": 6.734072,
+            "vector_mae_m": 10.962926
+          }
+        }
+      },
+      "shuffled_past": {
+        "mean_vector_change_vs_actual_m": 1.314131,
+        "offsets": {
+          "0.5": {
+            "gt_speed_mean_mps": 8.821995,
+            "pred_speed_mean_mps": 8.97461,
+            "speed_corr": 0.925224,
+            "speed_mae_mps": 1.270898,
+            "vector_mae_m": 0.642331
+          },
+          "1.0": {
+            "gt_speed_mean_mps": 8.841207,
+            "pred_speed_mean_mps": 9.002485,
+            "speed_corr": 0.916518,
+            "speed_mae_mps": 1.328573,
+            "vector_mae_m": 1.339242
+          },
+          "1.5": {
+            "gt_speed_mean_mps": 8.861293,
+            "pred_speed_mean_mps": 8.887743,
+            "speed_corr": 0.906781,
+            "speed_mae_mps": 1.334789,
+            "vector_mae_m": 2.036267
+          }
+        }
+      },
+      "shuffled_pose": {
+        "mean_vector_change_vs_actual_m": 1.487647,
+        "offsets": {
+          "0.5": {
+            "gt_speed_mean_mps": 8.821995,
+            "pred_speed_mean_mps": 9.19668,
+            "speed_corr": 0.878707,
+            "speed_mae_mps": 1.725634,
+            "vector_mae_m": 0.87799
+          },
+          "1.0": {
+            "gt_speed_mean_mps": 8.841207,
+            "pred_speed_mean_mps": 9.202214,
+            "speed_corr": 0.882199,
+            "speed_mae_mps": 1.702141,
+            "vector_mae_m": 1.745093
+          },
+          "1.5": {
+            "gt_speed_mean_mps": 8.861293,
+            "pred_speed_mean_mps": 9.086576,
+            "speed_corr": 0.878219,
+            "speed_mae_mps": 1.678443,
+            "vector_mae_m": 2.577009
+          }
+        }
+      }
+    },
+    "n": 600
+  },
+  "pose_free_raft_ground_fit": {
+    "fit": "trimmed",
+    "fixed_lateral_yaw": "predicted",
+    "flow": "Raft_Large_Weights.C_T_SKHT_K_V2",
+    "ground_z": 0.0,
+    "inlier_fraction": 0.6,
+    "input_contract": "images plus fixed calibration; dynamic pose is evaluation target only",
+    "metrics": {
+      "estimated_speed_minus_base_vs_oracle_corr": -0.13079855312378097,
+      "speed_corr": 0.6000320488661212,
+      "speed_mae_mps": 3.0586122428667797,
+      "target_speed_minus_base_vs_oracle_corr": 0.5338457190173923,
+      "tx_mae_m": 0.30586122428667806,
+      "ty_mae_m": 0.0043895664332073165,
+      "yaw_mae_rad": 0.0004632313024088789
+    },
+    "n": 120,
+    "offset_seconds": 0.1,
+    "schema_version": 1
+  },
+  "purpose": "diagnostics only; no submission path uses these outputs",
+  "schema_version": 1
+}

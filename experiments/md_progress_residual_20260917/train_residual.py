@@ -175,6 +175,10 @@ def experiment(arm, stage, seed, initializer, train, tune):
                 "the scene raster source shared by occupancy, lane and planning"
                 if spec["status_query"] else "none"),
             "provided_status_direct_planner_or_residual_input": False,
+            "provided_status_indirect_dependencies": (
+                ["shared scene raster -> planner base plan",
+                 "shared scene raster -> base plan -> detached progress plan encoder"]
+                if spec["status_query"] else []),
             "final_inside_neural_forward": True,
             "new_module_seed": NEW_MODULE_SEED,
             "zero_initialised": ((["progress_refiner.output", "side_state_delta",
