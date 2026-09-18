@@ -82,9 +82,14 @@
  "submission_zip_sha256": "82d8a75bba655d06c7e9eaeccabda7bfa5b2a0d97a718a7a99041bd37ce2349e",
  "submissions": {
   "limit": 5,
-  "note": "third was MR-NATIVE-FULL-s1 on 2026-09-18 scoring 0.185969; counted from the recorded history, not fetched from the site",
-  "remaining": 2,
-  "used": 3
+  "not_on_our_account": "2026-09-01 v2a_goal 0.236238922 was submitted through a different team's account and does not consume our quota",
+  "note": "user-confirmed 2026-09-18. Counting the repository's submission history gives 3 and is wrong; do not recompute the quota from artifact count.",
+  "on_our_account": [
+   "2026-09-17 MR-NATIVE-s1 0.19798776670488366",
+   "2026-09-18 MR-NATIVE-FULL-s1 0.18596892793122946"
+  ],
+  "remaining": 3,
+  "used": 2
  },
  "superseded_rank": {
   "corrected": 14,
