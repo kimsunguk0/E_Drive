@@ -1,0 +1,92 @@
+{
+ "PRIMARY A2-BASE-NOM -> A2-MH4-NOM": {
+  "ci95": [
+   -0.0015769820971461407,
+   -0.0002785511854134258
+  ],
+  "ci_includes_zero": false,
+  "delta": -0.0010152185957338921,
+  "p_worse": 0.0045,
+  "sessions": 11,
+  "sessions_improved": 9
+ },
+ "caveats": [
+  "BASE and MH4 are not parameter-matched: 26,557,208 vs 26,581,784.",
+  "One seed each; no A2 seed pair exists, so the spread quoted is the MR lineage's.",
+  "A2-FULL trained on these rows; its number here is in-fit, not a held-out score."
+ ],
+ "delta_vs_reference_seed_spread": {
+  "delta": -0.0010152185957338921,
+  "exceeds": true,
+  "reference_spread": 0.00089
+ },
+ "groups": {
+  "depart": {
+   "A2-BASE-NOM-s1": {
+    "contribution": 0.004091396437704135,
+    "mean_d3": 0.34060875343886926
+   },
+   "A2-FULL-NOM-s1": {
+    "contribution": 0.000997424385423949,
+    "mean_d3": 0.08303558008654376
+   },
+   "A2-MH4-NOM-s1": {
+    "contribution": 0.004012819289346714,
+    "mean_d3": 0.33406720583811395
+   },
+   "mh4_minus_base_contribution": -7.85771483574212e-05,
+   "mh4_minus_base_within_group": -0.006541547600755315,
+   "rows": 24,
+   "share": 0.012012012012012012
+  },
+  "nonstop": {
+   "A2-BASE-NOM-s1": {
+    "contribution": 0.1591505374374646,
+    "mean_d3": 0.16959081269336226
+   },
+   "A2-FULL-NOM-s1": {
+    "contribution": 0.08763460770218345,
+    "mean_d3": 0.09338343796744669
+   },
+   "A2-MH4-NOM-s1": {
+    "contribution": 0.15831278956264314,
+    "mean_d3": 0.16869810855795253
+   },
+   "mh4_minus_base_contribution": -0.0008377478748214375,
+   "mh4_minus_base_within_group": -0.0008927041354097238,
+   "rows": 1875,
+   "share": 0.9384384384384384
+  },
+  "steady": {
+   "A2-BASE-NOM-s1": {
+    "contribution": 0.0022687119998694672,
+    "mean_d3": 0.0457867330882747
+   },
+   "A2-FULL-NOM-s1": {
+    "contribution": 0.0003020512105361158,
+    "mean_d3": 0.006095942612637973
+   },
+   "A2-MH4-NOM-s1": {
+    "contribution": 0.002169818427314433,
+    "mean_d3": 0.04379088098761856
+   },
+   "mh4_minus_base_contribution": -9.889357255503358e-05,
+   "mh4_minus_base_within_group": -0.001995852100656132,
+   "rows": 99,
+   "share": 0.04954954954954955
+  }
+ },
+ "in_fit_and_not_comparable": [
+  "A2-FULL-NOM-s1"
+ ],
+ "reference_seed_spread_from_mr_lineage": 0.00089,
+ "resamples": 20000,
+ "rows": 1998,
+ "schema_version": 1,
+ "sessions": 11,
+ "terminals": {
+  "A2-BASE-NOM-s1": 0.16551064587503816,
+  "A2-FULL-NOM-s1": 0.08893408329814352,
+  "A2-MH4-NOM-s1": 0.16449542727930427
+ }
+}

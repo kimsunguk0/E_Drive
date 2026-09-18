@@ -1,50 +1,95 @@
 {
- "schema_version": 1,
- "submission": "MR-NATIVE-s1 (2026-09-17)",
+ "calibration": {
+  "action": "judge and select on plain V0 only. The test-matched reweighting was recommended by a previous session on the strength of the 2026-09-01 agreement; that agreement was measured on the disallowed v2a_goal graph at 0.236 and does not transfer to this graph at 0.19. It is kept as a record and not used for decisions.",
+  "best_v0_plain_today": {
+   "run": "MR-ADJ1-s0",
+   "value": 0.190515
+  },
+  "distance_to_target": "about -0.048 in V0 plain, a further 25% reduction",
+  "gap_plain_percent": {
+   "1s": -2.95,
+   "2s": -2.71,
+   "3s": -4.33,
+   "avg": -3.53
+  },
+  "gap_test_matched_percent": {
+   "avg": -16.26
+  },
+  "our_v0_plain": {
+   "ADE1": 0.110316,
+   "ADE2": 0.191025,
+   "ADE3": 0.271663,
+   "avg": 0.191002
+  },
+  "our_v0_test_matched": 0.165804,
+  "purpose": "this submission was spent to learn which development estimator predicts the server",
+  "rule_of_thumb": "server ~= V0_plain + 0.0070, from a single observation",
+  "v0_plain_needed": {
+   "0.15": 0.143,
+   "first_place_0.12803": 0.121,
+   "third_place_0.14664": 0.1396
+  },
+  "verdict": "PLAIN_V0_IS_THE_PREDICTOR"
+ },
  "checkpoint": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/ckpt_step20554.pth",
- "submission_zip_sha256": "82d8a75bba655d06c7e9eaeccabda7bfa5b2a0d97a718a7a99041bd37ce2349e",
+ "discipline": "the candidate must NOT change in response to this score; doing so turns the test set into a development set. The next candidate was fixed before the score returned: the full-data retrain.",
+ "leaderboard_2026_09_17": {
+  "1": 0.12803,
+  "2": 0.14509,
+  "3": 0.14664,
+  "4": 0.15429,
+  "5": 0.16215,
+  "6": 0.16512,
+  "7": 0.17421,
+  "8_ours": 0.19799
+ },
+ "metric_identity_confirmed": {
+  "claim": "L2_avg == mean(L2_1s, L2_2s, L2_3s)",
+  "computed": 0.19798776670488363,
+  "holds": true,
+  "reported": 0.19798776670488366
+ },
+ "open_questions": [
+  {
+   "detail": "the response reports 310 ms against our measured 24.27-24.52 ms per clip on a 4090. If that were T_infer the penalty x(1 + (310-100)/200) = x2.05 would apply. The displayed score equals L2_avg exactly, so no penalty is in it, and the runtime block (pull_mode, num_inflight, pull_interval_sec) suggests a polling harness figure rather than a per-clip forward time.",
+   "do_not": "do not claim the time multiplier is 1.0 until this is established",
+   "item": "elapsed_ms"
+  }
+ ],
+ "progress": {
+  "first_submission_2026_09_01": 0.236238922,
+  "improvement_percent": -16.19,
+  "this_submission": 0.19798776670488366
+ },
+ "rank": 8,
+ "schema_version": 1,
  "server_response": {
   "L2_1s": 0.11367239131081722,
   "L2_2s": 0.19634393043312198,
   "L2_3s": 0.2839469783707119,
   "L2_avg": 0.19798776670488366,
-  "flops": 729815613824,
   "cutoff": true,
   "elapsed_ms": 310,
-  "runtime": {"pull_mode": true, "num_inflight": 1, "want": 31, "pull_interval_sec": 10}
+  "flops": 729815613824,
+  "runtime": {
+   "num_inflight": 1,
+   "pull_interval_sec": 10,
+   "pull_mode": true,
+   "want": 31
+  }
  },
- "rank": 8,
- "leaderboard_2026_09_17": {"1": 0.12803, "2": 0.14509, "3": 0.14664, "4": 0.15429,
-                            "5": 0.16215, "6": 0.16512, "7": 0.17421, "8_ours": 0.19799},
- "metric_identity_confirmed": {
-  "claim": "L2_avg == mean(L2_1s, L2_2s, L2_3s)",
-  "computed": 0.19798776670488363,
-  "reported": 0.19798776670488366,
-  "holds": true
+ "submission": "MR-NATIVE-s1 (2026-09-17)",
+ "submission_zip_sha256": "82d8a75bba655d06c7e9eaeccabda7bfa5b2a0d97a718a7a99041bd37ce2349e",
+ "submissions": {
+  "limit": 5,
+  "note": "third was MR-NATIVE-FULL-s1 on 2026-09-18 scoring 0.185969; counted from the recorded history, not fetched from the site",
+  "remaining": 2,
+  "used": 3
  },
- "calibration": {
-  "purpose": "this submission was spent to learn which development estimator predicts the server",
-  "our_v0_plain": {"ADE1": 0.110316, "ADE2": 0.191025, "ADE3": 0.271663, "avg": 0.191002},
-  "gap_plain_percent": {"1s": -2.95, "2s": -2.71, "3s": -4.33, "avg": -3.53},
-  "our_v0_test_matched": 0.165804,
-  "gap_test_matched_percent": {"avg": -16.26},
-  "verdict": "PLAIN_V0_IS_THE_PREDICTOR",
-  "action": "judge and select on plain V0 only. The test-matched reweighting was recommended by a previous session on the strength of the 2026-09-01 agreement; that agreement was measured on the disallowed v2a_goal graph at 0.236 and does not transfer to this graph at 0.19. It is kept as a record and not used for decisions.",
-  "rule_of_thumb": "server ~= V0_plain + 0.0070, from a single observation",
-  "v0_plain_needed": {"0.15": 0.143, "third_place_0.14664": 0.1396, "first_place_0.12803": 0.1210},
-  "best_v0_plain_today": {"run": "MR-ADJ1-s0", "value": 0.190515},
-  "distance_to_target": "about -0.048 in V0 plain, a further 25% reduction"
- },
- "open_questions": [
-  {"item": "elapsed_ms",
-   "detail": "the response reports 310 ms against our measured 24.27-24.52 ms per clip on a 4090. If that were T_infer the penalty x(1 + (310-100)/200) = x2.05 would apply. The displayed score equals L2_avg exactly, so no penalty is in it, and the runtime block (pull_mode, num_inflight, pull_interval_sec) suggests a polling harness figure rather than a per-clip forward time.",
-   "do_not": "do not claim the time multiplier is 1.0 until this is established"}
- ],
- "progress": {
-  "first_submission_2026_09_01": 0.236238922,
-  "this_submission": 0.19798776670488366,
-  "improvement_percent": -16.19
- },
- "submissions": {"limit": 5, "used": 2, "remaining": 3},
- "discipline": "the candidate must NOT change in response to this score; doing so turns the test set into a development set. The next candidate was fixed before the score returned: the full-data retrain."
+ "superseded_rank": {
+  "corrected": 14,
+  "recorded_here": 8,
+  "source": "HANDOVER.md section 0A",
+  "why": "the leaderboard snapshot used for this file was incomplete; a mode=best recheck puts this submission at 14th with third place at 0.1305365832"
+ }
 }
