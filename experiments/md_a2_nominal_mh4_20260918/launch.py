@@ -7,7 +7,7 @@ import subprocess
 
 ROOT = Path('/NHNHOME/data/sukim/adcl')
 REPORT = ROOT / 'reports/md_a2_nominal_mh4_20260918'
-PYTHON = '/home/korea_sdv01/cv2env/bin/python'
+PYTHON = '/home/<B200-USER>/cv2env/bin/python'
 ARMS = [(0, 'A2-FULL-NOM', 24931), (1, 'A2-BASE-NOM', 20554),
         (2, 'A2-MH4-NOM', 20554)]
 
