@@ -1,5 +1,11 @@
 [
   {
+    "path": "reports/md_a2_turn_analysis_20260918/PROGRESS_SHAPE_AND_PRIORITY_KO.md",
+    "bytes": 2962,
+    "sha256": "f9f63822816bd92b93bb965d78f1031ead0e163596258cd5d04694f68ac64e05",
+    "git_recorded": true
+  },
+  {
     "path": "reports/md_a2_turn_analysis_20260918/README_KO.md",
     "bytes": 7902,
     "sha256": "4e1103edee6304dafafce81d94acc0f5fbc9def3b943808ead766593aa3cc5a4",
@@ -16,6 +22,12 @@
     "bytes": 639491,
     "sha256": "72961eeddd99510ea74b944a79c864be8aa2935df858fb04606f127342601eaa",
     "git_recorded": false
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/progress_shape_check.json",
+    "bytes": 3764,
+    "sha256": "bcab43ea64fb15c54f3863ad42b2f3ad4ffdf2a4197889dc8afb170822b10e1a",
+    "git_recorded": true
   },
   {
     "path": "reports/md_a2_turn_analysis_20260918/semantic_turn_examples.json",

@@ -1,0 +1,126 @@
+{
+  "scope": "Fixed terminal DEV comparison, same 20554 updates; FULL excluded",
+  "runs": {
+    "A2-BASE-NOM": {
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1",
+      "report": {
+        "kind": "eval",
+        "step": 20554,
+        "selection_metric": 0.1655106489655904,
+        "selection_definition": "official_d3",
+        "time_input": "nominal",
+        "n": 1998,
+        "official_d3": 0.1655106489655904,
+        "session_mean_d3": 0.1758488424543142,
+        "n_sessions": 11,
+        "proxy_d3": 0.1655106489655904,
+        "proxy_is_not_official_sample_weight": true,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5814771731048487,
+          0.04000052589665258,
+          0.23664725074914889,
+          0.049217390914767366,
+          0.004902211133524473
+        ],
+        "history_position_mae_by_offset": [
+          0.07265176153110757,
+          0.12989063526579953,
+          0.2939362718099803,
+          0.5746520453713484
+        ],
+        "session_d3": {
+          "session_019_20260113-102709": 0.21204067480370956,
+          "session_026_20260122-134906": 0.15888518357166537,
+          "session_027_20260122-135506": 0.1561428737535915,
+          "session_040_20260209-153550": 0.14447354881687918,
+          "session_046_20260210-100504": 0.18829645882533105,
+          "session_076_20260213-134648": 0.12978578207404984,
+          "session_092_20260219-103747": 0.20824175250406066,
+          "session_097_20260219-110038": 0.13002415917767787,
+          "session_087_20260219-90551": 0.17651183327177056,
+          "session_108_20260220-134317": 0.16918357839393947,
+          "session_112_20260303-142827": 0.26075142180478134
+        },
+        "occ_iou": 0.457733541149349,
+        "lane_iou": 0.47830436964985823
+      },
+      "initial_shared_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+      "nonfinite_count": 0,
+      "elapsed_seconds": 10823.713736783713,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/ckpt_step20554.pth",
+      "checkpoint_sha256": "db9a49bbaa9385dc7d6d6a8b78a593d20fabd75c25d3789fcd8043a850853a33",
+      "final_eval_sha256": "391c6b92190489708963f13585b8af44528d455b4b314d81287330e87bae1c5d"
+    },
+    "A2-MH4-NOM": {
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1",
+      "report": {
+        "kind": "eval",
+        "step": 20554,
+        "selection_metric": 0.16449543014956494,
+        "selection_definition": "official_d3",
+        "time_input": "nominal",
+        "n": 1998,
+        "official_d3": 0.16449543014956494,
+        "session_mean_d3": 0.17480309465615232,
+        "n_sessions": 11,
+        "proxy_d3": 0.16449543014956494,
+        "proxy_is_not_official_sample_weight": true,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5794000013188848,
+          0.04000190752002845,
+          0.2351388672347627,
+          0.0495817154311823,
+          0.004902163486595574
+        ],
+        "history_position_mae_by_offset": [
+          0.07229086201461088,
+          0.12968101148289424,
+          0.29151300473877034,
+          0.5705239577352902
+        ],
+        "session_d3": {
+          "session_019_20260113-102709": 0.20905507997506195,
+          "session_026_20260122-134906": 0.1590843292436114,
+          "session_027_20260122-135506": 0.1557569498265231,
+          "session_040_20260209-153550": 0.14639940925580622,
+          "session_046_20260210-100504": 0.18683657240536478,
+          "session_076_20260213-134648": 0.1277910056811424,
+          "session_092_20260219-103747": 0.20439213159045688,
+          "session_097_20260219-110038": 0.12955670491044904,
+          "session_087_20260219-90551": 0.17510263132000412,
+          "session_108_20260220-134317": 0.16877121566277412,
+          "session_112_20260303-142827": 0.26008801134648146
+        },
+        "occ_iou": 0.45793766523218454,
+        "lane_iou": 0.4782435662325857
+      },
+      "initial_shared_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+      "nonfinite_count": 0,
+      "elapsed_seconds": 11588.781352635473,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1/ckpt_step20554.pth",
+      "checkpoint_sha256": "bc9fbec2f424c486960777553fad61fca6e389b265595d6ee719ed979cdc027a",
+      "final_eval_sha256": "49dcb94cf63deb2a4a400f6e4f46147495ebf521946ee2fb14077319a426d9a6"
+    }
+  },
+  "prior_A2_nominal_eval_PREFIX": 0.1644553140831734,
+  "sample_order_common_logged_steps_count": 412,
+  "all_common_sample_orders_equal": true,
+  "MH4_minus_BASE": -0.0010152188160254538,
+  "relative_reduction_pct": 0.6133857986603131,
+  "MH4_minus_prior_A2_nominal": 4.0116066391537863e-05,
+  "session_deltas_MH4_minus_BASE": {
+    "session_019_20260113-102709": -0.002985594828647603,
+    "session_026_20260122-134906": 0.00019914567194603827,
+    "session_027_20260122-135506": -0.0003859239270684045,
+    "session_040_20260209-153550": 0.001925860438927035,
+    "session_046_20260210-100504": -0.0014598864199662775,
+    "session_076_20260213-134648": -0.0019947763929074325,
+    "session_092_20260219-103747": -0.003849620913603774,
+    "session_097_20260219-110038": -0.00046745426722882844,
+    "session_087_20260219-90551": -0.0014092019517664423,
+    "session_108_20260220-134317": -0.00041236273116534994,
+    "session_112_20260303-142827": -0.0006634104582998734
+  },
+  "improved_sessions": 9,
+  "user_priority": "Keep integrated FULL / BASE-MH4 / SIDE-SCENE plan; defer turn/command-specific training"
+}

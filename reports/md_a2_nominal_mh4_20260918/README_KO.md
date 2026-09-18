@@ -1,5 +1,5 @@
 # A2 nominal status + 4-head shared scene 실행 기록 (2026-09-18)
-**실행 완료:** 14:31 KST 세 본 학습 프로세스 시작. 14:32 KST 각 100 update 정상 진행 확인.
+**본 학습 시작 기록:** 14:31 KST 세 프로세스 시작. 14:32 KST 각 100 update 정상 진행 확인.
 현재 상태는 launch_health_snapshot.json 및 live run metrics를 확인한다.
 
 사용자가 승인한 통합안의 첫 실행이다. 현 단계는 A2 FULL 확보와 동일 조건의 BASE/MH4 DEV 비교다.
@@ -25,7 +25,7 @@
   기존 single-head와 파라미터 수가 같은 실험은 아니다: 26,557,208 → 26,581,784.
 - 배포 입력 정책을 맞춘 기존 A2의 V0 PREFIX는 0.164455314083.
   실측 시간 status를 쓴 기존 0.164280978527와 구분한다.
-  이 세 새 run의 성능은 아직 측정되지 않았다.
+  BASE/MH4의 terminal 결과는 아래 완료 기록과 dev_terminal_summary.json을 참조한다.
 
 ## 공통 학습 조건
 
@@ -71,3 +71,13 @@ BASE mb8 0.5078s / mb16 0.4675s, MH4 mb8 0.5424s / mb16 0.4911s였다.
 - metrics.jsonl, manifest.json, eval_step*.json, diagnostics_step*.json은 각 run 폴더에 저장된다.
 - diagnostics는 첫 2초 기여, 일반 주행, 진행량 공통/시간변화 오차, 동일 GT mask 종·횡 절대오차를 기록한다.
   종·횡 오차를 더해 D3라고 부르지 않고 진행속도 오차를 v0/가감속 타이밍의 인과로 해석하지 않는다.
+
+## DEV 완료 확인 (17:45 KST)
+
+BASE-NOM / MH4-NOM 모두 20,554 update 및 V0 평가 완료. 각각 PREFIX **0.165510648966 / 0.164495430150**이다.
+MH4는 같은 조건 BASE 대비 0.00101522 (0.6134%) 낮고 11 session 중 9개가 개선됐다.
+기존 A2를 배포형 nominal 입력으로 평가한 0.164455314083과 비교하면 새 MH4는 +0.00004012로, 새 최고 성능이라고 주장하지 않는다.
+두 run의 412개 공통 logged step에서 sample-order SHA가 모두 같고 nonfinite_count=0이다.
+checkpoint hash, 평가, manifest, metrics는 dev_terminal_summary.json과 dev_terminal_records/에 기록했다.
+FULL은 당시 진행 중이며, 그 V0는 in-fit 진단이다.
+사용자 지시에 따라 회전/command 전용 실험은 뒤로 두고 기존 FULL·BASE/MH4·SIDE-SCENE 계획을 유지한다.

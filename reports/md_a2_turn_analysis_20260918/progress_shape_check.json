@@ -1,0 +1,106 @@
+{
+  "scope": "Matched predicted arclength on GT piecewise-linear path; descriptive output decomposition, not causal intervention or deployable correction",
+  "model": "MH4_NOM step17130",
+  "mask": "predicted cumulative arclength <= GT total arclength; GT total >1e-5m",
+  "nonadditivity": "vector components add exactly; their Euclidean norms do not add to PREFIX",
+  "groups": {
+    "left_3s": {
+      "n_rows": 41,
+      "valid_waypoint_fraction": 0.926829268292683,
+      "valid_PREFIX_weight_fraction": 0.975609756097561,
+      "original_error_on_same_valid_support_m": 0.3542269537874663,
+      "same_progress_shape_difference_m": 0.20358320108872788,
+      "GT_path_progress_difference_m": 0.24661582128620263
+    },
+    "right_3s": {
+      "n_rows": 161,
+      "valid_waypoint_fraction": 0.9730848861283644,
+      "valid_PREFIX_weight_fraction": 0.9910282953761214,
+      "original_error_on_same_valid_support_m": 0.23350640556041544,
+      "same_progress_shape_difference_m": 0.08614901322724906,
+      "GT_path_progress_difference_m": 0.19531598449638726
+    },
+    "other_3s": {
+      "n_rows": 1796,
+      "valid_waypoint_fraction": 0.875927988121752,
+      "valid_PREFIX_weight_fraction": 0.925142291512002,
+      "original_error_on_same_valid_support_m": 0.15306441085816958,
+      "same_progress_shape_difference_m": 0.049471503995187155,
+      "GT_path_progress_difference_m": 0.13213265900030455
+    }
+  },
+  "semantic_examples": [
+    {
+      "row": 94645,
+      "direction": "TURN_LEFT",
+      "selection": "median",
+      "gt_total_length_m": 15.13387010182036,
+      "pred_total_length_m": 14.64186293285689,
+      "common_distance_m": 14.64186293285689,
+      "gt_xy_at_common_distance": [
+        14.30378031496661,
+        2.195899871227968
+      ],
+      "pred_xy_at_common_distance": [
+        14.626079559326172,
+        0.37837767601013184
+      ],
+      "shape_separation_at_common_distance_m": 1.8458774967543772,
+      "lateral_difference_at_common_distance_m": -1.817522195217836
+    },
+    {
+      "row": 94655,
+      "direction": "TURN_LEFT",
+      "selection": "largest error",
+      "gt_total_length_m": 15.546341577281076,
+      "pred_total_length_m": 14.175864196967062,
+      "common_distance_m": 14.175864196967062,
+      "gt_xy_at_common_distance": [
+        13.319262731671913,
+        4.008864450749109
+      ],
+      "pred_xy_at_common_distance": [
+        13.916059494018555,
+        2.085008382797241
+      ],
+      "shape_separation_at_common_distance_m": 2.0142960422298053,
+      "lateral_difference_at_common_distance_m": -1.923856067951868
+    },
+    {
+      "row": 36430,
+      "direction": "TURN_RIGHT",
+      "selection": "median",
+      "gt_total_length_m": 20.62052242418623,
+      "pred_total_length_m": 20.369930709931023,
+      "common_distance_m": 20.369930709931023,
+      "gt_xy_at_common_distance": [
+        20.037524251086133,
+        -3.2683038355165603
+      ],
+      "pred_xy_at_common_distance": [
+        20.216842651367188,
+        -2.3022778034210205
+      ],
+      "shape_separation_at_common_distance_m": 0.9825280572918056,
+      "lateral_difference_at_common_distance_m": 0.9660260320955398
+    },
+    {
+      "row": 41690,
+      "direction": "TURN_RIGHT",
+      "selection": "largest error",
+      "gt_total_length_m": 18.176071576863006,
+      "pred_total_length_m": 14.974844360384246,
+      "common_distance_m": 14.974844360384246,
+      "gt_xy_at_common_distance": [
+        12.563852342227856,
+        -7.237190783525416
+      ],
+      "pred_xy_at_common_distance": [
+        12.522028923034668,
+        -7.416989326477051
+      ],
+      "shape_separation_at_common_distance_m": 0.18459879317194874,
+      "lateral_difference_at_common_distance_m": -0.17979854295163467
+    }
+  ]
+}
