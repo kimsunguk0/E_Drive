@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "name": "a2_command_20260919",
+  "arm": "A2-COMMAND-NOM",
+  "seed": 1,
+  "smoke": false,
+  "question": "Does supplied semantic command improve shared-scene visual evidence selection?",
+  "initializer": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+    "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+    "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+    "source": "q10_flip50 initializer used by registered MR"
+  },
+  "split_manifest": {
+    "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+    "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+  },
+  "supervision": {
+    "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+    "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2/supervision_manifest.json",
+    "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+  },
+  "train_data": {
+    "rows": 83700,
+    "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+    "scenes": 310
+  },
+  "tune_data": {
+    "rows": 1998,
+    "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "scenes": 37
+  },
+  "provided_status_used": true,
+  "information_route": {
+    "source": "causal pose fit with frame-difference * 0.1s; same deployment producer",
+    "fields": [
+      "vx",
+      "vy",
+      "ax",
+      "ay",
+      "yaw_rate"
+    ],
+    "raw_status_direct_planner_input": false,
+    "shared_query": true,
+    "shared_multiplicative_image_feature_conditioning": false,
+    "shared_consumers": [
+      "occupancy",
+      "lane",
+      "planning"
+    ],
+    "progress_head_inputs": [],
+    "progress_head_raw_goal_pose_status_inputs": false,
+    "motion_state_history": "unconditioned image path",
+    "command": "shared scene query only; image key/value unchanged",
+    "raw_command_direct_planner_input": false
+  },
+  "planner": {
+    "factorized": false,
+    "coefficient_count": 0,
+    "coefficient_semantics": [],
+    "direction_source": "direct XY output",
+    "proposal_length_gradient": "ordinary direct XY",
+    "composition": "ordinary direct XY",
+    "candidate_bank_or_selector": false
+  },
+  "recipe": {
+    "updates": 20554,
+    "eval_every": 3426,
+    "batch": 16,
+    "microbatch": 8,
+    "eval_batch": 8,
+    "head_lr": 5e-05,
+    "backbone_lr": 5e-06,
+    "warmup": 200,
+    "weight_decay": 0.01,
+    "grad_clip": 5.0,
+    "flip_probability": 0.5,
+    "precision": "bf16",
+    "interval_length_auxiliary_lambda": 0.25,
+    "correlation_radius": 4,
+    "motion_canvas": "native 768x432",
+    "eval_role": "DEV V0, excluded from fitting"
+  },
+  "comparison_contract": {
+    "same_initializer_as_registered_mr": true,
+    "same_train310_tune37_split": true,
+    "same_seed_and_sample_order_across_arms": true,
+    "same_full_update_budget": true
+  },
+  "expected_initial_model_state_sha256": "9fea4eaebf356e30260c8d736b1bc3e05350bd28701d2898287fa113dd015f1d",
+  "expected_optimizer_groups": [
+    {
+      "name": "backbone",
+      "base_lr": 5e-06
+    },
+    {
+      "name": "head",
+      "base_lr": 5e-05
+    }
+  ],
+  "physical_gpu": 0,
+  "nominal_input": {
+    "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/manifest.json",
+    "sha256": "e63951eb1f2ddced7ecf38885af1a000f28afd2f900d0813be5500a8663c40c5",
+    "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "allowed_splits": [
+      "train",
+      "tune"
+    ],
+    "input_field": "provided_status5",
+    "state_history_supervision": "original real-time definition retained"
+  },
+  "scene_attention": {
+    "heads": 1,
+    "qk_dimensions_per_head": 32,
+    "value_dimensions_per_head": 128,
+    "output_dimensions": 128,
+    "sampling_grid_camera_time_metadata": "unchanged",
+    "query_as_value_residual": false,
+    "initialization": "registered A2"
+  },
+  "full_fit": {
+    "enabled": false,
+    "evaluation_is_in_fit": false,
+    "dev_weights_or_features_imported": false,
+    "checkpoint_selection": "fixed terminal; no best-overlapping-metric selection"
+  },
+  "expected_shared_base_initial_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+  "source": {
+    "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+    "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+    "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+    "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+    "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "experiments/a2_command_20260919/build_inputs.py": "854b3152f363fbe8280ea379f5e532a486da17679d1e14be3db957fed465d055",
+    "experiments/a2_command_20260919/command_model.py": "efa285ae1fce7e0afa9fc6d6624c4813aee4fdb97c54ef7b47ed024c7e059f0e",
+    "experiments/a2_command_20260919/preflight.py": "edf3e0c80e649984ca1a0308f96978d9c78c0a1d00caf92f673c5fabe168c187",
+    "experiments/a2_command_20260919/review_results.py": "c6e1da1532e4da211be095385c9d0335733220413ccc64219ca2b9ba82ec9d88",
+    "experiments/a2_command_20260919/command_data.py": "ee6374d626aad18dcfcb3747022c6f8a35b7e2236653a8949a1707cc5dbea39e",
+    "experiments/a2_command_20260919/watch_results.py": "209be7b00557387e1efb4978b27d2e8943b08f47ac23bdd77bea0241075f7087",
+    "experiments/a2_command_20260919/probe_command.py": "b1d15bd8c7b6503315984c4a863e54a52ca29563ff297228a34bf0126051fd42",
+    "experiments/a2_command_20260919/train_command.py": "d012230479841072d254d7f7ef5f60ab4b39147e04c06433741fd655e4218943",
+    "experiments/a2_command_20260919/launch.py": "a8f74add716b42f3f6a2671fc0f01f0f883d0d80b828e94fd30e18a9fff812fd",
+    "experiments/a2_command_20260919/command_common.py": "923956e821cb70a4cd38df143f2b704dc106a766f5bf46cfad30eb51fc149ccd"
+  },
+  "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1",
+  "source_commit": "d039a8ae578d0220602710e51b07a89918bde2a8",
+  "fresh_optimizer": true,
+  "full_lineage_used": false,
+  "command_input": {
+    "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_command_20260919/manifest.json",
+    "sha256": "24a80202588a597dc3e0a06f059ddff67cd567da18c6ffd5ef646ef7f4792a69",
+    "labels": [
+      "LANE_KEEP",
+      "TURN_LEFT",
+      "TURN_RIGHT",
+      "LANE_CHANGE_L",
+      "LANE_CHANGE_R",
+      "U_TURN"
+    ],
+    "producer": "current raw command; exact frame/timestamp join",
+    "vad_cmd_used": false,
+    "zero_init": true,
+    "new_parameters": 192
+  },
+  "control": {
+    "run": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1",
+    "PREFIX": 0.1655106489655904,
+    "comparison": "fixed terminal vs fixed terminal; same existing tensors, data, schedule and sample stream",
+    "current_best_terminal_QREFINE_PREFIX": 0.16425176970362365
+  },
+  "initial_load": {
+    "strict_parent_except_mr_fuse": true,
+    "dropped_parent_keys": [
+      "motion_encoder.correlation_fuse.0.bias",
+      "motion_encoder.correlation_fuse.0.weight"
+    ],
+    "missing_new_or_rebuilt_keys": [
+      "motion_encoder.correlation_fuse.0.bias",
+      "motion_encoder.correlation_fuse.0.weight",
+      "shared_command_query.weight",
+      "shared_status_query_fusion.status_mlp.0.bias",
+      "shared_status_query_fusion.status_mlp.0.weight",
+      "shared_status_query_fusion.status_mlp.2.bias",
+      "shared_status_query_fusion.status_mlp.2.weight",
+      "shared_status_query_fusion.status_scale"
+    ],
+    "measured_model_state_sha256": "9fea4eaebf356e30260c8d736b1bc3e05350bd28701d2898287fa113dd015f1d",
+    "mr_rebuild": {
+      "module": "motion_encoder.correlation_fuse.0",
+      "old_in_channels": 178,
+      "new_in_channels": 290,
+      "bins": 81,
+      "reinitialised": true,
+      "parameters": 334208
+    },
+    "shared_base_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+    "command_exact_zero": true
+  }
+}

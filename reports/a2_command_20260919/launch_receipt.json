@@ -1,0 +1,19 @@
+{
+  "pid": 3522534,
+  "physical_gpu": 0,
+  "arm": "A2-COMMAND-NOM",
+  "started_at_utc": "2026-09-18T22:53:07.788425+00:00",
+  "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1",
+  "argv": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/train_command.py",
+    "--gpu",
+    "0",
+    "--run-dir",
+    "/NHNHOME/data/sukim/adcl/work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1"
+  ],
+  "updates": 20554,
+  "source_commit": "d039a8ae578d0220602710e51b07a89918bde2a8",
+  "control_reused": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1",
+  "new_training_jobs": 1
+}

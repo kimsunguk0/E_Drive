@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-09-18T22:55:16.111783+00:00",
+  "physical_gpu": 0,
+  "pid": 3522534,
+  "step": 200,
+  "target_updates": 20554,
+  "finite_logged_losses_and_gradients": true,
+  "matched_BASE_sample_order_logs": 5,
+  "measured_seconds_per_update": 0.5112665517628193,
+  "remaining_training_hours_excluding_eval": 2.89064427627234,
+  "smoke_total_elapsed_seconds": 38.546157190576196,
+  "watcher_pid": 3522828,
+  "watcher_status": "waiting",
+  "source_commit": "d039a8ae578d0220602710e51b07a89918bde2a8",
+  "source_mirror_commit": "e8b0033c0445edef1b67246eeb8c48722b4b5523",
+  "interpretation": "Startup health only, no DEV performance result yet",
+  "GPU4_to_7_untouched": true
+}

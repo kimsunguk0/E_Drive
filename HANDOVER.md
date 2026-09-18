@@ -2,6 +2,34 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0P. 2026-09-19 07:53 KST A2 semantic command 본 학습 시작
+
+사용자 “이번엔 command 넣어본거 해 봐” 지시에 따른 단일 matched 비교.
+A2-COMMAND-NOM-s1, GPU0, PID3522534, fresh20,554 update.
+완료된 BASE-NOM0.165510648966을 동일 초기화/레시피 control로 재사용한다.
+기존 최선 fixed terminal QREFINE0.164251769704도 최종 비교표에 포함한다.
+
+원본 command.parquet의6종 의미 지시만 공통 scene query에 추가(192파라미터, zero-init).
+Raw command/status/goal의 새 planner token/value/motion 경로 없음. Motion/state/history 분리 유지.
+vad_cmd를 사용하거나 미래 XY로 command를 만들지 않는다. Exact timestamp/frame join85,698행 확인.
+현재6cam/front H4, nominal status, split, PREFIX/LEN/보조 loss, LR/seed/batch16/micro8은 기존과 같다.
+좌/우회전 및 좌/우 차선변경 command의 flip 교환을 포함한다.
+
+실제 영상 FP32/BF16 초기 출력 차이0, shared consumers 및 command→motion 차단 검사 통과.
+2-update smoke+V01,998행 완료, nonfinite0, 첫 batch loss와 row SHA가 BASE와 같다.
+07:55 snapshot: step200, 약0.511s/update, 로그5개 sample-order SHA 일치.
+첫 평가 약08:25, terminal 약11:00 KST 예상(실측 속도/평가시간에 따라 변동).
+아직 command 성능 결과는 없다. GPU4–7 개입 없음.
+
+구현: work d039a8a → GitHub mirror e8b0033.
+상세: reports/a2_command_20260919/PLAN_KO.md, INPUT_POLICY.json, tests_summary.json,
+smoke_summary.json, launch_receipt.json, STARTUP_STATUS.json.
+Watcher PID3522828는 완료 후 terminal 비교/command LANE_KEEP 고정 진단/승인된 Git 기록만 수행한다.
+최신 상태: watcher_status.json 및 work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/manifest.json.
+완료 산출물: terminal_results.json, RESULTS_KO.md, command_counterfactual.json, run_artifact_index.json.
+V0 좌회전39행은1session, 유턴0행. 작은 subgroup 개선을 일반화로 단정하지 않는다.
+추가 FULL/스윕/공식 업로드 자동 실행 없음. 아래0O는 직전 G/S 결과다.
+
 ## 0O. 2026-09-19 06:40 KST G/S 전부 완료 — 현재 우선 판정
 
 G0/G1 각3,426 및 learned sampling20,554 완료, nonfinite0. 자동 후처리/미러 push 완료.
