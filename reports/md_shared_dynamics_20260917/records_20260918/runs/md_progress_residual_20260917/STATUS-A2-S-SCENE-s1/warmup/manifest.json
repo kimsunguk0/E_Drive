@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "git_sha": "b158a282c21d72127b093b2ef2ac712ac4fb08bc",
+  "arguments": {
+    "data_root": "/tmp/pm97",
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+    "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+    "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup",
+    "phase": "joint",
+    "goal_on": 1,
+    "state_on": 1,
+    "gpu": 0,
+    "cpu": false,
+    "cuda_memory_limit_mib": 170000,
+    "cuda_min_free_mib": 8192,
+    "microbatch": 8,
+    "seed": 1,
+    "steps": 1000,
+    "batch": 16,
+    "eval_batch": 8,
+    "workers": 8,
+    "eval_every": 1000,
+    "save_every": 1000,
+    "log_every": 25,
+    "lr": 0.0,
+    "backbone_lr": 0.0,
+    "weight_decay": 0.01,
+    "warmup": 200,
+    "grad_clip": 5.0,
+    "alpha_occ": 0.2,
+    "alpha_lane": 0.2,
+    "alpha_motion": 0.2,
+    "uncertainty": 1,
+    "precision": "bf16",
+    "time_input": "nominal",
+    "bn_policy": "fixed",
+    "pretrained": null,
+    "init": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/last.pth",
+    "resume": null,
+    "arch": "resnet50",
+    "motion_input_mode": "low_feature",
+    "cross_cell_goal_mode": "zero",
+    "history_contract": "control",
+    "history_overlay_root": null,
+    "expected_history_overlay_sha256": null,
+    "plan_output_scale": null,
+    "train_stride": 1,
+    "eval_stride": 5,
+    "max_train_samples": 0,
+    "max_eval_samples": 0,
+    "train_scenes": null,
+    "eval_scenes": null,
+    "eval_split": "tune",
+    "eval_only": false,
+    "allow_unpretrained": false
+  },
+  "model_config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 4,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": true,
+    "state_on": true,
+    "plan_output_scale": [
+      10.0,
+      5.0
+    ],
+    "motion_input_mode": "low_feature",
+    "history_contract": "control",
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "cross_cell_goal_mode": "zero"
+  },
+  "loss_weights": {
+    "plan": 1.0,
+    "occupancy": 0.2,
+    "lane": 0.2,
+    "motion": 0.2,
+    "uncertainty": true
+  },
+  "time_input": "nominal",
+  "time_input_policy": {
+    "mode": "nominal",
+    "scope": "model input time_offsets only; same for training and every evaluation",
+    "source": "fixed nominal frame-offset seconds",
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "nominal_dtype": "float32",
+    "supervision_and_dataset_modified": false
+  },
+  "split_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "load_report": {
+    "common_checkpoint_sha256": "6ce9030e6a24bcfde5cb0f1c478fbc949c2baf9fa705b1d00b96ca979978d25d",
+    "progress_residual_load": {
+      "strict_existing_keys": true,
+      "missing_new_keys": [
+        "progress_refiner.attention.in_proj_bias",
+        "progress_refiner.attention.in_proj_weight",
+        "progress_refiner.attention.out_proj.bias",
+        "progress_refiner.attention.out_proj.weight",
+        "progress_refiner.front_type",
+        "progress_refiner.memory_norm.bias",
+        "progress_refiner.memory_norm.weight",
+        "progress_refiner.output.bias",
+        "progress_refiner.output.weight",
+        "progress_refiner.plan_encoder.0.bias",
+        "progress_refiner.plan_encoder.0.weight",
+        "progress_refiner.plan_encoder.2.bias",
+        "progress_refiner.plan_encoder.2.weight",
+        "progress_refiner.query",
+        "progress_refiner.refine.0.bias",
+        "progress_refiner.refine.0.weight",
+        "progress_refiner.refine.1.bias",
+        "progress_refiner.refine.1.weight",
+        "progress_refiner.refine.3.bias",
+        "progress_refiner.refine.3.weight",
+        "progress_refiner.scene_type",
+        "progress_refiner.side_type",
+        "progress_refiner.visual_camera",
+        "progress_refiner.visual_type",
+        "shared_status_query_fusion.status_mlp.0.bias",
+        "shared_status_query_fusion.status_mlp.0.weight",
+        "shared_status_query_fusion.status_mlp.2.bias",
+        "shared_status_query_fusion.status_mlp.2.weight",
+        "shared_status_query_fusion.status_scale"
+      ],
+      "measured_model_state_sha256": "101ef1abf3ddfd9ed9e542c87aca91ca0cac404a3349c1bf29867a6d61cae1cd",
+      "base_frozen_by_zero_lr": true
+    }
+  },
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "numpy": "2.1.0",
+  "device": "cuda:0",
+  "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+  "cuda_memory_policy": {
+    "enabled": true,
+    "allocator_limit_mib": 170000,
+    "min_free_mib": 8192,
+    "allocator_fraction": 0.9308355001495496,
+    "initial_free_bytes": 190847057920,
+    "device_total_bytes": 191503138816,
+    "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+  },
+  "microbatch_policy": {
+    "enabled": true,
+    "microbatch": 8,
+    "logical_batch": 16,
+    "optimizer_updates_per_logical_batch": 1,
+    "loss_normalization": "full logical batch label/mask denominators",
+    "bitwise_equivalence_to_unsplit_training_promised": false
+  },
+  "gpu_name": "NVIDIA B200",
+  "pretrained_sha256": null,
+  "supervision_manifest_sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f",
+  "initial_model_state_sha256": "101ef1abf3ddfd9ed9e542c87aca91ca0cac404a3349c1bf29867a6d61cae1cd",
+  "initial_parameter_count": 26743193,
+  "bn_training": {
+    "policy": "fixed",
+    "modules": 53,
+    "affine_and_backbone_weights_trainable": true,
+    "inference_policy": "eval running statistics for both arms"
+  },
+  "status": "completed",
+  "pid": 2921990,
+  "experimental_protocol": {
+    "schema_version": 1,
+    "name": "md_progress_residual_20260917",
+    "arm": "STATUS-A2-S-SCENE",
+    "stage": "warmup",
+    "seed": 1,
+    "question": "does causal status conditioning of the shared image-attention query improve a base-plan-conditioned scalar progress correction?",
+    "initializer": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/last.pth",
+      "checkpoint_sha256": "6ce9030e6a24bcfde5cb0f1c478fbc949c2baf9fa705b1d00b96ca979978d25d",
+      "model_state_sha256": "cb04d745fc5af990447d03e2ea7bd098ce344c8356ad53268102e1da264616e2",
+      "weights_only": true
+    },
+    "split_manifest": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+      "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+    },
+    "supervision": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+      "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+    },
+    "train_data": {
+      "rows": 83700,
+      "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "scenes": 310
+    },
+    "tune_data": {
+      "rows": 1998,
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "scenes": 37
+    },
+    "expected_initial_model_state_sha256": "101ef1abf3ddfd9ed9e542c87aca91ca0cac404a3349c1bf29867a6d61cae1cd",
+    "expected_optimizer_groups": [
+      {
+        "name": "backbone",
+        "base_lr": 0.0
+      },
+      {
+        "name": "head",
+        "base_lr": 0.0
+      }
+    ],
+    "optimizer_groups": [
+      {
+        "name": "base_backbone",
+        "base_lr": 0.0
+      },
+      {
+        "name": "base_nonbackbone",
+        "base_lr": 0.0
+      },
+      {
+        "name": "new_progress_and_side",
+        "base_lr": 5e-05
+      }
+    ],
+    "recipe": {
+      "steps": 1000,
+      "eval_every": 1000,
+      "batch": 16,
+      "microbatch": 8,
+      "eval_batch": 8,
+      "workers": 8,
+      "warmup": 200,
+      "weight_decay": 0.01,
+      "grad_clip": 5.0,
+      "precision": "bf16",
+      "bn_policy": "fixed",
+      "time_input": "nominal",
+      "length_auxiliary_lambda": 0.25,
+      "cuda_memory_limit_mib": 170000,
+      "terminal_fixed_before_results": true
+    },
+    "architecture": {
+      "registered_base": "MR-NATIVE-s1 step20554",
+      "front_history_seconds": [
+        0.1,
+        0.2,
+        0.5,
+        1.0
+      ],
+      "side_enabled": false,
+      "side_absolute_auxiliary": false,
+      "side_absolute_auxiliary_lambda": 0.0,
+      "progress_plan_denoising": false,
+      "progress_plan_denoising_lambda": 0.0,
+      "progress_plan_noise_cap": [],
+      "side_cameras": [],
+      "side_history_seconds": [],
+      "coefficient_count": 1,
+      "coefficient_semantics": [
+        "delta_v"
+      ],
+      "coefficient_cap_abs": 1.0,
+      "base_plan_input": "stop-gradient predicted XY plus predicted interval lengths",
+      "geometry": "detached nearest-valid predicted tangent; all-zero fallback ego +x; nonnegative corrected interval lengths; direct base-plan gradient retained",
+      "raw_goal_pose_provided_status_to_residual": false,
+      "goal_dependency": "indirect through detached goal-conditioned base plan",
+      "side_motion_dynamic_pose_input": false,
+      "side_calibration": "current fixed lidar2img only",
+      "shared_status_query": true,
+      "shared_scene_features_to_progress_refiner": true,
+      "provided_status_fields": [
+        "vx",
+        "vy",
+        "ax",
+        "ay",
+        "yaw_rate"
+      ],
+      "provided_status_source": "causal quadratic fit from pose samples t-1.0s through t; no future pose; cached under state_target by the frozen supervision generator",
+      "provided_status_route": "zero-initialized delta to pre-attention query context; image values remain the scene raster source shared by occupancy, lane and planning",
+      "provided_status_direct_planner_or_residual_input": false,
+      "provided_status_indirect_dependencies": [
+        "shared scene raster -> planner base plan",
+        "shared scene raster -> base plan -> detached progress plan encoder"
+      ],
+      "final_inside_neural_forward": true,
+      "new_module_seed": 20260917,
+      "zero_initialised": [
+        "progress_refiner.output",
+        "shared_status_query_fusion.status_mlp[-1]"
+      ]
+    },
+    "comparison_contract": {
+      "same_initializer": true,
+      "same_rows": true,
+      "same_sample_seed": true,
+      "same_schedule": true,
+      "same_final_prefix_loss": true,
+      "front_vs_side_scalar": [
+        "FRONT-S",
+        "SIDE-S"
+      ],
+      "side_scalar_vs_two_coefficient": [
+        "SIDE-S",
+        "SIDE-VA"
+      ],
+      "side_aux_scalar_vs_two_coefficient": [
+        "SIDE-S-AUX",
+        "SIDE-VA-AUX"
+      ],
+      "side_denoise_scalar_vs_two_coefficient": [
+        "SIDE-S-AUX-DN",
+        "SIDE-VA-AUX-DN"
+      ]
+    },
+    "provided_status_used": true,
+    "checkpoint_selection": "report every fixed endpoint; primary comparison at common terminal",
+    "initial_load": {
+      "strict_existing_keys": true,
+      "missing_new_keys": [
+        "progress_refiner.attention.in_proj_bias",
+        "progress_refiner.attention.in_proj_weight",
+        "progress_refiner.attention.out_proj.bias",
+        "progress_refiner.attention.out_proj.weight",
+        "progress_refiner.front_type",
+        "progress_refiner.memory_norm.bias",
+        "progress_refiner.memory_norm.weight",
+        "progress_refiner.output.bias",
+        "progress_refiner.output.weight",
+        "progress_refiner.plan_encoder.0.bias",
+        "progress_refiner.plan_encoder.0.weight",
+        "progress_refiner.plan_encoder.2.bias",
+        "progress_refiner.plan_encoder.2.weight",
+        "progress_refiner.query",
+        "progress_refiner.refine.0.bias",
+        "progress_refiner.refine.0.weight",
+        "progress_refiner.refine.1.bias",
+        "progress_refiner.refine.1.weight",
+        "progress_refiner.refine.3.bias",
+        "progress_refiner.refine.3.weight",
+        "progress_refiner.scene_type",
+        "progress_refiner.side_type",
+        "progress_refiner.visual_camera",
+        "progress_refiner.visual_type",
+        "shared_status_query_fusion.status_mlp.0.bias",
+        "shared_status_query_fusion.status_mlp.0.weight",
+        "shared_status_query_fusion.status_mlp.2.bias",
+        "shared_status_query_fusion.status_mlp.2.weight",
+        "shared_status_query_fusion.status_scale"
+      ],
+      "measured_model_state_sha256": "101ef1abf3ddfd9ed9e542c87aca91ca0cac404a3349c1bf29867a6d61cae1cd",
+      "base_frozen_by_zero_lr": true
+    }
+  },
+  "data_counts": {
+    "train": 83700,
+    "eval": 1998
+  },
+  "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+  "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log",
+  "step": 1000,
+  "best_metric": 0.1895910581690434,
+  "cuda_memory": {
+    "allocated_bytes": 460912640,
+    "reserved_bytes": 38180749312,
+    "peak_allocated_bytes": 35124672512,
+    "peak_reserved_bytes": 38180749312,
+    "device_free_bytes": 152322375680,
+    "device_total_bytes": 191503138816
+  },
+  "elapsed_seconds": 1065.6197248417884,
+  "nonfinite_count": 0
+}

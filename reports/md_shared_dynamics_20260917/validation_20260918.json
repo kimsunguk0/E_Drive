@@ -1,0 +1,53 @@
+{
+  "checked_at_utc": "2026-09-18T01:25:05.948371+00:00",
+  "pytest": {
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "experiments/md_shared_dynamics_20260917/tests/test_factorized_model.py"
+    ],
+    "returncode": 0,
+    "stdout": "Running 6 items in this shard\n......                                                                   [100%]\n6 passed in 6.78s\n",
+    "stderr": ""
+  },
+  "parsed_python_files": [
+    "experiments/md_shared_dynamics_20260917/audit_shared_status_20260918.py",
+    "experiments/md_shared_dynamics_20260917/replay_causal_status_20260918.py",
+    "experiments/md_shared_dynamics_20260917/archive_experiment_records_20260918.py"
+  ],
+  "archived_run_stages": 24,
+  "max_archived_row_metric_recomputation_error": 2.1890109414002268e-07,
+  "terminal_image_audits": {
+    "A2-DIRECT": {
+      "rows": 1998,
+      "normal_prediction_max_abs_difference": 0.0
+    },
+    "A3-DIRECT": {
+      "rows": 1998,
+      "normal_prediction_max_abs_difference": 0.0
+    }
+  },
+  "causal_status_replay": {
+    "rows": 1998,
+    "scenes": 37,
+    "source": "original ego_pose and timestamps parquet files from supervision source manifests",
+    "input_window": "frame-30 through frame inclusive, all future poses omitted",
+    "max_abs_difference_by_vx_vy_ax_ay_yaw": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_case": {
+      "scene": "20260113-102709",
+      "frame": 30,
+      "max_abs": 0.0
+    },
+    "all_causal_recomputed_status_valid": true,
+    "compared_to": "state_target[:5] used as provided_status5 by A2/A3"
+  },
+  "new_training_or_submission_performed": false
+}

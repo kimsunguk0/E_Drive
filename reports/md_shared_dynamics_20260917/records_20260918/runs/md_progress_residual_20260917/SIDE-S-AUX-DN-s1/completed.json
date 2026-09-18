@@ -1,0 +1,7 @@
+{
+ "arm": "SIDE-S-AUX-DN",
+ "joint": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint",
+ "physical_gpu": 3,
+ "seed": 1,
+ "warmup": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup"
+}

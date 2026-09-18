@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "git_sha": "6fdd67e6aa09ce822317a93bbdec767d32f34514",
+  "arguments": {
+    "data_root": "/tmp/pm97",
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+    "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+    "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-S-s1/joint",
+    "phase": "joint",
+    "goal_on": 1,
+    "state_on": 1,
+    "gpu": 0,
+    "cpu": false,
+    "cuda_memory_limit_mib": 170000,
+    "cuda_min_free_mib": 8192,
+    "microbatch": 8,
+    "seed": 1,
+    "steps": 10463,
+    "batch": 16,
+    "eval_batch": 8,
+    "workers": 8,
+    "eval_every": 2616,
+    "save_every": 2616,
+    "log_every": 25,
+    "lr": 5e-06,
+    "backbone_lr": 5e-07,
+    "weight_decay": 0.01,
+    "warmup": 200,
+    "grad_clip": 5.0,
+    "alpha_occ": 0.2,
+    "alpha_lane": 0.2,
+    "alpha_motion": 0.2,
+    "uncertainty": 1,
+    "precision": "bf16",
+    "time_input": "nominal",
+    "bn_policy": "fixed",
+    "pretrained": null,
+    "init": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup/last.pth",
+    "resume": null,
+    "arch": "resnet50",
+    "motion_input_mode": "low_feature",
+    "cross_cell_goal_mode": "zero",
+    "history_contract": "control",
+    "history_overlay_root": null,
+    "expected_history_overlay_sha256": null,
+    "plan_output_scale": null,
+    "train_stride": 1,
+    "eval_stride": 5,
+    "max_train_samples": 0,
+    "max_eval_samples": 0,
+    "train_scenes": null,
+    "eval_scenes": null,
+    "eval_split": "tune",
+    "eval_only": false,
+    "allow_unpretrained": false
+  },
+  "model_config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 4,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": true,
+    "state_on": true,
+    "plan_output_scale": [
+      10.0,
+      5.0
+    ],
+    "motion_input_mode": "low_feature",
+    "history_contract": "control",
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "cross_cell_goal_mode": "zero"
+  },
+  "loss_weights": {
+    "plan": 1.0,
+    "occupancy": 0.2,
+    "lane": 0.2,
+    "motion": 0.2,
+    "uncertainty": true
+  },
+  "time_input": "nominal",
+  "time_input_policy": {
+    "mode": "nominal",
+    "scope": "model input time_offsets only; same for training and every evaluation",
+    "source": "fixed nominal frame-offset seconds",
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "nominal_dtype": "float32",
+    "supervision_and_dataset_modified": false
+  },
+  "split_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "load_report": {
+    "common_checkpoint_sha256": "e12fd06075d2caa00042091f499805d7f8485bd559f94dd6a58c490b76bf6c75",
+    "progress_residual_load": {
+      "strict_existing_keys": true,
+      "missing_new_keys": [],
+      "measured_model_state_sha256": "287b6dc3c77f037771b2e52407bed5ec016f7321f273ebf2def536973540e56e",
+      "base_frozen_by_zero_lr": false
+    }
+  },
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "numpy": "2.1.0",
+  "device": "cuda:0",
+  "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+  "cuda_memory_policy": {
+    "enabled": true,
+    "allocator_limit_mib": 170000,
+    "min_free_mib": 8192,
+    "allocator_fraction": 0.9308355001495496,
+    "initial_free_bytes": 190847057920,
+    "device_total_bytes": 191503138816,
+    "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+  },
+  "microbatch_policy": {
+    "enabled": true,
+    "microbatch": 8,
+    "logical_batch": 16,
+    "optimizer_updates_per_logical_batch": 1,
+    "loss_normalization": "full logical batch label/mask denominators",
+    "bitwise_equivalence_to_unsplit_training_promised": false
+  },
+  "gpu_name": "NVIDIA B200",
+  "pretrained_sha256": null,
+  "supervision_manifest_sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f",
+  "initial_model_state_sha256": "287b6dc3c77f037771b2e52407bed5ec016f7321f273ebf2def536973540e56e",
+  "initial_parameter_count": 28123879,
+  "bn_training": {
+    "policy": "fixed",
+    "modules": 53,
+    "affine_and_backbone_weights_trainable": true,
+    "inference_policy": "eval running statistics for both arms"
+  },
+  "status": "stopped",
+  "pid": 2873424,
+  "experimental_protocol": {
+    "schema_version": 1,
+    "name": "md_progress_residual_20260917",
+    "arm": "SIDE-S",
+    "stage": "joint",
+    "seed": 1,
+    "question": "does short side temporal observation improve a base-plan-conditioned neural progress correction under the official PREFIX loss?",
+    "initializer": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup/last.pth",
+      "checkpoint_sha256": "e12fd06075d2caa00042091f499805d7f8485bd559f94dd6a58c490b76bf6c75",
+      "model_state_sha256": "287b6dc3c77f037771b2e52407bed5ec016f7321f273ebf2def536973540e56e",
+      "weights_only": true
+    },
+    "split_manifest": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+      "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+    },
+    "supervision": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+      "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+    },
+    "train_data": {
+      "rows": 83700,
+      "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "scenes": 310
+    },
+    "tune_data": {
+      "rows": 1998,
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "scenes": 37
+    },
+    "expected_initial_model_state_sha256": "287b6dc3c77f037771b2e52407bed5ec016f7321f273ebf2def536973540e56e",
+    "expected_optimizer_groups": [
+      {
+        "name": "backbone",
+        "base_lr": 5e-07
+      },
+      {
+        "name": "head",
+        "base_lr": 5e-06
+      }
+    ],
+    "optimizer_groups": [
+      {
+        "name": "base_backbone",
+        "base_lr": 5e-07
+      },
+      {
+        "name": "base_nonbackbone",
+        "base_lr": 5e-06
+      },
+      {
+        "name": "new_progress_and_side",
+        "base_lr": 5e-05
+      }
+    ],
+    "recipe": {
+      "steps": 10463,
+      "eval_every": 2616,
+      "batch": 16,
+      "microbatch": 8,
+      "eval_batch": 8,
+      "workers": 8,
+      "warmup": 200,
+      "weight_decay": 0.01,
+      "grad_clip": 5.0,
+      "precision": "bf16",
+      "bn_policy": "fixed",
+      "time_input": "nominal",
+      "length_auxiliary_lambda": 0.25,
+      "cuda_memory_limit_mib": 170000,
+      "terminal_fixed_before_results": true
+    },
+    "architecture": {
+      "registered_base": "MR-NATIVE-s1 step20554",
+      "front_history_seconds": [
+        0.1,
+        0.2,
+        0.5,
+        1.0
+      ],
+      "side_enabled": true,
+      "side_cameras": [
+        "camera_front_right",
+        "camera_front_left"
+      ],
+      "side_history_seconds": [
+        0.1,
+        0.2,
+        0.5
+      ],
+      "coefficient_count": 1,
+      "coefficient_semantics": [
+        "delta_v"
+      ],
+      "coefficient_cap_abs": 1.0,
+      "base_plan_input": "stop-gradient predicted XY plus predicted interval lengths",
+      "geometry": "detached nearest-valid predicted tangent; all-zero fallback ego +x; nonnegative corrected interval lengths; direct base-plan gradient retained",
+      "raw_goal_pose_provided_status_to_residual": false,
+      "goal_dependency": "indirect through detached goal-conditioned base plan",
+      "side_motion_dynamic_pose_input": false,
+      "side_calibration": "current fixed lidar2img only",
+      "final_inside_neural_forward": true,
+      "new_module_seed": 20260917,
+      "zero_initialised": [
+        "progress_refiner.output",
+        "side_state_delta",
+        "side_history_delta"
+      ]
+    },
+    "comparison_contract": {
+      "same_initializer": true,
+      "same_rows": true,
+      "same_sample_seed": true,
+      "same_schedule": true,
+      "same_final_prefix_loss": true,
+      "front_vs_side_scalar": [
+        "FRONT-S",
+        "SIDE-S"
+      ],
+      "side_scalar_vs_two_coefficient": [
+        "SIDE-S",
+        "SIDE-VA"
+      ]
+    },
+    "provided_status_used": false,
+    "checkpoint_selection": "report every fixed endpoint; primary comparison at common terminal",
+    "initial_load": {
+      "strict_existing_keys": true,
+      "missing_new_keys": [],
+      "measured_model_state_sha256": "287b6dc3c77f037771b2e52407bed5ec016f7321f273ebf2def536973540e56e",
+      "base_frozen_by_zero_lr": false
+    }
+  },
+  "data_counts": {
+    "train": 83700,
+    "eval": 1998
+  },
+  "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+  "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log",
+  "step": 358,
+  "best_metric": null,
+  "cuda_memory": {
+    "allocated_bytes": 474044416,
+    "reserved_bytes": 61809360896,
+    "peak_allocated_bytes": 61082435584,
+    "peak_reserved_bytes": 61809360896,
+    "device_free_bytes": 128687472640,
+    "device_total_bytes": 191503138816
+  },
+  "elapsed_seconds": 522.7320540994406,
+  "nonfinite_count": 0
+}

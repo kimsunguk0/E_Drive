@@ -1,0 +1,132 @@
+{
+ "arm": "MR-NATIVE-FULL",
+ "budget_note": "E1's two arms share one update count, so the expanded arm sees each of its samples fewer times: a fixed-compute data-scale contrast, not an equal-epoch one. The LONG arm instead gives the expanded split the same six exposures, with the cosine horizon set to its own total from step one. Comparing LONG with the short expanded run is therefore a schedule-and-budget comparison, not the causal effect of exposure count alone.",
+ "checkpoint_selection": "fixed terminal step 24931; no in-fit metric selection",
+ "expected_initial_model_state_sha256": "bd33fb065f732b9ca25b24fd4893ebe03ec4a246c6a786424bab2c3573252e0d",
+ "expected_optimizer_groups": [
+  {
+   "base_lr": 5e-06,
+   "name": "backbone"
+  },
+  {
+   "base_lr": 5e-05,
+   "name": "head"
+  }
+ ],
+ "exposures_of_own_train": 3.9292356185973207,
+ "full_fit": {
+  "checkpoint_selection_from_evaluation": false,
+  "dev_weights_or_caches_imported": false,
+  "evaluation_is_in_fit_diagnostic": true,
+  "historical_val_is_subset_of_val": true,
+  "logical_splits": [
+   "train",
+   "tune",
+   "val"
+  ],
+  "not_a_continuation": true,
+  "rows": 101520,
+  "schedule_transfer": "20554 * 101520 / 83700, ceiling",
+  "unique_scenes": 376
+ },
+ "initializer": {
+  "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+  "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+  "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+  "source_checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+  "source_run": "q10_q10_flip50_s0"
+ },
+ "interval_length_auxiliary": {
+  "added_to": "the existing total loss; the D3 and auxiliary weights are unchanged",
+  "contract": "reports/md_exp_diagnosis_20260915/length_auxiliary_contract.json",
+  "lambda": 0.25,
+  "loss": "sum_n complete[n] * sum_k |ell_pred - ell_gt| / (6 * plan_complete), with plan_complete the same full-effective-batch denominator the D3 loss uses",
+  "never_replaces_d3": "an interval norm carries no direction, so a mirrored path scores identically under this term alone"
+ },
+ "matching_resolution": {
+  "adjacent_edges": null,
+  "bins_per_level": 81,
+  "correlation_channels": 32,
+  "correlation_radius": 4,
+  "descriptor_widening": null,
+  "detail": "native",
+  "lowdetail_recipe": "768 -> 384 -> 768 with PIL bilinear, inside the loader's own resize step, before jitter and normalisation",
+  "motion_canvas_wh": [
+   768,
+   432
+  ],
+  "reinitialised_module": "motion_encoder.correlation_fuse.0 (178 -> 290 in-channels)",
+  "scene_branch": "untouched: its own backbone pass on the original 384x216 stack",
+  "search_halfwidth_original_px": {
+   "coarse": 64,
+   "fine": 32
+  },
+  "smoke": "reports/md_exp_diagnosis_20260915/mr_smoke.json",
+  "step_zero_parity_with_len": false,
+  "unchanged_reach": "radius 4 on the 768x432 canvas reproduces the original fine +/-32 and coarse +/-64 original-image pixels, so only the quantisation changes, not the reach"
+ },
+ "mr_step_zero_state": {
+  "every_other_tensor_matches_r0": true,
+  "measured_step_zero_sha256": "bd33fb065f732b9ca25b24fd4893ebe03ec4a246c6a786424bab2c3573252e0d",
+  "r0_model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+  "reason": "motion_encoder.correlation_fuse.0 is rebuilt for 81 bins and newly initialised, so step-zero cannot match R0",
+  "reinitialised": [
+   "motion_encoder.correlation_fuse.0.bias",
+   "motion_encoder.correlation_fuse.0.weight"
+  ],
+  "sha256_is_measured_not_pinned": true
+ },
+ "name": "md_mr_native_fullfit_20260917",
+ "provided_status_used": false,
+ "question": "final fit of the registered MR recipe on every unique challenge scene",
+ "recipe": {
+  "auxiliary_weights": {
+   "lane": 0.2,
+   "motion": 0.2,
+   "occupancy": 0.2
+  },
+  "backbone_lr": 5e-06,
+  "batch": 16,
+  "bn_running_statistics": "fixed",
+  "command_input": "off",
+  "cosine_horizon_updates": 24931,
+  "cuda_memory_limit_mib": 170000,
+  "decay": "cosine",
+  "eval_batch": 4,
+  "eval_every": 6345,
+  "eval_role": "overlapping diagnostic only",
+  "flip_probability": 0.5,
+  "grad_clip": 5.0,
+  "head_lr": 5e-05,
+  "interval_length_auxiliary_lambda": 0.25,
+  "microbatch": 8,
+  "optimizer": "fresh AdamW",
+  "precision": "bf16",
+  "provided_status_used": false,
+  "time_input": "nominal",
+  "updates": 24931,
+  "warmup": 200,
+  "weight_decay": 0.01
+ },
+ "schema_version": 1,
+ "seed": 1,
+ "split_manifest": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+  "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+ },
+ "supervision": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+  "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+ },
+ "train_data": {
+  "rows": 101520,
+  "rows_sha256": "ed29c24b9e8d35b563e50932afd00f8e6424ed63b746c8c35a3d05e5bb2cf4a8",
+  "scenes": 376
+ },
+ "train_scenes": null,
+ "tune_data": {
+  "rows": 1998,
+  "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "scenes": 37
+ }
+}

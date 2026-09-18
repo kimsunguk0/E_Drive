@@ -1,0 +1,81 @@
+{
+  "arm": "A3-DIRECT",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/ckpt_step20554.pth",
+  "conditions": {
+    "images_other_session": {
+      "L2_1s": 0.5605646838072156,
+      "L2_2s": 0.8911723626240767,
+      "L2_3s": 1.2330704695359378,
+      "PREFIX": 0.8949358386557434,
+      "plan_change_from_normal_PREFIX": 0.8742215173165756,
+      "state_mae_vx_vy_ax_ay_yaw": [
+        0.6038352457568068,
+        0.04847371577594701,
+        0.05205253654608125,
+        0.19809593347753487,
+        0.02098177425792196
+      ]
+    },
+    "images_zero_normalized": {
+      "L2_1s": 1.4651927903215032,
+      "L2_2s": 2.128914020893557,
+      "L2_3s": 2.7626970954174115,
+      "PREFIX": 2.1189346355441576,
+      "plan_change_from_normal_PREFIX": 2.1151642213825275,
+      "state_mae_vx_vy_ax_ay_yaw": [
+        1.81590808700022,
+        0.05676338518920325,
+        0.26440192201467044,
+        0.21800968866201292,
+        0.02808274440746262
+      ]
+    },
+    "normal": {
+      "L2_1s": 0.08251080060014417,
+      "L2_2s": 0.1472756326323457,
+      "L2_3s": 0.21808121251314472,
+      "PREFIX": 0.14928921524854485,
+      "plan_change_from_normal_PREFIX": 0.0,
+      "state_mae_vx_vy_ax_ay_yaw": [
+        0.0802015009061182,
+        0.030119104668668028,
+        0.0171688071232738,
+        0.039693748464052214,
+        0.004227481436326324
+      ]
+    },
+    "status_other_session": {
+      "L2_1s": 0.47977449954397844,
+      "L2_2s": 0.7432465195508794,
+      "L2_3s": 0.9332322940604727,
+      "PREFIX": 0.7187511043851103,
+      "plan_change_from_normal_PREFIX": 0.6815065536891649,
+      "state_mae_vx_vy_ax_ay_yaw": [
+        5.011298239457626,
+        0.12058529504396405,
+        0.45802717759462286,
+        0.09208431374318872,
+        0.0074380372360234
+      ]
+    }
+  },
+  "donor_policy": "same frame, different session, seed 20260918; no label-based selection",
+  "images_replaced": [
+    "images",
+    "history_images",
+    "motion_current_images",
+    "motion_history_images"
+  ],
+  "limitation": "Counterfactual sensitivity is evidence of image use, not organizer approval or proof against learned status shortcuts.",
+  "n": 1998,
+  "normal_stored_plan_max_abs_difference": 0.0,
+  "receiver_metadata_preserved_in_image_interventions": [
+    "pose alignment",
+    "goal",
+    "status",
+    "calibration",
+    "timestamps",
+    "GT"
+  ],
+  "training_performed": false
+}

@@ -2,6 +2,10 @@
 
 작성일: 2026-09-17 19시대 KST
 
+2026-09-18 갱신: A2-DIRECT V0 `0.164281`, A3-DIRECT V0 `0.149289`, FULL 학습 및
+OOF producer 학습이 완료됐다. 최신 결과와 규정 검사는 `HANDOVER.md` 0C 및
+`reports/md_shared_dynamics_20260917/RESULTS_20260918_KO.md`를 먼저 읽는다.
+
 ## 결론
 
 `FRONT residual → SIDE → AUX → denoise → A2 warmup`은 같은 등록 MR 출력에 작은
@@ -17,7 +21,8 @@
    구조적으로 분리**한다. 약한 초기값에서 두 단계를 한꺼번에 강제하지 않는다.
 
 GPU 1에는 같은 MR 초기화에서 A2 query를 처음부터 함께 학습하는 `A2-DIRECT`를 시작했다.
-GPU 3의 최초 `A3-FP-VA`는 재검토 뒤 step 350에서 보존 종료했다. MR 학습 전 초기값에서
+GPU 3의 최초 `A3-FP-VA`는 재검토 뒤 종료했다(마지막 학습 로그 step 600;
+이전 표기의 350은 중간 확인 시점이었다). MR 학습 전 초기값에서
 proposal 길이 gradient를 처음부터 막으면 status-conditioned perception과 factorization의
 효과가 섞이고, 아직 약한 base length를 두 progress 계수가 전부 떠맡기 때문이다. GPU 3은
 같은 shared query와 status-conditioned 공통 FPN을 쓰되 정상적인 direct XY 길이 학습을

@@ -1,0 +1,6382 @@
+{
+  "schema_version": 1,
+  "input_contract": "images plus fixed calibration; dynamic pose is evaluation target only",
+  "flow": "Raft_Large_Weights.C_T_SKHT_K_V2",
+  "offset_seconds": 0.1,
+  "ground_z": 0.0,
+  "fit": "trimmed",
+  "inlier_fraction": 0.6,
+  "fixed_lateral_yaw": "predicted",
+  "n": 120,
+  "metrics": {
+    "tx_mae_m": 0.30586122428667806,
+    "ty_mae_m": 0.0043895664332073165,
+    "yaw_mae_rad": 0.0004632313024088789,
+    "speed_mae_mps": 3.0586122428667797,
+    "speed_corr": 0.6000320488661212,
+    "estimated_speed_minus_base_vs_oracle_corr": -0.13079855312378097,
+    "target_speed_minus_base_vs_oracle_corr": 0.5338457190173923
+  },
+  "records": [
+    {
+      "row": 14730,
+      "scene": "20260113-102709",
+      "frame": 30,
+      "estimate_tx_ty_yaw": [
+        1.0265747550754705,
+        -0.018491625785827637,
+        0.0077481806278228765
+      ],
+      "target_tx_ty_yaw": [
+        0.6616204977035522,
+        -0.025830203667283058,
+        0.0054742059521379165
+      ],
+      "cost": 2.3732403680304177,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3566,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.265747550754703,
+      "target_v": 6.6162049770355225,
+      "base_v0": 7.039397131827309,
+      "oracle_c": -0.06962437065207973,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.103631945724286,
+            "mean_px": 8.396464189206869
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.7390719296622756,
+            "mean_px": 6.182812782652535
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.672006878993056,
+            "mean_px": 10.798474701002261
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.720661822287636,
+            "mean_px": 6.361140323233361
+          }
+        }
+      }
+    },
+    {
+      "row": 14810,
+      "scene": "20260113-102709",
+      "frame": 110,
+      "estimate_tx_ty_yaw": [
+        0.7510085142854318,
+        -0.018987633287906647,
+        0.0009500672109425068
+      ],
+      "target_tx_ty_yaw": [
+        0.7954643368721008,
+        -0.01686166413128376,
+        0.0013238359219167495
+      ],
+      "cost": 1.2273979861159396,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3390,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 7.510085142854318,
+      "target_v": 7.954643368721008,
+      "base_v0": 8.123846943935902,
+      "oracle_c": -0.14397334997402658,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.0329364266401733,
+            "mean_px": 8.24812457556267
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.0025214933286317,
+            "mean_px": 6.524865489668984
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.232266553947057,
+            "mean_px": 10.203449510145727
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.0931705097232278,
+            "mean_px": 6.754314020019395
+          }
+        }
+      }
+    },
+    {
+      "row": 14895,
+      "scene": "20260113-102709",
+      "frame": 195,
+      "estimate_tx_ty_yaw": [
+        1.5753099892155609,
+        -0.03082402348518372,
+        0.0003056660294532776
+      ],
+      "target_tx_ty_yaw": [
+        1.3154264688491821,
+        -0.028383983299136162,
+        -8.668396289624276e-05
+      ],
+      "cost": 1.8850618029480637,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2894,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 15.753099892155609,
+      "target_v": 13.154264688491821,
+      "base_v0": 13.051772559647976,
+      "oracle_c": -0.050183229704122444,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 7.730190501702694,
+            "mean_px": 11.142338013143542
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.9022288089565353,
+            "mean_px": 6.147560395488225
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 11.90131139531477,
+            "mean_px": 16.284727641442878
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.7851848666371897,
+            "mean_px": 5.601337875293744
+          }
+        }
+      }
+    },
+    {
+      "row": 14980,
+      "scene": "20260113-102709",
+      "frame": 280,
+      "estimate_tx_ty_yaw": [
+        1.3876221481707658,
+        -0.02661001682281494,
+        -0.0004832861945033074
+      ],
+      "target_tx_ty_yaw": [
+        1.2767517566680908,
+        -0.016314582899212837,
+        2.7326052870599434e-06
+      ],
+      "cost": 0.7432127778562672,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3504,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.876221481707658,
+      "target_v": 12.767517566680908,
+      "base_v0": 13.011940021557479,
+      "oracle_c": -0.12789463949244986,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.173763997957285,
+            "mean_px": 8.475899364732532
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.8243860494511022,
+            "mean_px": 2.5146423505764472
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.358056371262597,
+            "mean_px": 14.491851178588014
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.956634142478475,
+            "mean_px": 2.617414835755264
+          }
+        }
+      }
+    },
+    {
+      "row": 19895,
+      "scene": "20260122-134906",
+      "frame": 95,
+      "estimate_tx_ty_yaw": [
+        1.6869522566170823,
+        -0.02584235370159149,
+        0.0024356536567211153
+      ],
+      "target_tx_ty_yaw": [
+        1.2264653444290161,
+        -0.030977005138993263,
+        0.002344390415717912
+      ],
+      "cost": 1.3727036306313798,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3539,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 16.869522566170822,
+      "target_v": 12.264653444290161,
+      "base_v0": 12.440772213998839,
+      "oracle_c": -0.09043511405132101,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.280379242337471,
+            "mean_px": 7.484601349320457
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.7555445569649313,
+            "mean_px": 2.5835525768930934
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 11.253633719869537,
+            "mean_px": 12.671139156362525
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.6289981342202644,
+            "mean_px": 2.318645478406755
+          }
+        }
+      }
+    },
+    {
+      "row": 19975,
+      "scene": "20260122-134906",
+      "frame": 175,
+      "estimate_tx_ty_yaw": [
+        1.6297017654652246,
+        -0.026304197311401368,
+        0.0026639927178621296
+      ],
+      "target_tx_ty_yaw": [
+        1.2772800922393799,
+        -0.031125197187066078,
+        0.0034197133680314777
+      ],
+      "cost": 3.0002395791101883,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3325,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 16.297017654652244,
+      "target_v": 12.772800922393799,
+      "base_v0": 12.806392530267534,
+      "oracle_c": -0.030411243701128004,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 7.1692224779437765,
+            "mean_px": 8.82460847074264
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.3473317063812935,
+            "mean_px": 3.9736218570815565
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 11.466922090732375,
+            "mean_px": 13.983468849693555
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.5147281486345863,
+            "mean_px": 3.7908293356212446
+          }
+        }
+      }
+    },
+    {
+      "row": 20060,
+      "scene": "20260122-134906",
+      "frame": 260,
+      "estimate_tx_ty_yaw": [
+        1.3555410893464035,
+        -0.03345874547958374,
+        0.0005949795246124268
+      ],
+      "target_tx_ty_yaw": [
+        1.3576104640960693,
+        -0.0314013846218586,
+        0.0006888581012499405
+      ],
+      "cost": 0.6625251746012146,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3257,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.555410893464034,
+      "target_v": 13.576104640960693,
+      "base_v0": 13.516824711898554,
+      "oracle_c": 0.04507838081742174,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.5392398203216775,
+            "mean_px": 7.060997222266776
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.6850845159299367,
+            "mean_px": 2.200886842077993
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.807776628355814,
+            "mean_px": 12.227494368426612
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.7577197431095873,
+            "mean_px": 2.2279715104519533
+          }
+        }
+      }
+    },
+    {
+      "row": 20175,
+      "scene": "20260122-134936",
+      "frame": 75,
+      "estimate_tx_ty_yaw": [
+        1.097083994313693,
+        -0.028864973783493043,
+        -0.004972067102789879
+      ],
+      "target_tx_ty_yaw": [
+        1.2500802278518677,
+        -0.024382205680012703,
+        -0.006460469353767704
+      ],
+      "cost": 1.6244577301911949,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3473,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.970839943136928,
+      "target_v": 12.500802278518677,
+      "base_v0": 12.712342165798118,
+      "oracle_c": -0.14256440833386397,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 7.094141475910012,
+            "mean_px": 9.221471498704467
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.3819140444052094,
+            "mean_px": 2.780767350411469
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 13.857470284244265,
+            "mean_px": 16.179958661552924
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.4943371109570558,
+            "mean_px": 3.3497267992339363
+          }
+        }
+      }
+    },
+    {
+      "row": 20260,
+      "scene": "20260122-134936",
+      "frame": 160,
+      "estimate_tx_ty_yaw": [
+        1.2271114776719376,
+        -0.027539536356925964,
+        -0.005140061303973199
+      ],
+      "target_tx_ty_yaw": [
+        1.2245222330093384,
+        -0.029443128034472466,
+        -0.00470237795455128
+      ],
+      "cost": 1.8791654529486859,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3233,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.271114776719376,
+      "target_v": 12.245222330093384,
+      "base_v0": 11.545683962505217,
+      "oracle_c": 0.3413778191679408,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.173160964591043,
+            "mean_px": 10.67734710403485
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.405190058364572,
+            "mean_px": 5.632213250478897
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.739160845168005,
+            "mean_px": 15.662938857474229
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.3847268043884204,
+            "mean_px": 5.562885239314247
+          }
+        }
+      }
+    },
+    {
+      "row": 20345,
+      "scene": "20260122-134936",
+      "frame": 245,
+      "estimate_tx_ty_yaw": [
+        0.5188652867180766,
+        -0.0136803537607193,
+        -0.0013782035559415818
+      ],
+      "target_tx_ty_yaw": [
+        0.5276299118995667,
+        -0.013982776552438736,
+        -0.0025700318024765513
+      ],
+      "cost": 0.6231465003144941,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3644,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 5.188652867180766,
+      "target_v": 5.2762991189956665,
+      "base_v0": 4.9643854084591865,
+      "oracle_c": 0.08206906699705352,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.9283862998705734,
+            "mean_px": 4.382819494706533
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.110483853830897,
+            "mean_px": 2.2597445359991375
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 7.946224273243216,
+            "mean_px": 7.638376191511637
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.7436191791571167,
+            "mean_px": 2.0214639611859737
+          }
+        }
+      }
+    },
+    {
+      "row": 20455,
+      "scene": "20260122-135506",
+      "frame": 55,
+      "estimate_tx_ty_yaw": [
+        1.1239270538731223,
+        -0.026997035741806032,
+        -0.002919961512088776
+      ],
+      "target_tx_ty_yaw": [
+        1.1393439769744873,
+        -0.023223673924803734,
+        -0.002499385130967862
+      ],
+      "cost": 1.7677712247791624,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3190,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.239270538731223,
+      "target_v": 11.393439769744873,
+      "base_v0": 11.144524564529588,
+      "oracle_c": 0.296070820252839,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.146432843751615,
+            "mean_px": 9.24288696717836
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.9075398137787547,
+            "mean_px": 5.720567667631346
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 11.223303450498285,
+            "mean_px": 13.31929240288394
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.1064732645880704,
+            "mean_px": 5.943295783955611
+          }
+        }
+      }
+    },
+    {
+      "row": 20540,
+      "scene": "20260122-135506",
+      "frame": 140,
+      "estimate_tx_ty_yaw": [
+        0.580917911418148,
+        -0.026003563404083253,
+        0.0005082512274384498
+      ],
+      "target_tx_ty_yaw": [
+        1.194445252418518,
+        -0.028194157406687737,
+        3.2305681077234964e-05
+      ],
+      "cost": 0.8549631866221971,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2558,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 5.80917911418148,
+      "target_v": 11.94445252418518,
+      "base_v0": 11.892737108834382,
+      "oracle_c": 0.027725918099522854,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.19847351729371,
+            "mean_px": 7.569480158225553
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.8074283490454004,
+            "mean_px": 4.945923358150203
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.508999658290392,
+            "mean_px": 11.542924535597358
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.885072163774451,
+            "mean_px": 5.615605201114395
+          }
+        }
+      }
+    },
+    {
+      "row": 20625,
+      "scene": "20260122-135506",
+      "frame": 225,
+      "estimate_tx_ty_yaw": [
+        0.6744079367652174,
+        -0.02224339246749878,
+        0.0015674220398068429
+      ],
+      "target_tx_ty_yaw": [
+        1.3016995191574097,
+        -0.030038751661777496,
+        0.0022561056474718205
+      ],
+      "cost": 0.7841154564737595,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2951,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 6.744079367652174,
+      "target_v": 13.016995191574097,
+      "base_v0": 12.838029646547344,
+      "oracle_c": 0.20865178960962366,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.653022254702848,
+            "mean_px": 6.050559873047579
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.3642647807785258,
+            "mean_px": 4.115352774559138
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.92260040572367,
+            "mean_px": 11.87943031915871
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9436559398434321,
+            "mean_px": 3.4055780779425184
+          }
+        }
+      }
+    },
+    {
+      "row": 20740,
+      "scene": "20260122-135546",
+      "frame": 40,
+      "estimate_tx_ty_yaw": [
+        1.1956891538543104,
+        -0.031019616127014163,
+        0.0006148673593997956
+      ],
+      "target_tx_ty_yaw": [
+        1.269274353981018,
+        -0.025465674698352814,
+        -3.061541434947173e-05
+      ],
+      "cost": 2.4730437948848087,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2355,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.956891538543104,
+      "target_v": 12.69274353981018,
+      "base_v0": 12.55272168071141,
+      "oracle_c": 0.14006311192722162,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.951581533466009,
+            "mean_px": 8.320283204161925
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.3200403782578745,
+            "mean_px": 3.8977152110439044
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.787556487121732,
+            "mean_px": 14.59173489525697
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.74166365726896,
+            "mean_px": 4.1478015759251
+          }
+        }
+      }
+    },
+    {
+      "row": 20820,
+      "scene": "20260122-135546",
+      "frame": 120,
+      "estimate_tx_ty_yaw": [
+        1.2347874875281406,
+        -0.021339915692806244,
+        -0.0005686514079570771
+      ],
+      "target_tx_ty_yaw": [
+        1.1282100677490234,
+        -0.029010653495788574,
+        -0.00032318295960857813
+      ],
+      "cost": 1.0074614784869809,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3170,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.347874875281406,
+      "target_v": 11.282100677490234,
+      "base_v0": 11.11903114149501,
+      "oracle_c": -0.08774478555853497,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.937788046515412,
+            "mean_px": 7.268913609369691
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.6089103377340868,
+            "mean_px": 2.6961052473753546
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.425063681056372,
+            "mean_px": 11.882117454725803
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3801113546074717,
+            "mean_px": 2.533280518962652
+          }
+        }
+      }
+    },
+    {
+      "row": 20905,
+      "scene": "20260122-135546",
+      "frame": 205,
+      "estimate_tx_ty_yaw": [
+        1.3130160778809892,
+        -0.016275718808174133,
+        -0.0005223244428634643
+      ],
+      "target_tx_ty_yaw": [
+        0.8205670714378357,
+        -0.012977232225239277,
+        2.854954852657717e-05
+      ],
+      "cost": 1.6844048780369905,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3713,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.130160778809891,
+      "target_v": 8.205670714378357,
+      "base_v0": 7.984910175850615,
+      "oracle_c": 0.015873363461032197,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.450699893909249,
+            "mean_px": 7.511868545246466
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 3.356192582278626,
+            "mean_px": 7.184936413326952
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.684082035590696,
+            "mean_px": 8.359807974180185
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.3512527932900316,
+            "mean_px": 8.356980216353495
+          }
+        }
+      }
+    },
+    {
+      "row": 20990,
+      "scene": "20260122-135546",
+      "frame": 290,
+      "estimate_tx_ty_yaw": [
+        1.35562415982325,
+        -0.0074981339275836945,
+        0.00011213514953851701
+      ],
+      "target_tx_ty_yaw": [
+        0.2776186466217041,
+        -0.00802751537412405,
+        -2.9892267729547056e-05
+      ],
+      "cost": 1.1112112238611365,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3771,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.556241598232498,
+      "target_v": 2.776186466217041,
+      "base_v0": 2.848458282387996,
+      "oracle_c": -0.4303274611939183,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.0769807912370086,
+            "mean_px": 3.438763734573469
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.6367206574596014,
+            "mean_px": 2.247236029501256
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.062423634868852,
+            "mean_px": 4.843707583754406
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.5435239359802782,
+            "mean_px": 4.126161103679246
+          }
+        }
+      }
+    },
+    {
+      "row": 21105,
+      "scene": "20260122-135616",
+      "frame": 105,
+      "estimate_tx_ty_yaw": [
+        0.570149980613233,
+        -0.020683012902736664,
+        -0.00018378905951976776
+      ],
+      "target_tx_ty_yaw": [
+        0.9039745926856995,
+        -0.019608115777373314,
+        0.00010436387636526932
+      ],
+      "cost": 0.5957707853212184,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3626,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 5.701499806132329,
+      "target_v": 9.039745926856995,
+      "base_v0": 9.445887657462837,
+      "oracle_c": 0.007321557590860278,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.1802505526566716,
+            "mean_px": 3.8361391964736407
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.2135128924770506,
+            "mean_px": 2.018697508075077
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.534078094597589,
+            "mean_px": 7.458801031169705
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.5924315453295572,
+            "mean_px": 2.1004647598004658
+          }
+        }
+      }
+    },
+    {
+      "row": 21190,
+      "scene": "20260122-135616",
+      "frame": 190,
+      "estimate_tx_ty_yaw": [
+        0.8603673757148405,
+        -0.03272705078125,
+        0.0008459124714136125
+      ],
+      "target_tx_ty_yaw": [
+        1.3118757009506226,
+        -0.03177415579557419,
+        0.00015676783967860671
+      ],
+      "cost": 0.2956094218741561,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3209,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 8.603673757148403,
+      "target_v": 13.118757009506226,
+      "base_v0": 12.752815648330756,
+      "oracle_c": 0.30265865297006206,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.3058459072983433,
+            "mean_px": 4.511695855568482
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.1588047491921425,
+            "mean_px": 1.7422987660905722
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 7.438669481879483,
+            "mean_px": 9.448742347584162
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.4067734375728347,
+            "mean_px": 1.5942187343321361
+          }
+        }
+      }
+    },
+    {
+      "row": 21270,
+      "scene": "20260122-135616",
+      "frame": 270,
+      "estimate_tx_ty_yaw": [
+        1.224301216909806,
+        -0.029880675673484805,
+        0.000508647970855236
+      ],
+      "target_tx_ty_yaw": [
+        1.190399169921875,
+        -0.02877948433160782,
+        9.022618881390295e-05
+      ],
+      "cost": 0.8156063768178867,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3096,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.243012169098058,
+      "target_v": 11.90399169921875,
+      "base_v0": 11.871454927839078,
+      "oracle_c": -0.12804186572022677,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.832579651407102,
+            "mean_px": 6.839517564000702
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.9847844702814609,
+            "mean_px": 2.3729381663415827
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.839743669826209,
+            "mean_px": 11.43901490008755
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9627966549449352,
+            "mean_px": 2.370922633069069
+          }
+        }
+      }
+    },
+    {
+      "row": 21385,
+      "scene": "20260122-135646",
+      "frame": 85,
+      "estimate_tx_ty_yaw": [
+        0.8024727688273393,
+        -0.02373216301202774,
+        2.528689801692963e-05
+      ],
+      "target_tx_ty_yaw": [
+        0.8769552707672119,
+        -0.01883964240550995,
+        -0.0001632517509327942
+      ],
+      "cost": 2.4659553943524046,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3139,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 8.024727688273392,
+      "target_v": 8.76955270767212,
+      "base_v0": 8.833659373011445,
+      "oracle_c": -0.20758693663045974,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.894451660699711,
+            "mean_px": 14.624525810698657
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 6.645829739611103,
+            "mean_px": 13.194143581402628
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 2.323010829193716,
+            "mean_px": 16.88169454885377
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 6.483534713817695,
+            "mean_px": 13.260946665685447
+          }
+        }
+      }
+    },
+    {
+      "row": 21470,
+      "scene": "20260122-135646",
+      "frame": 170,
+      "estimate_tx_ty_yaw": [
+        0.5824149008995609,
+        -0.015011253952980043,
+        -0.00037031769752502445
+      ],
+      "target_tx_ty_yaw": [
+        0.5015097260475159,
+        -0.005908977705985308,
+        7.31473816079227e-05
+      ],
+      "cost": 0.7136280710281818,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3292,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 5.824149008995609,
+      "target_v": 5.015097260475159,
+      "base_v0": 5.071661367741082,
+      "oracle_c": -0.18634143902726613,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.2492616378102923,
+            "mean_px": 4.73492009643794
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.630014128166718,
+            "mean_px": 3.4811530301036875
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 2.154315887026603,
+            "mean_px": 6.262585516510098
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.7050560341429657,
+            "mean_px": 3.4396341542715385
+          }
+        }
+      }
+    },
+    {
+      "row": 21555,
+      "scene": "20260122-135646",
+      "frame": 255,
+      "estimate_tx_ty_yaw": [
+        0.04333215373160895,
+        0.0015215352177619934,
+        -0.0002894749864935875
+      ],
+      "target_tx_ty_yaw": [
+        0.05944233387708664,
+        -0.005622165277600288,
+        -4.3553671248191865e-05
+      ],
+      "cost": 0.5372001637826669,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3830,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 0.4333215373160895,
+      "target_v": 0.5944233387708664,
+      "base_v0": 0.23225015743987723,
+      "oracle_c": -0.4556441838557464,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.2624517316315702,
+            "mean_px": 1.9175332221327166
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.8794121158832704,
+            "mean_px": 1.8831867957908617
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 1.2958100440302251,
+            "mean_px": 2.0329060304748445
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9675925743673135,
+            "mean_px": 1.841031721348037
+          }
+        }
+      }
+    },
+    {
+      "row": 21665,
+      "scene": "20260122-135800",
+      "frame": 65,
+      "estimate_tx_ty_yaw": [
+        1.406349006101731,
+        -0.028992903232574464,
+        -0.0010978134348988533
+      ],
+      "target_tx_ty_yaw": [
+        1.2837272882461548,
+        -0.029851514846086502,
+        -0.00044992049287397484
+      ],
+      "cost": 2.279790202643646,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3227,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 14.063490061017308,
+      "target_v": 12.837272882461548,
+      "base_v0": 12.554982330548002,
+      "oracle_c": 0.25429681804559795,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.4165083093668445,
+            "mean_px": 10.589447752468399
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.09002173849765,
+            "mean_px": 6.907135160088481
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.490662770309317,
+            "mean_px": 14.6067599177444
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.9636842729345727,
+            "mean_px": 6.657858316982421
+          }
+        }
+      }
+    },
+    {
+      "row": 21750,
+      "scene": "20260122-135800",
+      "frame": 150,
+      "estimate_tx_ty_yaw": [
+        1.2577902458492178,
+        -0.027966055274009707,
+        -0.0011949978768825533
+      ],
+      "target_tx_ty_yaw": [
+        1.2183183431625366,
+        -0.030673924833536148,
+        -0.0016023735828630448
+      ],
+      "cost": 1.1457341403775374,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2893,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.577902458492177,
+      "target_v": 12.183183431625366,
+      "base_v0": 12.253850858953758,
+      "oracle_c": 0.04390959319910797,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.533052198155366,
+            "mean_px": 18.550317728159758
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.5584334210372504,
+            "mean_px": 13.759672435585129
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.191114772178274,
+            "mean_px": 23.063815980877845
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.2005996702401618,
+            "mean_px": 13.741315432217252
+          }
+        }
+      }
+    },
+    {
+      "row": 21835,
+      "scene": "20260122-135800",
+      "frame": 235,
+      "estimate_tx_ty_yaw": [
+        1.164423884422805,
+        -0.0262292355298996,
+        0.001381879672408104
+      ],
+      "target_tx_ty_yaw": [
+        1.201823353767395,
+        -0.031212277710437775,
+        0.0016908097083024364
+      ],
+      "cost": 0.5347396961472272,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3511,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.644238844228049,
+      "target_v": 12.01823353767395,
+      "base_v0": 11.869625406497287,
+      "oracle_c": -0.08876629361991763,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.6653605245145116,
+            "mean_px": 6.76330873719907
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.6472652808393475,
+            "mean_px": 2.3372238479153373
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.9766498131588355,
+            "mean_px": 11.351680529207682
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.6344125815454642,
+            "mean_px": 2.4133875934332862
+          }
+        }
+      }
+    },
+    {
+      "row": 21950,
+      "scene": "20260122-135830",
+      "frame": 50,
+      "estimate_tx_ty_yaw": [
+        0.8407079247438977,
+        -0.024795345962047577,
+        -1.5033781528472902e-05
+      ],
+      "target_tx_ty_yaw": [
+        1.0882620811462402,
+        -0.026697617024183273,
+        0.00013382700774087835
+      ],
+      "cost": 0.9337816205255726,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3627,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 8.407079247438976,
+      "target_v": 10.882620811462402,
+      "base_v0": 10.810371174557702,
+      "oracle_c": 0.09246770764418202,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.1868529554993825,
+            "mean_px": 4.631072054892395
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.619013302351544,
+            "mean_px": 2.166091920656627
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 4.594160197923236,
+            "mean_px": 8.85408902648176
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.6983351433863063,
+            "mean_px": 2.218153027766038
+          }
+        }
+      }
+    },
+    {
+      "row": 22035,
+      "scene": "20260122-135830",
+      "frame": 135,
+      "estimate_tx_ty_yaw": [
+        1.0759124451737472,
+        -0.022727586328983307,
+        -0.0006406016647815705
+      ],
+      "target_tx_ty_yaw": [
+        1.0254130363464355,
+        -0.018439505249261856,
+        -6.937606656503776e-05
+      ],
+      "cost": 1.0962591511618482,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3594,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.75912445173747,
+      "target_v": 10.254130363464355,
+      "base_v0": 10.416742202070424,
+      "oracle_c": -0.04259943050795559,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.296893482348007,
+            "mean_px": 4.905565001015486
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.3777052717218794,
+            "mean_px": 2.0556559339660407
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.326897468162774,
+            "mean_px": 8.46731205935761
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3376513679558133,
+            "mean_px": 2.056213024849939
+          }
+        }
+      }
+    },
+    {
+      "row": 22115,
+      "scene": "20260122-135830",
+      "frame": 215,
+      "estimate_tx_ty_yaw": [
+        1.893475942176173,
+        -0.03182170987129212,
+        0.0028267355635762216
+      ],
+      "target_tx_ty_yaw": [
+        1.2065526247024536,
+        -0.03056573122739792,
+        0.004040681441186402
+      ],
+      "cost": 1.4228407071600142,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2786,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 18.93475942176173,
+      "target_v": 12.065526247024536,
+      "base_v0": 12.097657630075407,
+      "oracle_c": 0.07081985906537762,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 8.306174933178216,
+            "mean_px": 8.752100918108432
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.9928066640424529,
+            "mean_px": 3.359379859110837
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 13.481592230928968,
+            "mean_px": 14.23899927171406
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.5018313776524872,
+            "mean_px": 3.046343425254142
+          }
+        }
+      }
+    },
+    {
+      "row": 22230,
+      "scene": "20260122-135900",
+      "frame": 30,
+      "estimate_tx_ty_yaw": [
+        1.0994518066873125,
+        -0.028017118573188782,
+        0.003605293855071068
+      ],
+      "target_tx_ty_yaw": [
+        1.194718599319458,
+        -0.03156866505742073,
+        0.003737829670027399
+      ],
+      "cost": 0.8361944676135579,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3491,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.994518066873123,
+      "target_v": 11.94718599319458,
+      "base_v0": 11.997344853341543,
+      "oracle_c": -0.2162525435751705,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.054551290902342,
+            "mean_px": 6.750407871930025
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.0200237049097718,
+            "mean_px": 1.7180895012292614
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 11.396386021637273,
+            "mean_px": 12.43842629705262
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.0752948058572316,
+            "mean_px": 1.7933113067386186
+          }
+        }
+      }
+    },
+    {
+      "row": 22315,
+      "scene": "20260122-135900",
+      "frame": 115,
+      "estimate_tx_ty_yaw": [
+        1.3759932949909863,
+        -0.0254594624042511,
+        -0.0001417582854628563
+      ],
+      "target_tx_ty_yaw": [
+        1.2071645259857178,
+        -0.03360600024461746,
+        0.0006595535136664872
+      ],
+      "cost": 1.1542789872988617,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3461,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.759932949909862,
+      "target_v": 12.071645259857178,
+      "base_v0": 12.121896546501041,
+      "oracle_c": 0.18967383723418116,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 8.133980757908027,
+            "mean_px": 8.790910055152228
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.7544279333415616,
+            "mean_px": 2.6817002898539237
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 14.136466517904191,
+            "mean_px": 15.085041308893121
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.4494055998913047,
+            "mean_px": 2.5629150897224737
+          }
+        }
+      }
+    },
+    {
+      "row": 22400,
+      "scene": "20260122-135900",
+      "frame": 200,
+      "estimate_tx_ty_yaw": [
+        0.028962875825464682,
+        -0.0174151211977005,
+        2.727862447500229e-05
+      ],
+      "target_tx_ty_yaw": [
+        0.8603579998016357,
+        -0.016604114323854446,
+        0.000134300004642853
+      ],
+      "cost": 0.8846736128849164,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3696,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 0.2896287582546468,
+      "target_v": 8.603579998016357,
+      "base_v0": 8.225557410332298,
+      "oracle_c": -0.06020325879433666,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.2642419360113153,
+            "mean_px": 3.263544938436719
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 3.500290404186504,
+            "mean_px": 3.8611470478724037
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.384585967257998,
+            "mean_px": 7.832778328774023
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.0763162911410933,
+            "mean_px": 3.269214354732321
+          }
+        }
+      }
+    },
+    {
+      "row": 22485,
+      "scene": "20260122-135900",
+      "frame": 285,
+      "estimate_tx_ty_yaw": [
+        -0.03699479354633951,
+        -0.004120759665966034,
+        -0.00020226892083883286
+      ],
+      "target_tx_ty_yaw": [
+        0.004923255182802677,
+        0.002863864414393902,
+        -7.369094212339662e-07
+      ],
+      "cost": 8.397518692595902,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3332,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -0.3699479354633951,
+      "target_v": 0.04923255182802677,
+      "base_v0": 0.023003802969261286,
+      "oracle_c": -0.2203285608686999,
+      "bucket": "steady",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 13.790607089953351,
+            "mean_px": 11.473143620560434
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 13.866305725459437,
+            "mean_px": 11.50566472944997
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 13.726710515607266,
+            "mean_px": 11.444271926062495
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 13.49406082137794,
+            "mean_px": 11.352301877784951
+          }
+        }
+      }
+    },
+    {
+      "row": 36395,
+      "scene": "20260209-153550",
+      "frame": 95,
+      "estimate_tx_ty_yaw": [
+        0.7667894025299032,
+        -0.010009795427322388,
+        -0.00821017473936081
+      ],
+      "target_tx_ty_yaw": [
+        0.688734769821167,
+        -0.01575755700469017,
+        -0.007566883440820488
+      ],
+      "cost": 1.0306752242008301,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3138,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 7.667894025299032,
+      "target_v": 6.88734769821167,
+      "base_v0": 6.780110992241846,
+      "oracle_c": 0.03874491916130521,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 8.554496318277192,
+            "mean_px": 8.390050671857542
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.0806281719002144,
+            "mean_px": 2.052884757556496
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 15.479379286612303,
+            "mean_px": 14.92530820288932
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.8358484896715594,
+            "mean_px": 1.8077998801200803
+          }
+        }
+      }
+    },
+    {
+      "row": 36480,
+      "scene": "20260209-153550",
+      "frame": 180,
+      "estimate_tx_ty_yaw": [
+        1.1312493645844959,
+        -0.014042280614376068,
+        -0.006229081377387047
+      ],
+      "target_tx_ty_yaw": [
+        0.6768498420715332,
+        -0.0166840311139822,
+        -0.007839142407176867
+      ],
+      "cost": 2.195912015833183,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3711,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.312493645844958,
+      "target_v": 6.768498420715332,
+      "base_v0": 6.655522121352739,
+      "oracle_c": -0.15480966297456608,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.470392770785227,
+            "mean_px": 7.061682946420119
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.3610786734478943,
+            "mean_px": 2.972166507370556
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.285777701194508,
+            "mean_px": 11.824090411107024
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.2980753103547102,
+            "mean_px": 2.510066036857417
+          }
+        }
+      }
+    },
+    {
+      "row": 36565,
+      "scene": "20260209-153550",
+      "frame": 265,
+      "estimate_tx_ty_yaw": [
+        0.7738054097439306,
+        -0.022875718772411346,
+        0.00011743316426873208
+      ],
+      "target_tx_ty_yaw": [
+        0.8164807558059692,
+        -0.021985583007335663,
+        -0.00019219453999929045
+      ],
+      "cost": 1.4383369788442333,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3612,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 7.738054097439306,
+      "target_v": 8.164807558059692,
+      "base_v0": 8.414117221954031,
+      "oracle_c": -0.24418170816739473,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.841543759343736,
+            "mean_px": 6.345839356315952
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.3554040127971494,
+            "mean_px": 2.7796579981112703
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.015324367846718,
+            "mean_px": 10.50449348153476
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3875576795213642,
+            "mean_px": 2.846998326982027
+          }
+        }
+      }
+    },
+    {
+      "row": 36680,
+      "scene": "20260209-153620",
+      "frame": 80,
+      "estimate_tx_ty_yaw": [
+        1.095110137779196,
+        -0.022021904587745667,
+        -0.0004350528120994568
+      ],
+      "target_tx_ty_yaw": [
+        0.8782626390457153,
+        -0.02497643418610096,
+        -0.00033228943790216114
+      ],
+      "cost": 1.3041646007320402,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3678,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.95110137779196,
+      "target_v": 8.782626390457153,
+      "base_v0": 8.78288021674238,
+      "oracle_c": 0.00685674852284784,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.161876126932716,
+            "mean_px": 6.006737294135824
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.186988850007448,
+            "mean_px": 1.8959317149554973
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.49690628287303,
+            "mean_px": 10.215143572232861
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.0887364710982448,
+            "mean_px": 1.716323992035006
+          }
+        }
+      }
+    },
+    {
+      "row": 36760,
+      "scene": "20260209-153620",
+      "frame": 160,
+      "estimate_tx_ty_yaw": [
+        0.7874006298027224,
+        -0.013238087296485901,
+        -0.00029598381370306016
+      ],
+      "target_tx_ty_yaw": [
+        0.5108101963996887,
+        -0.008103502914309502,
+        1.9691300619526056e-05
+      ],
+      "cost": 1.1637624298951237,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3740,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 7.874006298027224,
+      "target_v": 5.108101963996887,
+      "base_v0": 4.711573041231824,
+      "oracle_c": 0.15181226948798993,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.661128941357774,
+            "mean_px": 5.915861502809902
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.2537323778492753,
+            "mean_px": 2.6281120503094733
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.974831660842023,
+            "mean_px": 9.144058311683686
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.5019695833761215,
+            "mean_px": 1.9161571955691494
+          }
+        }
+      }
+    },
+    {
+      "row": 36845,
+      "scene": "20260209-153620",
+      "frame": 245,
+      "estimate_tx_ty_yaw": [
+        0.02355707160060799,
+        0.001277802512049675,
+        0.00018658852204680445
+      ],
+      "target_tx_ty_yaw": [
+        -0.00013369006046559662,
+        3.1686613510828465e-05,
+        1.5919196810974816e-05
+      ],
+      "cost": 0.047417622339988606,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3853,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 0.23557071600607987,
+      "target_v": -0.0013369006046559662,
+      "base_v0": 0.007357236394741803,
+      "oracle_c": -0.022759226875446414,
+      "bucket": "steady",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.0025917049003058423,
+            "mean_px": 0.0028342656647538044
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.009726712614316138,
+            "mean_px": 0.0102053001175258
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 0.0132480381271823,
+            "mean_px": 0.013661073493633264
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.07265386220159359,
+            "mean_px": 0.11534937238548638
+          }
+        }
+      }
+    },
+    {
+      "row": 40560,
+      "scene": "20260210-100504",
+      "frame": 60,
+      "estimate_tx_ty_yaw": [
+        0.8571034385340495,
+        -0.03197464346885681,
+        -0.0004345236346125603
+      ],
+      "target_tx_ty_yaw": [
+        1.3002099990844727,
+        -0.027054021134972572,
+        6.0720692925268015e-05
+      ],
+      "cost": 0.5775077942261312,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2073,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 8.571034385340495,
+      "target_v": 13.002099990844727,
+      "base_v0": 13.377466779117823,
+      "oracle_c": -0.2638154935225545,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.3945504854541846,
+            "mean_px": 7.307240856408378
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.9375092589878906,
+            "mean_px": 3.221699961023027
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 7.110074405116192,
+            "mean_px": 11.94858149648583
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.5758300946667179,
+            "mean_px": 4.000289870639839
+          }
+        }
+      }
+    },
+    {
+      "row": 40645,
+      "scene": "20260210-100504",
+      "frame": 145,
+      "estimate_tx_ty_yaw": [
+        0.9846929769157351,
+        -0.04098933339118958,
+        2.674255520105362e-05
+      ],
+      "target_tx_ty_yaw": [
+        1.4853639602661133,
+        -0.028114555403590202,
+        3.047931746508135e-05
+      ],
+      "cost": 2.7547881860238017,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2547,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 9.84692976915735,
+      "target_v": 14.853639602661133,
+      "base_v0": 15.15452965705017,
+      "oracle_c": -0.27544068003624717,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.132734793812964,
+            "mean_px": 8.385637418927907
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 4.801834671246619,
+            "mean_px": 5.58841616453177
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.342009594958327,
+            "mean_px": 12.943860376659785
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 4.154169979042357,
+            "mean_px": 5.702868179788755
+          }
+        }
+      }
+    },
+    {
+      "row": 40730,
+      "scene": "20260210-100504",
+      "frame": 230,
+      "estimate_tx_ty_yaw": [
+        1.1226427278833673,
+        -0.03388112187385559,
+        1.8090009689331056e-06
+      ],
+      "target_tx_ty_yaw": [
+        1.510289192199707,
+        -0.032240044325590134,
+        0.0008998657543133611
+      ],
+      "cost": 0.8717125668806119,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2571,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.226427278833672,
+      "target_v": 15.10289192199707,
+      "base_v0": 15.308572874105328,
+      "oracle_c": -0.08002267614892516,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.783197026888319,
+            "mean_px": 9.065431547767465
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.9028174624632368,
+            "mean_px": 4.363909679358158
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.298292926830502,
+            "mean_px": 14.137839808460308
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.7610722325335562,
+            "mean_px": 5.217319310344919
+          }
+        }
+      }
+    },
+    {
+      "row": 40840,
+      "scene": "20260210-100534",
+      "frame": 40,
+      "estimate_tx_ty_yaw": [
+        1.7057529819981296,
+        -0.03174440562725067,
+        0.0032397378236055374
+      ],
+      "target_tx_ty_yaw": [
+        1.4450267553329468,
+        -0.03282662108540535,
+        0.004314195821261104
+      ],
+      "cost": 2.848309946446993,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2370,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 17.057529819981294,
+      "target_v": 14.450267553329468,
+      "base_v0": 14.53459327161295,
+      "oracle_c": 0.06878722140792567,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 9.418481164191457,
+            "mean_px": 13.9708833026053
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.365143092731695,
+            "mean_px": 7.943668707033701
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 15.776237950744623,
+            "mean_px": 19.994113467782537
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.6574321144319377,
+            "mean_px": 7.678455154974422
+          }
+        }
+      }
+    },
+    {
+      "row": 40925,
+      "scene": "20260210-100534",
+      "frame": 125,
+      "estimate_tx_ty_yaw": [
+        1.2787978971113645,
+        -0.027143004536628726,
+        0.004330519586801529
+      ],
+      "target_tx_ty_yaw": [
+        1.2020587921142578,
+        -0.01672564074397087,
+        0.004188995308077942
+      ],
+      "cost": 1.1139997123723577,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2684,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.787978971113644,
+      "target_v": 12.020587921142578,
+      "base_v0": 11.805219884080975,
+      "oracle_c": 0.22788101820719311,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.9998354155594944,
+            "mean_px": 7.559401313614661
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.0803962640135636,
+            "mean_px": 3.3520775095183803
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.577588629979958,
+            "mean_px": 11.687836827859982
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.0330628704713143,
+            "mean_px": 3.1629071584767505
+          }
+        }
+      }
+    },
+    {
+      "row": 41010,
+      "scene": "20260210-100534",
+      "frame": 210,
+      "estimate_tx_ty_yaw": [
+        2.399994080199634,
+        -0.018784470856189728,
+        0.002069920487701893
+      ],
+      "target_tx_ty_yaw": [
+        0.8954414129257202,
+        -0.019457507878541946,
+        0.0017882850653033792
+      ],
+      "cost": 2.3018644343582766,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3343,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 23.99994080199634,
+      "target_v": 8.954414129257202,
+      "base_v0": 9.427700193126903,
+      "oracle_c": -0.16317931828350182,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 11.18253256126846,
+            "mean_px": 10.382743673511458
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 6.8529450747908465,
+            "mean_px": 6.287504055111549
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 14.497880769214635,
+            "mean_px": 14.38958493512155
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.354255201661659,
+            "mean_px": 3.9407271456843844
+          }
+        }
+      }
+    },
+    {
+      "row": 41095,
+      "scene": "20260210-100534",
+      "frame": 295,
+      "estimate_tx_ty_yaw": [
+        1.0072440230334192,
+        -0.023419782519340515,
+        0.003611031174659729
+      ],
+      "target_tx_ty_yaw": [
+        1.0879014730453491,
+        -0.011191828176379204,
+        0.0035640599523047824
+      ],
+      "cost": 0.9455068613145207,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2983,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.072440230334191,
+      "target_v": 10.879014730453491,
+      "base_v0": 10.868968994894818,
+      "oracle_c": 0.06779933895952717,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.4484648598347203,
+            "mean_px": 5.277756582423013
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.953550239369263,
+            "mean_px": 2.1288689308791287
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.634371145337027,
+            "mean_px": 8.605113561096099
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9778528824159787,
+            "mean_px": 2.256586096928564
+          }
+        }
+      }
+    },
+    {
+      "row": 41205,
+      "scene": "20260210-100614",
+      "frame": 105,
+      "estimate_tx_ty_yaw": [
+        -0.19999408019963394,
+        -0.021275517344474793,
+        0.00034352326765656476
+      ],
+      "target_tx_ty_yaw": [
+        0.8342853784561157,
+        -0.02248723991215229,
+        0.00106677296406582
+      ],
+      "cost": 6.1451952353255415,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3430,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -1.9999408019963394,
+      "target_v": 8.342853784561157,
+      "base_v0": 8.271825653128383,
+      "oracle_c": -0.00943612524348467,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 12.293821125095551,
+            "mean_px": 13.825249149825229
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 11.51176851364926,
+            "mean_px": 13.353820204246528
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.200512932504017,
+            "mean_px": 14.695269912336338
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 11.06667349107583,
+            "mean_px": 13.958329776470842
+          }
+        }
+      }
+    },
+    {
+      "row": 41290,
+      "scene": "20260210-100614",
+      "frame": 190,
+      "estimate_tx_ty_yaw": [
+        0.5878640070095358,
+        -0.015906862914562225,
+        0.0010968477465212346
+      ],
+      "target_tx_ty_yaw": [
+        0.635301411151886,
+        -0.01586931198835373,
+        0.00014293908760558587
+      ],
+      "cost": 2.2970737494219127,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3581,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 5.878640070095358,
+      "target_v": 6.35301411151886,
+      "base_v0": 6.593655224545653,
+      "oracle_c": -0.15317268030983133,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.23780502207788,
+            "mean_px": 5.787898393472096
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.2513243772960894,
+            "mean_px": 3.560221216790308
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 7.315810824646327,
+            "mean_px": 8.312541264377467
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.2196363611572787,
+            "mean_px": 3.8636991065213455
+          }
+        }
+      }
+    },
+    {
+      "row": 41375,
+      "scene": "20260210-100614",
+      "frame": 275,
+      "estimate_tx_ty_yaw": [
+        1.1103940026453016,
+        -0.0223341703414917,
+        -0.000322522409260273
+      ],
+      "target_tx_ty_yaw": [
+        1.0388197898864746,
+        -0.025728469714522362,
+        -0.0005470196916187563
+      ],
+      "cost": 1.6852404291008292,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3577,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.103940026453015,
+      "target_v": 10.388197898864746,
+      "base_v0": 10.448970513996427,
+      "oracle_c": 0.05756381150349991,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 8.662722624692629,
+            "mean_px": 11.356901946425513
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.584401390666123,
+            "mean_px": 6.593515782515694
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 15.028272709808414,
+            "mean_px": 16.649394439952083
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.3632007906758163,
+            "mean_px": 6.301114705378753
+          }
+        }
+      }
+    },
+    {
+      "row": 41490,
+      "scene": "20260210-100644",
+      "frame": 90,
+      "estimate_tx_ty_yaw": [
+        1.4868713501513,
+        -0.02504975199699402,
+        -7.143151015043259e-05
+      ],
+      "target_tx_ty_yaw": [
+        1.1458730697631836,
+        -0.024944350123405457,
+        -0.00011466022958983091
+      ],
+      "cost": 1.9096066651598806,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2642,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 14.868713501513,
+      "target_v": 11.458730697631836,
+      "base_v0": 11.36863810463113,
+      "oracle_c": 0.046559909801474425,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.189641355926808,
+            "mean_px": 10.98538046621031
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 3.631873850225274,
+            "mean_px": 6.636562162895942
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.154126573506915,
+            "mean_px": 15.420686866440132
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.2780068603173587,
+            "mean_px": 5.79583004059743
+          }
+        }
+      }
+    },
+    {
+      "row": 41575,
+      "scene": "20260210-100644",
+      "frame": 175,
+      "estimate_tx_ty_yaw": [
+        0.9056037489610714,
+        -0.016560524702072144,
+        -0.0017030227929353714
+      ],
+      "target_tx_ty_yaw": [
+        1.0039310455322266,
+        -0.02350921556353569,
+        -0.0025818735690480384
+      ],
+      "cost": 1.0905141945986632,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3166,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 9.056037489610715,
+      "target_v": 10.039310455322266,
+      "base_v0": 9.669016192696207,
+      "oracle_c": 0.040533364470508274,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.9019412577352455,
+            "mean_px": 9.353720219247364
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.2638768951287183,
+            "mean_px": 5.694898257052953
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 12.377349146169497,
+            "mean_px": 14.213038346686018
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9280337758683004,
+            "mean_px": 5.422638749989366
+          }
+        }
+      }
+    },
+    {
+      "row": 41655,
+      "scene": "20260210-100644",
+      "frame": 255,
+      "estimate_tx_ty_yaw": [
+        0.43064171764536624,
+        -0.010246451944112778,
+        3.6660209298133856e-05
+      ],
+      "target_tx_ty_yaw": [
+        0.47483399510383606,
+        -0.015408718027174473,
+        -0.0008021249631532168
+      ],
+      "cost": 1.0814611107177687,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3696,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 4.306417176453662,
+      "target_v": 4.748339951038361,
+      "base_v0": 4.632231025392054,
+      "oracle_c": 0.02555521058981746,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.8807698520875746,
+            "mean_px": 3.356101660267568
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.6853980311569794,
+            "mean_px": 1.6583260907208386
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 4.710854307996058,
+            "mean_px": 5.711064781066943
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3674884653038137,
+            "mean_px": 1.3459814496059614
+          }
+        }
+      }
+    },
+    {
+      "row": 41770,
+      "scene": "20260210-100754",
+      "frame": 70,
+      "estimate_tx_ty_yaw": [
+        -0.19999408019963394,
+        -0.03339885175228119,
+        -0.0007287217304110527
+      ],
+      "target_tx_ty_yaw": [
+        1.4213956594467163,
+        -0.031508151441812515,
+        -0.0002971340235110583
+      ],
+      "cost": 3.2686425061865867,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3206,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -1.9999408019963394,
+      "target_v": 14.213956594467163,
+      "base_v0": 14.385117691965661,
+      "oracle_c": -0.007836084527081974,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.309191451835631,
+            "mean_px": 4.464379976527879
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 10.411150713253402,
+            "mean_px": 10.911160992065483
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 3.847804437825425,
+            "mean_px": 5.8644709616042165
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 4.0329020124086155,
+            "mean_px": 4.31532525314771
+          }
+        }
+      }
+    },
+    {
+      "row": 41855,
+      "scene": "20260210-100754",
+      "frame": 155,
+      "estimate_tx_ty_yaw": [
+        1.7323604792512084,
+        -0.032234758138656616,
+        0.0004415428265929222
+      ],
+      "target_tx_ty_yaw": [
+        1.5752556324005127,
+        -0.039273347705602646,
+        0.0009509476825422826
+      ],
+      "cost": 2.6559887008489307,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2007,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 17.323604792512082,
+      "target_v": 15.752556324005127,
+      "base_v0": 15.87169018545442,
+      "oracle_c": -0.0646214357929299,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.414315598808975,
+            "mean_px": 7.08663778871473
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 5.054108575755585,
+            "mean_px": 4.5451220303090665
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 7.265699448066098,
+            "mean_px": 11.08423884595862
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 4.949048117071545,
+            "mean_px": 4.539766061011976
+          }
+        }
+      }
+    },
+    {
+      "row": 41940,
+      "scene": "20260210-100754",
+      "frame": 240,
+      "estimate_tx_ty_yaw": [
+        1.2703030876104124,
+        -0.02952687442302704,
+        -0.000415775366127491
+      ],
+      "target_tx_ty_yaw": [
+        1.4684523344039917,
+        -0.03621789813041687,
+        -0.0003883930247758806
+      ],
+      "cost": 1.0044817604492244,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2248,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.703030876104124,
+      "target_v": 14.684523344039917,
+      "base_v0": 14.505675523893458,
+      "oracle_c": 0.1872672614334846,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.3157138717487182,
+            "mean_px": 3.8867186559853844
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.3241871261108256,
+            "mean_px": 2.754639361288149
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.515798490081586,
+            "mean_px": 8.01545356450429
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3510741469494456,
+            "mean_px": 2.582891302462479
+          }
+        }
+      }
+    },
+    {
+      "row": 42050,
+      "scene": "20260210-100854",
+      "frame": 50,
+      "estimate_tx_ty_yaw": [
+        1.3829713896302114,
+        -0.031238323450088503,
+        -0.0005915749818086625
+      ],
+      "target_tx_ty_yaw": [
+        1.4974557161331177,
+        -0.03499878942966461,
+        -0.0008706275336480816
+      ],
+      "cost": 1.0761502899643056,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2800,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.829713896302113,
+      "target_v": 14.974557161331177,
+      "base_v0": 14.033315638001538,
+      "oracle_c": 0.24122131191910515,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.8392824923259117,
+            "mean_px": 6.1263687989558155
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.7674228878048373,
+            "mean_px": 4.71830781669733
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.100607606757844,
+            "mean_px": 12.346531357518995
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.4387661034697201,
+            "mean_px": 4.503862089152289
+          }
+        }
+      }
+    },
+    {
+      "row": 42135,
+      "scene": "20260210-100854",
+      "frame": 135,
+      "estimate_tx_ty_yaw": [
+        0.5849400762350555,
+        -0.008037187159061432,
+        0.0006846130825579167
+      ],
+      "target_tx_ty_yaw": [
+        0.4177606701850891,
+        -0.008975939825177193,
+        -3.234053166663466e-05
+      ],
+      "cost": 1.5421795546586439,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3771,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 5.849400762350554,
+      "target_v": 4.177606701850891,
+      "base_v0": 3.4795089197696085,
+      "oracle_c": -0.29628311025921467,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.0719028080745385,
+            "mean_px": 4.572986793572459
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.4522370163027825,
+            "mean_px": 2.515572482986258
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 4.932931331026364,
+            "mean_px": 6.889282276990094
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.4028063841137628,
+            "mean_px": 2.1784061410866333
+          }
+        }
+      }
+    },
+    {
+      "row": 42220,
+      "scene": "20260210-100854",
+      "frame": 220,
+      "estimate_tx_ty_yaw": [
+        -0.07999934944449864,
+        0.0004273131489753723,
+        -0.0005562257021665574
+      ],
+      "target_tx_ty_yaw": [
+        -0.0006204282399266958,
+        0.00020047093858011067,
+        -6.034001216830331e-06
+      ],
+      "cost": 0.11269840633694646,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3814,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -0.7999934944449864,
+      "target_v": -0.006204282399266958,
+      "base_v0": 0.015822721120689616,
+      "oracle_c": -0.6626321075202666,
+      "bucket": "steady",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.0050319357637679425,
+            "mean_px": 0.22273472246074796
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.006267837849128408,
+            "mean_px": 0.22408664125050087
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 0.0049702612625149465,
+            "mean_px": 0.22261509782714914
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.16357664184193565,
+            "mean_px": 0.6381206988088
+          }
+        }
+      }
+    },
+    {
+      "row": 42335,
+      "scene": "20260210-101004",
+      "frame": 35,
+      "estimate_tx_ty_yaw": [
+        -0.035532092516428304,
+        -0.0019036084413528442,
+        -0.0005331926047801972
+      ],
+      "target_tx_ty_yaw": [
+        -0.0003010692307725549,
+        -0.0002727429091464728,
+        -4.3487614220791315e-07
+      ],
+      "cost": 0.4118074073607522,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3501,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -0.35532092516428304,
+      "target_v": -0.0030106923077255487,
+      "base_v0": 0.1156814253925875,
+      "oracle_c": -0.36948540627309256,
+      "bucket": "steady",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.020337232155719566,
+            "mean_px": 7.113292506238296
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.022806383471551776,
+            "mean_px": 7.114200430727025
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 0.01859875591817775,
+            "mean_px": 7.113385762130503
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.5665063007876938,
+            "mean_px": 7.268120659699743
+          }
+        }
+      }
+    },
+    {
+      "row": 42420,
+      "scene": "20260210-101004",
+      "frame": 120,
+      "estimate_tx_ty_yaw": [
+        -0.04262475808808593,
+        -0.0024005547165870667,
+        -0.00026557035744190216
+      ],
+      "target_tx_ty_yaw": [
+        0.00048779125791043043,
+        5.87411159358453e-05,
+        2.133547241097804e-06
+      ],
+      "cost": 0.06472651597886353,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3853,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -0.4262475808808593,
+      "target_v": 0.004877912579104304,
+      "base_v0": 0.06699406881875256,
+      "oracle_c": -0.40259086953701617,
+      "bucket": "steady",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.0018252619645886573,
+            "mean_px": 0.005665804094008663
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.0019931935345045343,
+            "mean_px": 0.005312156232322373
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 0.0029908789429102427,
+            "mean_px": 0.007617418172723097
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.09617153985519555,
+            "mean_px": 0.2339725031633297
+          }
+        }
+      }
+    },
+    {
+      "row": 42500,
+      "scene": "20260210-101004",
+      "frame": 200,
+      "estimate_tx_ty_yaw": [
+        -0.028584986576282764,
+        -0.0008865632116794586,
+        -0.00019198460504412653
+      ],
+      "target_tx_ty_yaw": [
+        -0.0008631629752926528,
+        -0.00010260947601636872,
+        -3.8618259168096225e-06
+      ],
+      "cost": 0.038069906908102885,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3853,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -0.2858498657628276,
+      "target_v": -0.008631629752926528,
+      "base_v0": 0.6022638139767196,
+      "oracle_c": -0.6022638107309574,
+      "bucket": "depart",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.0020111410133928777,
+            "mean_px": 0.006981904963120484
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.0033654093943664503,
+            "mean_px": 0.010550604344517671
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 0.0025125870708715015,
+            "mean_px": 0.007196783574282498
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.05693195422594622,
+            "mean_px": 0.15876815908077266
+          }
+        }
+      }
+    },
+    {
+      "row": 42585,
+      "scene": "20260210-101004",
+      "frame": 285,
+      "estimate_tx_ty_yaw": [
+        1.2102754111502274,
+        -0.0343124121427536,
+        -0.002691040933132172
+      ],
+      "target_tx_ty_yaw": [
+        1.1069655418395996,
+        -0.022732757031917572,
+        -0.002447020456457238
+      ],
+      "cost": 2.3305914236993366,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3593,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.102754111502273,
+      "target_v": 11.069655418395996,
+      "base_v0": 11.76541294566792,
+      "oracle_c": -0.20470685064838173,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 9.963432941875652,
+            "mean_px": 10.224169971265956
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.26440339819512,
+            "mean_px": 2.998319410997978
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 17.460109325098628,
+            "mean_px": 17.89126438699274
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.9859699100148676,
+            "mean_px": 2.7272181619607774
+          }
+        }
+      }
+    },
+    {
+      "row": 42700,
+      "scene": "20260210-101034",
+      "frame": 100,
+      "estimate_tx_ty_yaw": [
+        2.108418793771028,
+        -0.04269281029701233,
+        0.0006208030506968499
+      ],
+      "target_tx_ty_yaw": [
+        1.8793339729309082,
+        -0.04533620551228523,
+        -0.0001205571911733835
+      ],
+      "cost": 2.9525029760773243,
+      "points": {
+        "camera_front": {
+          "forward_backward": 962,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 21.08418793771028,
+      "target_v": 18.793339729309082,
+      "base_v0": 19.015057679665542,
+      "oracle_c": -0.1159924973723318,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.685363813182791,
+            "mean_px": 5.569443690136985
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.676280776397219,
+            "mean_px": 3.258824961647046
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.330119101404451,
+            "mean_px": 8.351172137734284
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.6820636414122223,
+            "mean_px": 3.096074951215561
+          }
+        }
+      }
+    },
+    {
+      "row": 42785,
+      "scene": "20260210-101034",
+      "frame": 185,
+      "estimate_tx_ty_yaw": [
+        2.2976841395669214,
+        -0.047304317355155945,
+        0.003423188626766205
+      ],
+      "target_tx_ty_yaw": [
+        2.0636539459228516,
+        -0.05036570876836777,
+        0.004213594031981575
+      ],
+      "cost": 2.2378968040393548,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2558,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 22.97684139566921,
+      "target_v": 20.636539459228516,
+      "base_v0": 20.608800377652514,
+      "oracle_c": 0.0024504634668830122,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 12.103814687080977,
+            "mean_px": 13.440177574964888
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 3.1631501484076523,
+            "mean_px": 4.2317479759542405
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 19.763663823049107,
+            "mean_px": 22.238011308859637
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.342530853838807,
+            "mean_px": 3.486598079218373
+          }
+        }
+      }
+    },
+    {
+      "row": 42870,
+      "scene": "20260210-101034",
+      "frame": 270,
+      "estimate_tx_ty_yaw": [
+        2.399994080199634,
+        -0.04293475151062012,
+        -0.0002969421446323395
+      ],
+      "target_tx_ty_yaw": [
+        2.045020580291748,
+        -0.04595303535461426,
+        0.00018764850388851837
+      ],
+      "cost": 1.87813542043606,
+      "points": {
+        "camera_front": {
+          "forward_backward": 1691,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 23.99994080199634,
+      "target_v": 20.45020580291748,
+      "base_v0": 20.450111621245572,
+      "oracle_c": -0.07525344257404298,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 8.922545221093,
+            "mean_px": 10.811961588598468
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.8961389144103658,
+            "mean_px": 3.898580113480617
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 14.636531077618045,
+            "mean_px": 17.318159553752277
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.9877698576152887,
+            "mean_px": 2.96325243821652
+          }
+        }
+      }
+    },
+    {
+      "row": 42980,
+      "scene": "20260210-101114",
+      "frame": 80,
+      "estimate_tx_ty_yaw": [
+        2.2407533246217985,
+        -0.0427420198917389,
+        0.0002691345289349556
+      ],
+      "target_tx_ty_yaw": [
+        2.129720687866211,
+        -0.05652816593647003,
+        0.0002794368293370631
+      ],
+      "cost": 2.3362502974793236,
+      "points": {
+        "camera_front": {
+          "forward_backward": 862,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 22.407533246217984,
+      "target_v": 21.29720687866211,
+      "base_v0": 21.13954251380451,
+      "oracle_c": 0.10401477346279589,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 8.809341362129668,
+            "mean_px": 10.301228993973572
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.3976284097897747,
+            "mean_px": 3.6987833115454056
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 14.855839295456054,
+            "mean_px": 16.570907647789774
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.0087301150749184,
+            "mean_px": 3.3656049581244263
+          }
+        }
+      }
+    },
+    {
+      "row": 43065,
+      "scene": "20260210-101114",
+      "frame": 165,
+      "estimate_tx_ty_yaw": [
+        1.6931742737242181,
+        -0.044394648075103765,
+        -0.0005938379094004632
+      ],
+      "target_tx_ty_yaw": [
+        2.073709726333618,
+        -0.049664612859487534,
+        -0.00029752090071817795
+      ],
+      "cost": 1.4116067700040698,
+      "points": {
+        "camera_front": {
+          "forward_backward": 1237,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 16.931742737242182,
+      "target_v": 20.73709726333618,
+      "base_v0": 20.673761200377797,
+      "oracle_c": 0.033064181241860696,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.3563266893304666,
+            "mean_px": 4.185800651871123
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.0943469764289215,
+            "mean_px": 1.3925257582773467
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.787159087961793,
+            "mean_px": 7.87716745682712
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9677172941110148,
+            "mean_px": 1.5286251200863927
+          }
+        }
+      }
+    },
+    {
+      "row": 43150,
+      "scene": "20260210-101114",
+      "frame": 250,
+      "estimate_tx_ty_yaw": [
+        2.399994080199634,
+        -0.03856779634952545,
+        -0.0010904792696237564
+      ],
+      "target_tx_ty_yaw": [
+        2.113137722015381,
+        -0.05082866549491882,
+        -0.0006475654020010386
+      ],
+      "cost": 3.6346717840434644,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2303,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 23.99994080199634,
+      "target_v": 21.13137722015381,
+      "base_v0": 21.01276988014583,
+      "oracle_c": 0.16551419491101604,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 12.358761712492047,
+            "mean_px": 13.506039199165347
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 4.092070648315264,
+            "mean_px": 5.066888833201703
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 19.866826226500997,
+            "mean_px": 21.280527649332065
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 3.2147160638624808,
+            "mean_px": 4.185458504179516
+          }
+        }
+      }
+    },
+    {
+      "row": 43265,
+      "scene": "20260210-101214",
+      "frame": 65,
+      "estimate_tx_ty_yaw": [
+        2.399994080199634,
+        -0.045617157220840455,
+        -2.40817666053772e-05
+      ],
+      "target_tx_ty_yaw": [
+        2.0668187141418457,
+        -0.04835464060306549,
+        -0.0006526687715783417
+      ],
+      "cost": 4.117018121339605,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2334,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 23.99994080199634,
+      "target_v": 20.668187141418457,
+      "base_v0": 20.455401320024208,
+      "oracle_c": 0.06826954731853813,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 10.935286111776836,
+            "mean_px": 14.275308166745566
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 7.504695572547172,
+            "mean_px": 8.599696422218123
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 17.39669472347827,
+            "mean_px": 22.04492008634174
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 6.689240990930437,
+            "mean_px": 7.413925500174926
+          }
+        }
+      }
+    },
+    {
+      "row": 43345,
+      "scene": "20260210-101214",
+      "frame": 145,
+      "estimate_tx_ty_yaw": [
+        -0.19999408019963394,
+        -0.04798704385757446,
+        -0.0010768841952085496
+      ],
+      "target_tx_ty_yaw": [
+        2.114086389541626,
+        -0.04640626534819603,
+        -0.0008663165041126562
+      ],
+      "cost": 3.2146517316515824,
+      "points": {
+        "camera_front": {
+          "forward_backward": 1777,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -1.9999408019963394,
+      "target_v": 21.14086389541626,
+      "base_v0": 20.87875410056247,
+      "oracle_c": 0.1964111635818453,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.540393400936882,
+            "mean_px": 7.085691120288926
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 5.450934355763348,
+            "mean_px": 10.103157421023282
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 13.857789913402446,
+            "mean_px": 15.115100347839263
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 3.2852212291259533,
+            "mean_px": 6.886951683632298
+          }
+        }
+      }
+    },
+    {
+      "row": 43430,
+      "scene": "20260210-101214",
+      "frame": 230,
+      "estimate_tx_ty_yaw": [
+        -0.19999408019963394,
+        -0.04530710577964783,
+        0.00037468988448381425
+      ],
+      "target_tx_ty_yaw": [
+        2.0618996620178223,
+        -0.04895282909274101,
+        8.38073804303923e-05
+      ],
+      "cost": 1.578040711363333,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2676,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -1.9999408019963394,
+      "target_v": 20.618996620178223,
+      "base_v0": 20.345613405279295,
+      "oracle_c": 0.2856366874986758,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.6375415090654386,
+            "mean_px": 7.336671099027627
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 6.546054234816943,
+            "mean_px": 12.116769425756035
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.137686854623442,
+            "mean_px": 9.756972257521795
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.58349370335063,
+            "mean_px": 7.425115734025234
+          }
+        }
+      }
+    },
+    {
+      "row": 75945,
+      "scene": "20260213-134648",
+      "frame": 45,
+      "estimate_tx_ty_yaw": [
+        -0.04028838221620437,
+        0.0032743625342845917,
+        -0.0004363074898719788
+      ],
+      "target_tx_ty_yaw": [
+        0.0002787603298202157,
+        0.00012767060252372175,
+        8.332044671986187e-07
+      ],
+      "cost": 0.15551776743182535,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3853,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -0.4028838221620437,
+      "target_v": 0.002787603298202157,
+      "base_v0": 0.03867690032879271,
+      "oracle_c": -0.2191234094489386,
+      "bucket": "steady",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.006813300543851647,
+            "mean_px": 0.007753058375722067
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.007410257291406371,
+            "mean_px": 0.008276179473830745
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 0.006916315082508198,
+            "mean_px": 0.008294694123714341
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.20186423917108404,
+            "mean_px": 0.27137011541966316
+          }
+        }
+      }
+    },
+    {
+      "row": 76030,
+      "scene": "20260213-134648",
+      "frame": 130,
+      "estimate_tx_ty_yaw": [
+        -0.19999408019963394,
+        -0.005876034498214722,
+        5.8747082948684696e-05
+      ],
+      "target_tx_ty_yaw": [
+        0.2282913327217102,
+        -0.006387615110725164,
+        -0.00014515526017200436
+      ],
+      "cost": 1.140034756816888,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3788,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -1.9999408019963394,
+      "target_v": 2.282913327217102,
+      "base_v0": 2.532761310746826,
+      "oracle_c": 0.08820952063220888,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.086856943361467,
+            "mean_px": 2.8742150374161346
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.5443697636817393,
+            "mean_px": 3.2890158101062075
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 1.5725463119388836,
+            "mean_px": 2.5958219910853435
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.5007296847888911,
+            "mean_px": 2.654406620496983
+          }
+        }
+      }
+    },
+    {
+      "row": 76115,
+      "scene": "20260213-134648",
+      "frame": 215,
+      "estimate_tx_ty_yaw": [
+        0.8570163971732303,
+        -0.0189683735370636,
+        0.0007885480299592018
+      ],
+      "target_tx_ty_yaw": [
+        0.8536369800567627,
+        -0.0219348706305027,
+        -0.00013038860851115563
+      ],
+      "cost": 0.6643230606461673,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3309,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 8.570163971732303,
+      "target_v": 8.536369800567627,
+      "base_v0": 8.739399818260484,
+      "oracle_c": 0.02464042592457074,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.984654093484248,
+            "mean_px": 4.228965842849745
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.1676990547485313,
+            "mean_px": 1.8540061698649895
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 4.664622984433011,
+            "mean_px": 7.197504906290474
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.7789736713809627,
+            "mean_px": 1.7048497464468255
+          }
+        }
+      }
+    },
+    {
+      "row": 76195,
+      "scene": "20260213-134648",
+      "frame": 295,
+      "estimate_tx_ty_yaw": [
+        1.0347180931604825,
+        -0.028172856569290163,
+        -0.00048680417239665985
+      ],
+      "target_tx_ty_yaw": [
+        1.1250035762786865,
+        -0.029086556285619736,
+        1.5235827047216796e-05
+      ],
+      "cost": 1.73328858276947,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3339,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.347180931604823,
+      "target_v": 11.250035762786865,
+      "base_v0": 11.454212897611994,
+      "oracle_c": -0.11973449290029975,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.15644159949624,
+            "mean_px": 4.7360694376665915
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.4414927040950145,
+            "mean_px": 4.347551811728876
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 1.9460145436967462,
+            "mean_px": 5.867362496731242
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.9960667856245053,
+            "mean_px": 4.416581778780404
+          }
+        }
+      }
+    },
+    {
+      "row": 76310,
+      "scene": "20260213-134718",
+      "frame": 110,
+      "estimate_tx_ty_yaw": [
+        1.550698239580786,
+        -0.036658847332000734,
+        0.0002712814137339592
+      ],
+      "target_tx_ty_yaw": [
+        1.2487026453018188,
+        -0.028457820415496826,
+        0.00011480779880344569
+      ],
+      "cost": 1.946896225316099,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2827,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 15.50698239580786,
+      "target_v": 12.487026453018188,
+      "base_v0": 12.58109130135748,
+      "oracle_c": -0.11084000846694363,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.649210430883575,
+            "mean_px": 4.523989276428088
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.6510490249749026,
+            "mean_px": 2.2360873570465505
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 4.053152248806051,
+            "mean_px": 7.071408725469677
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.5809517309891894,
+            "mean_px": 2.090740691041094
+          }
+        }
+      }
+    },
+    {
+      "row": 76395,
+      "scene": "20260213-134718",
+      "frame": 195,
+      "estimate_tx_ty_yaw": [
+        1.2781578622401473,
+        -0.02961193919181824,
+        0.0003550553694367409
+      ],
+      "target_tx_ty_yaw": [
+        1.2614259719848633,
+        -0.023924989625811577,
+        0.00010809233810602104
+      ],
+      "cost": 1.541956157305857,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2805,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.781578622401472,
+      "target_v": 12.614259719848633,
+      "base_v0": 12.594174610917722,
+      "oracle_c": -0.1312210074642437,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.357417587565326,
+            "mean_px": 6.326825814783984
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.263462903506186,
+            "mean_px": 4.4253032471375295
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 3.715865061511473,
+            "mean_px": 8.528923347094414
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.167217461846003,
+            "mean_px": 4.407993481845676
+          }
+        }
+      }
+    },
+    {
+      "row": 76480,
+      "scene": "20260213-134718",
+      "frame": 280,
+      "estimate_tx_ty_yaw": [
+        1.9497017934837697,
+        -0.021369926631450653,
+        0.001800748147070408
+      ],
+      "target_tx_ty_yaw": [
+        1.227299451828003,
+        -0.023174075409770012,
+        0.004026488237588958
+      ],
+      "cost": 2.61592381537519,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2997,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 19.497017934837697,
+      "target_v": 12.27299451828003,
+      "base_v0": 12.29352012599642,
+      "oracle_c": 0.032658415552198054,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.7027398944022885,
+            "mean_px": 8.518499989113332
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.8354493222276431,
+            "mean_px": 3.9518025770792797
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.86653125999717,
+            "mean_px": 13.095217487130379
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.302399381078879,
+            "mean_px": 3.9104321842116034
+          }
+        }
+      }
+    },
+    {
+      "row": 76590,
+      "scene": "20260213-134758",
+      "frame": 90,
+      "estimate_tx_ty_yaw": [
+        1.0934757729138516,
+        -0.02944202721118927,
+        0.0044944420456886295
+      ],
+      "target_tx_ty_yaw": [
+        1.1180404424667358,
+        -0.022465968504548073,
+        0.0038236550194293314
+      ],
+      "cost": 1.1307094532826045,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2456,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.934757729138514,
+      "target_v": 11.180404424667358,
+      "base_v0": 11.300167205201477,
+      "oracle_c": -0.17562812003839878,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 7.363045949366916,
+            "mean_px": 10.361303082768849
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.5177034539587009,
+            "mean_px": 4.677665453976407
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 13.6452897657473,
+            "mean_px": 15.948005778816285
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3609769550502244,
+            "mean_px": 4.796516399909591
+          }
+        }
+      }
+    },
+    {
+      "row": 76675,
+      "scene": "20260213-134758",
+      "frame": 175,
+      "estimate_tx_ty_yaw": [
+        1.1776902799190978,
+        -0.022279731929302216,
+        0.0016630891710519792
+      ],
+      "target_tx_ty_yaw": [
+        1.141824722290039,
+        -0.024010874330997467,
+        0.0020898144524900027
+      ],
+      "cost": 0.8154604754024801,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3027,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.776902799190978,
+      "target_v": 11.41824722290039,
+      "base_v0": 11.510854194733115,
+      "oracle_c": -0.1072473819386626,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.071897926015017,
+            "mean_px": 9.982374297545471
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.9560731088283256,
+            "mean_px": 4.833528452460635
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.944225837877871,
+            "mean_px": 14.795876074257041
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9600056544973528,
+            "mean_px": 4.68887037978609
+          }
+        }
+      }
+    },
+    {
+      "row": 76760,
+      "scene": "20260213-134758",
+      "frame": 260,
+      "estimate_tx_ty_yaw": [
+        1.2607306153380535,
+        -0.02521759271621704,
+        0.00027184635400772094
+      ],
+      "target_tx_ty_yaw": [
+        1.1325284242630005,
+        -0.02834463305771351,
+        5.2091635348868785e-05
+      ],
+      "cost": 2.9302457922446745,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3307,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.607306153380534,
+      "target_v": 11.325284242630005,
+      "base_v0": 11.34734465910118,
+      "oracle_c": -0.016790153546690518,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.977274931230334,
+            "mean_px": 5.892142841856585
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 4.884892333164235,
+            "mean_px": 4.523124609870014
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 2.1669320340259435,
+            "mean_px": 7.965651864241645
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 5.2378792828201775,
+            "mean_px": 4.737237071200275
+          }
+        }
+      }
+    },
+    {
+      "row": 76875,
+      "scene": "20260213-134828",
+      "frame": 75,
+      "estimate_tx_ty_yaw": [
+        0.736358655489698,
+        -0.021079283952713013,
+        -0.0005026044324040413
+      ],
+      "target_tx_ty_yaw": [
+        0.7811388373374939,
+        -0.01552505511790514,
+        -0.00019471902379915459
+      ],
+      "cost": 1.8154989087397464,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3536,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 7.36358655489698,
+      "target_v": 7.811388373374939,
+      "base_v0": 7.989041498810227,
+      "oracle_c": -0.30041004308838554,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.095144575675157,
+            "mean_px": 5.059675388871032
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.6703983233657673,
+            "mean_px": 7.32174528833599
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 3.7044348308518718,
+            "mean_px": 4.317645798952194
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.9609985893651634,
+            "mean_px": 7.167659698651576
+          }
+        }
+      }
+    },
+    {
+      "row": 76960,
+      "scene": "20260213-134828",
+      "frame": 160,
+      "estimate_tx_ty_yaw": [
+        0.41731220128756036,
+        -0.019271120429039,
+        -0.0006863705813884736
+      ],
+      "target_tx_ty_yaw": [
+        0.7167596817016602,
+        -0.016778241842985153,
+        -0.00011092402320022024
+      ],
+      "cost": 2.169051916167066,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3566,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 4.173122012875603,
+      "target_v": 7.167596817016602,
+      "base_v0": 7.176159887438787,
+      "oracle_c": -0.046018081003699834,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.7211359648190125,
+            "mean_px": 2.5159293224625
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 4.087501448738695,
+            "mean_px": 4.093064004635436
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 1.5780077270137411,
+            "mean_px": 3.4243379518781434
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 3.1472039415542064,
+            "mean_px": 3.190006156623019
+          }
+        }
+      }
+    },
+    {
+      "row": 77040,
+      "scene": "20260213-134828",
+      "frame": 240,
+      "estimate_tx_ty_yaw": [
+        0.5614664547548986,
+        -0.019443351030349734,
+        -0.00040649417787790303
+      ],
+      "target_tx_ty_yaw": [
+        0.7499841451644897,
+        -0.018416792154312134,
+        -0.0004337313539010473
+      ],
+      "cost": 0.7579894656843638,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3205,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 5.614664547548986,
+      "target_v": 7.4998414516448975,
+      "base_v0": 7.662634771719812,
+      "oracle_c": -0.14535431125138001,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.0414110051888095,
+            "mean_px": 5.738686708743672
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.1652284818170084,
+            "mean_px": 3.211130992926657
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.8031021085764465,
+            "mean_px": 8.930507632763627
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9977442339976998,
+            "mean_px": 3.4264259107948596
+          }
+        }
+      }
+    },
+    {
+      "row": 77155,
+      "scene": "20260213-134938",
+      "frame": 55,
+      "estimate_tx_ty_yaw": [
+        1.6415399065147358,
+        -0.022220298647880554,
+        1.6014277935028077e-05
+      ],
+      "target_tx_ty_yaw": [
+        0.8495631217956543,
+        -0.026823345571756363,
+        -0.00041164821922399044
+      ],
+      "cost": 4.771849748665772,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3539,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 16.41539906514736,
+      "target_v": 8.495631217956543,
+      "base_v0": 8.819341452838534,
+      "oracle_c": -0.1822718143324719,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 11.549637554145615,
+            "mean_px": 12.310523750116372
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 6.476465528899497,
+            "mean_px": 8.129858808980186
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 16.239801842692344,
+            "mean_px": 16.517015439925334
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 4.411637535411133,
+            "mean_px": 6.307790464719917
+          }
+        }
+      }
+    },
+    {
+      "row": 77240,
+      "scene": "20260213-134938",
+      "frame": 140,
+      "estimate_tx_ty_yaw": [
+        1.0583058346252399,
+        -0.021344520151615143,
+        -0.0008890615776181222
+      ],
+      "target_tx_ty_yaw": [
+        0.9331149458885193,
+        -0.026373237371444702,
+        -0.0005375893622491569
+      ],
+      "cost": 1.351822196391925,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3497,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.583058346252399,
+      "target_v": 9.331149458885193,
+      "base_v0": 9.561003187795645,
+      "oracle_c": -0.2891352096509038,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.890538491274488,
+            "mean_px": 7.539409364939693
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.541933449685866,
+            "mean_px": 4.000996101052006
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.634072566267111,
+            "mean_px": 11.466167690267111
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.4862805468704345,
+            "mean_px": 3.696387692490168
+          }
+        }
+      }
+    },
+    {
+      "row": 77325,
+      "scene": "20260213-134938",
+      "frame": 225,
+      "estimate_tx_ty_yaw": [
+        0.9264540373150926,
+        -0.02074282616376877,
+        -0.0006511570885777474
+      ],
+      "target_tx_ty_yaw": [
+        1.0142847299575806,
+        -0.021109003573656082,
+        -0.0006932573533536444
+      ],
+      "cost": 1.3239953483017999,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2985,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 9.264540373150925,
+      "target_v": 10.142847299575806,
+      "base_v0": 9.829576272514357,
+      "oracle_c": 0.2707518053745526,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.3742848767298272,
+            "mean_px": 6.331108969576084
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.9635401386027351,
+            "mean_px": 4.308278304145015
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.482958374114491,
+            "mean_px": 9.785038628956146
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.142032632455008,
+            "mean_px": 4.343352104451453
+          }
+        }
+      }
+    },
+    {
+      "row": 77435,
+      "scene": "20260213-135038",
+      "frame": 35,
+      "estimate_tx_ty_yaw": [
+        1.3339253257369497,
+        -0.02570781111717224,
+        0.0004973163828253746
+      ],
+      "target_tx_ty_yaw": [
+        1.2937887907028198,
+        -0.03127773851156235,
+        0.000908785401480754
+      ],
+      "cost": 0.8821328337664635,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2356,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.339253257369496,
+      "target_v": 12.937887907028198,
+      "base_v0": 12.631965215392889,
+      "oracle_c": -0.12140409392284872,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.777109046743548,
+            "mean_px": 5.5015186086545285
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.8774993513322251,
+            "mean_px": 1.6912230391444547
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 7.174181838053519,
+            "mean_px": 10.165226604741859
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.0261151300972364,
+            "mean_px": 1.7561850368591214
+          }
+        }
+      }
+    },
+    {
+      "row": 77520,
+      "scene": "20260213-135038",
+      "frame": 120,
+      "estimate_tx_ty_yaw": [
+        1.4496856257968271,
+        -0.0203540176153183,
+        0.0008525851182639599
+      ],
+      "target_tx_ty_yaw": [
+        1.1761572360992432,
+        -0.026420289650559425,
+        0.0009870360722108282
+      ],
+      "cost": 1.2274249676148887,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3503,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 14.49685625796827,
+      "target_v": 11.761572360992432,
+      "base_v0": 11.290268405548682,
+      "oracle_c": 0.2577065624643167,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.73303654899396,
+            "mean_px": 7.807257286512608
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.0927241628502786,
+            "mean_px": 5.007807791531593
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.102644822912103,
+            "mean_px": 11.721847209785299
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.7080803715182054,
+            "mean_px": 4.805797423702343
+          }
+        }
+      }
+    },
+    {
+      "row": 77605,
+      "scene": "20260213-135038",
+      "frame": 205,
+      "estimate_tx_ty_yaw": [
+        1.152632815978067,
+        -0.020018815994262695,
+        -0.000483505055308342
+      ],
+      "target_tx_ty_yaw": [
+        1.2305972576141357,
+        -0.030094772577285767,
+        0.0002511192384676808
+      ],
+      "cost": 1.3603678428585064,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2975,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.52632815978067,
+      "target_v": 12.305972576141357,
+      "base_v0": 12.38346735278706,
+      "oracle_c": 0.05424073148814685,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.1395436519807873,
+            "mean_px": 6.143847043237339
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.516956995690311,
+            "mean_px": 3.674579059770106
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 6.645174961228685,
+            "mean_px": 10.049621212584043
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.7370728427771387,
+            "mean_px": 3.8503238277070726
+          }
+        }
+      }
+    },
+    {
+      "row": 77690,
+      "scene": "20260213-135038",
+      "frame": 290,
+      "estimate_tx_ty_yaw": [
+        1.3739472484830206,
+        -0.02378174662590027,
+        -0.0008937347680330277
+      ],
+      "target_tx_ty_yaw": [
+        1.3402119874954224,
+        -0.03404110297560692,
+        -0.0004655631615753907
+      ],
+      "cost": 5.442373076015805,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2998,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.739472484830205,
+      "target_v": 13.402119874954224,
+      "base_v0": 13.5290513146146,
+      "oracle_c": -0.033247786337603856,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.9443630760340245,
+            "mean_px": 8.655891511297135
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 11.502131097697465,
+            "mean_px": 10.896327817516292
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 3.630524387185157,
+            "mean_px": 9.193143121611511
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 11.812474547734393,
+            "mean_px": 11.081261490912963
+          }
+        }
+      }
+    },
+    {
+      "row": 94605,
+      "scene": "20260219-103747",
+      "frame": 105,
+      "estimate_tx_ty_yaw": [
+        0.10980318484960623,
+        -3.693625330924988e-05,
+        0.00011190026998519897
+      ],
+      "target_tx_ty_yaw": [
+        0.13441883027553558,
+        -0.00014166098844725639,
+        1.6973010336091048e-05
+      ],
+      "cost": 0.23253093646946932,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3808,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 1.0980318484960623,
+      "target_v": 1.3441883027553558,
+      "base_v0": 1.3288299243521584,
+      "oracle_c": 0.2521177183955701,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.6517834016061324,
+            "mean_px": 1.1232466518924558
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.27543943266168314,
+            "mean_px": 0.7750097561721103
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 1.2656403874072089,
+            "mean_px": 1.7238497339730152
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.2975481917738271,
+            "mean_px": 0.7770735036226379
+          }
+        }
+      }
+    },
+    {
+      "row": 94685,
+      "scene": "20260219-103747",
+      "frame": 185,
+      "estimate_tx_ty_yaw": [
+        0.6382081881967896,
+        -0.015978887677192688,
+        0.02728082239627838
+      ],
+      "target_tx_ty_yaw": [
+        0.5430087447166443,
+        0.0004925834946334362,
+        0.027984977846015377
+      ],
+      "cost": 1.0369112065246455,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3714,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 6.3820818819678955,
+      "target_v": 5.430087447166443,
+      "base_v0": 5.331415804478097,
+      "oracle_c": 0.2971619262491497,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 17.18081353512084,
+            "mean_px": 18.38420188728617
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.3698134877084507,
+            "mean_px": 1.5236401017708139
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 33.66749096944158,
+            "mean_px": 36.28436261036533
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3914801379008983,
+            "mean_px": 1.5020842840133888
+          }
+        }
+      }
+    },
+    {
+      "row": 94770,
+      "scene": "20260219-103747",
+      "frame": 270,
+      "estimate_tx_ty_yaw": [
+        0.9254679134386047,
+        -0.01644684374332428,
+        -0.003130774572491646
+      ],
+      "target_tx_ty_yaw": [
+        0.5148277282714844,
+        -0.01849639229476452,
+        -0.0016155711256162504
+      ],
+      "cost": 2.3400632547644804,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3710,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 9.254679134386047,
+      "target_v": 5.148277282714844,
+      "base_v0": 4.9808567375295345,
+      "oracle_c": 0.12548227263780765,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.8988899636122945,
+            "mean_px": 6.446899422347025
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.018437209592471,
+            "mean_px": 4.610173548781168
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 4.281425251534472,
+            "mean_px": 8.822039542432009
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.3103934895263016,
+            "mean_px": 5.147042115025473
+          }
+        }
+      }
+    },
+    {
+      "row": 98785,
+      "scene": "20260219-110038",
+      "frame": 85,
+      "estimate_tx_ty_yaw": [
+        1.1033705654671335,
+        -0.026407921314239503,
+        -0.0005400277674198151
+      ],
+      "target_tx_ty_yaw": [
+        0.8020023703575134,
+        -0.018658122047781944,
+        -0.0012878880107871278
+      ],
+      "cost": 0.689913795982299,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3548,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 11.033705654671335,
+      "target_v": 8.020023703575134,
+      "base_v0": 8.23513210778705,
+      "oracle_c": 0.015337035761307094,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.734014093879097,
+            "mean_px": 6.963035604042405
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.5576911232950943,
+            "mean_px": 2.486765677364918
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.130683501451816,
+            "mean_px": 11.353717300780627
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9073662398880297,
+            "mean_px": 2.002496806625562
+          }
+        }
+      }
+    },
+    {
+      "row": 98870,
+      "scene": "20260219-110038",
+      "frame": 170,
+      "estimate_tx_ty_yaw": [
+        1.358335536871434,
+        -0.019977569580078125,
+        0.0003854569979012013
+      ],
+      "target_tx_ty_yaw": [
+        0.9603440761566162,
+        -0.02036440186202526,
+        0.0001348783154180739
+      ],
+      "cost": 1.616129491890451,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3604,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.58335536871434,
+      "target_v": 9.603440761566162,
+      "base_v0": 9.776182364056043,
+      "oracle_c": -0.11184955949965057,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 7.447166879210927,
+            "mean_px": 8.604670751355975
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.6054785928197237,
+            "mean_px": 3.914616714870173
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 11.966695411728558,
+            "mean_px": 13.38713064815661
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.773197231835936,
+            "mean_px": 3.0626716731507995
+          }
+        }
+      }
+    },
+    {
+      "row": 98955,
+      "scene": "20260219-110038",
+      "frame": 255,
+      "estimate_tx_ty_yaw": [
+        0.8756307144115368,
+        -0.027986115217208864,
+        0.00015729526057839394
+      ],
+      "target_tx_ty_yaw": [
+        1.0543849468231201,
+        -0.024099379777908325,
+        -0.00041434934170515327
+      ],
+      "cost": 0.9024806858542364,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3518,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 8.756307144115368,
+      "target_v": 10.543849468231201,
+      "base_v0": 10.705143585528019,
+      "oracle_c": -0.10269377336338882,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.72300490595879,
+            "mean_px": 6.968741039533887
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.8163251846686204,
+            "mean_px": 2.891154365842974
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.48124635506952,
+            "mean_px": 11.975392821637712
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.2665915740501605,
+            "mean_px": 2.8591038611136232
+          }
+        }
+      }
+    },
+    {
+      "row": 99065,
+      "scene": "20260219-110108",
+      "frame": 65,
+      "estimate_tx_ty_yaw": [
+        1.3137723778502748,
+        -0.026736482977867126,
+        0.00015611061826348305
+      ],
+      "target_tx_ty_yaw": [
+        1.2058132886886597,
+        -0.029193956404924393,
+        -0.00013362746805117872
+      ],
+      "cost": 1.192201881329357,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3505,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 13.137723778502748,
+      "target_v": 12.058132886886597,
+      "base_v0": 12.182404499533236,
+      "oracle_c": -0.050377662216544154,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 9.138360699190965,
+            "mean_px": 9.014753643076208
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.4243300184345893,
+            "mean_px": 3.2962259362483537
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 14.830426010777938,
+            "mean_px": 14.668082350116698
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.4967896433449805,
+            "mean_px": 3.0248721549279454
+          }
+        }
+      }
+    },
+    {
+      "row": 99150,
+      "scene": "20260219-110108",
+      "frame": 150,
+      "estimate_tx_ty_yaw": [
+        1.0154059298061615,
+        -0.025831088423728943,
+        -0.0009496888145804406
+      ],
+      "target_tx_ty_yaw": [
+        1.2618275880813599,
+        -0.031477320939302444,
+        8.506695094105506e-07
+      ],
+      "cost": 1.420101103018019,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2604,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.154059298061615,
+      "target_v": 12.618275880813599,
+      "base_v0": 12.615867046282506,
+      "oracle_c": -0.009221260329645372,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 4.902834802723106,
+            "mean_px": 6.036265912334504
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.1678231693444776,
+            "mean_px": 2.3409489339793694
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.221704916555858,
+            "mean_px": 10.267741090872407
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.2113246415956365,
+            "mean_px": 2.922467506588731
+          }
+        }
+      }
+    },
+    {
+      "row": 99235,
+      "scene": "20260219-110108",
+      "frame": 235,
+      "estimate_tx_ty_yaw": [
+        1.2086726605156677,
+        -0.028782957792282106,
+        -0.0011894317343831063
+      ],
+      "target_tx_ty_yaw": [
+        1.245802402496338,
+        -0.02934817411005497,
+        -0.0010737464636436276
+      ],
+      "cost": 1.923487867495756,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3387,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.086726605156676,
+      "target_v": 12.458024024963379,
+      "base_v0": 12.351657878386185,
+      "oracle_c": -0.13296729736298557,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.389644732455686,
+            "mean_px": 7.164695604255372
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.6235901280614105,
+            "mean_px": 2.334225643419884
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 11.019201760007256,
+            "mean_px": 12.409859961541724
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.6300450197689051,
+            "mean_px": 2.3764554148222863
+          }
+        }
+      }
+    },
+    {
+      "row": 99350,
+      "scene": "20260219-110218",
+      "frame": 50,
+      "estimate_tx_ty_yaw": [
+        1.2630532291162957,
+        -0.03170079290866852,
+        0.0007777661085128784
+      ],
+      "target_tx_ty_yaw": [
+        1.126046061515808,
+        -0.029803935438394547,
+        0.00047368849142349374
+      ],
+      "cost": 0.9494966799833667,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3044,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.630532291162956,
+      "target_v": 11.260460615158081,
+      "base_v0": 11.545594218335598,
+      "oracle_c": -0.37023414954529194,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.869342040052262,
+            "mean_px": 8.012189011714433
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.4064080028994193,
+            "mean_px": 3.431652397982962
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.031318154623492,
+            "mean_px": 12.5239239028559
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3419545122849077,
+            "mean_px": 3.164940979179911
+          }
+        }
+      }
+    },
+    {
+      "row": 99430,
+      "scene": "20260219-110218",
+      "frame": 130,
+      "estimate_tx_ty_yaw": [
+        1.6343764491506574,
+        -0.024659696221351626,
+        -6.787441670894623e-05
+      ],
+      "target_tx_ty_yaw": [
+        1.2055903673171997,
+        -0.026392359286546707,
+        0.0002881933175066378
+      ],
+      "cost": 1.7205095822627472,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3262,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 16.343764491506573,
+      "target_v": 12.055903673171997,
+      "base_v0": 11.922396831954119,
+      "oracle_c": 0.06912714821224275,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 7.484670981260988,
+            "mean_px": 11.915555894227197
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.8858972325113394,
+            "mean_px": 6.147600090132985
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 12.129447585194331,
+            "mean_px": 17.412544420437285
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.0545917954936037,
+            "mean_px": 4.794012459805111
+          }
+        }
+      }
+    },
+    {
+      "row": 99515,
+      "scene": "20260219-110218",
+      "frame": 215,
+      "estimate_tx_ty_yaw": [
+        0.7076172495341614,
+        -0.02874983847141266,
+        0.0003320431336760521
+      ],
+      "target_tx_ty_yaw": [
+        1.0953705310821533,
+        -0.023779630661010742,
+        -2.0481047109613444e-05
+      ],
+      "cost": 1.1426555991770146,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3463,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 7.076172495341614,
+      "target_v": 10.953705310821533,
+      "base_v0": 10.818667971894813,
+      "oracle_c": -0.020461232560596718,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.0270250605700904,
+            "mean_px": 4.77766502930698
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.2560476605738176,
+            "mean_px": 3.2684203792904114
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 8.35045594068773,
+            "mean_px": 11.038681476972943
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.272046223009175,
+            "mean_px": 2.114893884330015
+          }
+        }
+      }
+    },
+    {
+      "row": 99630,
+      "scene": "20260219-90551",
+      "frame": 30,
+      "estimate_tx_ty_yaw": [
+        1.21587100224032,
+        -0.031789109110832214,
+        -0.000983337312936783
+      ],
+      "target_tx_ty_yaw": [
+        1.1445159912109375,
+        -0.02604033052921295,
+        -0.001252005258353111
+      ],
+      "cost": 1.0973614580104234,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3421,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.1587100224032,
+      "target_v": 11.445159912109375,
+      "base_v0": 11.159591575929511,
+      "oracle_c": 0.16091932712720913,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 8.056967988871651,
+            "mean_px": 8.630341243990491
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.406852138240515,
+            "mean_px": 2.4534825295344658
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 13.993931588797594,
+            "mean_px": 14.815872638546612
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.4502005115243901,
+            "mean_px": 2.40958244521327
+          }
+        }
+      }
+    },
+    {
+      "row": 99715,
+      "scene": "20260219-90551",
+      "frame": 115,
+      "estimate_tx_ty_yaw": [
+        0.22388552360082942,
+        -0.019613373279571536,
+        -0.00010985787957906723
+      ],
+      "target_tx_ty_yaw": [
+        0.8328881859779358,
+        -0.01544325239956379,
+        -0.0004832504538760119
+      ],
+      "cost": 1.7184081668970774,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3624,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 2.238855236008294,
+      "target_v": 8.328881859779358,
+      "base_v0": 8.05776429161871,
+      "oracle_c": 0.1641134480131033,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.915847548857636,
+            "mean_px": 4.670319574823877
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.8592608957601617,
+            "mean_px": 5.541878344440467
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 3.658882978402445,
+            "mean_px": 5.209760946351791
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.6265119073121475,
+            "mean_px": 4.730807177302057
+          }
+        }
+      }
+    },
+    {
+      "row": 99800,
+      "scene": "20260219-90551",
+      "frame": 200,
+      "estimate_tx_ty_yaw": [
+        0.12238581527538549,
+        -0.004029944539070129,
+        -0.0004113733768463135
+      ],
+      "target_tx_ty_yaw": [
+        0.05179058760404587,
+        -0.0007738781278021634,
+        2.1573045156692657e-05
+      ],
+      "cost": 0.14107764339781173,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3832,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 1.2238581527538548,
+      "target_v": 0.5179058760404587,
+      "base_v0": 0.9188079910126737,
+      "oracle_c": -0.2455060908737337,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.6326796405425128,
+            "mean_px": 0.955935361377434
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.36039038630860654,
+            "mean_px": 0.6749329850787296
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 0.8334108033548234,
+            "mean_px": 1.238736559656021
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.22286840042912132,
+            "mean_px": 0.46337887964820945
+          }
+        }
+      }
+    },
+    {
+      "row": 99880,
+      "scene": "20260219-90551",
+      "frame": 280,
+      "estimate_tx_ty_yaw": [
+        0.41874433014974594,
+        -0.018231409788131713,
+        -0.0019407890737056733
+      ],
+      "target_tx_ty_yaw": [
+        0.5000598430633545,
+        -0.014537381008267403,
+        -0.001923141781265687
+      ],
+      "cost": 1.0759523916856835,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3730,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 4.187443301497459,
+      "target_v": 5.000598430633545,
+      "base_v0": 5.169697737061689,
+      "oracle_c": 0.11553983722265321,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.876822796697356,
+            "mean_px": 3.7103190340136085
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.1746814573008346,
+            "mean_px": 4.514498508236783
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 3.161354812201284,
+            "mean_px": 4.063311298677353
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.0737128966921266,
+            "mean_px": 4.395615185814958
+          }
+        }
+      }
+    },
+    {
+      "row": 99995,
+      "scene": "20260219-90621",
+      "frame": 95,
+      "estimate_tx_ty_yaw": [
+        0.8101445192340264,
+        -0.02477964013814926,
+        2.7473084628582e-05
+      ],
+      "target_tx_ty_yaw": [
+        1.160415530204773,
+        -0.026770493015646935,
+        -9.419862714553819e-05
+      ],
+      "cost": 0.7502221028410496,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3381,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 8.101445192340263,
+      "target_v": 11.60415530204773,
+      "base_v0": 11.91359099227377,
+      "oracle_c": -0.1532662371233464,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.642427179789645,
+            "mean_px": 4.025013417683392
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.985355960570905,
+            "mean_px": 1.8678167319618852
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.533172373611361,
+            "mean_px": 8.371466630030762
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.873482519151009,
+            "mean_px": 1.5186034279625034
+          }
+        }
+      }
+    },
+    {
+      "row": 100080,
+      "scene": "20260219-90621",
+      "frame": 180,
+      "estimate_tx_ty_yaw": [
+        1.4394438331719595,
+        -0.03881088495254517,
+        0.00013782624155282976
+      ],
+      "target_tx_ty_yaw": [
+        1.4755951166152954,
+        -0.0320376455783844,
+        -5.591393610966063e-05
+      ],
+      "cost": 4.111272565225606,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3451,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 14.394438331719593,
+      "target_v": 14.755951166152954,
+      "base_v0": 14.833771859052247,
+      "oracle_c": -0.02606693840940302,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.695566520878369,
+            "mean_px": 10.160999569166792
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 3.372691091672677,
+            "mean_px": 5.215182069333926
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 11.283810436668542,
+            "mean_px": 15.708388233593828
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 3.398353247354568,
+            "mean_px": 5.267875971381108
+          }
+        }
+      }
+    },
+    {
+      "row": 100165,
+      "scene": "20260219-90621",
+      "frame": 265,
+      "estimate_tx_ty_yaw": [
+        1.740903156792259,
+        -0.032331064343452454,
+        0.0005245421081781388
+      ],
+      "target_tx_ty_yaw": [
+        1.4620131254196167,
+        -0.03372480720281601,
+        0.0004945045481270493
+      ],
+      "cost": 1.785041657771619,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2704,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 17.40903156792259,
+      "target_v": 14.620131254196167,
+      "base_v0": 14.508548098306074,
+      "oracle_c": 0.11573792314314386,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.190544039885241,
+            "mean_px": 8.574981922178875
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.5897217263747345,
+            "mean_px": 2.9664972398322105
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.653693083349111,
+            "mean_px": 14.394426220740838
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.6509959552552587,
+            "mean_px": 2.604277063191934
+          }
+        }
+      }
+    },
+    {
+      "row": 110175,
+      "scene": "20260220-134317",
+      "frame": 75,
+      "estimate_tx_ty_yaw": [
+        0.9882354807452698,
+        -0.028512132167816163,
+        -0.0018467959016561508
+      ],
+      "target_tx_ty_yaw": [
+        1.1121875047683716,
+        -0.02206503413617611,
+        -0.002250608947323065
+      ],
+      "cost": 1.77008509009079,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2563,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 9.882354807452698,
+      "target_v": 11.121875047683716,
+      "base_v0": 11.051450417955163,
+      "oracle_c": 0.13109088177743994,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.8074361653081095,
+            "mean_px": 7.570617887923326
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.103986326361967,
+            "mean_px": 3.755199451463425
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.520324507219177,
+            "mean_px": 12.10643883356588
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.9170168146509021,
+            "mean_px": 3.9257058909687714
+          }
+        }
+      }
+    },
+    {
+      "row": 110260,
+      "scene": "20260220-134317",
+      "frame": 160,
+      "estimate_tx_ty_yaw": [
+        1.517567097661268,
+        -0.023253682255744937,
+        0.0004868416115641594
+      ],
+      "target_tx_ty_yaw": [
+        1.032456398010254,
+        -0.03401171788573265,
+        -0.00028844757808458
+      ],
+      "cost": 1.3444469823646161,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3428,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 15.17567097661268,
+      "target_v": 10.324563980102539,
+      "base_v0": 10.736871911568263,
+      "oracle_c": -0.256253374118875,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.228854315399037,
+            "mean_px": 9.998040830068511
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 2.390152237986617,
+            "mean_px": 5.091639227959666
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.460823878670528,
+            "mean_px": 14.941563979766968
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.5493888318298508,
+            "mean_px": 3.8703714169292653
+          }
+        }
+      }
+    },
+    {
+      "row": 110345,
+      "scene": "20260220-134317",
+      "frame": 245,
+      "estimate_tx_ty_yaw": [
+        1.0110655221861493,
+        -0.02232438325881958,
+        -7.99284316599369e-05
+      ],
+      "target_tx_ty_yaw": [
+        1.1302692890167236,
+        -0.029399514198303223,
+        -0.0003203496825748736
+      ],
+      "cost": 0.959111564850393,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3638,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 10.110655221861492,
+      "target_v": 11.302692890167236,
+      "base_v0": 11.633237253185394,
+      "oracle_c": -0.2951594340121767,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.549104795085848,
+            "mean_px": 6.492748140680599
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.5186937578383657,
+            "mean_px": 2.1488609538361665
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.383237578686117,
+            "mean_px": 12.293697220510856
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.3869483427839897,
+            "mean_px": 2.068734467385251
+          }
+        }
+      }
+    },
+    {
+      "row": 110460,
+      "scene": "20260220-134347",
+      "frame": 60,
+      "estimate_tx_ty_yaw": [
+        -0.15087482467364288,
+        -0.027760809659957888,
+        -2.7171336114406586e-05
+      ],
+      "target_tx_ty_yaw": [
+        1.5782644748687744,
+        -0.03806930035352707,
+        -0.0001127137530074757
+      ],
+      "cost": 1.9692851687465025,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3053,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -1.5087482467364288,
+      "target_v": 15.782644748687744,
+      "base_v0": 15.93799479978568,
+      "oracle_c": -0.12619112652736342,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 1.8599363593859977,
+            "mean_px": 4.082526593109031
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 5.377561082774911,
+            "mean_px": 7.707202894236021
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 7.854971143685452,
+            "mean_px": 9.528854934648166
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.8147941478239384,
+            "mean_px": 4.223186660769178
+          }
+        }
+      }
+    },
+    {
+      "row": 110545,
+      "scene": "20260220-134347",
+      "frame": 145,
+      "estimate_tx_ty_yaw": [
+        -0.19999408019963394,
+        -0.030459171533584597,
+        -0.00020780060440301896
+      ],
+      "target_tx_ty_yaw": [
+        1.5627095699310303,
+        -0.03776068240404129,
+        0.00022798536906125174
+      ],
+      "cost": 2.469728085396577,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2351,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": -1.9999408019963394,
+      "target_v": 15.627095699310303,
+      "base_v0": 15.81614465827327,
+      "oracle_c": -0.10969581320382166,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 2.413126131094268,
+            "mean_px": 7.9663421483001065
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 5.647326583152149,
+            "mean_px": 6.906069624805693
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 5.703987424782683,
+            "mean_px": 12.035959981953416
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.195082832671315,
+            "mean_px": 8.507576668591062
+          }
+        }
+      }
+    },
+    {
+      "row": 110625,
+      "scene": "20260220-134347",
+      "frame": 225,
+      "estimate_tx_ty_yaw": [
+        1.8163057547113788,
+        -0.029037898778915407,
+        -0.00034506097435951235
+      ],
+      "target_tx_ty_yaw": [
+        1.5567944049835205,
+        -0.035494666546583176,
+        -0.00032735463721792905
+      ],
+      "cost": 2.3243776530909455,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2564,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 18.163057547113787,
+      "target_v": 15.567944049835205,
+      "base_v0": 15.60893918329767,
+      "oracle_c": -0.03588306797116348,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.057588658787303,
+            "mean_px": 7.256128838710198
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.8995870136363506,
+            "mean_px": 5.110247889327891
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 9.958663225911359,
+            "mean_px": 12.591453955143045
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 1.6648134242676327,
+            "mean_px": 5.213984405070582
+          }
+        }
+      }
+    },
+    {
+      "row": 111340,
+      "scene": "20260303-142827",
+      "frame": 40,
+      "estimate_tx_ty_yaw": [
+        0.002741814196690791,
+        -0.0008598864078521729,
+        7.460303604602815e-05
+      ],
+      "target_tx_ty_yaw": [
+        -0.00016791174130048603,
+        0.0006478436407633126,
+        9.274349963559031e-07
+      ],
+      "cost": 0.035177706312686935,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3837,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 0.027418141966907908,
+      "target_v": -0.0016791174130048603,
+      "base_v0": 0.252808195046705,
+      "oracle_c": -0.9999999778413914,
+      "bucket": "depart",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 0.009797821975666837,
+            "mean_px": 0.7685227109267629
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 0.013586108201213611,
+            "mean_px": 0.7715533740877669
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 0.020684143759159293,
+            "mean_px": 0.7748895815933552
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.046780780200163935,
+            "mean_px": 0.7890364596202479
+          }
+        }
+      }
+    },
+    {
+      "row": 111425,
+      "scene": "20260303-142827",
+      "frame": 125,
+      "estimate_tx_ty_yaw": [
+        1.4574326539072024,
+        -0.030334240198135378,
+        0.014421539008617403
+      ],
+      "target_tx_ty_yaw": [
+        0.8372013568878174,
+        -0.016440659761428833,
+        0.014255268317941173
+      ],
+      "cost": 2.2584617206135045,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3405,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 14.574326539072024,
+      "target_v": 8.372013568878174,
+      "base_v0": 8.783050508061923,
+      "oracle_c": -0.3406526254910413,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 6.966874878369927,
+            "mean_px": 9.75629932636386
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 4.375694787779359,
+            "mean_px": 6.017982158087269
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 12.990916872966602,
+            "mean_px": 17.70511098860955
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 2.4435648309007707,
+            "mean_px": 5.694026312417736
+          }
+        }
+      }
+    },
+    {
+      "row": 111510,
+      "scene": "20260303-142827",
+      "frame": 210,
+      "estimate_tx_ty_yaw": [
+        1.2275560604094313,
+        -0.03511676788330078,
+        0.0002958904951810837
+      ],
+      "target_tx_ty_yaw": [
+        1.352746605873108,
+        -0.03903130069375038,
+        -0.0007717632170137906
+      ],
+      "cost": 0.9944480663998542,
+      "points": {
+        "camera_front": {
+          "forward_backward": 3283,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 12.275560604094313,
+      "target_v": 13.527466058731079,
+      "base_v0": 13.333414025543432,
+      "oracle_c": 0.31203159745867926,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 5.4731034857745815,
+            "mean_px": 6.943687690257892
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.0953029280295778,
+            "mean_px": 2.1730979306745226
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 10.554927869654957,
+            "mean_px": 13.072677433690073
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.9936573413507805,
+            "mean_px": 2.036907372832552
+          }
+        }
+      }
+    },
+    {
+      "row": 111595,
+      "scene": "20260303-142827",
+      "frame": 295,
+      "estimate_tx_ty_yaw": [
+        0.9676840769923848,
+        -0.0342538058757782,
+        -0.00047584511339664464
+      ],
+      "target_tx_ty_yaw": [
+        1.3216361999511719,
+        -0.03200802579522133,
+        -0.00026189847091818736
+      ],
+      "cost": 0.9109738576422518,
+      "points": {
+        "camera_front": {
+          "forward_backward": 2927,
+          "homography_inlier": 700
+        }
+      },
+      "estimated_v": 9.676840769923848,
+      "target_v": 13.216361999511719,
+      "base_v0": 13.177460492239815,
+      "oracle_c": 0.139476891077446,
+      "bucket": "nonstop",
+      "pixel_diagnostics": {
+        "identity": {
+          "camera_front": {
+            "median_px": 3.970063147907295,
+            "mean_px": 5.161423094090805
+          }
+        },
+        "target": {
+          "camera_front": {
+            "median_px": 1.11090209017487,
+            "mean_px": 1.9908080587550905
+          }
+        },
+        "inverse_target": {
+          "camera_front": {
+            "median_px": 7.543606580602723,
+            "mean_px": 9.271849769507238
+          }
+        },
+        "estimate": {
+          "camera_front": {
+            "median_px": 0.7495919584824815,
+            "mean_px": 2.2398189467625302
+          }
+        }
+      }
+    }
+  ]
+}

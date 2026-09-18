@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "input_contract": "images plus fixed calibration; dynamic pose is evaluation target only",
+  "flow": "Raft_Large_Weights.C_T_SKHT_K_V2",
+  "offset_seconds": 0.5,
+  "n": 3,
+  "metrics": {
+    "tx_mae_m": 2.24575520353356,
+    "ty_mae_m": 0.22654225963580554,
+    "yaw_mae_rad": 0.016959520756511127,
+    "speed_mae_mps": 4.49151040706712,
+    "speed_corr": 0.7024063420041057,
+    "estimated_speed_minus_base_vs_oracle_corr": -0.0882380153490364,
+    "target_speed_minus_base_vs_oracle_corr": 0.26279188712151236
+  },
+  "records": [
+    {
+      "row": 14730,
+      "scene": "20260113-102709",
+      "frame": 30,
+      "estimate_tx_ty_yaw": [
+        -1.9999999999999998,
+        -0.5662989752923104,
+        0.0933164176268627
+      ],
+      "target_tx_ty_yaw": [
+        3.244969367980957,
+        -0.0352989137172699,
+        0.04710075095245705
+      ],
+      "cost": 16196.689413033082,
+      "points": {
+        "camera_front": 700
+      },
+      "estimated_v_0p5": -3.9999999999999996,
+      "target_v_0p5": 6.489938735961914,
+      "base_v0": 7.039397131827309,
+      "oracle_c": -0.06962437065207973,
+      "bucket": "nonstop"
+    },
+    {
+      "row": 42460,
+      "scene": "20260210-101004",
+      "frame": 160,
+      "estimate_tx_ty_yaw": [
+        6.411983621448088e-05,
+        3.3298419164820995e-05,
+        7.185227682378427e-06
+      ],
+      "target_tx_ty_yaw": [
+        -0.00046771031338721514,
+        -0.0002551088109612465,
+        -2.1146408926111094e-06
+      ],
+      "cost": 0.16925630167515315,
+      "points": {
+        "camera_front": 700,
+        "camera_front_right": 700,
+        "camera_front_left": 700
+      },
+      "estimated_v_0p5": 0.00012823967242896176,
+      "target_v_0p5": -0.0009354206267744303,
+      "base_v0": 0.05899589658464836,
+      "oracle_c": -0.18196086792060215,
+      "bucket": "steady"
+    },
+    {
+      "row": 111595,
+      "scene": "20260303-142827",
+      "frame": 295,
+      "estimate_tx_ty_yaw": [
+        5.09512533133481,
+        -0.013994239588950255,
+        -0.005787608648198847
+      ],
+      "target_tx_ty_yaw": [
+        6.586889743804932,
+        -0.16233254969120026,
+        -0.0011340129216461054
+      ],
+      "cost": 815.1686119326936,
+      "points": {
+        "camera_front": 671
+      },
+      "estimated_v_0p5": 10.19025066266962,
+      "target_v_0p5": 13.173779487609863,
+      "base_v0": 13.177460492239815,
+      "oracle_c": 0.139476891077446,
+      "bucket": "nonstop"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+ "arm": "FRONT-S",
+ "joint": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint",
+ "physical_gpu": 1,
+ "seed": 1,
+ "warmup": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup"
+}

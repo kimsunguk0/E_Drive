@@ -1,8 +1,62 @@
-# MotionDrive V2 — 인수인계 (2026-09-17)
+# MotionDrive V2 — 인수인계 (2026-09-18)
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
-## 0B. 2026-09-17 19시대 방향 전환 — 가장 먼저 읽을 것
+## 0C. 2026-09-18 완료 결과와 규정 점검 — 가장 먼저 읽을 것
+
+등록 MR V0는 `0.191002`다. 같은 train310/tune37에서 20,554 update를 마친
+`A2-DIRECT-s1`은 **0.164281**, `A3-DIRECT-s1`은 **0.149289**였다. A3는 등록 MR 대비
+21.84% 개선됐고 검증 11개 session 모두 개선됐다. 아직 하나의 training seed 결과이며
+새 서버 제출 결과는 없다. A3의 일반 주행은 `0.196742→0.152271`, steady stop은
+`0.035835→0.045817`로 악화됐다.
+
+- `MR-NATIVE-FULL-s1`: 376 unique scenes / 101,520행 / 24,931 update 완료.
+  `0.097245`는 **학습에 포함된 V0 행의 in-fit 진단**이다. held-out 성능으로 비교하지 않는다.
+- `OOF-MR-T203-s1`: old203 / 54,810행 / 20,554 update와 V0 평가 완료, **V0 0.226444**.
+  unseen new107의 예측 생성·residual 분석은 아직 하지 않았다. producer의 학습 완료와
+  후속 OOF prediction 완료를 혼동하지 않는다.
+- A2/A3-DIRECT는 기존 제출 terminal에 부착해 이어 학습한 모델이 아니다. 기존 MR과 같은
+  `r0_init_tplus.pth`에서 status 조건을 추가한 전체 구조를 다시 공동 학습했다.
+- 현재 A3-DIRECT에는 progress residual / dv+da factorization / P×V selector가 없다.
+  `A3-FP-VA`의 실제 마지막 학습 로그는 **step 600**이다. 이전의 350은 중간 관측값이었다.
+
+**규정 및 입력의 정확한 설명:** A2부터 영상 추정값이 아닌, 제공된 past/current pose로
+계산한 `vx,vy,ax,ay,yaw_rate`를 학습·추론 입력으로 쓴다. A2는 공통 scene query만
+조건화한다. A3는 scene/motion/global FPN 채널 gate를 추가하므로 state/history 출력도
+제공 status의 영향을 받는다. A3를 Q10의 image-only state 추론이라고 설명하지 않는다.
+허용 근거는 Q6의 현재 status 계산과 Q7/Q8의 공통 인지 특징 간접 활용이며, 개별 구조의
+최종 승인은 코드 심사에 달려 있다. supervision으로만 사용했다는 설명도 틀리다.
+
+완료된 A3 checkpoint의 전체 V0 입력 교체 검사:
+
+| 조건 | PREFIX |
+|---|---:|
+| 정상 | 0.149289 |
+| 영상만 다른 session 영상으로 교체 | 0.894936 |
+| 영상 전체 단색 | 2.118935 |
+| status만 다른 session 값으로 교체 | 0.718751 |
+
+정상 예측은 저장 terminal과 좌표별 오차 0으로 재현됐다. 원본 ego_pose/timestamps에서
+미래 pose를 제외하고 현재까지 31개 pose만으로 status를 다시 계산한 결과, 전체 1,998행의
+다섯 status 값이 캐시 입력과 정확히 일치했다. 영상 의존성과 causal source의 근거이며,
+이 검사 자체가 운영국 승인이나 단순 임베딩 우회 부재의 증명은 아니다.
+
+새 기록 위치:
+
+- `reports/md_shared_dynamics_20260917/RESULTS_20260918_KO.md`: 완료 점수와 해석.
+- `reports/md_shared_dynamics_20260917/COMPLIANCE_AND_CHANGES_20260918_KO.md`: 실제 정보 경로와 Q&A 근거.
+- `reports/md_shared_dynamics_20260917/records_20260918/README.md`: **24개 실행 단계** 전체 색인.
+- 같은 폴더의 `experiment_index.json`: 설정·평가·paired 비교·원본 artifact 경로/해시 및 20개 로그 색인.
+- 같은 폴더 `runs/`: 학습 metrics.jsonl, manifest, experiment, 저장 평가 요약과 종료 기록.
+- `A2-DIRECT_terminal_input_audit_20260918.json`, `A3-DIRECT_terminal_input_audit_20260918.json`,
+  `causal_status_replay_20260918.json`: 실제 검사 결과.
+- 재실행 코드는 `experiments/md_shared_dynamics_20260917/`의 audit/replay/archive 스크립트.
+
+checkpoint, 이미지, 대형 prediction 배열은 서버에 보존한다. GitHub에는 텍스트 기록과
+원본 위치·크기·주요 파일 SHA256을 올린다. 다음 실험의 우선순위는 A3 재현 및 별도 FULL,
+그리고 새 strong base의 deployable oracle/OOF 분석이며 아직 새 학습은 시작하지 않았다.
+
+## 0B. 2026-09-17 19시대 방향 전환 — 당시 결정 기록
 
 최근 `FRONT/SIDE residual`, auxiliary, denoise, 짧은 A2 warmup은 모두 일반 주행
 1,875행을 `0.001`도 고치지 못했다. 마지막 `STATUS-A2-S-SCENE` 두 seed도
@@ -23,7 +77,7 @@ flip50 비교에서 제공-status A2 `0.228957` 대 Q10 `0.258544`로 약 `0.029
 - GPU 3: `A3-DIRECT-s1`. A2의 shared query에 multiplicative status conditioning을
   공통 image FPN 전체로 확장하되, direct XY planner의 정상적인 길이 gradient를 유지한다.
 
-최초 `A3-FP-VA-s1`은 step 350에서 보존 종료했다. MR 이전 초기 base가 `0.477651`이고,
+최초 `A3-FP-VA-s1`은 마지막 학습 로그 step 600에서 종료했다. MR 이전 초기 base가 `0.477651`이고,
 실제 cap의 `delta_v+delta_a` oracle도 `0.222499`여서 등록 MR `0.191002`보다 나빴다.
 방향은 학습될 수 있지만, 약한 초기값에서 proposal 길이 gradient를 처음부터 막는 것은
 status 전달과 factorization을 불필요하게 섞는다. Factorization은 강한 direct checkpoint
@@ -50,7 +104,7 @@ step 3426/6852/10278/13704/17130/20554 값은
 - 사용자는 서버 응답의 `elapsed_ms`는 채점 harness 시간이라며 이번 모델 판단에서 제외하도록
   지시했다. 아래 미해결 문단을 다시 실험 우선순위로 올리지 않는다.
 - `EXECUTION_REVIEW_KO.md`의 FRONT/SIDE residual 순서는 이후 실측으로 종료됐다. 최신 판단은
-  위 0B와 `DIRECTION_RECHECK_KO.md`의 fresh A2 / factorized A3 / OOF 순서를 따른다.
+  위 0C의 완료 결과와 최신 A2/A3-DIRECT / OOF 상태를 따른다.
 
 ---
 

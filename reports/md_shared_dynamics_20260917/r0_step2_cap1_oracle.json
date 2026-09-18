@@ -1,0 +1,112 @@
+{
+ "arms": {
+  "scalar_dv": {
+   "all_zero_base_rows": 0,
+   "coefficient_abs_mean": [
+    0.28099825371511444
+   ],
+   "coefficient_abs_quantiles": {
+    "0.5": [
+     0.20399108935503635
+    ],
+    "0.9": [
+     0.6384491912224851
+    ],
+    "0.95": [
+     0.9999999778413914
+    ],
+    "0.99": [
+     0.9999999778413914
+    ],
+    "1.0": [
+     0.9999999778413914
+    ]
+   },
+   "coefficient_mean": [
+    0.05893452571544226
+   ],
+   "metrics": {
+    "L2_1s": 0.14745528337359887,
+    "L2_2s": 0.2548673238417929,
+    "L2_3s": 0.41059077421094936,
+    "PREFIX": 0.27097112714211363
+   },
+   "saturation_fraction": [
+    0.06906906906906907
+   ],
+   "short_base_segments": 0
+  },
+  "two_coefficient_dv_da": {
+   "all_zero_base_rows": 0,
+   "coefficient_abs_mean": [
+    0.4273971927361512,
+    0.2877862712635041
+   ],
+   "coefficient_abs_quantiles": {
+    "0.5": [
+     0.3705727859294202,
+     0.23203143380855534
+    ],
+    "0.9": [
+     0.9999999804151741,
+     0.5662433388218999
+    ],
+    "0.95": [
+     0.9999999999999986,
+     0.9559459836611015
+    ],
+    "0.99": [
+     0.9999999999999998,
+     0.9999999961458773
+    ],
+    "1.0": [
+     1.0,
+     0.999999999999999
+    ]
+   },
+   "coefficient_mean": [
+    0.18001475779553444,
+    -0.19830764015408303
+   ],
+   "metrics": {
+    "L2_1s": 0.1068059257021525,
+    "L2_2s": 0.2197827028841989,
+    "L2_3s": 0.32770211917574577,
+    "PREFIX": 0.21809691592069905
+   },
+   "saturation_fraction": [
+    0.1011011011011011,
+    0.047547547547547545
+   ],
+   "short_base_segments": 0
+  }
+ },
+ "base": {
+  "L2_1s": 0.3158462372616787,
+  "L2_2s": 0.48759713116685716,
+  "L2_3s": 0.6295086885546214,
+  "PREFIX": 0.47765068566105234
+ },
+ "cap_abs": 1.0,
+ "evaluation": "/NHNHOME/data/sukim/adcl/work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke/final_eval.json",
+ "geometry": {
+  "all_zero_fallback": "ego +x",
+  "coefficient_tie_break": "1e-8 times squared coefficient norm",
+  "dt": 0.5,
+  "negative_interval": "clamp to zero",
+  "objective": "official PREFIX",
+  "short_eps": 0.001,
+  "short_fallback": "closest valid predicted segment",
+  "t_mid": [
+   0.25,
+   0.75,
+   1.25,
+   1.75,
+   2.25,
+   2.75
+  ]
+ },
+ "n": 1998,
+ "plan_key": "pred_abs_xy",
+ "schema_version": 2
+}

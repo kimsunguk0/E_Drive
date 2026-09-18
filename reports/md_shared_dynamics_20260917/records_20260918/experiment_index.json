@@ -1,0 +1,3168 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 107593179,
+      "path": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint/ckpt_step2616.pth"
+    },
+    {
+      "bytes": 107593179,
+      "path": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint/ckpt_step2653.pth"
+    },
+    {
+      "bytes": 4938119,
+      "path": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint/final_eval.json",
+      "sha256": "9cf51c473e5b88d0e9edf429d72b795b5b2028ecd9d9a1ce9241e86676b34aba"
+    },
+    {
+      "bytes": 321807581,
+      "path": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint/last.pth",
+      "sha256": "4180de4c5798693083e80b50584fe72c6655020346d3fcf9f6babb982bc0dd6a"
+    },
+    {
+      "bytes": 107594139,
+      "path": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 4945744,
+      "path": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup/final_eval.json",
+      "sha256": "d586f97a02b32c2994cd007e78b4ab79f287777bfff58ede1b7c54a46b541107"
+    },
+    {
+      "bytes": 321808541,
+      "path": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup/last.pth",
+      "sha256": "1c6dafa551b543409a19bb2f327861e4df86e9c9ec63484269bda8c811e7d5e7"
+    },
+    {
+      "bytes": 106843710,
+      "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/ckpt_step12690.pth"
+    },
+    {
+      "bytes": 106843710,
+      "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/ckpt_step19035.pth"
+    },
+    {
+      "bytes": 106843710,
+      "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/ckpt_step24931.pth",
+      "sha256": "ce569da5d3cfe70f89f042faa2a5f6449e30fccbd469f2e689e26445accf2b87"
+    },
+    {
+      "bytes": 106843235,
+      "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/ckpt_step6345.pth"
+    },
+    {
+      "bytes": 3787396,
+      "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/final_eval.json",
+      "sha256": "f5023d8e3c41bb23c51c22de2ded81ca353442394b2c22a22413dc8177f1ae7e"
+    },
+    {
+      "bytes": 319553181,
+      "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/last.pth",
+      "sha256": "1c14335559a445327cebe9a2f1167bc99b24e0a530ac13bf1f325646a4bfd66a"
+    },
+    {
+      "bytes": 106852862,
+      "path": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1/ckpt_step20554.pth",
+      "sha256": "5cbf741a74cc06fcb4d1dfb9c985b24c4e0c6030d21e71e64814857f24bc1921"
+    },
+    {
+      "bytes": 3784869,
+      "path": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1/final_eval.json",
+      "sha256": "c6df86704044937733617d888bed4326158b60ca09255acb01098c63c64a29a1"
+    },
+    {
+      "bytes": 319562333,
+      "path": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1/last.pth",
+      "sha256": "4ef975d6bdb0d8dcbe420f089839a20c027d5c88febed4b96b907ea9d30270d4"
+    },
+    {
+      "bytes": 113286395,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint/ckpt_step2616.pth"
+    },
+    {
+      "bytes": 113286395,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint/ckpt_step2901.pth"
+    },
+    {
+      "bytes": 4931320,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint/final_eval.json",
+      "sha256": "446e6422099295fd800c83dad9eea49db68aad7ef3a77977e0ef87b4602c8cc5"
+    },
+    {
+      "bytes": 334139741,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint/last.pth",
+      "sha256": "848dd269db14dfedf1c792e2ab6754f06b674f67964df148d82a1f280ed89f53"
+    },
+    {
+      "bytes": 113290107,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 4940626,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup/final_eval.json",
+      "sha256": "bbe6cda61ba3d6387985057d9b86d5400b063fb3ff2d676c9171b7091c6ceddd"
+    },
+    {
+      "bytes": 334143453,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup/last.pth",
+      "sha256": "55888db86b965dbd63e1381189e45756bf66321c4c37c6ac43ceaa147b05a2e3"
+    },
+    {
+      "bytes": 113286203,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint/ckpt_step2616.pth"
+    },
+    {
+      "bytes": 113286203,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint/ckpt_step2751.pth"
+    },
+    {
+      "bytes": 4938584,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint/final_eval.json",
+      "sha256": "e1f8eaeb7ccc5d04afcbd597e2aafb12d0bfb34d915926c326d141399d851e48"
+    },
+    {
+      "bytes": 334139485,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint/last.pth",
+      "sha256": "475bc1dbfb67ec9eedb659f36fad9c455ec0ab0dc2769a0ee2351dbbe2263777"
+    },
+    {
+      "bytes": 113289851,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 4944489,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/warmup/final_eval.json",
+      "sha256": "d40058c40bda0254203bd15695199d5a2d47bd3062c8a00b284628f65651ba39"
+    },
+    {
+      "bytes": 334143197,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/warmup/last.pth",
+      "sha256": "4512fa46a0c47a828806392e6522311ba859fb54916ab366cab9a8e0cfd61549"
+    },
+    {
+      "bytes": 113141177,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/joint/ckpt_step358.pth"
+    },
+    {
+      "bytes": 333704861,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/joint/last.pth",
+      "sha256": "1954d1fd49601db040e616358d2fdb4b2e925702e2914eed736d193f5a8c1a6e"
+    },
+    {
+      "bytes": 113144987,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 4944273,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup/final_eval.json",
+      "sha256": "8996e0e5130e8e8f8e437612e36309d6c289d9e54949aca8bf837a7ceea1c29b"
+    },
+    {
+      "bytes": 333708189,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup/last.pth",
+      "sha256": "e12fd06075d2caa00042091f499805d7f8485bd559f94dd6a58c490b76bf6c75"
+    },
+    {
+      "bytes": 113285599,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-AUX-s1/joint/ckpt_step17.pth"
+    },
+    {
+      "bytes": 334141021,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-AUX-s1/joint/last.pth",
+      "sha256": "2a068dfd273db02e84c991367d0f9db4e69a73777259c49787f3f01326f13f21"
+    },
+    {
+      "bytes": 113289869,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-AUX-s1/warmup/ckpt_step456.pth"
+    },
+    {
+      "bytes": 334144733,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-AUX-s1/warmup/last.pth",
+      "sha256": "80e9ae915b6349a908be3c612544afab768716a813410f253d29d8bb5e98cb36"
+    },
+    {
+      "bytes": 113141689,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/joint/ckpt_step358.pth"
+    },
+    {
+      "bytes": 333706461,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/joint/last.pth",
+      "sha256": "d5c6ab9aad5e6b7e66b268ae3d14f5890dded7a3064e0cdedff7b7b346a1e5c6"
+    },
+    {
+      "bytes": 113145563,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 5006299,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/warmup/final_eval.json",
+      "sha256": "891addf1ee3c2fbced36122cc724ef730552c12944288d79b0c28600480cd4d7"
+    },
+    {
+      "bytes": 333709789,
+      "path": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/warmup/last.pth",
+      "sha256": "2f173d6e5e00bbf8ed37f90402c99aec07d98af08564a4340ff06f33fba48bd5"
+    },
+    {
+      "bytes": 107603595,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 4944833,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup/final_eval.json",
+      "sha256": "46051cb8a52a4de86d34b8127d2b5ed14368c06af0f5343ee83666d974bc77f2"
+    },
+    {
+      "bytes": 321833117,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup/last.pth",
+      "sha256": "4553e0fb34acba24648cbc6e56db1e1301163cd78048a2fe53f087feb8bad0d8"
+    },
+    {
+      "bytes": 107603595,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s2/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 4946587,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s2/warmup/final_eval.json",
+      "sha256": "8cb69557381bbf9d1cec2ead3872a5aa8ab53f0e8c9c9b89ac72a0783aa027bf"
+    },
+    {
+      "bytes": 321833117,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s2/warmup/last.pth",
+      "sha256": "7f2ef0402e73a8d304e48abd389712f419d53654d8599be7675beb8d8f9222b7"
+    },
+    {
+      "bytes": 107602435,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s1/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 4944935,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s1/warmup/final_eval.json",
+      "sha256": "87289a803fbd17f93e66007d056571098016b01158d381d03477934a0530935c"
+    },
+    {
+      "bytes": 321830109,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s1/warmup/last.pth",
+      "sha256": "2e8d223bf9c00529145122d70535b66154025ab4fc6000de7a8151ea9f64bb50"
+    },
+    {
+      "bytes": 107602435,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s2/warmup/ckpt_step1000.pth"
+    },
+    {
+      "bytes": 4946841,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s2/warmup/final_eval.json",
+      "sha256": "ad91a4fee44803984951d3952888f6a5672b8d61f1d944eead5f3857fa0bee7f"
+    },
+    {
+      "bytes": 321830109,
+      "path": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s2/warmup/last.pth",
+      "sha256": "129c695d99dfd1087c9b98d303ce25e26a0bc10905e36a995c705381164a9c77"
+    },
+    {
+      "bytes": 106849451,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/ckpt_step10278.pth"
+    },
+    {
+      "bytes": 106849451,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/ckpt_step13704.pth"
+    },
+    {
+      "bytes": 106849451,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/ckpt_step17130.pth"
+    },
+    {
+      "bytes": 106849451,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/ckpt_step20554.pth",
+      "sha256": "ffeac3447eb777e744ab4f3501988b2279f895fa0077fe5111a7516157aa0469"
+    },
+    {
+      "bytes": 106848971,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/ckpt_step3426.pth"
+    },
+    {
+      "bytes": 106848971,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/ckpt_step6852.pth"
+    },
+    {
+      "bytes": 3785938,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/final_eval.json",
+      "sha256": "4425a7a0efe894dbe61b1462f32417c0c84553271e798f33bb6e948a513dafdc"
+    },
+    {
+      "bytes": 319572189,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/last.pth",
+      "sha256": "69d416bbb1892af8d14822f506ea486a4a9e05ad17cdd62558968885a397e358"
+    },
+    {
+      "bytes": 106847531,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke/ckpt_step2.pth"
+    },
+    {
+      "bytes": 3777665,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke/final_eval.json",
+      "sha256": "7bfd48392345991daf55c02dd6e54392ee1740ecb5e41073cb4ba6ac348a0b5a"
+    },
+    {
+      "bytes": 319572189,
+      "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke/last.pth",
+      "sha256": "2516f068118b88b650db5e9c4a5b54200f3fa3a16721e97029f52a894305ba91"
+    },
+    {
+      "bytes": 107052824,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/ckpt_step10278.pth"
+    },
+    {
+      "bytes": 107052824,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/ckpt_step13704.pth"
+    },
+    {
+      "bytes": 107052824,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/ckpt_step17130.pth"
+    },
+    {
+      "bytes": 107052824,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/ckpt_step20554.pth",
+      "sha256": "2c217341735f524e61d4a268930fbb9543c9411b153ad56619edad911fa3f373"
+    },
+    {
+      "bytes": 107052339,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/ckpt_step3426.pth"
+    },
+    {
+      "bytes": 107052339,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/ckpt_step6852.pth"
+    },
+    {
+      "bytes": 3785485,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/final_eval.json",
+      "sha256": "ae2565c0c5f85c1b690ea7ecee765c69a778881416889bc20eefe51539adf889"
+    },
+    {
+      "bytes": 320181341,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/last.pth",
+      "sha256": "21df17d636697d2ed0573b32915f1c366536db72442f098fc9876d837012b563"
+    },
+    {
+      "bytes": 107050884,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1-smoke/ckpt_step2.pth"
+    },
+    {
+      "bytes": 3777815,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1-smoke/final_eval.json",
+      "sha256": "2d2435f417b2e3faa08b4168bf0b3052dff87383e9d970fa5609479d3126bbfd"
+    },
+    {
+      "bytes": 320181341,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1-smoke/last.pth",
+      "sha256": "589afe2ac46c19f26e00bb3581d5f5e4525b84d93d796e12a6dbde098abf2d8a"
+    },
+    {
+      "bytes": 108193561,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-FP-VA-s1-smoke/ckpt_step2.pth"
+    },
+    {
+      "bytes": 4998953,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-FP-VA-s1-smoke/final_eval.json",
+      "sha256": "49c4b9db00ba99f04bea6c7434ac5ecabf611d90dbd7e8114db0e7db73a59e64"
+    },
+    {
+      "bytes": 323608797,
+      "path": "work_dirs/md_shared_dynamics_20260917/A3-FP-VA-s1-smoke/last.pth",
+      "sha256": "dbfe7b7efadb3935055090ff3281121dfa0cc847e6b10b7b41078f7d51e99e8a"
+    },
+    {
+      "bytes": 663411,
+      "path": "reports/md_shared_dynamics_20260917/A2-DIRECT_terminal_input_audit_20260918.npz",
+      "sha256": "6e46c11bc3c7e3e8cd7263234ee223b23a5952b36a38990e449b54cec48bea26"
+    },
+    {
+      "bytes": 723362,
+      "path": "reports/md_shared_dynamics_20260917/A3-DIRECT_terminal_input_audit_20260918.npz",
+      "sha256": "a71627b4cb0bfc4a7b112e3295d151dcf8d7a293c66d7b08029e171cfc608024"
+    }
+  ],
+  "captured_at_utc": "2026-09-18T01:21:45.499719+00:00",
+  "paired_comparisons": {
+    "A2-DIRECT": {
+      "baseline": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/final_eval.json",
+      "bootstrap_repetitions": 20000,
+      "bootstrap_seed": 20260918,
+      "candidate": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/final_eval.json",
+      "delta_PREFIX": -0.02672053635694651,
+      "improved_sessions": 11,
+      "limitation": "One training seed; session resampling does not establish server or multi-seed performance.",
+      "n": 1998,
+      "relative_reduction": 0.13989698654027252,
+      "session_cluster_bootstrap_ci95": [
+        -0.031345058554159616,
+        -0.023569504764621232
+      ],
+      "sessions": 11
+    },
+    "A3-DIRECT": {
+      "baseline": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/final_eval.json",
+      "bootstrap_repetitions": 20000,
+      "bootstrap_seed": 20260918,
+      "candidate": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/final_eval.json",
+      "delta_PREFIX": -0.04171229963579753,
+      "improved_sessions": 11,
+      "limitation": "One training seed; session resampling does not establish server or multi-seed performance.",
+      "n": 1998,
+      "relative_reduction": 0.21838727122690976,
+      "session_cluster_bootstrap_ci95": [
+        -0.04734903917957085,
+        -0.03712711819851315
+      ],
+      "sessions": 11
+    }
+  },
+  "runs": [
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/FRONT-S-s1/joint",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.3790284981253073,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.2001297013122672,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.028054786055269985,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.11148061602428967,
+          "L2_2s": 0.1933070450721488,
+          "L2_3s": 0.276469542709838,
+          "PREFIX": 0.1937524012687588,
+          "base_PREFIX": 0.19731715973583389,
+          "final_minus_base": -0.0035647584670750994,
+          "max_abs_row_difference_from_stored": 1.3466301918008128e-07,
+          "n": 1998,
+          "point_l2": [
+            0.07354535317131125,
+            0.1494158788772678,
+            0.23167948161226687,
+            0.3185874666277494,
+            0.40259241834406184,
+            0.4829966576263707
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.19731716337046018,
+          "final_minus_base_d3": -0.003564758771090998,
+          "history_position_mae_by_offset": [
+            0.07235016786153146,
+            0.1291025641315558,
+            0.2910573516392734,
+            0.5676575445626453
+          ],
+          "kind": "eval",
+          "lane_iou": 0.4782844893736942,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4509700811742079,
+          "official_d3": 0.19375240459936918,
+          "progress_coefficient_abs_mean": [
+            0.00741848455296209
+          ],
+          "progress_coefficient_abs_p99": [
+            0.08764876678586006
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.006532243710807506
+          ],
+          "proxy_d3": 0.19375240459936918,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.19375240459936918,
+          "session_d3": {
+            "session_019_20260113-102709": 0.26627430388772927,
+            "session_026_20260122-134906": 0.17286940084563363,
+            "session_027_20260122-135506": 0.18710896984560701,
+            "session_040_20260209-153550": 0.16139969792102757,
+            "session_046_20260210-100504": 0.20945739960923135,
+            "session_076_20260213-134648": 0.16126823006485255,
+            "session_087_20260219-90551": 0.18486638477555029,
+            "session_092_20260219-103747": 0.22699670254520174,
+            "session_097_20260219-110038": 0.16894325519693487,
+            "session_108_20260220-134317": 0.226255529663629,
+            "session_112_20260303-142827": 0.3060100063405655
+          },
+          "session_mean_d3": 0.206495443699633,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5736568897791967,
+            0.039826326460966295,
+            0.2420214936618476,
+            0.049929618422052464,
+            0.004990891760214552
+          ],
+          "step": 2616,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint/final_eval.json",
+        "source_sha256": "9cf51c473e5b88d0e9edf429d72b795b5b2028ecd9d9a1ce9241e86676b34aba"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 2650,
+      "run": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19731716337046018,
+          "n": 1998,
+          "official_d3": 0.19375240459936918,
+          "step": 2616
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/FRONT-S-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.3681794684156858,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.1967131322344035,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.02441910840953973,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.10977511589834947,
+          "L2_2s": 0.19032473245833129,
+          "L2_3s": 0.27060724160432137,
+          "PREFIX": 0.19023569665366738,
+          "base_PREFIX": 0.19100151045401165,
+          "final_minus_base": -0.0007658138003442557,
+          "max_abs_row_difference_from_stored": 8.588636490891588e-08,
+          "n": 1998,
+          "point_l2": [
+            0.07233868256571002,
+            0.14721154923098906,
+            0.22884800121912158,
+            0.3129006968175052,
+            0.3935213681928489,
+            0.46882315159975313
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.19100151388652836,
+          "final_minus_base_d3": -0.000765814203526588,
+          "history_position_mae_by_offset": [
+            0.07282942642255134,
+            0.12978994022149154,
+            0.29142506877988206,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47741871301925654,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.45615470501013133,
+          "official_d3": 0.19023569968300177,
+          "progress_coefficient_abs_mean": [
+            0.0020088733791336264
+          ],
+          "progress_coefficient_abs_p99": [
+            0.02286147851496935
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.0015165548680593853
+          ],
+          "proxy_d3": 0.19023569968300177,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.19023569968300177,
+          "session_d3": {
+            "session_019_20260113-102709": 0.26054679698966166,
+            "session_026_20260122-134906": 0.18178227692152615,
+            "session_027_20260122-135506": 0.1867257423782672,
+            "session_040_20260209-153550": 0.16586845353918356,
+            "session_046_20260210-100504": 0.2065180135748556,
+            "session_076_20260213-134648": 0.15052973757135785,
+            "session_087_20260219-90551": 0.19026855829482278,
+            "session_092_20260219-103747": 0.2335829458337415,
+            "session_097_20260219-110038": 0.15751608167947442,
+            "session_108_20260220-134317": 0.20915334757969337,
+            "session_112_20260303-142827": 0.30245886991421383
+          },
+          "session_mean_d3": 0.20408643857061798,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5774947410652792,
+            0.04035005023236211,
+            0.23493601346114143,
+            0.0497645149608744,
+            0.005007566166277848
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup/final_eval.json",
+        "source_sha256": "d586f97a02b32c2994cd007e78b4ab79f287777bfff58ede1b7c54a46b541107"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19100151388652836,
+          "n": 1998,
+          "official_d3": 0.19023569968300177,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/MR-NATIVE-FULL-s1",
+      "evaluation_role": "overlapping in-fit diagnostic",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.07608022462616511,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.10233036075720917,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.0060541700211039695,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.054181126095144166,
+          "L2_2s": 0.09509619397842435,
+          "L2_3s": 0.14245648569652822,
+          "PREFIX": 0.09724460192336559,
+          "max_abs_row_difference_from_stored": 4.862829661167467e-08,
+          "n": 1998,
+          "point_l2": [
+            0.03686370591106831,
+            0.0714985462792199,
+            0.11307483602397388,
+            0.15894768769943554,
+            0.20878678088987057,
+            0.2655673573756015
+          ]
+        },
+        "report": {
+          "history_position_mae_by_offset": [
+            0.04318845051472323,
+            0.07217834954980544,
+            0.15122006243327488,
+            0.2878566515449951
+          ],
+          "kind": "eval",
+          "lane_iou": 0.5066120638170805,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4676997157586818,
+          "official_d3": 0.09724460368779292,
+          "proxy_d3": 0.09724460368779292,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.09724460368779292,
+          "session_d3": {
+            "session_019_20260113-102709": 0.17994004325872218,
+            "session_026_20260122-134906": 0.09703839133079681,
+            "session_027_20260122-135506": 0.08641609435447703,
+            "session_040_20260209-153550": 0.09162551415997937,
+            "session_046_20260210-100504": 0.11246774520518052,
+            "session_076_20260213-134648": 0.07431807994187155,
+            "session_087_20260219-90551": 0.08195273885158477,
+            "session_092_20260219-103747": 0.12471163591921881,
+            "session_097_20260219-110038": 0.07713978842222764,
+            "session_108_20260220-134317": 0.09807822237619096,
+            "session_112_20260303-142827": 0.1490909663822364
+          },
+          "session_mean_d3": 0.10661629274568055,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.22990816842309675,
+            0.02858211644718916,
+            0.16711050034635835,
+            0.038415938087501794,
+            0.004138263619251501
+          ],
+          "step": 24931,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/final_eval.json",
+        "source_sha256": "f5023d8e3c41bb23c51c22de2ded81ca353442394b2c22a22413dc8177f1ae7e"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 24900,
+      "run": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1",
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.18470637226762535,
+          "step": 6345
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1290563141512969,
+          "step": 12690
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.11176391669387768,
+          "step": 19035
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.09724460368779292,
+          "step": 24931
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/OOF-MR-T203-s1",
+      "evaluation_role": "held-out V0 diagnostic; producer new107 inference remains pending",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.5890412161181077,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.2234967686446552,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.19436271242049943,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.13805304569916427,
+          "L2_2s": 0.22748244251190486,
+          "L2_3s": 0.3137968525174482,
+          "PREFIX": 0.22644411357617245,
+          "max_abs_row_difference_from_stored": 8.456521372046666e-08,
+          "n": 1998,
+          "point_l2": [
+            0.09338598930894605,
+            0.1827201020893825,
+            0.2721920591794684,
+            0.36163161946982253,
+            0.4472400213447785,
+            0.5256113237122917
+          ]
+        },
+        "report": {
+          "history_position_mae_by_offset": [
+            0.08576369144247838,
+            0.15972996896380573,
+            0.3711657806465568,
+            0.7291815015411627
+          ],
+          "kind": "eval",
+          "lane_iou": 0.4790530519110097,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4564514642074366,
+          "official_d3": 0.22644411744638435,
+          "proxy_d3": 0.22644411744638435,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.22644411744638435,
+          "session_d3": {
+            "session_019_20260113-102709": 0.25693079587762,
+            "session_026_20260122-134906": 0.19498354256911962,
+            "session_027_20260122-135506": 0.1965182182285442,
+            "session_040_20260209-153550": 0.1721987105190271,
+            "session_046_20260210-100504": 0.26038061304845744,
+            "session_076_20260213-134648": 0.19419757314716224,
+            "session_087_20260219-90551": 0.26481726858764887,
+            "session_092_20260219-103747": 0.40093570043919263,
+            "session_097_20260219-110038": 0.18385206694128337,
+            "session_108_20260220-134317": 0.21843946383645138,
+            "session_112_20260303-142827": 0.32351258038370695
+          },
+          "session_mean_d3": 0.2424333212343831,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.7549392576417975,
+            0.04565505583260047,
+            0.26298062675504935,
+            0.05365321361060379,
+            0.005250148368508894
+          ],
+          "step": 20554,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1/final_eval.json",
+        "source_sha256": "c6df86704044937733617d888bed4326158b60ca09255acb01098c63c64a29a1"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 20550,
+      "run": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1",
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.22644411744638435,
+          "step": 20554
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.3859007159518663,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.2016407677180509,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.01475772990015621,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.11221449335628164,
+          "L2_2s": 0.19439544253633306,
+          "L2_3s": 0.27717245436910554,
+          "PREFIX": 0.19459413008724008,
+          "base_PREFIX": 0.2102421775054426,
+          "final_minus_base": -0.015648047418202502,
+          "max_abs_row_difference_from_stored": 1.1585226245003355e-07,
+          "n": 1998,
+          "point_l2": [
+            0.07406994072913901,
+            0.1503590459834246,
+            0.23328329176620277,
+            0.3198694916665669,
+            0.4023153358147785,
+            0.48313762025452195
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.2102421814318489,
+          "final_minus_base_d3": -0.015648047801498005,
+          "history_position_mae_by_offset": [
+            0.07260072556815718,
+            0.13042527091055126,
+            0.29333056188496137,
+            0.5753582512017794
+          ],
+          "kind": "eval",
+          "lane_iou": 0.4790663739141108,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4512938480419243,
+          "official_d3": 0.19459413363035089,
+          "progress_coefficient_abs_mean": [
+            0.04134063473375627
+          ],
+          "progress_coefficient_abs_p99": [
+            0.33944416135549543
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.0369787233680431
+          ],
+          "proxy_d3": 0.19459413363035089,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.19459413363035089,
+          "session_d3": {
+            "session_019_20260113-102709": 0.26809448886800696,
+            "session_026_20260122-134906": 0.16908476870782949,
+            "session_027_20260122-135506": 0.19013827182993134,
+            "session_040_20260209-153550": 0.16285269370914815,
+            "session_046_20260210-100504": 0.20850387709355414,
+            "session_076_20260213-134648": 0.16331648256164044,
+            "session_087_20260219-90551": 0.190743799045406,
+            "session_092_20260219-103747": 0.21477252663828916,
+            "session_097_20260219-110038": 0.16953473085146628,
+            "session_108_20260220-134317": 0.22415671818372276,
+            "session_112_20260303-142827": 0.3189302078551716
+          },
+          "session_mean_d3": 0.20728441503128783,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5767313834064541,
+            0.04155800111399364,
+            0.24174237787176775,
+            0.04972494982631598,
+            0.005209933010946287
+          ],
+          "step": 2616,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint/final_eval.json",
+        "source_sha256": "446e6422099295fd800c83dad9eea49db68aad7ef3a77977e0ef87b4602c8cc5"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 2900,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.2102421814318489,
+          "n": 1998,
+          "official_d3": 0.19459413363035089,
+          "step": 2616
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.36005024994663043,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.19688116750193552,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.018725294565970746,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.10964323866206843,
+          "L2_2s": 0.19012746121415158,
+          "L2_3s": 0.27027013980377895,
+          "PREFIX": 0.19001361322666635,
+          "base_PREFIX": 0.1910023406407187,
+          "final_minus_base": -0.000988727414052373,
+          "max_abs_row_difference_from_stored": 1.2173727315101246e-07,
+          "n": 1998,
+          "point_l2": [
+            0.07219908405148902,
+            0.14708739327264808,
+            0.22864820038184494,
+            0.31257516715062506,
+            0.39297256400340247,
+            0.46813842996266436
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.19100234399349694,
+          "final_minus_base_d3": -0.0009887270852331487,
+          "history_position_mae_by_offset": [
+            0.0728072112502665,
+            0.12963202582868943,
+            0.2910654898771356,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47741871301925654,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.45615470501013133,
+          "official_d3": 0.1900136169082638,
+          "progress_coefficient_abs_mean": [
+            0.004481645058248531
+          ],
+          "progress_coefficient_abs_p99": [
+            0.04008733559399843
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.0015594049929806661
+          ],
+          "proxy_d3": 0.1900136169082638,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.1900136169082638,
+          "session_d3": {
+            "session_019_20260113-102709": 0.26060886888040435,
+            "session_026_20260122-134906": 0.1809979127375064,
+            "session_027_20260122-135506": 0.18714916097091402,
+            "session_040_20260209-153550": 0.16505766758820284,
+            "session_046_20260210-100504": 0.20601409190480977,
+            "session_076_20260213-134648": 0.15083306161313098,
+            "session_087_20260219-90551": 0.19000117829138483,
+            "session_092_20260219-103747": 0.2290447996929288,
+            "session_097_20260219-110038": 0.1577850163994748,
+            "session_108_20260220-134317": 0.20860670103381077,
+            "session_112_20260303-142827": 0.3029847730089117
+          },
+          "session_mean_d3": 0.20355302110195267,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5728426792342365,
+            0.040696748261797,
+            0.23504934665014934,
+            0.04974034352489543,
+            0.004987788494325649
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup/final_eval.json",
+        "source_sha256": "bbe6cda61ba3d6387985057d9b86d5400b063fb3ff2d676c9171b7091c6ceddd"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19100234399349694,
+          "n": 1998,
+          "official_d3": 0.1900136169082638,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.37923174279308597,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.199981127411735,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.032381021096477135,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.11217792955065095,
+          "L2_2s": 0.19354197924482883,
+          "L2_3s": 0.2757694257579563,
+          "PREFIX": 0.19382977818447872,
+          "base_PREFIX": 0.19723790533522817,
+          "final_minus_base": -0.003408127150749498,
+          "max_abs_row_difference_from_stored": 8.129799033973484e-08,
+          "n": 1998,
+          "point_l2": [
+            0.07419692236663114,
+            0.15015893673467096,
+            0.23229113555027178,
+            0.3175209223277425,
+            0.40072447013001494,
+            0.47972416743840784
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.197237908611777,
+          "final_minus_base_d3": -0.00340812697139517,
+          "history_position_mae_by_offset": [
+            0.07299171511078714,
+            0.1309144665190304,
+            0.2935888219102229,
+            0.574481556365265
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47845024205771125,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.45154079235760003,
+          "official_d3": 0.19382978164038184,
+          "progress_coefficient_abs_mean": [
+            0.007199122228230153
+          ],
+          "progress_coefficient_abs_p99": [
+            0.08430726021528244
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.006003605401080738
+          ],
+          "proxy_d3": 0.19382978164038184,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.19382978164038184,
+          "session_d3": {
+            "session_019_20260113-102709": 0.26673972489381276,
+            "session_026_20260122-134906": 0.1730134028389498,
+            "session_027_20260122-135506": 0.18612059139370643,
+            "session_040_20260209-153550": 0.1600937611192758,
+            "session_046_20260210-100504": 0.21072984056857724,
+            "session_076_20260213-134648": 0.1614014731409649,
+            "session_087_20260219-90551": 0.1836963516694528,
+            "session_092_20260219-103747": 0.2259203831275011,
+            "session_097_20260219-110038": 0.16928071351606905,
+            "session_108_20260220-134317": 0.22676110940261018,
+            "session_112_20260303-142827": 0.3055190377765232
+          },
+          "session_mean_d3": 0.2062978535861312,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5780993889007173,
+            0.042243719124316785,
+            0.24183037391424672,
+            0.049061611501969166,
+            0.005224560891782893
+          ],
+          "step": 2616,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint/final_eval.json",
+        "source_sha256": "e1f8eaeb7ccc5d04afcbd597e2aafb12d0bfb34d915926c326d141399d851e48"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 2750,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.197237908611777,
+          "n": 1998,
+          "official_d3": 0.19382978164038184,
+          "step": 2616
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-AUX-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.3684119847755926,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.19675473628998275,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.023977497836720364,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.1097796717353651,
+          "L2_2s": 0.1903529477135398,
+          "L2_3s": 0.2706343331999946,
+          "PREFIX": 0.1902556508829665,
+          "base_PREFIX": 0.1910024128451068,
+          "final_minus_base": -0.0007467619621402715,
+          "max_abs_row_difference_from_stored": 7.859210116034632e-08,
+          "n": 1998,
+          "point_l2": [
+            0.07232694463914309,
+            0.14723239883158704,
+            0.2288939160869697,
+            0.312958531296459,
+            0.39355275001492596,
+            0.46884145833088303
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.19100241642119037,
+          "final_minus_base_d3": -0.000746762320864014,
+          "history_position_mae_by_offset": [
+            0.07280290088700447,
+            0.12962649637883114,
+            0.2910621498977799,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47741871301925654,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.45615470501013133,
+          "official_d3": 0.19025565410032635,
+          "progress_coefficient_abs_mean": [
+            0.0024577599659067317
+          ],
+          "progress_coefficient_abs_p99": [
+            0.02268148398026824
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.0008943330279538162
+          ],
+          "proxy_d3": 0.19025565410032635,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.19025565410032635,
+          "session_d3": {
+            "session_019_20260113-102709": 0.2607194367727196,
+            "session_026_20260122-134906": 0.18179318598575062,
+            "session_027_20260122-135506": 0.1866624756203718,
+            "session_040_20260209-153550": 0.16575396540402262,
+            "session_046_20260210-100504": 0.2064273793177024,
+            "session_076_20260213-134648": 0.15072931227975606,
+            "session_087_20260219-90551": 0.19003220416467498,
+            "session_092_20260219-103747": 0.23317048828229653,
+            "session_097_20260219-110038": 0.1577624060029601,
+            "session_108_20260220-134317": 0.20960935539807435,
+            "session_112_20260303-142827": 0.3026176405449708
+          },
+          "session_mean_d3": 0.2041161681612091,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5727397663594765,
+            0.04061598815208602,
+            0.23498817637661337,
+            0.0497235963192141,
+            0.004988655036795462
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/warmup/final_eval.json",
+        "source_sha256": "d40058c40bda0254203bd15695199d5a2d47bd3062c8a00b284628f65651ba39"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19100241642119037,
+          "n": 1998,
+          "official_d3": 0.19025565410032635,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 350,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/joint",
+      "saved_evaluations": []
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.36890545442187017,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.19676791015269746,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.023894254119191483,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.10979100132297047,
+          "L2_2s": 0.19036624162891744,
+          "L2_3s": 0.27065220689831115,
+          "PREFIX": 0.19026981661673303,
+          "base_PREFIX": 0.19100164679804113,
+          "final_minus_base": -0.0007318301813081119,
+          "max_abs_row_difference_from_stored": 9.333271366873674e-08,
+          "n": 1998,
+          "point_l2": [
+            0.07233772892168765,
+            0.1472442737242533,
+            0.22890828289577106,
+            0.31297468097395764,
+            0.39357894411967637,
+            0.46886933075452003
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.191001650423988,
+          "final_minus_base_d3": -0.0007318303619035516,
+          "history_position_mae_by_offset": [
+            0.0728207609705192,
+            0.12979102640406223,
+            0.291419527223646,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47741871301925654,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.45615470501013133,
+          "official_d3": 0.19026982006208445,
+          "progress_coefficient_abs_mean": [
+            0.0022042363000676145
+          ],
+          "progress_coefficient_abs_p99": [
+            0.023238046690821648
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.0010544224168806504
+          ],
+          "proxy_d3": 0.19026982006208445,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.19026982006208445,
+          "session_d3": {
+            "session_019_20260113-102709": 0.2606335600355157,
+            "session_026_20260122-134906": 0.1817267737178891,
+            "session_027_20260122-135506": 0.1866722191146836,
+            "session_040_20260209-153550": 0.1657658994685065,
+            "session_046_20260210-100504": 0.206505068927072,
+            "session_076_20260213-134648": 0.1506895833838455,
+            "session_087_20260219-90551": 0.19035563852500031,
+            "session_092_20260219-103747": 0.23330739304677722,
+            "session_097_20260219-110038": 0.15769060996625525,
+            "session_108_20260220-134317": 0.20937674596077865,
+            "session_112_20260303-142827": 0.30262672059513906
+          },
+          "session_mean_d3": 0.20412274661286026,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5770422581266178,
+            0.04055644653391329,
+            0.23521699956923564,
+            0.04980877412425879,
+            0.004994176136667581
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup/final_eval.json",
+        "source_sha256": "8996e0e5130e8e8f8e437612e36309d6c289d9e54949aca8bf837a7ceea1c29b"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.191001650423988,
+          "n": 1998,
+          "official_d3": 0.19026982006208445,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-VA-AUX-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 1,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-VA-AUX-s1/joint",
+      "saved_evaluations": []
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-VA-AUX-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 450,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-VA-AUX-s1/warmup",
+      "saved_evaluations": []
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-VA-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 350,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/joint",
+      "saved_evaluations": []
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-VA-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.36990855461577526,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.19682342969455416,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.024251615905801622,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.10982936655718246,
+          "L2_2s": 0.19044296383134163,
+          "L2_3s": 0.2707826935795569,
+          "PREFIX": 0.19035167465602704,
+          "base_PREFIX": 0.19100167748963096,
+          "final_minus_base": -0.0006500028336039451,
+          "max_abs_row_difference_from_stored": 6.532352403443298e-08,
+          "n": 1998,
+          "point_l2": [
+            0.0723637055906572,
+            0.14729502752370754,
+            0.2289870708747716,
+            0.31312605133622934,
+            0.3937829298880492,
+            0.4691413762639258
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.19100168126798864,
+          "final_minus_base_d3": -0.0006500034886356421,
+          "history_position_mae_by_offset": [
+            0.07282320342602434,
+            0.12979416683741804,
+            0.29142180120805977,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47741871301925654,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.45615470501013133,
+          "official_d3": 0.190351677779353,
+          "progress_coefficient_abs_mean": [
+            0.0025517149727778262,
+            0.000756249387984633
+          ],
+          "progress_coefficient_abs_p99": [
+            0.021861679684370753,
+            0.002244674018584192
+          ],
+          "progress_coefficient_count": 2,
+          "progress_coefficient_mean": [
+            -0.0005806877184828214,
+            0.0006858551573755036
+          ],
+          "proxy_d3": 0.190351677779353,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.190351677779353,
+          "session_d3": {
+            "session_019_20260113-102709": 0.26076438571153965,
+            "session_026_20260122-134906": 0.1813708214710156,
+            "session_027_20260122-135506": 0.18658643377028286,
+            "session_040_20260209-153550": 0.1654924216003295,
+            "session_046_20260210-100504": 0.20655488012556883,
+            "session_076_20260213-134648": 0.15102629991173513,
+            "session_087_20260219-90551": 0.19037859421223402,
+            "session_092_20260219-103747": 0.23282333844798375,
+            "session_097_20260219-110038": 0.15809264314579374,
+            "session_108_20260220-134317": 0.21002295126931536,
+            "session_112_20260303-142827": 0.3028052100152881
+          },
+          "session_mean_d3": 0.20417436178918968,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5770130789437512,
+            0.040597751791775064,
+            0.23511457243536668,
+            0.04981240533253605,
+            0.004996091736221762
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/warmup/final_eval.json",
+        "source_sha256": "891addf1ee3c2fbced36122cc724ef730552c12944288d79b0c28600480cd4d7"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19100168126798864,
+          "n": 1998,
+          "official_d3": 0.190351677779353,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.37724470080052735,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.1957918265785999,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.026660402164357087,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.10950631659813465,
+          "L2_2s": 0.18972201389456902,
+          "L2_3s": 0.26954483387420153,
+          "PREFIX": 0.18959105478896843,
+          "base_PREFIX": 0.19134069640967163,
+          "final_minus_base": -0.0017496416207032244,
+          "max_abs_row_difference_from_stored": 1.1922062093105978e-07,
+          "n": 1998,
+          "point_l2": [
+            0.07221353387198351,
+            0.14679909932428598,
+            0.22815490840892302,
+            0.31172051397308387,
+            0.39173553736102507,
+            0.466645410305908
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.19134069979924978,
+          "final_minus_base_d3": -0.0017496416302063833,
+          "history_position_mae_by_offset": [
+            0.07282942642255134,
+            0.12978994022149154,
+            0.29142506877988206,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.4773927750945171,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.45610869083659455,
+          "official_d3": 0.1895910581690434,
+          "progress_coefficient_abs_mean": [
+            0.00960471179526606
+          ],
+          "progress_coefficient_abs_p99": [
+            0.02351534744724631
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.00960471179526606
+          ],
+          "proxy_d3": 0.1895910581690434,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.1895910581690434,
+          "session_d3": {
+            "session_019_20260113-102709": 0.255669620508949,
+            "session_026_20260122-134906": 0.18213012759332303,
+            "session_027_20260122-135506": 0.18553569929171648,
+            "session_040_20260209-153550": 0.1651646360120072,
+            "session_046_20260210-100504": 0.2059799956903724,
+            "session_076_20260213-134648": 0.1508353108405078,
+            "session_087_20260219-90551": 0.18970015924423933,
+            "session_092_20260219-103747": 0.22840664385067713,
+            "session_097_20260219-110038": 0.15723905124828036,
+            "session_108_20260220-134317": 0.20880404518296322,
+            "session_112_20260303-142827": 0.30391608109628715
+          },
+          "session_mean_d3": 0.20303467005084758,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5774947410652792,
+            0.04035005023236211,
+            0.23493601346114143,
+            0.0497645149608744,
+            0.005007566166277848
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup/final_eval.json",
+        "source_sha256": "46051cb8a52a4de86d34b8127d2b5ed14368c06af0f5343ee83666d974bc77f2"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19134069979924978,
+          "n": 1998,
+          "official_d3": 0.1895910581690434,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s2/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.3730061494453382,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.1956519698148089,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.028459494792050503,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.10965759134319991,
+          "L2_2s": 0.18969305751222185,
+          "L2_3s": 0.2691434667209562,
+          "PREFIX": 0.18949803852545932,
+          "base_PREFIX": 0.19033406886287066,
+          "final_minus_base": -0.0008360303374113282,
+          "max_abs_row_difference_from_stored": 8.930806649765088e-08,
+          "n": 1998,
+          "point_l2": [
+            0.07238551836173573,
+            0.1469296643246641,
+            0.22810375378502035,
+            0.311353293577467,
+            0.39094295520760414,
+            0.46514561506924484
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.19033407240146277,
+          "final_minus_base_d3": -0.0008360300046691138,
+          "history_position_mae_by_offset": [
+            0.07282942642255134,
+            0.12978994022149154,
+            0.29142506877988206,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.4774076904985889,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4560951694644946,
+          "official_d3": 0.18949804239679366,
+          "progress_coefficient_abs_mean": [
+            0.003935096075572353
+          ],
+          "progress_coefficient_abs_p99": [
+            0.016638902239501475
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.0037543592340668554
+          ],
+          "proxy_d3": 0.18949804239679366,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.18949804239679366,
+          "session_d3": {
+            "session_019_20260113-102709": 0.2546370921449529,
+            "session_026_20260122-134906": 0.18211481509799207,
+            "session_027_20260122-135506": 0.1849787131360875,
+            "session_040_20260209-153550": 0.16603831290827925,
+            "session_046_20260210-100504": 0.20598890695858885,
+            "session_076_20260213-134648": 0.15099841834011454,
+            "session_087_20260219-90551": 0.1889063232336883,
+            "session_092_20260219-103747": 0.2315554062370211,
+            "session_097_20260219-110038": 0.15723134944054448,
+            "session_108_20260220-134317": 0.20844950613186317,
+            "session_112_20260303-142827": 0.30179253565492453
+          },
+          "session_mean_d3": 0.20297194357127787,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5774947410652792,
+            0.04035005023236211,
+            0.23493601346114143,
+            0.0497645149608744,
+            0.005007566166277848
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s2/warmup/final_eval.json",
+        "source_sha256": "8cb69557381bbf9d1cec2ead3872a5aa8ab53f0e8c9c9b89ac72a0783aa027bf"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s2/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19033407240146277,
+          "n": 1998,
+          "official_d3": 0.18949804239679366,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/STATUS-A2-S-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.3742586087877706,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.19582056383993543,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.02590790486632986,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.10952031170830748,
+          "L2_2s": 0.1896943103097477,
+          "L2_3s": 0.269419982174966,
+          "PREFIX": 0.1895448680643404,
+          "base_PREFIX": 0.19084732785982167,
+          "final_minus_base": -0.0013024597954812492,
+          "max_abs_row_difference_from_stored": 1.0937329020244135e-07,
+          "n": 1998,
+          "point_l2": [
+            0.0722238245224057,
+            0.14681679889420943,
+            0.22812298127419214,
+            0.31161363654818464,
+            0.39150041079523684,
+            0.46624224101556866
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.19084733118884847,
+          "final_minus_base_d3": -0.0013024592024574455,
+          "history_position_mae_by_offset": [
+            0.07282942642255134,
+            0.12978994022149154,
+            0.29142506877988206,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47740910735280817,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.45607905563250706,
+          "official_d3": 0.18954487198639103,
+          "progress_coefficient_abs_mean": [
+            0.006825685508702336
+          ],
+          "progress_coefficient_abs_p99": [
+            0.022182334177196023
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.006825685508702336
+          ],
+          "proxy_d3": 0.18954487198639103,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.18954487198639103,
+          "session_d3": {
+            "session_019_20260113-102709": 0.25625332362122005,
+            "session_026_20260122-134906": 0.181515170675185,
+            "session_027_20260122-135506": 0.18571469452350386,
+            "session_040_20260209-153550": 0.1654833833788332,
+            "session_046_20260210-100504": 0.20560901091925593,
+            "session_076_20260213-134648": 0.1508950996528851,
+            "session_087_20260219-90551": 0.18959949224221487,
+            "session_092_20260219-103747": 0.2280730154339431,
+            "session_097_20260219-110038": 0.157484923477894,
+            "session_108_20260220-134317": 0.2086584743940168,
+            "session_112_20260303-142827": 0.30440254385272664
+          },
+          "session_mean_d3": 0.2030626483792435,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5774947410652792,
+            0.04035005023236211,
+            0.23493601346114143,
+            0.0497645149608744,
+            0.005007566166277848
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s1/warmup/final_eval.json",
+        "source_sha256": "87289a803fbd17f93e66007d056571098016b01158d381d03477934a0530935c"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s1/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19084733118884847,
+          "n": 1998,
+          "official_d3": 0.18954487198639103,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/STATUS-A2-S-s2/warmup",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.37174932630004226,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.19577241314774335,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.027250977267583666,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.10966842491871565,
+          "L2_2s": 0.18973471307041978,
+          "L2_3s": 0.2692051281260455,
+          "PREFIX": 0.18953608870506033,
+          "base_PREFIX": 0.19028642364681694,
+          "final_minus_base": -0.0007503349417566562,
+          "max_abs_row_difference_from_stored": 8.206232471330566e-08,
+          "n": 1998,
+          "point_l2": [
+            0.07237157485099996,
+            0.14696527498643153,
+            0.22817305850475916,
+            0.31142894393948894,
+            0.39102356397051813,
+            0.46526835250407633
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.1902864273369277,
+          "final_minus_base_d3": -0.0007503353477291697,
+          "history_position_mae_by_offset": [
+            0.07282942642255134,
+            0.12978994022149154,
+            0.29142506877988206,
+            0.5682350792848373
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47742101793949615,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4561390554390525,
+          "official_d3": 0.18953609198919852,
+          "progress_coefficient_abs_mean": [
+            0.0031381044890357508
+          ],
+          "progress_coefficient_abs_p99": [
+            0.017661274112761017
+          ],
+          "progress_coefficient_count": 1,
+          "progress_coefficient_mean": [
+            -0.0031096084192748304
+          ],
+          "proxy_d3": 0.18953609198919852,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.18953609198919852,
+          "session_d3": {
+            "session_019_20260113-102709": 0.25613719656097667,
+            "session_026_20260122-134906": 0.18190784169429983,
+            "session_027_20260122-135506": 0.1854085000971007,
+            "session_040_20260209-153550": 0.165967215610349,
+            "session_046_20260210-100504": 0.20579691817035414,
+            "session_076_20260213-134648": 0.15079226612435354,
+            "session_087_20260219-90551": 0.18915139076610407,
+            "session_092_20260219-103747": 0.23076855392988632,
+            "session_097_20260219-110038": 0.15728096123554824,
+            "session_108_20260220-134317": 0.2079041169749366,
+            "session_112_20260303-142827": 0.30364336018209104
+          },
+          "session_mean_d3": 0.20315984739509088,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5774947410652792,
+            0.04035005023236211,
+            0.23493601346114143,
+            0.0497645149608744,
+            0.005007566166277848
+          ],
+          "step": 1000,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s2/warmup/final_eval.json",
+        "source_sha256": "ad91a4fee44803984951d3952888f6a5672b8d61f1d944eead5f3857fa0bee7f"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "run": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s2/warmup",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.1902864273369277,
+          "n": 1998,
+          "official_d3": 0.18953609198919852,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A2-DIRECT-s1",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.33961369033086797,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.1682565902215157,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.04648040267125458,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.0961080150235967,
+          "L2_2s": 0.1635525172626866,
+          "L2_3s": 0.23318240329590437,
+          "PREFIX": 0.1642809785273959,
+          "max_abs_row_difference_from_stored": 5.620164034159103e-08,
+          "n": 1998,
+          "point_l2": [
+            0.06453733235783705,
+            0.1276786976893561,
+            0.1960337112002982,
+            0.2659603278032549,
+            0.33634932712328625,
+            0.40853502360139354
+          ]
+        },
+        "report": {
+          "history_position_mae_by_offset": [
+            0.07248422485688613,
+            0.13017262040031002,
+            0.2927232866687747,
+            0.5717304615022799
+          ],
+          "kind": "eval",
+          "lane_iou": 0.47822203808851094,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4576766495432945,
+          "official_d3": 0.1642809814144927,
+          "proxy_d3": 0.1642809814144927,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.1642809814144927,
+          "session_d3": {
+            "session_019_20260113-102709": 0.20624456088989973,
+            "session_026_20260122-134906": 0.16271048439321695,
+            "session_027_20260122-135506": 0.15547476200110935,
+            "session_040_20260209-153550": 0.14638462324445653,
+            "session_046_20260210-100504": 0.18502129098503953,
+            "session_076_20260213-134648": 0.12814395000905165,
+            "session_087_20260219-90551": 0.17091271232951571,
+            "session_092_20260219-103747": 0.2098198157424728,
+            "session_097_20260219-110038": 0.12962186182446686,
+            "session_108_20260220-134317": 0.17072784421206624,
+            "session_112_20260303-142827": 0.2645950779594757
+          },
+          "session_mean_d3": 0.17542336214461554,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.5759463893381661,
+            0.039565964806126896,
+            0.2354800814987152,
+            0.05002326175949916,
+            0.0049847596613411165
+          ],
+          "step": 20554,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/final_eval.json",
+        "source_sha256": "4425a7a0efe894dbe61b1462f32417c0c84553271e798f33bb6e948a513dafdc"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 20550,
+      "run": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1",
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.2196833017450926,
+          "step": 3426
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1870879986392403,
+          "step": 6852
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1791587688016693,
+          "step": 10278
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.17004717054363858,
+          "step": 13704
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.16580775024327873,
+          "step": 17130
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1642809814144927,
+          "step": 20554
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 1.467819111301042,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.4217981139549428,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 1.2954237132731306,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.3158462372616787,
+          "L2_2s": 0.48759713116685716,
+          "L2_3s": 0.6295086885546214,
+          "PREFIX": 0.47765068566105234,
+          "max_abs_row_difference_from_stored": 1.7587678491359782e-07,
+          "n": 1998,
+          "point_l2": [
+            0.22311578249242806,
+            0.40857669203092845,
+            0.5985466883104128,
+            0.7201493618336562,
+            0.8477019349618443,
+            0.9789616716984539
+          ]
+        },
+        "report": {
+          "history_position_mae_by_offset": [
+            0.5265977406991763,
+            1.0534937736747023,
+            2.7550011237298286,
+            4.832897426640695
+          ],
+          "kind": "eval",
+          "lane_iou": 0.4235461128466104,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.43394425138132436,
+          "official_d3": 0.4776506933259654,
+          "proxy_d3": 0.4776506933259654,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.4776506933259654,
+          "session_d3": {
+            "session_019_20260113-102709": 0.41244311023641517,
+            "session_026_20260122-134906": 0.43370062712993884,
+            "session_027_20260122-135506": 0.4172767881875631,
+            "session_040_20260209-153550": 0.5124274848925846,
+            "session_046_20260210-100504": 0.6044923726883199,
+            "session_076_20260213-134648": 0.3599434361367682,
+            "session_087_20260219-90551": 0.48787182735072243,
+            "session_092_20260219-103747": 1.0940176369967285,
+            "session_097_20260219-110038": 0.2582150767614812,
+            "session_108_20260220-134317": 0.32258322062315764,
+            "session_112_20260303-142827": 0.7532814945335742
+          },
+          "session_mean_d3": 0.5142048250488412,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            4.3881233072615,
+            0.16510631771081383,
+            0.4348429191607732,
+            0.18565780473723859,
+            0.04110751801694336
+          ],
+          "step": 2,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke/final_eval.json",
+        "source_sha256": "7bfd48392345991daf55c02dd6e54392ee1740ecb5e41073cb4ba6ac348a0b5a"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 2,
+      "run": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke",
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.4776506933259654,
+          "step": 2
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A3-DIRECT-s1",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 0.3431301686267488,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.15227139339657236,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 0.045816822232096155,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.08251080060014417,
+          "L2_2s": 0.1472756326323457,
+          "L2_3s": 0.21808121251314472,
+          "PREFIX": 0.14928921524854485,
+          "max_abs_row_difference_from_stored": 5.098833000261038e-08,
+          "n": 1998,
+          "point_l2": [
+            0.054436620140505196,
+            0.11058498105978336,
+            0.17533498566278663,
+            0.24874594366630845,
+            0.3230844775882874,
+            0.39630026696119797
+          ]
+        },
+        "report": {
+          "history_position_mae_by_offset": [
+            0.02072610512645137,
+            0.02939649745934406,
+            0.05926818223492997,
+            0.11338166919115276
+          ],
+          "kind": "eval",
+          "lane_iou": 0.48247648506247287,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4613308629251103,
+          "official_d3": 0.14928921792950775,
+          "proxy_d3": 0.14928921792950775,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.14928921792950775,
+          "session_d3": {
+            "session_019_20260113-102709": 0.1878568435570708,
+            "session_026_20260122-134906": 0.15356054962440222,
+            "session_027_20260122-135506": 0.1403650224378835,
+            "session_040_20260209-153550": 0.13206586830266234,
+            "session_046_20260210-100504": 0.16764189256355166,
+            "session_076_20260213-134648": 0.11527002283751413,
+            "session_087_20260219-90551": 0.16250512635128367,
+            "session_092_20260219-103747": 0.2008132403888912,
+            "session_097_20260219-110038": 0.11773180451106142,
+            "session_108_20260220-134317": 0.14472269553139253,
+            "session_112_20260303-142827": 0.24553286656737328
+          },
+          "session_mean_d3": 0.16073326660664422,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            0.0802015008705678,
+            0.030119104651390814,
+            0.017168807123171946,
+            0.03969374849269091,
+            0.0042274814318357225
+          ],
+          "step": 20554,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/final_eval.json",
+        "source_sha256": "ae2565c0c5f85c1b690ea7ecee765c69a778881416889bc20eefe51539adf889"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 20550,
+      "run": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1",
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.19514473202406196,
+          "step": 3426
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.18900559494389338,
+          "step": 6852
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.18587033758830238,
+          "step": 10278
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1558204798444591,
+          "step": 13704
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.15023444274028352,
+          "step": 17130
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.14928921792950775,
+          "step": 20554
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A3-DIRECT-s1-smoke",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 1.4677359611027219,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.42179026071261555,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 1.2954821836805823,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.3158342346470352,
+          "L2_2s": 0.4875896704227703,
+          "L2_3s": 0.6295117377034635,
+          "PREFIX": 0.47764521425775636,
+          "max_abs_row_difference_from_stored": 2.1890109414002268e-07,
+          "n": 1998,
+          "point_l2": [
+            0.2231043836499224,
+            0.4085640856441479,
+            0.598541644028727,
+            0.720148568368285,
+            0.8477064398832173,
+            0.9790053046464822
+          ]
+        },
+        "report": {
+          "history_position_mae_by_offset": [
+            0.5265989334577018,
+            1.053491412217284,
+            2.7549951006103686,
+            4.832897721471879
+          ],
+          "kind": "eval",
+          "lane_iou": 0.42357799498637083,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4339763990199116,
+          "official_d3": 0.4776452224966403,
+          "proxy_d3": 0.4776452224966403,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.4776452224966403,
+          "session_d3": {
+            "session_019_20260113-102709": 0.41240995777425943,
+            "session_026_20260122-134906": 0.43369965434626295,
+            "session_027_20260122-135506": 0.4172715834839634,
+            "session_040_20260209-153550": 0.5124445266469762,
+            "session_046_20260210-100504": 0.6044893609428847,
+            "session_076_20260213-134648": 0.35995733993196927,
+            "session_087_20260219-90551": 0.48788641034453,
+            "session_092_20260219-103747": 1.0940461892772604,
+            "session_097_20260219-110038": 0.2580970197364136,
+            "session_108_20260220-134317": 0.3226183539739362,
+            "session_112_20260303-142827": 0.7532894020831143
+          },
+          "session_mean_d3": 0.5142008907765064,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            4.388127459658755,
+            0.16511111176415189,
+            0.4348364281239691,
+            0.18565917114593886,
+            0.041108195086590596
+          ],
+          "step": 2,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1-smoke/final_eval.json",
+        "source_sha256": "2d2435f417b2e3faa08b4168bf0b3052dff87383e9d970fa5609479d3126bbfd"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 2,
+      "run": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1-smoke",
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.4776452224966403,
+          "step": 2
+        }
+      ]
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A3-FP-VA-s1",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 600,
+      "run": "work_dirs/md_shared_dynamics_20260917/A3-FP-VA-s1",
+      "saved_evaluations": []
+    },
+    {
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A3-FP-VA-s1-smoke",
+      "evaluation_role": "held-out V0",
+      "final_eval_summary": {
+        "buckets": {
+          "depart": {
+            "PREFIX": 1.4665495686139982,
+            "n": 24
+          },
+          "nonstop": {
+            "PREFIX": 0.4260325964714643,
+            "n": 1875
+          },
+          "steady": {
+            "PREFIX": 1.294401894689418,
+            "n": 99
+          }
+        },
+        "recomputed": {
+          "L2_1s": 0.3194884591493982,
+          "L2_2s": 0.492112788259448,
+          "L2_3s": 0.6330745718178565,
+          "PREFIX": 0.48155860640890086,
+          "base_PREFIX": 0.4815702535025602,
+          "final_minus_base": -1.1647093659366943e-05,
+          "max_abs_row_difference_from_stored": 1.7278215924676488e-07,
+          "n": 1998,
+          "point_l2": [
+            0.225516635299298,
+            0.41346028299949883,
+            0.6044944395038905,
+            0.7249797952351056,
+            0.8503653782359022,
+            0.9796308996334456
+          ]
+        },
+        "report": {
+          "base_official_d3": 0.48157025986836777,
+          "final_minus_base_d3": -1.1645518504355135e-05,
+          "history_position_mae_by_offset": [
+            0.5266096238568947,
+            1.0535441411209774,
+            2.755170730883265,
+            4.833131013783039
+          ],
+          "kind": "eval",
+          "lane_iou": 0.4235263666139036,
+          "n": 1998,
+          "n_sessions": 11,
+          "occ_iou": 0.4339061039209723,
+          "official_d3": 0.4815586143498634,
+          "progress_coefficient_abs_mean": [
+            1.6601073813095416e-05,
+            7.795692122850264e-06
+          ],
+          "progress_coefficient_abs_p99": [
+            2.154990772396559e-05,
+            1.0065348442367395e-05
+          ],
+          "progress_coefficient_count": 2,
+          "progress_coefficient_mean": [
+            1.6601073813095416e-05,
+            7.795692122850264e-06
+          ],
+          "proxy_d3": 0.4815586143498634,
+          "proxy_is_not_official_sample_weight": true,
+          "selection_definition": "official_d3",
+          "selection_metric": 0.4815586143498634,
+          "session_d3": {
+            "session_019_20260113-102709": 0.41649010805068193,
+            "session_026_20260122-134906": 0.44059633160078965,
+            "session_027_20260122-135506": 0.42114746669139813,
+            "session_040_20260209-153550": 0.5141738729758395,
+            "session_046_20260210-100504": 0.6103524160053995,
+            "session_076_20260213-134648": 0.3619127874435098,
+            "session_087_20260219-90551": 0.49001058425616334,
+            "session_092_20260219-103747": 1.093972580300437,
+            "session_097_20260219-110038": 0.2608423597742746,
+            "session_108_20260220-134317": 0.3280325325343896,
+            "session_112_20260303-142827": 0.7560191689817993
+          },
+          "session_mean_d3": 0.5175954735104257,
+          "state_mae_vx_vy_ax_ay_yawrate": [
+            4.3883203305043015,
+            0.16513246066450654,
+            0.4348280186074095,
+            0.18564292992902426,
+            0.04111367227622421
+          ],
+          "step": 2,
+          "time_input": "nominal"
+        },
+        "source": "work_dirs/md_shared_dynamics_20260917/A3-FP-VA-s1-smoke/final_eval.json",
+        "source_sha256": "49c4b9db00ba99f04bea6c7434ac5ecabf611d90dbd7e8114db0e7db73a59e64"
+      },
+      "has_final_eval": true,
+      "last_logged_train_step": 2,
+      "run": "work_dirs/md_shared_dynamics_20260917/A3-FP-VA-s1-smoke",
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.48157025986836777,
+          "n": 1998,
+          "official_d3": 0.4815586143498634,
+          "step": 2
+        }
+      ]
+    }
+  ],
+  "runtime_logs": [
+    {
+      "bytes": 34126,
+      "diagnostic_lines": [
+        "Traceback (most recent call last):",
+        "    raise RuntimeError(f\"Insufficient CUDA headroom before allocation: free={free / MIB:.1f} MiB, \"",
+        "RuntimeError: Insufficient CUDA headroom before allocation: free=144027.9 MiB, required=170000+8192 MiB"
+      ],
+      "last_structured_event": {
+        "arm": "FRONT-S",
+        "coefficients": 1,
+        "initializer": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup/last.pth",
+        "microbatch": 8,
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint",
+        "seed": 1,
+        "side": false,
+        "stage": "joint",
+        "steps": 10463,
+        "train_rows": 83700,
+        "tune_rows": 1998
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/FRONT-S_gpu1.log",
+      "sha256": "92c17c4409ad526af64c57045c283a630b1636f4e0797471748c891d3ccef585"
+    },
+    {
+      "bytes": 82324,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "cuda_memory": {
+          "allocated_bytes": 460656128,
+          "device_free_bytes": 151026335744,
+          "device_total_bytes": 191503138816,
+          "peak_allocated_bytes": 35125308416,
+          "peak_reserved_bytes": 39474692096,
+          "reserved_bytes": 39474692096
+        },
+        "elapsed_seconds": 2934.675319995731,
+        "epoch": 0,
+        "grad_norm": 26.85724639892578,
+        "history": -2.967134475708008,
+        "kind": "train",
+        "lane_bce": 0.4229027032852173,
+        "lr": 4.329801487832837e-05,
+        "motion": -5.7745361328125,
+        "occ_bce": 0.2652556896209717,
+        "plan_d3": 0.10127223283052444,
+        "plan_interval_length": 0.04375851899385452,
+        "sample_order_sha256": "2a4c2df055f5201597eadbd9464eb0b32c6868e53031841f6e238528b9ca5475",
+        "state": -2.8074746131896973,
+        "step": 2650,
+        "stop_bce": 0.0003643333911895752,
+        "total": -0.9050637483596802
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/FRONT-S_gpu1_joint.log",
+      "sha256": "c80d17bfe38220db0938d5c57a5a93d67854637e3eb904b9da48c181f1175548"
+    },
+    {
+      "bytes": 311709,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "history_position_mae_by_offset": [
+          0.08576369144247838,
+          0.15972996896380573,
+          0.3711657806465568,
+          0.7291815015411627
+        ],
+        "kind": "eval",
+        "lane_iou": 0.4790530519110097,
+        "n": 1998,
+        "n_sessions": 11,
+        "occ_iou": 0.4564514642074366,
+        "official_d3": 0.22644411744638435,
+        "proxy_d3": 0.22644411744638435,
+        "proxy_is_not_official_sample_weight": true,
+        "selection_definition": "official_d3",
+        "selection_metric": 0.22644411744638435,
+        "session_d3": {
+          "session_019_20260113-102709": 0.25693079587762,
+          "session_026_20260122-134906": 0.19498354256911962,
+          "session_027_20260122-135506": 0.1965182182285442,
+          "session_040_20260209-153550": 0.1721987105190271,
+          "session_046_20260210-100504": 0.26038061304845744,
+          "session_076_20260213-134648": 0.19419757314716224,
+          "session_087_20260219-90551": 0.26481726858764887,
+          "session_092_20260219-103747": 0.40093570043919263,
+          "session_097_20260219-110038": 0.18385206694128337,
+          "session_108_20260220-134317": 0.21843946383645138,
+          "session_112_20260303-142827": 0.32351258038370695
+        },
+        "session_mean_d3": 0.2424333212343831,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.7549392576417975,
+          0.04565505583260047,
+          0.26298062675504935,
+          0.05365321361060379,
+          0.005250148368508894
+        ],
+        "step": 20554,
+        "time_input": "nominal"
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/OOF-MR-T203_gpu2_s1.log",
+      "sha256": "88cd06e1d552481daeb4dfc178f0bd6ce65b52d2f91b0a778fa8149be2466ab6"
+    },
+    {
+      "bytes": 148480,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "cuda_memory": {
+          "allocated_bytes": 475107328,
+          "device_free_bytes": 126089101312,
+          "device_total_bytes": 191503138816,
+          "peak_allocated_bytes": 61080406528,
+          "peak_reserved_bytes": 64384663552,
+          "reserved_bytes": 64384663552
+        },
+        "elapsed_seconds": 3772.917117567733,
+        "epoch": 0,
+        "grad_norm": 40.01033020019531,
+        "history": -2.9714436531066895,
+        "kind": "train",
+        "lane_bce": 0.337823748588562,
+        "lr": 4.194211199772815e-05,
+        "motion": -5.727118492126465,
+        "occ_bce": 0.2482089251279831,
+        "plan_d3": 0.10314710438251495,
+        "plan_interval_length": 0.04623381793498993,
+        "progress_denoise": 0.21582980453968048,
+        "sample_order_sha256": "e2dcb59a273ac190ee854d1b08764664f86bc56c49c991c2c5789b39f68f7051",
+        "side_history_aux": 0.0004152335168328136,
+        "side_motion_aux": 0.008141519501805305,
+        "side_state_aux": 0.007726285606622696,
+        "state": -2.7557168006896973,
+        "step": 2900,
+        "stop_bce": 0.0002123713493347168,
+        "total": -0.801525890827179
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/SIDE-S-AUX-DN_gpu3.log",
+      "sha256": "1496abf72af42e452d7a5625f2b90ee5cda2fe4a30e16ec2ac2ba4e736066a84"
+    },
+    {
+      "bytes": 136789,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "cuda_memory": {
+          "allocated_bytes": 475106816,
+          "device_free_bytes": 126091198464,
+          "device_total_bytes": 191503138816,
+          "peak_allocated_bytes": 61082812416,
+          "peak_reserved_bytes": 64384663552,
+          "reserved_bytes": 64384663552
+        },
+        "elapsed_seconds": 3575.402157623321,
+        "epoch": 0,
+        "grad_norm": 21.369335174560547,
+        "history": -2.961355209350586,
+        "kind": "train",
+        "lane_bce": 0.34884002804756165,
+        "lr": 4.276807581973759e-05,
+        "motion": -5.648354530334473,
+        "occ_bce": 0.19228118658065796,
+        "plan_d3": 0.09355632960796356,
+        "plan_interval_length": 0.03978369012475014,
+        "sample_order_sha256": "7f65fb2acf5eb028b3b5fa385d3c0ada8467aa6852fbb4a8abf5a7d7ce93b370",
+        "side_history_aux": 0.00016657424566801637,
+        "side_motion_aux": 0.003944035153836012,
+        "side_state_aux": 0.0037774608936160803,
+        "state": -2.6892476081848145,
+        "step": 2750,
+        "stop_bce": 0.011240139603614807,
+        "total": -0.9159724712371826
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/SIDE-S-AUX_gpu2.log",
+      "sha256": "c7e6abc813702d58f92d88f0125248fa67113d5267b5c832c4658e10767e3c74"
+    },
+    {
+      "bytes": 34209,
+      "diagnostic_lines": [
+        "Traceback (most recent call last):",
+        "    raise RuntimeError(f\"Insufficient CUDA headroom before allocation: free={free / MIB:.1f} MiB, \"",
+        "RuntimeError: Insufficient CUDA headroom before allocation: free=122707.9 MiB, required=170000+8192 MiB"
+      ],
+      "last_structured_event": {
+        "arm": "SIDE-S",
+        "coefficients": 1,
+        "initializer": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup/last.pth",
+        "microbatch": 8,
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-S-s1/joint",
+        "seed": 1,
+        "side": true,
+        "stage": "joint",
+        "steps": 10463,
+        "train_rows": 83700,
+        "tune_rows": 1998
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/SIDE-S_gpu2.log",
+      "sha256": "32882e632135f4b440e601bd7ab7ac3d5c5d2f40af015ee523797f676718e203"
+    },
+    {
+      "bytes": 11556,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "cuda_memory": {
+          "allocated_bytes": 474044416,
+          "device_free_bytes": 128687472640,
+          "device_total_bytes": 191503138816,
+          "peak_allocated_bytes": 61082435584,
+          "peak_reserved_bytes": 61809360896,
+          "reserved_bytes": 61809360896
+        },
+        "elapsed_seconds": 508.34944972768426,
+        "epoch": 0,
+        "grad_norm": 36.0272331237793,
+        "history": -2.980160713195801,
+        "kind": "train",
+        "lane_bce": 0.2747959792613983,
+        "lr": 4.997400089799422e-05,
+        "motion": -5.838741302490234,
+        "occ_bce": 0.20467625558376312,
+        "plan_d3": 0.06124093756079674,
+        "plan_interval_length": 0.03168835490942001,
+        "sample_order_sha256": "fc0d9558fe0dfb4cb7aac1ed0996a3d39f84ab801788c6c99f8af5f2c8216f20",
+        "state": -2.859250068664551,
+        "step": 350,
+        "stop_bce": 0.0033483535517007113,
+        "total": -1.0026906728744507
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/SIDE-S_gpu2_joint.log",
+      "sha256": "1486a94a05bf6022cecc9d5ee71da341dac51ead15108d133bda3eaa846aca24"
+    },
+    {
+      "bytes": 18128,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "cuda_memory": {
+          "allocated_bytes": 472752640,
+          "device_free_bytes": 128758775808,
+          "device_total_bytes": 191503138816,
+          "peak_allocated_bytes": 61083011072,
+          "peak_reserved_bytes": 61809360896,
+          "reserved_bytes": 61738057728
+        },
+        "elapsed_seconds": 7.668544448912144,
+        "epoch": 0,
+        "grad_norm": 17.943288803100586,
+        "history": -2.9664125442504883,
+        "kind": "train",
+        "lane_bce": 0.3553236126899719,
+        "lr": 2.5000000000000004e-07,
+        "motion": -5.749765872955322,
+        "occ_bce": 0.254866361618042,
+        "plan_d3": 0.1080009788274765,
+        "plan_interval_length": 0.03510630875825882,
+        "sample_order_sha256": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "side_history_aux": 0.006901751272380352,
+        "side_motion_aux": 0.015452258288860321,
+        "side_state_aux": 0.008550506085157394,
+        "state": -2.7839691638946533,
+        "step": 1,
+        "stop_bce": 0.0030791659373790026,
+        "total": -0.9034115076065063
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/SIDE-VA-AUX_gpu3.log",
+      "sha256": "5233d0c73a9065a3578a6ab8bb6e784097174a2373cbe8117cb0ac5f2d9602d6"
+    },
+    {
+      "bytes": 34284,
+      "diagnostic_lines": [
+        "Traceback (most recent call last):",
+        "    raise RuntimeError(f\"Insufficient CUDA headroom before allocation: free={free / MIB:.1f} MiB, \"",
+        "RuntimeError: Insufficient CUDA headroom before allocation: free=122707.9 MiB, required=170000+8192 MiB"
+      ],
+      "last_structured_event": {
+        "arm": "SIDE-VA",
+        "coefficients": 2,
+        "initializer": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-VA-s1/warmup/last.pth",
+        "microbatch": 8,
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/SIDE-VA-s1/joint",
+        "seed": 1,
+        "side": true,
+        "stage": "joint",
+        "steps": 10463,
+        "train_rows": 83700,
+        "tune_rows": 1998
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/SIDE-VA_gpu3.log",
+      "sha256": "578ea4f80abc527b3ff7536825fc1118bde23778f6f6267bde3072f0f14c6db4"
+    },
+    {
+      "bytes": 11577,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "cuda_memory": {
+          "allocated_bytes": 474046464,
+          "device_free_bytes": 128687407104,
+          "device_total_bytes": 191503138816,
+          "peak_allocated_bytes": 61082437632,
+          "peak_reserved_bytes": 61809360896,
+          "reserved_bytes": 61809360896
+        },
+        "elapsed_seconds": 508.00441697612405,
+        "epoch": 0,
+        "grad_norm": 39.78245162963867,
+        "history": -2.979971408843994,
+        "kind": "train",
+        "lane_bce": 0.2748792767524719,
+        "lr": 4.997400089799422e-05,
+        "motion": -5.838855743408203,
+        "occ_bce": 0.20440919697284698,
+        "plan_d3": 0.0639282837510109,
+        "plan_interval_length": 0.032710399478673935,
+        "sample_order_sha256": "fc0d9558fe0dfb4cb7aac1ed0996a3d39f84ab801788c6c99f8af5f2c8216f20",
+        "state": -2.8595499992370605,
+        "step": 350,
+        "stop_bce": 0.0033299275673925877,
+        "total": -0.9998075366020203
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/SIDE-VA_gpu3_joint.log",
+      "sha256": "9136dbbf9411c6715970d96019f7639e0bb217a4db259590bcfac968113e692d"
+    },
+    {
+      "bytes": 32775,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "base_official_d3": 0.19033407240146277,
+        "final_minus_base_d3": -0.0008360300046691138,
+        "history_position_mae_by_offset": [
+          0.07282942642255134,
+          0.12978994022149154,
+          0.29142506877988206,
+          0.5682350792848373
+        ],
+        "kind": "eval",
+        "lane_iou": 0.4774076904985889,
+        "n": 1998,
+        "n_sessions": 11,
+        "occ_iou": 0.4560951694644946,
+        "official_d3": 0.18949804239679366,
+        "progress_coefficient_abs_mean": [
+          0.003935096075572353
+        ],
+        "progress_coefficient_abs_p99": [
+          0.016638902239501475
+        ],
+        "progress_coefficient_count": 1,
+        "progress_coefficient_mean": [
+          -0.0037543592340668554
+        ],
+        "proxy_d3": 0.18949804239679366,
+        "proxy_is_not_official_sample_weight": true,
+        "selection_definition": "official_d3",
+        "selection_metric": 0.18949804239679366,
+        "session_d3": {
+          "session_019_20260113-102709": 0.2546370921449529,
+          "session_026_20260122-134906": 0.18211481509799207,
+          "session_027_20260122-135506": 0.1849787131360875,
+          "session_040_20260209-153550": 0.16603831290827925,
+          "session_046_20260210-100504": 0.20598890695858885,
+          "session_076_20260213-134648": 0.15099841834011454,
+          "session_087_20260219-90551": 0.1889063232336883,
+          "session_092_20260219-103747": 0.2315554062370211,
+          "session_097_20260219-110038": 0.15723134944054448,
+          "session_108_20260220-134317": 0.20844950613186317,
+          "session_112_20260303-142827": 0.30179253565492453
+        },
+        "session_mean_d3": 0.20297194357127787,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5774947410652792,
+          0.04035005023236211,
+          0.23493601346114143,
+          0.0497645149608744,
+          0.005007566166277848
+        ],
+        "step": 1000,
+        "time_input": "nominal"
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/STATUS-A2-S-SCENE_gpu1_s2.log",
+      "sha256": "c170e9659f133ea040443c19c42db6847e6530a8444c495e9f13a67f3ab7cea0"
+    },
+    {
+      "bytes": 32770,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "base_official_d3": 0.19134069979924978,
+        "final_minus_base_d3": -0.0017496416302063833,
+        "history_position_mae_by_offset": [
+          0.07282942642255134,
+          0.12978994022149154,
+          0.29142506877988206,
+          0.5682350792848373
+        ],
+        "kind": "eval",
+        "lane_iou": 0.4773927750945171,
+        "n": 1998,
+        "n_sessions": 11,
+        "occ_iou": 0.45610869083659455,
+        "official_d3": 0.1895910581690434,
+        "progress_coefficient_abs_mean": [
+          0.00960471179526606
+        ],
+        "progress_coefficient_abs_p99": [
+          0.02351534744724631
+        ],
+        "progress_coefficient_count": 1,
+        "progress_coefficient_mean": [
+          -0.00960471179526606
+        ],
+        "proxy_d3": 0.1895910581690434,
+        "proxy_is_not_official_sample_weight": true,
+        "selection_definition": "official_d3",
+        "selection_metric": 0.1895910581690434,
+        "session_d3": {
+          "session_019_20260113-102709": 0.255669620508949,
+          "session_026_20260122-134906": 0.18213012759332303,
+          "session_027_20260122-135506": 0.18553569929171648,
+          "session_040_20260209-153550": 0.1651646360120072,
+          "session_046_20260210-100504": 0.2059799956903724,
+          "session_076_20260213-134648": 0.1508353108405078,
+          "session_087_20260219-90551": 0.18970015924423933,
+          "session_092_20260219-103747": 0.22840664385067713,
+          "session_097_20260219-110038": 0.15723905124828036,
+          "session_108_20260220-134317": 0.20880404518296322,
+          "session_112_20260303-142827": 0.30391608109628715
+        },
+        "session_mean_d3": 0.20303467005084758,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5774947410652792,
+          0.04035005023236211,
+          0.23493601346114143,
+          0.0497645149608744,
+          0.005007566166277848
+        ],
+        "step": 1000,
+        "time_input": "nominal"
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/STATUS-A2-S-SCENE_gpu3.log",
+      "sha256": "a619bf1f70056c786475d5a2ff42d7b4562efd5810ee10cad9d45ab6c23d6148"
+    },
+    {
+      "bytes": 32731,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "base_official_d3": 0.19084733118884847,
+        "final_minus_base_d3": -0.0013024592024574455,
+        "history_position_mae_by_offset": [
+          0.07282942642255134,
+          0.12978994022149154,
+          0.29142506877988206,
+          0.5682350792848373
+        ],
+        "kind": "eval",
+        "lane_iou": 0.47740910735280817,
+        "n": 1998,
+        "n_sessions": 11,
+        "occ_iou": 0.45607905563250706,
+        "official_d3": 0.18954487198639103,
+        "progress_coefficient_abs_mean": [
+          0.006825685508702336
+        ],
+        "progress_coefficient_abs_p99": [
+          0.022182334177196023
+        ],
+        "progress_coefficient_count": 1,
+        "progress_coefficient_mean": [
+          -0.006825685508702336
+        ],
+        "proxy_d3": 0.18954487198639103,
+        "proxy_is_not_official_sample_weight": true,
+        "selection_definition": "official_d3",
+        "selection_metric": 0.18954487198639103,
+        "session_d3": {
+          "session_019_20260113-102709": 0.25625332362122005,
+          "session_026_20260122-134906": 0.181515170675185,
+          "session_027_20260122-135506": 0.18571469452350386,
+          "session_040_20260209-153550": 0.1654833833788332,
+          "session_046_20260210-100504": 0.20560901091925593,
+          "session_076_20260213-134648": 0.1508950996528851,
+          "session_087_20260219-90551": 0.18959949224221487,
+          "session_092_20260219-103747": 0.2280730154339431,
+          "session_097_20260219-110038": 0.157484923477894,
+          "session_108_20260220-134317": 0.2086584743940168,
+          "session_112_20260303-142827": 0.30440254385272664
+        },
+        "session_mean_d3": 0.2030626483792435,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5774947410652792,
+          0.04035005023236211,
+          0.23493601346114143,
+          0.0497645149608744,
+          0.005007566166277848
+        ],
+        "step": 1000,
+        "time_input": "nominal"
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/STATUS-A2-S_gpu1.log",
+      "sha256": "225a702de36538994a92907a7195c741093ef6b663b205a18994689dd1276292"
+    },
+    {
+      "bytes": 32763,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "base_official_d3": 0.1902864273369277,
+        "final_minus_base_d3": -0.0007503353477291697,
+        "history_position_mae_by_offset": [
+          0.07282942642255134,
+          0.12978994022149154,
+          0.29142506877988206,
+          0.5682350792848373
+        ],
+        "kind": "eval",
+        "lane_iou": 0.47742101793949615,
+        "n": 1998,
+        "n_sessions": 11,
+        "occ_iou": 0.4561390554390525,
+        "official_d3": 0.18953609198919852,
+        "progress_coefficient_abs_mean": [
+          0.0031381044890357508
+        ],
+        "progress_coefficient_abs_p99": [
+          0.017661274112761017
+        ],
+        "progress_coefficient_count": 1,
+        "progress_coefficient_mean": [
+          -0.0031096084192748304
+        ],
+        "proxy_d3": 0.18953609198919852,
+        "proxy_is_not_official_sample_weight": true,
+        "selection_definition": "official_d3",
+        "selection_metric": 0.18953609198919852,
+        "session_d3": {
+          "session_019_20260113-102709": 0.25613719656097667,
+          "session_026_20260122-134906": 0.18190784169429983,
+          "session_027_20260122-135506": 0.1854085000971007,
+          "session_040_20260209-153550": 0.165967215610349,
+          "session_046_20260210-100504": 0.20579691817035414,
+          "session_076_20260213-134648": 0.15079226612435354,
+          "session_087_20260219-90551": 0.18915139076610407,
+          "session_092_20260219-103747": 0.23076855392988632,
+          "session_097_20260219-110038": 0.15728096123554824,
+          "session_108_20260220-134317": 0.2079041169749366,
+          "session_112_20260303-142827": 0.30364336018209104
+        },
+        "session_mean_d3": 0.20315984739509088,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5774947410652792,
+          0.04035005023236211,
+          0.23493601346114143,
+          0.0497645149608744,
+          0.005007566166277848
+        ],
+        "step": 1000,
+        "time_input": "nominal"
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/STATUS-A2-S_gpu2_s2.log",
+      "sha256": "4fb577cdf0ae0dd8ff891812f7f8464a350b3b2283adc37799a48427ecd452f8"
+    },
+    {
+      "bytes": 381084,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "history_position_mae_by_offset": [
+          0.04318845051472323,
+          0.07217834954980544,
+          0.15122006243327488,
+          0.2878566515449951
+        ],
+        "kind": "eval",
+        "lane_iou": 0.5066120638170805,
+        "n": 1998,
+        "n_sessions": 11,
+        "occ_iou": 0.4676997157586818,
+        "official_d3": 0.09724460368779292,
+        "proxy_d3": 0.09724460368779292,
+        "proxy_is_not_official_sample_weight": true,
+        "selection_definition": "official_d3",
+        "selection_metric": 0.09724460368779292,
+        "session_d3": {
+          "session_019_20260113-102709": 0.17994004325872218,
+          "session_026_20260122-134906": 0.09703839133079681,
+          "session_027_20260122-135506": 0.08641609435447703,
+          "session_040_20260209-153550": 0.09162551415997937,
+          "session_046_20260210-100504": 0.11246774520518052,
+          "session_076_20260213-134648": 0.07431807994187155,
+          "session_087_20260219-90551": 0.08195273885158477,
+          "session_092_20260219-103747": 0.12471163591921881,
+          "session_097_20260219-110038": 0.07713978842222764,
+          "session_108_20260220-134317": 0.09807822237619096,
+          "session_112_20260303-142827": 0.1490909663822364
+        },
+        "session_mean_d3": 0.10661629274568055,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.22990816842309675,
+          0.02858211644718916,
+          0.16711050034635835,
+          0.038415938087501794,
+          0.004138263619251501
+        ],
+        "step": 24931,
+        "time_input": "nominal"
+      },
+      "path": "reports/md_progress_residual_20260917/runtime/full_gpu0.log",
+      "sha256": "923f8fd56f14c208412f635f709b8f2c23200d6b8efca7ef555b5ed46dc449d4"
+    },
+    {
+      "bytes": 11408,
+      "diagnostic_lines": [],
+      "last_structured_event": null,
+      "path": "reports/md_progress_residual_20260917/runtime/raft_ground_vo_probe_gpu1.log",
+      "sha256": "4eb9821d40595076cc0c95f93971d9fa5751d65cca73a846210b2407f09c1f4a"
+    },
+    {
+      "bytes": 2298,
+      "diagnostic_lines": [],
+      "last_structured_event": null,
+      "path": "reports/md_progress_residual_20260917/runtime/vo_counterfactual_gpu1.log",
+      "sha256": "5906059ad9223098e67167fd8ad62b3c4a9a8e7cd98c2ee685906b3808b03698"
+    },
+    {
+      "bytes": 318756,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "history_position_mae_by_offset": [
+          0.07248422485688613,
+          0.13017262040031002,
+          0.2927232866687747,
+          0.5717304615022799
+        ],
+        "kind": "eval",
+        "lane_iou": 0.47822203808851094,
+        "n": 1998,
+        "n_sessions": 11,
+        "occ_iou": 0.4576766495432945,
+        "official_d3": 0.1642809814144927,
+        "proxy_d3": 0.1642809814144927,
+        "proxy_is_not_official_sample_weight": true,
+        "selection_definition": "official_d3",
+        "selection_metric": 0.1642809814144927,
+        "session_d3": {
+          "session_019_20260113-102709": 0.20624456088989973,
+          "session_026_20260122-134906": 0.16271048439321695,
+          "session_027_20260122-135506": 0.15547476200110935,
+          "session_040_20260209-153550": 0.14638462324445653,
+          "session_046_20260210-100504": 0.18502129098503953,
+          "session_076_20260213-134648": 0.12814395000905165,
+          "session_087_20260219-90551": 0.17091271232951571,
+          "session_092_20260219-103747": 0.2098198157424728,
+          "session_097_20260219-110038": 0.12962186182446686,
+          "session_108_20260220-134317": 0.17072784421206624,
+          "session_112_20260303-142827": 0.2645950779594757
+        },
+        "session_mean_d3": 0.17542336214461554,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5759463893381661,
+          0.039565964806126896,
+          0.2354800814987152,
+          0.05002326175949916,
+          0.0049847596613411165
+        ],
+        "step": 20554,
+        "time_input": "nominal"
+      },
+      "path": "reports/md_shared_dynamics_20260917/runtime/A2-DIRECT_gpu1_s1.log",
+      "sha256": "3cccb9d8e53f0e1679e421f3dc23c085c67f2facd52dca12f6190c383fdbb331"
+    },
+    {
+      "bytes": 318569,
+      "diagnostic_lines": [],
+      "last_structured_event": {
+        "history_position_mae_by_offset": [
+          0.02072610512645137,
+          0.02939649745934406,
+          0.05926818223492997,
+          0.11338166919115276
+        ],
+        "kind": "eval",
+        "lane_iou": 0.48247648506247287,
+        "n": 1998,
+        "n_sessions": 11,
+        "occ_iou": 0.4613308629251103,
+        "official_d3": 0.14928921792950775,
+        "proxy_d3": 0.14928921792950775,
+        "proxy_is_not_official_sample_weight": true,
+        "selection_definition": "official_d3",
+        "selection_metric": 0.14928921792950775,
+        "session_d3": {
+          "session_019_20260113-102709": 0.1878568435570708,
+          "session_026_20260122-134906": 0.15356054962440222,
+          "session_027_20260122-135506": 0.1403650224378835,
+          "session_040_20260209-153550": 0.13206586830266234,
+          "session_046_20260210-100504": 0.16764189256355166,
+          "session_076_20260213-134648": 0.11527002283751413,
+          "session_087_20260219-90551": 0.16250512635128367,
+          "session_092_20260219-103747": 0.2008132403888912,
+          "session_097_20260219-110038": 0.11773180451106142,
+          "session_108_20260220-134317": 0.14472269553139253,
+          "session_112_20260303-142827": 0.24553286656737328
+        },
+        "session_mean_d3": 0.16073326660664422,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.0802015008705678,
+          0.030119104651390814,
+          0.017168807123171946,
+          0.03969374849269091,
+          0.0042274814318357225
+        ],
+        "step": 20554,
+        "time_input": "nominal"
+      },
+      "path": "reports/md_shared_dynamics_20260917/runtime/A3-DIRECT_gpu3_s1.log",
+      "sha256": "c6a532f7150b23649deaf0570f0874a476a451002557fec0c0dd3bcf59a42dd3"
+    },
+    {
+      "bytes": 12064,
+      "diagnostic_lines": [
+        "Traceback (most recent call last):",
+        "  File \"/usr/local/lib/python3.12/dist-packages/torch/utils/data/_utils/signal_handling.py\", line 73, in handler",
+        "RuntimeError: DataLoader worker (pid 2941717) is killed by signal: Terminated. "
+      ],
+      "last_structured_event": {
+        "cuda_memory": {
+          "allocated_bytes": 460182016,
+          "device_free_bytes": 150747414528,
+          "device_total_bytes": 191503138816,
+          "peak_allocated_bytes": 35293076480,
+          "peak_reserved_bytes": 39766196224,
+          "reserved_bytes": 39766196224
+        },
+        "elapsed_seconds": 662.1205632667989,
+        "epoch": 0,
+        "grad_norm": 9.460254669189453,
+        "history": -2.8531243801116943,
+        "kind": "train",
+        "lane_bce": 0.42964333295822144,
+        "lr": 4.9952606504253e-05,
+        "motion": -5.123981475830078,
+        "occ_bce": 0.19728486239910126,
+        "plan_d3": 0.7571753263473511,
+        "plan_interval_length": 0.8393434286117554,
+        "sample_order_sha256": "07809c5ff803379a724d4311b251e8d4953217dca26c487d7f9038d61db82da2",
+        "state": -2.2922215461730957,
+        "step": 600,
+        "stop_bce": 0.10682152211666107,
+        "total": 0.06760042160749435
+      },
+      "path": "reports/md_shared_dynamics_20260917/runtime/A3-FP-VA_gpu3_s1.log",
+      "sha256": "2c3557804800ba0499f31585e52a306184862945e8bd81677ede11d86d1dbc18"
+    }
+  ],
+  "schema_version": 1,
+  "source_git": "d23daf3efd0548a5555003e1f24d8feb493666b9",
+  "storage_policy": "Text protocols, metrics and summaries are committed; original prediction arrays and checkpoints stay on the training server and are referenced by SHA256."
+}

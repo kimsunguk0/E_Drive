@@ -1,0 +1,225 @@
+{
+ "architecture": {
+  "base_plan_input": "stop-gradient predicted XY plus predicted interval lengths",
+  "coefficient_cap_abs": 1.0,
+  "coefficient_count": 2,
+  "coefficient_semantics": [
+   "delta_v",
+   "delta_a"
+  ],
+  "final_inside_neural_forward": true,
+  "front_history_seconds": [
+   0.1,
+   0.2,
+   0.5,
+   1.0
+  ],
+  "geometry": "detached nearest-valid predicted tangent; all-zero fallback ego +x; nonnegative corrected interval lengths; direct base-plan gradient retained",
+  "goal_dependency": "indirect through detached goal-conditioned base plan",
+  "new_module_seed": 20260917,
+  "raw_goal_pose_provided_status_to_residual": false,
+  "registered_base": "MR-NATIVE-s1 step20554",
+  "side_absolute_auxiliary": true,
+  "side_absolute_auxiliary_lambda": 0.5,
+  "side_calibration": "current fixed lidar2img only",
+  "side_cameras": [
+   "camera_front_right",
+   "camera_front_left"
+  ],
+  "side_enabled": true,
+  "side_history_seconds": [
+   0.1,
+   0.2,
+   0.5
+  ],
+  "side_motion_dynamic_pose_input": false,
+  "zero_initialised": [
+   "progress_refiner.output",
+   "side_state_delta",
+   "side_history_delta"
+  ]
+ },
+ "arm": "SIDE-VA-AUX",
+ "checkpoint_selection": "report every fixed endpoint; primary comparison at common terminal",
+ "comparison_contract": {
+  "front_vs_side_scalar": [
+   "FRONT-S",
+   "SIDE-S"
+  ],
+  "same_final_prefix_loss": true,
+  "same_initializer": true,
+  "same_rows": true,
+  "same_sample_seed": true,
+  "same_schedule": true,
+  "side_aux_scalar_vs_two_coefficient": [
+   "SIDE-S-AUX",
+   "SIDE-VA-AUX"
+  ],
+  "side_scalar_vs_two_coefficient": [
+   "SIDE-S",
+   "SIDE-VA"
+  ]
+ },
+ "expected_initial_model_state_sha256": "565a781aadad12ab79d8cd80af5c08c583d1f8361e8875ee29ff0f53cf7e4457",
+ "expected_optimizer_groups": [
+  {
+   "base_lr": 0.0,
+   "name": "backbone"
+  },
+  {
+   "base_lr": 0.0,
+   "name": "head"
+  }
+ ],
+ "initial_load": {
+  "base_frozen_by_zero_lr": true,
+  "measured_model_state_sha256": "565a781aadad12ab79d8cd80af5c08c583d1f8361e8875ee29ff0f53cf7e4457",
+  "missing_new_keys": [
+   "progress_refiner.attention.in_proj_bias",
+   "progress_refiner.attention.in_proj_weight",
+   "progress_refiner.attention.out_proj.bias",
+   "progress_refiner.attention.out_proj.weight",
+   "progress_refiner.front_type",
+   "progress_refiner.memory_norm.bias",
+   "progress_refiner.memory_norm.weight",
+   "progress_refiner.output.bias",
+   "progress_refiner.output.weight",
+   "progress_refiner.plan_encoder.0.bias",
+   "progress_refiner.plan_encoder.0.weight",
+   "progress_refiner.plan_encoder.2.bias",
+   "progress_refiner.plan_encoder.2.weight",
+   "progress_refiner.query",
+   "progress_refiner.refine.0.bias",
+   "progress_refiner.refine.0.weight",
+   "progress_refiner.refine.1.bias",
+   "progress_refiner.refine.1.weight",
+   "progress_refiner.refine.3.bias",
+   "progress_refiner.refine.3.weight",
+   "progress_refiner.side_type",
+   "progress_refiner.visual_camera",
+   "progress_refiner.visual_type",
+   "side_calibration.0.bias",
+   "side_calibration.0.weight",
+   "side_calibration.2.bias",
+   "side_calibration.2.weight",
+   "side_history_aux.0.bias",
+   "side_history_aux.0.weight",
+   "side_history_aux.1.bias",
+   "side_history_aux.1.weight",
+   "side_history_aux.3.bias",
+   "side_history_aux.3.weight",
+   "side_history_delta.bias",
+   "side_history_delta.weight",
+   "side_motion_encoder.correlation_fuse.0.bias",
+   "side_motion_encoder.correlation_fuse.0.weight",
+   "side_motion_encoder.correlation_fuse.1.bias",
+   "side_motion_encoder.correlation_fuse.1.weight",
+   "side_motion_encoder.correlation_fuse.3.bias",
+   "side_motion_encoder.correlation_fuse.3.weight",
+   "side_motion_encoder.correlation_fuse.4.bias",
+   "side_motion_encoder.correlation_fuse.4.weight",
+   "side_motion_encoder.history_head.0.bias",
+   "side_motion_encoder.history_head.0.weight",
+   "side_motion_encoder.history_head.2.bias",
+   "side_motion_encoder.history_head.2.weight",
+   "side_motion_encoder.history_scale",
+   "side_motion_encoder.history_uncertainty_head.0.bias",
+   "side_motion_encoder.history_uncertainty_head.0.weight",
+   "side_motion_encoder.history_uncertainty_head.2.bias",
+   "side_motion_encoder.history_uncertainty_head.2.weight",
+   "side_motion_encoder.position.weight",
+   "side_motion_encoder.positions",
+   "side_motion_encoder.projections.0.weight",
+   "side_motion_encoder.projections.1.weight",
+   "side_motion_encoder.state_head.0.bias",
+   "side_motion_encoder.state_head.0.weight",
+   "side_motion_encoder.state_head.2.bias",
+   "side_motion_encoder.state_head.2.weight",
+   "side_motion_encoder.state_scale",
+   "side_motion_encoder.state_uncertainty_head.0.bias",
+   "side_motion_encoder.state_uncertainty_head.0.weight",
+   "side_motion_encoder.state_uncertainty_head.2.bias",
+   "side_motion_encoder.state_uncertainty_head.2.weight",
+   "side_motion_encoder.time_attention.bias",
+   "side_motion_encoder.time_attention.weight",
+   "side_motion_encoder.time_embed.0.bias",
+   "side_motion_encoder.time_embed.0.weight",
+   "side_motion_encoder.time_embed.2.bias",
+   "side_motion_encoder.time_embed.2.weight",
+   "side_motion_encoder.token_refine.0.bias",
+   "side_motion_encoder.token_refine.0.weight",
+   "side_motion_encoder.token_refine.2.bias",
+   "side_motion_encoder.token_refine.2.weight",
+   "side_state_aux.0.bias",
+   "side_state_aux.0.weight",
+   "side_state_aux.1.bias",
+   "side_state_aux.1.weight",
+   "side_state_aux.3.bias",
+   "side_state_aux.3.weight",
+   "side_state_delta.bias",
+   "side_state_delta.weight"
+  ],
+  "strict_existing_keys": true
+ },
+ "initializer": {
+  "checkpoint_sha256": "6ce9030e6a24bcfde5cb0f1c478fbc949c2baf9fa705b1d00b96ca979978d25d",
+  "model_state_sha256": "cb04d745fc5af990447d03e2ea7bd098ce344c8356ad53268102e1da264616e2",
+  "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/last.pth",
+  "weights_only": true
+ },
+ "name": "md_progress_residual_20260917",
+ "optimizer_groups": [
+  {
+   "base_lr": 0.0,
+   "name": "base_backbone"
+  },
+  {
+   "base_lr": 0.0,
+   "name": "base_nonbackbone"
+  },
+  {
+   "base_lr": 5e-05,
+   "name": "new_progress_and_side"
+  }
+ ],
+ "provided_status_used": false,
+ "question": "does short side temporal observation improve a base-plan-conditioned neural progress correction under the official PREFIX loss?",
+ "recipe": {
+  "batch": 16,
+  "bn_policy": "fixed",
+  "cuda_memory_limit_mib": 170000,
+  "eval_batch": 8,
+  "eval_every": 1000,
+  "grad_clip": 5.0,
+  "length_auxiliary_lambda": 0.25,
+  "microbatch": 8,
+  "precision": "bf16",
+  "steps": 1000,
+  "terminal_fixed_before_results": true,
+  "time_input": "nominal",
+  "warmup": 200,
+  "weight_decay": 0.01,
+  "workers": 8
+ },
+ "schema_version": 1,
+ "seed": 1,
+ "split_manifest": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+  "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+ },
+ "stage": "warmup",
+ "supervision": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+  "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+ },
+ "train_data": {
+  "rows": 83700,
+  "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+  "scenes": 310
+ },
+ "tune_data": {
+  "rows": 1998,
+  "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "scenes": 37
+ }
+}

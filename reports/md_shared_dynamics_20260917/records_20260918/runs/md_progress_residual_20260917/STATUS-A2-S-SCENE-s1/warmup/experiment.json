@@ -1,0 +1,185 @@
+{
+ "architecture": {
+  "base_plan_input": "stop-gradient predicted XY plus predicted interval lengths",
+  "coefficient_cap_abs": 1.0,
+  "coefficient_count": 1,
+  "coefficient_semantics": [
+   "delta_v"
+  ],
+  "final_inside_neural_forward": true,
+  "front_history_seconds": [
+   0.1,
+   0.2,
+   0.5,
+   1.0
+  ],
+  "geometry": "detached nearest-valid predicted tangent; all-zero fallback ego +x; nonnegative corrected interval lengths; direct base-plan gradient retained",
+  "goal_dependency": "indirect through detached goal-conditioned base plan",
+  "new_module_seed": 20260917,
+  "progress_plan_denoising": false,
+  "progress_plan_denoising_lambda": 0.0,
+  "progress_plan_noise_cap": [],
+  "provided_status_direct_planner_or_residual_input": false,
+  "provided_status_fields": [
+   "vx",
+   "vy",
+   "ax",
+   "ay",
+   "yaw_rate"
+  ],
+  "provided_status_indirect_dependencies": [
+   "shared scene raster -> planner base plan",
+   "shared scene raster -> base plan -> detached progress plan encoder"
+  ],
+  "provided_status_route": "zero-initialized delta to pre-attention query context; image values remain the scene raster source shared by occupancy, lane and planning",
+  "provided_status_source": "causal quadratic fit from pose samples t-1.0s through t; no future pose; cached under state_target by the frozen supervision generator",
+  "raw_goal_pose_provided_status_to_residual": false,
+  "registered_base": "MR-NATIVE-s1 step20554",
+  "shared_scene_features_to_progress_refiner": true,
+  "shared_status_query": true,
+  "side_absolute_auxiliary": false,
+  "side_absolute_auxiliary_lambda": 0.0,
+  "side_calibration": "current fixed lidar2img only",
+  "side_cameras": [],
+  "side_enabled": false,
+  "side_history_seconds": [],
+  "side_motion_dynamic_pose_input": false,
+  "zero_initialised": [
+   "progress_refiner.output",
+   "shared_status_query_fusion.status_mlp[-1]"
+  ]
+ },
+ "arm": "STATUS-A2-S-SCENE",
+ "checkpoint_selection": "report every fixed endpoint; primary comparison at common terminal",
+ "comparison_contract": {
+  "front_vs_side_scalar": [
+   "FRONT-S",
+   "SIDE-S"
+  ],
+  "same_final_prefix_loss": true,
+  "same_initializer": true,
+  "same_rows": true,
+  "same_sample_seed": true,
+  "same_schedule": true,
+  "side_aux_scalar_vs_two_coefficient": [
+   "SIDE-S-AUX",
+   "SIDE-VA-AUX"
+  ],
+  "side_denoise_scalar_vs_two_coefficient": [
+   "SIDE-S-AUX-DN",
+   "SIDE-VA-AUX-DN"
+  ],
+  "side_scalar_vs_two_coefficient": [
+   "SIDE-S",
+   "SIDE-VA"
+  ]
+ },
+ "expected_initial_model_state_sha256": "101ef1abf3ddfd9ed9e542c87aca91ca0cac404a3349c1bf29867a6d61cae1cd",
+ "expected_optimizer_groups": [
+  {
+   "base_lr": 0.0,
+   "name": "backbone"
+  },
+  {
+   "base_lr": 0.0,
+   "name": "head"
+  }
+ ],
+ "initial_load": {
+  "base_frozen_by_zero_lr": true,
+  "measured_model_state_sha256": "101ef1abf3ddfd9ed9e542c87aca91ca0cac404a3349c1bf29867a6d61cae1cd",
+  "missing_new_keys": [
+   "progress_refiner.attention.in_proj_bias",
+   "progress_refiner.attention.in_proj_weight",
+   "progress_refiner.attention.out_proj.bias",
+   "progress_refiner.attention.out_proj.weight",
+   "progress_refiner.front_type",
+   "progress_refiner.memory_norm.bias",
+   "progress_refiner.memory_norm.weight",
+   "progress_refiner.output.bias",
+   "progress_refiner.output.weight",
+   "progress_refiner.plan_encoder.0.bias",
+   "progress_refiner.plan_encoder.0.weight",
+   "progress_refiner.plan_encoder.2.bias",
+   "progress_refiner.plan_encoder.2.weight",
+   "progress_refiner.query",
+   "progress_refiner.refine.0.bias",
+   "progress_refiner.refine.0.weight",
+   "progress_refiner.refine.1.bias",
+   "progress_refiner.refine.1.weight",
+   "progress_refiner.refine.3.bias",
+   "progress_refiner.refine.3.weight",
+   "progress_refiner.scene_type",
+   "progress_refiner.side_type",
+   "progress_refiner.visual_camera",
+   "progress_refiner.visual_type",
+   "shared_status_query_fusion.status_mlp.0.bias",
+   "shared_status_query_fusion.status_mlp.0.weight",
+   "shared_status_query_fusion.status_mlp.2.bias",
+   "shared_status_query_fusion.status_mlp.2.weight",
+   "shared_status_query_fusion.status_scale"
+  ],
+  "strict_existing_keys": true
+ },
+ "initializer": {
+  "checkpoint_sha256": "6ce9030e6a24bcfde5cb0f1c478fbc949c2baf9fa705b1d00b96ca979978d25d",
+  "model_state_sha256": "cb04d745fc5af990447d03e2ea7bd098ce344c8356ad53268102e1da264616e2",
+  "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/last.pth",
+  "weights_only": true
+ },
+ "name": "md_progress_residual_20260917",
+ "optimizer_groups": [
+  {
+   "base_lr": 0.0,
+   "name": "base_backbone"
+  },
+  {
+   "base_lr": 0.0,
+   "name": "base_nonbackbone"
+  },
+  {
+   "base_lr": 5e-05,
+   "name": "new_progress_and_side"
+  }
+ ],
+ "provided_status_used": true,
+ "question": "does causal status conditioning of the shared image-attention query improve a base-plan-conditioned scalar progress correction?",
+ "recipe": {
+  "batch": 16,
+  "bn_policy": "fixed",
+  "cuda_memory_limit_mib": 170000,
+  "eval_batch": 8,
+  "eval_every": 1000,
+  "grad_clip": 5.0,
+  "length_auxiliary_lambda": 0.25,
+  "microbatch": 8,
+  "precision": "bf16",
+  "steps": 1000,
+  "terminal_fixed_before_results": true,
+  "time_input": "nominal",
+  "warmup": 200,
+  "weight_decay": 0.01,
+  "workers": 8
+ },
+ "schema_version": 1,
+ "seed": 1,
+ "split_manifest": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+  "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+ },
+ "stage": "warmup",
+ "supervision": {
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+  "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+ },
+ "train_data": {
+  "rows": 83700,
+  "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+  "scenes": 310
+ },
+ "tune_data": {
+  "rows": 1998,
+  "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "scenes": 37
+ }
+}
