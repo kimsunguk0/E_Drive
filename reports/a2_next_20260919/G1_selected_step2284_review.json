@@ -1,0 +1,26 @@
+{
+  "evaluated_at_utc": "2026-09-18T21:40:17.056589+00:00",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/ckpt_step2284.pth",
+  "selected_on_reused_V0": true,
+  "PREFIX": 0.1638824849727284,
+  "parent_PREFIX": 0.16425176679687356,
+  "delta": -0.00036928182414516325,
+  "session_cluster_ci95": [
+    -0.002074330826709039,
+    0.0005337262611871875
+  ],
+  "sessions_improved": 6,
+  "nonstop_PREFIX": 0.16865101384321368,
+  "nonstop_delta": 0.00020590062443270036,
+  "warning": "Best of three scheduled G1 V0 evaluations, selected on repeatedly used DEV; not an independent validation or terminal primary comparison.",
+  "checkpoint_sha256": "c451778d7ab5d12e6e3ccdaaee6db4c23c4e21b534d5497845f9b0cb4e9a65a7",
+  "prediction_file": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/predictions_step2284.json",
+  "prediction_sha256": "8868fdbecd43714746daeb9fe343422a53f9a176dc009c5d1bee1a2e6d3e7e14",
+  "bootstrap": {
+    "unit": "session",
+    "resamples": 20000,
+    "seed": 0,
+    "statistic": "row-weighted paired mean, 11 sessions with replacement",
+    "post_selection_correction": false
+  }
+}

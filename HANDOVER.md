@@ -1,6 +1,29 @@
-# MotionDrive V2 — 인수인계 (2026-09-18)
+# MotionDrive V2 — 인수인계 (2026-09-19)
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
+
+## 0O. 2026-09-19 06:40 KST G/S 전부 완료 — 현재 우선 판정
+
+G0/G1 각3,426 및 learned sampling20,554 완료, nonfinite0. 자동 후처리/미러 push 완료.
+고정 terminal: 부모 QREFINE0.164251767, G0=0.165084065, G1=0.164740802,
+sampling=0.164667223. S control BASE는0.165510646.
+G1−G0=-0.000343264, S−BASE=-0.000843423이지만 둘 다 session CI가0을 포함한다.
+어느 terminal도 기존 QREFINE을 넘지 못했다. 이번 두 레시피의 추가 FULL/스윕은 진행하지 않는다.
+
+G1 step2,284의0.163882485는 개발 최저점으로 보존한다. 부모 대비 -0.000369282,
+session CI[-0.002074331,+0.000533726]. 같은 V0로 세 checkpoint 중 고른 값이며 독립 검증이 아니다.
+해당 checkpoint의 일반 주행0.168651014는 부모0.168445113보다 약간 높다.
+작은 best-on-V0 이득을 일반 주행 문제 해결로 설명하거나 자동 FULL 승격하지 않는다.
+
+G1 train probe0.088703→0.087293, V0 terminal0.164252→0.164741:
+train 적합도 개선이 DEV로 연결되지 않았다. Gradient 진단은 개선의 충분조건이 아니었다.
+S offset 평균0.031–0.078 cell, saturation0, 신규 invalid<0.059%; 분기는 학습됐지만 큰 이득은 없었다.
+G0/G1 69개 로그 row SHA, S/BASE412개 로그 row SHA 일치. row/GT/bucket/FULL 격리 확인.
+
+상세: reports/a2_next_20260919/DECISION_KO.md, terminal_results.json, RESULTS_KO.md,
+G1_selected_step2284_review.json. 모든 checkpoint/예측은 기존 work_dirs에 보존한다.
+자동 기록 commit: work e8639b8 / mirror43b3ba4. 아래0N은 시작 당시 snapshot이다.
+06:39 확인에서 GPU0–3 유휴. 새 학습/추가 FULL/공식 제출 없음.
 
 ## 0N. 2026-09-19 02:14 KST G0/G1·learned sampling 본 학습 시작
 
