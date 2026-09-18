@@ -1,0 +1,37 @@
+{
+  "BASE": {
+    "status": "completed",
+    "step": 20554,
+    "PREFIX": 0.1655106489655904,
+    "run": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1",
+    "evaluation_role": "DEV"
+  },
+  "MH4": {
+    "status": "completed",
+    "step": 20554,
+    "PREFIX": 0.16449543014956494,
+    "run": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1",
+    "evaluation_role": "DEV"
+  },
+  "QREFINE": {
+    "status": "completed",
+    "step": 20554,
+    "PREFIX": 0.16425176970362365,
+    "run": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1",
+    "evaluation_role": "DEV"
+  },
+  "SIDE": {
+    "status": "completed",
+    "step": 20554,
+    "PREFIX": 0.17240601812931686,
+    "run": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1",
+    "evaluation_role": "DEV"
+  },
+  "A2_FULL": {
+    "status": "completed",
+    "step": 24931,
+    "PREFIX": 0.08893408501920225,
+    "run": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1",
+    "evaluation_role": "in-fit"
+  }
+}

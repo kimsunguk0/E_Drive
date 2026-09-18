@@ -1,0 +1,186 @@
+{
+  "A2-G0": {
+    "status": "completed",
+    "step": 2,
+    "initial_model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+    "train": [
+      {
+        "kind": "train",
+        "step": 1,
+        "epoch": 0,
+        "elapsed_seconds": 8.12208827957511,
+        "grad_norm": 14.704898834228516,
+        "lr": 1.0000000000000001e-07,
+        "sample_order_sha256": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "cuda_memory": {
+          "allocated_bytes": 455712768,
+          "reserved_bytes": 37880856576,
+          "peak_allocated_bytes": 34899662336,
+          "peak_reserved_bytes": 37880856576,
+          "device_free_bytes": 152636948480,
+          "device_total_bytes": 191503138816
+        },
+        "total": -0.9197250604629517,
+        "plan_d3": 0.10418394207954407,
+        "occ_bce": 0.25184959173202515,
+        "lane_bce": 0.3529026210308075,
+        "history": -2.9725449085235596,
+        "state": -2.7957849502563477,
+        "stop_bce": 0.003300668206065893,
+        "motion": -5.767669677734375,
+        "plan_interval_length": 0.0346979945898056,
+        "weighted_auxiliary": -1.032583475112915
+      },
+      {
+        "kind": "train",
+        "step": 2,
+        "epoch": 0,
+        "elapsed_seconds": 9.036631301045418,
+        "grad_norm": 24.153825759887695,
+        "lr": 2.0000000000000002e-07,
+        "sample_order_sha256": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16",
+        "cuda_memory": {
+          "allocated_bytes": 455712768,
+          "reserved_bytes": 39661338624,
+          "peak_allocated_bytes": 35121289216,
+          "peak_reserved_bytes": 39661338624,
+          "device_free_bytes": 150854369280,
+          "device_total_bytes": 191503138816
+        },
+        "total": -0.9386504888534546,
+        "plan_d3": 0.09645287692546844,
+        "occ_bce": 0.23882295191287994,
+        "lane_bce": 0.2973930835723877,
+        "history": -2.979656934738159,
+        "state": -2.8301639556884766,
+        "stop_bce": 0.2305222749710083,
+        "motion": -5.763716697692871,
+        "plan_interval_length": 0.04158676788210869,
+        "weighted_auxiliary": -1.0455000400543213
+      }
+    ]
+  },
+  "A2-G1": {
+    "status": "completed",
+    "step": 2,
+    "initial_model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+    "train": [
+      {
+        "kind": "train",
+        "step": 1,
+        "epoch": 0,
+        "elapsed_seconds": 8.09389765560627,
+        "grad_norm": 14.222029685974121,
+        "lr": 1.0000000000000001e-07,
+        "sample_order_sha256": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "cuda_memory": {
+          "allocated_bytes": 455712768,
+          "reserved_bytes": 37880856576,
+          "peak_allocated_bytes": 34899662336,
+          "peak_reserved_bytes": 37880856576,
+          "device_free_bytes": 152636882944,
+          "device_total_bytes": 191503138816
+        },
+        "total": -0.145287424325943,
+        "plan_d3": 0.10418394207954407,
+        "occ_bce": 0.25184959173202515,
+        "lane_bce": 0.3529026210308075,
+        "history": -2.9725449085235596,
+        "state": -2.7957849502563477,
+        "stop_bce": 0.003300668206065893,
+        "motion": -5.767669677734375,
+        "plan_interval_length": 0.0346979945898056,
+        "weighted_auxiliary": -0.25814586877822876
+      },
+      {
+        "kind": "train",
+        "step": 2,
+        "epoch": 0,
+        "elapsed_seconds": 8.90203614346683,
+        "grad_norm": 19.46957778930664,
+        "lr": 2.0000000000000002e-07,
+        "sample_order_sha256": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16",
+        "cuda_memory": {
+          "allocated_bytes": 455712768,
+          "reserved_bytes": 39661338624,
+          "peak_allocated_bytes": 35121289216,
+          "peak_reserved_bytes": 39661338624,
+          "device_free_bytes": 150854303744,
+          "device_total_bytes": 191503138816
+        },
+        "total": -0.15496626496315002,
+        "plan_d3": 0.09602570533752441,
+        "occ_bce": 0.2388450801372528,
+        "lane_bce": 0.2974298596382141,
+        "history": -2.9796953201293945,
+        "state": -2.8301198482513428,
+        "stop_bce": 0.23049497604370117,
+        "motion": -5.763715744018555,
+        "plan_interval_length": 0.04152034968137741,
+        "weighted_auxiliary": -0.26137205958366394
+      }
+    ]
+  },
+  "A2-LEARNED-SAMPLE": {
+    "status": "completed",
+    "step": 2,
+    "initial_model_state_sha256": "5396d692aa9dd4a9192f919e13aa885f8d2a759243b070046332dd1945af1a55",
+    "train": [
+      {
+        "kind": "train",
+        "step": 1,
+        "epoch": 0,
+        "elapsed_seconds": 8.673331363126636,
+        "grad_norm": 194.06858825683594,
+        "lr": 2.5000000000000004e-07,
+        "sample_order_sha256": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "cuda_memory": {
+          "allocated_bytes": 455604224,
+          "reserved_bytes": 39407583232,
+          "peak_allocated_bytes": 35837091840,
+          "peak_reserved_bytes": 39407583232,
+          "device_free_bytes": 151110221824,
+          "device_total_bytes": 191503138816
+        },
+        "total": 2.8088536262512207,
+        "plan_d3": 0.6594299077987671,
+        "occ_bce": 0.27513226866722107,
+        "lane_bce": 0.4231741428375244,
+        "history": 4.297224044799805,
+        "state": 5.48404598236084,
+        "stop_bce": 0.40105950832366943,
+        "motion": 9.861481666564941,
+        "plan_interval_length": 0.14986295998096466,
+        "weighted_auxiliary": 2.111957550048828
+      },
+      {
+        "kind": "train",
+        "step": 2,
+        "epoch": 0,
+        "elapsed_seconds": 9.384824376553297,
+        "grad_norm": 258.8702392578125,
+        "lr": 5.000000000000001e-07,
+        "sample_order_sha256": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16",
+        "cuda_memory": {
+          "allocated_bytes": 456783872,
+          "reserved_bytes": 41185968128,
+          "peak_allocated_bytes": 36063225344,
+          "peak_reserved_bytes": 41185968128,
+          "device_free_bytes": 149329739776,
+          "device_total_bytes": 191503138816
+        },
+        "total": 4.21983528137207,
+        "plan_d3": 0.8415781259536743,
+        "occ_bce": 0.2820916771888733,
+        "lane_bce": 0.39431267976760864,
+        "history": 7.025676250457764,
+        "state": 8.815787315368652,
+        "stop_bce": 0.7861241698265076,
+        "motion": 15.998687744140625,
+        "plan_interval_length": 0.17295384407043457,
+        "weighted_auxiliary": 3.3350186347961426
+      }
+    ]
+  },
+  "G_initial_and_sample_order_match": true
+}

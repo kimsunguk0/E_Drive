@@ -1,0 +1,2856 @@
+{
+  "created_at_utc": "2026-09-18T17:03:15.984328+00:00",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+  "unchanged_model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+  "batch_count": 32,
+  "effective_batch": 16,
+  "microbatch": 8,
+  "train_rows": 512,
+  "normalization": "full-effective-batch mask counts, additive microbatch gradients",
+  "augmentation": "same train seed1/epoch0 photometric and flip policy",
+  "optimizer_updates": 0,
+  "decomposition_max_abs": 5.960464477539063e-08,
+  "summary": {
+    "backbone_fpn": {
+      "ratio_median": 1.01826341756899,
+      "ratio_p90": 1.5620018574464305,
+      "cosine_median": 0.010772404649335538,
+      "negative_cosine_batches": 15,
+      "defined_batches": 32
+    },
+    "scene_shared": {
+      "ratio_median": 0.04043519330083262,
+      "ratio_p90": 0.0717537054265525,
+      "cosine_median": -0.003966779025747673,
+      "negative_cosine_batches": 17,
+      "defined_batches": 32
+    },
+    "status_query": {
+      "ratio_median": 0.004736737307175023,
+      "ratio_p90": 0.012744575762115877,
+      "cosine_median": 0.38612969211308074,
+      "negative_cosine_batches": 13,
+      "defined_batches": 32
+    }
+  },
+  "batches": [
+    {
+      "batch": 0,
+      "rows": [
+        65664,
+        70572,
+        95575,
+        88018,
+        63481,
+        70171,
+        13931,
+        69044,
+        74370,
+        28086,
+        95276,
+        88901,
+        63793,
+        62399,
+        5898,
+        73926
+      ],
+      "losses": {
+        "P": 0.10418394580483437,
+        "M": 0.11285844072699547,
+        "A": -1.032583475112915
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 7.078406984376362,
+          "norm_main": 7.300413432465193,
+          "norm_aux": 3.9929528511237473,
+          "cos_main_aux": -0.09125407108712398,
+          "cos_prefix_aux": -0.10223279145369617,
+          "aux_main_norm_ratio": 0.5469488663980243,
+          "dot_main_total": 50.635961256941464,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.4538898316529547,
+          "norm_main": 3.656833355389706,
+          "norm_aux": 0.16909231623653617,
+          "cos_main_aux": 0.05320586400388514,
+          "cos_prefix_aux": 0.05359542962844792,
+          "aux_main_norm_ratio": 0.046240093491631405,
+          "dot_main_total": 13.405329631911687,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.4318485683170874,
+          "norm_main": 1.4801511890119463,
+          "norm_aux": 0.005776627786447553,
+          "cos_main_aux": 0.7027949263206638,
+          "cos_prefix_aux": 0.7052540490309792,
+          "aux_main_norm_ratio": 0.0039027282005587942,
+          "dot_main_total": 2.1968566374836622,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "rows": [
+        3252,
+        29095,
+        9498,
+        101084,
+        68686,
+        34168,
+        108471,
+        55562,
+        52786,
+        537,
+        88725,
+        71788,
+        84806,
+        13710,
+        18087,
+        67063
+      ],
+      "losses": {
+        "P": 0.09581669420003891,
+        "M": 0.10616399720311165,
+        "A": -1.045520007610321
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 8.41701701582944,
+          "norm_main": 8.882628349953723,
+          "norm_aux": 10.231094993379381,
+          "cos_main_aux": 0.7086896837564636,
+          "cos_prefix_aux": 0.7123184792859538,
+          "aux_main_norm_ratio": 1.1518094183725116,
+          "dot_main_total": 143.3061064064608,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 5.287994284898896,
+          "norm_main": 6.176330651481512,
+          "norm_aux": 0.16533637586989103,
+          "cos_main_aux": 0.0448010285898933,
+          "cos_prefix_aux": 0.04143244217725275,
+          "aux_main_norm_ratio": 0.026769353067299256,
+          "dot_main_total": 38.192809878046205,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 2.388129132410045,
+          "norm_main": 2.928597385546223,
+          "norm_aux": 0.00848602160009088,
+          "cos_main_aux": 0.8922992205469149,
+          "cos_prefix_aux": 0.8819655270893151,
+          "aux_main_norm_ratio": 0.002897640229405628,
+          "dot_main_total": 8.598858192378465,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "rows": [
+        51667,
+        54543,
+        77931,
+        44501,
+        78032,
+        88340,
+        102799,
+        32792,
+        106315,
+        83016,
+        6447,
+        45580,
+        45188,
+        73734,
+        66037,
+        47955
+      ],
+      "losses": {
+        "P": 0.09388278052210808,
+        "M": 0.10825463384389877,
+        "A": -1.011143445968628
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 7.65655980917954,
+          "norm_main": 8.216824405675005,
+          "norm_aux": 11.704051412009974,
+          "cos_main_aux": -0.5940454480311016,
+          "cos_prefix_aux": -0.5913199254697736,
+          "aux_main_norm_ratio": 1.4244008188767538,
+          "dot_main_total": 10.386772209634543,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 5.332000117448594,
+          "norm_main": 5.407072807602161,
+          "norm_aux": 0.1783011206195888,
+          "cos_main_aux": -0.035221653794236245,
+          "cos_prefix_aux": -0.032708898305549704,
+          "aux_main_norm_ratio": 0.03297553537080238,
+          "dot_main_total": 29.202479603207614,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.8384727573783097,
+          "norm_main": 1.6668497485976561,
+          "norm_aux": 0.006991236416636406,
+          "cos_main_aux": -0.6041259525032053,
+          "cos_prefix_aux": -0.6083323129145818,
+          "aux_main_norm_ratio": 0.004194281111730815,
+          "dot_main_total": 2.7713479988719136,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 3,
+      "rows": [
+        3078,
+        67313,
+        58598,
+        7317,
+        31193,
+        11246,
+        29225,
+        110774,
+        1999,
+        89505,
+        4914,
+        102525,
+        13839,
+        29519,
+        45763,
+        34194
+      ],
+      "losses": {
+        "P": 0.11637121066451073,
+        "M": 0.12743231654167175,
+        "A": -1.062996506690979
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 4.108053141385535,
+          "norm_main": 4.326546833514885,
+          "norm_aux": 4.020445714086268,
+          "cos_main_aux": -0.2085800197643368,
+          "cos_prefix_aux": -0.22001892376640161,
+          "aux_main_norm_ratio": 0.9292504782203084,
+          "dot_main_total": 15.090831755624864,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.891006992410983,
+          "norm_main": 4.5337645943015055,
+          "norm_aux": 0.22734294298804048,
+          "cos_main_aux": -0.09973525863541388,
+          "cos_prefix_aux": -0.08758234307885816,
+          "aux_main_norm_ratio": 0.05014440830778645,
+          "dot_main_total": 20.452222332030217,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.4102873504432567,
+          "norm_main": 1.755542593887536,
+          "norm_aux": 0.016704678744432523,
+          "cos_main_aux": -0.8200576530815542,
+          "cos_prefix_aux": -0.8114790078532794,
+          "aux_main_norm_ratio": 0.009515393589762519,
+          "dot_main_total": 3.057880972688569,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "rows": [
+        73191,
+        107082,
+        96508,
+        100996,
+        51771,
+        82784,
+        51450,
+        108711,
+        75382,
+        46862,
+        28975,
+        3189,
+        84097,
+        93647,
+        63051,
+        86360
+      ],
+      "losses": {
+        "P": 0.10498536378145218,
+        "M": 0.12107950076460838,
+        "A": -1.0491262674331665
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 5.03532594269229,
+          "norm_main": 5.200087002107169,
+          "norm_aux": 4.659365315375963,
+          "cos_main_aux": -0.06639092486946695,
+          "cos_prefix_aux": -0.051456997797048376,
+          "aux_main_norm_ratio": 0.8960168000050585,
+          "dot_main_total": 25.43231213880814,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 2.9460476264548556,
+          "norm_main": 3.022086263072865,
+          "norm_aux": 0.2681135592907981,
+          "cos_main_aux": -0.03954926255153281,
+          "cos_prefix_aux": -0.03568521600714736,
+          "aux_main_norm_ratio": 0.08871803646603375,
+          "dot_main_total": 9.100960104838371,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.0001372342093258,
+          "norm_main": 1.0732703639466978,
+          "norm_aux": 0.014529604045918713,
+          "cos_main_aux": -0.8944212423501059,
+          "cos_prefix_aux": -0.8596927968742499,
+          "aux_main_norm_ratio": 0.01353769239699262,
+          "dot_main_total": 1.1379614962719982,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 5,
+      "rows": [
+        107212,
+        86337,
+        84825,
+        64438,
+        67927,
+        69551,
+        38654,
+        55032,
+        33444,
+        5203,
+        74347,
+        35088,
+        4191,
+        103983,
+        49743,
+        51982
+      ],
+      "losses": {
+        "P": 0.07967764884233475,
+        "M": 0.09090890735387802,
+        "A": -1.0234202146530151
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 6.55368843721902,
+          "norm_main": 6.987260322781224,
+          "norm_aux": 9.145508130023966,
+          "cos_main_aux": -0.4701580148615905,
+          "cos_prefix_aux": -0.42479992154871854,
+          "aux_main_norm_ratio": 1.3088832686261886,
+          "dot_main_total": 18.77774768370764,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 7.985127840842797,
+          "norm_main": 8.73017456689497,
+          "norm_aux": 0.1518203272812595,
+          "cos_main_aux": 0.07762317182577273,
+          "cos_prefix_aux": 0.07861061070140038,
+          "aux_main_norm_ratio": 0.01739029685121828,
+          "dot_main_total": 76.31883111450738,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 3.5320690502751897,
+          "norm_main": 3.9422701681057144,
+          "norm_aux": 0.006429490684697559,
+          "cos_main_aux": 0.567668196240326,
+          "cos_prefix_aux": 0.5746958435582945,
+          "aux_main_norm_ratio": 0.0016309107216228586,
+          "dot_main_total": 15.555882644511387,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 6,
+      "rows": [
+        102242,
+        75334,
+        105873,
+        9206,
+        33073,
+        54161,
+        74272,
+        14587,
+        16576,
+        55145,
+        52419,
+        67607,
+        86449,
+        107768,
+        103595,
+        37665
+      ],
+      "losses": {
+        "P": 0.11051575094461441,
+        "M": 0.1240442618727684,
+        "A": -1.017710566520691
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 9.079531542324222,
+          "norm_main": 9.525438760334895,
+          "norm_aux": 6.596751867467582,
+          "cos_main_aux": -0.13709858722828416,
+          "cos_prefix_aux": -0.14767413884990171,
+          "aux_main_norm_ratio": 0.6925404732994843,
+          "dot_main_total": 82.1191256930672,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 7.0787907902492355,
+          "norm_main": 7.486399995611698,
+          "norm_aux": 0.1706562498113853,
+          "cos_main_aux": 0.05459283486909671,
+          "cos_prefix_aux": 0.05754733620479546,
+          "aux_main_norm_ratio": 0.022795502499388068,
+          "dot_main_total": 56.11593275186882,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 2.337413440765712,
+          "norm_main": 2.405243558783755,
+          "norm_aux": 0.009719810174543347,
+          "cos_main_aux": 0.8936744229321624,
+          "cos_prefix_aux": 0.901540967613352,
+          "aux_main_norm_ratio": 0.004041091863253261,
+          "dot_main_total": 5.80608935423228,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 7,
+      "rows": [
+        30959,
+        94432,
+        84684,
+        27455,
+        10886,
+        96477,
+        63754,
+        27578,
+        31799,
+        56603,
+        35549,
+        1046,
+        70363,
+        86154,
+        16630,
+        70861
+      ],
+      "losses": {
+        "P": 0.09667723625898361,
+        "M": 0.10894986987113953,
+        "A": -1.0512773394584656
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 7.56093281201212,
+          "norm_main": 8.244276762496346,
+          "norm_aux": 4.938877354165347,
+          "cos_main_aux": -0.08447532804059182,
+          "cos_prefix_aux": -0.09684168204429731,
+          "aux_main_norm_ratio": 0.5990673889834173,
+          "dot_main_total": 64.52847754903065,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 7.534400510032943,
+          "norm_main": 8.377814544221406,
+          "norm_aux": 0.23116495964135447,
+          "cos_main_aux": -0.024894760519318583,
+          "cos_prefix_aux": -0.022753639967244627,
+          "aux_main_norm_ratio": 0.027592513348340994,
+          "dot_main_total": 70.13956392113668,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 3.507108653244156,
+          "norm_main": 3.967132412369449,
+          "norm_aux": 0.011094907982696701,
+          "cos_main_aux": -0.9051716740726352,
+          "cos_prefix_aux": -0.9049023457753997,
+          "aux_main_norm_ratio": 0.0027967072508351303,
+          "dot_main_total": 15.698298474034523,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "rows": [
+        1375,
+        49565,
+        91598,
+        49683,
+        71074,
+        107376,
+        53382,
+        73737,
+        38587,
+        92846,
+        59943,
+        6870,
+        17052,
+        38492,
+        104338,
+        27143
+      ],
+      "losses": {
+        "P": 0.07717066258192062,
+        "M": 0.08552117645740509,
+        "A": -1.0623868107795715
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 5.676626258991317,
+          "norm_main": 6.034487888568096,
+          "norm_aux": 4.752566061457518,
+          "cos_main_aux": -0.17854745282588058,
+          "cos_prefix_aux": -0.1810663396241139,
+          "aux_main_norm_ratio": 0.7875674206689375,
+          "dot_main_total": 31.294427696093734,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 5.133924281901594,
+          "norm_main": 5.646665988023582,
+          "norm_aux": 0.16275872125450605,
+          "cos_main_aux": -0.10660262225369951,
+          "cos_prefix_aux": -0.10678798930213741,
+          "aux_main_norm_ratio": 0.028823862009850182,
+          "dot_main_total": 31.786864265484535,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 2.1723973732754907,
+          "norm_main": 2.3889396781278807,
+          "norm_aux": 0.012646560201714065,
+          "cos_main_aux": -0.9014539124706497,
+          "cos_prefix_aux": -0.9016520306014275,
+          "aux_main_norm_ratio": 0.0052937963722988115,
+          "dot_main_total": 5.679798177808038,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 9,
+      "rows": [
+        79746,
+        101899,
+        107748,
+        26071,
+        108535,
+        69217,
+        50232,
+        18653,
+        71028,
+        30975,
+        5642,
+        58781,
+        31447,
+        96660,
+        57411,
+        48825
+      ],
+      "losses": {
+        "P": 0.08980249613523483,
+        "M": 0.10150599479675293,
+        "A": -1.0331372022628784
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 5.462263756090751,
+          "norm_main": 5.623396043785117,
+          "norm_aux": 5.939448160957514,
+          "cos_main_aux": -0.4036452344145645,
+          "cos_prefix_aux": -0.4351438150927926,
+          "aux_main_norm_ratio": 1.0562030692328155,
+          "dot_main_total": 18.140884996039965,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 2.613958528026747,
+          "norm_main": 3.214156197777083,
+          "norm_aux": 0.16045965721690672,
+          "cos_main_aux": -0.0029903457704103767,
+          "cos_prefix_aux": -0.006225214204229381,
+          "aux_main_norm_ratio": 0.04992279383555813,
+          "dot_main_total": 10.32925781559918,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.098249684126998,
+          "norm_main": 1.3750039833269116,
+          "norm_aux": 0.003842432676639984,
+          "cos_main_aux": 0.5231820313374237,
+          "cos_prefix_aux": 0.5191565871773528,
+          "aux_main_norm_ratio": 0.002794488396566654,
+          "dot_main_total": 1.8934001133054554,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 10,
+      "rows": [
+        31749,
+        59274,
+        49727,
+        45208,
+        49840,
+        84890,
+        59210,
+        63538,
+        89578,
+        65568,
+        74872,
+        65780,
+        63781,
+        3111,
+        69048,
+        47793
+      ],
+      "losses": {
+        "P": 0.0865389034152031,
+        "M": 0.09655522555112839,
+        "A": -1.0453984141349792
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 6.03674192725134,
+          "norm_main": 6.516931577973558,
+          "norm_aux": 4.492646937228807,
+          "cos_main_aux": -0.28220772735817123,
+          "cos_prefix_aux": -0.26659901453850704,
+          "aux_main_norm_ratio": 0.6893807129130235,
+          "dot_main_total": 34.20784239406706,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 7.086327480092114,
+          "norm_main": 7.827024325357171,
+          "norm_aux": 0.18480906397279678,
+          "cos_main_aux": 0.03171392204895844,
+          "cos_prefix_aux": 0.027797268734084328,
+          "aux_main_norm_ratio": 0.023611663422850468,
+          "dot_main_total": 61.30818413779145,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 2.8438045214223298,
+          "norm_main": 3.2038814653178402,
+          "norm_aux": 0.013051186125768504,
+          "cos_main_aux": 0.9534929282395113,
+          "cos_prefix_aux": 0.9535649059679054,
+          "aux_main_norm_ratio": 0.004073554614004349,
+          "dot_main_total": 10.304726229354369,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 11,
+      "rows": [
+        89659,
+        62859,
+        65506,
+        3555,
+        102849,
+        71179,
+        2354,
+        30219,
+        86328,
+        33104,
+        74936,
+        88851,
+        13668,
+        104351,
+        34249,
+        4786
+      ],
+      "losses": {
+        "P": 0.07390286773443222,
+        "M": 0.08298221603035927,
+        "A": -1.0434551239013672
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 5.957876359037502,
+          "norm_main": 6.335617190866656,
+          "norm_aux": 7.366773871077156,
+          "cos_main_aux": 0.31697912093642155,
+          "cos_prefix_aux": 0.2941149238483507,
+          "aux_main_norm_ratio": 1.1627555215452414,
+          "dot_main_total": 54.934430459122225,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 4.500150789497164,
+          "norm_main": 5.179587333720497,
+          "norm_aux": 0.14567345196715634,
+          "cos_main_aux": 8.407287976887799e-05,
+          "cos_prefix_aux": 0.0009306168822709459,
+          "aux_main_norm_ratio": 0.028124528573692204,
+          "dot_main_total": 26.828188383010463,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.888953653043398,
+          "norm_main": 2.2605165120924933,
+          "norm_aux": 0.006154729689729821,
+          "cos_main_aux": 0.33821978755440446,
+          "cos_prefix_aux": 0.32440066525111,
+          "aux_main_norm_ratio": 0.002722709459013228,
+          "dot_main_total": 5.1146405087328555,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 12,
+      "rows": [
+        38972,
+        74534,
+        67943,
+        88664,
+        44381,
+        102528,
+        13948,
+        72941,
+        14238,
+        36080,
+        5769,
+        13714,
+        71689,
+        72216,
+        48163,
+        48449
+      ],
+      "losses": {
+        "P": 0.09804519265890121,
+        "M": 0.10998394712805748,
+        "A": -1.005803406238556
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 6.292032541669255,
+          "norm_main": 6.758912308537761,
+          "norm_aux": 13.283427894383578,
+          "cos_main_aux": 0.4315920339026269,
+          "cos_prefix_aux": 0.3876753127151667,
+          "aux_main_norm_ratio": 1.9653203486016741,
+          "dot_main_total": 84.43188627182718,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 4.155623913150198,
+          "norm_main": 4.278771465766746,
+          "norm_aux": 0.21247681242389774,
+          "cos_main_aux": 0.021142701258069305,
+          "cos_prefix_aux": 0.02917930339751875,
+          "aux_main_norm_ratio": 0.049658369025750805,
+          "dot_main_total": 18.327106925806685,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.5040705653411197,
+          "norm_main": 1.251304342204364,
+          "norm_aux": 0.006990959432142875,
+          "cos_main_aux": 0.5276083910899615,
+          "cos_prefix_aux": 0.5440610572982093,
+          "aux_main_norm_ratio": 0.005586937722782318,
+          "dot_main_total": 1.570377978943894,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 13,
+      "rows": [
+        72712,
+        82854,
+        97562,
+        37700,
+        8345,
+        23513,
+        48299,
+        49141,
+        94915,
+        53580,
+        57963,
+        9942,
+        54291,
+        997,
+        32328,
+        32980
+      ],
+      "losses": {
+        "P": 0.09559641033411026,
+        "M": 0.10654064267873764,
+        "A": -1.0267131924629211
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 4.561547843981679,
+          "norm_main": 4.800778908016032,
+          "norm_aux": 6.929814457791315,
+          "cos_main_aux": 0.444669973520831,
+          "cos_prefix_aux": 0.4496705608213143,
+          "aux_main_norm_ratio": 1.443477108729243,
+          "dot_main_total": 37.84098428840694,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.865280900522663,
+          "norm_main": 3.9174179173266954,
+          "norm_aux": 0.23174530799966592,
+          "cos_main_aux": 0.0020765732659693134,
+          "cos_prefix_aux": -0.0017036706071565867,
+          "aux_main_norm_ratio": 0.059157667854292245,
+          "dot_main_total": 15.348048341956336,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.7656860212001102,
+          "norm_main": 1.7755614924531269,
+          "norm_aux": 0.003642290963206896,
+          "cos_main_aux": 0.434039596671757,
+          "cos_prefix_aux": 0.44220861141187573,
+          "aux_main_norm_ratio": 0.0020513459988224254,
+          "dot_main_total": 3.1554255959835737,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 14,
+      "rows": [
+        37422,
+        90740,
+        97593,
+        103931,
+        64007,
+        72260,
+        95295,
+        5556,
+        62398,
+        5087,
+        46267,
+        83506,
+        93459,
+        38271,
+        3489,
+        258
+      ],
+      "losses": {
+        "P": 0.07570645213127136,
+        "M": 0.0846589244902134,
+        "A": -1.04292631149292
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 6.0726345092099985,
+          "norm_main": 6.338768585431036,
+          "norm_aux": 9.969575552090006,
+          "cos_main_aux": -0.21529702682112314,
+          "cos_prefix_aux": -0.19448041031927293,
+          "aux_main_norm_ratio": 1.5727937402548473,
+          "dot_main_total": 26.574327670763132,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.2877315794942064,
+          "norm_main": 3.293643174631108,
+          "norm_aux": 0.16274964436416786,
+          "cos_main_aux": -0.01902627290876182,
+          "cos_prefix_aux": -0.02396884159568149,
+          "aux_main_norm_ratio": 0.04941325934081976,
+          "dot_main_total": 10.837886532632295,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.3282414048271989,
+          "norm_main": 1.2389646466217563,
+          "norm_aux": 0.006839467492121786,
+          "cos_main_aux": -0.42726719451633915,
+          "cos_prefix_aux": -0.461152743678307,
+          "aux_main_norm_ratio": 0.005520308840749197,
+          "dot_main_total": 1.5314127938628268,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 15,
+      "rows": [
+        93843,
+        25574,
+        78719,
+        52623,
+        107047,
+        34998,
+        45743,
+        6429,
+        70033,
+        98263,
+        44036,
+        9279,
+        32487,
+        100382,
+        22724,
+        74531
+      ],
+      "losses": {
+        "P": 0.08139301836490631,
+        "M": 0.09321079403162003,
+        "A": -1.034568428993225
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 9.146896234671164,
+          "norm_main": 9.59212625194677,
+          "norm_aux": 3.8772400825152733,
+          "cos_main_aux": -0.15003803833021767,
+          "cos_prefix_aux": -0.15539788836368962,
+          "aux_main_norm_ratio": 0.40421070163962536,
+          "dot_main_total": 86.42882489355645,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.9204531730499617,
+          "norm_main": 4.0793276426189955,
+          "norm_aux": 0.16948414744419074,
+          "cos_main_aux": 0.08080460402781173,
+          "cos_prefix_aux": 0.08180695088874741,
+          "aux_main_norm_ratio": 0.04154707890425274,
+          "dot_main_total": 16.696780813481006,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 0.6221717574322515,
+          "norm_main": 0.5227064913216646,
+          "norm_aux": 0.009775956811202321,
+          "cos_main_aux": 0.672040270067012,
+          "cos_prefix_aux": 0.7659510347995002,
+          "aux_main_norm_ratio": 0.018702573955957178,
+          "dot_main_total": 0.2766561723365917,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "rows": [
+        103098,
+        63488,
+        52617,
+        9638,
+        74598,
+        53097,
+        796,
+        103753,
+        97651,
+        40130,
+        54477,
+        29580,
+        22697,
+        88748,
+        73321,
+        96497
+      ],
+      "losses": {
+        "P": 0.11126135289669037,
+        "M": 0.12493159994482994,
+        "A": -1.022739052772522
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 6.201174597338772,
+          "norm_main": 6.589115827674697,
+          "norm_aux": 8.878187691890886,
+          "cos_main_aux": -0.6186864751221207,
+          "cos_prefix_aux": -0.6075118478262643,
+          "aux_main_norm_ratio": 1.3474019768482357,
+          "dot_main_total": 7.223655451146627,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.2323835249233133,
+          "norm_main": 3.7607018912810375,
+          "norm_aux": 0.20546352430803858,
+          "cos_main_aux": -0.004943212281084969,
+          "cos_prefix_aux": -0.0036960842112254188,
+          "aux_main_norm_ratio": 0.05463435556654822,
+          "dot_main_total": 14.139059158898325,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.1959046191273708,
+          "norm_main": 1.3802318985740696,
+          "norm_aux": 0.006280270121229096,
+          "cos_main_aux": -0.17280694396698748,
+          "cos_prefix_aux": -0.1512897326139235,
+          "aux_main_norm_ratio": 0.004550155758403571,
+          "dot_main_total": 1.9035421636518484,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 17,
+      "rows": [
+        54094,
+        5998,
+        17158,
+        70639,
+        54488,
+        64859,
+        102992,
+        50053,
+        57788,
+        27859,
+        352,
+        7622,
+        88496,
+        12820,
+        106629,
+        31294
+      ],
+      "losses": {
+        "P": 0.08171290159225464,
+        "M": 0.09081858396530151,
+        "A": -1.0277605652809143
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 8.476243829122728,
+          "norm_main": 8.895899387498625,
+          "norm_aux": 6.449959011194521,
+          "cos_main_aux": 0.34912899023509325,
+          "cos_prefix_aux": 0.3416927862928295,
+          "aux_main_norm_ratio": 0.7250485566707987,
+          "dot_main_total": 99.1694141978133,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 6.031178363838517,
+          "norm_main": 6.67501083143461,
+          "norm_aux": 0.29372482931049904,
+          "cos_main_aux": 0.04849794477415898,
+          "cos_prefix_aux": 0.04508138504423308,
+          "aux_main_norm_ratio": 0.04400364834275047,
+          "dot_main_total": 44.650855466489624,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 2.2393956436969056,
+          "norm_main": 2.5666598421604125,
+          "norm_aux": 0.013360585584721968,
+          "cos_main_aux": 0.8419548025602063,
+          "cos_prefix_aux": 0.8407110508099459,
+          "aux_main_norm_ratio": 0.00520543679581478,
+          "dot_main_total": 6.616615125531702,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 18,
+      "rows": [
+        107944,
+        32289,
+        29738,
+        57130,
+        29560,
+        84101,
+        50203,
+        66455,
+        63574,
+        73414,
+        51288,
+        94986,
+        19032,
+        66054,
+        107182,
+        31476
+      ],
+      "losses": {
+        "P": 0.08496380969882011,
+        "M": 0.0955527164041996,
+        "A": -1.0300945043563843
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 8.284237345789098,
+          "norm_main": 8.926572643696582,
+          "norm_aux": 15.944308290569102,
+          "cos_main_aux": 0.13842704848338036,
+          "cos_prefix_aux": 0.13915207976720903,
+          "aux_main_norm_ratio": 1.7861623858321514,
+          "dot_main_total": 99.38574774780508,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 8.127121730751485,
+          "norm_main": 8.530890990705364,
+          "norm_aux": 0.1678895092486225,
+          "cos_main_aux": 0.20827081334473754,
+          "cos_prefix_aux": 0.21418486541094955,
+          "aux_main_norm_ratio": 0.019680184570585024,
+          "dot_main_total": 73.07439636411776,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 3.7395826767845617,
+          "norm_main": 3.8974955223846734,
+          "norm_aux": 0.022043597036611046,
+          "cos_main_aux": 0.9772090612568196,
+          "cos_prefix_aux": 0.9785173231261379,
+          "aux_main_norm_ratio": 0.005655836398016879,
+          "dot_main_total": 15.274428088339237,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 19,
+      "rows": [
+        87092,
+        55177,
+        32616,
+        51967,
+        56001,
+        110885,
+        55186,
+        57192,
+        38668,
+        87471,
+        95943,
+        33162,
+        74873,
+        89968,
+        48760,
+        6139
+      ],
+      "losses": {
+        "P": 0.08039738237857819,
+        "M": 0.09269217029213905,
+        "A": -1.0379681587219238
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 4.869083667294645,
+          "norm_main": 5.102790098427326,
+          "norm_aux": 7.474949197259124,
+          "cos_main_aux": 0.013018045393655711,
+          "cos_prefix_aux": -0.02551711362378339,
+          "aux_main_norm_ratio": 1.4648749121706761,
+          "dot_main_total": 26.535015353554332,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 2.4031869750996426,
+          "norm_main": 2.701102489982622,
+          "norm_aux": 0.1953708323523987,
+          "cos_main_aux": -0.00903806797287191,
+          "cos_prefix_aux": -0.02305061867367522,
+          "aux_main_norm_ratio": 0.07233003304278751,
+          "dot_main_total": 7.291185122511886,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.0719568063979803,
+          "norm_main": 1.2954842413279382,
+          "norm_aux": 0.0036401036198990843,
+          "cos_main_aux": -0.23624780485207972,
+          "cos_prefix_aux": -0.28512928524656495,
+          "aux_main_norm_ratio": 0.0028098401383623087,
+          "dot_main_total": 1.677165346493631,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 20,
+      "rows": [
+        49630,
+        85097,
+        15800,
+        93669,
+        52599,
+        106244,
+        2740,
+        101695,
+        106661,
+        35190,
+        34252,
+        44358,
+        66449,
+        102587,
+        79761,
+        88047
+      ],
+      "losses": {
+        "P": 0.10916362702846527,
+        "M": 0.12483957409858704,
+        "A": -1.0281243324279785
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 5.51351174070502,
+          "norm_main": 6.038106226768559,
+          "norm_aux": 19.949953974519765,
+          "cos_main_aux": 0.4561235109097729,
+          "cos_prefix_aux": 0.4549597589230292,
+          "aux_main_norm_ratio": 3.304008446568267,
+          "dot_main_total": 91.40333816337056,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 1.945498492167328,
+          "norm_main": 2.038077017464752,
+          "norm_aux": 0.20346612820291377,
+          "cos_main_aux": 0.06766898448845234,
+          "cos_prefix_aux": 0.07657059486509989,
+          "aux_main_norm_ratio": 0.0998324040060143,
+          "dot_main_total": 4.181818879226103,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 0.5854170989933216,
+          "norm_main": 0.5465534960951332,
+          "norm_aux": 0.029281078479571877,
+          "cos_main_aux": 0.8395283959528721,
+          "cos_prefix_aux": 0.8931270815257324,
+          "aux_main_norm_ratio": 0.05357403930040036,
+          "dot_main_total": 0.31215626437798527,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 21,
+      "rows": [
+        64759,
+        79038,
+        10778,
+        3102,
+        64258,
+        44892,
+        111258,
+        34883,
+        111246,
+        105723,
+        66634,
+        100704,
+        69092,
+        13428,
+        10010,
+        72862
+      ],
+      "losses": {
+        "P": 0.09193505719304085,
+        "M": 0.10135938599705696,
+        "A": -1.0420125126838684
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 3.991751518921069,
+          "norm_main": 4.206556465568879,
+          "norm_aux": 4.249690636824379,
+          "cos_main_aux": 0.008526763905015364,
+          "cos_prefix_aux": 0.01274837446925018,
+          "aux_main_norm_ratio": 1.0102540335803305,
+          "dot_main_total": 17.847546535482714,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.9804881028361683,
+          "norm_main": 4.808182818140203,
+          "norm_aux": 0.1501920016029262,
+          "cos_main_aux": 0.13920501134454735,
+          "cos_prefix_aux": 0.13203760191390104,
+          "aux_main_norm_ratio": 0.031236749367408664,
+          "dot_main_total": 23.21914899533702,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.7934177164810277,
+          "norm_main": 2.2329234593855136,
+          "norm_aux": 0.015170469269055442,
+          "cos_main_aux": 0.9797688923893403,
+          "cos_prefix_aux": 0.9802496939298783,
+          "aux_main_norm_ratio": 0.006793994306114845,
+          "dot_main_total": 5.019136353606516,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 22,
+      "rows": [
+        49043,
+        97117,
+        37163,
+        19742,
+        58864,
+        103613,
+        2089,
+        98309,
+        46459,
+        57242,
+        58885,
+        69046,
+        15636,
+        68146,
+        47522,
+        14315
+      ],
+      "losses": {
+        "P": 0.098405871540308,
+        "M": 0.10637776926159859,
+        "A": -1.0499164462089539
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 7.5951334385853135,
+          "norm_main": 7.914211831728329,
+          "norm_aux": 5.6328783773718065,
+          "cos_main_aux": 0.3313651054061196,
+          "cos_prefix_aux": 0.332828574359239,
+          "aux_main_norm_ratio": 0.7117421794030603,
+          "dot_main_total": 77.4069366247796,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 7.669089257360209,
+          "norm_main": 8.275754229112348,
+          "norm_aux": 0.15757820809168546,
+          "cos_main_aux": -0.03405894163304179,
+          "cos_prefix_aux": -0.03370257398651662,
+          "aux_main_norm_ratio": 0.019040948260323966,
+          "dot_main_total": 68.44369252640416,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 3.473229189122027,
+          "norm_main": 3.7651120963983575,
+          "norm_aux": 0.008808306869525584,
+          "cos_main_aux": -0.26071227951541703,
+          "cos_prefix_aux": -0.26082658589864866,
+          "aux_main_norm_ratio": 0.002339454083704828,
+          "dot_main_total": 14.167422767906997,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 23,
+      "rows": [
+        44494,
+        102365,
+        102350,
+        57267,
+        71964,
+        18259,
+        72824,
+        32963,
+        63297,
+        23921,
+        5830,
+        107983,
+        15169,
+        97434,
+        108277,
+        101989
+      ],
+      "losses": {
+        "P": 0.1229102686047554,
+        "M": 0.13506611436605453,
+        "A": -1.0268678069114685
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 7.082323279815666,
+          "norm_main": 7.397980876020567,
+          "norm_aux": 6.92498119427149,
+          "cos_main_aux": 0.1738565130719657,
+          "cos_prefix_aux": 0.2111631409835611,
+          "aux_main_norm_ratio": 0.936063678769131,
+          "dot_main_total": 63.63694292950981,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.794977301952032,
+          "norm_main": 4.920503921402496,
+          "norm_aux": 0.17950460957482195,
+          "cos_main_aux": -0.0445697315705385,
+          "cos_prefix_aux": -0.04031938641049532,
+          "aux_main_norm_ratio": 0.03648094025370832,
+          "dot_main_total": 24.171992485387165,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.3629443171073718,
+          "norm_main": 1.9122035084678985,
+          "norm_aux": 0.008680044237805192,
+          "cos_main_aux": -0.728902648215507,
+          "cos_prefix_aux": -0.7317813683469514,
+          "aux_main_norm_ratio": 0.004539288940411914,
+          "dot_main_total": 3.644423923590993,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 24,
+      "rows": [
+        3431,
+        34594,
+        34643,
+        4761,
+        86528,
+        23273,
+        28099,
+        8641,
+        65572,
+        47608,
+        104058,
+        52751,
+        15113,
+        19058,
+        12274,
+        106043
+      ],
+      "losses": {
+        "P": 0.09021428227424622,
+        "M": 0.10429921746253967,
+        "A": -1.0625227689743042
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 7.379813981683293,
+          "norm_main": 7.6812072749745735,
+          "norm_aux": 4.161562733071573,
+          "cos_main_aux": 0.06148138085990351,
+          "cos_prefix_aux": 0.08999259339565008,
+          "aux_main_norm_ratio": 0.5417849804196762,
+          "dot_main_total": 60.96624832027357,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 7.7047435312579085,
+          "norm_main": 7.894094383127973,
+          "norm_aux": 0.13699657937377113,
+          "cos_main_aux": -0.039560833509533676,
+          "cos_prefix_aux": -0.03826613522683579,
+          "aux_main_norm_ratio": 0.017354312315618313,
+          "dot_main_total": 62.27394251534063,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 3.315019263753883,
+          "norm_main": 3.241603972529274,
+          "norm_aux": 0.005870513767553342,
+          "cos_main_aux": 0.230117781293715,
+          "cos_prefix_aux": 0.23401554133584748,
+          "aux_main_norm_ratio": 0.0018109904285972512,
+          "dot_main_total": 10.512375428653971,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 25,
+      "rows": [
+        16865,
+        16643,
+        1325,
+        68660,
+        97610,
+        78589,
+        35240,
+        37960,
+        19712,
+        109151,
+        12779,
+        93485,
+        98509,
+        104155,
+        15821,
+        68930
+      ],
+      "losses": {
+        "P": 0.08603609725832939,
+        "M": 0.09635692462325096,
+        "A": -1.0558569431304932
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 3.3420484597991487,
+          "norm_main": 3.5686072194380993,
+          "norm_aux": 4.729140198170762,
+          "cos_main_aux": 0.22796532164882138,
+          "cos_prefix_aux": 0.2560934152417959,
+          "aux_main_norm_ratio": 1.3252061399223969,
+          "dot_main_total": 16.582201437846525,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 2.5115553280922636,
+          "norm_main": 2.977400583976815,
+          "norm_aux": 0.15663135664401562,
+          "cos_main_aux": -0.0184865652502542,
+          "cos_prefix_aux": -0.0196351532926446,
+          "aux_main_norm_ratio": 0.052606746128466296,
+          "dot_main_total": 8.856292948402988,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 0.9799083449216903,
+          "norm_main": 1.235865033405219,
+          "norm_aux": 0.008963445539167962,
+          "cos_main_aux": 0.489315637715718,
+          "cos_prefix_aux": 0.48014076674978606,
+          "aux_main_norm_ratio": 0.007252770567082629,
+          "dot_main_total": 1.5327828280670757,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 26,
+      "rows": [
+        23450,
+        51446,
+        29858,
+        2292,
+        106742,
+        23504,
+        59859,
+        13137,
+        49933,
+        78501,
+        97277,
+        39657,
+        91260,
+        74220,
+        24807,
+        8086
+      ],
+      "losses": {
+        "P": 0.09562008082866669,
+        "M": 0.1078241653740406,
+        "A": -0.9652088582515717
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 8.83213329176892,
+          "norm_main": 9.409504076597056,
+          "norm_aux": 9.926654485291637,
+          "cos_main_aux": 0.3767921907809621,
+          "cos_prefix_aux": 0.37002682505571055,
+          "aux_main_norm_ratio": 1.054960431972267,
+          "dot_main_total": 123.73300230309991,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 9.578845457556074,
+          "norm_main": 9.937891427316005,
+          "norm_aux": 0.3534162737090656,
+          "cos_main_aux": -0.11067647463778377,
+          "cos_prefix_aux": -0.11087347078093576,
+          "aux_main_norm_ratio": 0.035562500988654405,
+          "dot_main_total": 98.37296671715939,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 4.176495141400948,
+          "norm_main": 4.250470312097033,
+          "norm_aux": 0.016331015885520245,
+          "cos_main_aux": -0.9343840133769116,
+          "cos_prefix_aux": -0.9344547844285985,
+          "aux_main_norm_ratio": 0.003842166792470336,
+          "dot_main_total": 18.001638076614995,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 27,
+      "rows": [
+        36227,
+        40249,
+        72596,
+        100913,
+        77917,
+        58328,
+        95328,
+        57886,
+        53965,
+        52442,
+        68537,
+        106097,
+        63973,
+        55045,
+        56058,
+        22657
+      ],
+      "losses": {
+        "P": 0.08088841661810875,
+        "M": 0.09096091240644455,
+        "A": -1.0492886900901794
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 5.289165294453671,
+          "norm_main": 5.510313352912576,
+          "norm_aux": 5.24039881664713,
+          "cos_main_aux": -0.2876801841116511,
+          "cos_prefix_aux": -0.29299149423383364,
+          "aux_main_norm_ratio": 0.9510164814632952,
+          "dot_main_total": 22.056431330198265,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 2.029113878925728,
+          "norm_main": 2.3029342365445857,
+          "norm_aux": 0.18454192955110066,
+          "cos_main_aux": -0.023621960288673166,
+          "cos_prefix_aux": -0.02936657938744749,
+          "aux_main_norm_ratio": 0.08013339096820876,
+          "dot_main_total": 5.293467049899288,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 0.31649554384465767,
+          "norm_main": 0.5215957161406075,
+          "norm_aux": 0.006834663631297625,
+          "cos_main_aux": -0.4041852352675114,
+          "cos_prefix_aux": -0.36428831451646726,
+          "aux_main_norm_ratio": 0.01310337378126624,
+          "dot_main_total": 0.27062119851161137,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 28,
+      "rows": [
+        10708,
+        25328,
+        89776,
+        78957,
+        8378,
+        16483,
+        105808,
+        30283,
+        69154,
+        19300,
+        5543,
+        105879,
+        7318,
+        88949,
+        94108,
+        28252
+      ],
+      "losses": {
+        "P": 0.10735365375876427,
+        "M": 0.12253889441490173,
+        "A": -1.028294324874878
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 5.915280177878838,
+          "norm_main": 6.308606801580636,
+          "norm_aux": 5.806093158489102,
+          "cos_main_aux": 0.4499519504615036,
+          "cos_prefix_aux": 0.4420484873049011,
+          "aux_main_norm_ratio": 0.9203447514012716,
+          "dot_main_total": 56.279521256828524,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 2.0645884402118573,
+          "norm_main": 2.492888191753727,
+          "norm_aux": 0.1659434821905834,
+          "cos_main_aux": 0.05621531211404708,
+          "cos_prefix_aux": 0.05679630983633057,
+          "aux_main_norm_ratio": 0.06656675688043735,
+          "dot_main_total": 6.23774660523379,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 0.7287172376206557,
+          "norm_main": 0.9738800575856352,
+          "norm_aux": 0.005803055200094394,
+          "cos_main_aux": 0.8254386082502018,
+          "cos_prefix_aux": 0.8103200927254453,
+          "aux_main_norm_ratio": 0.0059586959963846674,
+          "dot_main_total": 0.9531073161279001,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 29,
+      "rows": [
+        5851,
+        90087,
+        67993,
+        96992,
+        54279,
+        27456,
+        62813,
+        10079,
+        54978,
+        30255,
+        35130,
+        64930,
+        75496,
+        3169,
+        34613,
+        986
+      ],
+      "losses": {
+        "P": 0.09846166521310806,
+        "M": 0.11024216935038567,
+        "A": -1.0312821865081787
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 4.736078040263104,
+          "norm_main": 4.9983239170003,
+          "norm_aux": 6.000528776994204,
+          "cos_main_aux": 0.23763752513255795,
+          "cos_prefix_aux": 0.24426902479772916,
+          "aux_main_norm_ratio": 1.2005081856710418,
+          "dot_main_total": 32.11060600760742,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 3.610307111076316,
+          "norm_main": 3.881914118604932,
+          "norm_aux": 0.15264970334083156,
+          "cos_main_aux": 0.045913800010298975,
+          "cos_prefix_aux": 0.04593498577065328,
+          "aux_main_norm_ratio": 0.03932330769741249,
+          "dot_main_total": 15.096464504210065,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.7042368189752934,
+          "norm_main": 1.9040837361479601,
+          "norm_aux": 0.009374411361478265,
+          "cos_main_aux": 0.49735986778635666,
+          "cos_prefix_aux": 0.4940443485757208,
+          "aux_main_norm_ratio": 0.0049233188559464755,
+          "dot_main_total": 3.634412580894369,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 30,
+      "rows": [
+        89345,
+        70317,
+        89876,
+        48231,
+        18646,
+        53675,
+        88910,
+        50839,
+        92786,
+        65237,
+        63571,
+        32789,
+        26176,
+        107612,
+        54140,
+        50144
+      ],
+      "losses": {
+        "P": 0.10011780261993408,
+        "M": 0.1127721406519413,
+        "A": -1.0212092399597168
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 6.020650498250529,
+          "norm_main": 6.467154203666898,
+          "norm_aux": 4.586395616752289,
+          "cos_main_aux": -0.31900887685472096,
+          "cos_prefix_aux": -0.29564749959383024,
+          "aux_main_norm_ratio": 0.7091829686312083,
+          "dot_main_total": 32.3619842643341,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 4.695576784728267,
+          "norm_main": 5.038263509665176,
+          "norm_aux": 0.12741836233115583,
+          "cos_main_aux": -0.02803840197564883,
+          "cos_prefix_aux": -0.03611737076821957,
+          "aux_main_norm_ratio": 0.025290134604258434,
+          "dot_main_total": 25.36609945602056,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 0.8913476555168929,
+          "norm_main": 0.9978846610341802,
+          "norm_aux": 0.008825722331628521,
+          "cos_main_aux": 0.299897970286033,
+          "cos_prefix_aux": 0.15193645423277227,
+          "aux_main_norm_ratio": 0.008844431301791718,
+          "dot_main_total": 0.9984150140273922,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    },
+    {
+      "batch": 31,
+      "rows": [
+        106853,
+        107938,
+        83654,
+        67564,
+        50199,
+        101301,
+        39237,
+        88097,
+        29007,
+        47956,
+        3226,
+        44510,
+        385,
+        70336,
+        48491,
+        6888
+      ],
+      "losses": {
+        "P": 0.0888792984187603,
+        "M": 0.09862911701202393,
+        "A": -1.0226854085922241
+      },
+      "groups": {
+        "backbone_fpn": {
+          "norm_prefix": 9.083303732324229,
+          "norm_main": 9.12155511168891,
+          "norm_aux": 9.361203919035475,
+          "cos_main_aux": 0.6150813227562406,
+          "cos_prefix_aux": 0.6472379560362689,
+          "aux_main_norm_ratio": 1.0262728015576494,
+          "dot_main_total": 135.72378524049293,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 164
+        },
+        "scene_shared": {
+          "norm_prefix": 5.060884576979444,
+          "norm_main": 5.28196106678804,
+          "norm_aux": 0.22762736356213895,
+          "cos_main_aux": -0.05165659542745408,
+          "cos_prefix_aux": -0.056574102778610816,
+          "aux_main_norm_ratio": 0.04309523691748056,
+          "dot_main_total": 27.837005011515295,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 45
+        },
+        "status_query": {
+          "norm_prefix": 1.7482868889249592,
+          "norm_main": 1.720411476701671,
+          "norm_aux": 0.012412566300678454,
+          "cos_main_aux": -0.9685659726998013,
+          "cos_prefix_aux": -0.9716745051863225,
+          "aux_main_norm_ratio": 0.007214882293435702,
+          "dot_main_total": 2.9391321925470333,
+          "none_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "zero_parameter_tensors": {
+            "P": 0,
+            "M": 0,
+            "A": 0
+          },
+          "parameter_tensors": 4
+        }
+      }
+    }
+  ],
+  "caveat": "Raw pre-clip gradients, no AdamW preconditioning; not causal or generalization proof."
+}

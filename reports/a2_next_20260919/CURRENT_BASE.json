@@ -1,0 +1,32 @@
+{
+  "created_at_utc": "2026-09-18T17:05:57.040030+00:00",
+  "source_base_commit": "be11e6f53b691bea38d2b470756783ac44424acc",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+  "model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+  "seed": 1,
+  "step": 20554,
+  "graph": "A2-QREFINE-NOM",
+  "PREFIX": 0.16425176970362365,
+  "selection": "numerically lowest completed query-only A2 DEV; improvement over older A2 is not established",
+  "status": "nominal causal producer, original supervision targets retained",
+  "split_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+  "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "data_counts": {
+    "train": 83700,
+    "eval": 1998
+  },
+  "initializer": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+    "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+    "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+    "source": "q10_flip50 initializer used by registered MR"
+  },
+  "FULL_lineage_used": false,
+  "sources": {
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "models/motiondrive_v2/shared_status_query.py": "f30d956a758dc2c74bca2e00b44af62f2d859e4b0359e76ed486fa273a534b57",
+    "experiments/md_a2_scene_extensions_20260918/scene_extensions.py": "45f2fd1f3874e1468d99c0563893611b21ba6b16dcd5ddb1aeb7f8c83fe1fdf6"
+  }
+}

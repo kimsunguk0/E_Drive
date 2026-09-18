@@ -1,0 +1,11 @@
+{
+  "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/manifest.json",
+  "sha256": "e63951eb1f2ddced7ecf38885af1a000f28afd2f900d0813be5500a8663c40c5",
+  "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+  "allowed_splits": [
+    "train",
+    "tune"
+  ],
+  "input_field": "provided_status5",
+  "state_history_supervision": "original real-time definition retained"
+}

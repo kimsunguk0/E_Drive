@@ -2,6 +2,32 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0M. 2026-09-19 공동 학습 균형·learned sampling 실행안 확정 및 사전 검사
+
+사용자 새 실행안이 0L의 motion-only/2,000 update 제안을 대체한다.
+G0/G1은 수치상 최저 DEV QREFINE terminal 0.164251769704에서 함께 시작한다.
+기존 auxiliary 묶음(occ/lane/motion) ×1.0 대 ×0.25만 다르고, PREFIX/LEN 유지.
+3,426 update, warmup100, backbone1e-6/head1e-5, B16/micro8, fresh optimizer/sampler seed1.
+
+32 effective train batch(512행) 진단 완료: backbone AUX/main norm 중앙값1.0183,
+cosine 중앙값0.0108, 15/32 음수. Shared scene norm 비율0.0404로 작다.
+모델 parameter/buffer hash 동일, optimizer0. 작은 진단을 인과 증거로 취급하지 않는다.
+공통 parent V01998 replay 최대 좌표 차이0. G0/G1 2-step smoke 완료, 초기 tensor/row stream 동일.
+
+S는 기존 fixed scene sampler에 source별 영상+고정 metadata 기반 ±2 feature-cell offset 하나를 추가한다.
+기존 BASE-NOM upstream에서20,554 update; 완료 BASE-NOM을 control로 재사용한다.
+QREFINE/G loss 변경/SIDE와 결합하지 않는다. Status/goal/conditioned query를 offset에 넣지 않는다.
+실제 영상 FP32/BF16 zero-offset scene/인지/plan parity0, offset/internal/image gradient 확인,
+status·goal 변경 시 offset/motion/state/history 불변, shared consumer tensor 일치.
+좌표/ramp/flip/mask 검사와 S 2-step smoke 완료.
+공식 counter BASE729.8156G→S733.1658G; B200 B1약19→28ms, 4090시간 미측정.
+
+GPU0=G0, GPU1=G1, GPU2=S, GPU3=검증으로 준비. GPU4–7 제외.
+이 절은 실행 전 사전 검사 기록이며 실제 시작은 launch_receipt.json 및 최신 manifest를 확인한다.
+완료된 FULL 재시작/공식 업로드는 하지 않는다.
+상세: reports/a2_next_20260919/PROTOCOL_KO.md, CURRENT_BASE.json, gradient_probe.json,
+tests_summary.json, smoke_summary.json. 코드: experiments/a2_next_20260919/.
+
 ## 0L. 2026-09-18 22시대 개선 방향 재검토 — 신규 학습 없음
 
 사용자 요청에 따라 학습 기록/코드를 다시 검토하고 GPU 0–3에서 읽기 전용 진단을 마쳤다.
