@@ -1,0 +1,61 @@
+{
+  "physical_gpu": 3,
+  "logical_batch": 16,
+  "optimizer_lr": 0.0,
+  "precision": "bf16",
+  "bn_policy": "fixed",
+  "data": "first16 train310 rows; decode outside timing; host-to-device included",
+  "candidate_weights_retained": false,
+  "cases": {
+    "A2-BASE-NOM_mb8": {
+      "median_seconds": 0.5077728275209665,
+      "step_seconds": [
+        0.5073173865675926,
+        0.5085772983729839,
+        0.5077728275209665,
+        0.5097347777336836,
+        0.5074752438813448
+      ],
+      "peak_allocated_GiB": 32.70781326293945,
+      "loss_mean": 0.01940232515335083
+    },
+    "A2-BASE-NOM_mb16": {
+      "median_seconds": 0.46751234866678715,
+      "step_seconds": [
+        0.4680612925440073,
+        0.4678880423307419,
+        0.4668377451598644,
+        0.46736394241452217,
+        0.46751234866678715
+      ],
+      "peak_allocated_GiB": 64.75592470169067,
+      "loss_mean": 0.019382167607545853
+    },
+    "A2-MH4-NOM_mb8": {
+      "median_seconds": 0.5424133241176605,
+      "step_seconds": [
+        0.5788160469383001,
+        0.5435578878968954,
+        0.5418235715478659,
+        0.5424133241176605,
+        0.541912043467164
+      ],
+      "peak_allocated_GiB": 32.84905672073364,
+      "loss_mean": 0.01940232515335083
+    },
+    "A2-MH4-NOM_mb16": {
+      "median_seconds": 0.49114191718399525,
+      "step_seconds": [
+        0.49125760421156883,
+        0.4913876000791788,
+        0.49107890389859676,
+        0.49114191718399525,
+        0.49084765277802944
+      ],
+      "peak_allocated_GiB": 65.04542636871338,
+      "loss_mean": 0.019382167607545853
+    }
+  },
+  "selected_microbatch": 8,
+  "selection_rule": "16 only if >=10% faster on both arms and peak allocation <150GiB; otherwise retain8"
+}

@@ -1,0 +1,1440 @@
+{
+  "A2-FULL-NOM": {
+    "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1_smoke_mb8",
+    "manifest": {
+      "schema_version": 1,
+      "git_sha": "64c712a98e440276ff0247069992adae7deb4251",
+      "arguments": {
+        "data_root": "/tmp/pm97",
+        "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+        "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1_smoke_mb8",
+        "phase": "joint",
+        "goal_on": 1,
+        "state_on": 1,
+        "gpu": 0,
+        "cpu": false,
+        "cuda_memory_limit_mib": 170000,
+        "cuda_min_free_mib": 8192,
+        "microbatch": 8,
+        "seed": 1,
+        "steps": 2,
+        "batch": 16,
+        "eval_batch": 8,
+        "workers": 8,
+        "eval_every": 2,
+        "save_every": 2,
+        "log_every": 1,
+        "lr": 5e-05,
+        "backbone_lr": 5e-06,
+        "weight_decay": 0.01,
+        "warmup": 200,
+        "grad_clip": 5.0,
+        "alpha_occ": 0.2,
+        "alpha_lane": 0.2,
+        "alpha_motion": 0.2,
+        "uncertainty": 1,
+        "precision": "bf16",
+        "time_input": "nominal",
+        "bn_policy": "fixed",
+        "pretrained": null,
+        "init": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "resume": null,
+        "arch": "resnet50",
+        "motion_input_mode": "low_feature",
+        "cross_cell_goal_mode": "zero",
+        "history_contract": "control",
+        "history_overlay_root": null,
+        "expected_history_overlay_sha256": null,
+        "plan_output_scale": null,
+        "train_stride": 1,
+        "eval_stride": 5,
+        "max_train_samples": 0,
+        "max_eval_samples": 0,
+        "train_scenes": null,
+        "eval_scenes": null,
+        "eval_split": "tune",
+        "eval_only": false,
+        "allow_unpretrained": false
+      },
+      "model_config": {
+        "channels": 128,
+        "backbone_arch": "resnet50",
+        "grid_size": [
+          64,
+          48
+        ],
+        "x_range": [
+          -10.0,
+          70.0
+        ],
+        "y_range": [
+          -32.0,
+          32.0
+        ],
+        "heights": [
+          0.0,
+          1.0,
+          2.0
+        ],
+        "n_history": 4,
+        "motion_grid": [
+          12,
+          16
+        ],
+        "correlation_channels": 32,
+        "correlation_radius": 4,
+        "scene_attention_channels": 32,
+        "scene_chunk_size": 512,
+        "planner_layers": 2,
+        "planner_heads": 4,
+        "goal_on": true,
+        "state_on": true,
+        "plan_output_scale": [
+          10.0,
+          5.0
+        ],
+        "motion_input_mode": "low_feature",
+        "history_contract": "control",
+        "history_frame_offsets": [
+          1,
+          2,
+          5,
+          10
+        ],
+        "nominal_history_seconds": [
+          0.1,
+          0.2,
+          0.5,
+          1.0
+        ],
+        "cross_cell_goal_mode": "zero"
+      },
+      "loss_weights": {
+        "plan": 1.0,
+        "occupancy": 0.2,
+        "lane": 0.2,
+        "motion": 0.2,
+        "uncertainty": true
+      },
+      "time_input": "nominal",
+      "time_input_policy": {
+        "mode": "nominal",
+        "scope": "model input time_offsets only; same for training and every evaluation",
+        "source": "fixed nominal frame-offset seconds",
+        "nominal_history_seconds": [
+          0.1,
+          0.2,
+          0.5,
+          1.0
+        ],
+        "nominal_dtype": "float32",
+        "supervision_and_dataset_modified": false
+      },
+      "split_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+      "load_report": {
+        "common_checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "shared_dynamics_initial_load": {
+          "strict_parent_except_mr_fuse": true,
+          "dropped_parent_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight"
+          ],
+          "missing_new_or_rebuilt_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight",
+            "shared_status_query_fusion.status_mlp.0.bias",
+            "shared_status_query_fusion.status_mlp.0.weight",
+            "shared_status_query_fusion.status_mlp.2.bias",
+            "shared_status_query_fusion.status_mlp.2.weight",
+            "shared_status_query_fusion.status_scale"
+          ],
+          "measured_model_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "mr_rebuild": {
+            "module": "motion_encoder.correlation_fuse.0",
+            "old_in_channels": 178,
+            "new_in_channels": 290,
+            "bins": 81,
+            "reinitialised": true,
+            "parameters": 334208
+          },
+          "shared_base_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "all_parameters_trainable": true
+        }
+      },
+      "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+      "numpy": "2.1.0",
+      "device": "cuda:0",
+      "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+      "cuda_memory_policy": {
+        "enabled": true,
+        "allocator_limit_mib": 170000,
+        "min_free_mib": 8192,
+        "allocator_fraction": 0.9308355001495496,
+        "initial_free_bytes": 190847057920,
+        "device_total_bytes": 191503138816,
+        "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+      },
+      "microbatch_policy": {
+        "enabled": true,
+        "microbatch": 8,
+        "logical_batch": 16,
+        "optimizer_updates_per_logical_batch": 1,
+        "loss_normalization": "full logical batch label/mask denominators",
+        "bitwise_equivalence_to_unsplit_training_promised": false
+      },
+      "gpu_name": "NVIDIA B200",
+      "pretrained_sha256": null,
+      "supervision_manifest_sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f",
+      "initial_model_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+      "initial_parameter_count": 26557208,
+      "bn_training": {
+        "policy": "fixed",
+        "modules": 53,
+        "affine_and_backbone_weights_trainable": true,
+        "inference_policy": "eval running statistics for both arms"
+      },
+      "status": "completed",
+      "pid": 3281456,
+      "experimental_protocol": {
+        "schema_version": 1,
+        "name": "md_a2_nominal_mh4_20260918",
+        "arm": "A2-FULL-NOM",
+        "seed": 1,
+        "smoke": true,
+        "question": "matched nominal-input query-only A2: single vs four scene evidence reads",
+        "initializer": {
+          "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+          "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+          "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+          "source": "q10_flip50 initializer used by registered MR"
+        },
+        "split_manifest": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+          "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+        },
+        "supervision": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+          "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2/supervision_manifest.json",
+          "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+        },
+        "train_data": {
+          "rows": 101520,
+          "rows_sha256": "ed29c24b9e8d35b563e50932afd00f8e6424ed63b746c8c35a3d05e5bb2cf4a8",
+          "scenes": 376
+        },
+        "tune_data": {
+          "rows": 1998,
+          "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+          "scenes": 37
+        },
+        "provided_status_used": true,
+        "information_route": {
+          "source": "causal pose fit with frame-difference * 0.1s; same deployment producer",
+          "fields": [
+            "vx",
+            "vy",
+            "ax",
+            "ay",
+            "yaw_rate"
+          ],
+          "raw_status_direct_planner_input": false,
+          "shared_query": true,
+          "shared_multiplicative_image_feature_conditioning": false,
+          "shared_consumers": [
+            "occupancy",
+            "lane",
+            "planning"
+          ],
+          "progress_head_inputs": [],
+          "progress_head_raw_goal_pose_status_inputs": false,
+          "motion_state_history": "unconditioned image path"
+        },
+        "planner": {
+          "factorized": false,
+          "coefficient_count": 0,
+          "coefficient_semantics": [],
+          "direction_source": "direct XY output",
+          "proposal_length_gradient": "ordinary direct XY",
+          "composition": "ordinary direct XY",
+          "candidate_bank_or_selector": false
+        },
+        "recipe": {
+          "updates": 2,
+          "eval_every": 2,
+          "batch": 16,
+          "microbatch": 8,
+          "eval_batch": 8,
+          "head_lr": 5e-05,
+          "backbone_lr": 5e-06,
+          "warmup": 200,
+          "weight_decay": 0.01,
+          "grad_clip": 5.0,
+          "flip_probability": 0.5,
+          "precision": "bf16",
+          "interval_length_auxiliary_lambda": 0.25,
+          "correlation_radius": 4,
+          "motion_canvas": "native 768x432",
+          "eval_role": "in-fit diagnostic"
+        },
+        "comparison_contract": {
+          "same_initializer_as_registered_mr": true,
+          "same_train310_tune37_split": false,
+          "same_seed_and_sample_order_across_arms": true,
+          "same_full_update_budget": false
+        },
+        "expected_initial_model_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+        "expected_optimizer_groups": [
+          {
+            "name": "backbone",
+            "base_lr": 5e-06
+          },
+          {
+            "name": "head",
+            "base_lr": 5e-05
+          }
+        ],
+        "physical_gpu": 0,
+        "nominal_input": {
+          "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/manifest.json",
+          "sha256": "e63951eb1f2ddced7ecf38885af1a000f28afd2f900d0813be5500a8663c40c5",
+          "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+          "allowed_splits": [
+            "train",
+            "tune",
+            "val"
+          ],
+          "input_field": "provided_status5",
+          "state_history_supervision": "original real-time definition retained"
+        },
+        "scene_attention": {
+          "heads": 1,
+          "qk_dimensions_per_head": 32,
+          "value_dimensions_per_head": 128,
+          "output_dimensions": 128,
+          "sampling_grid_camera_time_metadata": "unchanged",
+          "query_as_value_residual": false,
+          "initialization": "registered A2"
+        },
+        "full_fit": {
+          "enabled": true,
+          "evaluation_is_in_fit": true,
+          "dev_weights_or_features_imported": false,
+          "checkpoint_selection": "fixed terminal; no best-overlapping-metric selection"
+        },
+        "expected_shared_base_initial_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+        "source": {
+          "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+          "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+          "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+          "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+          "models/motiondrive_v2/scene_encoder.py": "4c51b5473cd0f517fbbb81b454486d5a6c82ea9a33e1195f5a3665e1b0358e13",
+          "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+          "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437"
+        },
+        "initial_load": {
+          "strict_parent_except_mr_fuse": true,
+          "dropped_parent_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight"
+          ],
+          "missing_new_or_rebuilt_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight",
+            "shared_status_query_fusion.status_mlp.0.bias",
+            "shared_status_query_fusion.status_mlp.0.weight",
+            "shared_status_query_fusion.status_mlp.2.bias",
+            "shared_status_query_fusion.status_mlp.2.weight",
+            "shared_status_query_fusion.status_scale"
+          ],
+          "measured_model_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "mr_rebuild": {
+            "module": "motion_encoder.correlation_fuse.0",
+            "old_in_channels": 178,
+            "new_in_channels": 290,
+            "bins": 81,
+            "reinitialised": true,
+            "parameters": 334208
+          },
+          "shared_base_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "all_parameters_trainable": true
+        }
+      },
+      "data_counts": {
+        "train": 101520,
+        "eval": 1998
+      },
+      "train_rows_sha256": "ed29c24b9e8d35b563e50932afd00f8e6424ed63b746c8c35a3d05e5bb2cf4a8",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log",
+      "step": 2,
+      "best_metric": 0.4773423709646539,
+      "cuda_memory": {
+        "allocated_bytes": 457969152,
+        "reserved_bytes": 39466303488,
+        "peak_allocated_bytes": 35119752192,
+        "peak_reserved_bytes": 39466303488,
+        "device_free_bytes": 151041015808,
+        "device_total_bytes": 191503138816
+      },
+      "elapsed_seconds": 40.29955492913723,
+      "nonfinite_count": 0
+    },
+    "train_metrics": [
+      {
+        "kind": "train",
+        "step": 1,
+        "epoch": 0,
+        "elapsed_seconds": 9.431097058579326,
+        "grad_norm": 118.85636138916016,
+        "lr": 2.5000000000000004e-07,
+        "sample_order_sha256": "04811985a2ba7dfd642b3093ca13c3853afa2ab95e03f14bcbe19893415d0afd",
+        "cuda_memory": {
+          "allocated_bytes": 457346560,
+          "reserved_bytes": 39409680384,
+          "peak_allocated_bytes": 34902157824,
+          "peak_reserved_bytes": 39409680384,
+          "device_free_bytes": 151108124672,
+          "device_total_bytes": 191503138816
+        },
+        "total": 1.5091122388839722,
+        "plan_d3": 0.5251756310462952,
+        "occ_bce": 0.18388155102729797,
+        "lane_bce": 0.39194217324256897,
+        "history": 1.7850942611694336,
+        "state": 2.3861441612243652,
+        "stop_bce": 0.0017845630645751953,
+        "motion": 4.171595573425293,
+        "plan_interval_length": 0.13781112432479858
+      },
+      {
+        "kind": "train",
+        "step": 2,
+        "epoch": 0,
+        "elapsed_seconds": 10.345269037410617,
+        "grad_norm": 133.4721221923828,
+        "lr": 5.000000000000001e-07,
+        "sample_order_sha256": "5c256cfe49d9f84632c1ffefb8d825ed7b49a55e540521e70ecfa9b1d211306f",
+        "cuda_memory": {
+          "allocated_bytes": 457969152,
+          "reserved_bytes": 39466303488,
+          "peak_allocated_bytes": 35119752192,
+          "peak_reserved_bytes": 39466303488,
+          "device_free_bytes": 151049404416,
+          "device_total_bytes": 191503138816
+        },
+        "total": 2.0247559547424316,
+        "plan_d3": 0.8223101496696472,
+        "occ_bce": 0.26129305362701416,
+        "lane_bce": 0.39401906728744507,
+        "history": 1.2986074686050415,
+        "state": 3.694173812866211,
+        "stop_bce": 0.790449857711792,
+        "motion": 5.150871276855469,
+        "plan_interval_length": 0.16483691334724426
+      }
+    ],
+    "eval_report": {
+      "kind": "eval",
+      "step": 2,
+      "selection_metric": 0.4773423709646539,
+      "selection_definition": "official_d3",
+      "time_input": "nominal",
+      "n": 1998,
+      "official_d3": 0.4773423709646539,
+      "session_mean_d3": 0.5138389965642052,
+      "n_sessions": 11,
+      "proxy_d3": 0.4773423709646539,
+      "proxy_is_not_official_sample_weight": true,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        4.3887368623200835,
+        0.1653498388189185,
+        0.43471892597200396,
+        0.18585220495662144,
+        0.040962470420128155
+      ],
+      "history_position_mae_by_offset": [
+        0.5265268260227131,
+        1.0533295907807332,
+        2.7543436142283158,
+        4.831831357787709
+      ],
+      "session_d3": {
+        "session_019_20260113-102709": 0.4118660606995777,
+        "session_026_20260122-134906": 0.4336318002530822,
+        "session_027_20260122-135506": 0.4168451895355863,
+        "session_040_20260209-153550": 0.5123439676783703,
+        "session_046_20260210-100504": 0.6045250696026616,
+        "session_076_20260213-134648": 0.3593433415862145,
+        "session_092_20260219-103747": 1.093643519061583,
+        "session_097_20260219-110038": 0.25755401452382404,
+        "session_087_20260219-90551": 0.4873498990027993,
+        "session_108_20260220-134317": 0.32249159593549037,
+        "session_112_20260303-142827": 0.7526345043270676
+      },
+      "occ_iou": 0.43395966047661694,
+      "lane_iou": 0.4236145562495642
+    },
+    "scope": "2-step pipeline check, not model selection"
+  },
+  "A2-BASE-NOM": {
+    "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1_smoke_mb8",
+    "manifest": {
+      "schema_version": 1,
+      "git_sha": "64c712a98e440276ff0247069992adae7deb4251",
+      "arguments": {
+        "data_root": "/tmp/pm97",
+        "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+        "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1_smoke_mb8",
+        "phase": "joint",
+        "goal_on": 1,
+        "state_on": 1,
+        "gpu": 0,
+        "cpu": false,
+        "cuda_memory_limit_mib": 170000,
+        "cuda_min_free_mib": 8192,
+        "microbatch": 8,
+        "seed": 1,
+        "steps": 2,
+        "batch": 16,
+        "eval_batch": 8,
+        "workers": 8,
+        "eval_every": 2,
+        "save_every": 2,
+        "log_every": 1,
+        "lr": 5e-05,
+        "backbone_lr": 5e-06,
+        "weight_decay": 0.01,
+        "warmup": 200,
+        "grad_clip": 5.0,
+        "alpha_occ": 0.2,
+        "alpha_lane": 0.2,
+        "alpha_motion": 0.2,
+        "uncertainty": 1,
+        "precision": "bf16",
+        "time_input": "nominal",
+        "bn_policy": "fixed",
+        "pretrained": null,
+        "init": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "resume": null,
+        "arch": "resnet50",
+        "motion_input_mode": "low_feature",
+        "cross_cell_goal_mode": "zero",
+        "history_contract": "control",
+        "history_overlay_root": null,
+        "expected_history_overlay_sha256": null,
+        "plan_output_scale": null,
+        "train_stride": 1,
+        "eval_stride": 5,
+        "max_train_samples": 0,
+        "max_eval_samples": 0,
+        "train_scenes": null,
+        "eval_scenes": null,
+        "eval_split": "tune",
+        "eval_only": false,
+        "allow_unpretrained": false
+      },
+      "model_config": {
+        "channels": 128,
+        "backbone_arch": "resnet50",
+        "grid_size": [
+          64,
+          48
+        ],
+        "x_range": [
+          -10.0,
+          70.0
+        ],
+        "y_range": [
+          -32.0,
+          32.0
+        ],
+        "heights": [
+          0.0,
+          1.0,
+          2.0
+        ],
+        "n_history": 4,
+        "motion_grid": [
+          12,
+          16
+        ],
+        "correlation_channels": 32,
+        "correlation_radius": 4,
+        "scene_attention_channels": 32,
+        "scene_chunk_size": 512,
+        "planner_layers": 2,
+        "planner_heads": 4,
+        "goal_on": true,
+        "state_on": true,
+        "plan_output_scale": [
+          10.0,
+          5.0
+        ],
+        "motion_input_mode": "low_feature",
+        "history_contract": "control",
+        "history_frame_offsets": [
+          1,
+          2,
+          5,
+          10
+        ],
+        "nominal_history_seconds": [
+          0.1,
+          0.2,
+          0.5,
+          1.0
+        ],
+        "cross_cell_goal_mode": "zero"
+      },
+      "loss_weights": {
+        "plan": 1.0,
+        "occupancy": 0.2,
+        "lane": 0.2,
+        "motion": 0.2,
+        "uncertainty": true
+      },
+      "time_input": "nominal",
+      "time_input_policy": {
+        "mode": "nominal",
+        "scope": "model input time_offsets only; same for training and every evaluation",
+        "source": "fixed nominal frame-offset seconds",
+        "nominal_history_seconds": [
+          0.1,
+          0.2,
+          0.5,
+          1.0
+        ],
+        "nominal_dtype": "float32",
+        "supervision_and_dataset_modified": false
+      },
+      "split_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+      "load_report": {
+        "common_checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "shared_dynamics_initial_load": {
+          "strict_parent_except_mr_fuse": true,
+          "dropped_parent_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight"
+          ],
+          "missing_new_or_rebuilt_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight",
+            "shared_status_query_fusion.status_mlp.0.bias",
+            "shared_status_query_fusion.status_mlp.0.weight",
+            "shared_status_query_fusion.status_mlp.2.bias",
+            "shared_status_query_fusion.status_mlp.2.weight",
+            "shared_status_query_fusion.status_scale"
+          ],
+          "measured_model_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "mr_rebuild": {
+            "module": "motion_encoder.correlation_fuse.0",
+            "old_in_channels": 178,
+            "new_in_channels": 290,
+            "bins": 81,
+            "reinitialised": true,
+            "parameters": 334208
+          },
+          "shared_base_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "all_parameters_trainable": true
+        }
+      },
+      "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+      "numpy": "2.1.0",
+      "device": "cuda:0",
+      "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+      "cuda_memory_policy": {
+        "enabled": true,
+        "allocator_limit_mib": 170000,
+        "min_free_mib": 8192,
+        "allocator_fraction": 0.9308355001495496,
+        "initial_free_bytes": 190847057920,
+        "device_total_bytes": 191503138816,
+        "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+      },
+      "microbatch_policy": {
+        "enabled": true,
+        "microbatch": 8,
+        "logical_batch": 16,
+        "optimizer_updates_per_logical_batch": 1,
+        "loss_normalization": "full logical batch label/mask denominators",
+        "bitwise_equivalence_to_unsplit_training_promised": false
+      },
+      "gpu_name": "NVIDIA B200",
+      "pretrained_sha256": null,
+      "supervision_manifest_sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f",
+      "initial_model_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+      "initial_parameter_count": 26557208,
+      "bn_training": {
+        "policy": "fixed",
+        "modules": 53,
+        "affine_and_backbone_weights_trainable": true,
+        "inference_policy": "eval running statistics for both arms"
+      },
+      "status": "completed",
+      "pid": 3281436,
+      "experimental_protocol": {
+        "schema_version": 1,
+        "name": "md_a2_nominal_mh4_20260918",
+        "arm": "A2-BASE-NOM",
+        "seed": 1,
+        "smoke": true,
+        "question": "matched nominal-input query-only A2: single vs four scene evidence reads",
+        "initializer": {
+          "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+          "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+          "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+          "source": "q10_flip50 initializer used by registered MR"
+        },
+        "split_manifest": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+          "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+        },
+        "supervision": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+          "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2/supervision_manifest.json",
+          "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+        },
+        "train_data": {
+          "rows": 83700,
+          "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+          "scenes": 310
+        },
+        "tune_data": {
+          "rows": 1998,
+          "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+          "scenes": 37
+        },
+        "provided_status_used": true,
+        "information_route": {
+          "source": "causal pose fit with frame-difference * 0.1s; same deployment producer",
+          "fields": [
+            "vx",
+            "vy",
+            "ax",
+            "ay",
+            "yaw_rate"
+          ],
+          "raw_status_direct_planner_input": false,
+          "shared_query": true,
+          "shared_multiplicative_image_feature_conditioning": false,
+          "shared_consumers": [
+            "occupancy",
+            "lane",
+            "planning"
+          ],
+          "progress_head_inputs": [],
+          "progress_head_raw_goal_pose_status_inputs": false,
+          "motion_state_history": "unconditioned image path"
+        },
+        "planner": {
+          "factorized": false,
+          "coefficient_count": 0,
+          "coefficient_semantics": [],
+          "direction_source": "direct XY output",
+          "proposal_length_gradient": "ordinary direct XY",
+          "composition": "ordinary direct XY",
+          "candidate_bank_or_selector": false
+        },
+        "recipe": {
+          "updates": 2,
+          "eval_every": 2,
+          "batch": 16,
+          "microbatch": 8,
+          "eval_batch": 8,
+          "head_lr": 5e-05,
+          "backbone_lr": 5e-06,
+          "warmup": 200,
+          "weight_decay": 0.01,
+          "grad_clip": 5.0,
+          "flip_probability": 0.5,
+          "precision": "bf16",
+          "interval_length_auxiliary_lambda": 0.25,
+          "correlation_radius": 4,
+          "motion_canvas": "native 768x432",
+          "eval_role": "DEV V0, excluded from fitting"
+        },
+        "comparison_contract": {
+          "same_initializer_as_registered_mr": true,
+          "same_train310_tune37_split": true,
+          "same_seed_and_sample_order_across_arms": true,
+          "same_full_update_budget": false
+        },
+        "expected_initial_model_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+        "expected_optimizer_groups": [
+          {
+            "name": "backbone",
+            "base_lr": 5e-06
+          },
+          {
+            "name": "head",
+            "base_lr": 5e-05
+          }
+        ],
+        "physical_gpu": 1,
+        "nominal_input": {
+          "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/manifest.json",
+          "sha256": "e63951eb1f2ddced7ecf38885af1a000f28afd2f900d0813be5500a8663c40c5",
+          "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+          "allowed_splits": [
+            "train",
+            "tune"
+          ],
+          "input_field": "provided_status5",
+          "state_history_supervision": "original real-time definition retained"
+        },
+        "scene_attention": {
+          "heads": 1,
+          "qk_dimensions_per_head": 32,
+          "value_dimensions_per_head": 128,
+          "output_dimensions": 128,
+          "sampling_grid_camera_time_metadata": "unchanged",
+          "query_as_value_residual": false,
+          "initialization": "registered A2"
+        },
+        "full_fit": {
+          "enabled": false,
+          "evaluation_is_in_fit": false,
+          "dev_weights_or_features_imported": false,
+          "checkpoint_selection": "fixed terminal; no best-overlapping-metric selection"
+        },
+        "expected_shared_base_initial_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+        "source": {
+          "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+          "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+          "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+          "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+          "models/motiondrive_v2/scene_encoder.py": "4c51b5473cd0f517fbbb81b454486d5a6c82ea9a33e1195f5a3665e1b0358e13",
+          "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+          "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437"
+        },
+        "initial_load": {
+          "strict_parent_except_mr_fuse": true,
+          "dropped_parent_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight"
+          ],
+          "missing_new_or_rebuilt_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight",
+            "shared_status_query_fusion.status_mlp.0.bias",
+            "shared_status_query_fusion.status_mlp.0.weight",
+            "shared_status_query_fusion.status_mlp.2.bias",
+            "shared_status_query_fusion.status_mlp.2.weight",
+            "shared_status_query_fusion.status_scale"
+          ],
+          "measured_model_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "mr_rebuild": {
+            "module": "motion_encoder.correlation_fuse.0",
+            "old_in_channels": 178,
+            "new_in_channels": 290,
+            "bins": 81,
+            "reinitialised": true,
+            "parameters": 334208
+          },
+          "shared_base_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "all_parameters_trainable": true
+        }
+      },
+      "data_counts": {
+        "train": 83700,
+        "eval": 1998
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log",
+      "step": 2,
+      "best_metric": 0.47765116606866037,
+      "cuda_memory": {
+        "allocated_bytes": 457707008,
+        "reserved_bytes": 39466303488,
+        "peak_allocated_bytes": 35119031296,
+        "peak_reserved_bytes": 39466303488,
+        "device_free_bytes": 151038918656,
+        "device_total_bytes": 191503138816
+      },
+      "elapsed_seconds": 40.32708381302655,
+      "nonfinite_count": 0
+    },
+    "train_metrics": [
+      {
+        "kind": "train",
+        "step": 1,
+        "epoch": 0,
+        "elapsed_seconds": 9.402411861345172,
+        "grad_norm": 194.06707763671875,
+        "lr": 2.5000000000000004e-07,
+        "sample_order_sha256": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "cuda_memory": {
+          "allocated_bytes": 457346560,
+          "reserved_bytes": 39409680384,
+          "peak_allocated_bytes": 34902157824,
+          "peak_reserved_bytes": 39409680384,
+          "device_free_bytes": 151110221824,
+          "device_total_bytes": 191503138816
+        },
+        "total": 2.8088536262512207,
+        "plan_d3": 0.6594299077987671,
+        "occ_bce": 0.27513226866722107,
+        "lane_bce": 0.4231741428375244,
+        "history": 4.297224044799805,
+        "state": 5.48404598236084,
+        "stop_bce": 0.40105950832366943,
+        "motion": 9.861481666564941,
+        "plan_interval_length": 0.14986295998096466
+      },
+      {
+        "kind": "train",
+        "step": 2,
+        "epoch": 0,
+        "elapsed_seconds": 10.305296864360571,
+        "grad_norm": 258.8900451660156,
+        "lr": 5.000000000000001e-07,
+        "sample_order_sha256": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16",
+        "cuda_memory": {
+          "allocated_bytes": 457707008,
+          "reserved_bytes": 39466303488,
+          "peak_allocated_bytes": 35119031296,
+          "peak_reserved_bytes": 39466303488,
+          "device_free_bytes": 151049404416,
+          "device_total_bytes": 191503138816
+        },
+        "total": 4.219812870025635,
+        "plan_d3": 0.8416438698768616,
+        "occ_bce": 0.28209999203681946,
+        "lane_bce": 0.3942793011665344,
+        "history": 7.025642395019531,
+        "state": 8.815418243408203,
+        "stop_bce": 0.7861325740814209,
+        "motion": 15.998287200927734,
+        "plan_interval_length": 0.17294198274612427
+      }
+    ],
+    "eval_report": {
+      "kind": "eval",
+      "step": 2,
+      "selection_metric": 0.47765116606866037,
+      "selection_definition": "official_d3",
+      "time_input": "nominal",
+      "n": 1998,
+      "official_d3": 0.47765116606866037,
+      "session_mean_d3": 0.5142208614611646,
+      "n_sessions": 11,
+      "proxy_d3": 0.47765116606866037,
+      "proxy_is_not_official_sample_weight": true,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        4.388137841487193,
+        0.1651076890166487,
+        0.4348443964565242,
+        0.18566533981834552,
+        0.04110891626167994
+      ],
+      "history_position_mae_by_offset": [
+        0.5265996235873069,
+        1.0534946123572502,
+        2.755001705781267,
+        4.832898209693733
+      ],
+      "session_d3": {
+        "session_019_20260113-102709": 0.4123589745550244,
+        "session_026_20260122-134906": 0.4336647251965823,
+        "session_027_20260122-135506": 0.41726282918973573,
+        "session_040_20260209-153550": 0.5124410600573929,
+        "session_046_20260210-100504": 0.6044668055656883,
+        "session_076_20260213-134648": 0.35996638059064195,
+        "session_092_20260219-103747": 1.0941367830943178,
+        "session_097_20260219-110038": 0.2581618493537844,
+        "session_087_20260219-90551": 0.4878707726796468,
+        "session_108_20260220-134317": 0.32275328364361217,
+        "session_112_20260303-142827": 0.7533460121463846
+      },
+      "occ_iou": 0.433913912786359,
+      "lane_iou": 0.42354494220386885
+    },
+    "scope": "2-step pipeline check, not model selection"
+  },
+  "A2-MH4-NOM": {
+    "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1_smoke_mb8",
+    "manifest": {
+      "schema_version": 1,
+      "git_sha": "64c712a98e440276ff0247069992adae7deb4251",
+      "arguments": {
+        "data_root": "/tmp/pm97",
+        "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+        "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+        "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1_smoke_mb8",
+        "phase": "joint",
+        "goal_on": 1,
+        "state_on": 1,
+        "gpu": 0,
+        "cpu": false,
+        "cuda_memory_limit_mib": 170000,
+        "cuda_min_free_mib": 8192,
+        "microbatch": 8,
+        "seed": 1,
+        "steps": 2,
+        "batch": 16,
+        "eval_batch": 8,
+        "workers": 8,
+        "eval_every": 2,
+        "save_every": 2,
+        "log_every": 1,
+        "lr": 5e-05,
+        "backbone_lr": 5e-06,
+        "weight_decay": 0.01,
+        "warmup": 200,
+        "grad_clip": 5.0,
+        "alpha_occ": 0.2,
+        "alpha_lane": 0.2,
+        "alpha_motion": 0.2,
+        "uncertainty": 1,
+        "precision": "bf16",
+        "time_input": "nominal",
+        "bn_policy": "fixed",
+        "pretrained": null,
+        "init": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "resume": null,
+        "arch": "resnet50",
+        "motion_input_mode": "low_feature",
+        "cross_cell_goal_mode": "zero",
+        "history_contract": "control",
+        "history_overlay_root": null,
+        "expected_history_overlay_sha256": null,
+        "plan_output_scale": null,
+        "train_stride": 1,
+        "eval_stride": 5,
+        "max_train_samples": 0,
+        "max_eval_samples": 0,
+        "train_scenes": null,
+        "eval_scenes": null,
+        "eval_split": "tune",
+        "eval_only": false,
+        "allow_unpretrained": false
+      },
+      "model_config": {
+        "channels": 128,
+        "backbone_arch": "resnet50",
+        "grid_size": [
+          64,
+          48
+        ],
+        "x_range": [
+          -10.0,
+          70.0
+        ],
+        "y_range": [
+          -32.0,
+          32.0
+        ],
+        "heights": [
+          0.0,
+          1.0,
+          2.0
+        ],
+        "n_history": 4,
+        "motion_grid": [
+          12,
+          16
+        ],
+        "correlation_channels": 32,
+        "correlation_radius": 4,
+        "scene_attention_channels": 32,
+        "scene_chunk_size": 512,
+        "planner_layers": 2,
+        "planner_heads": 4,
+        "goal_on": true,
+        "state_on": true,
+        "plan_output_scale": [
+          10.0,
+          5.0
+        ],
+        "motion_input_mode": "low_feature",
+        "history_contract": "control",
+        "history_frame_offsets": [
+          1,
+          2,
+          5,
+          10
+        ],
+        "nominal_history_seconds": [
+          0.1,
+          0.2,
+          0.5,
+          1.0
+        ],
+        "cross_cell_goal_mode": "zero"
+      },
+      "loss_weights": {
+        "plan": 1.0,
+        "occupancy": 0.2,
+        "lane": 0.2,
+        "motion": 0.2,
+        "uncertainty": true
+      },
+      "time_input": "nominal",
+      "time_input_policy": {
+        "mode": "nominal",
+        "scope": "model input time_offsets only; same for training and every evaluation",
+        "source": "fixed nominal frame-offset seconds",
+        "nominal_history_seconds": [
+          0.1,
+          0.2,
+          0.5,
+          1.0
+        ],
+        "nominal_dtype": "float32",
+        "supervision_and_dataset_modified": false
+      },
+      "split_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+      "load_report": {
+        "common_checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "shared_dynamics_initial_load": {
+          "strict_parent_except_mr_fuse": true,
+          "dropped_parent_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight"
+          ],
+          "missing_new_or_rebuilt_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight",
+            "scene_encoder.evidence_attention.key_matrix",
+            "scene_encoder.evidence_attention.output_matrix",
+            "scene_encoder.evidence_attention.query_matrix",
+            "shared_status_query_fusion.status_mlp.0.bias",
+            "shared_status_query_fusion.status_mlp.0.weight",
+            "shared_status_query_fusion.status_mlp.2.bias",
+            "shared_status_query_fusion.status_mlp.2.weight",
+            "shared_status_query_fusion.status_scale"
+          ],
+          "measured_model_state_sha256": "4fec03526314c1ace257c6f6e4985d42a72f68e90604c48be0cef66f384f00ef",
+          "mr_rebuild": {
+            "module": "motion_encoder.correlation_fuse.0",
+            "old_in_channels": 178,
+            "new_in_channels": 290,
+            "bins": 81,
+            "reinitialised": true,
+            "parameters": 334208
+          },
+          "shared_base_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "all_parameters_trainable": true
+        }
+      },
+      "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+      "numpy": "2.1.0",
+      "device": "cuda:0",
+      "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+      "cuda_memory_policy": {
+        "enabled": true,
+        "allocator_limit_mib": 170000,
+        "min_free_mib": 8192,
+        "allocator_fraction": 0.9308355001495496,
+        "initial_free_bytes": 190846992384,
+        "device_total_bytes": 191503138816,
+        "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+      },
+      "microbatch_policy": {
+        "enabled": true,
+        "microbatch": 8,
+        "logical_batch": 16,
+        "optimizer_updates_per_logical_batch": 1,
+        "loss_normalization": "full logical batch label/mask denominators",
+        "bitwise_equivalence_to_unsplit_training_promised": false
+      },
+      "gpu_name": "NVIDIA B200",
+      "pretrained_sha256": null,
+      "supervision_manifest_sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f",
+      "initial_model_state_sha256": "4fec03526314c1ace257c6f6e4985d42a72f68e90604c48be0cef66f384f00ef",
+      "initial_parameter_count": 26581784,
+      "bn_training": {
+        "policy": "fixed",
+        "modules": 53,
+        "affine_and_backbone_weights_trainable": true,
+        "inference_policy": "eval running statistics for both arms"
+      },
+      "status": "completed",
+      "pid": 3281440,
+      "experimental_protocol": {
+        "schema_version": 1,
+        "name": "md_a2_nominal_mh4_20260918",
+        "arm": "A2-MH4-NOM",
+        "seed": 1,
+        "smoke": true,
+        "question": "matched nominal-input query-only A2: single vs four scene evidence reads",
+        "initializer": {
+          "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+          "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+          "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+          "source": "q10_flip50 initializer used by registered MR"
+        },
+        "split_manifest": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+          "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+        },
+        "supervision": {
+          "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+          "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2/supervision_manifest.json",
+          "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+        },
+        "train_data": {
+          "rows": 83700,
+          "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+          "scenes": 310
+        },
+        "tune_data": {
+          "rows": 1998,
+          "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+          "scenes": 37
+        },
+        "provided_status_used": true,
+        "information_route": {
+          "source": "causal pose fit with frame-difference * 0.1s; same deployment producer",
+          "fields": [
+            "vx",
+            "vy",
+            "ax",
+            "ay",
+            "yaw_rate"
+          ],
+          "raw_status_direct_planner_input": false,
+          "shared_query": true,
+          "shared_multiplicative_image_feature_conditioning": false,
+          "shared_consumers": [
+            "occupancy",
+            "lane",
+            "planning"
+          ],
+          "progress_head_inputs": [],
+          "progress_head_raw_goal_pose_status_inputs": false,
+          "motion_state_history": "unconditioned image path"
+        },
+        "planner": {
+          "factorized": false,
+          "coefficient_count": 0,
+          "coefficient_semantics": [],
+          "direction_source": "direct XY output",
+          "proposal_length_gradient": "ordinary direct XY",
+          "composition": "ordinary direct XY",
+          "candidate_bank_or_selector": false
+        },
+        "recipe": {
+          "updates": 2,
+          "eval_every": 2,
+          "batch": 16,
+          "microbatch": 8,
+          "eval_batch": 8,
+          "head_lr": 5e-05,
+          "backbone_lr": 5e-06,
+          "warmup": 200,
+          "weight_decay": 0.01,
+          "grad_clip": 5.0,
+          "flip_probability": 0.5,
+          "precision": "bf16",
+          "interval_length_auxiliary_lambda": 0.25,
+          "correlation_radius": 4,
+          "motion_canvas": "native 768x432",
+          "eval_role": "DEV V0, excluded from fitting"
+        },
+        "comparison_contract": {
+          "same_initializer_as_registered_mr": true,
+          "same_train310_tune37_split": true,
+          "same_seed_and_sample_order_across_arms": true,
+          "same_full_update_budget": false
+        },
+        "expected_initial_model_state_sha256": "4fec03526314c1ace257c6f6e4985d42a72f68e90604c48be0cef66f384f00ef",
+        "expected_optimizer_groups": [
+          {
+            "name": "backbone",
+            "base_lr": 5e-06
+          },
+          {
+            "name": "head",
+            "base_lr": 5e-05
+          }
+        ],
+        "physical_gpu": 2,
+        "nominal_input": {
+          "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/manifest.json",
+          "sha256": "e63951eb1f2ddced7ecf38885af1a000f28afd2f900d0813be5500a8663c40c5",
+          "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+          "allowed_splits": [
+            "train",
+            "tune"
+          ],
+          "input_field": "provided_status5",
+          "state_history_supervision": "original real-time definition retained"
+        },
+        "scene_attention": {
+          "heads": 4,
+          "qk_dimensions_per_head": 32,
+          "value_dimensions_per_head": 32,
+          "output_dimensions": 128,
+          "sampling_grid_camera_time_metadata": "unchanged",
+          "query_as_value_residual": false,
+          "initialization": "identity head transforms and image-value channel slices"
+        },
+        "full_fit": {
+          "enabled": false,
+          "evaluation_is_in_fit": false,
+          "dev_weights_or_features_imported": false,
+          "checkpoint_selection": "fixed terminal; no best-overlapping-metric selection"
+        },
+        "expected_shared_base_initial_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+        "source": {
+          "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+          "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+          "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+          "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+          "models/motiondrive_v2/scene_encoder.py": "4c51b5473cd0f517fbbb81b454486d5a6c82ea9a33e1195f5a3665e1b0358e13",
+          "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+          "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437"
+        },
+        "initial_load": {
+          "strict_parent_except_mr_fuse": true,
+          "dropped_parent_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight"
+          ],
+          "missing_new_or_rebuilt_keys": [
+            "motion_encoder.correlation_fuse.0.bias",
+            "motion_encoder.correlation_fuse.0.weight",
+            "scene_encoder.evidence_attention.key_matrix",
+            "scene_encoder.evidence_attention.output_matrix",
+            "scene_encoder.evidence_attention.query_matrix",
+            "shared_status_query_fusion.status_mlp.0.bias",
+            "shared_status_query_fusion.status_mlp.0.weight",
+            "shared_status_query_fusion.status_mlp.2.bias",
+            "shared_status_query_fusion.status_mlp.2.weight",
+            "shared_status_query_fusion.status_scale"
+          ],
+          "measured_model_state_sha256": "4fec03526314c1ace257c6f6e4985d42a72f68e90604c48be0cef66f384f00ef",
+          "mr_rebuild": {
+            "module": "motion_encoder.correlation_fuse.0",
+            "old_in_channels": 178,
+            "new_in_channels": 290,
+            "bins": 81,
+            "reinitialised": true,
+            "parameters": 334208
+          },
+          "shared_base_state_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+          "all_parameters_trainable": true
+        }
+      },
+      "data_counts": {
+        "train": 83700,
+        "eval": 1998
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log",
+      "step": 2,
+      "best_metric": 0.4774134176689106,
+      "cuda_memory": {
+        "allocated_bytes": 460664320,
+        "reserved_bytes": 38749077504,
+        "peak_allocated_bytes": 35281605632,
+        "peak_reserved_bytes": 38749077504,
+        "device_free_bytes": 151756079104,
+        "device_total_bytes": 191503138816
+      },
+      "elapsed_seconds": 40.99846804887056,
+      "nonfinite_count": 0
+    },
+    "train_metrics": [
+      {
+        "kind": "train",
+        "step": 1,
+        "epoch": 0,
+        "elapsed_seconds": 11.850894007831812,
+        "grad_norm": 194.1063232421875,
+        "lr": 2.5000000000000004e-07,
+        "sample_order_sha256": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "cuda_memory": {
+          "allocated_bytes": 458075648,
+          "reserved_bytes": 38692454400,
+          "peak_allocated_bytes": 35056032256,
+          "peak_reserved_bytes": 38692454400,
+          "device_free_bytes": 151821090816,
+          "device_total_bytes": 191503138816
+        },
+        "total": 2.8088536262512207,
+        "plan_d3": 0.6594299077987671,
+        "occ_bce": 0.27513226866722107,
+        "lane_bce": 0.4231741428375244,
+        "history": 4.297224044799805,
+        "state": 5.48404598236084,
+        "stop_bce": 0.40105950832366943,
+        "motion": 9.861481666564941,
+        "plan_interval_length": 0.14986295998096466
+      },
+      {
+        "kind": "train",
+        "step": 2,
+        "epoch": 0,
+        "elapsed_seconds": 12.53031999990344,
+        "grad_norm": 258.8699645996094,
+        "lr": 5.000000000000001e-07,
+        "sample_order_sha256": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16",
+        "cuda_memory": {
+          "allocated_bytes": 460664320,
+          "reserved_bytes": 38749077504,
+          "peak_allocated_bytes": 35281605632,
+          "peak_reserved_bytes": 38749077504,
+          "device_free_bytes": 151764467712,
+          "device_total_bytes": 191503138816
+        },
+        "total": 4.219665050506592,
+        "plan_d3": 0.8416164517402649,
+        "occ_bce": 0.2820556163787842,
+        "lane_bce": 0.39422062039375305,
+        "history": 7.025368690490723,
+        "state": 8.815245628356934,
+        "stop_bce": 0.7861244678497314,
+        "motion": 15.997838973999023,
+        "plan_interval_length": 0.17290368676185608
+      }
+    ],
+    "eval_report": {
+      "kind": "eval",
+      "step": 2,
+      "selection_metric": 0.4774134176689106,
+      "selection_definition": "official_d3",
+      "time_input": "nominal",
+      "n": 1998,
+      "official_d3": 0.4774134176689106,
+      "session_mean_d3": 0.5139961401675257,
+      "n_sessions": 11,
+      "proxy_d3": 0.4774134176689106,
+      "proxy_is_not_official_sample_weight": true,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        4.388117021029895,
+        0.16510065353929518,
+        0.4348380912591268,
+        0.18566663563627311,
+        0.04110850136632937
+      ],
+      "history_position_mae_by_offset": [
+        0.5265978128034938,
+        1.0534879953056961,
+        2.7550126943099604,
+        4.832921534224793
+      ],
+      "session_d3": {
+        "session_019_20260113-102709": 0.4120152004890972,
+        "session_026_20260122-134906": 0.43336357093519634,
+        "session_027_20260122-135506": 0.4169620338176924,
+        "session_040_20260209-153550": 0.5122102703899145,
+        "session_046_20260210-100504": 0.6041672090689342,
+        "session_076_20260213-134648": 0.35985833024721087,
+        "session_092_20260219-103747": 1.094064388010237,
+        "session_097_20260219-110038": 0.2579481315649586,
+        "session_087_20260219-90551": 0.48774800822138786,
+        "session_108_20260220-134317": 0.3225520634678779,
+        "session_112_20260303-142827": 0.7530683356302755
+      },
+      "occ_iou": 0.43394286905167584,
+      "lane_iou": 0.42355947608443095
+    },
+    "scope": "2-step pipeline check, not model selection"
+  }
+}

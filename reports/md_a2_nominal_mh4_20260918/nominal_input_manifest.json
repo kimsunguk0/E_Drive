@@ -1,0 +1,3808 @@
+{
+  "schema_version": 1,
+  "kind": "deterministic raw-pose INPUT cache, not learned features or supervision",
+  "status_policy": "frame_difference_times_0.1_seconds",
+  "fields": [
+    "vx",
+    "vy",
+    "ax",
+    "ay",
+    "yaw_rate"
+  ],
+  "split_manifest_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "supervision_manifest_sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f",
+  "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+  "producer": "/NHNHOME/data/sukim/adcl/experiments/md_a2_deploy_status_20260918/nominal_status.py",
+  "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+  "builder_sha256": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+  "supervision_unchanged": true,
+  "splits": {
+    "train": {
+      "rows": 83700,
+      "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/train.npz",
+      "sha256": "0e377eaff5df39d50653e70da037dddec76aecad85b0a2359c8a8714ba7cc728",
+      "scenes": 310
+    },
+    "tune": {
+      "rows": 9990,
+      "rows_sha256": "f07b1f850e7f0f7dbc906fb72b9e8ba6a57ed39c431a37f3c1b3929f203ed74e",
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/tune.npz",
+      "sha256": "be3ce6e6b2ad585d2572c174ccdba8dc44a88e6ecc6c98ff460f03309ed3963a",
+      "scenes": 37
+    },
+    "val": {
+      "rows": 7830,
+      "rows_sha256": "61151f11b0fab4eb5cf7731553f63e50151082cb5a5dcc05ae3de367d758361f",
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/val.npz",
+      "sha256": "504b2bcdf5852854edae2a04c272301212a6ef67c4891ac2484894f5600765df",
+      "scenes": 29
+    }
+  },
+  "source_index": [
+    {
+      "scene": "20260112-105434",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-105434/annotation/ego_pose.parquet",
+      "pose_sha256": "8adfd4c446cfe8888a65f2980c7bc44b11eafe93b020588f9c1449a3978b822d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-105434/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9b117d46426ca4f832ad6bd19ef084051a1c5d87dc90b986ed85d2a3f7f60d1c"
+    },
+    {
+      "scene": "20260112-105504",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-105504/annotation/ego_pose.parquet",
+      "pose_sha256": "fabbb41cb5c1c381b3f0159cbc17dae3c462842641769e264d3a91d3a1b983ec",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-105504/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d9056d13ffcfa5c757ff904285f2d32cd3c23ea4a4be3efb1d6a0b3487738b48"
+    },
+    {
+      "scene": "20260112-111049",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-111049/annotation/ego_pose.parquet",
+      "pose_sha256": "b2aa53501d662340b040af653d11147800dd27ffe83b43c9bc3424bf302ba534",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-111049/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d742ba2805a8ff0e3de2023a50576767cfde357a8ea6fd35f217494b3983f975"
+    },
+    {
+      "scene": "20260112-111149",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-111149/annotation/ego_pose.parquet",
+      "pose_sha256": "908883814df9e35238075c0cb76b72ebae4d9d826c63692dedfcb9e17ffb4ca9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-111149/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c0f2064b37f8f7aac0979c3b6e3d5df9c642d3cd9e17a1d99413576940d74272"
+    },
+    {
+      "scene": "20260112-111439",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-111439/annotation/ego_pose.parquet",
+      "pose_sha256": "a2cdae01998966080e4a44b54e64f7859823fb7b15d60d7a06cd1dcbbb284f6a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-111439/meta/timestamps.parquet",
+      "frame_mapping_sha256": "33c9d493fc520b3b2bf4fe67f8c988fe8048bd4b6da42ef516bb581d83be926e"
+    },
+    {
+      "scene": "20260112-111759",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-111759/annotation/ego_pose.parquet",
+      "pose_sha256": "3d40cbeb54630efa918a3e8a4100b29e1e670a87e506ba6ceafb7225342ccbec",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-111759/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0c77ef16084a63217c10cd0f2992f186b98b295841351d62352f699baa87b5f9"
+    },
+    {
+      "scene": "20260112-111829",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-111829/annotation/ego_pose.parquet",
+      "pose_sha256": "68934e4b5b1334033bc37727cf5664ac3760c2ce6e2f650e001ae00425a15153",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-111829/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f6985d033029a2a48542a245b90a01e262e8edec2a8b85b74b5fc8353aa04f0f"
+    },
+    {
+      "scene": "20260112-112649",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-112649/annotation/ego_pose.parquet",
+      "pose_sha256": "16e70b4306552cdf7150a496a4c41309c37bdf19d64678596863a46ef5b3fab1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-112649/meta/timestamps.parquet",
+      "frame_mapping_sha256": "80ab0aa2d227c01f61c2389edeb91b81cc0ee7f84f5706b09e1ec1efa8bb45a9"
+    },
+    {
+      "scene": "20260112-134817",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-134817/annotation/ego_pose.parquet",
+      "pose_sha256": "b31aedb00b80749b2334221367aa84616aaeb437422dcbe1e0ee2b30cd1443bb",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-134817/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4339a636f63cf627110d277268915c6adcf5a36916482b5750e860855efea517"
+    },
+    {
+      "scene": "20260112-134847",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-134847/annotation/ego_pose.parquet",
+      "pose_sha256": "12fc2bcd62df46e0909f550e77c4cbe82b65511272d558ac3a559b92796f05f1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-134847/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a25024c34204f57d9c9e6c53f6aaa7cb71985843e8e2abcf25590201b3d66a64"
+    },
+    {
+      "scene": "20260112-153937",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-153937/annotation/ego_pose.parquet",
+      "pose_sha256": "160714a7a90ae26f634bc547f62ad9622503fc276dc3ee6c29ffee7f00b649a9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-153937/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f808f4fc118f886533cd510040852cf2b846deec8fa450549bfea3574e99505c"
+    },
+    {
+      "scene": "20260112-154017",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154017/annotation/ego_pose.parquet",
+      "pose_sha256": "ad7aa7fbc554a7ae09195f151e997aced17e57d8513bca352b76bbbdda22c856",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154017/meta/timestamps.parquet",
+      "frame_mapping_sha256": "30984cf75547eddd852127ef1b643a8f9d1beab99c8e24da1135e85edb65bd9c"
+    },
+    {
+      "scene": "20260112-154047",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154047/annotation/ego_pose.parquet",
+      "pose_sha256": "14bf2b587b0196ba230b1d5a6c2339853f57efbc71219303b5fdaf7095b6f18b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154047/meta/timestamps.parquet",
+      "frame_mapping_sha256": "27a84c674a5cb99514a8fdbc25041ab045f3b055a13862bccd2004410a4376f7"
+    },
+    {
+      "scene": "20260112-154227",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154227/annotation/ego_pose.parquet",
+      "pose_sha256": "3231ff817f94b194841d0471d01b206d81ede68a42f2b40c5699e91617973bbc",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154227/meta/timestamps.parquet",
+      "frame_mapping_sha256": "91659ac110a5cb721da57250c802f7b0a83de999ceaf3f3c438d1a3c6d8de932"
+    },
+    {
+      "scene": "20260112-154257",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154257/annotation/ego_pose.parquet",
+      "pose_sha256": "933704e757e2ec64a0871af6274442f99534752c27e886e22eb65ec0151e7a70",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154257/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d4c05044aa21fff15890f55925f87aeb21b985391f5bc3bc8cdd281447bbd9d5"
+    },
+    {
+      "scene": "20260112-154407",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154407/annotation/ego_pose.parquet",
+      "pose_sha256": "d01979353be79d0bc9b6b04c023cd8e284acf7ef8faa143a8799a42be76b1602",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154407/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a90ee8145dfd0e90fcf9318352acc2b134e52dcf75795cbf31830816606720ec"
+    },
+    {
+      "scene": "20260112-154437",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154437/annotation/ego_pose.parquet",
+      "pose_sha256": "e1acb86d4d2c927f0b47391bc5dfc9bcdbb9e8cc4a0280d0e6dacc68dd51a06d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154437/meta/timestamps.parquet",
+      "frame_mapping_sha256": "80a45ea6900b4c53ceebb491c7301bf7184eeada3fb2397c0e37f25210b5f7e5"
+    },
+    {
+      "scene": "20260112-154517",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154517/annotation/ego_pose.parquet",
+      "pose_sha256": "fc606cceba682799836001fff227bee47f675b4bf253d0670529befa2db0b745",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154517/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8ecc8590c7326d5da3e14b531ed95e2429f3429b4e498a74887e82ac017dcf54"
+    },
+    {
+      "scene": "20260112-154547",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154547/annotation/ego_pose.parquet",
+      "pose_sha256": "79cbfc706bea425b50b45a1766c3cc745e3fee7854d70ed9c1b2a9dcaf4295ae",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154547/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e106cf5155295246661b4eabcfa29220db96ad58fa3e00622d24d3a28445c0b9"
+    },
+    {
+      "scene": "20260112-154657",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154657/annotation/ego_pose.parquet",
+      "pose_sha256": "c0e7e4c69130483296ed190f5d49ce8800c997947e4b5b639e093e8e8da213c4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154657/meta/timestamps.parquet",
+      "frame_mapping_sha256": "40b930d163abbaf7c49f48b083c8ecb3bb2a7fc37cdde4b630b51881838b5867"
+    },
+    {
+      "scene": "20260112-154727",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154727/annotation/ego_pose.parquet",
+      "pose_sha256": "a587859bbac7c72ac804d60cd07c99c241f29289dc6c2faca2dd42a161a20099",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154727/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1d0c0c59480bb7f953ac50383b4d64c9959aad1323736abf3a32a4c2d686d6b8"
+    },
+    {
+      "scene": "20260112-154937",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-154937/annotation/ego_pose.parquet",
+      "pose_sha256": "e5072feeeff1d025d2b282fc6dd14db8e3171bfa976d18d09f48d1a861f62c87",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-154937/meta/timestamps.parquet",
+      "frame_mapping_sha256": "3a067cbcb809ea930c18e410d263a8b5c2f9db25de6acad3977c17238f4fe790"
+    },
+    {
+      "scene": "20260112-155017",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-155017/annotation/ego_pose.parquet",
+      "pose_sha256": "ac0dff7086818dad7802c52f7ad39631ed05025c4448c3ccda8979b2ca9e4f67",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-155017/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5126649ec9b5f9a4ff78ef091c262cffd4eb05e5ffcf7e37e7d9fb04b6d11a71"
+    },
+    {
+      "scene": "20260112-155157",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-155157/annotation/ego_pose.parquet",
+      "pose_sha256": "9508627d748cc250e43b0c5c6078f76702966e496d49c9072570cc234dae7e01",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-155157/meta/timestamps.parquet",
+      "frame_mapping_sha256": "325939282bb1562f3b1b22e3d43019c511b6e20d52bb97c1073e711c519d21cf"
+    },
+    {
+      "scene": "20260112-155517",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-155517/annotation/ego_pose.parquet",
+      "pose_sha256": "fdd78092e6a9a8d0eccf2f2254354ad35e2059e9c9e3d3ad8be8a6354dac1687",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-155517/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7253fc1f953bfa6f23908a58730c221087be1409132c8fd61dc0aa6fdc2f9dc7"
+    },
+    {
+      "scene": "20260112-155547",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-155547/annotation/ego_pose.parquet",
+      "pose_sha256": "693938089a2dff64cf77f2242f339f3c3f4ace70e9c4641842068dbedea97747",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-155547/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a1625e12a677569984289da1d44ae9c22c974e5bab9d134bb5d92723ddceb4e1"
+    },
+    {
+      "scene": "20260112-155617",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-155617/annotation/ego_pose.parquet",
+      "pose_sha256": "5e34cec559d431d08455eba7d0084aff46a7faf541d0cc80a1f8273de4387cbe",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-155617/meta/timestamps.parquet",
+      "frame_mapping_sha256": "6d5ce43047b98abe7a34edb71d2cad94c44ed88f90d342fc560184faaf75daec"
+    },
+    {
+      "scene": "20260112-155757",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-155757/annotation/ego_pose.parquet",
+      "pose_sha256": "1ad835c950eef49905612a10ca9fee0ca850cf98d24897feaacde1b7262dc9f3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-155757/meta/timestamps.parquet",
+      "frame_mapping_sha256": "daed440a17a2ae75388184062812731e69364ebf8ae92dadc1db890d7f6b0722"
+    },
+    {
+      "scene": "20260112-161019",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161019/annotation/ego_pose.parquet",
+      "pose_sha256": "c2b8cc47b671d18e68cb2712daa8b6f503c62bcd7190cddac8419f5f537faab5",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161019/meta/timestamps.parquet",
+      "frame_mapping_sha256": "22f5195bbf4d080cf4959a492df583ec7f489609de0c427ed3ffb9a6552f5114"
+    },
+    {
+      "scene": "20260112-161049",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161049/annotation/ego_pose.parquet",
+      "pose_sha256": "4565de64906e87724a3b684c1afa7c268a6bd272f2f2ce04dfa1111c4228987d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161049/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b7a20e8573d9d2174bd7bbf2aff46a0f386b0dd8650c490f1ecf53244d75ccd1"
+    },
+    {
+      "scene": "20260112-161159",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161159/annotation/ego_pose.parquet",
+      "pose_sha256": "501eab88e591ba799d52450c8125c0e6f0c9c019addec4ee7ed9ef09c5095663",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161159/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c4a09e447d58810cbdbaa2ff7ef0951495c45244bd71fd54759a60645a7069c5"
+    },
+    {
+      "scene": "20260112-161229",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161229/annotation/ego_pose.parquet",
+      "pose_sha256": "6d40dea53b43e8814e710b0de28b02b1d3f4eb73d797771584c69b2065652df0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161229/meta/timestamps.parquet",
+      "frame_mapping_sha256": "fffd2050808d362bf69eef1f8032f7edf410d7089440730ddd7d1a05ccd2bd4f"
+    },
+    {
+      "scene": "20260112-161339",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161339/annotation/ego_pose.parquet",
+      "pose_sha256": "4c915b7d539b1a199d2e3c14d18e87d23f268bb166755d6d888b42d70372e71b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161339/meta/timestamps.parquet",
+      "frame_mapping_sha256": "df53871f931af51bc216e32b779fe1e5cf5ef80812f98f6b52f064ee35f16c07"
+    },
+    {
+      "scene": "20260112-161409",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161409/annotation/ego_pose.parquet",
+      "pose_sha256": "bc0c955f00e86b43744ac313d51d3edf54cf403caf8772834c4280b7681195c4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161409/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e993de96dd104330a82915ab9f0a2265d95c421010de84dae338f8a31dde109f"
+    },
+    {
+      "scene": "20260112-161629",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161629/annotation/ego_pose.parquet",
+      "pose_sha256": "6bad168701f48409c06abd99674379bf9dbfc660b3cb3735c3840d428fec5245",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161629/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5dea0ed3c7c35a7bac30eaf97822e9128294a7e05d815b0d0554894ac2ab246a"
+    },
+    {
+      "scene": "20260112-161839",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161839/annotation/ego_pose.parquet",
+      "pose_sha256": "74e8ade4385cdcea8b5cb0e10c0707466b00312f2b1bb44ca2b39b0c1e55ef65",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161839/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9412496a60b650e1e720ba3b1f7e38df40e882843cdfd2ba5acf5439c281cbec"
+    },
+    {
+      "scene": "20260112-161909",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161909/annotation/ego_pose.parquet",
+      "pose_sha256": "caa5d8c0a5d2ca6c2617b2a2fb31ae02aaaec12a44eaec87cfeb7f917fbfeba0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161909/meta/timestamps.parquet",
+      "frame_mapping_sha256": "966ebd1da6c46351e591fb4db0d0ba2143aa4bd3f9a40cbc34128d5993b0be95"
+    },
+    {
+      "scene": "20260112-161949",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-161949/annotation/ego_pose.parquet",
+      "pose_sha256": "29c153ba24270a5302acb39d2bfe155c03e85d61b9506bf24397dfdb8d2268d4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-161949/meta/timestamps.parquet",
+      "frame_mapping_sha256": "226b39cdc8300463b0551fab8da3d07e03025fc2a6acd66e49e524ebe5904bb2"
+    },
+    {
+      "scene": "20260112-162019",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162019/annotation/ego_pose.parquet",
+      "pose_sha256": "79f73af4c190c817c25d878421fe34fcaf110712802273601164fb428cd892b6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162019/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ed9daa5817c40724f34018b6935726426687e0f075248ddc5594d2b61bd3d210"
+    },
+    {
+      "scene": "20260112-162309",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162309/annotation/ego_pose.parquet",
+      "pose_sha256": "8b3e1b272d2239bef39240445dbd5ac0ff2b5a69d45b866bfa8dadd4c014468e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162309/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f28b6bccb2378b060557f78f3742e9b7198468fb0567525cb6a15ac8a0ad5e8d"
+    },
+    {
+      "scene": "20260112-162339",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162339/annotation/ego_pose.parquet",
+      "pose_sha256": "7dfca8bd07f30fa5fe2ad47a960764dc1c98c69e52f61dc7f10d40515fe183f8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162339/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c7653ec19f7a0c877749e778c1e694bb3e4610d5cad46afce1291947a8939e2d"
+    },
+    {
+      "scene": "20260112-162549",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162549/annotation/ego_pose.parquet",
+      "pose_sha256": "f2170e1336a11b4829bea89b63917bba620a65c4cdbd236328cee2bf956bcdbe",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162549/meta/timestamps.parquet",
+      "frame_mapping_sha256": "fa5dcce86c1d50a3f3ba3a1f179af325c0506928f9e38539c853bf61285957ec"
+    },
+    {
+      "scene": "20260112-162629",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162629/annotation/ego_pose.parquet",
+      "pose_sha256": "4b7beecaaec036f34133d673b486909527350c60df8a96311408cd21f974ab9a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162629/meta/timestamps.parquet",
+      "frame_mapping_sha256": "234a6bb94d03aa93f210bd416910caf45f7c8a2640ef5c316a525a16715d2794"
+    },
+    {
+      "scene": "20260112-162659",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162659/annotation/ego_pose.parquet",
+      "pose_sha256": "2103d3cdc3c1ba933d9d77fdf7dd021f3ea45d9eb7480e709532ac7eb6c82fcd",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162659/meta/timestamps.parquet",
+      "frame_mapping_sha256": "74b3f9dcdc7ac4edaa26be86c19f1c76d98cce0425c920915466c0229c06e5ea"
+    },
+    {
+      "scene": "20260112-162729",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162729/annotation/ego_pose.parquet",
+      "pose_sha256": "2114fc97c97721362f061b84dfb2e1a8104d363e86102c11699d0fc926edfdd6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162729/meta/timestamps.parquet",
+      "frame_mapping_sha256": "51af536f0c7e1b53bb750d56004e654f0bcbe823d246a3898143e665ed29b83f"
+    },
+    {
+      "scene": "20260112-162809",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162809/annotation/ego_pose.parquet",
+      "pose_sha256": "bcb1c1bdb1f1d177ed5254ade921dfa232f8f329810678141cd023db2d319751",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162809/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b4109c0aa6949bdd1638db7f1e932690be146168d495d33880488ca4ea2c1c48"
+    },
+    {
+      "scene": "20260112-162839",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162839/annotation/ego_pose.parquet",
+      "pose_sha256": "f578a44fb6129b00def646e64baa09ebb469c0f7dddf8964c10bc9d1a260ee20",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162839/meta/timestamps.parquet",
+      "frame_mapping_sha256": "87f92d2e97aa9f4cfa99e3d53609690988e8ba5b418f7ca9db694ccb729a98d2"
+    },
+    {
+      "scene": "20260112-162909",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162909/annotation/ego_pose.parquet",
+      "pose_sha256": "4e62e25b7caadf547050d265f447da67433871a4be4450bfb1229d6953845e5d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162909/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cfe4c93fd31a558589e19dec0724116f8c7adc1ccbe0b19972294981e119d2fc"
+    },
+    {
+      "scene": "20260112-162949",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260112-162949/annotation/ego_pose.parquet",
+      "pose_sha256": "52d066a53fb1e154478cd0de2a812fc19f34ac46f2a609b17273c4fb0c49418b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260112-162949/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7459926afe6eeaced774252baafa27737f0c72aea63ababb572c0d4b9194eaff"
+    },
+    {
+      "scene": "20260113-102709",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-102709/annotation/ego_pose.parquet",
+      "pose_sha256": "23b5a27a827e398e3603dc3fe1078a7a362c65ff06df81d52540980cbdcf04bb",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-102709/meta/timestamps.parquet",
+      "frame_mapping_sha256": "09a522ad23ded420cfedca61a725b50fcb159916c134eb87fc7785a365c651c2"
+    },
+    {
+      "scene": "20260113-103509",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-103509/annotation/ego_pose.parquet",
+      "pose_sha256": "82ab993156644541b0b1ba4bedacdd743cd38ad5a3d1a20de64a8ec668ab99b5",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-103509/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5431dc66dcdcb66682f0471a9a6b2a951bed21f5522892d02026572925349df7"
+    },
+    {
+      "scene": "20260113-103649",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-103649/annotation/ego_pose.parquet",
+      "pose_sha256": "47883cbfbd16efb2a61fced7921956195917cbd758861f594ce352f36cf2c73d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-103649/meta/timestamps.parquet",
+      "frame_mapping_sha256": "24429e6abf8d09272d07183496d1adfcd90b6aca1e42e94a1784c81a0f7b40c2"
+    },
+    {
+      "scene": "20260113-92505",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-92505/annotation/ego_pose.parquet",
+      "pose_sha256": "43714be8f464ec8e5135636eef34410725e6bcd4b584682b5b4ecb1b9f9e17db",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-92505/meta/timestamps.parquet",
+      "frame_mapping_sha256": "75f580e971e56ac3b7c98c45ba8e1c8a948c06374c0dde51e2fdc2012bde075c"
+    },
+    {
+      "scene": "20260113-92535",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-92535/annotation/ego_pose.parquet",
+      "pose_sha256": "41a80704a65857ca177d88abe985c5eccbf98ed991db34b29f41a2bd15832833",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-92535/meta/timestamps.parquet",
+      "frame_mapping_sha256": "692d19c5058a8b322814c45eb8d50c76fd2b53ba2de9626e88e503a1f5c984e2"
+    },
+    {
+      "scene": "20260113-92605",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-92605/annotation/ego_pose.parquet",
+      "pose_sha256": "8c5cb8ea0dd82ccfedc64c2f04672a682dbb7283d64175a8448c30601688a27b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-92605/meta/timestamps.parquet",
+      "frame_mapping_sha256": "44fa9d3eb8b2bad0eb56a4107abf26df1328b0bd52b733d1b1a388f83d2115e9"
+    },
+    {
+      "scene": "20260113-92715",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-92715/annotation/ego_pose.parquet",
+      "pose_sha256": "a230294019ad307c5c69dcb5e120f32ab4bad5eb519f5d7e3b37b03e12a92998",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-92715/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0020e2f922a24cbf39248ebbe8c748cc7846fbb3579b1627a66510cffe1b4661"
+    },
+    {
+      "scene": "20260113-92745",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-92745/annotation/ego_pose.parquet",
+      "pose_sha256": "7eb1ce4323d84b64768003096f2cf33ecaf66bed1100cd81ef37c453f5ebbd10",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-92745/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f343b3f337482d110a9eb203c68925ef8092646ef616d58138f6a81ed9a93828"
+    },
+    {
+      "scene": "20260113-93145",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-93145/annotation/ego_pose.parquet",
+      "pose_sha256": "0577c7f77bdd876cd6de03b0b3778ec091cca1372f63e58454c3ea2d154e1d29",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-93145/meta/timestamps.parquet",
+      "frame_mapping_sha256": "66733b2cf3d8d3bd6cbf2b0abdc78e5132146499cc3193bf8f9b51ede5e20616"
+    },
+    {
+      "scene": "20260113-93215",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260113-93215/annotation/ego_pose.parquet",
+      "pose_sha256": "60325e987b509b7b14db81b73bf9b5fa8e66387ba299b47cf79fd367a42cd8b5",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260113-93215/meta/timestamps.parquet",
+      "frame_mapping_sha256": "343b5dd8e2b848f6e8f373e71752a7759188986b3705dd1d80666bb47c8a68b5"
+    },
+    {
+      "scene": "20260114-152408",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260114-152408/annotation/ego_pose.parquet",
+      "pose_sha256": "dde9328d5c3fe86f25c9872f66408c54f4b410200ae5c7b481697d7c61e977ac",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260114-152408/meta/timestamps.parquet",
+      "frame_mapping_sha256": "dc877881d3d4fca02ae429716f639cabd4d1ded73138f9cb34b010842c37a798"
+    },
+    {
+      "scene": "20260114-152438",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260114-152438/annotation/ego_pose.parquet",
+      "pose_sha256": "d13497c8236593ec092814b56355a64b622e3642336d9b9f57dcaa9f7002b8e7",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260114-152438/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0c3cd28adb94fb2b7ca2bd210ad4f4f1e407d6bbfe00a1a6b3c6b8f291322590"
+    },
+    {
+      "scene": "20260120-100949",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260120-100949/annotation/ego_pose.parquet",
+      "pose_sha256": "411a08e0cdd0d19447be691d3d376f1ccdd4f9cc96d6f9409036ac662ab6b230",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260120-100949/meta/timestamps.parquet",
+      "frame_mapping_sha256": "bcde248ee61c54db8348a449ba9f62b1500803ea91ed18be692885186dfbfdcd"
+    },
+    {
+      "scene": "20260120-101019",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260120-101019/annotation/ego_pose.parquet",
+      "pose_sha256": "b3b6a8749cd823f85556b25519148481b862160b1598a0cb5159fa6533651ea3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260120-101019/meta/timestamps.parquet",
+      "frame_mapping_sha256": "63451127d3e8c80461e17fc59721d2fb7125032964149c916af537687b3b9177"
+    },
+    {
+      "scene": "20260120-101339",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260120-101339/annotation/ego_pose.parquet",
+      "pose_sha256": "5862736354d644944bfff8481ccb72ac10ebd5f875843305b50bc0e4b9d41933",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260120-101339/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b1317a9992afb3410744e7111a2e5c400417f3a99fa29d330c2309aaeaeeb65d"
+    },
+    {
+      "scene": "20260120-101409",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260120-101409/annotation/ego_pose.parquet",
+      "pose_sha256": "b4fcc3db36a51c37fbac9604c38a2b8895cebdfc54454ef3324d7af3afe41c99",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260120-101409/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1d7ee82cca38a003449c61797744da1c314f0de873f38de5e6f67b8479c1da6f"
+    },
+    {
+      "scene": "20260120-102729",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260120-102729/annotation/ego_pose.parquet",
+      "pose_sha256": "7bbbca72aa8cc84f308a6574ca10e7fd70c23a96a752ebd6e6543c939c91973c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260120-102729/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8628bb28889142c4b96edcb1f435097295fcc9cdd783d801ea5e5607a873bc68"
+    },
+    {
+      "scene": "20260122-134906",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-134906/annotation/ego_pose.parquet",
+      "pose_sha256": "0f3298bfa62c3f06fa2fbe7f594ee7097bb1eec7097c05d858bdc0ec23c64625",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-134906/meta/timestamps.parquet",
+      "frame_mapping_sha256": "990a484aaf7906937b602bae9aef6c5c8273100695cf0162fd05161c03530485"
+    },
+    {
+      "scene": "20260122-134936",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-134936/annotation/ego_pose.parquet",
+      "pose_sha256": "171eb920d92951a346725695d091ff0bbe781b2a2282ddc51be075e54334c099",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-134936/meta/timestamps.parquet",
+      "frame_mapping_sha256": "3a373c6d9d452bf1617956cd07e50d4f851d5b629de03f9fb5dbe8d508631bf3"
+    },
+    {
+      "scene": "20260122-135506",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-135506/annotation/ego_pose.parquet",
+      "pose_sha256": "007e6003a15fe15a15823463a53eb9c27420f05a9d7e6488ff581c735141024d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-135506/meta/timestamps.parquet",
+      "frame_mapping_sha256": "25012ea5c644b1fce794a5b54e7dcf5be2f6bc6f9dd0c89530da857b673427fd"
+    },
+    {
+      "scene": "20260122-135546",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-135546/annotation/ego_pose.parquet",
+      "pose_sha256": "70dff489e7975d80a400e3f43339bd946a002e8ca58871360535d7af22a4ee41",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-135546/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cc246e33ecf273ebc3c6e0040edc09ff205b79f0367a74037e9397f6810adfce"
+    },
+    {
+      "scene": "20260122-135616",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-135616/annotation/ego_pose.parquet",
+      "pose_sha256": "5cc5ec145891fc798260b16483b75720b91dd2de74dab01678a1f261e5c8fe9b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-135616/meta/timestamps.parquet",
+      "frame_mapping_sha256": "08be6d5ab86c754d9ee988e650e060119bbf29784814d864b7240362c288ef9c"
+    },
+    {
+      "scene": "20260122-135646",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-135646/annotation/ego_pose.parquet",
+      "pose_sha256": "13728b781e69b7084043c169b25eb6045ad882e929b17109d98425b7222e7fa3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-135646/meta/timestamps.parquet",
+      "frame_mapping_sha256": "af85791051322fb4507a088c96fb31719ef583892d17ef45a041714e01ad98b3"
+    },
+    {
+      "scene": "20260122-135800",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-135800/annotation/ego_pose.parquet",
+      "pose_sha256": "3a3364fc853e3562e809a1445cfbebdc6008becefe7fec3eb58beee0fbd12484",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-135800/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4404fb94eb5712a9a0569bdd091bdd77cdde960e1aeee3f98df00d9d203432b1"
+    },
+    {
+      "scene": "20260122-135830",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-135830/annotation/ego_pose.parquet",
+      "pose_sha256": "3092dc4d8750363bc211e6e33b651f0054780a059e0a41294debdd8766be1e00",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-135830/meta/timestamps.parquet",
+      "frame_mapping_sha256": "093ac54391393168a80f5ffeb89dc60425a29a931014801213c39a5e2f2ce42a"
+    },
+    {
+      "scene": "20260122-135900",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-135900/annotation/ego_pose.parquet",
+      "pose_sha256": "3d03a02ab24242aea24c3174f2d4080269e633eb53992ad9ed41b78fbcceed74",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-135900/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7dc4236ff02fb0b899b0923250d5fce5b0f17fcb1156a908bcd64c49f260fdb1"
+    },
+    {
+      "scene": "20260122-140120",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140120/annotation/ego_pose.parquet",
+      "pose_sha256": "ef23a5ea17837bc5f62ec11c7ac8d4cc05642f48389ec7930acb257ec130f211",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140120/meta/timestamps.parquet",
+      "frame_mapping_sha256": "3d1269f4d2cea4a74c0c672adcd5dd754e0540593cb3d1b46aa91c6f089feda4"
+    },
+    {
+      "scene": "20260122-140150",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140150/annotation/ego_pose.parquet",
+      "pose_sha256": "2de8b5ce636f334141b814058a8014300916fc8a1c1666b7a48af5e440467c8a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140150/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b7cc72a3e2b3f7b114fb8976de6d37f65728a5de438cfc5906f7959fe56d1b2a"
+    },
+    {
+      "scene": "20260122-140220",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140220/annotation/ego_pose.parquet",
+      "pose_sha256": "ac97dc5e4b9bc5d646b3c9cfe38d6f63832ef031a20b736484f9ebed92ed00c2",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140220/meta/timestamps.parquet",
+      "frame_mapping_sha256": "31a02b2aed26cdb09a81ac94c6ebc0f437d1fbad90103f8921a6c9324ad9e430"
+    },
+    {
+      "scene": "20260122-140300",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140300/annotation/ego_pose.parquet",
+      "pose_sha256": "d7ddea62411e47b44e6fd184dcfdb1d27ccf280a8f20e78aee6957fdea0cec49",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140300/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8be50f83ffbf850549ad99b242fb372e2cf7e1c28bc5ddbe7d8fbe1c66d87ec8"
+    },
+    {
+      "scene": "20260122-140330",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140330/annotation/ego_pose.parquet",
+      "pose_sha256": "b1bbcb1d15a20604d928dd3d1c81b5b5508acdef64fbe8725b85c7bd7f3aea65",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140330/meta/timestamps.parquet",
+      "frame_mapping_sha256": "98c0617bed54aea903d1faf91d433463e2ae278b886f722dfdc30eafe3c0c194"
+    },
+    {
+      "scene": "20260122-140440",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140440/annotation/ego_pose.parquet",
+      "pose_sha256": "4772ed919a6e06f6527771471b8b0460854cc28c549d0b5068156bfb20dde29b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140440/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b3c69dd6c3f98f83bfacedd8c303fc65de5ccde0249e9210d380e64914847f93"
+    },
+    {
+      "scene": "20260122-140510",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140510/annotation/ego_pose.parquet",
+      "pose_sha256": "32664bd129cdce1b3a90939adf90d209b6418ba56a071fd06e825f74236936d1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140510/meta/timestamps.parquet",
+      "frame_mapping_sha256": "75d165924b1e437bbd1975f70a0958f36cc23e92a8200bbb360f215855d7e4e8"
+    },
+    {
+      "scene": "20260122-140540",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140540/annotation/ego_pose.parquet",
+      "pose_sha256": "46d700efca6f1c2ef8ad8c8b5ce929194aeea545c9a345c6f273e3f5a4046e1a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140540/meta/timestamps.parquet",
+      "frame_mapping_sha256": "01cc7b42ec416f79dfbed7415d92d76384aec4c4f271dfd16767fef6107752cc"
+    },
+    {
+      "scene": "20260122-140650",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140650/annotation/ego_pose.parquet",
+      "pose_sha256": "a1c3890c073ee38beac61860c871d0e47a14b0dacdfb5bfd7d3aecd55b295bad",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140650/meta/timestamps.parquet",
+      "frame_mapping_sha256": "254bd13c3093572a6402cedc8021eb1aa92c15ddeac1b595c50f79db34abf970"
+    },
+    {
+      "scene": "20260122-140800",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140800/annotation/ego_pose.parquet",
+      "pose_sha256": "4ceb2f65ecc626a533388617a68104de04e2f45eeaac0ad2abdf5164d727d2a4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140800/meta/timestamps.parquet",
+      "frame_mapping_sha256": "24c139ff02a41cc1c7ab0d2f1a6ee0eb25e3758843f0b08d5f432eb572b572c8"
+    },
+    {
+      "scene": "20260122-140830",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-140830/annotation/ego_pose.parquet",
+      "pose_sha256": "b2a20f4b5f54775dec1d06de3ec602d63ff0f6a9798c5df5f994dcfc9f0e1673",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-140830/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c2dbc75642bb336f0575cb43500891cf3fd06223716c421ee758a00b08c5e178"
+    },
+    {
+      "scene": "20260122-142310",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-142310/annotation/ego_pose.parquet",
+      "pose_sha256": "ffb3624932e608429aaa6cf5b1e0317c1331002a3c8ae980ae5d11cc8045e1b7",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-142310/meta/timestamps.parquet",
+      "frame_mapping_sha256": "98875ef76fbbcae2b2e04ccb6ba82d45af3b97200833054413418c7342cbf00f"
+    },
+    {
+      "scene": "20260122-142340",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-142340/annotation/ego_pose.parquet",
+      "pose_sha256": "78740b8247bccce4f9748368470889fc5a3d5530921cd1d1d73f6fcd876ec304",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-142340/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0e14c1f7a5804eb8b9ac6124e9f7dd834d92dcb12913742aeb9177bc2f3bc128"
+    },
+    {
+      "scene": "20260122-142410",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-142410/annotation/ego_pose.parquet",
+      "pose_sha256": "e74c0c6e101348420e1e382bc0571a71391e1b2ceccc6052295f4fc3e77d02c9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-142410/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8e4d53772e587bb067c8d6781480396c40b260d7914eb615790072aa6dc523db"
+    },
+    {
+      "scene": "20260122-142450",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-142450/annotation/ego_pose.parquet",
+      "pose_sha256": "42065f357e0ac5968afe7a5db69e2b4587261fa07adbb4e3d5f5c69afedb7012",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-142450/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9adfd3a0f9f812ce4d5631d97f621eae13554f00abbfc7cdf764edc1511382be"
+    },
+    {
+      "scene": "20260122-142520",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-142520/annotation/ego_pose.parquet",
+      "pose_sha256": "4bed241cf5119d99010559cd0122748f7ebda06b9c97d62b6a643a65fc7b7e6d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-142520/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1d6130d0d0e61d6317cf841b438354c08c51c65459d50216e4a68aef4d07173a"
+    },
+    {
+      "scene": "20260122-142550",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-142550/annotation/ego_pose.parquet",
+      "pose_sha256": "db61870ccd09c040f72f0255e319eb3c865da707e8997d0a205886d25c0d275a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-142550/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c9074d406202bf14f614b01f88ab4b11c122dd6934c4c465fcb137f9567e1956"
+    },
+    {
+      "scene": "20260122-160614",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-160614/annotation/ego_pose.parquet",
+      "pose_sha256": "1de83b9c0cee0e03faed5ee405f7cf67f9b4fae78860e05b7a15db5a8780514e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-160614/meta/timestamps.parquet",
+      "frame_mapping_sha256": "14f53553c0c103d1ee4d7f6cf34cd7af949a3854212c94eb98661ee7e10ada02"
+    },
+    {
+      "scene": "20260122-160714",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260122-160714/annotation/ego_pose.parquet",
+      "pose_sha256": "0e89b246f20a90e6f10ba7859faffc0b9400a834d3c37dbb167790d9d3a8f4e2",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260122-160714/meta/timestamps.parquet",
+      "frame_mapping_sha256": "54390c432ef3d776b6139eacbd7a92fed036c2c15cc25e0557bfeeda00e6a6fd"
+    },
+    {
+      "scene": "20260205-03916",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-03916/annotation/ego_pose.parquet",
+      "pose_sha256": "46e0257dd3cfb840c10c0725ba956da4afa65b35dbcfdc5992929a13a8ce8a2b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-03916/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2b5df99fd3503a8ed66040b6afa96d666a6b1140c058257b1de946db86f64a6e"
+    },
+    {
+      "scene": "20260205-03948",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-03948/annotation/ego_pose.parquet",
+      "pose_sha256": "4b7d40eb09f3951f6eb4b3043d2b9b1fd9dbdee174f68007e901f80ae75b53aa",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-03948/meta/timestamps.parquet",
+      "frame_mapping_sha256": "286ad4019d20952201fc8b641b71fcb2c0380613a6084224daedfbdc61486426"
+    },
+    {
+      "scene": "20260205-05627",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-05627/annotation/ego_pose.parquet",
+      "pose_sha256": "55e9259cc2b6d716f6e0ef01ae897cc689fb4344b5dd288960536269b3c8298b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-05627/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d9d2f6632a1ed39e502ff9229aa01c1b7a594db60d8d315fea66b9b40a6d5d03"
+    },
+    {
+      "scene": "20260205-05659",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-05659/annotation/ego_pose.parquet",
+      "pose_sha256": "f298169f816ac3340f5f5ef8308b9e89f6307b3126110d13d7d6f18a88a65d0a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-05659/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4c511d1c9193ec2dfafbaf3baa5587b7f79a84db92310a9f035364df90612555"
+    },
+    {
+      "scene": "20260205-05730",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-05730/annotation/ego_pose.parquet",
+      "pose_sha256": "2a89c48e4a16935e3553da0ba88d14b26441219918636bf98ac81c2fb9751a0b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-05730/meta/timestamps.parquet",
+      "frame_mapping_sha256": "45a90194105c9c37f6745235434297daea892637a57dd5267a46c35740274af7"
+    },
+    {
+      "scene": "20260205-154633",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-154633/annotation/ego_pose.parquet",
+      "pose_sha256": "0ccdba8175137979c30c7554c1d11ecccc26db3a7337b2cf8b3c79152614b6b2",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-154633/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7635ad70893e3486c15d82b85f96cc953003db8cb6fd84fec856bbd6a5a06cb3"
+    },
+    {
+      "scene": "20260205-154703",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-154703/annotation/ego_pose.parquet",
+      "pose_sha256": "4263ed45ee2584023f1fd726006ac8bf85c7a1c18f2dc4986bb8799183399042",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-154703/meta/timestamps.parquet",
+      "frame_mapping_sha256": "37da40f46d2d9afecf7205c7967b9c13f899680a0cf77f9b786a68cabc840708"
+    },
+    {
+      "scene": "20260205-154813",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-154813/annotation/ego_pose.parquet",
+      "pose_sha256": "5e477ef27f4164080039dcb5c7b3b607f456ed5204fb0cc23daaf130d33ee5e3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-154813/meta/timestamps.parquet",
+      "frame_mapping_sha256": "517bd519529a86e9639a06a353dfacaa3c1f5aa38c69f1f8e8745981c4112aa5"
+    },
+    {
+      "scene": "20260205-154843",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-154843/annotation/ego_pose.parquet",
+      "pose_sha256": "f44a1172c435e13675f686513d27800f9d726e7ea79b2baf68e8968649bcd6bf",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-154843/meta/timestamps.parquet",
+      "frame_mapping_sha256": "de77a8aea689091919903e0aa807c6ae4ab02199318534195d6f7830092b8279"
+    },
+    {
+      "scene": "20260205-154913",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-154913/annotation/ego_pose.parquet",
+      "pose_sha256": "4442fa67bac309a2978dbef2dc3a50e74f62ff7363700b9e827d1e6a035ea87d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-154913/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cfef49c75226e8c858f0e53a6eea8652b7e01e579a7f4a4897081b89d5aaa281"
+    },
+    {
+      "scene": "20260205-155133",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155133/annotation/ego_pose.parquet",
+      "pose_sha256": "53402f40e0c74aabb1d7e317c913e4e263e83c7cb39e4d7f9106cbfcb7d64df7",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155133/meta/timestamps.parquet",
+      "frame_mapping_sha256": "09fe95fccba50a6d24d17a212a7fc13d5ac9bb0e3e6770afc96c961300068a89"
+    },
+    {
+      "scene": "20260205-155203",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155203/annotation/ego_pose.parquet",
+      "pose_sha256": "0019724c4a84e40853184d8ef342cf53ba044a79923131d9c8ab1f29bfd0cf6a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155203/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e8c66be536e7c6fd701a9c451f0ddeae83e7a4918578c543457d2cbba9bf4620"
+    },
+    {
+      "scene": "20260205-155233",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155233/annotation/ego_pose.parquet",
+      "pose_sha256": "2eecef2b530e97c077a7102ed430aa394321101e0474be01328f644e09b73610",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155233/meta/timestamps.parquet",
+      "frame_mapping_sha256": "41467f9ed4bebbf824ed6ff920e5803406c9172406f1ac9b7d9e7946b6125bc8"
+    },
+    {
+      "scene": "20260205-155313",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155313/annotation/ego_pose.parquet",
+      "pose_sha256": "2ce1d599bf30eba061eded8917ae7de2e5b714193f15e54f7e7ddf0972c0c74b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155313/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e2aa4df5731d30d44b37c68038645c79019f2b1bdccccee959054331a0160212"
+    },
+    {
+      "scene": "20260205-155343",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155343/annotation/ego_pose.parquet",
+      "pose_sha256": "4bbd4680c4791810c32e084b4c17a1c88e7a3f0e07ac0d549fd1590bd2ab7380",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155343/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9619ed6cedd2a8008aee9d3622f535d9c135ab90f96171cc587b15e1a827491d"
+    },
+    {
+      "scene": "20260205-155523",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155523/annotation/ego_pose.parquet",
+      "pose_sha256": "53fa48e00e6245a3bc336ac41125a6d8233288ba0453eba71d020f4b3f31209e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155523/meta/timestamps.parquet",
+      "frame_mapping_sha256": "717e5a74200942a9e5b3394edba0d2f75c9bd6150ab4c39c04d52719785b36c0"
+    },
+    {
+      "scene": "20260205-155553",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155553/annotation/ego_pose.parquet",
+      "pose_sha256": "e825ffd8b0a67787c04071bcc3df907db60f5568bdd96ee06d1a0f05e45481e5",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155553/meta/timestamps.parquet",
+      "frame_mapping_sha256": "dd8e152868fc8363f8ef3967e53bed45b3225bd81bf2d1d499e9b0892736208a"
+    },
+    {
+      "scene": "20260205-155703",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155703/annotation/ego_pose.parquet",
+      "pose_sha256": "d12744426253728156e9f30892af63b57c1ad1e03d6fd38b02de62b04b6f2c81",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155703/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2a97f75ef9444b14ab8426991b864e15c159de9bc9f00bdacbb050af7425586a"
+    },
+    {
+      "scene": "20260205-155733",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260205-155733/annotation/ego_pose.parquet",
+      "pose_sha256": "1905933017ad7dc88b7f24748c58889e8ad47aaec54d115fcc31a34a2c363683",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260205-155733/meta/timestamps.parquet",
+      "frame_mapping_sha256": "3e05f62451140e944d2dae7133547996b354fca64c8ddeb6b7b2a5a9103f5c00"
+    },
+    {
+      "scene": "20260209-142304",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-142304/annotation/ego_pose.parquet",
+      "pose_sha256": "d0077435fac2b2b7a8b426774e105fcadc4d6ad21b3184386700ea9ad50c1792",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-142304/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c6e80f4e5afee944e3e3c2aad84f16276991176a33dcbf071c38f9c4537da57c"
+    },
+    {
+      "scene": "20260209-142600",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-142600/annotation/ego_pose.parquet",
+      "pose_sha256": "156e38986d8bf867dd74b61c045d52ddfa51be67a033388cf62370f533d30fae",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-142600/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7e31c67a85fa18bced7a9f48527e6c763903b76e0724ffd31d83dab49fb60706"
+    },
+    {
+      "scene": "20260209-142630",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-142630/annotation/ego_pose.parquet",
+      "pose_sha256": "5b026c473f9ffea70840cca4f12b9bc55f63833893accb3a3ff1e93f58890a42",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-142630/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c4576d7f5300f9b47b9c0de70c9c590cde6b8b0c1593e446854f27957c6a9e90"
+    },
+    {
+      "scene": "20260209-142700",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-142700/annotation/ego_pose.parquet",
+      "pose_sha256": "962a104ded7c8ec4b38d1c1577e2d9de1a57c1c7539eeea371ff4df74b5917fe",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-142700/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5ab71d2d6dfee1d6d6b04acb92a540e3f6682e5ec12e0593a96afdc6ebd347b3"
+    },
+    {
+      "scene": "20260209-143420",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-143420/annotation/ego_pose.parquet",
+      "pose_sha256": "bb8563f089cc0b25fb0d6ffae037fd1263a5fe932297cd264d7630775894d086",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-143420/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5c83a3d84c4dcca4eadccaac5dca3ff51c42dacc622f49fb76d3092b7cfdc609"
+    },
+    {
+      "scene": "20260209-143450",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-143450/annotation/ego_pose.parquet",
+      "pose_sha256": "537736041ba7c56f15c17c3e9687041aef988b1eb28b6a9c3df2b5f18bcbbc16",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-143450/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c1f81d1e960280cb75fca65742568e218d9cb2a70996da6c52751768225fcdee"
+    },
+    {
+      "scene": "20260209-153200",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-153200/annotation/ego_pose.parquet",
+      "pose_sha256": "31139b3334ec908d3eb14f5db92aaeef37730228ac769f1270a4c0dae79cd9c5",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-153200/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2bbd81f5eb9982d7ef6aa83d72455ab8e925cbe19ad54781040e0f5a928e4e3b"
+    },
+    {
+      "scene": "20260209-153230",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-153230/annotation/ego_pose.parquet",
+      "pose_sha256": "d258d7006a99c1673174ecedaa782a9dcc123b9acb28b5510f1178ccdc81065d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-153230/meta/timestamps.parquet",
+      "frame_mapping_sha256": "36afd3574236e09f253de3ee855bf4432646de2c2d685fe27317692305771372"
+    },
+    {
+      "scene": "20260209-153550",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-153550/annotation/ego_pose.parquet",
+      "pose_sha256": "1436b07bb7b3684ee54442bf8e2c4930dd057a0ce77331357331aaef037c0252",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-153550/meta/timestamps.parquet",
+      "frame_mapping_sha256": "547eb93b32f228e71e912c2e074222f59304bb8f15381210819ff30458331d00"
+    },
+    {
+      "scene": "20260209-153620",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-153620/annotation/ego_pose.parquet",
+      "pose_sha256": "70f3f5d09310ceb8a13b046c9878c6c16c4793d516bd21d7d9384acceaabd066",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-153620/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9ff387bed6dd91f7d7e69500ebf19ec2712fc474d60ed561a8af0ab6970c76a1"
+    },
+    {
+      "scene": "20260209-154620",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-154620/annotation/ego_pose.parquet",
+      "pose_sha256": "622929793e95dde17ec6e0a5d83ad7b398292fc397208d29f17994767a32768b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-154620/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0e5a80c6ffa7b42b58c59c998273ce6ac300b8208637c7fe11e628ecfa16fea3"
+    },
+    {
+      "scene": "20260209-154730",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-154730/annotation/ego_pose.parquet",
+      "pose_sha256": "6514a758445c1a06a0525f35efc0aef6d3820210d3097755d8f0f24492f801b0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-154730/meta/timestamps.parquet",
+      "frame_mapping_sha256": "412f621124c04038073328b821c2256d175d9bb1bf4e0d415434f991c32b6146"
+    },
+    {
+      "scene": "20260209-154800",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-154800/annotation/ego_pose.parquet",
+      "pose_sha256": "399a518a59870dd22dd22104e58a0c78830098fdecec0d6283cfe627a7811711",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-154800/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4a04ab153b43b7fc4c5d25b8ddb01ccec65d773e1f8fc971352cb2e93a1484ec"
+    },
+    {
+      "scene": "20260209-155520",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-155520/annotation/ego_pose.parquet",
+      "pose_sha256": "b85381b81cc55129a792fb95ab4266c03138f03f6f3a2dbe1aa612fc8ed45f13",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-155520/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cfc5914f0901616009ff2316ee9a395e0c53171f92c605805e8e8f0ec1812a67"
+    },
+    {
+      "scene": "20260209-155550",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-155550/annotation/ego_pose.parquet",
+      "pose_sha256": "154b3b15e9670d6c8d75ff8bbf9149cd6ea89f5638c77abf17e929cf5d75ea20",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-155550/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7c6541c2e2db8edb156fc92f5384fde603ebabe08db9317c3124c6dce6dfcd18"
+    },
+    {
+      "scene": "20260209-155620",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-155620/annotation/ego_pose.parquet",
+      "pose_sha256": "af78802b3af025fa1a2597f86331b4ab0aa9e0cc945801b3017f70912a1fdce6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-155620/meta/timestamps.parquet",
+      "frame_mapping_sha256": "227764d12cde3abf969ce891168c5af93e87ec4dbf2683f74747ef87d6c7e04f"
+    },
+    {
+      "scene": "20260209-160700",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-160700/annotation/ego_pose.parquet",
+      "pose_sha256": "1172fab27befb30875f138c29a9bcb6422fd178f3f2fbc8600f76a381a73218c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-160700/meta/timestamps.parquet",
+      "frame_mapping_sha256": "59ff76cd11c398f87bb4f83496cdead3ea48d0c75a6f72d0ecdf87adb62730e0"
+    },
+    {
+      "scene": "20260209-160730",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260209-160730/annotation/ego_pose.parquet",
+      "pose_sha256": "2be717ad073d24017f67e469dd09ffa0cb564d66d95ad2e7caef3485c892dae0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260209-160730/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9b737296cbae4cbee264edd30fd031389300f30cc30b75597af151631b6a81d1"
+    },
+    {
+      "scene": "20260210-100004",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100004/annotation/ego_pose.parquet",
+      "pose_sha256": "0e72d5151aecc808ca06e826e22b522551ca7f88fd0fd0ca76f2de8eeda573f2",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100004/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2cf6263cb3fa4ae2ebadb6eee87e44c4b5d851b75a8035f7277567b8d54433e8"
+    },
+    {
+      "scene": "20260210-100044",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100044/annotation/ego_pose.parquet",
+      "pose_sha256": "0e2b0f767d47730346044baf2029f833833065bd79d938b4b356a41673751ba1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100044/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f23f502f3eacb35760de2609055300fdfa97455e3549d7fbe75cbd9c8c3c13ff"
+    },
+    {
+      "scene": "20260210-100144",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100144/annotation/ego_pose.parquet",
+      "pose_sha256": "cb4cb8c903bf9449fbd740e853d5a8d279448687db6d6c703e076bf2803d3faf",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100144/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7f0028fb9f20b8768a917304905ad082f990eaea1460a6a2afb008870a07d6bb"
+    },
+    {
+      "scene": "20260210-100324",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100324/annotation/ego_pose.parquet",
+      "pose_sha256": "aa8e9f333bb46cf30cdd7ce9151f848f8bf71123a837a439e41de46d1925b4f3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100324/meta/timestamps.parquet",
+      "frame_mapping_sha256": "fca3cdba1ef3ea16028ceaa9ef73b665dbae2e3c18786568ac1847d27908b265"
+    },
+    {
+      "scene": "20260210-100504",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100504/annotation/ego_pose.parquet",
+      "pose_sha256": "2e38ae1581d227336121155e768aad94d56e0610e31993d770ddcf99af3b0dbe",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100504/meta/timestamps.parquet",
+      "frame_mapping_sha256": "17ea53a1972adedb1cb70b9f984fee22e6faeb0d7eaa8d06b85e5ae321d5d0e9"
+    },
+    {
+      "scene": "20260210-100534",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100534/annotation/ego_pose.parquet",
+      "pose_sha256": "666b779b183d14fd14c8809e8ec35f4c547ca832483ecc2b89ca5b5afb2277f3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100534/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5e2f4c68d329d0f74a1b682a1f22fb79e847f0ad8351e37b95bc0bc0ef72dfaf"
+    },
+    {
+      "scene": "20260210-100614",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100614/annotation/ego_pose.parquet",
+      "pose_sha256": "ec62c86e35e736280e8c12e4ada5d4b01c60599806864f396ea37e8318c6fbd8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100614/meta/timestamps.parquet",
+      "frame_mapping_sha256": "6d4b3c3eafb624d02a4590ef3bfd8de513e829eaac0f70545d1523b10582c5c8"
+    },
+    {
+      "scene": "20260210-100644",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100644/annotation/ego_pose.parquet",
+      "pose_sha256": "be6d62dae83fbb11cce077672e9281302bf4512311618a8fc739b8185871564f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100644/meta/timestamps.parquet",
+      "frame_mapping_sha256": "db2105485137dc81404b75da3c72d79181f52c2562c6c4636aede0d955ad16d8"
+    },
+    {
+      "scene": "20260210-100754",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100754/annotation/ego_pose.parquet",
+      "pose_sha256": "018256fd8a9e7c73db5e9212033a5c1a9f0c29a0fd150ec34ffaa1e3d9a6916d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100754/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b4f8b9e34767b6e6cb8207436c5ebda651e536a487481ba0d05f261ef6511c63"
+    },
+    {
+      "scene": "20260210-100854",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-100854/annotation/ego_pose.parquet",
+      "pose_sha256": "3990108c59b4e87b9569b9c3d86ce535bb8558c6a6e666711850ecbd61bbf0de",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-100854/meta/timestamps.parquet",
+      "frame_mapping_sha256": "43d3a7b856c5dd2c9eb9e91b53c309febae6e2d14ff0aec0fa396377b1ac369e"
+    },
+    {
+      "scene": "20260210-101004",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-101004/annotation/ego_pose.parquet",
+      "pose_sha256": "3d8f994f8ee29a10ac5964f54c51119a8441ccb0cd7145c78ec121242ccd074b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-101004/meta/timestamps.parquet",
+      "frame_mapping_sha256": "80d475460824467cd43929cda4e963388ea287679e1ef26c339d7421a7cbdbea"
+    },
+    {
+      "scene": "20260210-101034",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-101034/annotation/ego_pose.parquet",
+      "pose_sha256": "b7a759dab31d10df094c929c2141fb9eb595b46339f4f87c4332ecb1f6617cba",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-101034/meta/timestamps.parquet",
+      "frame_mapping_sha256": "3c09fe492cdd92ca0c016b13c63e828c3c223bd8b4dbf37e80843f05ddea0ed3"
+    },
+    {
+      "scene": "20260210-101114",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-101114/annotation/ego_pose.parquet",
+      "pose_sha256": "bcb048a73351546f9624dd4eb5de34c4ac5a1cb8ee82ada3aab1cdb479cd2102",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-101114/meta/timestamps.parquet",
+      "frame_mapping_sha256": "df987aee6354ddfa6f250363867ce259b019daf6546eb0c8e06883eb14c276c6"
+    },
+    {
+      "scene": "20260210-101214",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-101214/annotation/ego_pose.parquet",
+      "pose_sha256": "0c11a5a307dad7f875798f12442e93f0976ce53938009c99d42da8ab4c67dac9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-101214/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d2861fffd85ab8180c178475a2cdef4d0af7e815a2e1813f673eb5c5e9492b55"
+    },
+    {
+      "scene": "20260210-101731",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-101731/annotation/ego_pose.parquet",
+      "pose_sha256": "b8bd35d5fd72ac69ca58b6dcaf44b214d5922b41f42b9685c8a1130e23448a8a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-101731/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5854576eb8ce07d594c464106b8781289af41b2d0af94c6b2af8d4c2f4b15a00"
+    },
+    {
+      "scene": "20260210-102131",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-102131/annotation/ego_pose.parquet",
+      "pose_sha256": "944010d222ff0b3b295fd2498272e3a51bfc0cb8bf484cf635c86d3c7e4acc45",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-102131/meta/timestamps.parquet",
+      "frame_mapping_sha256": "22a8d8563ffa14b9f84f96353924c4d9c411c834c0af2add27ac087ae15dcfb5"
+    },
+    {
+      "scene": "20260210-102201",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-102201/annotation/ego_pose.parquet",
+      "pose_sha256": "caea7b50966fb436829678ffae3e123b430442f76081071bec4df7c023acc731",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-102201/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f093e93ad31cbaea8349b381e708390f781740108d3ee9ff1875477885c004f6"
+    },
+    {
+      "scene": "20260210-104708",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-104708/annotation/ego_pose.parquet",
+      "pose_sha256": "258077d416d3d624856da25b8eb7170a0a23ec7bb9e0e10c83d8bdbfea182020",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-104708/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7a6b7f25a64bf5dc32b08a2c7cbf867c2af69f772aa9f4cb511d793962647a42"
+    },
+    {
+      "scene": "20260210-142306",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-142306/annotation/ego_pose.parquet",
+      "pose_sha256": "bad50642a6357cde49bd1e081b3c42017efd55fd05439fb48737fbefa594d369",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-142306/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a7e28ad6e9f9c10c668469689afbb1713d39dbeb7a9ec661759e2c45c0889c76"
+    },
+    {
+      "scene": "20260210-142336",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-142336/annotation/ego_pose.parquet",
+      "pose_sha256": "7ef6570c4774184048f58e26819805a72ab94ed10314723e72989cac7e0d3852",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-142336/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1f73bc54df18e637540d81db00de09488e9e0746645682c42ef01d562f076e4d"
+    },
+    {
+      "scene": "20260210-142406",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-142406/annotation/ego_pose.parquet",
+      "pose_sha256": "54437716e8d2f73e80f01247386f48af37c1f7cd665f12a1781bf40f63932cc9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-142406/meta/timestamps.parquet",
+      "frame_mapping_sha256": "66ca297a8e07f88ce2fa18bba71ab107c0a49af422f5de33425424b5a3154c09"
+    },
+    {
+      "scene": "20260210-145306",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-145306/annotation/ego_pose.parquet",
+      "pose_sha256": "9cedb1436d1d115e38984b1031b319c1b3c57126cb72186d2a2440f2f0c383f2",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-145306/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e001409ac08c5d24b684d6353470b89d6c7757e1a8c28e70acda58d17e8fffb7"
+    },
+    {
+      "scene": "20260210-145336",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-145336/annotation/ego_pose.parquet",
+      "pose_sha256": "59b91bf0a6da5d8b38555e8d0c763b3ac3cc4e9a33504408ac8ab304d093d7e3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-145336/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d89006dd7381464baf98f1dc5bcdf245fd5d012283726df49d13cbd20ed42477"
+    },
+    {
+      "scene": "20260210-150438",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-150438/annotation/ego_pose.parquet",
+      "pose_sha256": "7af5c11b3ff8cf943a14add567624e83b2d73d900f0a09e137dae63a66e36efc",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-150438/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c41ac08f7d6b888ae59f749c5106df34a381622f49129ec298c9ee2f53e81dfa"
+    },
+    {
+      "scene": "20260210-150508",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-150508/annotation/ego_pose.parquet",
+      "pose_sha256": "34c6b72121856ef1311365d22c3df4bde91b8e29814496502c2d1b08c1421e9a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-150508/meta/timestamps.parquet",
+      "frame_mapping_sha256": "217924621dd766b0697a4e47abf27c67b84661db1928ded0b2e278dfcf0744dd"
+    },
+    {
+      "scene": "20260210-150538",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-150538/annotation/ego_pose.parquet",
+      "pose_sha256": "932c7754b7ce94b64f6eb2f73ed85357712bc647b8728de8fa360908e90dd2d4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-150538/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1f4920c5dbf41e1b348086490ef290bfa7e3c3a2c90a43c3817398d0e0fa5b11"
+    },
+    {
+      "scene": "20260210-150618",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-150618/annotation/ego_pose.parquet",
+      "pose_sha256": "b62a7683c85a140494dc1b639577032e0e29d351b150c831b0ac17ff29a829f4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-150618/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e5a8eb543e04b4af15b2c2f631ec046b9dfad4a3223cd3b0bdd174590c1bd037"
+    },
+    {
+      "scene": "20260210-150648",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-150648/annotation/ego_pose.parquet",
+      "pose_sha256": "7deb4a777d949b387f4cb371d6179ae93c0cd7bebffefc6e7bebe9e16590106f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-150648/meta/timestamps.parquet",
+      "frame_mapping_sha256": "528f0da022556255f691101641d54d884a7d423947b9b19ee6450829f767abdf"
+    },
+    {
+      "scene": "20260210-150758",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-150758/annotation/ego_pose.parquet",
+      "pose_sha256": "8618119b50efbc87028d7b2c69541d12a31c4ec9c3df9b3fb261614b1a26c08c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-150758/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a6115fabd09dfbb716ca310301be44f9f041658655dad0d6a4ce611c070afb10"
+    },
+    {
+      "scene": "20260210-150828",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-150828/annotation/ego_pose.parquet",
+      "pose_sha256": "14fdf6a6487a4b607d8ce69fab7dcd2574419d6b531a71754d121bb6ce08d2e9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-150828/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e3d975c794dc4db1f9f791ec3f86a77528251c376f5b14e6dc99090683c42b43"
+    },
+    {
+      "scene": "20260210-150858",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-150858/annotation/ego_pose.parquet",
+      "pose_sha256": "9f32966c13ac65dec5bf12b2b71f02b26df88612a83eadf6b4a57f6ebf0d3dce",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-150858/meta/timestamps.parquet",
+      "frame_mapping_sha256": "29948da5a73b2980da0c157a23b4632ea8f0769b8955e55b87ca96a8c0fc14b6"
+    },
+    {
+      "scene": "20260210-95754",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-95754/annotation/ego_pose.parquet",
+      "pose_sha256": "5a46c6630aa87f7c602c730b87080e521b56cb922c52b4c622ba4be565fc6917",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-95754/meta/timestamps.parquet",
+      "frame_mapping_sha256": "051cc453b21e52b587b9cb4896a0f50e46903586e4a690c7cbe0c5632d3d1b9a"
+    },
+    {
+      "scene": "20260210-95824",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-95824/annotation/ego_pose.parquet",
+      "pose_sha256": "5a05e53e3d2d183546d4296a8f8ee171736ff2b7b7c007e7b85d5d0c92fb1d6d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-95824/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9cbb1e12b0cd4e203ed2efd4e365f386e98bfb39ba8ad076bc505e2a06f93f41"
+    },
+    {
+      "scene": "20260210-95934",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260210-95934/annotation/ego_pose.parquet",
+      "pose_sha256": "8af39b4d1c57bf90b1f27b413a4efe23dc10d0e93d022b935ba6646b49466aac",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260210-95934/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7bb456ec5735a80c819e79b3613eee6bcce7a356f1398b4af2c3842bc2774494"
+    },
+    {
+      "scene": "20260211-110145",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-110145/annotation/ego_pose.parquet",
+      "pose_sha256": "ee1a420ad71209edcfb86dc37f40a1e1e7da69ab87208ece4ba45f3bc1aa0b70",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-110145/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a1922d5d39d52ef1807f77306c6ae0b78d455c48c6ff1d708098f69b55c137c1"
+    },
+    {
+      "scene": "20260211-110215",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-110215/annotation/ego_pose.parquet",
+      "pose_sha256": "e351b2daf9cf5b3918d96e1c8513848dee78825cfe1092faea6c923001b10ee3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-110215/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1f1deab6d5c69e2055d8505ce8258260e694c4d2bda71a332c12b4203627ab09"
+    },
+    {
+      "scene": "20260211-110245",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-110245/annotation/ego_pose.parquet",
+      "pose_sha256": "2fe504e175703a8e3c83440f05bd424d05968eda9bf8250e75cb1807d1b36264",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-110245/meta/timestamps.parquet",
+      "frame_mapping_sha256": "92546148c3b12d435981cffbff18fb16f5d5ebed98de3082ed54287160053b14"
+    },
+    {
+      "scene": "20260211-110730",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-110730/annotation/ego_pose.parquet",
+      "pose_sha256": "6380a6d22032c6ea7a4ec100316e810b6c6259f9010cf6d8bc01fc451e3df4ae",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-110730/meta/timestamps.parquet",
+      "frame_mapping_sha256": "afca835b0ec533a38ace8070675c440bb9863f5d8db6616e888340dfc84b3625"
+    },
+    {
+      "scene": "20260211-110800",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-110800/annotation/ego_pose.parquet",
+      "pose_sha256": "5435f115094408be642fbaa886068f7a6e0659e1848ffa9736cf8e0d5bbc4d5e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-110800/meta/timestamps.parquet",
+      "frame_mapping_sha256": "59ee3f3159d99f4b34a12b396dded4a34ea4c6b0cd6a99eb0f23eddbcb0a65c5"
+    },
+    {
+      "scene": "20260211-153321",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-153321/annotation/ego_pose.parquet",
+      "pose_sha256": "c844219dcc8b9148eeb968138d3c76e04511108b19c2fdeed7f4329e11e80adf",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-153321/meta/timestamps.parquet",
+      "frame_mapping_sha256": "88dfc61c5bab8daad1ca725df6242e5fb8a0fa0222b1afd06de1556d2f76a982"
+    },
+    {
+      "scene": "20260211-153351",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-153351/annotation/ego_pose.parquet",
+      "pose_sha256": "80cdceb9d519f7178fb64ddd468c0e021140f0e49fcda166751b08fb4f1af955",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-153351/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4fb9c4ed1cfabe1258ed443c333ef1f5c9a4c80abaadc878b43d7b84a1ef1889"
+    },
+    {
+      "scene": "20260211-154111",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-154111/annotation/ego_pose.parquet",
+      "pose_sha256": "eb975fb24e692de4cddce884f7541201e93eceae875d0e169b366665dc89ce60",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-154111/meta/timestamps.parquet",
+      "frame_mapping_sha256": "88b1d41e0ba4aa095a2235d93d9f96fc3a6a573a65ada6162518da25659ceea8"
+    },
+    {
+      "scene": "20260211-154141",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-154141/annotation/ego_pose.parquet",
+      "pose_sha256": "37fa2b3dc23f4890d9512fd0b692a917a60e56ce4c663765e1344ad66687ce0d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-154141/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9e9a18c5123405f9d748ff4666940cf8ca138d7c088b2e6344c95e7e1ed8f19e"
+    },
+    {
+      "scene": "20260211-154211",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-154211/annotation/ego_pose.parquet",
+      "pose_sha256": "a8ea451f5df517e11d1747f62da7272fac507b05e72c042c3fdf947de890877f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-154211/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4602c772867c5f059eb56b05053d037587d014678dd4a04404f1f84124323843"
+    },
+    {
+      "scene": "20260211-155531",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-155531/annotation/ego_pose.parquet",
+      "pose_sha256": "fb199928a166c44c650d524833820dca97c1512730569c7f858c47b49f579ed1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-155531/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7d64eadfab00177961888a96a636b9d39986da85c80313ae9556817462498f55"
+    },
+    {
+      "scene": "20260211-160251",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-160251/annotation/ego_pose.parquet",
+      "pose_sha256": "933dd3ebe0aafe17a5173bf290e9f7589b6254a52e6c6ef5a9f81f7d4fecc207",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-160251/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4559e336875b742766a69fd588a7e6d1c9d42414df846cdc37eb7ad602ace3f2"
+    },
+    {
+      "scene": "20260211-160351",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-160351/annotation/ego_pose.parquet",
+      "pose_sha256": "6323fe1ffc16286be28fc2bc85322fd62ba04c39bb8a1348df6465bcf79cbb54",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-160351/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4548ae6a1a845cce49f76a67c0ee6812082109a814f3febc6a3a0541590651a3"
+    },
+    {
+      "scene": "20260211-160501",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-160501/annotation/ego_pose.parquet",
+      "pose_sha256": "6d1b59c4aef975a917681a178e4154e3051d064fcc2ae7a6edd6ecc5b323e0f0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-160501/meta/timestamps.parquet",
+      "frame_mapping_sha256": "844f268a7426fa72bacd92015734caafa7facf1ebd2dd94aba54923d4f3c7879"
+    },
+    {
+      "scene": "20260211-160531",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-160531/annotation/ego_pose.parquet",
+      "pose_sha256": "c873c69b4eb163a5bdd8895db8790098a1a03b87fcf8afa1884c24048866c125",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-160531/meta/timestamps.parquet",
+      "frame_mapping_sha256": "3826fd20f5b6198c5095bab7602c4ca8528039e2bea35e072bda55a0277f181d"
+    },
+    {
+      "scene": "20260211-165355",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-165355/annotation/ego_pose.parquet",
+      "pose_sha256": "bb84d47a40cef886f5007512c4e03e11205d40e0f47e783ca2f76b8683c0094a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-165355/meta/timestamps.parquet",
+      "frame_mapping_sha256": "14ce2f4eb66acb4b28d19f890da0e66f2b55ea7e691d161b942312750b7f98d7"
+    },
+    {
+      "scene": "20260211-165505",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-165505/annotation/ego_pose.parquet",
+      "pose_sha256": "9cbe4516ce4d27d8a1a1cbb8a55f7e77c54501e84600bdf98a04b7d1cbdeec18",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-165505/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a00a4ccee87dca873f9d90676237b2283d67c97899cff1f146c7370aa05388f4"
+    },
+    {
+      "scene": "20260211-165535",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-165535/annotation/ego_pose.parquet",
+      "pose_sha256": "7dd1d84ae733b0fc00867bc25ee410056f6dd4d89ac77f229a5718972330914e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-165535/meta/timestamps.parquet",
+      "frame_mapping_sha256": "41bee2b23ef43a667921b9e6962bf55e778b72bc1f8aa19b28e7be5febd1c2c4"
+    },
+    {
+      "scene": "20260211-170535",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260211-170535/annotation/ego_pose.parquet",
+      "pose_sha256": "24715a129ec72c73f386b9a024e35be72841a4886ceef9870ed84225c26c0bcb",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260211-170535/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8e24dc040f1f3591729a96a0bba1dd28c382931a4660f5c53ee85c90a9dbacf0"
+    },
+    {
+      "scene": "20260212-100013",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100013/annotation/ego_pose.parquet",
+      "pose_sha256": "3aa0d48abf0f1d76fc0b16b66592c7e9a4cc7180beccb9efa373b72ab8226b50",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100013/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ca33cac6a36ecbfe628a51cc757160c63e733f849061c05aa84ddbe791569c17"
+    },
+    {
+      "scene": "20260212-100043",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100043/annotation/ego_pose.parquet",
+      "pose_sha256": "d9cb1c1da09f88ccc9f969243e1286b059648256fad7b356f535b14d82d1c13a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100043/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b8223faf2b98634ad772eb1009441fbe45a34847e6b8c2475fe518a154d1cafe"
+    },
+    {
+      "scene": "20260212-100123",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100123/annotation/ego_pose.parquet",
+      "pose_sha256": "04277182e8216eda156c8cb6f9f8875fab36b78771b6eb0b16ae63c96134ad98",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100123/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1f4e87fface3b1d27919502a7819029595eb3dc4ec66fd6dfa32c716b972d198"
+    },
+    {
+      "scene": "20260212-100223",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100223/annotation/ego_pose.parquet",
+      "pose_sha256": "be92f219940b3ab71e35887f4601c6fa0a1db8f030c84969b54d44a63b506ed0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100223/meta/timestamps.parquet",
+      "frame_mapping_sha256": "630f3f7079bb2cf031669e2cc8dfa3bdeaa8911f34f7daf0381ecebbb8c4a4c9"
+    },
+    {
+      "scene": "20260212-100334",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100334/annotation/ego_pose.parquet",
+      "pose_sha256": "f87c126a78d7a1b36d327ed88bad2aef2956d165afcf9b4b250789fc3243b577",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100334/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7aa995a4a16401991c53af92bec87d2515fac083f810510ef735b8a872600dcd"
+    },
+    {
+      "scene": "20260212-100404",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100404/annotation/ego_pose.parquet",
+      "pose_sha256": "22bbc23d284ff822acf896665a4d2d85d6cff7010c36ffbfc7b8c9b730ef943a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100404/meta/timestamps.parquet",
+      "frame_mapping_sha256": "14aae276291936aa7f0348fef985760244daf1489dac93732f58415350270014"
+    },
+    {
+      "scene": "20260212-100434",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100434/annotation/ego_pose.parquet",
+      "pose_sha256": "ce65cd5a7d39181d39f63288aabfcb0f3c05c52dbfab9ed45b0440ae80ee6f14",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100434/meta/timestamps.parquet",
+      "frame_mapping_sha256": "6c1fd289ca4efca0a7f9bc49884882606d678aa437cc001f5a7a8b22c35b4753"
+    },
+    {
+      "scene": "20260212-100544",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100544/annotation/ego_pose.parquet",
+      "pose_sha256": "f2916cec0bbc324a059c630d168466c9c2d51a05c3209475bf11879dd4566b76",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100544/meta/timestamps.parquet",
+      "frame_mapping_sha256": "20830d07d948709cc6ccdc5c2068ee051ac23b4ace1f50a9f36de16e6c521550"
+    },
+    {
+      "scene": "20260212-100654",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100654/annotation/ego_pose.parquet",
+      "pose_sha256": "b6ad7a534c7d0494a7eb6c82a89b450ee60914f7821e46df47da017c98b5e5b6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100654/meta/timestamps.parquet",
+      "frame_mapping_sha256": "11ae189ddf38473b4be551e9404d934d93bd165e66aa6de1b5faac413f8cc047"
+    },
+    {
+      "scene": "20260212-100724",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-100724/annotation/ego_pose.parquet",
+      "pose_sha256": "f21dbee9f68506c26479d8074ff4a9867951f3245eb3a072124ff243a7f3e77b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-100724/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a5d6dfd35791d7d7a3c9b7efa7a4b625b0559c9341a6105e54418f622d552d82"
+    },
+    {
+      "scene": "20260212-95833",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-95833/annotation/ego_pose.parquet",
+      "pose_sha256": "3009b9b31490aa7f38d252d89a09af91421c1d51edaeb9ecf8b1b3da84a25e34",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-95833/meta/timestamps.parquet",
+      "frame_mapping_sha256": "67cb4c78416c5ffe4acfb2e75f63b2d69da4ea8c482c01e69e76d16f9296f71b"
+    },
+    {
+      "scene": "20260212-95943",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260212-95943/annotation/ego_pose.parquet",
+      "pose_sha256": "2ab0fa94a549411ed15fd19d5a62ebd87f1d69772c54bc28d02ded1468831ff4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260212-95943/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c2584bd7ba435633044c61613dd232235d07e28009ff4c14caf3bd30aa3a9c59"
+    },
+    {
+      "scene": "20260213-103230",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-103230/annotation/ego_pose.parquet",
+      "pose_sha256": "eb37d3a22065676671ea4ada099bf7884a3b277f35e309684cd6acd4287b0bad",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-103230/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ebbc86903bd009a567be74fa8e6342ea951e2a4e4d70f63f2fee47dc97971cdd"
+    },
+    {
+      "scene": "20260213-103440",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-103440/annotation/ego_pose.parquet",
+      "pose_sha256": "2a447a7b0d9158de14798384b1989ca1be207817b0d1143971de6d6a52dfa0fb",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-103440/meta/timestamps.parquet",
+      "frame_mapping_sha256": "bd0b2303002ba0fa234abacc84b44c8b72a641700ae76faa009a5eb47277426a"
+    },
+    {
+      "scene": "20260213-103620",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-103620/annotation/ego_pose.parquet",
+      "pose_sha256": "c32d1f7d66514d0f1c3de2064b88786ba0a7dafd75352483b0439fb938b5e96c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-103620/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0434f14d21dbd7703d77df8472c513352c45527cbd9e8ce5fc5ae097bb6365fc"
+    },
+    {
+      "scene": "20260213-103650",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-103650/annotation/ego_pose.parquet",
+      "pose_sha256": "fd27dec6fd8ffbe9d261c79674e59906beffdc2ed36d969ac241c64c8685518f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-103650/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8f02f8da66c60f1b1b897051ba77c1faac65474dd08566d2bd7cdc196cd3f70f"
+    },
+    {
+      "scene": "20260213-103832",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-103832/annotation/ego_pose.parquet",
+      "pose_sha256": "91f3954fba1405dc85c5a55cf73954ea3d22abcbc15490521c1bdcecdfdf54f8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-103832/meta/timestamps.parquet",
+      "frame_mapping_sha256": "621bb71171d5515b22d8cef3916d604a601e19b19a2c21b94a587cc507e32f56"
+    },
+    {
+      "scene": "20260213-103902",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-103902/annotation/ego_pose.parquet",
+      "pose_sha256": "16b9a836606c386889e144aea75c285bb8b05fb93fe14b4589ac6747717091a6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-103902/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d7ec8be35ae23378db6458ab6e27827dd676b71e3bcfb8a98afd2cfbd60bfc77"
+    },
+    {
+      "scene": "20260213-104152",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-104152/annotation/ego_pose.parquet",
+      "pose_sha256": "1895a0f3ff047210b69b2a4b2df2c991aa5fd087f618112ccb7a0c80a5f6693a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-104152/meta/timestamps.parquet",
+      "frame_mapping_sha256": "47179cb0255e0facc33bf15ac328fe17c66e1a87091b278218da905e256d16bf"
+    },
+    {
+      "scene": "20260213-104222",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-104222/annotation/ego_pose.parquet",
+      "pose_sha256": "375263fc48208c6bcf4b0ba7afc065d1ad6c6335300ccbe6cd72985f372206ee",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-104222/meta/timestamps.parquet",
+      "frame_mapping_sha256": "26740d6ccf122cf16ba31d6fdceb6276fae7408798fd9c17b87259ede4c4f52c"
+    },
+    {
+      "scene": "20260213-104252",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-104252/annotation/ego_pose.parquet",
+      "pose_sha256": "09b300540c59bfb4183873ad1b3aacca9e2aa565146740141c8b605ae8233216",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-104252/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1f9fd5404fd49e2aa5c831454b8f8c6261c05c7ec2a5f6eaccc30d9f7f752428"
+    },
+    {
+      "scene": "20260213-104332",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-104332/annotation/ego_pose.parquet",
+      "pose_sha256": "9772ba4a82fb9dc687afaf8106a1f8a8a80ae76d8aad55791ba8312861bdeb1e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-104332/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d2ce0e394f606e98158fcbac9b839dd34f0b673dce6e2420f698fd5553d01cbf"
+    },
+    {
+      "scene": "20260213-104432",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-104432/annotation/ego_pose.parquet",
+      "pose_sha256": "d1444c64cb347838516779c2caa68e37a8444f7db2efc3f246f099682714e68f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-104432/meta/timestamps.parquet",
+      "frame_mapping_sha256": "caaad69546c64e1a6e2c0168fedca940063e6a5197b4121ddb2eb1191527f8d4"
+    },
+    {
+      "scene": "20260213-104652",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-104652/annotation/ego_pose.parquet",
+      "pose_sha256": "0d16c430e2f0e412513415b8099bc24c96a5500bcfc36cfc6d3789af4fab1934",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-104652/meta/timestamps.parquet",
+      "frame_mapping_sha256": "600b99f98b41e878bdaf9e029b09f6a24ac5f2533fec669760d82435d42517b7"
+    },
+    {
+      "scene": "20260213-104722",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-104722/annotation/ego_pose.parquet",
+      "pose_sha256": "4702b5c8284d7e4cba8af777657afe1b932bcb0cc67176720c36434d52c832f8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-104722/meta/timestamps.parquet",
+      "frame_mapping_sha256": "6f28dfe567d08012eb2a31149c90329be85b0a2e293eec4338bc27d891e77802"
+    },
+    {
+      "scene": "20260213-104752",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-104752/annotation/ego_pose.parquet",
+      "pose_sha256": "8c811e9243176ade678628b89d6b58d56bd936db2aa54f73b45148cbeb129aa9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-104752/meta/timestamps.parquet",
+      "frame_mapping_sha256": "76768943883fe2b4cc5929993a1666df6437940f8c9607262a4ed7e61983a19a"
+    },
+    {
+      "scene": "20260213-105012",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-105012/annotation/ego_pose.parquet",
+      "pose_sha256": "1cfdc197baf01fb879242b4c323cda12a32ad48b459e71e68ca2d8ab00fedf8f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-105012/meta/timestamps.parquet",
+      "frame_mapping_sha256": "00d9a264f3a80a2314892687454a08b16b421512a80c1184ba283e3e1eff4da6"
+    },
+    {
+      "scene": "20260213-105042",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-105042/annotation/ego_pose.parquet",
+      "pose_sha256": "bf773e4786517303fb816b10fc8e74399a07146d1ba657bdb294023193d47ed0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-105042/meta/timestamps.parquet",
+      "frame_mapping_sha256": "387c0846b5b7267c0c5e15bb1fd1e3d5941962ea8d09a6670bfacec07089dc0a"
+    },
+    {
+      "scene": "20260213-105112",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-105112/annotation/ego_pose.parquet",
+      "pose_sha256": "0e03e72e0806908ff6f827ae24a7f234fa95bcfb1428cf47d7af3cf978a129a8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-105112/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5c804bd781faecc40ebdd1eb189cadf19ce7cc605bbd71da36c58443a9343141"
+    },
+    {
+      "scene": "20260213-105152",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-105152/annotation/ego_pose.parquet",
+      "pose_sha256": "796770865542f0942f42b47a8f0174ddd0b9b43426f92f174dfbfde3f4598f4a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-105152/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8639cf18dc9466c8a652a1f6a73ba865978cf945fc2125f202deabb8201b578c"
+    },
+    {
+      "scene": "20260213-105252",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-105252/annotation/ego_pose.parquet",
+      "pose_sha256": "36c5191a12ee9268c09ff6ec0ebf05286b52edb00d5a89615c61a3a6e000b8ce",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-105252/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ab2acf689fa664ef7946f805fda1f4378b3af8b79daee32f2205dc0df38a68f7"
+    },
+    {
+      "scene": "20260213-105432",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-105432/annotation/ego_pose.parquet",
+      "pose_sha256": "5b271aa3c751edfb01573d5f3bca6da132f56f652985df74d0e71d1afb65da92",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-105432/meta/timestamps.parquet",
+      "frame_mapping_sha256": "6fc3cb89365eb40c34d7f500fc0603804cc8524a8e965d36dc79b0d0798eb850"
+    },
+    {
+      "scene": "20260213-105542",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-105542/annotation/ego_pose.parquet",
+      "pose_sha256": "c2028815be993a75db7b6428f6092c54fb946409be26b19768c1d1cc302d7d15",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-105542/meta/timestamps.parquet",
+      "frame_mapping_sha256": "63e5f33bd4cb1f0c31f22d4a05839a3fd6ae64d7cd84c74625eb7093a1582374"
+    },
+    {
+      "scene": "20260213-110748",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-110748/annotation/ego_pose.parquet",
+      "pose_sha256": "c455f12207ee202b8bdf5e28e6a78c3a7585083c625359029dbc4d29187aaf28",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-110748/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4ccf95b9514148a0dad892ffc310f28fcaecdef89c7b623430b7400cbedd57de"
+    },
+    {
+      "scene": "20260213-110818",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-110818/annotation/ego_pose.parquet",
+      "pose_sha256": "f5cca121ab96a86f6cc4ecff8be80833753b39670e1f3c1e30ddc9629debd45f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-110818/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e74c924a2dda8047b6e622aef87f034673d12150a62af16f4629f8717e830cf9"
+    },
+    {
+      "scene": "20260213-110848",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-110848/annotation/ego_pose.parquet",
+      "pose_sha256": "f34d361ad7e1c5412750fcacd30ca7100f0ac6b17a359c837fc575adee878269",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-110848/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4c1168eb0ef758fd16105ffe6a7cdefea94b573a2c10363c110fd62d1ce005b0"
+    },
+    {
+      "scene": "20260213-110954",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-110954/annotation/ego_pose.parquet",
+      "pose_sha256": "217d7b528ddbd8453313dc7a023eaa5b2204b4aa405efffdf5c2b6afa2e196cb",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-110954/meta/timestamps.parquet",
+      "frame_mapping_sha256": "94b97accb219c0d527e048cbe31656853b1541bfaf547a7744c8409ce6f645f4"
+    },
+    {
+      "scene": "20260213-111024",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111024/annotation/ego_pose.parquet",
+      "pose_sha256": "a2b1389a9453ea6fecb8ff7c6f27ca5b1de43641dc67e8167240b815897e1d57",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111024/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2641fedfa6545f040eba9a825fbdc5019b7c2e05d1d845aa9b7e46dfa839fb30"
+    },
+    {
+      "scene": "20260213-111054",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111054/annotation/ego_pose.parquet",
+      "pose_sha256": "d5d6b2929c5d16b7e218956930d929504a2f3f78ca81df32caf6b2afa822cef1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111054/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8a70b801be39fff7b85d2937a1e96f1aed1fa8c9c88eac9377f7363f6ef1460c"
+    },
+    {
+      "scene": "20260213-111134",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111134/annotation/ego_pose.parquet",
+      "pose_sha256": "12aa6f40be13bdf1a8f94e9a28e2f4ade43dda5693edba55dd7541cbd06dd3d3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111134/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cdb4b7c1c4664895fb7d0f2b4619ec77ff947fb165d29bf4ff73772c44da4d8e"
+    },
+    {
+      "scene": "20260213-111204",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111204/annotation/ego_pose.parquet",
+      "pose_sha256": "382e305dbb86b3c15c3cb8259c7d6fbacf71a5ab3b5eaffb1336510abdb0d22d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111204/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4864358eaf28f905c029cd961bed633b99f8c733122fe10e5998a1fc14c7e791"
+    },
+    {
+      "scene": "20260213-111234",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111234/annotation/ego_pose.parquet",
+      "pose_sha256": "04d4c610810604bf71d854667fa1b6d6965b18a63a7ec313353ef1367b72b1b2",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111234/meta/timestamps.parquet",
+      "frame_mapping_sha256": "33551a81cbf4e93471f76e00405f48e106f048dbcf0030872a8c4528d2de2c6c"
+    },
+    {
+      "scene": "20260213-111314",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111314/annotation/ego_pose.parquet",
+      "pose_sha256": "44ff0167e0030b5328c9fe7b22116529690c87715afefee14ef06c402d556e09",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111314/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b4a4d4d52651ecc74efc920f691d8ae66010e75b3a9b0ece55a18b8def3d79d6"
+    },
+    {
+      "scene": "20260213-111414",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111414/annotation/ego_pose.parquet",
+      "pose_sha256": "0bb2fa801d2ee0822597821908994b7d175b805669b0a5fd27074c7a3c145bbf",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111414/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2faa1723d656817c2129ed0b223e7348f6532fa3347247d0e91d6fbe957e616c"
+    },
+    {
+      "scene": "20260213-111454",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111454/annotation/ego_pose.parquet",
+      "pose_sha256": "6d0152829fc2763d37dd0ced02f7351719c0073bb64b6f14c0480c73d1c03367",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111454/meta/timestamps.parquet",
+      "frame_mapping_sha256": "681e8df1e8f878cf949d0660bdf2de3b0627b4cd6eae3f36167e5c5e8ff85d21"
+    },
+    {
+      "scene": "20260213-111524",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111524/annotation/ego_pose.parquet",
+      "pose_sha256": "ee13457d62d1828f91819fa9a94872e3e94211b9b4a4500b1b8751c445f1b9a4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111524/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c5e682b35954cfb7184523a1982791d4e095ef492536d1b96d770d09489398f3"
+    },
+    {
+      "scene": "20260213-111554",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111554/annotation/ego_pose.parquet",
+      "pose_sha256": "740021c499050050c5d0d1fc37df34b30bad11d0691798a5e2d65476a28b0355",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111554/meta/timestamps.parquet",
+      "frame_mapping_sha256": "88a46f69018e305868631d8b9b2dbcfe8f8421f7812b6df374c23d810e89ae5e"
+    },
+    {
+      "scene": "20260213-111704",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111704/annotation/ego_pose.parquet",
+      "pose_sha256": "cd509414b66ded767c82120fb481d3adaf3044761074fe6e66ee6c1c7e232a9b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111704/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8153730120347306e11a8f6d720f457f7ac8e5545af57b993e68b2f6862d9386"
+    },
+    {
+      "scene": "20260213-111734",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111734/annotation/ego_pose.parquet",
+      "pose_sha256": "9cb4942ac24109eb24da411264389a68e040373a7bc84c72cf1336cc1a0c7d06",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111734/meta/timestamps.parquet",
+      "frame_mapping_sha256": "dfeaaf7e30140122c7ce4b1ec4ed61ba99b5e413e8ab956f6db3120544c72532"
+    },
+    {
+      "scene": "20260213-111844",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111844/annotation/ego_pose.parquet",
+      "pose_sha256": "1c86465bced3aae3b0f8bd0cf6fd532a2e1cb249b2db3beccde4e07714388e3a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111844/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9f33e6392624a58d764b3cf3c9600c9585d3b8517ffea2e603b74f706039ac12"
+    },
+    {
+      "scene": "20260213-111954",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-111954/annotation/ego_pose.parquet",
+      "pose_sha256": "96775eb3140d71e8d70fe8eebfd9e8874bbd2fdfc82863c45b3ffb8cad9bf0f0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-111954/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4c3b1421cfb5a6cc3e3c4de9e4687047ba2094a4ddec96252d21ae4a9a9059ea"
+    },
+    {
+      "scene": "20260213-112024",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112024/annotation/ego_pose.parquet",
+      "pose_sha256": "c187bbaf98cc2aea0eb750e838491e8d06cf6701b6bbf68bba687124d997090a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112024/meta/timestamps.parquet",
+      "frame_mapping_sha256": "330687079ffff8be4d95d71894c60f23e2f4e251ab245a9c803d2d32915ccce9"
+    },
+    {
+      "scene": "20260213-112204",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112204/annotation/ego_pose.parquet",
+      "pose_sha256": "b33fd39c44b2263b125e1bbc5699f688b5e5bacd62fdefe65205dcc7a572de4f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112204/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0224f187bdb8684cb59fa4d0be275c1d581bc6c7ed25bcb8d66936ac5c89e729"
+    },
+    {
+      "scene": "20260213-112234",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112234/annotation/ego_pose.parquet",
+      "pose_sha256": "cca3d1b98dd5e94e929e5ffa2f0daeb557dc25e606144145a5ae21fd0e1db19f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112234/meta/timestamps.parquet",
+      "frame_mapping_sha256": "69cb60491bde80f46916ce262729914eea316119333e547fe1195a5b13dc23c6"
+    },
+    {
+      "scene": "20260213-112414",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112414/annotation/ego_pose.parquet",
+      "pose_sha256": "c81ad3992f6ecdcd5185c140dc6cb5d9a5d9f2d22096fe80b9ff43aac9889f9f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112414/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f1cbb0688adbd9d6bdafb7bfa532a4b3190d81abe0a9800fed8ce0897a8c2958"
+    },
+    {
+      "scene": "20260213-112454",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112454/annotation/ego_pose.parquet",
+      "pose_sha256": "2de1a812f0766b9d614f4027f68083d12c55b6260c2a31d3d3cbd3a9d8502666",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112454/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2b110dac09a8fc1375361bbf4cf0e414bf3c91526f5dfbcfd21b193d26e24204"
+    },
+    {
+      "scene": "20260213-112524",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112524/annotation/ego_pose.parquet",
+      "pose_sha256": "6bc970bc95fae1db17700922c301fe283ab6f6858809b4f6fb4ea5e73566e1bc",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112524/meta/timestamps.parquet",
+      "frame_mapping_sha256": "832d11b927b24d1632d2057b563eb69aaea1f77900d483e831f17a9b12b1f7bd"
+    },
+    {
+      "scene": "20260213-112554",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112554/annotation/ego_pose.parquet",
+      "pose_sha256": "8d4781d4af65d7d12692e1721a6231b219f266c4f00b1c48c3619fa7bdc84d2e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112554/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a52a441685baa8e9b6c1632c68deba147eb6bfbca4abf1f7cda6b1f794cba935"
+    },
+    {
+      "scene": "20260213-112704",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112704/annotation/ego_pose.parquet",
+      "pose_sha256": "ca801795f5d12c66d26e05632bb06d634c3c2f1fff7a20310c08ee1342546a4d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112704/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ba6d69e501ee8e598af03fd201f9885a46f8a1d476f2076f6532508fbfd37b3d"
+    },
+    {
+      "scene": "20260213-112734",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112734/annotation/ego_pose.parquet",
+      "pose_sha256": "17a053e97cce64a8e83b2f408807def0202a403f187801f70c7aea1a7968fd7c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112734/meta/timestamps.parquet",
+      "frame_mapping_sha256": "89ba9fd8172c8d48ebc6922dff7e5000a0e7c68ea08443ec5f7015b1e4445c4d"
+    },
+    {
+      "scene": "20260213-112814",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112814/annotation/ego_pose.parquet",
+      "pose_sha256": "e2d1e77c008b94889125e2400b07927836d5186ab0847f2c36e560e9d8ab1af4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112814/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8389ed843b5ce234705a27e447080bcf4359ee1d5fc1133bf6b4c95bd8aac07b"
+    },
+    {
+      "scene": "20260213-112844",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-112844/annotation/ego_pose.parquet",
+      "pose_sha256": "e15b77c2e596552a885a52a14c5fcedbfa831b968e184a4dd5c65b6fb4e73161",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-112844/meta/timestamps.parquet",
+      "frame_mapping_sha256": "446a7ec50742573d114e76c5265116eb96b3b7a862a42fc99c3ae1662b059922"
+    },
+    {
+      "scene": "20260213-113054",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-113054/annotation/ego_pose.parquet",
+      "pose_sha256": "7bb28ab8dcd3687e3c4d7485215b9b3a095703c33119df23d7b7720d1a3f2fcd",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-113054/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e350cfd00b17cf015dc8b519ade8ee5ed0d5f514165cbcdd51897b38ce912420"
+    },
+    {
+      "scene": "20260213-134008",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134008/annotation/ego_pose.parquet",
+      "pose_sha256": "ea0905cc63877631b72a555294a59ee70d975e4dda8ae6ad5a5b4857b2c9484c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134008/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1359849c96d3ca81a6bc5308f4d4133fd32e9d510965f1ee84034fdc713cadc2"
+    },
+    {
+      "scene": "20260213-134038",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134038/annotation/ego_pose.parquet",
+      "pose_sha256": "a3209987c58edb546db79cc13703f98d71e857bb11036df3d3bee6d15e094afc",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134038/meta/timestamps.parquet",
+      "frame_mapping_sha256": "04ab6a3d9199bd68ad41cb2310273573489a72f125c7ea4726930410e8951dec"
+    },
+    {
+      "scene": "20260213-134118",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134118/annotation/ego_pose.parquet",
+      "pose_sha256": "563d2c32eff773964ca2f6cebb0aba0bd863f97bf51caf69970bfd541928361c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134118/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9d3e8038ddbaea89367713d0d62e37cc7a4db230c1de5bd605b3783f77514bb5"
+    },
+    {
+      "scene": "20260213-134148",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134148/annotation/ego_pose.parquet",
+      "pose_sha256": "1ad2dcb2f3276c62036f92594c74e5bec09bf1ddc23906341541b8ef1169e5fd",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134148/meta/timestamps.parquet",
+      "frame_mapping_sha256": "67eac4b837a2b6e4c5ced406cf68e30aa52ec89c48e6f0850a739d5df836743a"
+    },
+    {
+      "scene": "20260213-134438",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134438/annotation/ego_pose.parquet",
+      "pose_sha256": "cb744c20c8589c0a34e0ac6ca79b2e8e6b74fc37e0b0f4fb69959343a5922929",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134438/meta/timestamps.parquet",
+      "frame_mapping_sha256": "4032a203d27399d3cca41d5ebf7dca0ddff84589dfc94c293098755b3dee5d52"
+    },
+    {
+      "scene": "20260213-134508",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134508/annotation/ego_pose.parquet",
+      "pose_sha256": "a30dcdf636e17ee92b46de6c5eedb1cb44e6843233daa1ca65dbcbf11105997f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134508/meta/timestamps.parquet",
+      "frame_mapping_sha256": "da1f2aeaf855df7b7a5a154a1cc46e81dde27fc1f07db867e77a48df1f15272e"
+    },
+    {
+      "scene": "20260213-134648",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134648/annotation/ego_pose.parquet",
+      "pose_sha256": "bc8c908de410e05a79213f0ed6b8036a604c1d98b87f02236efc2b3c61316f0e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134648/meta/timestamps.parquet",
+      "frame_mapping_sha256": "085e5496417e56934b498157eefcd0cf5cae0ce556d9898151b3e462f3bb2673"
+    },
+    {
+      "scene": "20260213-134718",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134718/annotation/ego_pose.parquet",
+      "pose_sha256": "cd7f69ae2f449d32b8f4c36d84435ee13c7622f2dcd8305d89098e028acf44ed",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134718/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2bc64574ac492bbfa43b355a4492dc6d447c45b0404e0caea9fb6375f7bea85a"
+    },
+    {
+      "scene": "20260213-134758",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134758/annotation/ego_pose.parquet",
+      "pose_sha256": "56c4510b9ae8913793f65176886851c4b1b4f759010ff21c580890680514330f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134758/meta/timestamps.parquet",
+      "frame_mapping_sha256": "853385e1cd3993a0965123f6350454c83241beb29b1ad259f7e8f2af10be84aa"
+    },
+    {
+      "scene": "20260213-134828",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134828/annotation/ego_pose.parquet",
+      "pose_sha256": "5983dfcb7334e0e64dbb13e6a75e218165fe3c0acd6698c09bc9d44717069f78",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134828/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0f528ecba0190b246536c89bf7e10d15b6fb1104a0b1679e0acb2f62c96d20d1"
+    },
+    {
+      "scene": "20260213-134938",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-134938/annotation/ego_pose.parquet",
+      "pose_sha256": "ad56020b43cfe7cfc60c771da2ae603101a2ad3663127fd0839d89478b6786bd",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-134938/meta/timestamps.parquet",
+      "frame_mapping_sha256": "256f342a3f4d1a9ca963a7336eea634635eba0d7508196b462db5ea29218a940"
+    },
+    {
+      "scene": "20260213-135038",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-135038/annotation/ego_pose.parquet",
+      "pose_sha256": "cee7837e01afc665f4f38e69d3f02afb7a6c350ef61df8328091546760f87f66",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-135038/meta/timestamps.parquet",
+      "frame_mapping_sha256": "3e78d1a1863060ac326e5b77745971a8a8244617466ccd63fdce684f0743e50c"
+    },
+    {
+      "scene": "20260213-135258",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-135258/annotation/ego_pose.parquet",
+      "pose_sha256": "f66b359c07d7cd8a3b0a5c1807c5beb8b30a09c9b126aab61e25c4a48b8a30cc",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-135258/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7745585ecf18899b1f23199690dcd5060860328d5613862435d01b6e28683d10"
+    },
+    {
+      "scene": "20260213-135328",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-135328/annotation/ego_pose.parquet",
+      "pose_sha256": "faf76e89a4776052459d6c0fa50f63a35297d50fc5987e0ed69c2de55a865019",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-135328/meta/timestamps.parquet",
+      "frame_mapping_sha256": "393c0d93247552587d43777fcaa02c5db121d4e69a1f014cfdac1e6e94853529"
+    },
+    {
+      "scene": "20260213-135618",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-135618/annotation/ego_pose.parquet",
+      "pose_sha256": "cdb5e2251e0ad553a5b25f9469d492e083a652d9e871e602d5c1ad5b844a8bb1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-135618/meta/timestamps.parquet",
+      "frame_mapping_sha256": "6e1545963cac00908c6990ce708043272377762fdfc9efae88b345091a74cfd1"
+    },
+    {
+      "scene": "20260213-135648",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-135648/annotation/ego_pose.parquet",
+      "pose_sha256": "dbd691be0781ed49a42354900f8c7d5f5140496bbac9e12646bce58b46754d8c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-135648/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cc9d18f95f9c2853d6154c645a6f7463b3002668c798a4d87bec27420ed7594c"
+    },
+    {
+      "scene": "20260213-135758",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-135758/annotation/ego_pose.parquet",
+      "pose_sha256": "b48abc11f38e741f3d626dff8a2f110e690d9e40e26b882e58d2aba205910022",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-135758/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c8a71b13006dfeff4140e18452c8c4383ab4100242227d13eb11f302cfd43ad2"
+    },
+    {
+      "scene": "20260213-135828",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-135828/annotation/ego_pose.parquet",
+      "pose_sha256": "9d2ac17129ec735eeda795cd6154a186350028d43cf6f94685fa7e435d95766e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-135828/meta/timestamps.parquet",
+      "frame_mapping_sha256": "459804ff229536cb4c44cd41ce16a165cb8c5dec519c45edbc799e32a34ba0e0"
+    },
+    {
+      "scene": "20260213-135858",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-135858/annotation/ego_pose.parquet",
+      "pose_sha256": "9900fe663a30283fa46b7dbe593a63ad0a706ff25b24c4072a2b688a33ce0a76",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-135858/meta/timestamps.parquet",
+      "frame_mapping_sha256": "af449cb779c0f4ce0298d455ec7342a77c036114597f941ff129fb89ee3493fb"
+    },
+    {
+      "scene": "20260213-140008",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140008/annotation/ego_pose.parquet",
+      "pose_sha256": "5ef6f10774634d1bd02717fb10591bd3737421200b79489d003d9c764a6dbfa3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140008/meta/timestamps.parquet",
+      "frame_mapping_sha256": "416e541060b4a18cef9a255d3f73ba98974a6b7792a7bfaaf861c41b669ac769"
+    },
+    {
+      "scene": "20260213-140218",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140218/annotation/ego_pose.parquet",
+      "pose_sha256": "69d235fffd80b9add3db0d1bdbf78c0cdd4fc837621a7a85283003649ee28b76",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140218/meta/timestamps.parquet",
+      "frame_mapping_sha256": "db20bcdd2146a57d771fd6d8022d0ffade8c81634d2b6bc7b50d0448060b2f77"
+    },
+    {
+      "scene": "20260213-140258",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140258/annotation/ego_pose.parquet",
+      "pose_sha256": "ac0fec81ca7e08a99bc4e0684197f92fd93d1f9240c57c89a388860fab161214",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140258/meta/timestamps.parquet",
+      "frame_mapping_sha256": "3269ddefc19e0e092c3444333ac714419d58b6f22f8d23933b67e1733a0e0f09"
+    },
+    {
+      "scene": "20260213-140328",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140328/annotation/ego_pose.parquet",
+      "pose_sha256": "361336404756e4f682261f394e57a6125b70db66480261f5cc399ee5c77d3d9d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140328/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7875e0e1937d2551f615f4c38b69d2a733e11963a7ac71688a3035bf95913bd2"
+    },
+    {
+      "scene": "20260213-140438",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140438/annotation/ego_pose.parquet",
+      "pose_sha256": "30c342f5072ae8a4bae352222d9b078719aa55bb190d4d3c23f18cb09f29799b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140438/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c8164973f72b5794f24fb5486b103704a107170197c605ac0082fb459db84a05"
+    },
+    {
+      "scene": "20260213-140508",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140508/annotation/ego_pose.parquet",
+      "pose_sha256": "04dd98f6e4d2bfdd682f354bc58c29cb7d418b5c0928822221b9f3d3e54d658d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140508/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9badf4d3e802b7203e94819d0ade3f9d61daacf4af98467067fa6ad009d41113"
+    },
+    {
+      "scene": "20260213-140538",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140538/annotation/ego_pose.parquet",
+      "pose_sha256": "3fb2dce71c148f4a0c37fb1d8b22790842833533636188bf377ee847ed4d02c8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140538/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cca63129396a11af442b9234516809ff529c93bb0982906cea1225e52dc7ff39"
+    },
+    {
+      "scene": "20260213-140648",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140648/annotation/ego_pose.parquet",
+      "pose_sha256": "ba56849ef8fdc7a80ca845cd3e5e4c7ea49922cd2119997017a883154e8510ec",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140648/meta/timestamps.parquet",
+      "frame_mapping_sha256": "243b3b941a6478c15f5d25b2e6cef85475d07d0bcc9279c0bfe75b9dfff2525d"
+    },
+    {
+      "scene": "20260213-140718",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140718/annotation/ego_pose.parquet",
+      "pose_sha256": "7a7f540ed5e976004c0151830ca65509c08b3e108028634d61e540f4d673824d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140718/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ec2e25208980b3258abdf5ec4d2839fa489e955de84199d842b689dd48f86ecb"
+    },
+    {
+      "scene": "20260213-140938",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-140938/annotation/ego_pose.parquet",
+      "pose_sha256": "07d3b84e1ac21d559ca6e004000559fe2efceebaf8571e416c671dd851b52995",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-140938/meta/timestamps.parquet",
+      "frame_mapping_sha256": "36d3ef119448ecc424290a809c1c1f2e8a25256577ae6e04ccd545d7196c955b"
+    },
+    {
+      "scene": "20260213-141008",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-141008/annotation/ego_pose.parquet",
+      "pose_sha256": "6134b71fe563b7a35674031f70cf724a0485dc90d0758167c940453933811d92",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-141008/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a8253982e1629f22341a62aa71bb11ae4f098bdca592d7e26e927bcde1ddb24d"
+    },
+    {
+      "scene": "20260213-141038",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-141038/annotation/ego_pose.parquet",
+      "pose_sha256": "0c066314bffb81572f989c647707e77897830192bbab2e47386c1cca7f13b69b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-141038/meta/timestamps.parquet",
+      "frame_mapping_sha256": "41826ad8f579023ae39fe87cc23a7d85ad2990699d1fd2ccdab3a56c8fc5052f"
+    },
+    {
+      "scene": "20260213-141148",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-141148/annotation/ego_pose.parquet",
+      "pose_sha256": "e4bee8b5bb34349eeb2bc52afd758fe3187a5e318db1e221f07ca65623040e66",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-141148/meta/timestamps.parquet",
+      "frame_mapping_sha256": "118a9b4b970001b97f17765f87045c418c22f64e85ab55da729e2729c9108127"
+    },
+    {
+      "scene": "20260213-141218",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-141218/annotation/ego_pose.parquet",
+      "pose_sha256": "308047b450920566f1891d32dc2514c8a5b9ccc9ab44429c5ecdee92f201ac3c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-141218/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2e588612e63b2452434b7e7374ea517aaa2c0bdaa42cb20dcce60a7ae46c249d"
+    },
+    {
+      "scene": "20260213-141258",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-141258/annotation/ego_pose.parquet",
+      "pose_sha256": "309329586ae0209ddcd019d6502021597f9964fb1507b761e5738439dca93b74",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-141258/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0ef8173bb8747eb708b6ba7b08d9c2d8fadf961ea635896930dc1374c9d6a9fb"
+    },
+    {
+      "scene": "20260213-141328",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-141328/annotation/ego_pose.parquet",
+      "pose_sha256": "c97dee2869f613101bee5253ebfd025698e059380550eb0e07cc74ed81a12a7f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-141328/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f66a2daec7ba8d1bafcd487ec65174b78860c319cfe4d320091f8d17c570c333"
+    },
+    {
+      "scene": "20260213-143904",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-143904/annotation/ego_pose.parquet",
+      "pose_sha256": "7608afabd5f69c512e5a5be6fa3d11100b403101db901b2b78403327a61d203c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-143904/meta/timestamps.parquet",
+      "frame_mapping_sha256": "de7e7f11ae8dd4182baae87228cdcd690f22b4c62df5022749d1682ae12467c2"
+    },
+    {
+      "scene": "20260213-143934",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-143934/annotation/ego_pose.parquet",
+      "pose_sha256": "0264e2f87554972f7115b791ad0307f48fa2cac9bc7e5c578f1c01cb5fc8f5e9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-143934/meta/timestamps.parquet",
+      "frame_mapping_sha256": "fa363113ef90abb83969dde503ed9703465e242b4783ab780f447d4c12e2cbdd"
+    },
+    {
+      "scene": "20260213-144154",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-144154/annotation/ego_pose.parquet",
+      "pose_sha256": "503aafd43fa4e903411131fe1f6dc8fe279aea8513f8cd5be872c4607f6f3ee3",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-144154/meta/timestamps.parquet",
+      "frame_mapping_sha256": "53526e3ee3f48bf82cffad968025111b1a4ed36e56c95ba209accba6df6ee3b0"
+    },
+    {
+      "scene": "20260213-144224",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-144224/annotation/ego_pose.parquet",
+      "pose_sha256": "c9b4396da889561c4994f889c8dd457f42dd6a9e761129a078702f3a76c2fcc6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-144224/meta/timestamps.parquet",
+      "frame_mapping_sha256": "625c4b65853fc6a73b7d6214af5090eba616b83d70722b462046d84dfc1fbbc9"
+    },
+    {
+      "scene": "20260213-144334",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-144334/annotation/ego_pose.parquet",
+      "pose_sha256": "0d7d78c635f4b923ce11abee59a9a63adaddf4ba6dcb3f440da9ec88907efd5f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-144334/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ace8d335ae14621b5a8f8e12afb9ebb9a1c9fee428d933a41ced1b3df1bcc80a"
+    },
+    {
+      "scene": "20260213-144514",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-144514/annotation/ego_pose.parquet",
+      "pose_sha256": "56a923fb8642f45c670a472a6f8cb7b0802b3025ea08a7ef0427b38aa0fa69b5",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-144514/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7763875ed6acbbacbb35389f882f3f49de547e0f37f5ec5d5d2227e27e736365"
+    },
+    {
+      "scene": "20260213-144614",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-144614/annotation/ego_pose.parquet",
+      "pose_sha256": "a3d71ac4516d7541fbae6561d5476305caac1dfa6990ae301cf92b0c3c97bcd9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-144614/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cf6ea2c309374814933653b0d88bc34793ad2da1036a323ec23cd070b8fc1a5a"
+    },
+    {
+      "scene": "20260213-144654",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-144654/annotation/ego_pose.parquet",
+      "pose_sha256": "245cf8c58b2058374fea572f4c43e31bcd210a7771cdd3647c0838c145d6742b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-144654/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2318449f91ea1094fc6804308fc2173883b41e6ac52297cf352ad2f723d8ec4d"
+    },
+    {
+      "scene": "20260213-144724",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-144724/annotation/ego_pose.parquet",
+      "pose_sha256": "4b0c1650c23e3adafa89ea98c4b822bc023a054f836a8c80faba0174ba293854",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-144724/meta/timestamps.parquet",
+      "frame_mapping_sha256": "05591d95923bb90b4df4839ac13dc38b2f6f7ca356fb4a7446446559b874a136"
+    },
+    {
+      "scene": "20260213-144904",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-144904/annotation/ego_pose.parquet",
+      "pose_sha256": "2753fc61b8b60d99f68d58e3706b81b8ad29526be9c4a64d847d09730f6f77a6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-144904/meta/timestamps.parquet",
+      "frame_mapping_sha256": "051c14f6d88666ea220217ac267c6d050f7f711d59012c9716cd3c3e305ecccf"
+    },
+    {
+      "scene": "20260213-145114",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145114/annotation/ego_pose.parquet",
+      "pose_sha256": "ea3ec89eb0730af84d36eab8cd0da582e1ebef604c7d5662b22bfec4266fed53",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145114/meta/timestamps.parquet",
+      "frame_mapping_sha256": "248aff1524e216a857953c073244abb52ace853a9c1fd9f40f2cbd07997d3503"
+    },
+    {
+      "scene": "20260213-145154",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145154/annotation/ego_pose.parquet",
+      "pose_sha256": "8345a4f34b97589718df064782bc7da1261f583484b4811e9507f74d2c3d07f4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145154/meta/timestamps.parquet",
+      "frame_mapping_sha256": "505a7bc0dfe6365b03af33d7bb1317d9d86163eb2a05f445f7dfaf387a25a6e7"
+    },
+    {
+      "scene": "20260213-145224",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145224/annotation/ego_pose.parquet",
+      "pose_sha256": "8bcd36be3eabf863727c87fc9c7e2110fc37d92ef09699b1e186b9bf7266b12b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145224/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e500c4b63c852629aa795924aa33c4a2a4177954ed55902248800f72d15690ff"
+    },
+    {
+      "scene": "20260213-145254",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145254/annotation/ego_pose.parquet",
+      "pose_sha256": "6c57bdb588eb798bbf837c9f453266377fbd9cae52b5fc760a63fff166ace6a0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145254/meta/timestamps.parquet",
+      "frame_mapping_sha256": "aa13737082b0f086583196733f84ab47562bafc5179cef9b0235dc806342152e"
+    },
+    {
+      "scene": "20260213-145334",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145334/annotation/ego_pose.parquet",
+      "pose_sha256": "207ad999c620b293206a081ab8f180a03d8ada994c43c1199a43e8ceba995cb1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145334/meta/timestamps.parquet",
+      "frame_mapping_sha256": "612c546c4164e146076e49d5c0e0a82da1c4743965268101e1175c48b9b7e2de"
+    },
+    {
+      "scene": "20260213-145404",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145404/annotation/ego_pose.parquet",
+      "pose_sha256": "c47da851aa20c2d9c9ede7f60fa2cb2e4e04f2c8020d5f6387b79e095e4a1e44",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145404/meta/timestamps.parquet",
+      "frame_mapping_sha256": "74a3ec53dc9d998e19e4d16eff28537c240a73333876bcf406610bd7c17b3da1"
+    },
+    {
+      "scene": "20260213-145514",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145514/annotation/ego_pose.parquet",
+      "pose_sha256": "90070bb1653eb74caf5293f4e68dc9ef317ded482fa29b2d2b9bb23c67112372",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145514/meta/timestamps.parquet",
+      "frame_mapping_sha256": "47d7bdbd5dd26c8e381902d1818577d9b83ad97c456923416eec642824c7c65c"
+    },
+    {
+      "scene": "20260213-145544",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145544/annotation/ego_pose.parquet",
+      "pose_sha256": "69e2bf359415301fd4fbf2c5102c33a636c16ea6d1edfa9753d1c677f0f261a6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145544/meta/timestamps.parquet",
+      "frame_mapping_sha256": "60a68f5e46254c068bf856e33d43c13efd470a07ca6801521e29d9f5ce0bec91"
+    },
+    {
+      "scene": "20260213-145654",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145654/annotation/ego_pose.parquet",
+      "pose_sha256": "fc3fa139ac0da1f460af33d180365a08d8dc89b12b6f213b5d15dbbaee076521",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145654/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f4a7bcc8270fb878ca331a52560a1ccb1295e45bbec9420b7a64ed94a14bde83"
+    },
+    {
+      "scene": "20260213-145724",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145724/annotation/ego_pose.parquet",
+      "pose_sha256": "3cabc05f3e07ce82ddb5ae60528d726e26151b6dbfd525bad0007451ae69f5eb",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145724/meta/timestamps.parquet",
+      "frame_mapping_sha256": "13383e20cfff4442c7b8ef41af71821e13ffee6ce428116c2e19de6a368942e2"
+    },
+    {
+      "scene": "20260213-145754",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145754/annotation/ego_pose.parquet",
+      "pose_sha256": "848b5f02f0fe30e2a7fa7790eea20366da388ad86683b19863cd328bb48ae43d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145754/meta/timestamps.parquet",
+      "frame_mapping_sha256": "97913c1104a3d90e4e715d1aeb98d743a4ddcc7f61d983da11ddadc22178dcb4"
+    },
+    {
+      "scene": "20260213-145834",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145834/annotation/ego_pose.parquet",
+      "pose_sha256": "c52438ef693d2ea5f86e20df20b2e90c657f018edd805738cf7914054088cdee",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145834/meta/timestamps.parquet",
+      "frame_mapping_sha256": "13f0f0233b0821ab5a671466bfdf8d144c0353bb3b66b579af69def6f53df572"
+    },
+    {
+      "scene": "20260213-145934",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-145934/annotation/ego_pose.parquet",
+      "pose_sha256": "0d490607847ed886e9e43ae0d4b59a74646874dbd3624c45b97e9c2ba4226c6d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-145934/meta/timestamps.parquet",
+      "frame_mapping_sha256": "aa2f8009739976cf9ea04147954a316a60738673ea5ea3df04ee3983269e7329"
+    },
+    {
+      "scene": "20260213-150014",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-150014/annotation/ego_pose.parquet",
+      "pose_sha256": "93c05487bf8acfbea52857d00bb2959ff35374444cd8df6b3828eb85f9047864",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-150014/meta/timestamps.parquet",
+      "frame_mapping_sha256": "26df65b064399c49e71bd0ee2c72bd8296b25bed2560e7cacf3c4b5bc9c26d95"
+    },
+    {
+      "scene": "20260213-150044",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-150044/annotation/ego_pose.parquet",
+      "pose_sha256": "005e4a6ff5a3ced27a77ab0af9cd5a0d95fb6fc8b667ba8f51bc2d6ba658de9f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-150044/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0e832d9bf5ca667e3ad20c645e3129110fad48838a8d43331350761e0675ec38"
+    },
+    {
+      "scene": "20260213-150114",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-150114/annotation/ego_pose.parquet",
+      "pose_sha256": "bbec62566d2e6d2a50d978d61e95e3d59888549730bd64fabc4faac1e9399a4f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-150114/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7da98b5bdc3648a31bb26cbc2c7aa4257731baab06cef155df5baee77b3159ca"
+    },
+    {
+      "scene": "20260213-150254",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-150254/annotation/ego_pose.parquet",
+      "pose_sha256": "e81778b5a142f117ccd5d4df4955227aa2df9d303ea90a4e90b7906d1a245417",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-150254/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cb2a820b6c7c0e009200f0cfde73e6825856099703dd416d06a7f5c1481c86c7"
+    },
+    {
+      "scene": "20260213-150334",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-150334/annotation/ego_pose.parquet",
+      "pose_sha256": "1fd5e7669554b3ea4bb685762b887d7f146aa9627d6787f2160c961b073ef722",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-150334/meta/timestamps.parquet",
+      "frame_mapping_sha256": "de11d34512f1aca6af2a994937f7acda4ddd24eaff9f436dfedf525a399b0947"
+    },
+    {
+      "scene": "20260213-150404",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260213-150404/annotation/ego_pose.parquet",
+      "pose_sha256": "64c38568cae506602da87ee4b926337174dedf3130475ae10a72aaadd3c30c64",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260213-150404/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b4f80745b103873273d086b23e262e4650e4a8c452eff878c3f73241e5c34056"
+    },
+    {
+      "scene": "20260219-102531",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-102531/annotation/ego_pose.parquet",
+      "pose_sha256": "a0a23c210fb4dd4adb7326611f273494353a3ecc0bfbffc61ff9097c3d0c6feb",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-102531/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5626f7e45798ed42f09f0332da526375dc8df0b636c1169604967a2ee31d9cc7"
+    },
+    {
+      "scene": "20260219-103107",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-103107/annotation/ego_pose.parquet",
+      "pose_sha256": "17f518da647f1b7d4808b8d882ad56e21adbb72b5021c03e50de3116a2cd2279",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-103107/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d73fddbf193de7c0785438d504a5367843be3a96318dc0581e484102a3ee9a37"
+    },
+    {
+      "scene": "20260219-103217",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-103217/annotation/ego_pose.parquet",
+      "pose_sha256": "3380b3d419b4e85df9bb3582d164c5ceed0389c1d84214fac8f3b5c7ad19ee64",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-103217/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5744cdd2440ed1856a14b0c0c6f3d41dfdc555bfd8bb1218a61c8d40f2e9cfc6"
+    },
+    {
+      "scene": "20260219-103317",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-103317/annotation/ego_pose.parquet",
+      "pose_sha256": "90840fb54439225670800ac8411013786b511eee945ba628f501f862733ffe22",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-103317/meta/timestamps.parquet",
+      "frame_mapping_sha256": "40d3c534ca934bab3ef19bc2740387d32f5b6591ef92e883183c9c5227ffbb08"
+    },
+    {
+      "scene": "20260219-103747",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-103747/annotation/ego_pose.parquet",
+      "pose_sha256": "b67a9f1e89b1c756089001ed4d3b39f1cb992440ba03f14ef073f2caf9053d6a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-103747/meta/timestamps.parquet",
+      "frame_mapping_sha256": "172e8a3c1ed961e7f3bb244245f5194608d99a400e7cda21e8d4e13be0abc666"
+    },
+    {
+      "scene": "20260219-104214",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-104214/annotation/ego_pose.parquet",
+      "pose_sha256": "1c712ad0b0d305f14f537e85adf6d6dc34f648e66658b966d71f2f1fd6b3c7a6",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-104214/meta/timestamps.parquet",
+      "frame_mapping_sha256": "30479663d4813b6e966febc9521482a3aba9751750c0e7424e7b26ba78bf5108"
+    },
+    {
+      "scene": "20260219-104244",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-104244/annotation/ego_pose.parquet",
+      "pose_sha256": "cebd41c5fa14592272f1d20b4a247b0e4b99a56370f1be8c10f4736b2ab79364",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-104244/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8ccfc5e29efa1531e3a31187d0b16cd6824658b6ea7e774449e1ed72356c3492"
+    },
+    {
+      "scene": "20260219-104452",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-104452/annotation/ego_pose.parquet",
+      "pose_sha256": "f48e2f4da97556cc7e5277bb864dbc2f3b107fb8c90719b91f7408da97b941b9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-104452/meta/timestamps.parquet",
+      "frame_mapping_sha256": "e5f449f925756e249ab88b0b8c755e9fa7e2fe779de71b3c5006b34842c99a9a"
+    },
+    {
+      "scene": "20260219-104602",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-104602/annotation/ego_pose.parquet",
+      "pose_sha256": "f08d59d7dd954420183229b28f4ccfc923042a67328b5f9a3f8114ca01235c62",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-104602/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5c718697f76d1a70a3e1ba7bae9c9f10f7a877f9728b16368054282215669d66"
+    },
+    {
+      "scene": "20260219-104632",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-104632/annotation/ego_pose.parquet",
+      "pose_sha256": "e66c12837e7574718f14f9ae6205482a79635b4328f82b0650260acf9f50b362",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-104632/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ebfb7c2c2c1bacc78b75c446516a67068b27ea73fb1beaa7418e850d5ba3364b"
+    },
+    {
+      "scene": "20260219-104742",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-104742/annotation/ego_pose.parquet",
+      "pose_sha256": "7efc18f8846791a7521056d68a3290579948d5789307b8fbd88e0708358ab0d1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-104742/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f9e55759b4e925520555b1ec5f2a943ffbd3844b11d4645832cd8844faf7e174"
+    },
+    {
+      "scene": "20260219-105056",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-105056/annotation/ego_pose.parquet",
+      "pose_sha256": "a917ed9464f7b4cd0d4bf61741274e5eb4fa002d3874dd16d3bd20fae2aa08b1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-105056/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b7105d57d588a8d81b3a1495c6f5aebac6c529176b35d1e71186a3a694c05eb3"
+    },
+    {
+      "scene": "20260219-105126",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-105126/annotation/ego_pose.parquet",
+      "pose_sha256": "9489477aa11b5a1fe0ea2a520ab05fbb61353adb7575abf1726c621ed0020d93",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-105126/meta/timestamps.parquet",
+      "frame_mapping_sha256": "f1a8c30e05ea21d9e00e8037944179a978dd97125b871c2478f4cb85880a1cc4"
+    },
+    {
+      "scene": "20260219-105236",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-105236/annotation/ego_pose.parquet",
+      "pose_sha256": "539ac2d8cf620cf366a14d972df3164a1720e1c378b98710727f04fc5a80ff4c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-105236/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c60f1a9013ad6eb508daee0b4cbe99d117562839ef701c024c84d3a0e5b757e6"
+    },
+    {
+      "scene": "20260219-105524",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-105524/annotation/ego_pose.parquet",
+      "pose_sha256": "d2e91022350f2b09377b326da4c1cd174abbd79dd423279af8385f834faaa05e",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-105524/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b9a8259e43d90b6f9b8ebb3c80fe15f772f8f15675f537c1f06602c25c129742"
+    },
+    {
+      "scene": "20260219-105554",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-105554/annotation/ego_pose.parquet",
+      "pose_sha256": "339834011de285aaaf68fb692008146de0b6fa65eb36f80a0c962760b43fb508",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-105554/meta/timestamps.parquet",
+      "frame_mapping_sha256": "df084d1c0ce71b12f11c7627cb8183cc657a8fb57088b1010c6fcf9bce98c67c"
+    },
+    {
+      "scene": "20260219-105718",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-105718/annotation/ego_pose.parquet",
+      "pose_sha256": "8a98ce6255162653d681184d8b2157c0462a6833e76555f72a85df0f8c2b6a58",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-105718/meta/timestamps.parquet",
+      "frame_mapping_sha256": "bd09a000c7244e585d28d47b66e327f5388a4f51099c29f7298cb3083458f5c8"
+    },
+    {
+      "scene": "20260219-105828",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-105828/annotation/ego_pose.parquet",
+      "pose_sha256": "b3477e23f6ce72d625b7a5c8608e01364000fab04dd74e18935e4f57058dd66c",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-105828/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8d859d8fb3011f944da04806be90452124c521c154f402287d5eb61a4c551862"
+    },
+    {
+      "scene": "20260219-110038",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-110038/annotation/ego_pose.parquet",
+      "pose_sha256": "7c1a084f67bf425b126a780ec860ce35afbec683ac34839a375a97ca41beea77",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-110038/meta/timestamps.parquet",
+      "frame_mapping_sha256": "506a31fc5cbb171c52a4004b48a61d7fb999f130770f0c351a4ebc37b5cba5d7"
+    },
+    {
+      "scene": "20260219-110108",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-110108/annotation/ego_pose.parquet",
+      "pose_sha256": "890e4c0fe40923973e30281e6eeca0e1ad9e7e1526354581a1a528380bf25191",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-110108/meta/timestamps.parquet",
+      "frame_mapping_sha256": "fdab9a69a161be1d7253c40a41ca692172731a0b7581789613620aa6d7104432"
+    },
+    {
+      "scene": "20260219-110218",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-110218/annotation/ego_pose.parquet",
+      "pose_sha256": "6f61f71871610448d73c22f81a725d46cbc9ebce8c5bf925a6de088b6127e656",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-110218/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c0546590a0991f85e499933480b34f88c2d699eeb1fd177dec563d0f8a0d66af"
+    },
+    {
+      "scene": "20260219-90551",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-90551/annotation/ego_pose.parquet",
+      "pose_sha256": "fa9163d83836badc3e61b1470e664ce8c21dd51c9c60059fb5c65b13b5c71c55",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-90551/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8399ee7d4fc9a957ae505dea3308b52ae1d05ce5107b867eebd9496b296a5d70"
+    },
+    {
+      "scene": "20260219-90621",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-90621/annotation/ego_pose.parquet",
+      "pose_sha256": "03f3e288ed2f5a521994f508781da0994309d6261ffa17a16424766c79960222",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-90621/meta/timestamps.parquet",
+      "frame_mapping_sha256": "201247747fbff9c0e65c2f411da717fcf63682a408fd94524e631de008da5904"
+    },
+    {
+      "scene": "20260219-92051",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92051/annotation/ego_pose.parquet",
+      "pose_sha256": "7cff372d6b0d9d54463e28e05c37332827b94bf8d83decb48b86127a0a78fc80",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92051/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b2d3264dadabc410da5c8c08c1a06c8522ca5bb2dd5d3a99e640a388ad31b968"
+    },
+    {
+      "scene": "20260219-92151",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92151/annotation/ego_pose.parquet",
+      "pose_sha256": "fa3a950629b9adf0e86cd8cbc462732608efd7c46ad3a367f98c8941cd68bbe8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92151/meta/timestamps.parquet",
+      "frame_mapping_sha256": "37bcf35ec5173d4689e677c700153af86e7f1f060f9da443af4a83dda033454d"
+    },
+    {
+      "scene": "20260219-92301",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92301/annotation/ego_pose.parquet",
+      "pose_sha256": "f2c548df33e258f549c235f538de385f055c64dbc6f139b1f989c86120f7f235",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92301/meta/timestamps.parquet",
+      "frame_mapping_sha256": "7302c3ce0a0beeecefd4c3b08a2cb08028a6c63e712cd1cf0a5be161b384cd27"
+    },
+    {
+      "scene": "20260219-92331",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92331/annotation/ego_pose.parquet",
+      "pose_sha256": "f38513c58e789ab583edd4e23c478deaeaad83109a6e55f64128110911e89db7",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92331/meta/timestamps.parquet",
+      "frame_mapping_sha256": "5301dc93d049f947f27c2df606b4da409d3760f8e462c796045af40bdcd40135"
+    },
+    {
+      "scene": "20260219-92411",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92411/annotation/ego_pose.parquet",
+      "pose_sha256": "f60f2ce4a92a8753ed70f15c29de840991df6623982eb0d8fd101d7643a788c0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92411/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1845b457bdc058c5c37b11bb3e2abac432063a978ecdd165707bc5d3fe8adab5"
+    },
+    {
+      "scene": "20260219-92551",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92551/annotation/ego_pose.parquet",
+      "pose_sha256": "a8bd6ae2efd7d0907c215d59d0199262668b496996789e7e1006d888e672807a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92551/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c528668a58b6f581f0861d2155c9dea976fa28c0792c308bf9157d3ff7be2f5a"
+    },
+    {
+      "scene": "20260219-92621",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92621/annotation/ego_pose.parquet",
+      "pose_sha256": "c1859faec7cae43f5281be4e50f6b528525f9f698c6ae3c65e14be9314ce183f",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92621/meta/timestamps.parquet",
+      "frame_mapping_sha256": "a9b318cf197fd9721e2e259a5b1f6afb64dccf8fbe022762c2c6e4f3211a459c"
+    },
+    {
+      "scene": "20260219-92651",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92651/annotation/ego_pose.parquet",
+      "pose_sha256": "5c588a7cb6e5893650efc7e6dfd36eae951551ef01345fcf755527eaa573f219",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92651/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c24ff1e0a5d431e2ed240b087b9af3fb12035ddcc3cf13d8cc11a02a78bd7d40"
+    },
+    {
+      "scene": "20260219-92731",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92731/annotation/ego_pose.parquet",
+      "pose_sha256": "594237fa8a528b3bb15f893ca24508f0826deab99ff0a58269568fc4bdeb3c72",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92731/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8411ad0977f56f19f781ddc496f79a523aed7b557b4196f161e38b2daa9303d1"
+    },
+    {
+      "scene": "20260219-92801",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260219-92801/annotation/ego_pose.parquet",
+      "pose_sha256": "92d70cbf086750d0a5ec859cc4f1cfa06c1614991b6a98cbe2b39e3fa63b7184",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260219-92801/meta/timestamps.parquet",
+      "frame_mapping_sha256": "0c1d142d825c3f3d79d9b1af0aeca81422579ec5260b3f96bd4f7a195f46131b"
+    },
+    {
+      "scene": "20260220-100857",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-100857/annotation/ego_pose.parquet",
+      "pose_sha256": "c1b127d43c8b4e458d6494daa04df248a060a17de516b0853eef7eeda7bdd09d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-100857/meta/timestamps.parquet",
+      "frame_mapping_sha256": "cdc7f521d11cc0dce8a761c1b13f587b6d5ba093b0be02d5a961dbdb91803254"
+    },
+    {
+      "scene": "20260220-100927",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-100927/annotation/ego_pose.parquet",
+      "pose_sha256": "8c604809415644e4d2d2cc7d1fb1bfa9d33e355ea0e279a0ac5d1f14b22b6f25",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-100927/meta/timestamps.parquet",
+      "frame_mapping_sha256": "23be0e6e04414611ecb306571f2542705293def4099be77208a9b6cc43069d0a"
+    },
+    {
+      "scene": "20260220-100957",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-100957/annotation/ego_pose.parquet",
+      "pose_sha256": "78e232736f05c49fc6b9b786f394404f4aec8561850fd3cfeaf64d3a7a442208",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-100957/meta/timestamps.parquet",
+      "frame_mapping_sha256": "02a067abbe9b85a3d41907b0164c857a368ad1b01d3c75d2ecebc477567bbf8e"
+    },
+    {
+      "scene": "20260220-101037",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-101037/annotation/ego_pose.parquet",
+      "pose_sha256": "355726e96c706bcbd29b6875b960e27267e76f3a7e7e7b377afcf7e33b10eefa",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-101037/meta/timestamps.parquet",
+      "frame_mapping_sha256": "46422ee0d6bdef9bda19c47b0a232264897ed072b1dfdb502bd78dd779ffd24b"
+    },
+    {
+      "scene": "20260220-101107",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-101107/annotation/ego_pose.parquet",
+      "pose_sha256": "b03b5101beaeb8f69734a18606fdd8fbe53ec7e814d4137c5ef6efa2811fac32",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-101107/meta/timestamps.parquet",
+      "frame_mapping_sha256": "234ae183168d55ae16bcae528db7eded9b4f73c6d5c3e08a5627338a0a380dc5"
+    },
+    {
+      "scene": "20260220-101137",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-101137/annotation/ego_pose.parquet",
+      "pose_sha256": "28e30a2849a489e8bdbde7c841fddc5d8b010e4325b3d213ebb94c976231cb7d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-101137/meta/timestamps.parquet",
+      "frame_mapping_sha256": "191cf2a877ffd6d789ec89b855707afd58c0a50acd553605e90bd2ebc809955c"
+    },
+    {
+      "scene": "20260220-101717",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-101717/annotation/ego_pose.parquet",
+      "pose_sha256": "8894146a9399ef178f86189990eb6e98176c7b72b717fd6121666bf603affbb9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-101717/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1825ebe083cfc964a7d5600af768254ab3289bb50c837cfc652ae3a8635c6a51"
+    },
+    {
+      "scene": "20260220-101747",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-101747/annotation/ego_pose.parquet",
+      "pose_sha256": "5990f292aead5c8efa8c60728e50a37602f0a14c4099c20bf0d8d1e18cc4dee9",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-101747/meta/timestamps.parquet",
+      "frame_mapping_sha256": "bbe219b1d0628a76e0216adb02b6d6dbe4e2a015ccdcbbfce4f503fb047fdb54"
+    },
+    {
+      "scene": "20260220-101927",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-101927/annotation/ego_pose.parquet",
+      "pose_sha256": "5bea024eca8889ea7db8eb82c578c88b7862d698c7f2d192f6be46bde8defad1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-101927/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2de3b22465e6b093478d47d79a1f6f248578f7a3dfc68a5ded9da640b4f7cd1c"
+    },
+    {
+      "scene": "20260220-101957",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-101957/annotation/ego_pose.parquet",
+      "pose_sha256": "b61571286311b0798696b6615fb7a543736e7b35dc33c1902bbede491a463283",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-101957/meta/timestamps.parquet",
+      "frame_mapping_sha256": "6d6027ce3013fcb265c050419bbe39a2caad15b2af75492fa6ee281477a7342c"
+    },
+    {
+      "scene": "20260220-103655",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-103655/annotation/ego_pose.parquet",
+      "pose_sha256": "e7c638468f9cbebc48804ecafddf7dd1a69be18eb2afdcede53daa002d8f78d4",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-103655/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8af31fb31baf0872f63bc776b0b9ee12e664bf899b22d2821376ed23a46e8ff3"
+    },
+    {
+      "scene": "20260220-104817",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-104817/annotation/ego_pose.parquet",
+      "pose_sha256": "e7780aa717f811bdf2edc3f31a6f82eea331e9e51bc86695cc5a336b0cc1400a",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-104817/meta/timestamps.parquet",
+      "frame_mapping_sha256": "c05288c0fa425a446528b0663f37f8ad97db738841f68eae807b468c58275bf2"
+    },
+    {
+      "scene": "20260220-105107",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-105107/annotation/ego_pose.parquet",
+      "pose_sha256": "67dbd57e474d41d9df7208bbddd2b274214d1f08016286a2d01f19b3493561d8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-105107/meta/timestamps.parquet",
+      "frame_mapping_sha256": "6fd6fbc3af87f28014edd91cd4b3520c8073391cee1dfab2c0bf2305da8d2772"
+    },
+    {
+      "scene": "20260220-105137",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-105137/annotation/ego_pose.parquet",
+      "pose_sha256": "dfbae6b06b32dc17f95cb40939316ab91c657dcaa3571134c0c70cca85d0373b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-105137/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ba271d4e6f6ea49fabc4ccbdaaec19494ae2ca5424ca12a0b6510aee96a265a0"
+    },
+    {
+      "scene": "20260220-105247",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-105247/annotation/ego_pose.parquet",
+      "pose_sha256": "a772aab03076fea03152390b9db3793f0a99a691f1e84d415cd34fbd6ef89405",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-105247/meta/timestamps.parquet",
+      "frame_mapping_sha256": "d433d7c509861c9554372de72770f048fd7bdc6b71131163ec479cbc101ff329"
+    },
+    {
+      "scene": "20260220-105317",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-105317/annotation/ego_pose.parquet",
+      "pose_sha256": "139922f6e96a001191229134da76cf5501baf378228111a4a33f071416f8b3ed",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-105317/meta/timestamps.parquet",
+      "frame_mapping_sha256": "54b2c18fa6f9802e18e16696b7fbd6617ddc66dc08525a54b5da0120b1ec1538"
+    },
+    {
+      "scene": "20260220-110435",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-110435/annotation/ego_pose.parquet",
+      "pose_sha256": "d872a3775b7845f681954a35cf73b997b368df8cf93a881cf68ca3f37a776abb",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-110435/meta/timestamps.parquet",
+      "frame_mapping_sha256": "b69177069e8b51f13f40fe33db0cc60012e30be017086275971097529b09d4e6"
+    },
+    {
+      "scene": "20260220-131957",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-131957/annotation/ego_pose.parquet",
+      "pose_sha256": "20d965fa10afecaf2f5ba6be355e92b7ee2358868783b71eeac31f87c8dd3929",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-131957/meta/timestamps.parquet",
+      "frame_mapping_sha256": "350edc2081700690ab8ea8fd989608033fca355bb99d8bb8c52a62070c52df28"
+    },
+    {
+      "scene": "20260220-132317",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-132317/annotation/ego_pose.parquet",
+      "pose_sha256": "224fe3d86f85ac3d02f0a62ff73dfdc9d6929fd2d59472b6598427c30213a18b",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-132317/meta/timestamps.parquet",
+      "frame_mapping_sha256": "538eee2e2d7eacf46ecf0c2e3979d86df82f1fb2f27070bff30e61c7fc966924"
+    },
+    {
+      "scene": "20260220-132347",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-132347/annotation/ego_pose.parquet",
+      "pose_sha256": "a3c61f067f46e0cf6a1e9e485184d3bdda688c5d0ebbd8621e3a1a6e17b66278",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-132347/meta/timestamps.parquet",
+      "frame_mapping_sha256": "17f1bbf631045d38390ac496541aeba008b3f0311c21df2df03ba480909581c1"
+    },
+    {
+      "scene": "20260220-133427",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-133427/annotation/ego_pose.parquet",
+      "pose_sha256": "bf7f1ff57a23bb2ac3a67cb23ee1f454aa3e82cd459e0361d3e8fc6479ccffc1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-133427/meta/timestamps.parquet",
+      "frame_mapping_sha256": "dba8adf30b0b1f2e59941e3d62b3ce69be9be92f859d1942b25ed2ad24d17fed"
+    },
+    {
+      "scene": "20260220-133457",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-133457/annotation/ego_pose.parquet",
+      "pose_sha256": "c20457a9f10e5469b505335818fc7c4d67224ae96ed50478b39b704049758831",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-133457/meta/timestamps.parquet",
+      "frame_mapping_sha256": "2c652b20594501c6ca413e5bf9cf7fa922c726d966bb2482476c27ce6156d6c1"
+    },
+    {
+      "scene": "20260220-133527",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-133527/annotation/ego_pose.parquet",
+      "pose_sha256": "caba4f23da4569d4d18c671881a273639d4eb135ca098c1876147a28906e9080",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-133527/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9e380f8c35b754904161226ed102f19f27d3f1e719590feca698e7d3fc657b73"
+    },
+    {
+      "scene": "20260220-134317",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-134317/annotation/ego_pose.parquet",
+      "pose_sha256": "21d01f609f4e47e2db0f511ef5a539d49421938cb8a170259c349b7404060020",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-134317/meta/timestamps.parquet",
+      "frame_mapping_sha256": "ca24cc679bd3370d6cfe43537991d4ed3f1f51cbd4fffbece43e0973a02e2a99"
+    },
+    {
+      "scene": "20260220-134347",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-134347/annotation/ego_pose.parquet",
+      "pose_sha256": "64e3602cf4914c1bd57d1b27879f493855818320942b789815a704c8364a53ef",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-134347/meta/timestamps.parquet",
+      "frame_mapping_sha256": "43967bd6328e38a0c0d92535fbfe44855ba7cc56ef12f25c2932207c9ff7f8dd"
+    },
+    {
+      "scene": "20260220-134637",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260220-134637/annotation/ego_pose.parquet",
+      "pose_sha256": "4f28ed69bc08124bc2e2c44591eff3016ccd2b5dc11cabac6eb64b5c9efd0cb8",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260220-134637/meta/timestamps.parquet",
+      "frame_mapping_sha256": "9553c023781c4b0c3a82bfc28c168adc4fccac2a70b4ceb7bd12284ff1d20291"
+    },
+    {
+      "scene": "20260303-142507",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260303-142507/annotation/ego_pose.parquet",
+      "pose_sha256": "64d2ee4b2607f145da8981507c3c3e05e176755b246e0a448fa4cca4a6724f17",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260303-142507/meta/timestamps.parquet",
+      "frame_mapping_sha256": "026fa68a2a8ea05248855ce1a0761f2a86c34d62f68cd2705e6e0ea321a9414a"
+    },
+    {
+      "scene": "20260303-142827",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260303-142827/annotation/ego_pose.parquet",
+      "pose_sha256": "f0f28a958b7214dc61f4f62b9fb5b38bf1a7faf7e7954241766525d6b41005fc",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260303-142827/meta/timestamps.parquet",
+      "frame_mapping_sha256": "415df610b92e17f9bb1f9146759b6f32b7d712c52d992314aa64c4ca6f4d0f1d"
+    },
+    {
+      "scene": "20260303-143437",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260303-143437/annotation/ego_pose.parquet",
+      "pose_sha256": "1433b05f2448852bf250c487cfac1b5c3bb70421f127d6dc82b67de1bf6dd7f1",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260303-143437/meta/timestamps.parquet",
+      "frame_mapping_sha256": "1fb0f19788d3dd960d6e12d010b0438d5c979368d7d84cc7039fafc9002cc66c"
+    },
+    {
+      "scene": "20260303-143507",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260303-143507/annotation/ego_pose.parquet",
+      "pose_sha256": "eae51e09c98e313074749c2ee29509fe6ac8e927d5823310e8532f858a8bbfb0",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260303-143507/meta/timestamps.parquet",
+      "frame_mapping_sha256": "86e4f46532433781f5b55c56058d2063db0894a3f47520397a3f3183a6ffc71d"
+    },
+    {
+      "scene": "20260303-94300",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260303-94300/annotation/ego_pose.parquet",
+      "pose_sha256": "abc6405fa6a4895dfd74e55417e8d6180a6b3ad9034a9f64ce3d9eb882026bca",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260303-94300/meta/timestamps.parquet",
+      "frame_mapping_sha256": "8b6e88a53aa7f3e63a502000dc28a0b5842121ee1f7618260f11f974c52368f3"
+    },
+    {
+      "scene": "20260303-94330",
+      "rows": 270,
+      "fit_count_min": 11,
+      "fit_count_max": 11,
+      "pose_source": "/tmp/pm97/data/etri/meta_train/20260303-94330/annotation/ego_pose.parquet",
+      "pose_sha256": "c6fe30e38d71206e5e804c55e91e738993b9415dc0b45624aadac5a55062c89d",
+      "frame_mapping_source": "/tmp/pm97/data/etri/meta_train/20260303-94330/meta/timestamps.parquet",
+      "frame_mapping_sha256": "46b9e4615e401e34234cd794d41687b41ae1e48b98862df7d4f7761a8d88b990"
+    }
+  ],
+  "future_policy": "Each row selects frame-30..frame; fit uses last <=1.001 nominal seconds",
+  "timestamp_policy": "Timestamp parquet is used only to join frame IDs to original poses, never as fit time",
+  "DEV_policy": "DEV reads train/tune input caches only; FULL additionally reads val. No fitted statistics or model weights are shared.",
+  "elapsed_s": 1.7453940268605947
+}

@@ -97,6 +97,16 @@ class SharedSceneEncoder(nn.Module):
         self.lane_head = nn.Sequential(nn.Conv2d(c, c // 2, 3, padding=1), nn.GELU(),
                                        nn.Conv2d(c // 2, 1, 1))
 
+    def _aggregate_evidence(self, query, key, value, valid):
+        # Optional image-value aggregation; the query is never a scene value.
+        multihead = getattr(self, "evidence_attention", None)
+        if multihead is not None:
+            return multihead(query, key, value, valid)
+        with torch.autocast(device_type=query.device.type, enabled=False):
+            score = (query.float()[:, :, None] * key.float()).sum(-1) / math.sqrt(key.shape[-1])
+            attention = masked_softmax(score, valid)
+            return (attention[..., None] * value.float()).sum(2)
+
     def _sample(self, feature, grid):
         b, v, c, h, w = feature.shape
         q, nh = grid.shape[2:4]
@@ -169,10 +179,7 @@ class SharedSceneEncoder(nn.Module):
             # samples remain available to the actual learned attention.
             base = (value * valid[..., None]).sum(2) / valid.sum(2).clamp_min(1)[..., None]
             query = self.query_image(base) + q_context[:, start:stop]
-            with torch.autocast(device_type=query.device.type, enabled=False):
-                score = (query.float()[:, :, None] * key.float()).sum(-1) / math.sqrt(key.shape[-1])
-                attention = masked_softmax(score, valid)
-                evidence = (attention[..., None] * value.float()).sum(2)
+            evidence = self._aggregate_evidence(query, key, value, valid)
             chunks.append(base + evidence.to(base.dtype))
             visible_chunks.append(valid.any(-1))
         scene = torch.cat(chunks, 1)
