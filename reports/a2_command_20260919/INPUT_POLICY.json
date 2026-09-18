@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "labels": [
+    "LANE_KEEP",
+    "TURN_LEFT",
+    "TURN_RIGHT",
+    "LANE_CHANGE_L",
+    "LANE_CHANGE_R",
+    "U_TURN"
+  ],
+  "mirror": [
+    0,
+    2,
+    1,
+    4,
+    3,
+    5
+  ],
+  "producer_sha256": "ee6374d626aad18dcfcb3747022c6f8a35b7e2236653a8949a1707cc5dbea39e",
+  "build_script_sha256": "854b3152f363fbe8280ea379f5e532a486da17679d1e14be3db957fed465d055",
+  "split_manifest_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "allowed_splits": [
+    "train",
+    "tune"
+  ],
+  "artifact": {
+    "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_command_20260919/provided_commands.npz",
+    "sha256": "5bc806275aa56971b1aafe98443dde83f16f7a4a76e54ddfbb50d12f4d8409d1",
+    "rows": 85698
+  },
+  "source_policy": "Current frame exact timestamp join to raw command.parquet; no pose, GT XY or vad_cmd derivation",
+  "old_meta_exact_agreement": true,
+  "splits": {
+    "train": {
+      "rows": 83700,
+      "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "counts": {
+        "LANE_KEEP": 71198,
+        "TURN_LEFT": 3541,
+        "TURN_RIGHT": 2819,
+        "LANE_CHANGE_L": 3655,
+        "LANE_CHANGE_R": 2112,
+        "U_TURN": 375
+      }
+    },
+    "tune": {
+      "rows": 1998,
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "counts": {
+        "LANE_KEEP": 1804,
+        "TURN_LEFT": 39,
+        "TURN_RIGHT": 42,
+        "LANE_CHANGE_L": 40,
+        "LANE_CHANGE_R": 73,
+        "U_TURN": 0
+      }
+    }
+  },
+  "test_input_check": {
+    "clips": 1125,
+    "counts": {
+      "LANE_KEEP": 973,
+      "TURN_LEFT": 67,
+      "TURN_RIGHT": 32,
+      "LANE_CHANGE_L": 21,
+      "LANE_CHANGE_R": 20,
+      "U_TURN": 12
+    },
+    "only_provided_inputs": true,
+    "future_gt_used": false,
+    "parser": "read_clip_command"
+  },
+  "cache_manifest": {
+    "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_command_20260919/manifest.json",
+    "sha256": "24a80202588a597dc3e0a06f059ddff67cd567da18c6ffd5ef646ef7f4792a69"
+  }
+}

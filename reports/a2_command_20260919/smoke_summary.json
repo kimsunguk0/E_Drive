@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "updates": 2,
+  "eval_rows": 1998,
+  "nonfinite_count": 0,
+  "exact_first_batch_loss_and_order_vs_BASE": true,
+  "command_weight_norm_after_two_steps": 5.77249829802895e-06,
+  "full_effective_batch_normalization": "unchanged existing producer; batch16/micro8",
+  "checkpoint_sha256": "360137051a2050d51731eda9b557f7fad2a5c968a4674fc94fee69f9364ac9d5",
+  "eval_is_smoke_not_performance_result": true
+}

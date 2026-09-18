@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "physical_gpu": 3,
+  "preflight_weights_used_for_training": false,
+  "raw_parser": {
+    "exact_shuffled_timestamp_join": true,
+    "future_command_invariant": true,
+    "rejects_missing_or_duplicate": true,
+    "unknown_label_rejected": true,
+    "no_pose_or_gt_arguments": true
+  },
+  "shared_initial_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+  "preflight_train_rows": [
+    30,
+    4530
+  ],
+  "zero_init_parity": {
+    "FP32": {
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "plan_abs": 0.0,
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "BF16": {
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "plan_abs": 0.0,
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "flip": {
+    "all_six_labels": true,
+    "raw_item_unchanged": true,
+    "tensor_double_flip_parity": true,
+    "mapping": {
+      "LANE_KEEP": "LANE_KEEP",
+      "TURN_LEFT": "TURN_RIGHT",
+      "TURN_RIGHT": "TURN_LEFT",
+      "LANE_CHANGE_L": "LANE_CHANGE_R",
+      "LANE_CHANGE_R": "LANE_CHANGE_L",
+      "U_TURN": "U_TURN"
+    }
+  },
+  "command_PREFIX_gradient_norm": 2.1412863731384277,
+  "optimizer_group": {
+    "name": "head",
+    "lr": 5e-05,
+    "parameter_names": [
+      "shared_command_query.weight"
+    ],
+    "requires_grad": true
+  },
+  "command_motion_isolation": {
+    "motion_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "nonzero_command_route": {
+    "scene_features": 0.007730066776275635,
+    "plan_abs": 0.03921318054199219
+  },
+  "shared_consumers_same_tensor": true,
+  "command_value_concatenation": false,
+  "exception_cleanup_and_clip_isolation": true,
+  "cost": {
+    "BASE": {
+      "official_counter_flops": 729815616192,
+      "B200_B1_forward_ms_median": 18.79570260643959,
+      "parameters": 26557208,
+      "RTX4090_forward_ms": null
+    },
+    "COMMAND": {
+      "official_counter_flops": 729815616576,
+      "B200_B1_forward_ms_median": 18.881727941334248,
+      "parameters": 26557400,
+      "RTX4090_forward_ms": null
+    }
+  },
+  "elapsed_seconds": 5.771301284432411,
+  "cuda_peak_allocated_bytes": 15357305344,
+  "cost_scope": "complete top-level B1; B200 timing is not RTX4090 latency"
+}
