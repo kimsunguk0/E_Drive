@@ -1,0 +1,39 @@
+{
+  "time_kst": "2026-09-19T02:26:29.213887+09:00",
+  "runs": {
+    "A2-G0": {
+      "step_logged": 1250,
+      "evaluations": [
+        {
+          "step": 1142,
+          "PREFIX": 0.16848867519588973
+        }
+      ]
+    },
+    "A2-G1": {
+      "step_logged": 1250,
+      "evaluations": [
+        {
+          "step": 1142,
+          "PREFIX": 0.16942476513898103
+        }
+      ]
+    },
+    "A2-LEARNED-SAMPLE": {
+      "step_logged": 1200,
+      "evaluations": []
+    }
+  },
+  "watcher": {
+    "pid": 3449241,
+    "status": "running",
+    "started_at_utc": "2026-09-18T17:24:41.729259+00:00",
+    "training_started_by_watcher": false,
+    "FULL_or_submission_actions": false,
+    "phases": {}
+  },
+  "fixed_train_probes": {
+    "posttrain_probe_BASE": 0.08945488544370195,
+    "posttrain_probe_PARENT": 0.08870333254291016
+  }
+}

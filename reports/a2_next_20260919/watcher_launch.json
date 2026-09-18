@@ -1,0 +1,10 @@
+{
+  "pid": 3449241,
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_next_20260919/watch_results.py"
+  ],
+  "GPU": "3 for bounded post-training inference, only when idle",
+  "no_training_or_FULL": true
+}

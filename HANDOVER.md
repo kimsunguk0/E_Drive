@@ -20,6 +20,10 @@ G0/G1 공통 초기 state SHA1628bc58… 동일. 세 arm step1/50/100 row SHA �
 S는 기존 BASE의 로그 row SHA와도 일치한다. G와 S는 서로 다른 비교 실험이다.
 G는 수치상 최저 QREFINE terminal, S는 기존 BASE upstream에서 시작한다.
 학습 source/초기 tensor/입력 정책/프로토콜은 각 manifest와 protocol JSON에 고정했다.
+02:26 snapshot: G0/G1은1,250 update, S1,200 update. 첫1,142 평가 G0=0.1684886752,
+G1=0.1694247651로 parent0.1642517697보다 높다. 중간 결과이며 예정한 terminal 예산을 유지한다.
+Watcher PID3449241은 실제 실행 중이고 부모/BASE의 고정 train probe를 완료했다.
+
 
 완료 예상(초기 속도 추정, 보장 아님): G 02:46–02:50, S 05:35–05:50 KST.
 완료 후 GPU3이 비어 있을 때 고정 train probe 및 S의 train/V0 offset 통계를 계산하고,
