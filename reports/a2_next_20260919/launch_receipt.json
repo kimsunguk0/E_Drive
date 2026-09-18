@@ -1,0 +1,64 @@
+{
+  "source_commit": "57c12972f4694c664fcfdd4c2d3056e2bcb1e079",
+  "runs": [
+    {
+      "arm": "A2-G0",
+      "gpu": 0,
+      "pid": 3446575,
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/a2_next_20260919/train_next.py",
+        "--arm",
+        "A2-G0",
+        "--gpu",
+        "0",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1"
+      ],
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_next_20260919/runtime/A2-G0-s1.log",
+      "started_at_utc": "2026-09-18T17:14:26.718529+00:00"
+    },
+    {
+      "arm": "A2-G1",
+      "gpu": 1,
+      "pid": 3446579,
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/a2_next_20260919/train_next.py",
+        "--arm",
+        "A2-G1",
+        "--gpu",
+        "1",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1"
+      ],
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_next_20260919/runtime/A2-G1-s1.log",
+      "started_at_utc": "2026-09-18T17:14:26.837662+00:00"
+    },
+    {
+      "arm": "A2-LEARNED-SAMPLE",
+      "gpu": 2,
+      "pid": 3446582,
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/a2_next_20260919/train_next.py",
+        "--arm",
+        "A2-LEARNED-SAMPLE",
+        "--gpu",
+        "2",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1"
+      ],
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_next_20260919/runtime/A2-LEARNED-SAMPLE-s1.log",
+      "started_at_utc": "2026-09-18T17:14:26.948957+00:00"
+    }
+  ],
+  "GPU3": "diagnostics, no extra training arm",
+  "GPU4_7": "excluded"
+}

@@ -1,0 +1,34 @@
+{
+  "captured_at_kst": "2026-09-19T02:15:58.054566+09:00",
+  "runs": {
+    "A2-G0": {
+      "pid": 3446575,
+      "step": 100,
+      "seconds_per_update": 0.5261992911685898,
+      "grad_norm": 15.839461326599121,
+      "cuda_peak_GiB": 32.70717430114746,
+      "initial_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+      "source_commit": "57c12972f4694c664fcfdd4c2d3056e2bcb1e079"
+    },
+    "A2-G1": {
+      "pid": 3446579,
+      "step": 100,
+      "seconds_per_update": 0.5286632867134882,
+      "grad_norm": 26.95589828491211,
+      "cuda_peak_GiB": 32.70924949645996,
+      "initial_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+      "source_commit": "57c12972f4694c664fcfdd4c2d3056e2bcb1e079"
+    },
+    "A2-LEARNED-SAMPLE": {
+      "pid": 3446582,
+      "step": 100,
+      "seconds_per_update": 0.5818020966506064,
+      "grad_norm": 54.175621032714844,
+      "cuda_peak_GiB": 33.586495876312256,
+      "initial_state_sha256": "5396d692aa9dd4a9192f919e13aa885f8d2a759243b070046332dd1945af1a55",
+      "source_commit": "57c12972f4694c664fcfdd4c2d3056e2bcb1e079"
+    }
+  },
+  "S_matching_BASE_logged_steps": 3,
+  "G_matching_logged_steps": 3
+}

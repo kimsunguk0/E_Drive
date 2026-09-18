@@ -2,6 +2,38 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0N. 2026-09-19 02:14 KST G0/G1·learned sampling 본 학습 시작
+
+세 run을 실제 시작했고 02:15:58에 모두100 update 및 유한 loss/gradient를 확인했다.
+구현 commit: 57c12972f4694c664fcfdd4c2d3056e2bcb1e079.
+이 절은 시작 snapshot이다. 이후 완료 여부는 reports/a2_next_20260919/RESULTS_KO.md,
+G_RESULTS_KO.md, watcher_status.json 및 각 run manifest를 우선 확인한다.
+
+| GPU | Run | PID | Update 목표 | 초기 실측 |
+|---|---|---:|---:|---:|
+| 0 | A2-G0-s1 | 3446575 | 3,426 | 약0.526s/update |
+| 1 | A2-G1-s1 | 3446579 | 3,426 | 약0.529s/update |
+| 2 | A2-LEARNED-SAMPLE-s1 | 3446582 | 20,554 | 약0.582s/update |
+| 3 | 고정 probe/검증 | 별도 watcher receipt | 새 학습 없음 | — |
+
+G0/G1 공통 초기 state SHA1628bc58… 동일. 세 arm step1/50/100 row SHA 동일하며
+S는 기존 BASE의 로그 row SHA와도 일치한다. G와 S는 서로 다른 비교 실험이다.
+G는 수치상 최저 QREFINE terminal, S는 기존 BASE upstream에서 시작한다.
+학습 source/초기 tensor/입력 정책/프로토콜은 각 manifest와 protocol JSON에 고정했다.
+
+완료 예상(초기 속도 추정, 보장 아님): G 02:46–02:50, S 05:35–05:50 KST.
+완료 후 GPU3이 비어 있을 때 고정 train probe 및 S의 train/V0 offset 통계를 계산하고,
+CPU에서 same-row terminal PREFIX·그룹 기여·session bootstrap을 생성하도록 watcher를 준비했다.
+Watcher는 새 학습/FULL/공식 제출을 시작하지 않는다. 승인된 실험 기록만 Git 및 미러에 반영한다.
+GPU4–7은 제외한다. A2 FULL은 재시작하지 않았다.
+
+기록: reports/a2_next_20260919/launch_receipt.json, launch_health_snapshot.json.
+실시간 로그: reports/a2_next_20260919/runtime/<ARM>-s1.log.
+가중치/평가: work_dirs/a2_next_20260919/<ARM>-s1/.
+S는 공식 counter733.1658G이며 B200 B1약28ms. 4090시간은 미측정.
+Offset pixel 범위는 실제 feature 크기로 환산한다. 과거 coarse level은14행이므로
+단순 stride16×2와 세로 범위가 다르며 tests_summary.json의 sampling_radius가 정확한 값이다.
+
 ## 0M. 2026-09-19 공동 학습 균형·learned sampling 실행안 확정 및 사전 검사
 
 사용자 새 실행안이 0L의 motion-only/2,000 update 제안을 대체한다.
