@@ -1,0 +1,50 @@
+{
+  "n": 1998,
+  "official_weights": [
+    0.3055555555555556,
+    0.3055555555555556,
+    0.1388888888888889,
+    0.1388888888888889,
+    0.05555555555555555,
+    0.05555555555555555
+  ],
+  "first2s_PREFIX_contribution": 0.45316543656426966,
+  "groups": {
+    "all": {
+      "n": 1998,
+      "PREFIX": 0.5724903964027177,
+      "overall_PREFIX_contribution": 0.5724903964027177,
+      "first2s_common_progress_error_MAE_mps": 0.3242573561082046,
+      "first2s_time_varying_progress_error_RMS_mps": 0.2657596273587573
+    },
+    "depart": {
+      "n": 24,
+      "PREFIX": 2.204439706191141,
+      "overall_PREFIX_contribution": 0.026479756230524214,
+      "first2s_common_progress_error_MAE_mps": 1.6079746267593995,
+      "first2s_time_varying_progress_error_RMS_mps": 0.666903635883536
+    },
+    "nonstop": {
+      "n": 1875,
+      "PREFIX": 0.48233590810274884,
+      "overall_PREFIX_contribution": 0.45264255640272977,
+      "first2s_common_progress_error_MAE_mps": 0.2517494792012931,
+      "first2s_time_varying_progress_error_RMS_mps": 0.24664128569801994
+    },
+    "steady": {
+      "n": 99,
+      "PREFIX": 1.8843376906200842,
+      "overall_PREFIX_contribution": 0.09336808376946362,
+      "first2s_common_progress_error_MAE_mps": 1.386308413732755,
+      "first2s_time_varying_progress_error_RMS_mps": 0.4067733905432737
+    }
+  },
+  "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+  "valid_tangent_fraction": 0.940357023690357,
+  "weighted_longitudinal_abs_m": 0.38267596975396545,
+  "weighted_lateral_abs_m": 0.21941163040691022,
+  "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0",
+  "step": 2,
+  "arm": "A2-SIDE-SCENE-NOM",
+  "eval_role": "DEV V0, excluded from fitting"
+}

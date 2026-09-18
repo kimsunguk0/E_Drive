@@ -1,0 +1,137 @@
+{
+  "status": "passed",
+  "captured_at_utc": "2026-09-18T09:17:33.117934+00:00",
+  "runs": {
+    "A2-SIDE-SCENE-NOM": {
+      "status": "completed",
+      "step": 2,
+      "nonfinite_count": 0,
+      "V0_rows": 1998,
+      "smoke_PREFIX": 0.5724904048438366,
+      "shared_initial_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+      "step1": {
+        "kind": "train",
+        "step": 1,
+        "epoch": 0,
+        "elapsed_seconds": 10.22662221826613,
+        "grad_norm": 192.0620574951172,
+        "lr": 2.5000000000000004e-07,
+        "sample_order_sha256": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "cuda_memory": {
+          "allocated_bytes": 457253376,
+          "reserved_bytes": 40900755456,
+          "peak_allocated_bytes": 37075021312,
+          "peak_reserved_bytes": 40900755456,
+          "device_free_bytes": 149610758144,
+          "device_total_bytes": 191503138816
+        },
+        "total": 2.9074082374572754,
+        "plan_d3": 0.7499558329582214,
+        "occ_bce": 0.27936992049217224,
+        "lane_bce": 0.4295407235622406,
+        "history": 4.297224044799805,
+        "state": 5.48404598236084,
+        "stop_bce": 0.40105950832366943,
+        "motion": 9.861481666564941,
+        "plan_interval_length": 0.1734960377216339
+      },
+      "step2": {
+        "kind": "train",
+        "step": 2,
+        "epoch": 0,
+        "elapsed_seconds": 10.78653946518898,
+        "grad_norm": 257.6151123046875,
+        "lr": 5.000000000000001e-07,
+        "sample_order_sha256": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16",
+        "cuda_memory": {
+          "allocated_bytes": 457089536,
+          "reserved_bytes": 40948989952,
+          "peak_allocated_bytes": 37296163840,
+          "peak_reserved_bytes": 40948989952,
+          "device_free_bytes": 149562523648,
+          "device_total_bytes": 191503138816
+        },
+        "total": 4.33369779586792,
+        "plan_d3": 0.9434489011764526,
+        "occ_bce": 0.3088563084602356,
+        "lane_bce": 0.39480161666870117,
+        "history": 7.026549816131592,
+        "state": 8.816051483154297,
+        "stop_bce": 0.7862008810043335,
+        "motion": 15.999841690063477,
+        "plan_interval_length": 0.1981956958770752
+      },
+      "checkpoint": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1_smoke/ckpt_step2.pth",
+        "sha256": "0ff8ae8c8b75937f9ddbf3007f9a43ddd65b1c02241d10ebaadb3b8d1d91da30"
+      }
+    },
+    "A2-QREFINE-NOM": {
+      "status": "completed",
+      "step": 2,
+      "nonfinite_count": 0,
+      "V0_rows": 1998,
+      "smoke_PREFIX": 0.4775093213260711,
+      "shared_initial_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+      "step1": {
+        "kind": "train",
+        "step": 1,
+        "epoch": 0,
+        "elapsed_seconds": 8.987557785585523,
+        "grad_norm": 194.08377075195312,
+        "lr": 2.5000000000000004e-07,
+        "sample_order_sha256": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "cuda_memory": {
+          "allocated_bytes": 455712256,
+          "reserved_bytes": 37880856576,
+          "peak_allocated_bytes": 34899661312,
+          "peak_reserved_bytes": 37880856576,
+          "device_free_bytes": 152634785792,
+          "device_total_bytes": 191503138816
+        },
+        "total": 2.8088536262512207,
+        "plan_d3": 0.6594299077987671,
+        "occ_bce": 0.27513226866722107,
+        "lane_bce": 0.4231741428375244,
+        "history": 4.297224044799805,
+        "state": 5.48404598236084,
+        "stop_bce": 0.40105950832366943,
+        "motion": 9.861481666564941,
+        "plan_interval_length": 0.14986295998096466
+      },
+      "step2": {
+        "kind": "train",
+        "step": 2,
+        "epoch": 0,
+        "elapsed_seconds": 9.533770838752389,
+        "grad_norm": 258.8907470703125,
+        "lr": 5.000000000000001e-07,
+        "sample_order_sha256": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16",
+        "cuda_memory": {
+          "allocated_bytes": 455581184,
+          "reserved_bytes": 39661338624,
+          "peak_allocated_bytes": 35119059968,
+          "peak_reserved_bytes": 39661338624,
+          "device_free_bytes": 150854303744,
+          "device_total_bytes": 191503138816
+        },
+        "total": 4.219633102416992,
+        "plan_d3": 0.841498613357544,
+        "occ_bce": 0.282002717256546,
+        "lane_bce": 0.3942641019821167,
+        "history": 7.025430202484131,
+        "state": 8.815549850463867,
+        "stop_bce": 0.7861213684082031,
+        "motion": 15.99820327758789,
+        "plan_interval_length": 0.17296192049980164
+      },
+      "checkpoint": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1_smoke/ckpt_step2.pth",
+        "sha256": "3c95dcddff2b68ad18eceb7b9d1fcec55711e458ef9f06b3a894d5942a16788f"
+      }
+    }
+  },
+  "warning": "Two updates check execution, not convergence or comparative performance",
+  "sample_order_matches_between_arms_and_BASE_step1": true,
+  "QREFINE_step1_all_loss_terms_equal_BASE": true
+}

@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "captured_at_utc": "2026-09-18T09:17:33.117934+00:00",
+  "arm": "A2-FULL-NOM-s1",
+  "step": 24931,
+  "train_rows": 101520,
+  "train_scenes": 376,
+  "elapsed_seconds": 13016.223230106756,
+  "nonfinite_count": 0,
+  "terminal_checkpoint": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/ckpt_step24931.pth",
+    "sha256": "aabdb2dca24491b46fd2e56e66d57fe0742e17a5b4c63c29f3199137cf8ff297"
+  },
+  "diagnostic_PREFIX": 0.08893408501920225,
+  "evaluation_is_in_fit": true,
+  "official_server_score": null,
+  "deployment_adapter_status": "A2 raw-input adapter not yet certified",
+  "warning": "Do not compare the FULL in-fit diagnostic with held-out DEV or official submission scores"
+}

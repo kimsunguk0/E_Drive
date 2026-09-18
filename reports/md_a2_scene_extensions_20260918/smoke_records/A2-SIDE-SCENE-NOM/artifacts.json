@@ -1,0 +1,22 @@
+{
+  "manifest.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1_smoke/manifest.json",
+    "sha256": "6e56a85e5ae659d52fdb6eb433fc315a595c0236575cefbb053edae7ab1c143e"
+  },
+  "experiment.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1_smoke/experiment.json",
+    "sha256": "df1478e61537c70c2e0ccb734b1b9dc1e4d57122976130a534f843a9ef11ccf2"
+  },
+  "final_eval.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1_smoke/final_eval.json",
+    "sha256": "8273ce2fd65fa75e5b1ebb0dc053d09ab62f52fe4b8b4050b7e791fcb949223a"
+  },
+  "metrics.jsonl": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1_smoke/metrics.jsonl",
+    "sha256": "683d50deaa83116651cee10d34800cb4c017b8ca75497198ae5fc1ad982ae8c2"
+  },
+  "ckpt_step2.pth": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1_smoke/ckpt_step2.pth",
+    "sha256": "0ff8ae8c8b75937f9ddbf3007f9a43ddd65b1c02241d10ebaadb3b8d1d91da30"
+  }
+}

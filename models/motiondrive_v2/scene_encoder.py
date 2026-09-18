@@ -124,18 +124,46 @@ class SharedSceneEncoder(nn.Module):
                          else torch.zeros_like(goal_xy_m))
         return self.cross_cell_goal_residual(scene, branch_goal_m, visible)
 
+    def _view_geometry(self, lidar2img, history_transforms, time_offsets,
+                       history_camera_ids=None, history_pose_indices=None):
+        b = lidar2img.shape[0]
+        if history_camera_ids is None:
+            if history_pose_indices is not None:
+                raise ValueError("History cameras and pose indices must be supplied together")
+            cams = [0] * self.config.n_history
+            history_times = time_offsets
+            camera_matrices = lidar2img[:, :1]
+            transforms = history_transforms
+        else:
+            if history_pose_indices is None:
+                raise ValueError("History cameras and pose indices must be supplied together")
+            cams, indices = list(history_camera_ids), list(history_pose_indices)
+            if not cams or len(cams) != len(indices):
+                raise ValueError("History camera/pose layout mismatch")
+            if any(c < 0 or c >= 6 for c in cams) or any(i < 0 or i >= self.config.n_history for i in indices):
+                raise ValueError("History camera/pose index out of range")
+            camera_matrices = lidar2img[:, cams]
+            transforms = history_transforms[:, indices]
+            history_times = time_offsets[:, indices]
+        # Each source uses its own camera and current->past ego transform.
+        with torch.autocast(device_type=lidar2img.device.type, enabled=False):
+            historical_matrices = camera_matrices.float() @ transforms.float()
+            matrices = torch.cat([lidar2img.float(), historical_matrices], 1)
+        camera_ids = torch.tensor([0, 1, 2, 3, 4, 5] + cams,
+                                  device=lidar2img.device)
+        view_times = torch.cat([time_offsets.new_zeros(b, 6), -history_times], 1)
+        return matrices, camera_ids, view_times
+
     def forward(self, current_levels, history_levels, current_global, lidar2img,
-                history_transforms, time_offsets, goal_xy, image_hw):
+                history_transforms, time_offsets, goal_xy, image_hw, *,
+                history_camera_ids=None, history_pose_indices=None):
         b = lidar2img.shape[0]
         c = self.config.channels
-        # Each historical front camera has its own exact current->past SE(3).
-        with torch.autocast(device_type=lidar2img.device.type, enabled=False):
-            historical_matrices = (lidar2img[:, :1].float()
-                                   @ history_transforms.float())
-            matrices = torch.cat([lidar2img.float(), historical_matrices], 1)
-        camera_ids = torch.tensor([0, 1, 2, 3, 4, 5] + [0] * self.config.n_history,
-                                  device=lidar2img.device)
-        view_times = torch.cat([time_offsets.new_zeros(b, 6), -time_offsets], 1)
+        matrices, camera_ids, view_times = self._view_geometry(
+            lidar2img, history_transforms, time_offsets,
+            history_camera_ids, history_pose_indices)
+        if any(level.shape[1] != matrices.shape[1] - 6 for level in history_levels):
+            raise ValueError("Historical features and camera geometry have different source counts")
         metadata = (self.camera_keys[camera_ids][None, :, None, :]
                     + self.height_keys[None, None]
                     + self.time_key(view_times[..., None])[:, :, None])

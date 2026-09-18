@@ -1,0 +1,22 @@
+{
+  "manifest.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1_smoke/manifest.json",
+    "sha256": "1a1b7b4cd4682deb98a5c2da5209980370e15d3172cc780fc6689a8e8314c117"
+  },
+  "experiment.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1_smoke/experiment.json",
+    "sha256": "74c3061bdad17d9dae5f4c5a73bbe21fb236d1cf8c3b48750fafa3eeccf136d2"
+  },
+  "final_eval.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1_smoke/final_eval.json",
+    "sha256": "701bdfe582bcf01446b537f14056bcc1f0205166b0d2eff01b4d762a858baaa9"
+  },
+  "metrics.jsonl": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1_smoke/metrics.jsonl",
+    "sha256": "f67780b2eed9a01cc091c2629af4c306cd9348c7a90144737b426d10eaf0ab4c"
+  },
+  "ckpt_step2.pth": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1_smoke/ckpt_step2.pth",
+    "sha256": "3c95dcddff2b68ad18eceb7b9d1fcec55711e458ef9f06b3a894d5942a16788f"
+  }
+}

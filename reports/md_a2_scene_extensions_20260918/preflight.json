@@ -1,0 +1,125 @@
+{
+  "status": "passed",
+  "gpu": 3,
+  "checked_historical_image_files": 177872,
+  "data_rows": {
+    "train": 83700,
+    "V0": 1998
+  },
+  "side_camera_ids": [
+    2,
+    2,
+    1,
+    1
+  ],
+  "side_pose_indices": [
+    0,
+    2,
+    0,
+    2
+  ],
+  "shared_initial_sha256": "116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f",
+  "parameter_counts": {
+    "BASE": 26557208,
+    "SIDE": 26557208,
+    "QREFINE": 26585976
+  },
+  "original_inputs_unchanged": true,
+  "side_photometric_camera_consistency": true,
+  "flip_roundtrip": true,
+  "parity": {
+    "fp32": {
+      "SIDE_disabled": {
+        "scene_features": 0.0,
+        "occ_logits": 0.0,
+        "lane_logits": 0.0,
+        "plan_abs": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      },
+      "QREFINE_zero_init": {
+        "scene_features": 0.0,
+        "occ_logits": 0.0,
+        "lane_logits": 0.0,
+        "plan_abs": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      }
+    },
+    "bf16": {
+      "SIDE_disabled": {
+        "scene_features": 0.0,
+        "occ_logits": 0.0,
+        "lane_logits": 0.0,
+        "plan_abs": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      },
+      "QREFINE_zero_init": {
+        "scene_features": 0.0,
+        "occ_logits": 0.0,
+        "lane_logits": 0.0,
+        "plan_abs": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      }
+    }
+  },
+  "legacy_one_pixel_frustum_rim_mask_differences": 100,
+  "frustum_mask_policy": "BASE [0,W) retained; mirror-mask differences restricted to its outer 1px strip",
+  "side_projection_mirror_max_abs": 5.960464477539062e-07,
+  "side_visible_point_counts": [
+    2013,
+    2202,
+    1865,
+    1730
+  ],
+  "side_planning_image_gradient_norms": [
+    0.05330739915370941,
+    0.15923120081424713,
+    0.036618154495954514,
+    0.12290424108505249
+  ],
+  "QREFINE_initial_output_projection_gradient_norm": 0.8968050479888916,
+  "QREFINE_query_gradients_after_projection_step": {
+    "0.weight": 0.00020163727458566427,
+    "0.bias": 3.341812043800019e-05,
+    "2.weight": 0.00011440349771874025,
+    "2.bias": 8.391448500333354e-05
+  },
+  "BASE_terminal_replay_max_abs": 0.0,
+  "trained_BASE_QREFINE_zero_init_parity": {
+    "scene_features": 0.0,
+    "occ_logits": 0.0,
+    "lane_logits": 0.0,
+    "plan_abs": 0.0,
+    "motion_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "motion_invariance": {
+    "SIDE_image_swap": {
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "SIDE_status_swap": {
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "QREFINE_status_swap": {
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "side_image_swap_scene_max_abs": 2.1449573040008545,
+  "elapsed_s": 9.000161418691278,
+  "peak_cuda_allocated_gib": 9.263734340667725,
+  "training_scope": "one temporary QREFINE projection-only SGD step for gradient connectivity; no candidate retained"
+}

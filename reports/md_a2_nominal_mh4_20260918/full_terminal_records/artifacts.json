@@ -1,0 +1,22 @@
+{
+  "manifest.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/manifest.json",
+    "sha256": "0ecffd84ab2ec6ba2ae14d0fb97c788df79cff71946b7995ab87ef35ab60bc40"
+  },
+  "experiment.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/experiment.json",
+    "sha256": "ce7a7c8c15579cff806ee2b05902e999dc68b6b0e290aa4bdb0fd4d4c9eaa7b7"
+  },
+  "final_eval.json": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/final_eval.json",
+    "sha256": "9af9cd1eb7b196121f41305f769a390805edb7897868288b2afa0fbf39b639ce"
+  },
+  "metrics.jsonl": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/metrics.jsonl",
+    "sha256": "0dd1ac581510d87f032e83231b661f339269fa6d727c402ae0bcaf47efd11f05"
+  },
+  "ckpt_step24931.pth": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/ckpt_step24931.pth",
+    "sha256": "aabdb2dca24491b46fd2e56e66d57fe0742e17a5b4c63c29f3199137cf8ff297"
+  }
+}
