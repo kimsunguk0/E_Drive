@@ -1,5 +1,13 @@
 # A2 BASE/MH4 판정 및 SIDE-SCENE·QREFINE 독립 비교
 
+## 본 학습 시작 — 2026-09-18 18:18 KST
+
+두 run은 시작됐고 18:20 KST snapshot에서 SIDE150 / QREFINE200 update가 정상 진행됐다.
+GPU1/PID3341915와 GPU2/PID3341916이며 source hash·초기 tensor·BASE 데이터 순서가 일치한다.
+첫 평가 예상은 오늘18:50~18:52, 최종 비교는21:25~21:40 전후다. 초기 속도 기준 추정이다.
+구현 commit은 a572e233288347b03aff9a13d2b1150819103a16, 미러 구현은165f760이다.
+정확한 시각과 이후 상태는 아래 launch receipt 및 실제 metrics를 우선한다.
+
 ## 판단
 
 동일 초기값·학습 예산의 BASE/MH4 terminal 결과는 다음과 같다.

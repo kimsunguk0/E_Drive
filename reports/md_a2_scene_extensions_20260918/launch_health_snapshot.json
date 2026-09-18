@@ -1,0 +1,105 @@
+{
+  "captured_at_utc": "2026-09-18T09:20:27.544462+00:00",
+  "captured_at_kst": "2026-09-18T18:20:27.544462+09:00",
+  "implementation_commit": "a572e233288347b03aff9a13d2b1150819103a16",
+  "status": "healthy",
+  "runs": [
+    {
+      "arm": "A2-SIDE-SCENE-NOM",
+      "gpu": 1,
+      "pid": 3341915,
+      "step": 150,
+      "target_updates": 20554,
+      "completed_manifest_nonfinite_count": null,
+      "observed_log_errors": 0,
+      "logged_loss_and_gradient_norms_finite": true,
+      "seconds_per_update": 0.5602946018055082,
+      "expected_next_eval_kst": "2026-09-18T18:51:38.069578+09:00",
+      "expected_terminal_kst": "2026-09-18T21:34:29.795517+09:00",
+      "compared_BASE_sample_order_logs": 4,
+      "source_hashes_match": true,
+      "shared_initial_tensors_match": true,
+      "latest_train": {
+        "kind": "train",
+        "step": 150,
+        "epoch": 0,
+        "elapsed_seconds": 95.65259372256696,
+        "grad_norm": 35.815731048583984,
+        "lr": 3.7500000000000003e-05,
+        "sample_order_sha256": "ecb082ec80586a00bd65dacec306bef8327389c7c83aac3997582e40bce31d3b",
+        "cuda_memory": {
+          "allocated_bytes": 457089536,
+          "reserved_bytes": 40953184256,
+          "peak_allocated_bytes": 37296163840,
+          "peak_reserved_bytes": 40953184256,
+          "device_free_bytes": 149558329344,
+          "device_total_bytes": 191503138816
+        },
+        "total": -0.47387176752090454,
+        "plan_d3": 0.25273022055625916,
+        "occ_bce": 0.30287885665893555,
+        "lane_bce": 0.4949559271335602,
+        "history": -2.7128305435180664,
+        "state": -1.9188334941864014,
+        "stop_bce": 0.10349388420581818,
+        "motion": -4.610965251922607,
+        "plan_interval_length": 0.1440962553024292
+      }
+    },
+    {
+      "arm": "A2-QREFINE-NOM",
+      "gpu": 2,
+      "pid": 3341916,
+      "step": 200,
+      "target_updates": 20554,
+      "completed_manifest_nonfinite_count": null,
+      "observed_log_errors": 0,
+      "logged_loss_and_gradient_norms_finite": true,
+      "seconds_per_update": 0.5320564995706082,
+      "expected_next_eval_kst": "2026-09-18T18:49:38.958730+09:00",
+      "expected_terminal_kst": "2026-09-18T21:24:27.022454+09:00",
+      "compared_BASE_sample_order_logs": 5,
+      "source_hashes_match": true,
+      "shared_initial_tensors_match": true,
+      "latest_train": {
+        "kind": "train",
+        "step": 200,
+        "epoch": 0,
+        "elapsed_seconds": 115.73043125495315,
+        "grad_norm": 38.5290412902832,
+        "lr": 5e-05,
+        "sample_order_sha256": "44b67eb841d30be258e1034ed3c3536b4b6ad1298137a7af2a80bded8b185f00",
+        "cuda_memory": {
+          "allocated_bytes": 455712256,
+          "reserved_bytes": 39661338624,
+          "peak_allocated_bytes": 35121288192,
+          "peak_reserved_bytes": 39661338624,
+          "device_free_bytes": 150852206592,
+          "device_total_bytes": 191503138816
+        },
+        "total": -0.2533564567565918,
+        "plan_d3": 0.3783060908317566,
+        "occ_bce": 0.29638952016830444,
+        "lane_bce": 0.47093677520751953,
+        "history": -2.6338090896606445,
+        "state": -1.4897234439849854,
+        "stop_bce": 0.09648098796606064,
+        "motion": -4.104236602783203,
+        "plan_interval_length": 0.14287786185741425
+      }
+    }
+  ],
+  "eta_warning": "Measured startup throughput extrapolation, not a completion guarantee",
+  "between_arm_matching_logged_steps": [
+    1,
+    50,
+    100,
+    150
+  ],
+  "gpu_state": [
+    "0, NVIDIA B200, 0 %, 0 MiB",
+    "1, NVIDIA B200, 99 %, 40002 MiB",
+    "2, NVIDIA B200, 99 %, 38768 MiB",
+    "3, NVIDIA B200, 0 %, 0 MiB"
+  ]
+}

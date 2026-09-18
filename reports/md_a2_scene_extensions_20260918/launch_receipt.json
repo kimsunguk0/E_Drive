@@ -1,0 +1,50 @@
+{
+  "implementation_commit": "a572e233288347b03aff9a13d2b1150819103a16",
+  "launched_at_utc": "2026-09-18T09:18:19.444545+00:00",
+  "status": "spawned; verify manifests and metrics before reporting healthy",
+  "independent_arms": true,
+  "gpu0": "FULL complete, available",
+  "gpu3": "preflight complete, available for validation",
+  "runs": [
+    {
+      "arm": "A2-SIDE-SCENE-NOM",
+      "gpu": 1,
+      "updates": 20554,
+      "eval_every": 3426,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/md_a2_scene_extensions_20260918/runtime/A2-SIDE-SCENE-NOM-s1.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/md_a2_scene_extensions_20260918/train_scene_extension.py",
+        "--arm",
+        "A2-SIDE-SCENE-NOM",
+        "--gpu",
+        "1",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1"
+      ],
+      "pid": 3341915
+    },
+    {
+      "arm": "A2-QREFINE-NOM",
+      "gpu": 2,
+      "updates": 20554,
+      "eval_every": 3426,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/md_a2_scene_extensions_20260918/runtime/A2-QREFINE-NOM-s1.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/md_a2_scene_extensions_20260918/train_scene_extension.py",
+        "--arm",
+        "A2-QREFINE-NOM",
+        "--gpu",
+        "2",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1"
+      ],
+      "pid": 3341916
+    }
+  ]
+}

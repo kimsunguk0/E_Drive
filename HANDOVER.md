@@ -2,6 +2,53 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0J. 2026-09-18 18:18 KST SIDE-SCENE·QREFINE 독립 본 학습 시작 — 현재 우선 기록
+
+BASE/MH4 terminal 판정: MH4는 matched BASE 대비 약0.6134% 개선에 그쳤고,
+이전 A2의 배포형 nominal 평가 0.164455314083 대비 새 최고점은 아니다.
+MH4 추가학습/FULL보다 계획한 SIDE-SCENE와 사용자가 명시한 QREFINE 독립 1회를 실행한다.
+두 변경을 하나의 모델에 합치지 않는다. Command/회전 전용 학습은 계속 후순위다.
+
+A2-FULL-NOM은 24,931 update 완료, nonfinite 0. 최종0.08893408501920225는
+학습 포함 V0의 in-fit 진단으로 제출 성능이 아니다. 체크포인트 hash 및 완료 기록:
+reports/md_a2_nominal_mh4_20260918/full_terminal_summary.json, full_terminal_records/.
+A2 raw-input 제출 adapter 인증/패키징은 별도 남은 작업이다.
+공식 서버의 확인된 MR FULL은0.18596892793122946이며 A2 FULL 서버 점수는 미측정이다.
+
+| GPU | Run / PID | 변경 | 목표 update |
+|---|---|---|---:|
+| 1 | A2-SIDE-SCENE-NOM-s1 / 3341915 | FL/FR -0.1/-0.5초 4장, shared scene만 확장 | 20,554 |
+| 2 | A2-QREFINE-NOM-s1 / 3341916 | 첫 영상 read로 query 갱신 후 두 번째 read | 20,554 |
+| 0 | FULL 완료, 사용 가능 | 새 run 자동 시작 없음 | — |
+| 3 | 실제 영상 preflight 완료, 검증용 | 새 run 자동 시작 없음 | — |
+
+18:20 KST 건강 검사: SIDE150 / QREFINE200 update, loss·gradient finite,
+원본 source hash·공통 초기 tensor·BASE와 로그 sample order 모두 일치.
+최근 실측은 SIDE0.5603s/update, QREFINE0.5321s/update.
+첫3,426 평가 완료 예상은 SIDE18:52/QREFINE18:50, terminal은SIDE21:34/QREFINE21:24.
+이는 초기 처리속도 추정이며 부하/IO에 따라 바뀐다.
+
+두 run은 r0_init_tplus.pth에서 fresh optimizer/seed1로 공동 학습한다.
+동일 train310 83,700행/V0 1,998행, batch16/micro8, LR·loss·flip·fixed BN을 유지한다.
+FULL weights/teacher/feature를 DEV로 가져오지 않는다.
+Status는 A2의 shared scene query에만 조건으로 들어간다.
+SIDE 새 영상도 query refinement도 scene의 occupancy·lane·planning에 공유한다.
+Native front image motion/state/history의 직접 입력 경계는 유지한다.
+
+사전 검사: 실제 영상 FP32/BF16 QREFINE zero-init parity0, BASE terminal replay0.
+SIDE의 각 추가 이미지와 QREFINE query-update에 planning gradient 확인.
+QREFINE은 출력 projection만0으로 초기화하며 query MLP는 일반 초기화한다.
+SIDE CONTROL pose index는0,2이고 camera calibration·flip교환·시간 일치 확인.
+기존 [0,W) mask의 외곽1픽셀 반전 비대칭은 보존하고 차이를 해당 경계로 제한해 검사했다.
+두 arm 2-step + 전체 V0 smoke 완료. Smoke 점수를 성능 결과로 쓰지 않는다.
+
+구현 commit: a572e233288347b03aff9a13d2b1150819103a16
+(미러 구현 commit: 165f760).
+설계/판정: reports/md_a2_scene_extensions_20260918/README_KO.md.
+실행: 같은 폴더 launch_receipt.json, launch_health_snapshot.json, runtime/<ARM>-s1.log.
+코드: experiments/md_a2_scene_extensions_20260918/.
+가중치/평가: work_dirs/md_a2_scene_extensions_20260918/<ARM>-s1/.
+
 ## 0I. 2026-09-18 사용자 우선순위 확정 및 DEV terminal — 0H의 command 제안보다 우선
 
 사용자는 회전/command 전용 실험을 뒤로 두고 기존 통합안대로 진행하라고 정했다.
