@@ -1,0 +1,127 @@
+[
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/manifest.json",
+    "bytes": 15309,
+    "sha256": "4c515706969ba7ae47f8e9716bdbc466f13f4c99213e510ccce78acbdd4c90c5"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/experiment.json",
+    "bytes": 8119,
+    "sha256": "8179fb85894da9e15fcf93467b5f4d694fe1c5a74d773af757bef7f81014d2f8"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/metrics.jsonl",
+    "bytes": 317558,
+    "sha256": "a80dc83c3019ee472b0a5d3aed0acba3dd035b02c7805d940a9e55fe7d61939d"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/final_eval.json",
+    "bytes": 3786087,
+    "sha256": "4baaff85369c6882fa557ccf79c21cb7aede29a9da8053714cd2c232b024e2a9"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+    "bytes": 106970456,
+    "sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/manifest.json",
+    "bytes": 13077,
+    "sha256": "523c7b3f0f9bd60c5162a9701013f50001cdaa2074826495248cef170b636015"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/experiment.json",
+    "bytes": 6290,
+    "sha256": "3d681b7218830e745868f1204f2956b8d9710245c620e7578f2aa8713f62b218"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/metrics.jsonl",
+    "bytes": 317578,
+    "sha256": "1e19ee8cffe4539fa8097a3e357a53c2cde6e33f35d71a1a929472f6380414d1"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/final_eval.json",
+    "bytes": 3785825,
+    "sha256": "391c6b92190489708963f13585b8af44528d455b4b314d81287330e87bae1c5d"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/ckpt_step20554.pth",
+    "bytes": 106851435,
+    "sha256": "db9a49bbaa9385dc7d6d6a8b78a593d20fabd75c25d3789fcd8043a850853a33"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1/manifest.json",
+    "bytes": 12302,
+    "sha256": "e5410f0c067afa2583cf5c43a14946a02aa9c77b6eed963d823d269ebba64997"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1/experiment.json",
+    "bytes": 6470,
+    "sha256": "cad9c4d143d81000e3a768ea2f6946c4e6df4b33ee0ef695510e93fc30b03753"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1/metrics.jsonl",
+    "bytes": 58552,
+    "sha256": "ba915881e5b97333d41a785d88657124d95b1e4a52bc3fcf8d8f4ec63c56a5de"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1/final_eval.json",
+    "bytes": 3786002,
+    "sha256": "224b73abdc3aebf9a7a68b0c762b9a019404a60c5e06ad8fccb4718857df61d8"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1/ckpt_step3426.pth",
+    "bytes": 106968115,
+    "sha256": "752e0aef943fec80ba30f84326a4eaded68ad214c0b783e9619c4ec6c40d9f0f"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/manifest.json",
+    "bytes": 12303,
+    "sha256": "0aa0781ec9f756fb4ca2d1fc4353e9b4e39944741b7fb562bc853edeaca32143"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/experiment.json",
+    "bytes": 6471,
+    "sha256": "7649225583c6134d2269accedcad7b3223e9f7013240376684587420dbb6a918"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/metrics.jsonl",
+    "bytes": 58623,
+    "sha256": "30ed4b7c45df1cb336393f848e5eb2063596a7a2afe3cdf0a96a9aa4263bbd2e"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/final_eval.json",
+    "bytes": 3785929,
+    "sha256": "fdfb29a94c7888a4a3912237212bcecf5fd64db0eb6d3abc80d4f73716ce724a"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/ckpt_step3426.pth",
+    "bytes": 106968115,
+    "sha256": "031131260c0039f2722fb9afdea2fa4196686541b68e2f55f318d69912d08190"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/manifest.json",
+    "bytes": 14682,
+    "sha256": "fd4688d989d30908402db7ed0df21bf8a6070598bee5a5e81277f529e337cb7d"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/experiment.json",
+    "bytes": 7656,
+    "sha256": "71ad23e10dd97ea4f331e8524567b256e727031796e4223600eac8574c7e9eb0"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/metrics.jsonl",
+    "bytes": 335219,
+    "sha256": "fb90d7fdcd94df7e3b3338f2e9b5e84b4d587fe828e3018d2bc9ed71cf8600fb"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/final_eval.json",
+    "bytes": 3786101,
+    "sha256": "effd4fb1d39a39dfae7bba3e31dbb93349cbcb4925c330567d7216bec302087a"
+  },
+  {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/ckpt_step20554.pth",
+    "bytes": 106891087,
+    "sha256": "959f8a591540a0147e32e821ab79944f2ebcc0ad5dac83cd9d7202065d275bf1"
+  }
+]

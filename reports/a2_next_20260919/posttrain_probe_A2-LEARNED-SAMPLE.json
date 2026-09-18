@@ -1,0 +1,135 @@
+{
+  "arm": "A2-LEARNED-SAMPLE",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "959f8a591540a0147e32e821ab79944f2ebcc0ad5dac83cd9d7202065d275bf1",
+  "train_probe_definition": "same 512 rows as gradient probe, no augmentation, no fitting; selected by train sampler before results",
+  "inference_only": true,
+  "datasets": {
+    "train": {
+      "n": 512,
+      "PREFIX": 0.08963410890637302,
+      "rows_sha256": "4a8eb4b449a25a1dee915e47ccecd887d7db4ab50ac153fef8a00bb869cd77d8",
+      "sampling": {
+        "level0_current": {
+          "initial_valid": 5466112,
+          "lost_valid": 266,
+          "components": 10932224,
+          "max_abs_cells": 0.4593751132488251,
+          "saturated_components": 0,
+          "feature_hw": [
+            54,
+            96
+          ],
+          "mean_abs_cells": 0.031228262332018284,
+          "outbound_fraction": 4.866347414762083e-05,
+          "saturation_fraction": 0.0
+        },
+        "level0_history": {
+          "initial_valid": 11612983,
+          "lost_valid": 3275,
+          "components": 23225966,
+          "max_abs_cells": 0.32662975788116455,
+          "saturated_components": 0,
+          "feature_hw": [
+            27,
+            48
+          ],
+          "mean_abs_cells": 0.06858333443503736,
+          "outbound_fraction": 0.00028201195162345455,
+          "saturation_fraction": 0.0
+        },
+        "level1_current": {
+          "initial_valid": 5466112,
+          "lost_valid": 3182,
+          "components": 10932224,
+          "max_abs_cells": 0.4575902223587036,
+          "saturated_components": 0,
+          "feature_hw": [
+            27,
+            48
+          ],
+          "mean_abs_cells": 0.07809525567392424,
+          "outbound_fraction": 0.0005821322358561259,
+          "saturation_fraction": 0.0
+        },
+        "level1_history": {
+          "initial_valid": 11612983,
+          "lost_valid": 5108,
+          "components": 23225966,
+          "max_abs_cells": 0.28384098410606384,
+          "saturated_components": 0,
+          "feature_hw": [
+            14,
+            24
+          ],
+          "mean_abs_cells": 0.06539180270039038,
+          "outbound_fraction": 0.0004398525340130094,
+          "saturation_fraction": 0.0
+        }
+      }
+    },
+    "V0": {
+      "n": 1998,
+      "PREFIX": 0.16466722322100316,
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "sampling": {
+        "level0_current": {
+          "initial_valid": 21330648,
+          "lost_valid": 1148,
+          "components": 42661296,
+          "max_abs_cells": 0.44102582335472107,
+          "saturated_components": 0,
+          "feature_hw": [
+            54,
+            96
+          ],
+          "mean_abs_cells": 0.030859245201304824,
+          "outbound_fraction": 5.381927450117784e-05,
+          "saturation_fraction": 0.0
+        },
+        "level0_history": {
+          "initial_valid": 45240843,
+          "lost_valid": 12817,
+          "components": 90481686,
+          "max_abs_cells": 0.3068726658821106,
+          "saturated_components": 0,
+          "feature_hw": [
+            27,
+            48
+          ],
+          "mean_abs_cells": 0.06826613464238696,
+          "outbound_fraction": 0.0002833059498913404,
+          "saturation_fraction": 0.0
+        },
+        "level1_current": {
+          "initial_valid": 21330648,
+          "lost_valid": 12532,
+          "components": 42661296,
+          "max_abs_cells": 0.4690975546836853,
+          "saturated_components": 0,
+          "feature_hw": [
+            27,
+            48
+          ],
+          "mean_abs_cells": 0.07786891455863947,
+          "outbound_fraction": 0.0005875114530041469,
+          "saturation_fraction": 0.0
+        },
+        "level1_history": {
+          "initial_valid": 45240843,
+          "lost_valid": 19967,
+          "components": 90481686,
+          "max_abs_cells": 0.27900320291519165,
+          "saturated_components": 0,
+          "feature_hw": [
+            14,
+            24
+          ],
+          "mean_abs_cells": 0.06579558521730777,
+          "outbound_fraction": 0.0004413489819365214,
+          "saturation_fraction": 0.0
+        }
+      }
+    }
+  }
+}
