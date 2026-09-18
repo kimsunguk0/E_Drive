@@ -1,0 +1,146 @@
+{
+  "created_at_utc": "2026-09-18T13:45:09.455865+00:00",
+  "source_git_commit": "209fa2c99f55eee44f383d0c5fda257c5f8867e9",
+  "training_performed": false,
+  "optimizer_steps": 0,
+  "official_submission_performed": false,
+  "gpus_used": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "files": [
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/REVIEW_KO.md",
+      "bytes": 12706,
+      "sha256": "ee3f9032f44e016e6409fa9896b8e3c9235015c592bdf54d0c9f3334aaf19965"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/fp32.json",
+      "bytes": 1280,
+      "sha256": "cc664656b99f099ded32dd65c2d8095434f6cb7806db8188149e5617e1704922"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/fp32.log",
+      "bytes": 789,
+      "sha256": "7871657807e23134364a4907350647cee30705375e54462f87212cea9d4665f9"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/fp32.retry1.log",
+      "bytes": 1438,
+      "sha256": "9aaf24c2357fa2346ee930c623a329d68c0265b83030819c3b47b6ffed248dbe"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/fp32_predictions.npz",
+      "bytes": 314692,
+      "sha256": "3d226b9772b33c2fca2fe7c0c7f356ea4fe2f098ba230cbdd4f4403f4be6d0c3"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/precision.json",
+      "bytes": 2037,
+      "sha256": "495a66c598dc62229a0136df93007f9d85dc9e7b716e42fec70312b7ac05fa47"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/precision.log",
+      "bytes": 789,
+      "sha256": "7871657807e23134364a4907350647cee30705375e54462f87212cea9d4665f9"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/precision.retry1.log",
+      "bytes": 885,
+      "sha256": "f6ed59e7f414be1181e5facd0ff69a438f37bcbaef5a45bf4a2f7d3aa28ea4d7"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/precision.retry2.log",
+      "bytes": 2127,
+      "sha256": "efde3026e588a0c1c88c9c2730124b727837ca04a09c0f8d6edca4ee5b4b6472"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/precision_predictions.npz",
+      "bytes": 521844,
+      "sha256": "8ce3bd538f23cdddc521dafa39c80eaa98c992fbbe3b0cb7424e94a5be6e3acf"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/side.json",
+      "bytes": 2067,
+      "sha256": "eb1d473d798cdf2d6215357fb9a598cb547123977a62a91b5be094582c61923c"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/side.log",
+      "bytes": 789,
+      "sha256": "7871657807e23134364a4907350647cee30705375e54462f87212cea9d4665f9"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/side.retry1.log",
+      "bytes": 870,
+      "sha256": "495a714c8f2dbd9151c5a42dd74f699f3ffb0343ded0482081f8453efc4c205f"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/side.retry2.log",
+      "bytes": 2134,
+      "sha256": "a3e0e4e0ea09b0fab7876d723f5ab1d0ac5e2ef7ee7c42a6351e8dbce2526687"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/side_base_intervention_source.txt",
+      "bytes": 4391,
+      "sha256": "b4cf6593a7a347574febdde3c552ed5e71a9f9e1e9616735494b44dd8ef2be28"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/side_predictions.npz",
+      "bytes": 521554,
+      "sha256": "7467fb46f0e01c1af083a31b3d901b81ac56389f4cfba7679d994f9c5f35e5cc"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/training_pressure.json",
+      "bytes": 11250,
+      "sha256": "88f98d07750068c6719f15d85b0499293aa5de8e777c9f0e1b39eda2572f5775"
+    },
+    {
+      "path": "reports/md_a2_bottleneck_review_20260918/training_pressure.log",
+      "bytes": 7346,
+      "sha256": "bcf5d71a3ba218f105b72e1a4e383d3c1b324a16772395ca773a80c94e59d4fb"
+    },
+    {
+      "path": "experiments/md_a2_bottleneck_review_20260918/diagnose_inference.py",
+      "bytes": 9380,
+      "sha256": "e6a77dec4782db4d9a78501555ce517c6692485bcb305ec66a7b4e16cfd9a7ff"
+    },
+    {
+      "path": "experiments/md_a2_bottleneck_review_20260918/inspect_training_pressure.py",
+      "bytes": 6567,
+      "sha256": "e7b70035edb60c719100151d4ad5d4789821176f6f1725fc9bbb586bf4b6d49b"
+    },
+    {
+      "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/ckpt_step20554.pth",
+      "bytes": 106851435,
+      "sha256": "db9a49bbaa9385dc7d6d6a8b78a593d20fabd75c25d3789fcd8043a850853a33"
+    },
+    {
+      "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/manifest.json",
+      "bytes": 13077,
+      "sha256": "523c7b3f0f9bd60c5162a9701013f50001cdaa2074826495248cef170b636015"
+    },
+    {
+      "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/final_eval.json",
+      "bytes": 3785825,
+      "sha256": "391c6b92190489708963f13585b8af44528d455b4b314d81287330e87bae1c5d"
+    },
+    {
+      "path": "work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1/ckpt_step20554.pth",
+      "bytes": 106852843,
+      "sha256": "db7620605a01246369364da01944cc5b4d90e1aa00672c6318f0876cbd8e2498"
+    },
+    {
+      "path": "work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1/manifest.json",
+      "bytes": 14718,
+      "sha256": "9891a8e12364d5e789a5d6a9c0fe2a10282c3c6ea907fafeff3c6d170cd1c555"
+    },
+    {
+      "path": "work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1/final_eval.json",
+      "bytes": 3785865,
+      "sha256": "f6b85e09bda4b2f11fd48d84434c76001c7642def3a91a3961121e63e5eeadf7"
+    }
+  ],
+  "prediction_storage": "Full NPZ predictions and checkpoints stay on remote; hashes and summaries are committed."
+}

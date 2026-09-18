@@ -2,6 +2,31 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0L. 2026-09-18 22시대 개선 방향 재검토 — 신규 학습 없음
+
+사용자 요청에 따라 학습 기록/코드를 다시 검토하고 GPU 0–3에서 읽기 전용 진단을 마쳤다.
+FULL 배포 확보는 유지하되, 이를 유일한 다음 작업으로 두지 않는다.
+
+- BASE의 BF16 PREFIX 0.165511 → FP32 sampler 0.165531 / FP16 0.165749 / FP32 0.165744.
+  정밀도 손실은 확인했지만 추론 정밀도 변경만으로 개선되지 않았다.
+- SIDE에서 추가 영상 또는 평균의 추가 source를 제거하면 각각 0.219972 / 0.520714로 악화.
+  무가중 평균 경로가 있다는 사실만으로 SIDE 실패 원인이나 즉시 수정법을 확정하지 않는다.
+- train 32장면/8batch의 shared backbone gradient 검사:
+  motion 보조 loss의 norm은 PREFIX 대비 중앙값 0.852, cosine 0.059, 4/8 batch에서 음수.
+  모델 state hash 전후 동일, optimizer 0 step. 작은 train probe이며 인과/일반화 증거는 아니다.
+- 다음 첫 제안은 같은 A2-BASE-NOM terminal에서 새 control과 motion weight 0.2→0.02 arm을
+  동일 optimizer 초기화/row 순서/LR/추가 2,000 update로 비교하는 planning 중심 2단계 학습이다.
+  occ/lane/LEN 및 A2 query-only 입력 경계는 유지. **아직 착수하지 않았다.**
+- 기존 resume은 in-epoch sampler exact replay를 보장하지 않는다.
+  예전 terminal을 matched continuation control로 대체하지 말고 두 arm을 함께 시작해야 한다.
+- 더 큰 표현 변경은 front raw-image matching의 세밀도 개선을 후속으로 검토한다.
+  새 SIDE, residual MLP, command, A3 gate를 자동 재시작하지 않는다.
+
+기록: reports/md_a2_bottleneck_review_20260918/REVIEW_KO.md, 네 진단 JSON, artifact_index.json.
+재현: experiments/md_a2_bottleneck_review_20260918/.
+이번 점검으로 새 최고점이 생기지는 않았다. 새 학습/공식 제출/production 변경은 없었다.
+GPU 4–7에는 실행하지 않았다. 세부 caveat와 초기 진단 재시도는 보고서에 기록했다.
+
 ## 0K. 2026-09-18 SIDE·QREFINE terminal 완료 — 현재 우선 기록
 
 SIDE와 QREFINE 모두20,554 update / V0 1,998행 평가 완료, nonfinite_count=0.

@@ -1,0 +1,41 @@
+{
+  "kind": "fp32",
+  "gpu": 2,
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/ckpt_step20554.pth",
+  "created_at_utc": "2026-09-18T13:33:16.478859+00:00",
+  "training_performed": false,
+  "model_parameters_unchanged": true,
+  "production_source_modified": false,
+  "reference_PREFIX": 0.16551064587503816,
+  "first_sampler_observation": {
+    "feature_dtype": "torch.float32",
+    "geometry_dtype": "torch.float32",
+    "original_sample_output_dtype": "torch.float32",
+    "sample_count": 15872,
+    "coordinate_rounding_abs_pixels_mean": [
+      0.0,
+      0.0
+    ],
+    "coordinate_rounding_abs_pixels_p95": [
+      0.0,
+      0.0
+    ],
+    "coordinate_rounding_abs_pixels_max": [
+      0.0,
+      0.0
+    ]
+  },
+  "modes": {
+    "FP32": {
+      "PREFIX": 0.1657441492307762,
+      "delta_vs_reference": 0.00023350335573804615,
+      "first2s_PREFIX_contribution": 0.123824166446447,
+      "nonstop_PREFIX": 0.1697708584751566,
+      "max_abs_plan_change_vs_reference": 0.12201070785522461,
+      "forward_seconds": 99.32699597999454
+    }
+  },
+  "n": 1998,
+  "total_seconds": 102.59359958954155,
+  "warning": "Frozen-weight interventions; out-of-training-distribution changes do not establish the performance of retraining."
+}

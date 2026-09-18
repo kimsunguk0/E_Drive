@@ -1,0 +1,69 @@
+def front_only_base_forward(self, current_levels, history_levels, current_global, lidar2img,
+            history_transforms, time_offsets, goal_xy, image_hw, *,
+            history_camera_ids=None, history_pose_indices=None):
+    b = lidar2img.shape[0]
+    c = self.config.channels
+    matrices, camera_ids, view_times = self._view_geometry(
+        lidar2img, history_transforms, time_offsets,
+        history_camera_ids, history_pose_indices)
+    if any(level.shape[1] != matrices.shape[1] - 6 for level in history_levels):
+        raise ValueError("Historical features and camera geometry have different source counts")
+    metadata = (self.camera_keys[camera_ids][None, :, None, :]
+                + self.height_keys[None, None]
+                + self.time_key(view_times[..., None])[:, :, None])
+    used_goal = goal_xy if self.config.goal_on else torch.zeros_like(goal_xy)
+    scale = self.cell_xy.new_tensor([80.0, 64.0])
+    context = torch.cat([
+        self.cell_xy[None].expand(b, -1, -1) / scale,
+        used_goal[:, None].expand(-1, len(self.cell_xy), -1) / scale,
+        (self.cell_xy[None] - used_goal[:, None]) / scale], -1)
+    q_context = self.query_context(context)
+    # Project feature maps ONCE, not once per spatial attention chunk.
+    projected_levels = []
+    for i, (cur, past) in enumerate(zip(current_levels, history_levels)):
+        def projected(feat, layer):
+            out = layer(feat.flatten(0, 1))
+            return out.reshape(feat.shape[0], feat.shape[1], *out.shape[1:])
+        projected_levels.append((projected(cur, self.value_proj[i]),
+                                 projected(past, self.value_proj[i]),
+                                 projected(cur, self.key_proj[i]),
+                                 projected(past, self.key_proj[i])))
+    chunks, visible_chunks = [], []
+    for start in range(0, len(self.points), self.config.scene_chunk_size):
+        stop = start + self.config.scene_chunk_size
+        all_grid, all_valid = project_scene_points(self.points[start:stop], matrices, image_hw)
+        values, keys, masks = [], [], []
+        for level_index, (cur_value, past_value, cur_key, past_key) in enumerate(projected_levels):
+            # Historical features use a half-resolution image of the SAME FOV;
+            # normalized grid coordinates are shared, not raw pixel offsets.
+            level_values = torch.cat([
+                self._sample(cur_value, all_grid[:, :6]),
+                self._sample(past_value, all_grid[:, 6:])], 2)
+            level_keys = torch.cat([
+                self._sample(cur_key, all_grid[:, :6]),
+                self._sample(past_key, all_grid[:, 6:])], 2)
+            level_keys = level_keys + metadata[:, None] + self.scale_keys[level_index]
+            values.append(level_values.flatten(2, 3))
+            keys.append(level_keys.flatten(2, 3))
+            masks.append(all_valid.permute(0, 2, 1, 3).flatten(2, 3))
+        value, key, valid = torch.cat(values, 2), torch.cat(keys, 2), torch.cat(masks, 2)
+        # This base is only a query initializer; distinct camera/height/scale
+        # samples remain available to the actual learned attention.
+        source_in_level = torch.arange(valid.shape[-1], device=valid.device) % (valid.shape[-1] // len(projected_levels))
+        base_valid = valid & (source_in_level < 10 * len(self.config.heights))[None, None]
+        base = (value * base_valid[..., None]).sum(2) / base_valid.sum(2).clamp_min(1)[..., None]
+        query = self.query_image(base) + q_context[:, start:stop]
+        evidence = self._aggregate_evidence(query, key, value, valid)
+        chunks.append(base + evidence.to(base.dtype))
+        visible_chunks.append(valid.any(-1))
+    scene = torch.cat(chunks, 1)
+    visible = torch.cat(visible_chunks, 1)
+    # Broad image context for traffic lights / actors beyond ground samples.
+    context_global = self.global_proj(current_global.mean(dim=(1, 3, 4)))
+    scene = scene + context_global[:, None]
+    scene = self._apply_cross_cell_goal_residual(scene, visible, goal_xy)
+    raster = self.refine(scene.transpose(1, 2).reshape(b, c, *self.config.grid_size))
+    return {"scene_features": raster.flatten(2).transpose(1, 2),
+            "occ_logits": self.occ_head(raster).float(),
+            "lane_logits": self.lane_head(raster).float(),
+            "scene_visible": visible.reshape(b, 1, *self.config.grid_size)}

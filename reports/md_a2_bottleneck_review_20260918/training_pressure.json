@@ -1,0 +1,395 @@
+{
+  "created_at_utc": "2026-09-18T13:33:43.178221+00:00",
+  "gpu": 3,
+  "training_performed": false,
+  "optimizer_steps": 0,
+  "state_sha256_unchanged": "e31f460bdea5f8dc5071982e322055475d5a512dd8d340db22884dc589be8624",
+  "sample_count": 32,
+  "scene_count": 32,
+  "probe": "train split only; no flip or photometric augmentation; fixed BN",
+  "parameter_subset": "all shared backbone_fpn trainable parameters",
+  "weights": {
+    "plan": 1.0,
+    "occupancy": 0.2,
+    "lane": 0.2,
+    "motion": 0.2,
+    "uncertainty": true
+  },
+  "length_weight": 0.25,
+  "summary": {
+    "PREFIX": {
+      "median_norm_ratio_to_PREFIX": 1.0,
+      "median_cosine_with_PREFIX": 1.0000000596046448,
+      "opposing_batches": 0
+    },
+    "LENGTH": {
+      "median_norm_ratio_to_PREFIX": 0.09733962267637253,
+      "median_cosine_with_PREFIX": 0.6452198028564453,
+      "opposing_batches": 0
+    },
+    "PERCEPTION": {
+      "median_norm_ratio_to_PREFIX": 0.10527151077985764,
+      "median_cosine_with_PREFIX": 0.07517552748322487,
+      "opposing_batches": 3
+    },
+    "MOTION": {
+      "median_norm_ratio_to_PREFIX": 0.8523152470588684,
+      "median_cosine_with_PREFIX": 0.05911060608923435,
+      "opposing_batches": 4
+    }
+  },
+  "batches": [
+    {
+      "batch": 0,
+      "rows": [
+        90859,
+        58838,
+        86569,
+        27363
+      ],
+      "weighted_loss": {
+        "PREFIX": 0.033722881227731705,
+        "LENGTH": 0.005887230858206749,
+        "PERCEPTION": 0.09439148008823395,
+        "MOTION": -1.17568039894104
+      },
+      "gradient": {
+        "PREFIX": {
+          "norm": 10.225611686706543,
+          "norm_ratio_to_PREFIX": 1.0,
+          "cosine_with_PREFIX": 1.0000001192092896
+        },
+        "LENGTH": {
+          "norm": 1.1455625295639038,
+          "norm_ratio_to_PREFIX": 0.11202875524759293,
+          "cosine_with_PREFIX": 0.5638502240180969
+        },
+        "PERCEPTION": {
+          "norm": 1.229416847229004,
+          "norm_ratio_to_PREFIX": 0.12022917717695236,
+          "cosine_with_PREFIX": 0.10277998447418213
+        },
+        "MOTION": {
+          "norm": 9.217713356018066,
+          "norm_ratio_to_PREFIX": 0.9014339447021484,
+          "cosine_with_PREFIX": 0.22115091979503632
+        }
+      },
+      "auxiliary_combined": {
+        "norm_ratio_to_PREFIX": 0.9156548976898193,
+        "cosine_with_PREFIX": 0.3001977503299713
+      }
+    },
+    {
+      "batch": 1,
+      "rows": [
+        2240,
+        98644,
+        79652,
+        23098
+      ],
+      "weighted_loss": {
+        "PREFIX": 0.10751780867576599,
+        "LENGTH": 0.005819829646497965,
+        "PERCEPTION": 0.10053656995296478,
+        "MOTION": -1.1718320846557617
+      },
+      "gradient": {
+        "PREFIX": {
+          "norm": 16.248580932617188,
+          "norm_ratio_to_PREFIX": 1.0,
+          "cosine_with_PREFIX": 1.0
+        },
+        "LENGTH": {
+          "norm": 1.346147894859314,
+          "norm_ratio_to_PREFIX": 0.08284710347652435,
+          "cosine_with_PREFIX": 0.7695332765579224
+        },
+        "PERCEPTION": {
+          "norm": 1.396923542022705,
+          "norm_ratio_to_PREFIX": 0.08597203344106674,
+          "cosine_with_PREFIX": 0.11690372228622437
+        },
+        "MOTION": {
+          "norm": 6.991715431213379,
+          "norm_ratio_to_PREFIX": 0.43029698729515076,
+          "cosine_with_PREFIX": -0.4532211422920227
+        }
+      },
+      "auxiliary_combined": {
+        "norm_ratio_to_PREFIX": 0.4383779764175415,
+        "cosine_with_PREFIX": -0.2765093743801117
+      }
+    },
+    {
+      "batch": 2,
+      "rows": [
+        103625,
+        94412,
+        12427,
+        52431
+      ],
+      "weighted_loss": {
+        "PREFIX": 0.05559668689966202,
+        "LENGTH": 0.00788783933967352,
+        "PERCEPTION": 0.13260194659233093,
+        "MOTION": -1.1598509550094604
+      },
+      "gradient": {
+        "PREFIX": {
+          "norm": 10.420089721679688,
+          "norm_ratio_to_PREFIX": 1.0,
+          "cosine_with_PREFIX": 0.9999998807907104
+        },
+        "LENGTH": {
+          "norm": 1.3890154361724854,
+          "norm_ratio_to_PREFIX": 0.13330167531967163,
+          "cosine_with_PREFIX": 0.5765902400016785
+        },
+        "PERCEPTION": {
+          "norm": 1.3792353868484497,
+          "norm_ratio_to_PREFIX": 0.13236309587955475,
+          "cosine_with_PREFIX": -0.18756020069122314
+        },
+        "MOTION": {
+          "norm": 8.369379997253418,
+          "norm_ratio_to_PREFIX": 0.8031965494155884,
+          "cosine_with_PREFIX": -0.0411292128264904
+        }
+      },
+      "auxiliary_combined": {
+        "norm_ratio_to_PREFIX": 0.8292548656463623,
+        "cosine_with_PREFIX": 0.022911585867404938
+      }
+    },
+    {
+      "batch": 3,
+      "rows": [
+        75138,
+        86384,
+        102050,
+        7492
+      ],
+      "weighted_loss": {
+        "PREFIX": 0.07662849128246307,
+        "LENGTH": 0.01346167828887701,
+        "PERCEPTION": 0.11981041729450226,
+        "MOTION": -1.1602497100830078
+      },
+      "gradient": {
+        "PREFIX": {
+          "norm": 10.320537567138672,
+          "norm_ratio_to_PREFIX": 1.0,
+          "cosine_with_PREFIX": 1.0000001192092896
+        },
+        "LENGTH": {
+          "norm": 1.1506389379501343,
+          "norm_ratio_to_PREFIX": 0.11149021238088608,
+          "cosine_with_PREFIX": 0.49179115891456604
+        },
+        "PERCEPTION": {
+          "norm": 1.1271196603775024,
+          "norm_ratio_to_PREFIX": 0.10921133309602737,
+          "cosine_with_PREFIX": -0.09631972759962082
+        },
+        "MOTION": {
+          "norm": 12.681373596191406,
+          "norm_ratio_to_PREFIX": 1.228751301765442,
+          "cosine_with_PREFIX": 0.1593504250049591
+        }
+      },
+      "auxiliary_combined": {
+        "norm_ratio_to_PREFIX": 1.303867220878601,
+        "cosine_with_PREFIX": 0.18415428698062897
+      }
+    },
+    {
+      "batch": 4,
+      "rows": [
+        73084,
+        36299,
+        100249,
+        37905
+      ],
+      "weighted_loss": {
+        "PREFIX": 0.15198396146297455,
+        "LENGTH": 0.01941741816699505,
+        "PERCEPTION": 0.12269067764282227,
+        "MOTION": -1.1324952840805054
+      },
+      "gradient": {
+        "PREFIX": {
+          "norm": 15.115437507629395,
+          "norm_ratio_to_PREFIX": 1.0,
+          "cosine_with_PREFIX": 1.0000001192092896
+        },
+        "LENGTH": {
+          "norm": 1.2647700309753418,
+          "norm_ratio_to_PREFIX": 0.08367405831813812,
+          "cosine_with_PREFIX": 0.7138493657112122
+        },
+        "PERCEPTION": {
+          "norm": 1.6004549264907837,
+          "norm_ratio_to_PREFIX": 0.10588214546442032,
+          "cosine_with_PREFIX": 0.1672716736793518
+        },
+        "MOTION": {
+          "norm": 17.94381332397461,
+          "norm_ratio_to_PREFIX": 1.187118411064148,
+          "cosine_with_PREFIX": 0.3885839283466339
+        }
+      },
+      "auxiliary_combined": {
+        "norm_ratio_to_PREFIX": 1.2441437244415283,
+        "cosine_with_PREFIX": 0.43301820755004883
+      }
+    },
+    {
+      "batch": 5,
+      "rows": [
+        33246,
+        87698,
+        12284,
+        63357
+      ],
+      "weighted_loss": {
+        "PREFIX": 0.10477448999881744,
+        "LENGTH": 0.011139157228171825,
+        "PERCEPTION": 0.09561184048652649,
+        "MOTION": -1.1348729133605957
+      },
+      "gradient": {
+        "PREFIX": {
+          "norm": 12.011103630065918,
+          "norm_ratio_to_PREFIX": 1.0,
+          "cosine_with_PREFIX": 0.9999997615814209
+        },
+        "LENGTH": {
+          "norm": 0.7924879193305969,
+          "norm_ratio_to_PREFIX": 0.06597960740327835,
+          "cosine_with_PREFIX": 0.8488010168075562
+        },
+        "PERCEPTION": {
+          "norm": 1.2570925951004028,
+          "norm_ratio_to_PREFIX": 0.10466087609529495,
+          "cosine_with_PREFIX": 0.08853298425674438
+        },
+        "MOTION": {
+          "norm": 12.670760154724121,
+          "norm_ratio_to_PREFIX": 1.0549205541610718,
+          "cosine_with_PREFIX": -0.5321621894836426
+        }
+      },
+      "auxiliary_combined": {
+        "norm_ratio_to_PREFIX": 1.0067027807235718,
+        "cosine_with_PREFIX": -0.49281612038612366
+      }
+    },
+    {
+      "batch": 6,
+      "rows": [
+        110856,
+        43793,
+        13307,
+        55930
+      ],
+      "weighted_loss": {
+        "PREFIX": 0.06300121545791626,
+        "LENGTH": 0.010212168097496033,
+        "PERCEPTION": 0.09818176925182343,
+        "MOTION": -1.144562840461731
+      },
+      "gradient": {
+        "PREFIX": {
+          "norm": 15.745246887207031,
+          "norm_ratio_to_PREFIX": 1.0,
+          "cosine_with_PREFIX": 1.0000001192092896
+        },
+        "LENGTH": {
+          "norm": 1.544206976890564,
+          "norm_ratio_to_PREFIX": 0.09807448834180832,
+          "cosine_with_PREFIX": 0.7795189619064331
+        },
+        "PERCEPTION": {
+          "norm": 1.3288909196853638,
+          "norm_ratio_to_PREFIX": 0.0843994989991188,
+          "cosine_with_PREFIX": 0.06181807070970535
+        },
+        "MOTION": {
+          "norm": 5.936173915863037,
+          "norm_ratio_to_PREFIX": 0.3770137131214142,
+          "cosine_with_PREFIX": 0.24283377826213837
+        }
+      },
+      "auxiliary_combined": {
+        "norm_ratio_to_PREFIX": 0.4116462171077728,
+        "cosine_with_PREFIX": 0.4207982122898102
+      }
+    },
+    {
+      "batch": 7,
+      "rows": [
+        10660,
+        95908,
+        95235,
+        101576
+      ],
+      "weighted_loss": {
+        "PREFIX": 0.10114409774541855,
+        "LENGTH": 0.01248877216130495,
+        "PERCEPTION": 0.11149874329566956,
+        "MOTION": -1.1187942028045654
+      },
+      "gradient": {
+        "PREFIX": {
+          "norm": 14.958065032958984,
+          "norm_ratio_to_PREFIX": 1.0,
+          "cosine_with_PREFIX": 0.9999999403953552
+        },
+        "LENGTH": {
+          "norm": 1.4450201988220215,
+          "norm_ratio_to_PREFIX": 0.09660475701093674,
+          "cosine_with_PREFIX": 0.08640177547931671
+        },
+        "PERCEPTION": {
+          "norm": 1.172653317451477,
+          "norm_ratio_to_PREFIX": 0.07839605957269669,
+          "cosine_with_PREFIX": -0.15920020639896393
+        },
+        "MOTION": {
+          "norm": 10.836294174194336,
+          "norm_ratio_to_PREFIX": 0.7244449257850647,
+          "cosine_with_PREFIX": -0.3083381652832031
+        }
+      },
+      "auxiliary_combined": {
+        "norm_ratio_to_PREFIX": 0.728840172290802,
+        "cosine_with_PREFIX": -0.3121505677700043
+      }
+    }
+  ],
+  "first_four_train_rows_attention": [
+    {
+      "layer": 0,
+      "mass_scene_motion_state": [
+        0.9043790698051453,
+        0.09429727494716644,
+        0.0013237202074378729
+      ]
+    },
+    {
+      "layer": 1,
+      "mass_scene_motion_state": [
+        0.8794435262680054,
+        0.11981403082609177,
+        0.0007424638606607914
+      ]
+    }
+  ],
+  "attention_forward_parity_max_abs": 9.5367431640625e-06,
+  "caveats": [
+    "Raw gradient cosines do not include Adam preconditioning or prove validation improvement.",
+    "Small scene-stratified train probe, not a population estimate.",
+    "Attention mass alone is not causal contribution; value magnitude and later layers also matter."
+  ]
+}

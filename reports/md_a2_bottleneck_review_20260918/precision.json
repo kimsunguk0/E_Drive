@@ -1,0 +1,57 @@
+{
+  "kind": "precision",
+  "gpu": 0,
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/ckpt_step20554.pth",
+  "created_at_utc": "2026-09-18T13:35:47.462661+00:00",
+  "training_performed": false,
+  "model_parameters_unchanged": true,
+  "production_source_modified": false,
+  "reference_PREFIX": 0.16551064587503816,
+  "first_sampler_observation": {
+    "feature_dtype": "torch.bfloat16",
+    "geometry_dtype": "torch.float32",
+    "original_sample_output_dtype": "torch.bfloat16",
+    "sample_count": 15872,
+    "coordinate_rounding_abs_pixels_mean": [
+      0.2534658908843994,
+      0.15131700038909912
+    ],
+    "coordinate_rounding_abs_pixels_p95": [
+      0.6683807373046875,
+      0.3847188949584961
+    ],
+    "coordinate_rounding_abs_pixels_max": [
+      0.7495651245117188,
+      0.4215402603149414
+    ]
+  },
+  "modes": {
+    "BF16": {
+      "PREFIX": 0.16551064066116253,
+      "delta_vs_reference": -5.213875636789211e-09,
+      "first2s_PREFIX_contribution": 0.12374687846934551,
+      "nonstop_PREFIX": 0.16959080365353887,
+      "max_abs_plan_change_vs_reference": 0.00012734532356262207,
+      "forward_seconds": 19.237151205539703
+    },
+    "BF16_FP32_SAMPLER": {
+      "PREFIX": 0.16553111933286013,
+      "delta_vs_reference": 2.0473457821967855e-05,
+      "first2s_PREFIX_contribution": 0.1237622470734128,
+      "nonstop_PREFIX": 0.1696020443093039,
+      "max_abs_plan_change_vs_reference": 0.007506608963012695,
+      "forward_seconds": 17.291808634996414
+    },
+    "FP16": {
+      "PREFIX": 0.16574865257148325,
+      "delta_vs_reference": 0.0002380066964450811,
+      "first2s_PREFIX_contribution": 0.12381709363142572,
+      "nonstop_PREFIX": 0.16976819232870363,
+      "max_abs_plan_change_vs_reference": 0.11221981048583984,
+      "forward_seconds": 16.957769189029932
+    }
+  },
+  "n": 1998,
+  "total_seconds": 56.716892432421446,
+  "warning": "Frozen-weight interventions; out-of-training-distribution changes do not establish the performance of retraining."
+}
