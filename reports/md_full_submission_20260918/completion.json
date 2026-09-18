@@ -1,0 +1,21 @@
+{
+  "candidate": "MR-NATIVE-FULL-s1",
+  "checkpoint_sha256": "ce569da5d3cfe70f89f042faa2a5f6449e30fccbd469f2e689e26445accf2b87",
+  "clip_state_isolation_max_abs_diff_m": 0.0,
+  "clips": 1125,
+  "completed_at": "2026-09-18T02:30:47.884937+00:00",
+  "flops": 729815613824,
+  "heldout_or_server_score": null,
+  "model_state_sha256": "740881daf0412117b486f044c3831ef43b76de1e0c344af9bf5396b86f716cf4",
+  "new_training_updates": 0,
+  "preserved_checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_full_submission_20260918/preserved/ckpt_step24931.pth",
+  "previous_scored_prediction_exact_replay": true,
+  "provided_status_used": false,
+  "raw_b1_fixtures_bitwise_equal": 8,
+  "status": "ready_not_uploaded",
+  "submission_json_sha256": "0a29399f05e1ec9ae0b0a0f9ff9cbd1faf7c258e3fce18e88dce6d49e2202211",
+  "submission_quota_consumed": 0,
+  "submission_zip": "/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/submission/submission.zip",
+  "submission_zip_sha256": "dc7cd52a01db5e96a810b0397b81c113da11c72bb54455152f0e3a1f5d4ca428",
+  "uploaded": false
+}

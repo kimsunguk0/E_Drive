@@ -1,0 +1,22 @@
+{
+ "label": "MR-NATIVE-s1-replay",
+ "clips": 1,
+ "submission_sha256": "4ad76cc927192e89c355ca92c79b64d7a4f25cc5c8a2f497977e97d00c35d0d6",
+ "checks": {
+  "all_shapes_6x2": true,
+  "all_finite": true,
+  "cumsum_not_reapplied": {
+   "mean_endpoint_m": 14.400914192199707,
+   "mean_endpoint_if_cumsum_were_applied_again_m": 47.09170793395509,
+   "ratio": 3.2700498944339547,
+   "note": "the model already returns cumulative absolute XY; applying the example script's cumsum again would inflate the endpoint by this ratio"
+  },
+  "first_point_is_half_second_step_not_full_path": {
+   "mean_first_point_m": 1.9059525728225708,
+   "mean_endpoint_m": 14.400914192199707
+  },
+  "clip_state_isolation_max_abs_diff_m": 0.0,
+  "clip_state_isolation_pass": true,
+  "monotone_cumulative_distance_clips": 1
+ }
+}

@@ -1,0 +1,36 @@
+{"clips_processed": 1, "elapsed_seconds": 3.3}
+{"clips_processed": 100, "elapsed_seconds": 38.3}
+{"clips_processed": 200, "elapsed_seconds": 72.6}
+{"clips_processed": 300, "elapsed_seconds": 107.1}
+{"clips_processed": 400, "elapsed_seconds": 142.3}
+{"clips_processed": 500, "elapsed_seconds": 176.8}
+{"clips_processed": 600, "elapsed_seconds": 211.3}
+{"clips_processed": 700, "elapsed_seconds": 246.1}
+{"clips_processed": 800, "elapsed_seconds": 281.4}
+{"clips_processed": 900, "elapsed_seconds": 315.9}
+{"clips_processed": 1000, "elapsed_seconds": 349.9}
+{"clips_processed": 1100, "elapsed_seconds": 384.3}
+{"clips_processed": 1125, "elapsed_seconds": 392.7}
+{"clips_processed": 1126, "elapsed_seconds": 393.0}
+{
+ "label": "MR-NATIVE-FULL-s1",
+ "clips": 1125,
+ "submission_sha256": "bc2008667f7baea02705c5cb12505c650b8ebd94b1ca3c93bdd49675a9992ac8",
+ "checks": {
+  "all_shapes_6x2": true,
+  "all_finite": true,
+  "cumsum_not_reapplied": {
+   "mean_endpoint_m": 22.456421497726502,
+   "mean_endpoint_if_cumsum_were_applied_again_m": 78.60928226368908,
+   "ratio": 3.500525774850081,
+   "note": "the model already returns cumulative absolute XY; applying the example script's cumsum again would inflate the endpoint by this ratio"
+  },
+  "first_point_is_half_second_step_not_full_path": {
+   "mean_first_point_m": 3.749815169010001,
+   "mean_endpoint_m": 22.456421497726502
+  },
+  "clip_state_isolation_max_abs_diff_m": 0.0,
+  "clip_state_isolation_pass": true,
+  "monotone_cumulative_distance_clips": 899
+ }
+}

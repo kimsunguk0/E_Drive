@@ -1,0 +1,7 @@
+{
+ "flops": 729815613824,
+ "gflops": 729.815613824,
+ "headroom_x": 9.664084826912019,
+ "passes_cutoff": true,
+ "parameters": 26555960
+}

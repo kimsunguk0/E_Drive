@@ -1,0 +1,6 @@
+{
+ "fixtures": 8,
+ "inputs_all_bitwise_equal": true,
+ "max_plan_abs_xy_diff_m": 0.0,
+ "max_d3_abs_diff": 0.0
+}

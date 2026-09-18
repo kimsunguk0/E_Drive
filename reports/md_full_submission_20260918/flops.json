@@ -1,0 +1,73 @@
+{
+ "by_operator_gflops": {
+  "aten._scaled_dot_product_efficient_attention": 0.02006016,
+  "aten.addmm": 0.46969024,
+  "aten.bmm": 0.078447104,
+  "aten.convolution": 729.160187904,
+  "aten.mm": 0.087228416
+ },
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_full_submission_20260918/preserved/ckpt_step24931.pth",
+ "counter": "torch.utils.flop_counter.FlopCounterMode, Global sum, one forward",
+ "cutoff_gflops": 7053.0,
+ "flops": 729815613824,
+ "forwards_per_clip": 1,
+ "gflops": 729.815613824,
+ "headroom_x": 9.664084826912019,
+ "input_shapes": {
+  "goal_xy": [
+   1,
+   2
+  ],
+  "history_images": [
+   1,
+   4,
+   3,
+   216,
+   384
+  ],
+  "history_transforms": [
+   1,
+   4,
+   4,
+   4
+  ],
+  "images": [
+   1,
+   6,
+   3,
+   432,
+   768
+  ],
+  "lidar2img": [
+   1,
+   6,
+   4,
+   4
+  ],
+  "motion_current": [
+   1,
+   3,
+   432,
+   768
+  ],
+  "motion_history": [
+   1,
+   4,
+   3,
+   432,
+   768
+  ],
+  "time_offsets": [
+   1,
+   4
+  ]
+ },
+ "measured_on_clip": "00017c73feca4fde",
+ "model_state_sha256": "740881daf0412117b486f044c3831ef43b76de1e0c344af9bf5396b86f716cf4",
+ "parameters": 26555960,
+ "passes_cutoff": true,
+ "preprocessing_excluded": true,
+ "schema_version": 1,
+ "scope": "the whole top-level forward, which internally encodes the six current cameras, the four past frames for the scene branch and the five-frame motion canvas. Nothing is divided down.",
+ "why_this_counter": "it is the counter the organisers' tools/measure_flops.py uses; the torch.profiler number recorded in rtx4090_mr_forward_cost.json is a different estimator and is not what the cutoff is judged on"
+}

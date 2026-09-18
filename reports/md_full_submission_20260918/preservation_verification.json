@@ -1,0 +1,16 @@
+{
+  "previous_index": "reports/md_shared_dynamics_20260917/records_20260918/experiment_index.json",
+  "archived_checkpoint": {
+    "bytes": 106843710,
+    "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/ckpt_step24931.pth",
+    "sha256": "ce569da5d3cfe70f89f042faa2a5f6449e30fccbd469f2e689e26445accf2b87"
+  },
+  "current_checkpoint_sha256": "ce569da5d3cfe70f89f042faa2a5f6449e30fccbd469f2e689e26445accf2b87",
+  "same_preexisting_terminal_checkpoint": true,
+  "script_sha256_matches_execution_source_manifest": true,
+  "initial_preflight_attempt": {
+    "outcome": "stopped before inference due to Python tuple versus JSON list equality",
+    "fix": "normalize checkpoint config through JSON before comparing; no model or weights changed",
+    "log": "work_dirs/md_full_submission_20260918/prepare_preflight_attempt1.log"
+  }
+}

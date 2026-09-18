@@ -1,0 +1,55 @@
+{
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/ckpt_step20554.pth",
+ "checkpoint_sha256": "e145237d9bf1e8129db48606d463ab020a4b821a993f3bdbded206c7b87e6f28",
+ "checks": {
+  "all_finite": true,
+  "all_shapes_6x2": true,
+  "clip_state_isolation_max_abs_diff_m": 0.0,
+  "clip_state_isolation_pass": true,
+  "cumsum_not_reapplied": {
+   "mean_endpoint_if_cumsum_were_applied_again_m": 47.09170793395509,
+   "mean_endpoint_m": 14.400914192199707,
+   "note": "the model already returns cumulative absolute XY; applying the example script's cumsum again would inflate the endpoint by this ratio",
+   "ratio": 3.2700498944339547
+  },
+  "first_point_is_half_second_step_not_full_path": {
+   "mean_endpoint_m": 14.400914192199707,
+   "mean_first_point_m": 1.9059525728225708
+  },
+  "monotone_cumulative_distance_clips": 1
+ },
+ "clips": 1,
+ "clips_root": "/tmp/etri_test",
+ "format": {
+  "container": "json object keyed by clip directory name",
+  "coordinates": "cumulative absolute positions as the model emits them",
+  "value": "[[x, y] x 6] float64, metres, current ego frame, 0.5 s steps to 3.0 s"
+ },
+ "inputs": {
+  "adapter": "models/motiondrive_v2_inputs.py prepare_clip_inputs",
+  "no_ground_truth_no_provided_status": true,
+  "reads": "calibration.parquet, ego_pose.parquet, ten JPEGs"
+ },
+ "label": "MR-NATIVE-s1-replay",
+ "limitations": [
+  "Validated on the clips under clips_root; running on the official test set is a separate step.",
+  "No upload was performed and no submission quota was consumed.",
+  "The exact official field naming must be confirmed against the current submission form."
+ ],
+ "model_state_sha256": "cb04d745fc5af990447d03e2ea7bd098ce344c8356ad53268102e1da264616e2",
+ "per_clip": [
+  {
+   "adapter_source_sha256": "33b64b3fe87a46e6b28587282e5615fbb69bb745d5ee32afd0e5d20ae56e3a29",
+   "clip": "00017c73feca4fde",
+   "cumulative_distance_is_monotone": true,
+   "endpoint_distance_m": 14.400914192199707,
+   "first_point_distance_m": 1.9059525728225708,
+   "max_step_m": 2.8466065232824427
+  }
+ ],
+ "schema_version": 1,
+ "status": "validated_not_uploaded",
+ "submission_bytes": 280,
+ "submission_file": "/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/previous_submission_replay.json",
+ "submission_sha256": "4ad76cc927192e89c355ca92c79b64d7a4f25cc5c8a2f497977e97d00c35d0d6"
+}

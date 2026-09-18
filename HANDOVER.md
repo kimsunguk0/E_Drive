@@ -2,6 +2,29 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0D. 2026-09-18 MR FULL 제출 후보 확보 — 현재 우선순위
+
+사용자의 요청에 따라 **완료된 status-free MR FULL을 재학습 없이 실제 제출 파일로 보존**했다.
+추가 학습은 0 update이고 서버 업로드도 하지 않았다.
+
+- 후보: `MR-NATIVE-FULL-s1`, 376 unique scenes / 101,520 rows / terminal step 24,931.
+- 모델 구조: 기존 제출 MR과 같은 native MR + direct XY. 제공 status 입력 및 A2/A3 경로 없음.
+  Pose의 scene 정렬과 goal의 공통 scene 조건은 기존대로 사용한다.
+- **업로드용 파일:** `reports/md_full_submission_20260918/submission/submission.zip`.
+  내부는 `submission.json` 하나이며 1,125 clip + 정수 `__flops__`로 구성된다.
+- 전 clip 누락·잉여 0, 6×2/유한값 검사 통과, clip 재실행 예측 차이 0.
+- FULL의 raw/cache B1 parity: 8 fixture 입력·출력 모두 bitwise 일치.
+  기존에 채점된 MR의 첫 공식 clip도 기존 예측과 정확히 재현됐다.
+- 공식 counter FLOPs: **729,815,613,824 = 729.816G**, cutoff 7,053G 통과.
+- checkpoint 원본과 별도 보존본 해시가 이전 실험 색인의 terminal 해시와 같다.
+  보존본: `work_dirs/md_full_submission_20260918/preserved/ckpt_step24931.pth`.
+- 로컬 사본: `~/Downloads/MR-NATIVE-FULL-s1_submission_20260918/`.
+- **FULL의 공식 점수는 아직 없다.** V0 0.097245는 학습 행의 in-fit 진단이다.
+
+재현 명령·입력 경로·검사 기록은 `reports/md_full_submission_20260918/README.md`,
+완료 상태와 ZIP/checkpoint 해시는 같은 폴더 `completion.json`에 있다.
+실행 스크립트는 `experiments/md_full_submission_20260918/prepare_mr_full_submission.py`다.
+
 ## 0C. 2026-09-18 완료 결과와 규정 점검 — 가장 먼저 읽을 것
 
 등록 MR V0는 `0.191002`다. 같은 train310/tune37에서 20,554 update를 마친

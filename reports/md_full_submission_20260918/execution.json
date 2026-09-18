@@ -1,0 +1,112 @@
+[
+  {
+    "argv": [
+      "~/cv2env/bin/python",
+      "-c",
+      "import sys;sys.path.insert(0,'/NHNHOME/data/sukim/adcl/experiments/md_r0_reset_20260914');from pathlib import Path;import mr_raw_b1 as m;m.OUT=Path('/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/raw_b1_fixture8.json');m.main()",
+      "--init",
+      "/NHNHOME/data/sukim/adcl/work_dirs/md_full_submission_20260918/preserved/ckpt_step24931.pth",
+      "--gpu",
+      "0",
+      "--precision",
+      "bf16",
+      "--detail",
+      "native",
+      "--label",
+      "MR-NATIVE-FULL-s1"
+    ],
+    "elapsed_seconds": 10.102945173159242,
+    "returncode": 0,
+    "stage": "raw_b1_parity",
+    "started_at": "2026-09-18T02:23:49.076051+00:00"
+  },
+  {
+    "argv": [
+      "~/cv2env/bin/python",
+      "/NHNHOME/data/sukim/adcl/experiments/md_r0_reset_20260914/measure_flops.py",
+      "--init",
+      "/NHNHOME/data/sukim/adcl/work_dirs/md_full_submission_20260918/preserved/ckpt_step24931.pth",
+      "--clip",
+      "/tmp/etri_test/00017c73feca4fde",
+      "--mr-detail",
+      "native",
+      "--out",
+      "/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/flops.json"
+    ],
+    "elapsed_seconds": 5.437783049419522,
+    "returncode": 0,
+    "stage": "flops",
+    "started_at": "2026-09-18T02:23:59.180992+00:00"
+  },
+  {
+    "argv": [
+      "~/cv2env/bin/python",
+      "/NHNHOME/data/sukim/adcl/experiments/md_r0_reset_20260914/build_submission.py",
+      "--init",
+      "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/ckpt_step20554.pth",
+      "--clips-root",
+      "/tmp/etri_test",
+      "--out",
+      "/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/previous_submission_replay.json",
+      "--label",
+      "MR-NATIVE-s1-replay",
+      "--gpu",
+      "0",
+      "--precision",
+      "bf16",
+      "--mr-detail",
+      "native",
+      "--limit",
+      "1"
+    ],
+    "elapsed_seconds": 7.270358620211482,
+    "returncode": 0,
+    "stage": "previous_submission_replay",
+    "started_at": "2026-09-18T02:24:04.623886+00:00"
+  },
+  {
+    "argv": [
+      "~/cv2env/bin/python",
+      "-c",
+      "\nimport sys,json,time\nsys.path.insert(0,'/NHNHOME/data/sukim/adcl/experiments/md_r0_reset_20260914')\nimport build_submission as b\nimport mr_deploy\noriginal_prepare=mr_deploy.prepare_mr_clip_inputs\ndef checked_prepare(*args,**kwargs):\n    result=original_prepare(*args,**kwargs)\n    assert set(result.inputs)=={'images','history_images','lidar2img','history_transforms','time_offsets','goal_xy','motion_current','motion_history'}\n    assert result.metadata['input_contract']['provided_status_or_timestamp_input'] is False\n    return result\nmr_deploy.prepare_mr_clip_inputs=checked_prepare\noriginal_predict=b.predict\ncount=0\nstarted=time.monotonic()\ndef progress(*args,**kwargs):\n    global count\n    result=original_predict(*args,**kwargs)\n    count+=1\n    if count==1 or count%100==0 or count>=1125:\n        print(json.dumps({'clips_processed':count,'elapsed_seconds':round(time.monotonic()-started,1)}),flush=True)\n    return result\nb.predict=progress\nb.main()\n",
+      "--init",
+      "/NHNHOME/data/sukim/adcl/work_dirs/md_full_submission_20260918/preserved/ckpt_step24931.pth",
+      "--clips-root",
+      "/tmp/etri_test",
+      "--out",
+      "/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/official_test_MR-NATIVE-FULL-s1.json",
+      "--label",
+      "MR-NATIVE-FULL-s1",
+      "--gpu",
+      "0",
+      "--precision",
+      "bf16",
+      "--mr-detail",
+      "native"
+    ],
+    "elapsed_seconds": 395.7085659634322,
+    "returncode": 0,
+    "stage": "official_test_inference",
+    "started_at": "2026-09-18T02:24:11.902221+00:00"
+  },
+  {
+    "argv": [
+      "~/cv2env/bin/python",
+      "/NHNHOME/data/sukim/adcl/experiments/md_r0_reset_20260914/package_submission.py",
+      "--submission",
+      "/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/official_test_MR-NATIVE-FULL-s1.json",
+      "--flops-report",
+      "/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/flops.json",
+      "--clips-root",
+      "/tmp/etri_test",
+      "--out-dir",
+      "/NHNHOME/data/sukim/adcl/reports/md_full_submission_20260918/submission",
+      "--label",
+      "MR-NATIVE-FULL-s1"
+    ],
+    "elapsed_seconds": 0.0946903619915247,
+    "returncode": 0,
+    "stage": "package",
+    "started_at": "2026-09-18T02:30:47.614642+00:00"
+  }
+]

@@ -1,0 +1,27 @@
+{
+ "label": "MR-NATIVE-FULL-s1",
+ "keys_in_json": 1126,
+ "submission_zip_sha256": "dc7cd52a01db5e96a810b0397b81c113da11c72bb54455152f0e3a1f5d4ca428"
+}
+{
+ "clips_expected": 1125,
+ "clips_present": 1125,
+ "missing_clips": [],
+ "n_missing": 0,
+ "extra_clips": [],
+ "n_extra": 0,
+ "all_shapes_6x2": true,
+ "all_finite": true,
+ "n_nan_or_inf": 0,
+ "flops_present": true,
+ "flops": 729815613824,
+ "gflops": 729.815613824,
+ "flops_cutoff_gflops": 7053.0,
+ "flops_passes_cutoff": true,
+ "endpoint_m": {
+  "p50": 22.585447911739646,
+  "max": 68.41426988705727
+ },
+ "interval_speed_max_ms": 23.236420263303664,
+ "failures": []
+}

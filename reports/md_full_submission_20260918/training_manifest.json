@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "git_sha": "803ac9d36dffba9b2113dffb51bc2c6203042664",
+  "arguments": {
+    "data_root": "/tmp/pm97",
+    "split_manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+    "supervision_root": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+    "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1",
+    "phase": "joint",
+    "goal_on": 1,
+    "state_on": 1,
+    "gpu": 0,
+    "cpu": false,
+    "cuda_memory_limit_mib": 170000,
+    "cuda_min_free_mib": 8192,
+    "microbatch": 8,
+    "seed": 1,
+    "steps": 24931,
+    "batch": 16,
+    "eval_batch": 4,
+    "workers": 4,
+    "eval_every": 6345,
+    "save_every": 6345,
+    "log_every": 50,
+    "lr": 5e-05,
+    "backbone_lr": 5e-06,
+    "weight_decay": 0.01,
+    "warmup": 200,
+    "grad_clip": 5.0,
+    "alpha_occ": 0.2,
+    "alpha_lane": 0.2,
+    "alpha_motion": 0.2,
+    "uncertainty": 1,
+    "precision": "bf16",
+    "time_input": "nominal",
+    "bn_policy": "fixed",
+    "pretrained": null,
+    "init": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+    "resume": null,
+    "arch": "resnet50",
+    "motion_input_mode": "low_feature",
+    "cross_cell_goal_mode": "zero",
+    "history_contract": "control",
+    "history_overlay_root": null,
+    "expected_history_overlay_sha256": null,
+    "plan_output_scale": null,
+    "train_stride": 1,
+    "eval_stride": 5,
+    "max_train_samples": 0,
+    "max_eval_samples": 0,
+    "train_scenes": null,
+    "eval_scenes": null,
+    "eval_split": "tune",
+    "eval_only": false,
+    "allow_unpretrained": false
+  },
+  "model_config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 4,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": true,
+    "state_on": true,
+    "plan_output_scale": [
+      10.0,
+      5.0
+    ],
+    "motion_input_mode": "low_feature",
+    "history_contract": "control",
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "cross_cell_goal_mode": "zero"
+  },
+  "loss_weights": {
+    "plan": 1.0,
+    "occupancy": 0.2,
+    "lane": 0.2,
+    "motion": 0.2,
+    "uncertainty": true
+  },
+  "time_input": "nominal",
+  "time_input_policy": {
+    "mode": "nominal",
+    "scope": "model input time_offsets only; same for training and every evaluation",
+    "source": "fixed nominal frame-offset seconds",
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "nominal_dtype": "float32",
+    "supervision_and_dataset_modified": false
+  },
+  "split_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "load_report": {
+    "common_checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+    "mr_load": {
+      "reinitialised": [
+        "motion_encoder.correlation_fuse.0.bias",
+        "motion_encoder.correlation_fuse.0.weight"
+      ],
+      "rebuild": {
+        "module": "motion_encoder.correlation_fuse.0",
+        "old_in_channels": 178,
+        "new_in_channels": 290,
+        "bins": 81,
+        "reinitialised": true,
+        "parameters": 334208
+      },
+      "widening": null,
+      "adjacency": null,
+      "strict_for_every_other_tensor": true,
+      "measured_step_zero_sha256": "bd33fb065f732b9ca25b24fd4893ebe03ec4a246c6a786424bab2c3573252e0d"
+    }
+  },
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "numpy": "2.1.0",
+  "device": "cuda:0",
+  "metric": "mean of cumulative ADE@1/2/3s; no sample proxy",
+  "cuda_memory_policy": {
+    "enabled": true,
+    "allocator_limit_mib": 170000,
+    "min_free_mib": 8192,
+    "allocator_fraction": 0.9308355001495496,
+    "initial_free_bytes": 190847057920,
+    "device_total_bytes": 191503138816,
+    "scope": "PyTorch caching allocator only; other CUDA allocations and other processes are not capped"
+  },
+  "microbatch_policy": {
+    "enabled": true,
+    "microbatch": 8,
+    "logical_batch": 16,
+    "optimizer_updates_per_logical_batch": 1,
+    "loss_normalization": "full logical batch label/mask denominators",
+    "bitwise_equivalence_to_unsplit_training_promised": false
+  },
+  "gpu_name": "NVIDIA B200",
+  "pretrained_sha256": null,
+  "supervision_manifest_sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f",
+  "initial_model_state_sha256": "bd33fb065f732b9ca25b24fd4893ebe03ec4a246c6a786424bab2c3573252e0d",
+  "initial_parameter_count": 26555960,
+  "bn_training": {
+    "policy": "fixed",
+    "modules": 53,
+    "affine_and_backbone_weights_trainable": true,
+    "inference_policy": "eval running statistics for both arms"
+  },
+  "status": "completed",
+  "pid": 2859054,
+  "experimental_protocol": {
+    "schema_version": 1,
+    "name": "md_mr_native_fullfit_20260917",
+    "arm": "MR-NATIVE-FULL",
+    "seed": 1,
+    "question": "final fit of the registered MR recipe on every unique challenge scene",
+    "initializer": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+      "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+      "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+      "source_run": "q10_q10_flip50_s0",
+      "source_checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44"
+    },
+    "split_manifest": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+      "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+    },
+    "supervision": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+      "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+    },
+    "train_scenes": null,
+    "train_data": {
+      "rows": 101520,
+      "rows_sha256": "ed29c24b9e8d35b563e50932afd00f8e6424ed63b746c8c35a3d05e5bb2cf4a8",
+      "scenes": 376
+    },
+    "tune_data": {
+      "rows": 1998,
+      "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "scenes": 37
+    },
+    "expected_initial_model_state_sha256": "bd33fb065f732b9ca25b24fd4893ebe03ec4a246c6a786424bab2c3573252e0d",
+    "expected_optimizer_groups": [
+      {
+        "name": "backbone",
+        "base_lr": 5e-06
+      },
+      {
+        "name": "head",
+        "base_lr": 5e-05
+      }
+    ],
+    "recipe": {
+      "updates": 24931,
+      "eval_every": 6345,
+      "warmup": 200,
+      "batch": 16,
+      "microbatch": 8,
+      "eval_batch": 4,
+      "optimizer": "fresh AdamW",
+      "backbone_lr": 5e-06,
+      "head_lr": 5e-05,
+      "weight_decay": 0.01,
+      "grad_clip": 5.0,
+      "decay": "cosine",
+      "cosine_horizon_updates": 24931,
+      "precision": "bf16",
+      "time_input": "nominal",
+      "bn_running_statistics": "fixed",
+      "auxiliary_weights": {
+        "occupancy": 0.2,
+        "lane": 0.2,
+        "motion": 0.2
+      },
+      "flip_probability": 0.5,
+      "command_input": "off",
+      "provided_status_used": false,
+      "interval_length_auxiliary_lambda": 0.25,
+      "cuda_memory_limit_mib": 170000,
+      "eval_role": "overlapping diagnostic only"
+    },
+    "exposures_of_own_train": 3.9292356185973207,
+    "budget_note": "E1's two arms share one update count, so the expanded arm sees each of its samples fewer times: a fixed-compute data-scale contrast, not an equal-epoch one. The LONG arm instead gives the expanded split the same six exposures, with the cosine horizon set to its own total from step one. Comparing LONG with the short expanded run is therefore a schedule-and-budget comparison, not the causal effect of exposure count alone.",
+    "interval_length_auxiliary": {
+      "lambda": 0.25,
+      "loss": "sum_n complete[n] * sum_k |ell_pred - ell_gt| / (6 * plan_complete), with plan_complete the same full-effective-batch denominator the D3 loss uses",
+      "added_to": "the existing total loss; the D3 and auxiliary weights are unchanged",
+      "never_replaces_d3": "an interval norm carries no direction, so a mirrored path scores identically under this term alone",
+      "contract": "reports/md_exp_diagnosis_20260915/length_auxiliary_contract.json"
+    },
+    "matching_resolution": {
+      "detail": "native",
+      "motion_canvas_wh": [
+        768,
+        432
+      ],
+      "correlation_radius": 4,
+      "bins_per_level": 81,
+      "search_halfwidth_original_px": {
+        "fine": 32,
+        "coarse": 64
+      },
+      "unchanged_reach": "radius 4 on the 768x432 canvas reproduces the original fine +/-32 and coarse +/-64 original-image pixels, so only the quantisation changes, not the reach",
+      "scene_branch": "untouched: its own backbone pass on the original 384x216 stack",
+      "lowdetail_recipe": "768 -> 384 -> 768 with PIL bilinear, inside the loader's own resize step, before jitter and normalisation",
+      "reinitialised_module": "motion_encoder.correlation_fuse.0 (178 -> 290 in-channels)",
+      "step_zero_parity_with_len": false,
+      "smoke": "reports/md_exp_diagnosis_20260915/mr_smoke.json",
+      "correlation_channels": 32,
+      "adjacent_edges": null,
+      "descriptor_widening": null
+    },
+    "checkpoint_selection": "fixed terminal step 24931; no in-fit metric selection",
+    "provided_status_used": false,
+    "full_fit": {
+      "logical_splits": [
+        "train",
+        "tune",
+        "val"
+      ],
+      "unique_scenes": 376,
+      "rows": 101520,
+      "historical_val_is_subset_of_val": true,
+      "dev_weights_or_caches_imported": false,
+      "evaluation_is_in_fit_diagnostic": true,
+      "checkpoint_selection_from_evaluation": false,
+      "schedule_transfer": "20554 * 101520 / 83700, ceiling",
+      "not_a_continuation": true
+    },
+    "mr_step_zero_state": {
+      "sha256_is_measured_not_pinned": true,
+      "reason": "motion_encoder.correlation_fuse.0 is rebuilt for 81 bins and newly initialised, so step-zero cannot match R0",
+      "every_other_tensor_matches_r0": true,
+      "r0_model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+      "measured_step_zero_sha256": "bd33fb065f732b9ca25b24fd4893ebe03ec4a246c6a786424bab2c3573252e0d",
+      "reinitialised": [
+        "motion_encoder.correlation_fuse.0.bias",
+        "motion_encoder.correlation_fuse.0.weight"
+      ]
+    }
+  },
+  "data_counts": {
+    "train": 101520,
+    "eval": 1998
+  },
+  "train_rows_sha256": "ed29c24b9e8d35b563e50932afd00f8e6424ed63b746c8c35a3d05e5bb2cf4a8",
+  "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "sample_order_policy": "dedicated torch generator(seed); row+epoch deterministic photometric jitter; rolling row SHA per log",
+  "step": 24931,
+  "best_metric": 0.09724460368779292,
+  "cuda_memory": {
+    "allocated_bytes": 457944064,
+    "reserved_bytes": 39468400640,
+    "peak_allocated_bytes": 35119726592,
+    "peak_reserved_bytes": 39468400640,
+    "device_free_bytes": 151055695872,
+    "device_total_bytes": 191503138816
+  },
+  "elapsed_seconds": 26182.54234994203,
+  "nonfinite_count": 0
+}
