@@ -1,5 +1,13 @@
 # A2 BASE/MH4 판정 및 SIDE-SCENE·QREFINE 독립 비교
 
+## 최종 완료 — 2026-09-18
+
+SIDE와 QREFINE 모두20,554 update 완료했다. 최종 V0는SIDE0.172406 / QREFINE0.164252다.
+SIDE는 matched BASE보다4.17% 악화. QREFINE은 기존 A2 nominal0.164455 대비0.124% 개선이지만,
+일반 주행 오차는 사실상 같다. 상세 판정과 다음 우선순위는 [최종 검토](TERMINAL_REVIEW_KO.md),
+원본 수치는 [terminal_summary.json](terminal_summary.json)을 우선한다.
+아래 실행 시각·ETA는 시작 당시 기록이며 현재 진행 상태가 아니다.
+
 ## 본 학습 시작 — 2026-09-18 18:18 KST
 
 두 run은 시작됐고 18:20 KST snapshot에서 SIDE150 / QREFINE200 update가 정상 진행됐다.

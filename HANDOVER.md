@@ -2,6 +2,42 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0K. 2026-09-18 SIDE·QREFINE terminal 완료 — 현재 우선 기록
+
+SIDE와 QREFINE 모두20,554 update / V0 1,998행 평가 완료, nonfinite_count=0.
+QREFINE 완료21:22:29, SIDE 완료21:33:23 KST. 완료 확인 시 GPU0~3은 유휴였다.
+아래0J는 시작 시점 snapshot이며 현재 진행 상태가 아니다.
+
+| 후보 | V0 PREFIX | 기존 A2 배포형 평가와 관계 |
+|---|---:|---|
+| 기존 A2 nominal 입력 평가 | 0.164455314083 | 실제 이전 비교 후보 |
+| BASE-NOM | 0.165510648966 | 같은 학습 조건 대조 |
+| MH4-NOM | 0.164495430150 | 기존 A2보다 높음 |
+| SIDE-SCENE-NOM | 0.172406018129 | 이번 설정 확대 제외 |
+| QREFINE-NOM | 0.164251769704 | 수치상 최저, 이득은 매우 작음 |
+
+Matched BASE 대비 SIDE는4.17% 악화(10/11 session 악화), QREFINE은0.761% 개선.
+그러나 QREFINE의 기존 A2 대비 이득은0.000204(0.124%)다.
+일반 주행 평균은 기존0.168442→QREFINE0.168445로 사실상 동일하며,
+전체의 작은 이득은 출발/정지에서 나온다. 첫2초 점수 기여는0.123008→0.122951.
+기존 A2 대비 session bootstrap95% 구간[-0.001629,+0.000879]는0을 포함한다.
+이는11개 관측 session의 조건부 재표집이며 seed 변동/서버 test 성능 보장이 아니다.
+
+계보 점검: 네 새 DEV run의 초기 공통 tensor·budget 일치.
+412개 로그 시점 sample-order SHA 모두 일치. 저장1998행의 row/session/frame/GT/bucket 동일.
+기존 A2 NPZ도 row와 GT를 맞춰 재계산했다. 기존 A2는 학습 status 정책이 달라 순수 구조 대조는 아니다.
+FULL의 in-fit0.088934는 DEV 순위에서 제외한다.
+
+판단: SIDE FULL/단순 연장은 하지 않는다. QREFINE terminal은 보존하되,
+큰 개선이나 일반 주행 문제 해결로 주장하지 않는다. 신규 FULL도 자동 시작하지 않았다.
+다음 우선순위는 완료된 single-head A2 FULL의 raw-input 배포 정합성 및 제출 패키징이다.
+이번 확인에서는 새 학습/공식 제출을 실행하지 않았다.
+
+기록: reports/md_a2_scene_extensions_20260918/TERMINAL_REVIEW_KO.md,
+terminal_summary.json, terminal_records/<ARM>/.
+재현: experiments/md_a2_scene_extensions_20260918/terminal_review.py.
+가중치/전체 예측: work_dirs/md_a2_scene_extensions_20260918/<ARM>-s1/.
+
 ## 0J. 2026-09-18 18:18 KST SIDE-SCENE·QREFINE 독립 본 학습 시작 — 현재 우선 기록
 
 BASE/MH4 terminal 판정: MH4는 matched BASE 대비 약0.6134% 개선에 그쳤고,
