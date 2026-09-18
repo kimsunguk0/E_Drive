@@ -1,0 +1,33 @@
+{
+  "producer_checks": {
+    "known_quadratic_fit_max_error": 0.0,
+    "flip_max_error": 0.0,
+    "missing_frame_fit_gap_rejected": true,
+    "future_goal_nan_ignored": true
+  },
+  "pooling_checks": {
+    "torch.float32": {
+      "max_abs_initial_evidence_difference": 0.0,
+      "all_invalid_evidence_exact_zero": true,
+      "q_gradient_norms": [
+        31.44443702697754,
+        35.50993728637695,
+        25.609697341918945,
+        23.821266174316406
+      ],
+      "head_q_gradients_distinct": true
+    },
+    "torch.bfloat16": {
+      "max_abs_initial_evidence_difference": 0.0,
+      "all_invalid_evidence_exact_zero": true,
+      "q_gradient_norms": [
+        31.422348022460938,
+        35.45125961303711,
+        25.596651077270508,
+        23.824377059936523
+      ],
+      "head_q_gradients_distinct": true
+    }
+  },
+  "scope": "Synthetic tensors with the current production masked_softmax; not an integrated MH4 model or training/latency result"
+}

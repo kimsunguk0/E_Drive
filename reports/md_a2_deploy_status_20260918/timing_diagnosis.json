@@ -1,0 +1,625 @@
+{
+  "schema_version": 1,
+  "purpose": "Distinguish persistent progress-error patterns from a claim of acceleration/braking timing causality",
+  "definitions": {
+    "interval_speed": "Chord length between successive predicted/GT waypoints divided by 0.5 s; not instantaneous vehicle status",
+    "nonstop": "Existing bucket label from saved evaluator",
+    "nearconstant": "Within nonstop, max-min of the six GT interval speeds <=0.5 m/s; 0.3 m/s sensitivity also reported",
+    "common_component": "For each row and chosen horizon, arithmetic mean of predicted-minus-GT interval speed",
+    "energy_identity": "sum(delta_v**2) = horizon_intervals * sum(common**2) + sum((delta_v-common)**2)",
+    "energy_warning": "Unweighted interval-speed squared-error decomposition, not a decomposition of official D3",
+    "accel_decel_groups": "Net change between last and first GT interval-average speed >=0.5 or <=-0.5 m/s; no onset-time label",
+    "causality_warning": "Persistent speed error can arise from initial progress bias, acceleration magnitude, time shift, and other causes; these summaries do not identify the cause",
+    "scope": "Saved DEV V0 predictions only; no server A2 evaluation, no model execution, no new training"
+  },
+  "models": {
+    "A2": {
+      "source": "/NHNHOME/data/sukim/adcl/work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/final_eval.json",
+      "source_sha256": "4425a7a0efe894dbe61b1462f32417c0c84553271e798f33bb6e948a513dafdc",
+      "rows": 1998,
+      "point_l2_mean": [
+        0.06453733235783705,
+        0.1276786976893561,
+        0.1960337112002982,
+        0.2659603278032549,
+        0.33634932712328625,
+        0.40853502360139354
+      ],
+      "point_weighted_contributions": [
+        0.019719740442672436,
+        0.03901293540508104,
+        0.02722690433337475,
+        0.036938934417118735,
+        0.018686073729071457,
+        0.022696390200077417
+      ],
+      "first2s_fraction_of_prefix": 0.7480994799270212,
+      "groups": {
+        "all": {
+          "n": 1998,
+          "prefix": 0.1642809785273959,
+          "contribution_to_all_prefix": 0.1642809785273959,
+          "fraction_of_all_prefix": 1,
+          "interval_speed_error_mean_mps": [
+            0.0037179345976160057,
+            0.005901061919116312,
+            0.009566158323990574,
+            0.013577795531100301,
+            0.009871176386461542,
+            0.0037095280901362267
+          ],
+          "interval_speed_error_mae_mps": [
+            0.11941878683290073,
+            0.12313242143980506,
+            0.1274488944799643,
+            0.12917555549960935,
+            0.1390463412062999,
+            0.17043645712498084
+          ],
+          "gt_net_interval_speed_change_mean_mps": 0.016286603750877454,
+          "pred_net_interval_speed_change_mean_mps": 0.016278197243397644,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.7454446653473459,
+              "common_component_abs_mean_mps": 0.10978311821204677,
+              "common_component_signed_mean_mps": 0.008190737592955803,
+              "time_varying_component_rms_mps": 0.08795540518736653,
+              "identity_error": 2.842170943040401e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.5151604773519054,
+              "common_component_abs_mean_mps": 0.09803033009603829,
+              "common_component_signed_mean_mps": 0.007723942474736831,
+              "time_varying_component_rms_mps": 0.13439232203691373,
+              "identity_error": -2.842170943040401e-14
+            }
+          }
+        },
+        "nonstop": {
+          "n": 1875,
+          "prefix": 0.1682565902215157,
+          "contribution_to_all_prefix": 0.1578984517844554,
+          "fraction_of_all_prefix": 0.9611487172760168,
+          "interval_speed_error_mean_mps": [
+            -0.0011991371840668228,
+            0.0020787730347102532,
+            0.0054100337104341905,
+            0.007954954062434249,
+            0.0028452944035630046,
+            -0.004530812567838162
+          ],
+          "interval_speed_error_mae_mps": [
+            0.12190437471675077,
+            0.1264983446143077,
+            0.12962313617558385,
+            0.1291744636000373,
+            0.13692451675194123,
+            0.16670194029127822
+          ],
+          "gt_net_interval_speed_change_mean_mps": -0.011778506614812143,
+          "pred_net_interval_speed_change_mean_mps": -0.015110181998583418,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.7520105218361794,
+              "common_component_abs_mean_mps": 0.11123032948420515,
+              "common_component_signed_mean_mps": 0.003561155905877962,
+              "time_varying_component_rms_mps": 0.08496357909173746,
+              "identity_error": -3.552713678800501e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.508695420917217,
+              "common_component_abs_mean_mps": 0.09684703242532601,
+              "common_component_signed_mean_mps": 0.002093184243206117,
+              "time_varying_component_rms_mps": 0.1310540120645079,
+              "identity_error": 0
+            }
+          }
+        },
+        "nonstop_range_le_0p5": {
+          "n": 1047,
+          "prefix": 0.15058450306688373,
+          "contribution_to_all_prefix": 0.0789098972527664,
+          "fraction_of_all_prefix": 0.48033496001855863,
+          "interval_speed_error_mean_mps": [
+            0.0026359492428766895,
+            0.005985740516757228,
+            0.009232640093371308,
+            0.008294245942350547,
+            0.00026877838172604623,
+            -0.0038632259863884597
+          ],
+          "interval_speed_error_mae_mps": [
+            0.10938578273176619,
+            0.1076507796980506,
+            0.10616123620324304,
+            0.10445157263482986,
+            0.11027457083476913,
+            0.1357136050606088
+          ],
+          "gt_net_interval_speed_change_mean_mps": 0.029610523874080447,
+          "pred_net_interval_speed_change_mean_mps": 0.023111348644815306,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.7618326660234539,
+              "common_component_abs_mean_mps": 0.09418784638066903,
+              "common_component_signed_mean_mps": 0.006537143948838943,
+              "time_varying_component_rms_mps": 0.06709497988722334,
+              "identity_error": -1.0658141036401503e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.5144510998326903,
+              "common_component_abs_mean_mps": 0.08119362586392921,
+              "common_component_signed_mean_mps": 0.0037590213651155606,
+              "time_varying_component_rms_mps": 0.10213148279967788,
+              "identity_error": -2.842170943040401e-14
+            }
+          }
+        },
+        "nonstop_range_gt_0p5": {
+          "n": 828,
+          "prefix": 0.19060281636994533,
+          "contribution_to_all_prefix": 0.07898855453168906,
+          "fraction_of_all_prefix": 0.48081375725745834,
+          "interval_speed_error_mean_mps": [
+            -0.006048576180455586,
+            -0.0028615590349795866,
+            0.0005763756392564818,
+            0.007525921938916893,
+            0.006103280242769886,
+            -0.005374970962497396
+          ],
+          "interval_speed_error_mae_mps": [
+            0.13773404356732838,
+            0.15033095387435738,
+            0.15929053867684062,
+            0.16043638007415756,
+            0.17062318024865564,
+            0.20588646563730578
+          ],
+          "gt_net_interval_speed_change_mean_mps": -0.06411463574750595,
+          "pred_net_interval_speed_change_mean_mps": -0.0634410305295478,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.7464233044035068,
+              "common_component_abs_mean_mps": 0.1327804258723722,
+              "common_component_signed_mean_mps": -0.0002019594093154485,
+              "time_varying_component_rms_mps": 0.10322078015409906,
+              "identity_error": -2.1316282072803006e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.5056885753416464,
+              "common_component_abs_mean_mps": 0.11664065159172993,
+              "common_component_signed_mean_mps": -0.000013254726164882503,
+              "time_varying_component_rms_mps": 0.1603224583078772,
+              "identity_error": 0
+            }
+          }
+        },
+        "nonstop_range_le_0p3_sensitivity": {
+          "n": 669,
+          "prefix": 0.1405515928244711,
+          "contribution_to_all_prefix": 0.04706156936915474,
+          "fraction_of_all_prefix": 0.28646998448031913,
+          "interval_speed_error_mean_mps": [
+            0.0011944412509904635,
+            0.007446401034315834,
+            0.012781858938109061,
+            0.017779685242848734,
+            0.01152027090612819,
+            0.005497621496690724
+          ],
+          "interval_speed_error_mae_mps": [
+            0.10557483939199591,
+            0.09919305120361291,
+            0.09361971481941435,
+            0.09229967954737915,
+            0.09884900705250867,
+            0.12478295454760352
+          ],
+          "gt_net_interval_speed_change_mean_mps": 0.014356799136328667,
+          "pred_net_interval_speed_change_mean_mps": 0.01865997938202893,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.7471142707068842,
+              "common_component_abs_mean_mps": 0.08484979534611156,
+              "common_component_signed_mean_mps": 0.00980059661656602,
+              "time_varying_component_rms_mps": 0.06295631313774844,
+              "identity_error": 1.7763568394002505e-15
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.4956747121005422,
+              "common_component_abs_mean_mps": 0.07307462057412292,
+              "common_component_signed_mean_mps": 0.009370046478180502,
+              "time_varying_component_rms_mps": 0.09429981242140796,
+              "identity_error": 0
+            }
+          }
+        },
+        "nonstop_net_accel_ge_0p5": {
+          "n": 377,
+          "prefix": 0.1966804397894924,
+          "contribution_to_all_prefix": 0.03711137427459391,
+          "fraction_of_all_prefix": 0.22590183359788746,
+          "interval_speed_error_mean_mps": [
+            0.060709165430505155,
+            0.04376302592328437,
+            0.012844086703832615,
+            -0.025510506000263933,
+            -0.06806852677228675,
+            -0.11967511221435172
+          ],
+          "interval_speed_error_mae_mps": [
+            0.13864961097822684,
+            0.14564387040711252,
+            0.15361063315875187,
+            0.15433585266228592,
+            0.16739080833051376,
+            0.2077545405403475
+          ],
+          "gt_net_interval_speed_change_mean_mps": 1.387418459911183,
+          "pred_net_interval_speed_change_mean_mps": 1.2070341822663264,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.7623065239084934,
+              "common_component_abs_mean_mps": 0.12843744335476684,
+              "common_component_signed_mean_mps": 0.022951443014339556,
+              "time_varying_component_rms_mps": 0.09852905801384622,
+              "identity_error": 3.552713678800501e-15
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.5381819250845387,
+              "common_component_abs_mean_mps": 0.11296105936171628,
+              "common_component_signed_mean_mps": -0.01598964448821338,
+              "time_varying_component_rms_mps": 0.15687188890228418,
+              "identity_error": 0
+            }
+          }
+        },
+        "nonstop_net_decel_le_neg0p5": {
+          "n": 420,
+          "prefix": 0.17846798401828137,
+          "contribution_to_all_prefix": 0.03751579243627536,
+          "fraction_of_all_prefix": 0.22836358032782925,
+          "interval_speed_error_mean_mps": [
+            -0.06403887905535358,
+            -0.044164470236283955,
+            -0.01576479131844528,
+            0.028436924103960773,
+            0.06185078594835183,
+            0.08999808228214466
+          ],
+          "interval_speed_error_mae_mps": [
+            0.13235902133783398,
+            0.1463261644434314,
+            0.15524711867203786,
+            0.1572058947791026,
+            0.1705361076820785,
+            0.20067381593753494
+          ],
+          "gt_net_interval_speed_change_mean_mps": -1.3634823610185538,
+          "pred_net_interval_speed_change_mean_mps": -1.2094453996810552,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.7234344704681712,
+              "common_component_abs_mean_mps": 0.12956865114882388,
+              "common_component_signed_mean_mps": -0.023882804126530523,
+              "time_varying_component_rms_mps": 0.10452612165939629,
+              "identity_error": 7.105427357601002e-15
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.48049022617783044,
+              "common_component_abs_mean_mps": 0.11594744943548717,
+              "common_component_signed_mean_mps": 0.009386275287395732,
+              "time_varying_component_rms_mps": 0.15824934901149118,
+              "identity_error": 0
+            }
+          }
+        }
+      }
+    },
+    "MR": {
+      "source": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/final_eval.json",
+      "source_sha256": "3e303f2b8c0da5d803d6c1585734176a5e028d70e79764ffbcb3afa0e4fdd210",
+      "rows": 1998,
+      "point_l2_mean": [
+        0.07283222761224784,
+        0.14780070786535393,
+        0.22961363005664856,
+        0.3138543898883353,
+        0.3950047794461533,
+        0.47087129348274176
+      ],
+      "point_weighted_contributions": [
+        0.022254291770409062,
+        0.045161327403302594,
+        0.0318907819523123,
+        0.04359088748449102,
+        0.021944709969230737,
+        0.02615951630459676
+      ],
+      "first2s_fraction_of_prefix": 0.7481474097053307,
+      "groups": {
+        "all": {
+          "n": 1998,
+          "prefix": 0.19100151488434242,
+          "contribution_to_all_prefix": 0.19100151488434242,
+          "fraction_of_all_prefix": 1,
+          "interval_speed_error_mean_mps": [
+            0.003612466633103676,
+            0.00632237548689468,
+            0.008313958321784805,
+            0.017359333160974173,
+            0.013118640430101487,
+            0.0020312312979133672
+          ],
+          "interval_speed_error_mae_mps": [
+            0.13666184430127784,
+            0.1472759994990659,
+            0.1539704182865419,
+            0.15368247385296016,
+            0.14919678724188754,
+            0.16344879127049586
+          ],
+          "gt_net_interval_speed_change_mean_mps": 0.016286603750877454,
+          "pred_net_interval_speed_change_mean_mps": 0.014705368415687101,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.8106165612551997,
+              "common_component_abs_mean_mps": 0.13549898003862365,
+              "common_component_signed_mean_mps": 0.008902033400689324,
+              "time_varying_component_rms_mps": 0.08886748217497371,
+              "identity_error": -2.842170943040401e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.6254193047303196,
+              "common_component_abs_mean_mps": 0.12129080801267993,
+              "common_component_signed_mean_mps": 0.00845966755512869,
+              "time_varying_component_rms_mps": 0.1299875502829066,
+              "identity_error": -5.684341886080802e-14
+            }
+          }
+        },
+        "nonstop": {
+          "n": 1875,
+          "prefix": 0.19674226014333307,
+          "contribution_to_all_prefix": 0.18463049938375853,
+          "fraction_of_all_prefix": 0.9666441624589116,
+          "interval_speed_error_mean_mps": [
+            -0.0009662248503842174,
+            0.0018568188598880647,
+            0.0030302970076856476,
+            0.010983702111414763,
+            0.005125991278893792,
+            -0.00735174135313037
+          ],
+          "interval_speed_error_mae_mps": [
+            0.14067906135373728,
+            0.15181155282722897,
+            0.15761157148454094,
+            0.15561776897833265,
+            0.14867852861411376,
+            0.16098163204109278
+          ],
+          "gt_net_interval_speed_change_mean_mps": -0.011778506614812143,
+          "pred_net_interval_speed_change_mean_mps": -0.01816402311755828,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.8175490185669679,
+              "common_component_abs_mean_mps": 0.13841019437072882,
+              "common_component_signed_mean_mps": 0.0037261482821510507,
+              "time_varying_component_rms_mps": 0.08618516350911602,
+              "identity_error": 2.1316282072803006e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.6281082845521355,
+              "common_component_abs_mean_mps": 0.12181226734371042,
+              "common_component_signed_mean_mps": 0.0021131405090612683,
+              "time_varying_component_rms_mps": 0.1269768674793995,
+              "identity_error": 5.684341886080802e-14
+            }
+          }
+        },
+        "nonstop_range_le_0p5": {
+          "n": 1047,
+          "prefix": 0.177100691019476,
+          "contribution_to_all_prefix": 0.09280501676546116,
+          "fraction_of_all_prefix": 0.4858862864080297,
+          "interval_speed_error_mean_mps": [
+            -0.00007664045578238975,
+            0.005139976699598081,
+            0.007447016115763566,
+            0.016661621589601695,
+            0.009756322697703313,
+            0.000656810255206307
+          ],
+          "interval_speed_error_mae_mps": [
+            0.12855177858396746,
+            0.13146985052088547,
+            0.13235717976664663,
+            0.12783004597301484,
+            0.12324374496309135,
+            0.13424706456569047
+          ],
+          "gt_net_interval_speed_change_mean_mps": 0.029610523874080447,
+          "pred_net_interval_speed_change_mean_mps": 0.030343974585069138,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.8297197274537096,
+              "common_component_abs_mean_mps": 0.11956022724880085,
+              "common_component_signed_mean_mps": 0.007292993487295238,
+              "time_varying_component_rms_mps": 0.06850276857474195,
+              "identity_error": 0
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.6375650255968565,
+              "common_component_abs_mean_mps": 0.10334028802468265,
+              "common_component_signed_mean_mps": 0.006597517817015097,
+              "time_varying_component_rms_mps": 0.10132033771712794,
+              "identity_error": 0
+            }
+          }
+        },
+        "nonstop_range_gt_0p5": {
+          "n": 828,
+          "prefix": 0.22157888197023923,
+          "contribution_to_all_prefix": 0.09182548261829733,
+          "fraction_of_all_prefix": 0.4807578760508817,
+          "interval_speed_error_mean_mps": [
+            -0.0020910978710945165,
+            -0.0022947104374264186,
+            -0.0025546122992680035,
+            0.0038040140755914173,
+            -0.0007290292470646301,
+            -0.01747849682888944
+          ],
+          "interval_speed_error_mae_mps": [
+            0.15601392253725058,
+            0.1775334879899606,
+            0.18954556680898002,
+            0.1907551433582454,
+            0.18084062823080557,
+            0.19478729888498958
+          ],
+          "gt_net_interval_speed_change_mean_mps": -0.06411463574750595,
+          "pred_net_interval_speed_change_mean_mps": -0.07950203470530091,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.8101530353681861,
+              "common_component_abs_mean_mps": 0.1622458412024421,
+              "common_component_signed_mean_mps": -0.0007841016330493902,
+              "time_varying_component_rms_mps": 0.10433882375140074,
+              "identity_error": -2.842170943040401e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.6226767951640614,
+              "common_component_abs_mean_mps": 0.14516995133769842,
+              "common_component_signed_mean_mps": -0.003557322101358608,
+              "time_varying_component_rms_mps": 0.1533937939874464,
+              "identity_error": 0
+            }
+          }
+        },
+        "nonstop_range_le_0p3_sensitivity": {
+          "n": 669,
+          "prefix": 0.16516194620387972,
+          "contribution_to_all_prefix": 0.05530197297817595,
+          "fraction_of_all_prefix": 0.2895368291275756,
+          "interval_speed_error_mean_mps": [
+            -0.00023309187978576908,
+            0.008422326572466613,
+            0.012874279677575935,
+            0.02965977358675299,
+            0.025354843136431778,
+            0.014312469744235638
+          ],
+          "interval_speed_error_mae_mps": [
+            0.12313081365806511,
+            0.12036854561682174,
+            0.11733637203751585,
+            0.1155641778805291,
+            0.11333895556585398,
+            0.12592107481265313
+          ],
+          "gt_net_interval_speed_change_mean_mps": 0.014356799136328667,
+          "pred_net_interval_speed_change_mean_mps": 0.028902360760350073,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.8208089075432322,
+              "common_component_abs_mean_mps": 0.10856885460642247,
+              "common_component_signed_mean_mps": 0.01268082198925244,
+              "time_varying_component_rms_mps": 0.06381003735048435,
+              "identity_error": 5.329070518200751e-15
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.6200616205468262,
+              "common_component_abs_mean_mps": 0.09420682626152997,
+              "common_component_signed_mean_mps": 0.015065100139612864,
+              "time_varying_component_rms_mps": 0.09395062403921009,
+              "identity_error": -7.105427357601002e-15
+            }
+          }
+        },
+        "nonstop_net_accel_ge_0p5": {
+          "n": 377,
+          "prefix": 0.23090069370566102,
+          "contribution_to_all_prefix": 0.04356834911262973,
+          "fraction_of_all_prefix": 0.22810473068243345,
+          "interval_speed_error_mean_mps": [
+            0.06362612262118311,
+            0.04045807735491203,
+            0.003986842519403507,
+            -0.03201082945032766,
+            -0.07124573962364378,
+            -0.1278363570832456
+          ],
+          "interval_speed_error_mae_mps": [
+            0.1601175110107258,
+            0.17606822753954626,
+            0.18865604290134672,
+            0.18459953542291088,
+            0.17003123211155066,
+            0.19628831932868462
+          ],
+          "gt_net_interval_speed_change_mean_mps": 1.387418459911183,
+          "pred_net_interval_speed_change_mean_mps": 1.1959559802067548,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.8272622623147099,
+              "common_component_abs_mean_mps": 0.16227172569363488,
+              "common_component_signed_mean_mps": 0.01901505326129274,
+              "time_varying_component_rms_mps": 0.09955139829027732,
+              "identity_error": 1.5987211554602254e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.6495550085047924,
+              "common_component_abs_mean_mps": 0.14214479940275526,
+              "common_component_signed_mean_mps": -0.02050364727695308,
+              "time_varying_component_rms_mps": 0.1488970065564046,
+              "identity_error": 0
+            }
+          }
+        },
+        "nonstop_net_decel_le_neg0p5": {
+          "n": 420,
+          "prefix": 0.2038038136144306,
+          "contribution_to_all_prefix": 0.042841642501531954,
+          "fraction_of_all_prefix": 0.22430001420393944,
+          "interval_speed_error_mean_mps": [
+            -0.05806354086438072,
+            -0.039210861485166594,
+            -0.013280049756976149,
+            0.027004934635659332,
+            0.050248889648367115,
+            0.07306502557278517
+          ],
+          "interval_speed_error_mae_mps": [
+            0.14648712445034692,
+            0.16865820556271743,
+            0.1782779451576772,
+            0.18302189406795358,
+            0.1826598857259707,
+            0.19048908782944704
+          ],
+          "gt_net_interval_speed_change_mean_mps": -1.3634823610185538,
+          "pred_net_interval_speed_change_mean_mps": -1.2323537945813876,
+          "decomposition": {
+            "first2s": {
+              "common_component_energy_fraction": 0.7875128665371302,
+              "common_component_abs_mean_mps": 0.15229513492915295,
+              "common_component_signed_mean_mps": -0.02088737936771605,
+              "time_varying_component_rms_mps": 0.10462458051048654,
+              "identity_error": 1.0658141036401503e-14
+            },
+            "full3s": {
+              "common_component_energy_fraction": 0.5919341727197123,
+              "common_component_abs_mean_mps": 0.1406624822798958,
+              "common_component_signed_mean_mps": 0.006627399625048011,
+              "time_varying_component_rms_mps": 0.15246940896751607,
+              "identity_error": -7.105427357601002e-15
+            }
+          }
+        }
+      }
+    }
+  }
+}

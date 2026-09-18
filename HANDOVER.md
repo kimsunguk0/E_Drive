@@ -2,6 +2,42 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0F. 2026-09-18 A2 입력 정합성 실측 및 다음 방향 — 아래의 A3 우선순위보다 우선
+
+사용자는 A2의 query-only 공통 scene 경계를 다음 주력으로 선택했다. 현재 A3의
+status→motion/state/history 경로는 제출 주력에서 제외하고 기존 결과만 보존한다.
+새 방향은 배포 status 정합성 → A2 FULL/동일 입력 DEV control/4-head scene 비교 → SIDE-SCENE다.
+QREFINE은 별도 후속 가설이며 scene/global/motion status value gate를 첫 실험에 넣지 않는다.
+
+이번에 기존 A2 checkpoint, GPU 0, V0 1,998행에서 status만 교체해 평가했다.
+
+- 실측 timestamps status PREFIX: **0.164280978527**.
+- frame 차이×0.1초의 배포형 nominal status PREFIX: **0.164455314083**.
+- 차이 **+0.000174335556**. 두 plan 간 PREFIX 거리는 0.005607703121m.
+- 원래 저장 예측을 정확히 재현했고, status 교체에 따른 motion/state/history 변화는 모두 0.
+- 기존 보고의 vx 0.00885 / ax 0.01627 차이는 MAE다. 두 fit 모두 모든 행에서 11 poses를 썼다.
+- 실제 test 1,125개 모두 pose schema에 timestamp가 없다. 동일 producer로 status가 유효했고,
+  미래 +50 pose XYZ/RPY를 NaN으로 바꿔도 결과는 동일했다.
+- 이 비교는 cached image/geometry를 고정한 status 교체다. A2 전체 raw adapter의 parity나 제출 완료는 아니다.
+- 새 학습의 input producer는 통일하되 state/history supervision은 원래 정의를 유지한다.
+  이번 V0에서 timestamp 차이는 주요 성능 병목으로 관측되지 않았다.
+
+현행 masked_softmax를 이용한 합성 FP32/BF16 검사에서 Q/K head당32·V head당32의
+identity 초기화 4-head pooling은 기존 evidence를 정확히 재현하고 head별 gradient가 달랐다.
+실제 MH4 encoder/최종 plan 통합 검사는 아직 남아 있다.
+
+계획한 A2-FULL-NOM(24,931), A2-BASE-NOM(20,554), A2-MH4-NOM(20,554)은
+동일 upstream 초기값 계보를 사용한다. terminal A2 continuation과 혼동하지 않는다.
+**위 세 새 학습은 아직 시작하지 않았다.** 이번 실행은 paired evaluation과 원리 검사뿐이다.
+
+첫 2초의 현 A2 점수 기여 74.81%, 일반 주행 구간 속도 오차의 공통 성분 비중 75.20%를
+재계산했다. 후자는 제곱오차 분해이며 D3/v0/가감속 타이밍의 인과 기여도가 아니다.
+4-head 개선이 확인되면 first2s 진행량/시간변화 및 같은 mask의 종·횡 오차도 함께 본다.
+
+상세·재현 코드: `reports/md_a2_deploy_status_20260918/REVIEW_AND_P0_KO.md`,
+`experiments/md_a2_deploy_status_20260918/`.
+원본 paired prediction/status 배열은 같은 report 디렉터리의 `paired_status_eval.npz`에 보존한다.
+
 ## 0E. 2026-09-18 MR FULL 공식 점수 — 현재 확인된 서버 결과
 
 사용자가 MR과 FULL 두 제출의 공식 채점 응답을 전달했다. FULL은 **0.18596892793122946**으로,

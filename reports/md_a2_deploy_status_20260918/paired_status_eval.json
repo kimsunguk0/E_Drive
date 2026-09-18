@@ -1,0 +1,149 @@
+{
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "ffeac3447eb777e744ab4f3501988b2279f895fa0077fe5111a7516157aa0469",
+  "conditions": {
+    "nominal": {
+      "L2_1s": 0.09619163247294962,
+      "L2_2s": 0.16370005496799167,
+      "L2_3s": 0.23347425480857892,
+      "PREFIX": 0.1644553140831734,
+      "buckets": {
+        "depart": {
+          "PREFIX": 0.33961341221831437,
+          "n": 24
+        },
+        "nonstop": {
+          "PREFIX": 0.16844236080053027,
+          "n": 1875
+        },
+        "steady": {
+          "PREFIX": 0.04648049640350149,
+          "n": 99
+        }
+      }
+    },
+    "real": {
+      "L2_1s": 0.0961080150235967,
+      "L2_2s": 0.1635525172626866,
+      "L2_3s": 0.23318240329590437,
+      "PREFIX": 0.1642809785273959,
+      "buckets": {
+        "depart": {
+          "PREFIX": 0.33961369033086797,
+          "n": 24
+        },
+        "nonstop": {
+          "PREFIX": 0.1682565902215157,
+          "n": 1875
+        },
+        "steady": {
+          "PREFIX": 0.04648040267125458,
+          "n": 99
+        }
+      }
+    }
+  },
+  "elapsed_s": 51.47787471488118,
+  "evaluation_reference_sha256": "4425a7a0efe894dbe61b1462f32417c0c84553271e798f33bb6e948a513dafdc",
+  "kind": "fixed-checkpoint paired status input evaluation",
+  "limitations": [
+    "The paired eval uses cached images/geometry with a deployable status producer; it is not a full raw-image submission adapter parity test.",
+    "This evaluates a real-timestamp-trained checkpoint under nominal inputs; it does not measure nominal-input retraining or MH4."
+  ],
+  "motion_state_history_max_abs_difference": {
+    "history_hat": 0.0,
+    "motion_features": 0.0,
+    "state_hat": 0.0
+  },
+  "nominal_minus_real_PREFIX": 0.00017433555577749986,
+  "nominal_vs_real_plan_PREFIX": 0.00560770312107611,
+  "original_plan_max_abs_difference_from_saved": 0.0,
+  "other_model_inputs": "identical; time_offsets remains nominal for both conditions",
+  "per_row_PREFIX_delta_p0_p5_p50_p95_p100": [
+    -0.027419680941912022,
+    -0.008343980743890481,
+    0.0,
+    0.009441804663239572,
+    0.031008148487627896
+  ],
+  "physical_gpu": 0,
+  "plan_change_per_row_p50_p95_max": [
+    0.004634751500201523,
+    0.014979166006322101,
+    0.03493925257584583
+  ],
+  "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+  "rows": 1998,
+  "schema_version": 1,
+  "script_sha256": "3d95fa5bc11df4f5cab7eb74a43553fb0cff5dc8892cb752aea0a4185c68a303",
+  "status": {
+    "fit_count_pairs": {
+      "(np.int64(11), np.int64(11))": 1998
+    },
+    "future_goal_poison_status_max_change": 0.0,
+    "mae": [
+      0.0088496435337156,
+      0.00023852293857995387,
+      0.01626695700717134,
+      0.0004490711610807759,
+      1.4452065529284667e-05
+    ],
+    "max_abs": [
+      0.062039852142333984,
+      0.016415921971201897,
+      0.12770918011665344,
+      0.019999980926513672,
+      0.0034144818782806396
+    ],
+    "nominal_minus_real_signed_mean": [
+      -8.557424034579371e-05,
+      -8.322447761734643e-06,
+      -0.00016388122068061644,
+      -1.0329498281493756e-05,
+      2.9875676006441154e-06
+    ],
+    "order": [
+      "vx",
+      "vy",
+      "ax",
+      "ay",
+      "yaw_rate"
+    ],
+    "p95_abs": [
+      0.02024111747741697,
+      0.0005919396877288815,
+      0.03853245042264462,
+      0.001114151068031787,
+      5.3621642291545864e-05
+    ],
+    "real_replay_equals_cached_state_target": true,
+    "test_clips": 1125,
+    "test_pose_schemas": [
+      {
+        "columns": [
+          "frame",
+          "x",
+          "y",
+          "z",
+          "roll",
+          "pitch",
+          "yaw"
+        ],
+        "n": 1125
+      }
+    ],
+    "test_top_level_files": [
+      {
+        "files": [
+          "calibration.parquet",
+          "command.parquet",
+          "ego_pose.parquet"
+        ],
+        "n": 1125
+      }
+    ]
+  },
+  "supervision_policy": "original state/history targets retained; only provided_status5 changes",
+  "training_performed": false,
+  "triangle_bound_max_violation": 0.0
+}
