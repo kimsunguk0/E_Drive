@@ -1,0 +1,14 @@
+{
+  "arm": "PARENT",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+  "train_probe_definition": "same 512 rows as gradient probe, no augmentation, no fitting; selected by train sampler before results",
+  "inference_only": true,
+  "datasets": {
+    "train": {
+      "n": 512,
+      "PREFIX": 0.08870333254291016,
+      "rows_sha256": "4a8eb4b449a25a1dee915e47ccecd887d7db4ab50ac153fef8a00bb869cd77d8"
+    }
+  }
+}

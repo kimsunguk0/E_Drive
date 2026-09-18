@@ -1,0 +1,14 @@
+{
+  "arm": "BASE",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "db9a49bbaa9385dc7d6d6a8b78a593d20fabd75c25d3789fcd8043a850853a33",
+  "train_probe_definition": "same 512 rows as gradient probe, no augmentation, no fitting; selected by train sampler before results",
+  "inference_only": true,
+  "datasets": {
+    "train": {
+      "n": 512,
+      "PREFIX": 0.08945488544370195,
+      "rows_sha256": "4a8eb4b449a25a1dee915e47ccecd887d7db4ab50ac153fef8a00bb869cd77d8"
+    }
+  }
+}

@@ -1,0 +1,674 @@
+{
+  "created_at_utc": "2026-09-18T17:46:47.481129+00:00",
+  "scope": "G",
+  "models": {
+    "PARENT": {
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1",
+      "step": 20554,
+      "PREFIX": 0.16425176679687356,
+      "L2_1s": 0.09604649863001233,
+      "L2_2s": 0.1636846045296696,
+      "L2_3s": 0.23302419723093878,
+      "per_waypoint_L2": [
+        0.06433589766743127,
+        0.1277570995925934,
+        0.1962317025412583,
+        0.2664137183173965,
+        0.33664871645064914,
+        0.4067580488163059
+      ],
+      "first2s_PREFIX_contribution": 0.12295139094870944,
+      "weighted_longitudinal_abs_m": 0.14340523787648243,
+      "weighted_lateral_abs_m": 0.06090153312328808,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.33573419243989444,
+          "overall_contribution": 0.004032843152431164
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16844511321878103,
+          "overall_contribution": 0.15807536901161884
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.043260829862439815,
+          "overall_contribution": 0.0021435546328235945
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.2375198291486852
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15293156962423307
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.3724204517583537
+        }
+      },
+      "train_probe_PREFIX": 0.08870333254291016,
+      "state_mae": [
+        0.5725034254447401,
+        0.039480043030556036,
+        0.23571802781150397,
+        0.04959196550206415,
+        0.00496643786131348
+      ],
+      "history_mae": [
+        0.07148685692293286,
+        0.12824002548108795,
+        0.2894839058053394,
+        0.5683637300442841
+      ],
+      "occupancy_IoU": 0.4581157963705792,
+      "lane_IoU": 0.4791924209581673,
+      "learning_curve": [
+        {
+          "step": 3426,
+          "PREFIX": 0.21534505669816253
+        },
+        {
+          "step": 6852,
+          "PREFIX": 0.24361306298580077
+        },
+        {
+          "step": 10278,
+          "PREFIX": 0.18749220937432665
+        },
+        {
+          "step": 13704,
+          "PREFIX": 0.17225531245804615
+        },
+        {
+          "step": 17130,
+          "PREFIX": 0.1643165723192044
+        },
+        {
+          "step": 20554,
+          "PREFIX": 0.16425176970362365
+        }
+      ],
+      "best_on_reused_V0": {
+        "step": 20554,
+        "PREFIX": 0.16425176970362365
+      },
+      "best_selection_warning": "development selection, not independent validation",
+      "diagnostics": {
+        "n": 1998,
+        "official_weights": [
+          0.3055555555555556,
+          0.3055555555555556,
+          0.1388888888888889,
+          0.1388888888888889,
+          0.05555555555555555,
+          0.05555555555555555
+        ],
+        "first2s_PREFIX_contribution": 0.12295139094870944,
+        "groups": {
+          "all": {
+            "n": 1998,
+            "PREFIX": 0.16425176679687356,
+            "overall_PREFIX_contribution": 0.16425176679687356,
+            "first2s_common_progress_error_MAE_mps": 0.11008786265132083,
+            "first2s_time_varying_progress_error_RMS_mps": 0.08716043076595088
+          },
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.33573419243989444,
+            "overall_PREFIX_contribution": 0.004032843152431164,
+            "first2s_common_progress_error_MAE_mps": 0.2972886157008437,
+            "first2s_time_varying_progress_error_RMS_mps": 0.2802643930732776
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.16844511321878103,
+            "overall_PREFIX_contribution": 0.15807536901161884,
+            "first2s_common_progress_error_MAE_mps": 0.1116958460092346,
+            "first2s_time_varying_progress_error_RMS_mps": 0.08391997123343412
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.043260829862439815,
+            "overall_PREFIX_contribution": 0.0021435546328235945,
+            "first2s_common_progress_error_MAE_mps": 0.03425163164852405,
+            "first2s_time_varying_progress_error_RMS_mps": 0.029937550062845195
+          }
+        },
+        "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+        "valid_tangent_fraction": 0.940357023690357,
+        "weighted_longitudinal_abs_m": 0.14340523787648243,
+        "weighted_lateral_abs_m": 0.06090153312328808,
+        "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+      }
+    },
+    "BASE": {
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1",
+      "step": 20554,
+      "PREFIX": 0.16551064587503816,
+      "L2_1s": 0.09674669730702547,
+      "L2_2s": 0.16469637305158608,
+      "L2_3s": 0.235088867266503,
+      "per_waypoint_L2": [
+        0.06482733342469027,
+        0.12866606118936058,
+        0.1972495552782018,
+        0.26804254231409136,
+        0.3398564504275835,
+        0.41189126096508977
+      ],
+      "first2s_PREFIX_contribution": 0.12374688413100077,
+      "weighted_longitudinal_abs_m": 0.14460796560266462,
+      "weighted_lateral_abs_m": 0.06108602180113036,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.34060875343886926,
+          "overall_contribution": 0.004091396437704135
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16959081269336226,
+          "overall_contribution": 0.1591505374374646
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.0457867330882747,
+          "overall_contribution": 0.0022687119998694672
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.2358730727203629
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15445719431084373
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.37340450653835316
+        }
+      },
+      "train_probe_PREFIX": 0.08945488544370195,
+      "state_mae": [
+        0.5814771731048487,
+        0.04000052589665258,
+        0.23664725074914889,
+        0.049217390914767366,
+        0.004902211133524473
+      ],
+      "history_mae": [
+        0.07265176153110757,
+        0.12989063526579953,
+        0.2939362718099803,
+        0.5746520453713484
+      ],
+      "occupancy_IoU": 0.457733541149349,
+      "lane_IoU": 0.47830436964985823,
+      "learning_curve": [
+        {
+          "step": 3426,
+          "PREFIX": 0.22501276231634695
+        },
+        {
+          "step": 6852,
+          "PREFIX": 0.21039898154951325
+        },
+        {
+          "step": 10278,
+          "PREFIX": 0.1788146728742961
+        },
+        {
+          "step": 13704,
+          "PREFIX": 0.17492577742581983
+        },
+        {
+          "step": 17130,
+          "PREFIX": 0.16645857850586096
+        },
+        {
+          "step": 20554,
+          "PREFIX": 0.1655106489655904
+        }
+      ],
+      "best_on_reused_V0": {
+        "step": 20554,
+        "PREFIX": 0.1655106489655904
+      },
+      "best_selection_warning": "development selection, not independent validation",
+      "diagnostics": {
+        "n": 1998,
+        "official_weights": [
+          0.3055555555555556,
+          0.3055555555555556,
+          0.1388888888888889,
+          0.1388888888888889,
+          0.05555555555555555,
+          0.05555555555555555
+        ],
+        "first2s_PREFIX_contribution": 0.12374688413100077,
+        "groups": {
+          "all": {
+            "n": 1998,
+            "PREFIX": 0.16551064587503816,
+            "overall_PREFIX_contribution": 0.16551064587503816,
+            "first2s_common_progress_error_MAE_mps": 0.11111560645437046,
+            "first2s_time_varying_progress_error_RMS_mps": 0.08829000697961553
+          },
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.34060875343886926,
+            "overall_PREFIX_contribution": 0.004091396437704135,
+            "first2s_common_progress_error_MAE_mps": 0.3013947344659199,
+            "first2s_time_varying_progress_error_RMS_mps": 0.28479319314521434
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.16959081269336226,
+            "overall_PREFIX_contribution": 0.1591505374374646,
+            "first2s_common_progress_error_MAE_mps": 0.11259966102708986,
+            "first2s_time_varying_progress_error_RMS_mps": 0.08496612493166789
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.0457867330882747,
+            "overall_PREFIX_contribution": 0.0022687119998694672,
+            "first2s_common_progress_error_MAE_mps": 0.03688023881673319,
+            "first2s_time_varying_progress_error_RMS_mps": 0.030485802624154044
+          }
+        },
+        "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+        "valid_tangent_fraction": 0.940357023690357,
+        "weighted_longitudinal_abs_m": 0.14460796560266462,
+        "weighted_lateral_abs_m": 0.06108602180113036,
+        "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+      }
+    },
+    "A2-G0": {
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1",
+      "step": 3426,
+      "PREFIX": 0.1650840651964101,
+      "L2_1s": 0.0963413054460424,
+      "L2_2s": 0.1643324446471303,
+      "L2_3s": 0.2345784454960577,
+      "per_waypoint_L2": [
+        0.0645227334056519,
+        0.12815987748643293,
+        0.19692096328561082,
+        0.2677262044108262,
+        0.3390875582660966,
+        0.4110533361217278
+      ],
+      "first2s_PREFIX_contribution": 0.12340957106375317,
+      "weighted_longitudinal_abs_m": 0.1436853192592812,
+      "weighted_lateral_abs_m": 0.06118307431654733,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3373339041746568,
+          "overall_contribution": 0.004052058909004887
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16871951376274416,
+          "overall_contribution": 0.15833287702960225
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.0544733359302049,
+          "overall_contribution": 0.0026991292578029454
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.23876633616792647
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.1538094671233748
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.36962876062951516
+        }
+      },
+      "train_probe_PREFIX": 0.08780663015798326,
+      "state_mae": [
+        0.5727764243301744,
+        0.03957922343583964,
+        0.23534896551670195,
+        0.04988491994980676,
+        0.004963815206012115
+      ],
+      "history_mae": [
+        0.07166233317417807,
+        0.12844508714825698,
+        0.29061058982523874,
+        0.5692521840037016
+      ],
+      "occupancy_IoU": 0.4589848391236158,
+      "lane_IoU": 0.4804432373561735,
+      "learning_curve": [
+        {
+          "step": 1142,
+          "PREFIX": 0.16848867519588973
+        },
+        {
+          "step": 2284,
+          "PREFIX": 0.1645371968989858
+        },
+        {
+          "step": 3426,
+          "PREFIX": 0.1650840685144906
+        }
+      ],
+      "best_on_reused_V0": {
+        "step": 2284,
+        "PREFIX": 0.1645371968989858
+      },
+      "best_selection_warning": "development selection, not independent validation",
+      "diagnostics": {
+        "n": 1998,
+        "official_weights": [
+          0.3055555555555556,
+          0.3055555555555556,
+          0.1388888888888889,
+          0.1388888888888889,
+          0.05555555555555555,
+          0.05555555555555555
+        ],
+        "first2s_PREFIX_contribution": 0.12340957106375317,
+        "groups": {
+          "all": {
+            "n": 1998,
+            "PREFIX": 0.1650840651964101,
+            "overall_PREFIX_contribution": 0.1650840651964101,
+            "first2s_common_progress_error_MAE_mps": 0.11056479327130818,
+            "first2s_time_varying_progress_error_RMS_mps": 0.08734652102963414
+          },
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.3373339041746568,
+            "overall_PREFIX_contribution": 0.004052058909004887,
+            "first2s_common_progress_error_MAE_mps": 0.30002908030268666,
+            "first2s_time_varying_progress_error_RMS_mps": 0.2840558734006178
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.16871951376274416,
+            "overall_PREFIX_contribution": 0.15833287702960225,
+            "first2s_common_progress_error_MAE_mps": 0.1118790227356219,
+            "first2s_time_varying_progress_error_RMS_mps": 0.08390145755315546
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.0544733359302049,
+            "overall_PREFIX_contribution": 0.0026991292578029454,
+            "first2s_common_progress_error_MAE_mps": 0.03974334746988077,
+            "first2s_time_varying_progress_error_RMS_mps": 0.033042299905653806
+          }
+        },
+        "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+        "valid_tangent_fraction": 0.940357023690357,
+        "weighted_longitudinal_abs_m": 0.1436853192592812,
+        "weighted_lateral_abs_m": 0.06118307431654733,
+        "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+      }
+    },
+    "A2-G1": {
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1",
+      "step": 3426,
+      "PREFIX": 0.16474080158049537,
+      "L2_1s": 0.0962053886366569,
+      "L2_2s": 0.16405817262114436,
+      "L2_3s": 0.23395884348368481,
+      "per_waypoint_L2": [
+        0.06440203254387065,
+        0.12800874472944337,
+        0.19660237175266687,
+        0.267219541458597,
+        0.33814106047537595,
+        0.409379309942156
+      ],
+      "first2s_PREFIX_contribution": 0.12321189211285473,
+      "weighted_longitudinal_abs_m": 0.14344707852341892,
+      "weighted_lateral_abs_m": 0.060972980565968025,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.33485834685348076,
+          "overall_contribution": 0.004022322484726496
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16837224069179071,
+          "overall_contribution": 0.15800698263118498
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.05472292864887504,
+          "overall_contribution": 0.0027114964645838986
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.24047994868933575
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15327573450611778
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.3695519669721764
+        }
+      },
+      "train_probe_PREFIX": 0.08729304478252542,
+      "state_mae": [
+        0.5761086253102172,
+        0.03969585622317746,
+        0.2365593222110673,
+        0.04973360446151914,
+        0.004990238978098023
+      ],
+      "history_mae": [
+        0.07183004574128811,
+        0.1288030373770534,
+        0.29168107398707344,
+        0.5726877835146185
+      ],
+      "occupancy_IoU": 0.45807894057958554,
+      "lane_IoU": 0.47848142230590623,
+      "learning_curve": [
+        {
+          "step": 1142,
+          "PREFIX": 0.16942476513898103
+        },
+        {
+          "step": 2284,
+          "PREFIX": 0.16388248779344372
+        },
+        {
+          "step": 3426,
+          "PREFIX": 0.1647408042244988
+        }
+      ],
+      "best_on_reused_V0": {
+        "step": 2284,
+        "PREFIX": 0.16388248779344372
+      },
+      "best_selection_warning": "development selection, not independent validation",
+      "diagnostics": {
+        "n": 1998,
+        "official_weights": [
+          0.3055555555555556,
+          0.3055555555555556,
+          0.1388888888888889,
+          0.1388888888888889,
+          0.05555555555555555,
+          0.05555555555555555
+        ],
+        "first2s_PREFIX_contribution": 0.12321189211285473,
+        "groups": {
+          "all": {
+            "n": 1998,
+            "PREFIX": 0.16474080158049537,
+            "overall_PREFIX_contribution": 0.16474080158049537,
+            "first2s_common_progress_error_MAE_mps": 0.11044246548605675,
+            "first2s_time_varying_progress_error_RMS_mps": 0.08681325510307687
+          },
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.33485834685348076,
+            "overall_PREFIX_contribution": 0.004022322484726496,
+            "first2s_common_progress_error_MAE_mps": 0.2962756662396738,
+            "first2s_time_varying_progress_error_RMS_mps": 0.27684807236681536
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.16837224069179071,
+            "overall_PREFIX_contribution": 0.15800698263118498,
+            "first2s_common_progress_error_MAE_mps": 0.11180656568468009,
+            "first2s_time_varying_progress_error_RMS_mps": 0.08364668370138943
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.05472292864887504,
+            "overall_PREFIX_contribution": 0.0027114964645838986,
+            "first2s_common_progress_error_MAE_mps": 0.03955676154155596,
+            "first2s_time_varying_progress_error_RMS_mps": 0.031717421813453855
+          }
+        },
+        "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+        "valid_tangent_fraction": 0.940357023690357,
+        "weighted_longitudinal_abs_m": 0.14344707852341892,
+        "weighted_lateral_abs_m": 0.060972980565968025,
+        "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+      }
+    }
+  },
+  "comparisons": {
+    "A2-G1 minus A2-G0": {
+      "delta": -0.00034326361591474283,
+      "relative_percent": -0.2079326163348002,
+      "session_cluster_ci95": [
+        -0.0009196936821050259,
+        0.0002866281037421879
+      ],
+      "ci_includes_zero": true,
+      "sessions_improved": 7,
+      "session_count": 11,
+      "session_delta": {
+        "session_019_20260113-102709": 0.0013062162337990333,
+        "session_026_20260122-134906": 0.00036760092168834483,
+        "session_027_20260122-135506": -0.0006426340334704663,
+        "session_040_20260209-153550": 0.00019421160898301347,
+        "session_046_20260210-100504": -4.87607877269091e-06,
+        "session_076_20260213-134648": -0.0010651171903400308,
+        "session_087_20260219-90551": 0.0025629188267528896,
+        "session_092_20260219-103747": -0.0014620856177052668,
+        "session_097_20260219-110038": -0.000662368342280932,
+        "session_108_20260220-134317": -0.0029233158709283387,
+        "session_112_20260303-142827": -2.2708187027912333e-05
+      },
+      "group_delta": {
+        "depart": -0.0024755573211760608,
+        "nonstop": -0.00034727307095348017,
+        "steady": 0.0002495927186701485
+      },
+      "group_contribution_delta": {
+        "depart": -2.9736424278391118e-05,
+        "nonstop": -0.000325894398417305,
+        "steady": 1.2367206780953305e-05
+      }
+    },
+    "A2-G0 minus PARENT": {
+      "delta": 0.0008322983995365574,
+      "relative_percent": 0.5067211243857376,
+      "session_cluster_ci95": [
+        -0.0004721631344644293,
+        0.0015759988636554394
+      ],
+      "ci_includes_zero": true,
+      "sessions_improved": 4,
+      "session_count": 11,
+      "session_delta": {
+        "session_019_20260113-102709": 0.0012910461632801528,
+        "session_026_20260122-134906": -0.0005096425507081624,
+        "session_027_20260122-135506": 0.0008249283353068959,
+        "session_040_20260209-153550": 0.0012704371344869775,
+        "session_046_20260210-100504": 0.002271002039418612,
+        "session_076_20260213-134648": 0.0012804690988673386,
+        "session_087_20260219-90551": -0.003440513845938292,
+        "session_092_20260219-103747": -0.0035484128758274235,
+        "session_097_20260219-110038": -5.061217970689266e-05,
+        "session_108_20260220-134317": 0.0011969258313862157,
+        "session_112_20260303-142827": 2.497561528668952e-06
+      },
+      "group_delta": {
+        "depart": 0.0015997117347623796,
+        "nonstop": 0.0002744005439632017,
+        "steady": 0.011212506067765063
+      },
+      "group_contribution_delta": {
+        "depart": 1.9215756573722276e-05,
+        "nonstop": 0.0002575080179834851,
+        "steady": 0.0005555746249793499
+      }
+    },
+    "A2-G1 minus PARENT": {
+      "delta": 0.0004890347836218146,
+      "relative_percent": 0.29773486955948114,
+      "session_cluster_ci95": [
+        -0.0006916653011547714,
+        0.0014024030246822432
+      ],
+      "ci_includes_zero": true,
+      "sessions_improved": 6,
+      "session_count": 11,
+      "session_delta": {
+        "session_019_20260113-102709": 0.002597262397079186,
+        "session_026_20260122-134906": -0.00014204162901981763,
+        "session_027_20260122-135506": 0.00018229430183642933,
+        "session_040_20260209-153550": 0.001464648743469991,
+        "session_046_20260210-100504": 0.0022661259606459212,
+        "session_076_20260213-134648": 0.00021535190852730763,
+        "session_087_20260219-90551": -0.0008775950191854026,
+        "session_092_20260219-103747": -0.00501049849353269,
+        "session_097_20260219-110038": -0.000712980521987824,
+        "session_108_20260220-134317": -0.0017263900395421232,
+        "session_112_20260303-142827": -2.021062549924338e-05
+      },
+      "group_delta": {
+        "depart": -0.0008758455864136811,
+        "nonstop": -7.287252699027853e-05,
+        "steady": 0.011462098786435209
+      },
+      "group_contribution_delta": {
+        "depart": -1.052066770466884e-05,
+        "nonstop": -6.838638043381994e-05,
+        "steady": 0.0005679418317603032
+      }
+    }
+  },
+  "verified": {
+    "same_1998_rows_GT_buckets": true,
+    "G_logged_sample_orders_match": 69,
+    "S_logged_sample_orders_match": null,
+    "FULL_excluded": true
+  },
+  "limitations": [
+    "Repeatedly used DEV; one seed per recipe.",
+    "Session bootstrap on 11 observed sessions does not estimate training-seed variance or test score.",
+    "Intermediate best is selected on the same V0.",
+    "These scores are not official submissions."
+  ]
+}
