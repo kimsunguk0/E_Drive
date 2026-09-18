@@ -1,0 +1,30 @@
+{
+  "candidate": "MR-NATIVE-s1",
+  "response": {
+    "score": 0.19798776670488366,
+    "metrics": {
+      "L2_1s": 0.11367239131081722,
+      "L2_2s": 0.19634393043312198,
+      "L2_3s": 0.2839469783707119,
+      "L2_avg": 0.19798776670488366,
+      "flops": 729815613824,
+      "cutoff": true,
+      "elapsed_ms": 310,
+      "runtime": {
+        "pull_mode": true,
+        "num_inflight": 1,
+        "want": 31,
+        "pull_interval_sec": 10
+      }
+    }
+  },
+  "confirmation_source": "user-provided official scoring response in conversation",
+  "recorded_at": "2026-09-18T02:42:35.394872+00:00",
+  "independently_fetched_from_server": false,
+  "submitted_file_association": "user identified the corresponding local submission directory; package hashes verified locally and in repository",
+  "submission_json_sha256": "df276afd91b2cb87b1a394f14d83c487906e2789c366c2f7022e2b9ecb36fbce",
+  "submission_zip_sha256": "82d8a75bba655d06c7e9eaeccabda7bfa5b2a0d97a718a7a99041bd37ce2349e",
+  "model_state_sha256": "cb04d745fc5af990447d03e2ea7bd098ce344c8356ad53268102e1da264616e2",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/ckpt_step20554.pth",
+  "provided_status_used": false
+}

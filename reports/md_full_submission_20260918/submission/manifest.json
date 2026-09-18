@@ -33,7 +33,10 @@
  "label": "MR-NATIVE-FULL-s1",
  "model_state_sha256": "740881daf0412117b486f044c3831ef43b76de1e0c344af9bf5396b86f716cf4",
  "schema_version": 1,
+ "server_result_file": "reports/md_full_submission_20260918/submission/server_result_20260918.json",
+ "server_score": 0.18596892793122946,
  "submission_json_sha256": "0a29399f05e1ec9ae0b0a0f9ff9cbd1faf7c258e3fce18e88dce6d49e2202211",
  "submission_zip_sha256": "dc7cd52a01db5e96a810b0397b81c113da11c72bb54455152f0e3a1f5d4ca428",
- "uploaded": false
+ "upload_confirmation_source": "user_report",
+ "uploaded": true
 }
