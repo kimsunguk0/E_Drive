@@ -1,4 +1,6 @@
 # A2 nominal status + 4-head shared scene 실행 기록 (2026-09-18)
+**실행 완료:** 14:31 KST 세 본 학습 프로세스 시작. 14:32 KST 각 100 update 정상 진행 확인.
+현재 상태는 launch_health_snapshot.json 및 live run metrics를 확인한다.
 
 사용자가 승인한 통합안의 첫 실행이다. 현 단계는 A2 FULL 확보와 동일 조건의 BASE/MH4 DEV 비교다.
 후속 SIDE-SCENE/QREFINE은 이번 세 run에 포함하지 않는다.

@@ -2,6 +2,46 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0G. 2026-09-18 14:31 KST A2 통합안 본 학습 시작 — 현재 우선 기록
+
+사용자의 GPU 0,1,2,3 사용 승인에 따라 다음 세 run을 시작했다.
+14:32 KST 관측에서 **각각 100 update 완료, 정상 실행 중**이다.
+이 상태는 시작 시점의 snapshot이다. 이후 상태는 각 run의 manifest/metrics를 확인한다.
+
+| GPU | Run / PID | 학습 행 | 목표 update | 첫 평가 |
+|---|---|---:|---:|---:|
+| 0 | A2-FULL-NOM-s1 / 3284355 | 101,520 (376 scenes) | 24,931 | 6,345, in-fit |
+| 1 | A2-BASE-NOM-s1 / 3284356 | 83,700 (310 scenes) | 20,554 | 3,426, DEV |
+| 2 | A2-MH4-NOM-s1 / 3284357 | 83,700 (310 scenes) | 20,554 | 3,426, DEV |
+| 3 | 검증/후속 SIDE-SCENE용 예약 | — | — | — |
+
+- 세 run 모두 upstream r0_init_tplus.pth에서 새 optimizer로 seed1 공동 학습한다.
+  공통 초기 tensor SHA는 116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f.
+  BASE/MH4의 step1/50/100 sample-order SHA도 같다.
+- input provided_status5는 배포형 nominal producer, state/history supervision은 기존 정의 그대로다.
+  A2의 status→shared scene query 경계, image-only motion/state/history 경로를 유지한다.
+- MH4는 head당 Q/K32, V32, concat128, 독립적인 identity 초기 head transforms다.
+  실제 영상의 FP32/BF16 초기 scene/인지/plan 차이 0, 각 head gradient 분화 확인.
+  등록 A2 재현, 1,998행 status parity, flip, source mask, 세 arm 2-step smoke 통과.
+- 유효 batch16 / microbatch8 / BF16, fixed BN, backbone LR5e-6 / 기타5e-5,
+  warmup200, LEN0.25, flip0.5를 유지한다.
+  micro16 benchmark는 두 arm 10% 이상 개선 조건 미충족으로 채택하지 않았다.
+- 최근 실측은 BASE/FULL 약0.515s/update, MH4 약0.553s/update다.
+  첫 DEV 평가는 대략 15:00~15:05 KST, FULL 진단은 15:26경 예상이다.
+  평가/IO 부하를 제외한 초기 속도 추정이며 완료 시각을 보장하지 않는다.
+- 현 입력 정책의 기존 A2 DEV 기준은 0.164455314083이다. 새 terminal 성능은 아직 없다.
+  FULL의 V0는 학습 포함 데이터다. DEV에 FULL weight/teacher/feature를 가져오지 않는다.
+- QREFINE, SIDE-SCENE, A3 gates, progress residual은 위 세 run에 섞지 않았다.
+  다음 관측 실험은 공통 예산의 BASE/MH4 평가 후 결정한다.
+
+코드 commit: a10610881036cb401824eed856c641e03adf8d5d
+(미러 구현 commit: db1a26a57a4cb206092565fbf9e35296f121af94).
+실행 정보: reports/md_a2_nominal_mh4_20260918/README_KO.md,
+launch_receipt.json, launch_health_snapshot.json.
+코드: experiments/md_a2_nominal_mh4_20260918/.
+실시간 stdout: reports/md_a2_nominal_mh4_20260918/runtime/<ARM>-s1.log.
+가중치/평가: work_dirs/md_a2_nominal_mh4_20260918/<ARM>-s1/.
+
 ## 0F. 2026-09-18 A2 입력 정합성 실측 및 다음 방향 — 아래의 A3 우선순위보다 우선
 
 사용자는 A2의 query-only 공통 scene 경계를 다음 주력으로 선택했다. 현재 A3의
@@ -24,11 +64,11 @@ QREFINE은 별도 후속 가설이며 scene/global/motion status value gate를 �
 
 현행 masked_softmax를 이용한 합성 FP32/BF16 검사에서 Q/K head당32·V head당32의
 identity 초기화 4-head pooling은 기존 evidence를 정확히 재현하고 head별 gradient가 달랐다.
-실제 MH4 encoder/최종 plan 통합 검사는 아직 남아 있다.
+이 기록 당시 남아 있던 실제 MH4 encoder/최종 plan 통합 검사는 위 0G 실행 전에 통과했다.
 
 계획한 A2-FULL-NOM(24,931), A2-BASE-NOM(20,554), A2-MH4-NOM(20,554)은
 동일 upstream 초기값 계보를 사용한다. terminal A2 continuation과 혼동하지 않는다.
-**위 세 새 학습은 아직 시작하지 않았다.** 이번 실행은 paired evaluation과 원리 검사뿐이다.
+**이 절의 기록 당시에는 새 학습을 시작하지 않았다.** 이후 사용자의 실행 승인으로 위 0G의 본 학습을 시작했다.
 
 첫 2초의 현 A2 점수 기여 74.81%, 일반 주행 구간 속도 오차의 공통 성분 비중 75.20%를
 재계산했다. 후자는 제곱오차 분해이며 D3/v0/가감속 타이밍의 인과 기여도가 아니다.

@@ -1,0 +1,101 @@
+{
+  "observed_at_utc": "2026-09-18T05:32:39.030693+00:00",
+  "implementation_commit": "a10610881036cb401824eed856c641e03adf8d5d",
+  "runs": [
+    {
+      "arm": "A2-FULL-NOM",
+      "gpu": 0,
+      "pid": 3284355,
+      "manifest_status": "running",
+      "train_rows": 101520,
+      "eval_rows": 1998,
+      "latest_logged_step": 100,
+      "latest_plan_train_d3": 0.5604008436203003,
+      "initial_shared_tensors_verified": true,
+      "recorded_train_values_all_finite": true,
+      "no_logged_nonfinite_events": true,
+      "source_hashes_unchanged": {
+        "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/a2_model.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": true,
+        "models/motiondrive_v2/scene_encoder.py": true,
+        "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": true,
+        "experiments/md_a2_deploy_status_20260918/nominal_status.py": true
+      },
+      "seconds_per_update_recent": 0.5148673908412457,
+      "first_eval_step": 6345,
+      "peak_allocated_gib": 32.707818031311035,
+      "estimated_first_eval_start_utc": "2026-09-18T06:26:14.377549+00:00",
+      "estimated_terminal_training_utc_excludes_eval_overhead": "2026-09-18T09:05:43.702875+00:00"
+    },
+    {
+      "arm": "A2-BASE-NOM",
+      "gpu": 1,
+      "pid": 3284356,
+      "manifest_status": "running",
+      "train_rows": 83700,
+      "eval_rows": 1998,
+      "latest_logged_step": 100,
+      "latest_plan_train_d3": 0.3271230459213257,
+      "initial_shared_tensors_verified": true,
+      "recorded_train_values_all_finite": true,
+      "no_logged_nonfinite_events": true,
+      "source_hashes_unchanged": {
+        "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/a2_model.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": true,
+        "models/motiondrive_v2/scene_encoder.py": true,
+        "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": true,
+        "experiments/md_a2_deploy_status_20260918/nominal_status.py": true
+      },
+      "seconds_per_update_recent": 0.5156795978546143,
+      "first_eval_step": 3426,
+      "peak_allocated_gib": 32.707818031311035,
+      "estimated_first_eval_start_utc": "2026-09-18T06:01:14.181035+00:00",
+      "estimated_terminal_training_utc_excludes_eval_overhead": "2026-09-18T08:28:26.741188+00:00"
+    },
+    {
+      "arm": "A2-MH4-NOM",
+      "gpu": 2,
+      "pid": 3284357,
+      "manifest_status": "running",
+      "train_rows": 83700,
+      "eval_rows": 1998,
+      "latest_logged_step": 100,
+      "latest_plan_train_d3": 0.33210980892181396,
+      "initial_shared_tensors_verified": true,
+      "recorded_train_values_all_finite": true,
+      "no_logged_nonfinite_events": true,
+      "source_hashes_unchanged": {
+        "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/a2_model.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": true,
+        "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": true,
+        "models/motiondrive_v2/scene_encoder.py": true,
+        "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": true,
+        "experiments/md_a2_deploy_status_20260918/nominal_status.py": true
+      },
+      "seconds_per_update_recent": 0.5529120521247387,
+      "first_eval_step": 3426,
+      "peak_allocated_gib": 32.85779285430908,
+      "estimated_first_eval_start_utc": "2026-09-18T06:03:18.016178+00:00",
+      "estimated_terminal_training_utc_excludes_eval_overhead": "2026-09-18T08:41:08.293807+00:00"
+    }
+  ],
+  "BASE_MH4_sample_order_comparison": {
+    "common_logged_steps": [
+      1,
+      50,
+      100
+    ],
+    "all_equal": true
+  },
+  "gpu_snapshot": [
+    "0, 99 %, 38582 MiB",
+    "1, 99 %, 38580 MiB",
+    "2, 92 %, 37898 MiB",
+    "3, 0 %, 0 MiB"
+  ]
+}

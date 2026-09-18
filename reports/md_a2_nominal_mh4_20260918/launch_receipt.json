@@ -1,0 +1,78 @@
+{
+  "implementation_commit": "a10610881036cb401824eed856c641e03adf8d5d",
+  "launched_at_utc": "2026-09-18T05:31:05.843338+00:00",
+  "status": "healthy at launch_health_snapshot observation; see live run metrics for current state",
+  "gpu3": "reserved for validation and SIDE-SCENE follow-up",
+  "runs": [
+    {
+      "arm": "A2-FULL-NOM",
+      "gpu": 0,
+      "updates": 24931,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/md_a2_nominal_mh4_20260918/runtime/A2-FULL-NOM-s1.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/md_a2_nominal_mh4_20260918/train_nominal.py",
+        "--arm",
+        "A2-FULL-NOM",
+        "--gpu",
+        "0",
+        "--seed",
+        "1",
+        "--microbatch",
+        "8",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1"
+      ],
+      "pid": 3284355
+    },
+    {
+      "arm": "A2-BASE-NOM",
+      "gpu": 1,
+      "updates": 20554,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/md_a2_nominal_mh4_20260918/runtime/A2-BASE-NOM-s1.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/md_a2_nominal_mh4_20260918/train_nominal.py",
+        "--arm",
+        "A2-BASE-NOM",
+        "--gpu",
+        "1",
+        "--seed",
+        "1",
+        "--microbatch",
+        "8",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1"
+      ],
+      "pid": 3284356
+    },
+    {
+      "arm": "A2-MH4-NOM",
+      "gpu": 2,
+      "updates": 20554,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/md_a2_nominal_mh4_20260918/runtime/A2-MH4-NOM-s1.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/md_a2_nominal_mh4_20260918/train_nominal.py",
+        "--arm",
+        "A2-MH4-NOM",
+        "--gpu",
+        "2",
+        "--seed",
+        "1",
+        "--microbatch",
+        "8",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1"
+      ],
+      "pid": 3284357
+    }
+  ],
+  "health_verified_at_utc": "2026-09-18T05:32:39.030693+00:00"
+}
