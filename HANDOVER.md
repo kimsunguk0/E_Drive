@@ -2,6 +2,26 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0H. 2026-09-18 회전/command 진단 — 학습 설정 변경 없음
+
+동일 step17,130의 BASE/MH4 저장 V0 예측을 CPU로 분해했다.
+nonstop은 직진 전용이 아니며 좌·우회전을 포함한다.
+현재 command/vad_cmd 입력은 없지만 5초 goal은 기존 shared scene query에서 사용한다.
+
+- 실제 GT 3초 |y|>=2m 202행: MH4 좌0.375895 / 우0.235222, 전체 점수 기여 합0.026668 (16.17%).
+  이 그룹은 교차로 회전 외에 차선 변경/굽은 도로도 포함한다.
+- 큰 좌·우 횡변위가 반대 부호로 예측된 경우 0. 다만 GT보다 덜 휘는 예측이 남는다.
+  끝점 바깥쪽 signed 횡오차 평균은 좌-0.839m, 우-0.352m.
+- semantic TURN_LEFT/RIGHT는 V0 81행이고 왼쪽39행은 한 session이다. U-turn은 V0 0행.
+  공식 test 제공 command에는 좌67 / 우32 / U-turn12개가 있다. 숨겨진 GT는 사용하지 않았다.
+- V0의 적은 회전 비중만으로 command의 우선순위를 낮추지 않는다.
+  같은 A2 shared-scene query 경계의 command 대조는 다음 검토 후보이며 아직 시작하지 않았다.
+- 17:33 KST 확인: BASE terminal20554 완료, V0 0.165510648966.
+  MH4/FULL은 당시 진행 중이며 이 절의 분해는 동일17130 대조다.
+
+상세와 실제 궤적 그림: reports/md_a2_turn_analysis_20260918/README_KO.md.
+재현: experiments/md_a2_nominal_mh4_20260918/analyze_turns.py.
+
 ## 0G. 2026-09-18 14:31 KST A2 통합안 본 학습 시작 — 현재 우선 기록
 
 사용자의 GPU 0,1,2,3 사용 승인에 따라 다음 세 run을 시작했다.

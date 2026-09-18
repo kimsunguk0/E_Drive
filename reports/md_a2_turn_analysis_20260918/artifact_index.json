@@ -1,0 +1,68 @@
+[
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/README_KO.md",
+    "bytes": 7902,
+    "sha256": "4e1103edee6304dafafce81d94acc0f5fbc9def3b943808ead766593aa3cc5a4",
+    "git_recorded": true
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/analysis_metadata.npz",
+    "bytes": 26949,
+    "sha256": "6e5d9c287f1a1c5964f5bdac2ddb065d7cf6ce18c3fe3c6a8c74a0c4d56b7497",
+    "git_recorded": false
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/prediction_snapshot.npz",
+    "bytes": 639491,
+    "sha256": "72961eeddd99510ea74b944a79c864be8aa2935df858fb04606f127342601eaa",
+    "git_recorded": false
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/semantic_turn_examples.json",
+    "bytes": 6411,
+    "sha256": "dc22e75afa155f6aa7a6b71285e4e6afcbd8110b9b8cc432c0b0b99a3633b048",
+    "git_recorded": true
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/semantic_turn_examples.pdf",
+    "bytes": 30306,
+    "sha256": "297f2109eec27142f60a28068f6b3d907c2d62b2ab90d7878500f65efd867d12",
+    "git_recorded": true
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/semantic_turn_examples.png",
+    "bytes": 244805,
+    "sha256": "f675dae4cd63c5e1dd373200a812281cafa8ef23a489f6d231664149606d27ab",
+    "git_recorded": true
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/snapshot_manifest.json",
+    "bytes": 5184,
+    "sha256": "0b62655e380b56736da0db7ad60abdae76d18c39521eae5721b67a26df72647f",
+    "git_recorded": true
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/turn_analysis.json",
+    "bytes": 35638,
+    "sha256": "9a83f05438c7c654cbba28720904ede84c64f05d63304063f7de2a4f40a812b6",
+    "git_recorded": true
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/turn_examples.json",
+    "bytes": 6737,
+    "sha256": "a41b23452c7da77b1db4a5f3e0844ac9dea6c85e6696b4eb86859db8f3118c41",
+    "git_recorded": true
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/turn_examples.pdf",
+    "bytes": 29231,
+    "sha256": "e59761fe792adb19da3a2ffcfda8ec6644ce330763789d96df2af93a136765ac",
+    "git_recorded": true
+  },
+  {
+    "path": "reports/md_a2_turn_analysis_20260918/turn_examples.png",
+    "bytes": 229595,
+    "sha256": "95ce28ff4ea6faea6f064b9d20b9bcb549f5164a155c7a9094e14624b850408e",
+    "git_recorded": true
+  }
+]
