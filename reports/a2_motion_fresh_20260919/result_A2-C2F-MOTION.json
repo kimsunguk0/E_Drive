@@ -1,0 +1,163 @@
+{
+  "arm": "A2-C2F-MOTION",
+  "status": "completed",
+  "terminal_updates": 20554,
+  "PREFIX": 0.1642047406510302,
+  "L2_1s": 0.09606710403852343,
+  "L2_2s": 0.1637701655002458,
+  "L2_3s": 0.23277695241432128,
+  "per_waypoint_L2": [
+    0.06425789031241932,
+    0.12787631776462743,
+    0.19647662170170757,
+    0.266469832222229,
+    0.33635692337175443,
+    0.4052241291131892
+  ],
+  "control_PREFIX": 0.16425176679687356,
+  "delta_vs_control": -4.702614584337567e-05,
+  "session_CI95": [
+    -0.0008820817181437496,
+    0.0009310033560249502
+  ],
+  "sessions_improved": 5,
+  "session_count": 11,
+  "diagnostics": {
+    "n": 1998,
+    "official_weights": [
+      0.3055555555555556,
+      0.3055555555555556,
+      0.1388888888888889,
+      0.1388888888888889,
+      0.05555555555555555,
+      0.05555555555555555
+    ],
+    "first2s_PREFIX_contribution": 0.12300579329075549,
+    "groups": {
+      "all": {
+        "n": 1998,
+        "PREFIX": 0.1642047406510302,
+        "overall_PREFIX_contribution": 0.1642047406510302,
+        "first2s_common_progress_error_MAE_mps": 0.11050594291129484,
+        "first2s_time_varying_progress_error_RMS_mps": 0.08672555028413469
+      },
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.32429518356133163,
+        "overall_PREFIX_contribution": 0.0038954376403763564,
+        "first2s_common_progress_error_MAE_mps": 0.2879709636007383,
+        "first2s_time_varying_progress_error_RMS_mps": 0.27405238933100967
+      },
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.16897954206853644,
+        "overall_PREFIX_contribution": 0.15857689758683974,
+        "first2s_common_progress_error_MAE_mps": 0.11242989530933371,
+        "first2s_time_varying_progress_error_RMS_mps": 0.08376788752279679
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.03496309128061153,
+        "overall_PREFIX_contribution": 0.0017324054238140848,
+        "first2s_common_progress_error_MAE_mps": 0.031045627326753825,
+        "first2s_time_varying_progress_error_RMS_mps": 0.026227602106812152
+      }
+    },
+    "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+    "valid_tangent_fraction": 0.940357023690357,
+    "weighted_longitudinal_abs_m": 0.1439661887688923,
+    "weighted_lateral_abs_m": 0.06082472873279949,
+    "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+  },
+  "control_diagnostics": {
+    "n": 1998,
+    "official_weights": [
+      0.3055555555555556,
+      0.3055555555555556,
+      0.1388888888888889,
+      0.1388888888888889,
+      0.05555555555555555,
+      0.05555555555555555
+    ],
+    "first2s_PREFIX_contribution": 0.12295139094870944,
+    "groups": {
+      "all": {
+        "n": 1998,
+        "PREFIX": 0.16425176679687356,
+        "overall_PREFIX_contribution": 0.16425176679687356,
+        "first2s_common_progress_error_MAE_mps": 0.11008786265132083,
+        "first2s_time_varying_progress_error_RMS_mps": 0.08716043076595088
+      },
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.33573419243989444,
+        "overall_PREFIX_contribution": 0.004032843152431164,
+        "first2s_common_progress_error_MAE_mps": 0.2972886157008437,
+        "first2s_time_varying_progress_error_RMS_mps": 0.2802643930732776
+      },
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.16844511321878103,
+        "overall_PREFIX_contribution": 0.15807536901161884,
+        "first2s_common_progress_error_MAE_mps": 0.1116958460092346,
+        "first2s_time_varying_progress_error_RMS_mps": 0.08391997123343412
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.043260829862439815,
+        "overall_PREFIX_contribution": 0.0021435546328235945,
+        "first2s_common_progress_error_MAE_mps": 0.03425163164852405,
+        "first2s_time_varying_progress_error_RMS_mps": 0.029937550062845195
+      }
+    },
+    "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+    "valid_tangent_fraction": 0.940357023690357,
+    "weighted_longitudinal_abs_m": 0.14340523787648243,
+    "weighted_lateral_abs_m": 0.06090153312328808,
+    "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+  },
+  "auxiliary": {
+    "occ_iou": 0.45856276511429783,
+    "lane_iou": 0.4789847325221602,
+    "state_mae_vx_vy_ax_ay_yawrate": [
+      0.5667547301568853,
+      0.03988422184301561,
+      0.23671605120009165,
+      0.049174621535197215,
+      0.00485652037455507
+    ],
+    "history_position_mae_by_offset": [
+      0.06914186111069401,
+      0.12558680489996435,
+      0.28538329400787793,
+      0.5604316693187847
+    ]
+  },
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-C2F-MOTION-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "d60013a77d631be39297f38a0a7da51f0bf5fcfca302a3a69c9ded1bb2be3a74",
+  "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-C2F-MOTION-s1/final_eval.json",
+  "predictions_sha256": "680f178a1bf50a7a128d1732cae78ba08689e1a1737bec3b5eaba9c79e9b5ff7",
+  "source_commit": "83a292f63245aea83516723a9fa222f2d3453421",
+  "initial_state_sha256": "05c86abf653193035c05f3646b4071af810136f5c4d23ac2ea8258680fbd0dbb",
+  "protocol_source": {
+    "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+    "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+    "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+    "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+    "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "experiments/a2_motion_fresh_20260919/train_experiment.py": "97a82665ae106af9ef027c79f79f9abba2c841693ea8b4f79545cc1c76430346",
+    "experiments/a2_motion_fresh_20260919/motion_model.py": "cabc7d6778ae3409f49c9df15941aa413f6623f10d4035134d6ef7f8a223d462"
+  },
+  "elapsed_seconds": 13082.985591569915,
+  "control_stream_check": {
+    "all_logged_hashes_and_LRs_equal": true,
+    "last_logged_step": 20550,
+    "scope": "All logged rows through20550; last4 updates follow same deterministic sampler without a separate terminal rolling hash"
+  },
+  "validation_limit": "Repeated DEV use, paired bootstrap conditional on same11 sessions; no server score inference",
+  "initialization_limit": null,
+  "checkpoint_selection": "preregistered terminal; intermediates retained separately",
+  "automatic_FULL_or_submission": false
+}
