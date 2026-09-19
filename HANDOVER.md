@@ -2,6 +2,28 @@
 
 새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
 
+## 0Q. 2026-09-19 command 완료 — 소폭 개선, 주력 유지
+
+A2-COMMAND-NOM-s1은2026-09-19T10:50:48에20,554 update 완료, nonfinite0.
+V0 PREFIX BASE0.165510646→COMMAND0.164884291(-0.000626354, -0.3784%).
+session95%CI[-0.001950163,+0.001721550], 6/11session 개선.
+기존 QREFINE0.164251767보다 높아 주력 교체/추가 FULL을 자동 진행하지 않는다.
+공통 초기값/레시피와412개 sample-order 로그 일치, 저장 예측에서 PREFIX 독립 재계산 완료.
+
+의미 좌회전0.210316211→0.206247798, 우회전0.288670720→0.284718121.
+일반 주행0.169590813→0.169268853(-0.1898%); 큰 주된 오류는 남아 있다.
+같은 COMMAND 모델의 지시를 LANE_KEEP으로 고정하면0.165816821로 악화한다.
+Command 활용은 확인됐지만, 이 개입을 독립 control 대비 이득으로 혼동하지 않는다.
+완료 checkpoint에서도 command 변경 시 motion/state/history 최대 차이0.
+V0 좌회전1session/유턴0행의 검증 한계를 유지한다.
+
+상세: reports/a2_command_20260919/DECISION_KO.md, RESULTS_KO.md, terminal_results.json,
+command_counterfactual.json, run_artifact_index.json.
+가중치: work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/ckpt_step20554.pth.
+원 watcher는 평가 후 Git 공백 검사에서 멈췄다. MD/CSV 생성기의 줄 끝 처리를 고쳐
+저장 예측 기반 보고서와 Git 기록을 복구했다. 재학습/새 FULL/공식 제출 없음.
+아래0P는 시작 시점 snapshot이다.
+
 ## 0P. 2026-09-19 07:53 KST A2 semantic command 본 학습 시작
 
 사용자 “이번엔 command 넣어본거 해 봐” 지시에 따른 단일 matched 비교.

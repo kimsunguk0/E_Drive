@@ -1,0 +1,14 @@
+{
+  "recovered_at_local": "2026-09-19T12:16:10.587567",
+  "original_watcher_status": "failed",
+  "original_error": "Traceback (most recent call last):\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 76, in main\n    state['publication']=publish()\n                         ^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 28, in publish\n    call(['git','add','--',*paths]);call(['git','diff','--cached','--check'])\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 13, in call\n    return subprocess.check_output(args,cwd=cwd,text=True,stderr=subprocess.STDOUT)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', 'diff', '--cached', '--check']' returned non-zero exit status 2.\n",
+  "failure_phase": "Git whitespace validation after all training/evaluation/inference completed",
+  "fix": [
+    "strip Markdown trailing whitespace",
+    "write CSV with LF line terminator"
+  ],
+  "original_training_completed_at_local": "2026-09-19T10:50:48",
+  "no_training_or_prediction_changes": true,
+  "report_regenerated_from_saved_predictions": true,
+  "publication": "manual recovery commit/mirror push; final hashes recorded in runtime watcher_status.json"
+}

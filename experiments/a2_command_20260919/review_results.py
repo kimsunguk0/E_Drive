@@ -142,9 +142,9 @@ def main():
     if counterfactual:
         text+=f"\n같은 학습 모델에서 command를 LANE_KEEP으로 고정한 진단: PREFIX {counterfactual['all_LANE_KEEP_PREFIX']:.9f}, 원래 지시 {counterfactual['actual_command_PREFIX']:.9f}. 독립 학습 대조가 아니다.\n"
     text+='\n추가 FULL/스윕/공식 제출은 자동 실행하지 않았다.\n'
-    (REPORT/'RESULTS_KO.md').write_text(text)
+    (REPORT/'RESULTS_KO.md').write_text('\n'.join(line.rstrip() for line in text.splitlines())+'\n')
     with (REPORT/'results.csv').open('w') as f:
-        writer=csv.writer(f);writer.writerow(['run','PREFIX','L2_1s','L2_2s','L2_3s','nonstop_PREFIX'])
+        writer=csv.writer(f,lineterminator="\n");writer.writerow(['run','PREFIX','L2_1s','L2_2s','L2_3s','nonstop_PREFIX'])
         for name,m in models.items():
             writer.writerow([name,*[m[k] for k in ('PREFIX','L2_1s','L2_2s','L2_3s')],m['groups']['nonstop']['PREFIX']])
     print(json.dumps({'PREFIX':{name:m['PREFIX'] for name,m in models.items()},'comparisons':comparisons}),flush=True)

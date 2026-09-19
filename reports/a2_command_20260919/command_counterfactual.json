@@ -1,0 +1,69 @@
+{
+  "checkpoint": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/ckpt_step20554.pth",
+    "sha256": "cef1230340a66ed0a45aa901e3eb19ab0c7d39fb6a43dcc150039e21c98c7dcf"
+  },
+  "rows": 1998,
+  "actual_command_PREFIX": 0.16488429144189876,
+  "all_LANE_KEEP_PREFIX": 0.1658168211994636,
+  "prediction_change_PREFIX": 0.0023379290342554473,
+  "semantic_groups": {
+    "LANE_KEEP": {
+      "n": 1804,
+      "supplied_PREFIX": 0.15619284328944613,
+      "all_LANE_KEEP_PREFIX": 0.15619284328944613,
+      "prediction_change_PREFIX": 0.0
+    },
+    "TURN_LEFT": {
+      "n": 39,
+      "supplied_PREFIX": 0.20624779778908553,
+      "all_LANE_KEEP_PREFIX": 0.22571857036365367,
+      "prediction_change_PREFIX": 0.0391292063795528
+    },
+    "TURN_RIGHT": {
+      "n": 42,
+      "supplied_PREFIX": 0.28471812111294825,
+      "all_LANE_KEEP_PREFIX": 0.3132676946280024,
+      "prediction_change_PREFIX": 0.06561419419398995
+    },
+    "LANE_CHANGE_L": {
+      "n": 40,
+      "supplied_PREFIX": 0.2846100357074659,
+      "all_LANE_KEEP_PREFIX": 0.28170216806724957,
+      "prediction_change_PREFIX": 0.005071077073685949
+    },
+    "LANE_CHANGE_R": {
+      "n": 73,
+      "supplied_PREFIX": 0.22302326545117893,
+      "all_LANE_KEEP_PREFIX": 0.22331185371395762,
+      "prediction_change_PREFIX": 0.0025548482540384805
+    },
+    "U_TURN": {
+      "n": 0,
+      "supplied_PREFIX": null,
+      "all_LANE_KEEP_PREFIX": null,
+      "prediction_change_PREFIX": null
+    }
+  },
+  "motion_state_history_forward_max_delta": {
+    "motion_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "replay_max_abs_xy_m": 0.0,
+  "command_weight_norm": 0.054631881415843964,
+  "learned_column_norms": [
+    0.003297778544947505,
+    0.017348213121294975,
+    0.02260652743279934,
+    0.019874347373843193,
+    0.027606133371591568,
+    0.03169642388820648
+  ],
+  "artifact": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/command_counterfactual.npz",
+    "bytes": 210383,
+    "sha256": "f23855e31ef5a68fbb8e6cd7af9ea944b4d9a340b68fbff39d5f778553f619a0"
+  },
+  "warning": "All-LANE_KEEP is an inference intervention on one trained model, not an independently trained control or organizer approval test."
+}
