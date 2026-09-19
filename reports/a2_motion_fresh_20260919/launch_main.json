@@ -1,0 +1,46 @@
+{
+  "phase": "main",
+  "status": "spawned; verify actual updates before calling healthy",
+  "source_commit": "83a292f63245aea83516723a9fa222f2d3453421",
+  "started_utc": "2026-09-19T14:43:33.930897+00:00",
+  "runs": [
+    {
+      "arm": "A2-C2F-MOTION",
+      "gpu": 0,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-C2F-MOTION-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_motion_fresh_20260919/runtime/A2-C2F-MOTION-s1.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/a2_motion_fresh_20260919/train_experiment.py",
+        "--arm",
+        "A2-C2F-MOTION",
+        "--gpu",
+        "0",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-C2F-MOTION-s1"
+      ],
+      "updates": 20554,
+      "pid": 3734414
+    },
+    {
+      "arm": "A2-FRESH-NUIM",
+      "gpu": 1,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-FRESH-NUIM-s1",
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_motion_fresh_20260919/runtime/A2-FRESH-NUIM-s1.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/a2_motion_fresh_20260919/train_experiment.py",
+        "--arm",
+        "A2-FRESH-NUIM",
+        "--gpu",
+        "1",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-FRESH-NUIM-s1"
+      ],
+      "updates": 20554,
+      "pid": 3734415
+    }
+  ]
+}

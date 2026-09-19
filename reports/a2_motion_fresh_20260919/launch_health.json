@@ -1,0 +1,31 @@
+{
+  "captured_utc": "2026-09-19T14:46:06.727740+00:00",
+  "runs": [
+    {
+      "arm": "A2-C2F-MOTION",
+      "gpu": 0,
+      "pid": 3734414,
+      "status": "running",
+      "last_logged_step": 200,
+      "step_seconds_recent": 0.6281687382236123,
+      "train_PREFIX_last_batch": 0.39649859070777893,
+      "gradient_norm": 39.632659912109375,
+      "peak_memory_GiB": 41.20779371261597,
+      "rough_remaining_hours_excluding_evals": 3.5515962493898345,
+      "initial_model_state_sha256": "05c86abf653193035c05f3646b4071af810136f5c4d23ac2ea8258680fbd0dbb"
+    },
+    {
+      "arm": "A2-FRESH-NUIM",
+      "gpu": 1,
+      "pid": 3734415,
+      "status": "running",
+      "last_logged_step": 250,
+      "step_seconds_recent": 0.5279086175933481,
+      "train_PREFIX_last_batch": 3.720047950744629,
+      "gradient_norm": 244.04090881347656,
+      "peak_memory_GiB": 32.707173347473145,
+      "rough_remaining_hours_excluding_evals": 2.977404603226483,
+      "initial_model_state_sha256": "1ba37b67d9de62b85e105b161656274e897f37250b51e33c472d1874b031f721"
+    }
+  ]
+}

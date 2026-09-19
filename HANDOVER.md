@@ -1,6 +1,9 @@
 # MotionDrive V2 — 현재 인수인계
 
-**기준: 2026-09-19 저녁 KST.** State ON/OFF와 RGB 교사 학습·평가·strict student export를 완료했다. A2 FULL raw 추론·패키지도 확보했다.
+**최신 착수: 2026-09-19 23:43 KST.** 사용자 승인으로 GPU0 A2-C2F-MOTION, GPU1 A2-FRESH-NUIM을 각각 20,554 update로 시작했다. 기존 QREFINE을 대조로 삼고 두 변경은 독립이다.
+[실행·검사 기록](reports/a2_motion_fresh_20260919/EXECUTION_KO.md), [구현·고정 레시피](experiments/a2_motion_fresh_20260919/README.md). 최신 동작 상태는 해당 reports의 watcher_status.json, 완료 결과는 RESULTS_KO.md와 result_A2-*.json을 우선한다.
+
+**직전 완료 상태:** State ON/OFF와 RGB 교사 학습·평가·strict student export를 완료했다. A2 FULL raw 추론·패키지도 확보했다.
 [이번 최종 결과](reports/a2_visual_teacher_20260919/RESULTS_KO.md), [FULL 배포 안내](reports/a2_full_submission_20260919/README_KO.md).
 이 문서가 현재 상태와 결정을 나타낸다. 과거 실행 계획의 ‘진행 중·다음 실행’ 문구는 당시 기록이다.
 [최근 작업 통합 보고서](reports/recent_work_20260919/SUMMARY_KO.md)에서 근거와 변경 이력을 확인할 수 있다.

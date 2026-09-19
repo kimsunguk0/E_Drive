@@ -1,0 +1,15 @@
+{
+  "pid": 3735713,
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_motion_fresh_20260919/collect_results.py",
+    "--watch",
+    "--publish"
+  ],
+  "started_utc": "2026-09-19T14:48:24.169522+00:00",
+  "CPU_only": true,
+  "will_train_or_submit": false,
+  "will_publish_terminal_reports": true,
+  "collector_self_comparison_passed": true
+}
