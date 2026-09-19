@@ -1,0 +1,44 @@
+{
+  "created_at_UTC": "2026-09-19T09:44:06.763245+00:00",
+  "status": "state intervention, visual training/evaluation/export and existing FULL package complete; RTX4090 timing pending",
+  "artifacts": [
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_full_submission_20260919/package/submission.zip",
+      "bytes": 142722,
+      "sha256": "9e4b611e8b8ed94ebd1190dc853ea3b38654ae6919e99a342ff139d785f29453"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_full_submission_20260919/package/submission.json",
+      "bytes": 320570,
+      "sha256": "4fb2ef25a371761880d8d43832fcbf87baa207b016983f8853c5886cbfe9d114"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_full_submission_20260919/package/manifest.json",
+      "bytes": 1422,
+      "sha256": "77ff7b115822dba3ddbb25c1cac7e9863b2189bb4af52f1a81b4e52c7bcbb700"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_full_submission_20260919/reproduction_source.tar.gz",
+      "bytes": 55391,
+      "sha256": "c0e1aac4eefdfd5b5667330898b898f27aa30927089934610ab5a99cc3b3b6a0"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_full_submission_20260919/raw_examples.tar.gz",
+      "bytes": 6647627,
+      "sha256": "d9fdb9fd8798c5dce75d8bcd2874a77373fe41efafe0dd795c6effa248be1304"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_full_submission_20260919/first_clip_inputs.pt",
+      "bytes": 47780383,
+      "sha256": "a04595ff5b880e0e088e79d822d12858e2faf4de0f9e661031e319d649e65ffc"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_visual_teacher_20260919/state_on_off_predictions.npz",
+      "bytes": 314503,
+      "sha256": "948b60817c245a615048e44c057dfec5157a7cc0798c11f84269dbad552436aa"
+    }
+  ],
+  "official_upload": false,
+  "RTX4090_timing": "awaiting available device; no inherited MR or 4060/B200 latency substituted",
+  "updated_at_KST": "2026-09-19T18:54:59.654580+09:00"
+}

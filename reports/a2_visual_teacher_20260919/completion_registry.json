@@ -1,0 +1,28 @@
+{
+  "generated_at_KST": "2026-09-19T18:54:59.654580+09:00",
+  "state_intervention": "complete; retain ON",
+  "teacher_training": "complete; not promoted",
+  "teacher_terminal_PREFIX": 0.16613715835923365,
+  "comparison_control_PREFIX": 0.1650840651964101,
+  "parent_PREFIX": 0.16425176679687356,
+  "selected_old_G1_PREFIX": 0.1638824849727284,
+  "A2_FULL_deployment": {
+    "raw_parity_passed": true,
+    "clips": 1125,
+    "flops": 729815616192,
+    "ZIP": "work_dirs/a2_full_submission_20260919/package/submission.zip",
+    "uploaded": false,
+    "official_score": null,
+    "RTX4090_ms": null,
+    "Docker_smoke_device": "RTX4060 Laptop; not a 4090 measurement"
+  },
+  "FULL_to_DEV_weight_or_feature_transfer": false,
+  "old_snapshot": "reports/recent_work_20260919/run_registry.json (historical noon snapshot)",
+  "results": "reports/a2_visual_teacher_20260919/RESULTS_KO.md",
+  "unlaunched": [
+    "OFF training",
+    "new teacher/lambda/layer sweeps",
+    "new FULL",
+    "official upload"
+  ]
+}

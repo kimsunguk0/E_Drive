@@ -1,7 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
-**기준: 2026-09-19 18시대 KST.** GPU1에서 RGB 시각 교사 continuation이 진행 중이다. A2 FULL raw 추론·패키징을 완료했다.
-[이번 실행 상태](reports/a2_visual_teacher_20260919/RUNNING_KO.md), [FULL 배포 안내](reports/a2_full_submission_20260919/README_KO.md).
+**기준: 2026-09-19 저녁 KST.** State ON/OFF와 RGB 교사 학습·평가·strict student export를 완료했다. A2 FULL raw 추론·패키지도 확보했다.
+[이번 최종 결과](reports/a2_visual_teacher_20260919/RESULTS_KO.md), [FULL 배포 안내](reports/a2_full_submission_20260919/README_KO.md).
 이 문서가 현재 상태와 결정을 나타낸다. 과거 실행 계획의 ‘진행 중·다음 실행’ 문구는 당시 기록이다.
 [최근 작업 통합 보고서](reports/recent_work_20260919/SUMMARY_KO.md)에서 근거와 변경 이력을 확인할 수 있다.
 
@@ -21,7 +21,7 @@ A2 또는 command를 운영국이 개별 승인했다고 주장하지 않는다.
 
 ## 2. 완료된 A2 비교
 
-아래는 같은 V0 1,998행의 예정 terminal 점수다. G0/G1만 QREFINE terminal 이후 3,426 update의 추가 학습이다.
+아래는 같은 V0 1,998행의 예정 terminal 점수다. G0/G1과 VIS-TEACHER는 QREFINE terminal 이후 3,426 update의 추가 학습이다.
 
 |실험|변경|Update|PREFIX|현재 판단|
 |---|---|---:|---:|---|
@@ -33,6 +33,7 @@ A2 또는 command를 운영국이 개별 승인했다고 주장하지 않는다.
 |G1|같은 continuation, 보조 묶음 ×0.25|3,426|0.164740804|terminal 악화; step 2,284만 별도 보존|
 |LEARNED-SAMPLE|영상·고정 metadata 기반 sampling offset|20,554|0.164667226|BASE 소폭 개선, QREFINE 미달|
 |COMMAND-NOM|제공 6종 command → 공통 scene query|20,554|0.164884294|보조 후보 보존|
+|VIS-TEACHER|QREFINE 이후 RGB 공간 특징 증류|3,426|0.166137158|G0·부모 모두 미달, FULL 이전 제외|
 
 - 기존 A2-DIRECT의 실측 timestamp 평가 **0.164280979**, 동일 checkpoint의 배포형 nominal 평가 **0.164455314**.
   새 BASE는 nominal status로 다시 학습했으므로 기존 모델과의 비교에는 입력 학습 정책 차이도 포함된다.
@@ -80,13 +81,17 @@ FULL: **376 unique scenes / 101,520행 / 24,931 update**.
 historical_val 9 scenes는 H29에 포함되므로 385 scenes로 세지 않는다.
 FULL 사용과 독립 DEV 검증은 가중치 계보를 분리하면 병행할 수 있다.
 
-## 5A. 2026-09-19 저녁 신규 실행
+## 5A. 2026-09-19 저녁 완료 결과
 
-- QREFINE 고정 DEV의 예측 state/history 정보 ON/OFF: **0.164251762 / 0.164534473**. OFF에서 일반 주행도 악화, session CI는 0 포함. 제공 status나 continuous motion을 제거한 실험이 아니다. 자동 OFF 학습은 하지 않는다.
-- RGB 교사: 공개 DINOv2 ViT-B/14 registers, frozen, DEV train RGB만 사용. 현재 6-camera 상위 FPN에 공간 cosine loss를 주고 배포에는 교사/projector를 제외한다.
-- QREFINE terminal에서 기존 G0와 같은 추가 3426 update / batch16 / backbone 1e-6 / head 1e-5 / fresh AdamW. 초기 tensor·첫 loss·행 순서·recipe가 맞는 기존 G0를 대조로 재사용한다. λ_vis=.25는 train gradient probe만으로 고정했다.
-- A2-VIS-TEACHER-s1-r2 GPU1 진행 중. 최초 시도는 normalizer key 검사에서 update 전에 종료했다. 1142 update는 VIS **0.169695487**, G0 **0.168488675**로 현재 이득 없음. Terminal 판정은 아직 남았다.
-- A2 FULL은 재학습하지 않았다. 로컬 ~/Downloads/A2-FULL-NOM-s1_submission_20260919/submission.zip. 공식 미업로드. FULL weight/feature를 DEV에 넣지 않았다.
+- QREFINE 고정 DEV의 예측 state/history ON/OFF: **0.164251762 / 0.164534473**. OFF의 제거 이득 미확인, CI는 0 포함. 제공 status와 continuous motion은 유지했다. ON을 유지하며 자동 OFF 학습은 하지 않는다.
+- DINOv2 ViT-B/14 register RGB teacher, frozen, train-only spatial loss 한 종류를 QREFINE terminal에서 추가 3,426 update 학습했다.
+- 최종 **VIS 0.166137158 / G0 0.165084065 / QREFINE 0.164251767**. VIS는 control과 부모에 모두 미달해 FULL로 이전하지 않는다.
+- VIS−G0 **+0.001053093**, 11-session paired95%CI **[+0.000131418, +0.002577468]**. 일반 주행은 부모 **0.168445113 → 0.170013739**로 악화했다.
+- 입력/목표 정규화/공간 정합/gradient 경로와 teacher 불변을 검사했다. Teacher/projector 없는 student strict export의 B1 XY 차이는 0이다. Visual loss 감소가 planning 개선으로 이어지지 않았다.
+- 같은 초기값·recipe·행 순서의 G0를 재사용했다. 기록된 rolling SHA는 step3,400까지 모두 일치하며, 마지막 26 update는 같은 epoch0 결정적 sampler 정책이지만 별도 terminal rolling hash가 기록되지 않았다는 한계를 남겼다.
+- A2 FULL은 재학습하지 않았다. 8 raw fixture bitwise parity, 1,125개 실제 test clip, 729.815616192G counter, ZIP, Docker raw smoke를 완료했다.
+- 로컬 ~/Downloads/A2-FULL-NOM-s1_submission_20260919/submission.zip. **공식 미업로드**, 이번 A2의 **RTX4090 시간은 장비 확인 대기**다.
+- 이번 결과는 짧은 RGB 교사 continuation 한 종류에 대한 것이며 A2 상한이나 모든 사전학습 방식의 실패를 뜻하지 않는다. 후속 스윕/FULL은 시작하지 않았다.
 
 ## 5. 재개할 때의 작업
 

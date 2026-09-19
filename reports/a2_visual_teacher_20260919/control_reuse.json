@@ -36,7 +36,13 @@
   },
   "numeric_note": "CUDA backward is not guaranteed bitwise deterministic; no exact-gradient replay claim",
   "shared_initial_SHA": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
-  "complete_row_stream_hash_check": "required again at terminal",
+  "complete_row_stream_hash_check": {
+    "all_logged_steps_equal": true,
+    "n_steps": 69,
+    "last_logged_step": 3400,
+    "last_logged_sha256": "d69558009c66c1452dbebc5bbf84d8344aae6233da218c741c88713f19330dac",
+    "scope": "All logged rolling hashes match through step3400. Last26 updates have the same deterministic epoch0 sampler policy, but no separate terminal rolling hash was written by the existing trainer."
+  },
   "main_budget": 3426,
   "teacher_lambda": 0.25,
   "optimizer": "fresh identical AdamW shared groups; teacher-only train projector in head group"

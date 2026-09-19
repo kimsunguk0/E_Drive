@@ -4,5 +4,9 @@
     "error": "Existing loss validates an exact normalizer key set; extra visual_count rejected",
     "fix": "Pass original normalizer keys to original loss, keep separate visual count for visual loss",
     "replacement": "A2-VIS-TEACHER-s1-r2"
+  },
+  "postprocess_initial_pass": {
+    "error": "Existing trainer logs last train metric at3400, not3426; code incorrectly indexed terminal train log",
+    "impact": "No training or evaluation rerun. Read actual last logged3400 and final manifest elapsed; do not claim an observed terminal rolling SHA."
   }
 }

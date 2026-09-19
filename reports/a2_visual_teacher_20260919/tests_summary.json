@@ -1,0 +1,10 @@
+{
+  "source": "Individual measured artifacts referenced below; no new GPU evaluations for this summary",
+  "state_ON_OFF_internal_and_state_hash": "state_on_off.json",
+  "spatial_ramp_full_micro_invalid_gradient_input_boundary": "visual_preflight.json",
+  "teacher_frozen_and_student_export": "visual_results.json",
+  "full_raw_and_export": "../a2_full_submission_20260919/raw_parity.json",
+  "raw_Docker": "../a2_full_submission_20260919/container_validation.json",
+  "source_compilation_passed": true,
+  "RTX4090_latency_measured": false
+}

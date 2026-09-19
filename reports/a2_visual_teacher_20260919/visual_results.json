@@ -1,0 +1,649 @@
+{
+  "models": {
+    "PARENT": {
+      "PREFIX": 0.16425176679687356,
+      "L2_1s": 0.09604649863001233,
+      "L2_2s": 0.1636846045296696,
+      "L2_3s": 0.23302419723093878,
+      "per_waypoint_L2": [
+        0.06433589766743127,
+        0.1277570995925934,
+        0.1962317025412583,
+        0.2664137183173965,
+        0.33664871645064914,
+        0.4067580488163059
+      ],
+      "first2s_PREFIX_contribution": 0.12295139094870944,
+      "weighted_longitudinal_abs_m": 0.14340523787648243,
+      "weighted_lateral_abs_m": 0.06090153312328808,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.33573419243989444,
+          "overall_contribution": 0.004032843152431164
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16844511321878103,
+          "overall_contribution": 0.15807536901161884
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.043260829862439815,
+          "overall_contribution": 0.0021435546328235945
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.2375198291486852
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15293156962423307
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.3724204517583537
+        }
+      },
+      "interval_length_MAE_m": [
+        0.05968451832332322,
+        0.06176814848657975,
+        0.06371894703089455,
+        0.06423286924869662,
+        0.06884843943196085,
+        0.08314435418080932
+      ],
+      "interval_length_signed_bias_m": [
+        0.000531611624691358,
+        0.0008919099049522172,
+        0.0028028865172923744,
+        0.005937293613854383,
+        0.0031394329000851468,
+        -0.0024075332855185184
+      ],
+      "progress_groups_existing_producer": {
+        "all": {
+          "n": 1998,
+          "PREFIX": 0.16425176679687356,
+          "overall_PREFIX_contribution": 0.16425176679687356,
+          "first2s_common_progress_error_MAE_mps": 0.11008786265132083,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08716043076595088
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.33573419243989444,
+          "overall_PREFIX_contribution": 0.004032843152431164,
+          "first2s_common_progress_error_MAE_mps": 0.2972886157008437,
+          "first2s_time_varying_progress_error_RMS_mps": 0.2802643930732776
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16844511321878103,
+          "overall_PREFIX_contribution": 0.15807536901161884,
+          "first2s_common_progress_error_MAE_mps": 0.1116958460092346,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08391997123343412
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.043260829862439815,
+          "overall_PREFIX_contribution": 0.0021435546328235945,
+          "first2s_common_progress_error_MAE_mps": 0.03425163164852405,
+          "first2s_time_varying_progress_error_RMS_mps": 0.029937550062845195
+        }
+      },
+      "auxiliary": {
+        "occ_iou": 0.4581157963705792,
+        "lane_iou": 0.4791924209581673,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5725034254447401,
+          0.039480043030556036,
+          0.23571802781150397,
+          0.04959196550206415,
+          0.00496643786131348
+        ],
+        "history_position_mae_by_offset": [
+          0.07148685692293286,
+          0.12824002548108795,
+          0.2894839058053394,
+          0.5683637300442841
+        ]
+      }
+    },
+    "CONTROL": {
+      "PREFIX": 0.1650840651964101,
+      "L2_1s": 0.0963413054460424,
+      "L2_2s": 0.1643324446471303,
+      "L2_3s": 0.2345784454960577,
+      "per_waypoint_L2": [
+        0.0645227334056519,
+        0.12815987748643293,
+        0.19692096328561082,
+        0.2677262044108262,
+        0.3390875582660966,
+        0.4110533361217278
+      ],
+      "first2s_PREFIX_contribution": 0.12340957106375317,
+      "weighted_longitudinal_abs_m": 0.1436853192592812,
+      "weighted_lateral_abs_m": 0.06118307431654733,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3373339041746568,
+          "overall_contribution": 0.004052058909004887
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16871951376274416,
+          "overall_contribution": 0.15833287702960225
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.0544733359302049,
+          "overall_contribution": 0.0026991292578029454
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.23876633616792647
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.1538094671233748
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.36962876062951516
+        }
+      },
+      "interval_length_MAE_m": [
+        0.05993486740168186,
+        0.06189355088462976,
+        0.06395033604029979,
+        0.06479931413860822,
+        0.06945322964191177,
+        0.08521042709613824
+      ],
+      "interval_length_signed_bias_m": [
+        0.000670381389585879,
+        0.001680347252296438,
+        0.004125794097244124,
+        0.0075052970420246634,
+        0.0028434349320739074,
+        -0.001823496403625834
+      ],
+      "progress_groups_existing_producer": {
+        "all": {
+          "n": 1998,
+          "PREFIX": 0.1650840651964101,
+          "overall_PREFIX_contribution": 0.1650840651964101,
+          "first2s_common_progress_error_MAE_mps": 0.11056479327130818,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08734652102963414
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3373339041746568,
+          "overall_PREFIX_contribution": 0.004052058909004887,
+          "first2s_common_progress_error_MAE_mps": 0.30002908030268666,
+          "first2s_time_varying_progress_error_RMS_mps": 0.2840558734006178
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16871951376274416,
+          "overall_PREFIX_contribution": 0.15833287702960225,
+          "first2s_common_progress_error_MAE_mps": 0.1118790227356219,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08390145755315546
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.0544733359302049,
+          "overall_PREFIX_contribution": 0.0026991292578029454,
+          "first2s_common_progress_error_MAE_mps": 0.03974334746988077,
+          "first2s_time_varying_progress_error_RMS_mps": 0.033042299905653806
+        }
+      },
+      "auxiliary": {
+        "occ_iou": 0.4589848391236158,
+        "lane_iou": 0.4804432373561735,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5727764243301744,
+          0.03957922343583964,
+          0.23534896551670195,
+          0.04988491994980676,
+          0.004963815206012115
+        ],
+        "history_position_mae_by_offset": [
+          0.07166233317417807,
+          0.12844508714825698,
+          0.29061058982523874,
+          0.5692521840037016
+        ]
+      }
+    },
+    "VIS-1142": {
+      "PREFIX": 0.16969548421373476,
+      "L2_1s": 0.1012505026639302,
+      "L2_2s": 0.16887719000149576,
+      "L2_3s": 0.23895875997577826,
+      "per_waypoint_L2": [
+        0.06887616818678813,
+        0.1336248371410721,
+        0.20190437387775537,
+        0.27110338080036755,
+        0.3443573301651253,
+        0.4138864696835622
+      ],
+      "first2s_PREFIX_contribution": 0.12757082866658548,
+      "weighted_longitudinal_abs_m": 0.1487504010840707,
+      "weighted_lateral_abs_m": 0.06009491168580689,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.35536765241297547,
+          "overall_contribution": 0.004268680509465171
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.17277751600628788,
+          "overall_contribution": 0.1621410623182131
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.06631223524586681,
+          "overall_contribution": 0.0032857413860564637
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.22917724200538622
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15969858313635654
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.37403380934825703
+        }
+      },
+      "interval_length_MAE_m": [
+        0.06428511318812852,
+        0.06350265431914712,
+        0.06434787371720732,
+        0.064983045841086,
+        0.07692990032608733,
+        0.08573355508178561
+      ],
+      "interval_length_signed_bias_m": [
+        0.01726086867278189,
+        0.00946621846528579,
+        0.009833563920133558,
+        0.01136478057274087,
+        0.030259529939091343,
+        -0.007581053689173024
+      ],
+      "progress_groups_existing_producer": {
+        "all": {
+          "n": 1998,
+          "PREFIX": 0.16969548421373476,
+          "overall_PREFIX_contribution": 0.16969548421373476,
+          "first2s_common_progress_error_MAE_mps": 0.11346951983391314,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08896859009397866
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.35536765241297547,
+          "overall_PREFIX_contribution": 0.004268680509465171,
+          "first2s_common_progress_error_MAE_mps": 0.30237169763610033,
+          "first2s_time_varying_progress_error_RMS_mps": 0.267565648976543
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.17277751600628788,
+          "overall_PREFIX_contribution": 0.1621410623182131,
+          "first2s_common_progress_error_MAE_mps": 0.11447652455063696,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08621836822918369
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.06631223524586681,
+          "overall_PREFIX_contribution": 0.0032857413860564637,
+          "first2s_common_progress_error_MAE_mps": 0.048602993459067885,
+          "first2s_time_varying_progress_error_RMS_mps": 0.040048332868252934
+        }
+      },
+      "auxiliary": {
+        "occ_iou": 0.4511491834252893,
+        "lane_iou": 0.47540158966517315,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5733813973333877,
+          0.03885395212837302,
+          0.2393987608222371,
+          0.05163444042053387,
+          0.005209191482210373
+        ],
+        "history_position_mae_by_offset": [
+          0.07094429997019111,
+          0.12650512873883932,
+          0.28775640960193816,
+          0.5705345487109039
+        ]
+      }
+    },
+    "VIS-2284": {
+      "PREFIX": 0.16587603044131674,
+      "L2_1s": 0.09607197476455624,
+      "L2_2s": 0.16476784302316694,
+      "L2_3s": 0.23678827353622706,
+      "per_waypoint_L2": [
+        0.0639789406531307,
+        0.12816500887598173,
+        0.19754452330030534,
+        0.26938289926324965,
+        0.3435045048752783,
+        0.418153764249416
+      ],
+      "first2s_PREFIX_contribution": 0.1235616821566115,
+      "weighted_longitudinal_abs_m": 0.14440211572028785,
+      "weighted_lateral_abs_m": 0.06296652659720146,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.2941566802325452,
+          "overall_contribution": 0.003533413576366909
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.17121508258239398,
+          "overall_contribution": 0.1606748147357301
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03365927933516214,
+          "overall_contribution": 0.0016678021292197457
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.24978174458445615
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15348984861690196
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.3789678006755496
+        }
+      },
+      "interval_length_MAE_m": [
+        0.05948908935431372,
+        0.06229557179151025,
+        0.06374404010656973,
+        0.06459342587653506,
+        0.0714807211101893,
+        0.08462014858593378
+      ],
+      "interval_length_signed_bias_m": [
+        -0.008298753402847456,
+        -0.008868153937243453,
+        0.00011708875121080682,
+        0.008426944159907206,
+        0.01996173707572927,
+        0.015246268167753273
+      ],
+      "progress_groups_existing_producer": {
+        "all": {
+          "n": 1998,
+          "PREFIX": 0.16587603044131674,
+          "overall_PREFIX_contribution": 0.16587603044131674,
+          "first2s_common_progress_error_MAE_mps": 0.10988801203040324,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08758724900937
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.2941566802325452,
+          "overall_PREFIX_contribution": 0.003533413576366909,
+          "first2s_common_progress_error_MAE_mps": 0.25825036283389297,
+          "first2s_time_varying_progress_error_RMS_mps": 0.25657066032643255
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.17121508258239398,
+          "overall_PREFIX_contribution": 0.1606748147357301,
+          "first2s_common_progress_error_MAE_mps": 0.11239049114483639,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08545447188526568
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03365927933516214,
+          "overall_PREFIX_contribution": 0.0016678021292197457,
+          "first2s_common_progress_error_MAE_mps": 0.0265259437592325,
+          "first2s_time_varying_progress_error_RMS_mps": 0.023719755049643618
+        }
+      },
+      "auxiliary": {
+        "occ_iou": 0.45570394415727233,
+        "lane_iou": 0.47833904994807847,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5846210177840984,
+          0.0382796398698046,
+          0.23559498042899515,
+          0.050504062421760545,
+          0.005009846525111
+        ],
+        "history_position_mae_by_offset": [
+          0.07344579506236398,
+          0.12929851227650047,
+          0.2935092616287919,
+          0.5805857957207231
+        ]
+      }
+    },
+    "VIS-TERMINAL": {
+      "PREFIX": 0.16613715835923365,
+      "L2_1s": 0.09688942033387438,
+      "L2_2s": 0.16547462305712335,
+      "L2_3s": 0.23604743168670322,
+      "per_waypoint_L2": [
+        0.06492404892082167,
+        0.12885479174692735,
+        0.19837891806953822,
+        0.2697407334912061,
+        0.3411281136151342,
+        0.4132579842765926
+      ],
+      "first2s_PREFIX_contribution": 0.1242268195874711,
+      "weighted_longitudinal_abs_m": 0.1447812161960513,
+      "weighted_lateral_abs_m": 0.06152511465385805,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3360783281803828,
+          "overall_contribution": 0.004036976915079674
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.17001373860750693,
+          "overall_contribution": 0.15954742737190966
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.05151921854893078,
+          "overall_contribution": 0.0025527540722443177
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.24052029461320854
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15474724215749455
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.37298117205273296
+        }
+      },
+      "interval_length_MAE_m": [
+        0.06033342466749079,
+        0.06216736188956931,
+        0.06432522187105882,
+        0.06490862367362459,
+        0.06954715756018785,
+        0.08561782395106272
+      ],
+      "interval_length_signed_bias_m": [
+        0.0001501392094082478,
+        0.001989363091828181,
+        0.004376691763314279,
+        0.006987738925510643,
+        0.0030493852158591443,
+        -0.0025161073156717458
+      ],
+      "progress_groups_existing_producer": {
+        "all": {
+          "n": 1998,
+          "PREFIX": 0.16613715835923365,
+          "overall_PREFIX_contribution": 0.16613715835923365,
+          "first2s_common_progress_error_MAE_mps": 0.11141047161445025,
+          "first2s_time_varying_progress_error_RMS_mps": 0.0870843700463482
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3360783281803828,
+          "overall_PREFIX_contribution": 0.004036976915079674,
+          "first2s_common_progress_error_MAE_mps": 0.29734683453629657,
+          "first2s_time_varying_progress_error_RMS_mps": 0.27950262216434274
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.17001373860750693,
+          "overall_PREFIX_contribution": 0.15954742737190966,
+          "first2s_common_progress_error_MAE_mps": 0.11289115029244466,
+          "first2s_time_varying_progress_error_RMS_mps": 0.08382337059370767
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.05151921854893078,
+          "overall_PREFIX_contribution": 0.0025527540722443177,
+          "first2s_common_progress_error_MAE_mps": 0.0382918329138053,
+          "first2s_time_varying_progress_error_RMS_mps": 0.03223434165875742
+        }
+      },
+      "auxiliary": {
+        "occ_iou": 0.45905724145714166,
+        "lane_iou": 0.48029540983457597,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5743877306630419,
+          0.039513426086176896,
+          0.2360896671586367,
+          0.04992896235019255,
+          0.0049740254629802175
+        ],
+        "history_position_mae_by_offset": [
+          0.07219137863065915,
+          0.1283671179511251,
+          0.29084584999606256,
+          0.5703808654249329
+        ]
+      }
+    }
+  },
+  "comparisons": {
+    "VIS-TERMINAL-minus-CONTROL": {
+      "PREFIX_delta": 0.0010530931628235467,
+      "session_CI95": [
+        0.0001314182798048075,
+        0.002577467832488337
+      ],
+      "sessions_improved": 3,
+      "group_contribution_delta": {
+        "depart": -1.5081993925212741e-05,
+        "nonstop": 0.001214550342307386,
+        "steady": -0.00014637518555862708
+      }
+    },
+    "VIS-TERMINAL-minus-PARENT": {
+      "PREFIX_delta": 0.0018853915623601037,
+      "session_CI95": [
+        0.0008570168962125324,
+        0.0026537862921904307
+      ],
+      "sessions_improved": 3,
+      "group_contribution_delta": {
+        "depart": 4.13376264850954e-06,
+        "nonstop": 0.0014720583602908714,
+        "steady": 0.00040919943942072285
+      }
+    },
+    "CONTROL-minus-PARENT": {
+      "PREFIX_delta": 0.0008322983995365574,
+      "session_CI95": [
+        -0.0004721631344644293,
+        0.0015759988636554394
+      ],
+      "sessions_improved": 4,
+      "group_contribution_delta": {
+        "depart": 1.9215756573722276e-05,
+        "nonstop": 0.0002575080179834851,
+        "steady": 0.0005555746249793499
+      }
+    }
+  },
+  "primary": "VIS-TERMINAL vs CONTROL; separately vs PARENT",
+  "intermediates": "planned V0 checkpoints; selecting one reuses V0",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/ckpt_step3426.pth",
+  "checkpoint_sha256": "db52bdd0447f35810ccc359ca43fe869fbde5ee7a6c21761a2c791430af27292",
+  "student_export": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/student_step3426.pth",
+  "student_export_sha256": "7fb207248d3a556f6cd732c79725238ca04add82edbe403d65f979ec70a0db22",
+  "export_checks": {
+    "training_checkpoint_sha256": "db52bdd0447f35810ccc359ca43fe869fbde5ee7a6c21761a2c791430af27292",
+    "model_state_sha256": "b66e83da0064a87bc394f909b4adef4ca297e1f543710e6820920953c16cf694",
+    "strict_load": true,
+    "B1_max_abs_XY": 0.0,
+    "inference_graph": "A2-QREFINE-NOM",
+    "excluded": [
+      "teacher",
+      "visual_projector"
+    ],
+    "DEV_only": true
+  },
+  "lambda_vis": 0.25,
+  "updates": 3426,
+  "source": {
+    "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+    "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+    "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+    "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+    "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "experiments/a2_next_20260919/common.py": "a58f6156d03d6e4c6e3c5aaaf0f1d7419f3f3d83419702f79dab8b11168423d1",
+    "experiments/a2_next_20260919/train_next.py": "ad733dbe981a15ffb9041e258e51f26454d77bb1881e2e7e0a0da218587215eb",
+    "experiments/md_a2_scene_extensions_20260918/scene_extensions.py": "45f2fd1f3874e1468d99c0563893611b21ba6b16dcd5ddb1aeb7f8c83fe1fdf6",
+    "experiments/a2_visual_teacher_20260919/train_visual.py": "8ea64bdd9661223ddab9a2818accef4f32e2b404f308c4e610470edfcc469544",
+    "experiments/a2_visual_teacher_20260919/visual_teacher.py": "af5de159c632413f11c3bc4a2afd338a0b33fdab3e3dfe14691f6ad41cd8a5da"
+  },
+  "teacher_frozen": true,
+  "full_lineage_used": false,
+  "row_stream_matches_G0": true,
+  "inference_cost_contract": "Exported graph and tensor shapes match QREFINE parent. No teacher/projector in forward. A2 FULL single-head FLOPs are not assigned to this QREFINE student.",
+  "validation_limit": "Repeated DEV use; bootstrap conditional on the same 11 sessions",
+  "training_first_visual_loss": 1.006990671157837,
+  "training_last_logged_visual_loss": 0.5783665180206299,
+  "last_logged_train_step": 3400,
+  "parameter_updates": {
+    "student_upper_FPN_RMS_from_parent": 0.0005819760510840682,
+    "projector_RMS_from_private_initialization": 0.009676862508058548,
+    "scope": "Actual parameter changes; student updates include all existing losses. Visual-only gradient path was tested separately in preflight."
+  },
+  "run_elapsed_seconds": 2127.617790825665,
+  "coefficient_did_not_use_V0": true
+}

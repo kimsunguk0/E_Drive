@@ -1,0 +1,67 @@
+{
+  "status": "completed",
+  "created_at_UTC": "2026-09-19T09:53:18.140458+00:00",
+  "teacher_run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2",
+  "artifacts": [
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/ckpt_step1142.pth",
+      "bytes": 107364731,
+      "sha256": "662cab80804387cb72a346e996a58d9dcfbf796ab151b056963a8b0487f0f82e"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/ckpt_step2284.pth",
+      "bytes": 107364731,
+      "sha256": "d90e903c3cfc1d6c740aad8337faa826a0110dfe19c7669359784b0caeeafb25"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/ckpt_step3426.pth",
+      "bytes": 107364731,
+      "sha256": "db52bdd0447f35810ccc359ca43fe869fbde5ee7a6c21761a2c791430af27292"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/student_step3426.pth",
+      "bytes": 106949006,
+      "sha256": "7fb207248d3a556f6cd732c79725238ca04add82edbe403d65f979ec70a0db22"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/manifest.json",
+      "bytes": 15441,
+      "sha256": "3537fe4187d9e6a1c72dae46fec6e54b38dd003b2bf9d8985f0e170493f6906a"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/experiment.json",
+      "bytes": 9374,
+      "sha256": "91fca3ba940d87130bf0001bdb435f96c75d3d2751eba653ec20d8028c1e31f2"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/metrics.jsonl",
+      "bytes": 63918,
+      "sha256": "d965c6c2cbdcaa6ec6d88c9f59f2d0a275f76688ba5fe82357769da82715e21e"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/final_eval.json",
+      "bytes": 3785935,
+      "sha256": "35117199ef0334d01f867d7dc129c81eb8a841cb0f56dec46e0894e17ba33aae"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/predictions_step1142.json",
+      "bytes": 3785468,
+      "sha256": "2978596f5f8d98da2d9372a87cd0b12b488cc6add21257ccf5e28b81c3b84252"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/predictions_step2284.json",
+      "bytes": 3786410,
+      "sha256": "f3e59e86ddb80b7cc9f10ce9c3a112cf56a8cb5bd05375eea0c636b08ccd4d5c"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/A2-VIS-TEACHER-s1-r2/teacher_unchanged.json",
+      "bytes": 98,
+      "sha256": "4562c1f16317168612572d13f0e50bb58883d4f512bf1dd2b0bc2568dd9e74eb"
+    }
+  ],
+  "decision": "\uc774\ubc88 \uad50\uc0ac continuation\uc744 \uc0c8 \ucd5c\uc120 \ud6c4\ubcf4\ub098 FULL \ub808\uc2dc\ud53c\ub85c \uc2b9\uaca9\ud558\uc9c0 \uc54a\ub294\ub2e4. \uae30\uc874 QREFINE fixed terminal\uacfc G1 \uc120\ud0dd \uc911\uac04\uc810\uc740 \uc720\uc9c0\ud55c\ub2e4.",
+  "new_FULL_started": false,
+  "official_uploaded": false,
+  "deployment_index": "reports/a2_visual_teacher_20260919/deployment_artifact_index.json",
+  "RTX4090_latency": "pending actual hardware access"
+}

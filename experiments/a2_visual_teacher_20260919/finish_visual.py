@@ -23,19 +23,31 @@ def main():
     assert set(a)==set(b)
     assert all(a[k]['sample_order_sha256']==b[k]['sample_order_sha256'] and a[k]['lr']==b[k]['lr'] for k in a)
     receipt=json.loads((REPORT/'control_reuse.json').read_text())
-    receipt['complete_row_stream_hash_check']={'all_logged_steps_equal':True,'n_steps':len(a),'terminal_sha256':a[3426]['sample_order_sha256']}
+    last_logged=max(a)
+    receipt['complete_row_stream_hash_check']={'all_logged_steps_equal':True,'n_steps':len(a),
+        'last_logged_step':last_logged,'last_logged_sha256':a[last_logged]['sample_order_sha256'],
+        'scope':'All logged rolling hashes match through step3400. Last26 updates have the same deterministic epoch0 sampler policy, but no separate terminal rolling hash was written by the existing trainer.'}
     (REPORT/'control_reuse.json').write_text(json.dumps(receipt,indent=2)+'\n')
     paths={'PARENT':PARENT.parent/'final_eval.json','CONTROL':CONTROL/'final_eval.json',
         'VIS-1142':RUN/'predictions_step1142.json','VIS-2284':RUN/'predictions_step2284.json',
         'VIS-TERMINAL':RUN/'final_eval.json'}
-    records={k:json.loads(p.read_text())['records'] for k,p in paths.items()}
+    evaluations={k:json.loads(p.read_text()) for k,p in paths.items()}
+    records={k:v['records'] for k,v in evaluations.items()}
     base=records['PARENT'];gt=np.asarray([r['gt_abs_xy'] for r in base]);rows=[r['row'] for r in base]
     bucket=np.asarray([r['bucket'] for r in base]);sessions=np.asarray([r['session'] for r in base])
     dg=np.diff(np.concatenate([np.zeros((len(gt),1,2)),gt],1),axis=1);mask=np.linalg.norm(dg,axis=-1)>.05
     stats={};scores={}
     for name,rr in records.items():
         assert rows==[r['row'] for r in rr] and np.array_equal(gt,np.array([r['gt_abs_xy'] for r in rr]))
-        stats[name],scores[name]=metrics(np.asarray([r['pred_abs_xy'] for r in rr]),gt,bucket,mask)
+        predicted=np.asarray([r['pred_abs_xy'] for r in rr])
+        stats[name],scores[name]=metrics(predicted,gt,bucket,mask)
+        dp=np.diff(np.concatenate([np.zeros((len(gt),1,2)),predicted],1),axis=1)
+        length_error=np.linalg.norm(dp,axis=-1)-np.linalg.norm(dg,axis=-1)
+        stats[name]['interval_length_MAE_m']=np.abs(length_error).mean(0).tolist()
+        stats[name]['interval_length_signed_bias_m']=length_error.mean(0).tolist()
+        stats[name]['progress_groups_existing_producer']=nominal.diagnostics(rr)['groups']
+        stats[name]['auxiliary']={k:evaluations[name]['report'][k] for k in
+            ['occ_iou','lane_iou','state_mae_vx_vy_ax_ay_yawrate','history_position_mae_by_offset']}
     unique=sorted(set(sessions));ix=[np.flatnonzero(sessions==s) for s in unique]
     draws=np.random.default_rng(0).integers(0,len(unique),(20000,len(unique)))
     def compare(left,right):
@@ -46,7 +58,17 @@ def main():
     comparisons={f'{x}-minus-{y}':compare(x,y) for x,y in [('VIS-TERMINAL','CONTROL'),('VIS-TERMINAL','PARENT'),('CONTROL','PARENT')]}
     checkpoint=RUN/'ckpt_step3426.pth';payload=torch.load(checkpoint,map_location='cpu',weights_only=False)
     cfg=MotionDriveV2Config(**payload['manifest']['model_config'])
-    training=VisualStudent(cfg);mr.rebuild_correlation_fuse(training,4);training.load_state_dict(payload['model'],strict=True)
+    training=VisualStudent(cfg);mr.rebuild_correlation_fuse(training,4)
+    initial_projector=training.visual_projector.weight.detach().clone()
+    training.load_state_dict(payload['model'],strict=True)
+    parent_weights=torch.load(PARENT,map_location='cpu',weights_only=False)['model']
+    assert {k:tuple(v.shape) for k,v in shared_state(training).items()}=={k:tuple(v.shape) for k,v in parent_weights.items()}
+    layer_keys=[k for k in payload['model'] if k.startswith('backbone_fpn.out3.') and payload['model'][k].is_floating_point()]
+    count=sum(payload['model'][k].numel() for k in layer_keys)
+    layer_update=(sum(float((payload['model'][k].double()-parent_weights[k].double()).square().sum()) for k in layer_keys)/count)**.5
+    projector_update=float((training.visual_projector.weight.detach()-initial_projector).square().mean().sqrt())
+    assert layer_update>0 and projector_update>0
+    del parent_weights
     clean=shared_state(training)
     student=SceneExtensionModel(cfg,arm=QREFINE);mr.rebuild_correlation_fuse(student,4)
     student.load_state_dict(clean,strict=True)
@@ -75,14 +97,19 @@ def main():
         'student_export':str(export),'student_export_sha256':sha(export),'export_checks':exported['student_export'],
         'lambda_vis':protocol['lambda_vis'],'updates':3426,'source':protocol['source'],
         'teacher_frozen':True,'full_lineage_used':False,'row_stream_matches_G0':True,
+        'inference_cost_contract':'Exported graph and tensor shapes match QREFINE parent. No teacher/projector in forward. A2 FULL single-head FLOPs are not assigned to this QREFINE student.',
         'validation_limit':'Repeated DEV use; bootstrap conditional on the same 11 sessions',
-        'training_first_visual_loss':a[1]['visual_cosine'],'training_terminal_visual_loss':a[3426]['visual_cosine'],
-        'run_elapsed_seconds':a[3426]['elapsed_seconds'],
+        'training_first_visual_loss':a[1]['visual_cosine'],'training_last_logged_visual_loss':a[last_logged]['visual_cosine'],
+        'last_logged_train_step':last_logged,
+        'parameter_updates':{'student_upper_FPN_RMS_from_parent':layer_update,
+            'projector_RMS_from_private_initialization':projector_update,
+            'scope':'Actual parameter changes; student updates include all existing losses. Visual-only gradient path was tested separately in preflight.'},
+        'run_elapsed_seconds':json.loads((RUN/'manifest.json').read_text())['elapsed_seconds'],
         'coefficient_did_not_use_V0':True}
     (REPORT/'visual_results.json').write_text(json.dumps(results,indent=2)+'\n')
     fields=['run','PREFIX','L2_1s','L2_2s','L2_3s','nonstop_PREFIX','nonstop_contribution','first2s_PREFIX_contribution']
     with (REPORT/'results.csv').open('w') as f:
-        writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader()
+        writer=csv.DictWriter(f,fieldnames=fields,lineterminator='\n');writer.writeheader()
         for name,m in stats.items():
             writer.writerow({'run':name,**{k:m[k] for k in fields[1:5]},
                 'nonstop_PREFIX':m['groups']['nonstop']['PREFIX'],
