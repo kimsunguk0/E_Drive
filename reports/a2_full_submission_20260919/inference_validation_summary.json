@@ -1,0 +1,22 @@
+{
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/ckpt_step24931.pth",
+  "checkpoint_sha256": "aabdb2dca24491b46fd2e56e66d57fe0742e17a5b4c63c29f3199137cf8ff297",
+  "clips": 1125,
+  "all_finite": true,
+  "all_shapes_6x2": true,
+  "absolute_XY_no_second_cumsum": true,
+  "clip_isolation_max_abs": 0.0,
+  "provided_status": "nominal causal input; query-only",
+  "no_future_pose_in_status": true,
+  "full_weights_not_used_in_DEV": true,
+  "elapsed_wall_seconds": 103.88953336887062,
+  "uploaded": false,
+  "source_git": "cac6800b7b735b038b39dee2b805c9e395f2e299",
+  "source_sha256": "03885c59e4ba9ba5a1517fad5df31b4ad79881a54c7f71dcebf7feb0851c1c0b",
+  "predictions_sha256": "ee53910e06f1fbd7c40e84c2b2c2a816133ecf39a92a370e6a3595d78c4d9939",
+  "detailed_artifact": {
+    "path": "/NHNHOME/data/sukim/adcl/reports/a2_full_submission_20260919/inference_validation.json",
+    "sha256": "ea692f449219ff13cc5e41ca75951e2a595e03568e535d7f3ae746691b37bb24",
+    "bytes": 956850
+  }
+}

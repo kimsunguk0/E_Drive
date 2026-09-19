@@ -1,0 +1,128 @@
+{
+  "checkpoint_sha256": "aabdb2dca24491b46fd2e56e66d57fe0742e17a5b4c63c29f3199137cf8ff297",
+  "fixtures": 8,
+  "checks": [
+    {
+      "clip": "fixture_000",
+      "input_max_diff": {
+        "images": 0.0,
+        "history_images": 0.0,
+        "lidar2img": 0.0,
+        "history_transforms": 0.0,
+        "time_offsets": 0.0,
+        "goal_xy": 0.0,
+        "motion_current": 0.0,
+        "motion_history": 0.0,
+        "provided_status5": 0.0
+      },
+      "plan_max_abs_xy": 0.0
+    },
+    {
+      "clip": "fixture_001",
+      "input_max_diff": {
+        "images": 0.0,
+        "history_images": 0.0,
+        "lidar2img": 0.0,
+        "history_transforms": 0.0,
+        "time_offsets": 0.0,
+        "goal_xy": 0.0,
+        "motion_current": 0.0,
+        "motion_history": 0.0,
+        "provided_status5": 0.0
+      },
+      "plan_max_abs_xy": 0.0
+    },
+    {
+      "clip": "fixture_002",
+      "input_max_diff": {
+        "images": 0.0,
+        "history_images": 0.0,
+        "lidar2img": 0.0,
+        "history_transforms": 0.0,
+        "time_offsets": 0.0,
+        "goal_xy": 0.0,
+        "motion_current": 0.0,
+        "motion_history": 0.0,
+        "provided_status5": 0.0
+      },
+      "plan_max_abs_xy": 0.0
+    },
+    {
+      "clip": "fixture_003",
+      "input_max_diff": {
+        "images": 0.0,
+        "history_images": 0.0,
+        "lidar2img": 0.0,
+        "history_transforms": 0.0,
+        "time_offsets": 0.0,
+        "goal_xy": 0.0,
+        "motion_current": 0.0,
+        "motion_history": 0.0,
+        "provided_status5": 0.0
+      },
+      "plan_max_abs_xy": 0.0
+    },
+    {
+      "clip": "fixture_004",
+      "input_max_diff": {
+        "images": 0.0,
+        "history_images": 0.0,
+        "lidar2img": 0.0,
+        "history_transforms": 0.0,
+        "time_offsets": 0.0,
+        "goal_xy": 0.0,
+        "motion_current": 0.0,
+        "motion_history": 0.0,
+        "provided_status5": 0.0
+      },
+      "plan_max_abs_xy": 0.0
+    },
+    {
+      "clip": "fixture_005",
+      "input_max_diff": {
+        "images": 0.0,
+        "history_images": 0.0,
+        "lidar2img": 0.0,
+        "history_transforms": 0.0,
+        "time_offsets": 0.0,
+        "goal_xy": 0.0,
+        "motion_current": 0.0,
+        "motion_history": 0.0,
+        "provided_status5": 0.0
+      },
+      "plan_max_abs_xy": 0.0
+    },
+    {
+      "clip": "fixture_006",
+      "input_max_diff": {
+        "images": 0.0,
+        "history_images": 0.0,
+        "lidar2img": 0.0,
+        "history_transforms": 0.0,
+        "time_offsets": 0.0,
+        "goal_xy": 0.0,
+        "motion_current": 0.0,
+        "motion_history": 0.0,
+        "provided_status5": 0.0
+      },
+      "plan_max_abs_xy": 0.0
+    },
+    {
+      "clip": "fixture_007",
+      "input_max_diff": {
+        "images": 0.0,
+        "history_images": 0.0,
+        "lidar2img": 0.0,
+        "history_transforms": 0.0,
+        "time_offsets": 0.0,
+        "goal_xy": 0.0,
+        "motion_current": 0.0,
+        "motion_history": 0.0,
+        "provided_status5": 0.0
+      },
+      "plan_max_abs_xy": 0.0
+    }
+  ],
+  "max_plan_abs_xy": 0.0,
+  "scope": "train-sourced raw fixtures; pipeline parity, not accuracy validation"
+}

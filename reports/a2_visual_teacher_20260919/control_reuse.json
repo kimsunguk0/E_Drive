@@ -1,0 +1,43 @@
+{
+  "reused_control": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1",
+  "same_initializer_rows_nominal_policy": true,
+  "matched_recipe_keys": [
+    "batch",
+    "microbatch",
+    "eval_batch",
+    "head_lr",
+    "backbone_lr",
+    "warmup",
+    "weight_decay",
+    "grad_clip",
+    "flip_probability",
+    "precision",
+    "interval_length_auxiliary_lambda",
+    "correlation_radius",
+    "motion_canvas"
+  ],
+  "zero_loss_initial_metrics_bitwise_equal": [
+    "total",
+    "plan_d3",
+    "occ_bce",
+    "lane_bce",
+    "history",
+    "state",
+    "stop_bce",
+    "motion",
+    "plan_interval_length",
+    "weighted_auxiliary",
+    "lr",
+    "sample_order_sha256"
+  ],
+  "first_step_grad_norm": {
+    "replay": 14.703690528869629,
+    "G0": 14.70324420928955
+  },
+  "numeric_note": "CUDA backward is not guaranteed bitwise deterministic; no exact-gradient replay claim",
+  "shared_initial_SHA": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+  "complete_row_stream_hash_check": "required again at terminal",
+  "main_budget": 3426,
+  "teacher_lambda": 0.25,
+  "optimizer": "fresh identical AdamW shared groups; teacher-only train projector in head group"
+}

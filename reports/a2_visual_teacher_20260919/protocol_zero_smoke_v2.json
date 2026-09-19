@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "name": "a2_visual_teacher_20260919",
+  "arm": "A2-VIS-TEACHER",
+  "seed": 1,
+  "smoke": true,
+  "question": "training-only RGB spatial supervision, identical deployed student",
+  "initializer": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+    "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+    "model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+    "source": "complete DEV QREFINE terminal model state, strict load; no optimizer state"
+  },
+  "split_manifest": {
+    "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/grouped_split_r0reset_tplus.json",
+    "sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44"
+  },
+  "supervision": {
+    "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2",
+    "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/r0reset_tplus_geometry_v2/supervision_manifest.json",
+    "sha256": "ad73fe0ca580f90450d7d3085af0eebfc8b2a1d974b8c3fe70b86a309113da4f"
+  },
+  "train_data": {
+    "rows": 83700,
+    "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+    "scenes": 310
+  },
+  "tune_data": {
+    "rows": 1998,
+    "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "scenes": 37
+  },
+  "provided_status_used": true,
+  "information_route": {
+    "source": "causal pose fit with frame-difference * 0.1s; same deployment producer",
+    "fields": [
+      "vx",
+      "vy",
+      "ax",
+      "ay",
+      "yaw_rate"
+    ],
+    "raw_status_direct_planner_input": false,
+    "shared_query": true,
+    "shared_multiplicative_image_feature_conditioning": false,
+    "shared_consumers": [
+      "occupancy",
+      "lane",
+      "planning"
+    ],
+    "progress_head_inputs": [],
+    "progress_head_raw_goal_pose_status_inputs": false,
+    "motion_state_history": "unconditioned image branch",
+    "offset_predictor": null
+  },
+  "planner": {
+    "factorized": false,
+    "coefficient_count": 0,
+    "coefficient_semantics": [],
+    "direction_source": "direct XY output",
+    "proposal_length_gradient": "ordinary direct XY",
+    "composition": "ordinary direct XY",
+    "candidate_bank_or_selector": false
+  },
+  "recipe": {
+    "updates": 2,
+    "eval_every": 2,
+    "batch": 16,
+    "microbatch": 8,
+    "eval_batch": 8,
+    "head_lr": 1e-05,
+    "backbone_lr": 1e-06,
+    "warmup": 100,
+    "weight_decay": 0.01,
+    "grad_clip": 5.0,
+    "flip_probability": 0.5,
+    "precision": "bf16",
+    "interval_length_auxiliary_lambda": 0.25,
+    "correlation_radius": 4,
+    "motion_canvas": "native 768x432",
+    "eval_role": "DEV V0, excluded from fitting",
+    "eval_steps": [
+      0,
+      1142,
+      2284,
+      3426
+    ]
+  },
+  "comparison_contract": {
+    "same_initializer_as_registered_mr": false,
+    "same_train310_tune37_split": true,
+    "same_seed_and_sample_order_across_arms": true,
+    "same_full_update_budget": false
+  },
+  "expected_initial_model_state_sha256": "7873999e6d7e4db2301c6dc4edccd587b62b3714440a5d033efcfa339f1747bd",
+  "expected_optimizer_groups": [
+    {
+      "name": "backbone",
+      "base_lr": 1e-06
+    },
+    {
+      "name": "head",
+      "base_lr": 1e-05
+    }
+  ],
+  "physical_gpu": 1,
+  "nominal_input": {
+    "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/manifest.json",
+    "sha256": "e63951eb1f2ddced7ecf38885af1a000f28afd2f900d0813be5500a8663c40c5",
+    "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "allowed_splits": [
+      "train",
+      "tune"
+    ],
+    "input_field": "provided_status5",
+    "state_history_supervision": "original real-time definition retained"
+  },
+  "scene_attention": {
+    "heads": 1,
+    "qk_dimensions_per_head": 32,
+    "value_dimensions_per_head": 128,
+    "output_dimensions": 128,
+    "sampling_grid_camera_time_metadata": "unchanged",
+    "query_as_value_residual": false,
+    "initialization": "strict trained QREFINE weights",
+    "query_refinement": true
+  },
+  "full_fit": {
+    "enabled": false,
+    "evaluation_is_in_fit": false,
+    "dev_weights_or_features_imported": false,
+    "checkpoint_selection": "fixed terminal; no best-overlapping-metric selection"
+  },
+  "expected_shared_base_initial_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+  "source": {
+    "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+    "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+    "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+    "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+    "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "experiments/a2_next_20260919/common.py": "a58f6156d03d6e4c6e3c5aaaf0f1d7419f3f3d83419702f79dab8b11168423d1",
+    "experiments/a2_next_20260919/train_next.py": "ad733dbe981a15ffb9041e258e51f26454d77bb1881e2e7e0a0da218587215eb",
+    "experiments/md_a2_scene_extensions_20260918/scene_extensions.py": "45f2fd1f3874e1468d99c0563893611b21ba6b16dcd5ddb1aeb7f8c83fe1fdf6",
+    "experiments/a2_visual_teacher_20260919/train_visual.py": "ae634ab2b3cb8ab88edd91c3891e3f946963032ec2533c8f5110733fbcaae002",
+    "experiments/a2_visual_teacher_20260919/visual_teacher.py": "af5de159c632413f11c3bc4a2afd338a0b33fdab3e3dfe14691f6ad41cd8a5da"
+  },
+  "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_visual_teacher_20260919/zero_smoke_v2",
+  "aux_bundle_multiplier": 1.0,
+  "parent_graph": "A2-QREFINE-NOM",
+  "fresh_optimizer": true,
+  "full_lineage_used": false,
+  "control": {
+    "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G0-s1",
+    "reuse": "same parent, complete G0 recipe and row stream; checked in receipt",
+    "PREFIX": 0.16508406852237295,
+    "parent_PREFIX": 0.16425176970362365
+  },
+  "visual_teacher": {
+    "model": "dinov2_vitb14_reg",
+    "architecture": "ViT-B/14 with four registers",
+    "official_repository": "https://github.com/facebookresearch/dinov2",
+    "revision": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+    "checkpoint": "/NHNHOME/data/sukim/adcl/checkpoints/dinov2/dinov2_vitb14_reg4_pretrain.pth",
+    "checkpoint_sha256": "73182a088cf94833c94b1666d1c99e02fe87e2007bff57b564fb6206e25dba71",
+    "official_weights_url": "https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitb14_reg4_pretrain.pth",
+    "license": "Apache-2.0 (DINOv2 code/model weights; not Cell-DINO or XRay-DINO)",
+    "license_sha256": "600cc67cc4cb2f5ea317dcfc687ad1c74dc4bec8782bbe9db0afd83513b935b7",
+    "rgb_only": true,
+    "teacher_updated": false,
+    "output": "forward_features.x_norm_patchtokens after final norm; CLS/registers excluded",
+    "feature_channels": 768,
+    "teacher_input_hw": [
+      378,
+      672
+    ],
+    "teacher_grid_hw": [
+      27,
+      48
+    ],
+    "student_feature": "first/current-six-camera backbone_fpn forward output[0][1] = out3(P3)",
+    "student_shape_per_image": [
+      128,
+      27,
+      48
+    ],
+    "student_stride": 16,
+    "normalized_input": "RGB ImageNet mean [.485,.456,.406], std [.229,.224,.225]",
+    "augmentation": "same augmented student current-camera image; no extra teacher augmentation",
+    "resize": "full FOV to 378x672 bilinear align_corners=False antialias=True, no crop/pad",
+    "alignment": "teacher patch centre mapped to original pixel centre, then stride16 feature coordinate",
+    "valid_sites_per_image": 1222,
+    "spatial_mask": "bilinear support inside student grid, plus finite target",
+    "normalization": "sum masked cosine distances / all valid sites in logical B16",
+    "projector": "train-only bias-free Conv1x1 128->768; same 1e-5 head LR in selected recipe",
+    "teacher_batching": "online, chunk12 current images; no cached targets or repeated student pass",
+    "adaptation_data": "DEV train310 RGB only; no FULL/V0/H/test adaptation",
+    "pretraining_overlap": "Public provenance recorded; full pretraining corpus overlap is not certified",
+    "inference": "student only; teacher/projector excluded from deployment model"
+  },
+  "lambda_vis": 0.0,
+  "coefficient_selection": {
+    "rule": "lambda = clamp(0.10 / median(unweighted_visual/main_gradient_norm), 0.005, 0.25); 4 fixed train batches",
+    "report_sha256": "5a5a527fa6e32df7809f12ed852ed0c8cc024dc8e1ea0cf578aa6cbad1a347cd"
+  },
+  "train_only_state_prefix": "visual_projector.",
+  "initial_load": {
+    "strict_parent_plus_projector": true,
+    "shared_parent_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+    "measured_model_state_sha256": "7873999e6d7e4db2301c6dc4edccd587b62b3714440a5d033efcfa339f1747bd"
+  }
+}

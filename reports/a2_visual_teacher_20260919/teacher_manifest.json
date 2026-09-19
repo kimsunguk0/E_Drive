@@ -1,0 +1,42 @@
+{
+  "model": "dinov2_vitb14_reg",
+  "architecture": "ViT-B/14 with four registers",
+  "official_repository": "https://github.com/facebookresearch/dinov2",
+  "revision": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/checkpoints/dinov2/dinov2_vitb14_reg4_pretrain.pth",
+  "checkpoint_sha256": "73182a088cf94833c94b1666d1c99e02fe87e2007bff57b564fb6206e25dba71",
+  "official_weights_url": "https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitb14_reg4_pretrain.pth",
+  "license": "Apache-2.0 (DINOv2 code/model weights; not Cell-DINO or XRay-DINO)",
+  "license_sha256": "600cc67cc4cb2f5ea317dcfc687ad1c74dc4bec8782bbe9db0afd83513b935b7",
+  "rgb_only": true,
+  "teacher_updated": false,
+  "output": "forward_features.x_norm_patchtokens after final norm; CLS/registers excluded",
+  "feature_channels": 768,
+  "teacher_input_hw": [
+    378,
+    672
+  ],
+  "teacher_grid_hw": [
+    27,
+    48
+  ],
+  "student_feature": "first/current-six-camera backbone_fpn forward output[0][1] = out3(P3)",
+  "student_shape_per_image": [
+    128,
+    27,
+    48
+  ],
+  "student_stride": 16,
+  "normalized_input": "RGB ImageNet mean [.485,.456,.406], std [.229,.224,.225]",
+  "augmentation": "same augmented student current-camera image; no extra teacher augmentation",
+  "resize": "full FOV to 378x672 bilinear align_corners=False antialias=True, no crop/pad",
+  "alignment": "teacher patch centre mapped to original pixel centre, then stride16 feature coordinate",
+  "valid_sites_per_image": 1222,
+  "spatial_mask": "bilinear support inside student grid, plus finite target",
+  "normalization": "sum masked cosine distances / all valid sites in logical B16",
+  "projector": "train-only bias-free Conv1x1 128->768; same 1e-5 head LR in selected recipe",
+  "teacher_batching": "online, chunk12 current images; no cached targets or repeated student pass",
+  "adaptation_data": "DEV train310 RGB only; no FULL/V0/H/test adaptation",
+  "pretraining_overlap": "Public provenance recorded; full pretraining corpus overlap is not certified",
+  "inference": "student only; teacher/projector excluded from deployment model"
+}

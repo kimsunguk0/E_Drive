@@ -1,0 +1,192 @@
+{
+  "created_at_utc": "2026-09-19T08:58:39.547419+00:00",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+  "model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+  "source_sha256": "6b5fdd3dfe4d1a7f7cb905c011147d83001da9ace779624e84ccb734c4b31835",
+  "config": {
+    "channels": 128,
+    "backbone_arch": "resnet50",
+    "grid_size": [
+      64,
+      48
+    ],
+    "x_range": [
+      -10.0,
+      70.0
+    ],
+    "y_range": [
+      -32.0,
+      32.0
+    ],
+    "heights": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "n_history": 4,
+    "motion_grid": [
+      12,
+      16
+    ],
+    "correlation_channels": 32,
+    "correlation_radius": 4,
+    "scene_attention_channels": 32,
+    "scene_chunk_size": 512,
+    "planner_layers": 2,
+    "planner_heads": 4,
+    "goal_on": true,
+    "state_on": true,
+    "plan_output_scale": [
+      10.0,
+      5.0
+    ],
+    "motion_input_mode": "low_feature",
+    "history_contract": "control",
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "nominal_history_seconds": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "cross_cell_goal_mode": "zero"
+  },
+  "source_commit": "cac6800b7b735b038b39dee2b805c9e395f2e299",
+  "row_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+  "n": 1998,
+  "sessions": 11,
+  "physical_gpu": 0,
+  "optimizer_updates": 0,
+  "parameter_buffer_hash_unchanged": true,
+  "original_flag_restored": true,
+  "replay_max_abs_m": 0.00032138824462890625,
+  "internal_max_difference": {
+    "scene_features": 0.0,
+    "motion_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "numeric_information_removed": "normalized predicted state/history before biased MLP; constant token remains",
+  "provided_status5_unchanged": true,
+  "full_lineage_used": false,
+  "models": {
+    "ON": {
+      "PREFIX": 0.1642517619243559,
+      "L2_1s": 0.09604649777009745,
+      "L2_2s": 0.16368460222307946,
+      "L2_3s": 0.23302418577989073,
+      "per_waypoint_L2": [
+        0.0643359143931724,
+        0.1277570811470227,
+        0.19623167417535572,
+        0.26641373917676714,
+        0.33664870908044614,
+        0.4067579967065808
+      ],
+      "first2s_PREFIX_contribution": 0.12295138938063219,
+      "weighted_longitudinal_abs_m": 0.14340521500821143,
+      "weighted_lateral_abs_m": 0.06090156488633733,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3357339219870618,
+          "overall_contribution": 0.00403283990374849
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16844511122690797,
+          "overall_contribution": 0.1580753671423686
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.04326083481536459,
+          "overall_contribution": 0.002143554878238786
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.23751979124390246
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15293156154657175
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.3724207169988272
+        }
+      }
+    },
+    "OFF": {
+      "PREFIX": 0.16453447306228677,
+      "L2_1s": 0.09631496101522986,
+      "L2_2s": 0.1640160254843765,
+      "L2_3s": 0.23327243268725392,
+      "per_waypoint_L2": [
+        0.06451806110059705,
+        0.1281118609298626,
+        0.1969721299126931,
+        0.2664620499943528,
+        0.33671037651459595,
+        0.4068601176714212
+      ],
+      "first2s_PREFIX_contribution": 0.12322500116306359,
+      "weighted_longitudinal_abs_m": 0.14340640614035388,
+      "weighted_lateral_abs_m": 0.06134340531503021,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.33584277704452403,
+          "overall_contribution": 0.004034147472006294
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.16874546507306235,
+          "overall_contribution": 0.1583572307367327
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.04325155068069195,
+          "overall_contribution": 0.002143094853547799
+        }
+      },
+      "geometric_turn_bins": {
+        "negative_y_le_minus2m": {
+          "n": 161,
+          "PREFIX": 0.24112020734650044
+        },
+        "other": {
+          "n": 1796,
+          "PREFIX": 0.15294296600178217
+        },
+        "positive_y_ge2m": {
+          "n": 41,
+          "PREFIX": 0.3715599233283325
+        }
+      }
+    }
+  },
+  "OFF_minus_ON": {
+    "PREFIX": 0.0002827111379308929,
+    "session_CI95": [
+      -0.0008153227963598122,
+      0.0013362275999347763
+    ],
+    "sessions_improved": 4,
+    "group_contribution_delta": {
+      "depart": 1.3075682578042103e-06,
+      "nonstop": 0.00028186359436407595,
+      "steady": -4.600246909871458e-07
+    }
+  },
+  "plan_PREFIX_distance": 0.007766542667441818,
+  "elapsed_seconds": 40.81169672124088,
+  "limitation": "Frozen-weight out-of-training-distribution intervention; reused V0, conditional bootstrap over 11 observed sessions. Not OFF training or organizer approval."
+}

@@ -1,0 +1,16 @@
+{
+  "complete_raw_package_first_clip_vs_portable_prediction_max_abs_XY": 0.0,
+  "B200_only_timing": [
+    {
+      "input": "first_clip_inputs.pt",
+      "median_ms": 19.515392303466797,
+      "p95_ms": 21.192275619506834,
+      "min_ms": 19.122655868530273,
+      "max_ms": 28.326656341552734,
+      "peak_allocated_bytes": 711283712,
+      "warmup": 30,
+      "repeats": 200
+    }
+  ],
+  "RTX4090_measurement": "pending actual hardware location; old MR latency is not inherited"
+}

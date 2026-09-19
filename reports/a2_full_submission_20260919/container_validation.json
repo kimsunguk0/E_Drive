@@ -1,0 +1,59 @@
+{
+  "image_id": "sha256:2fe421f31cd80e8de5bac03dfc681fd1728c1ed016f92df10a2f13c2aca7f3ec",
+  "base_digest": "sha256:c16f4c749e2d9e96878875cdf6cc45cddda1d1a36fddd371dd6f2360f1b6e2a2",
+  "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "torch": "2.7.1+cu128",
+  "checkpoint_sha256": "aabdb2dca24491b46fd2e56e66d57fe0742e17a5b4c63c29f3199137cf8ff297",
+  "clips": {
+    "00017c73feca4fde": {
+      "max_abs_XY_m": 0.0028285980224609375,
+      "mean_abs_XY_m": 0.0013576634228229523
+    },
+    "0022a88d648a65c7": {
+      "max_abs_XY_m": 0.0010269880294799805,
+      "mean_abs_XY_m": 0.00048019519696633023
+    }
+  },
+  "no_missing_dependency_after_source_bundle_fix": true,
+  "scope": "two raw test-shaped actual test inputs in a clean container; no official score; not RTX4090 timing",
+  "driver_workaround": "task-local 580.173.02 libraries matching loaded kernel, manually mounted device; system driver and daemon not modified",
+  "first_clip_input_parity": {
+    "images": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    "history_images": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    "lidar2img": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    "history_transforms": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    "time_offsets": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    "goal_xy": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    "motion_current": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    "motion_history": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    "provided_status5": {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    }
+  },
+  "interpretation": "Raw inputs identical; remaining BF16 output differences are across device/runtime, not raw-adapter input drift. Not a 4090 latency measurement."
+}

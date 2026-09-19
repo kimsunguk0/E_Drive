@@ -1,0 +1,12 @@
+{
+  "warm_steps": [
+    50,
+    100
+  ],
+  "teacher_seconds_per_update": 0.5956979212537408,
+  "control_seconds_per_update": 0.5273132183402777,
+  "teacher_peak_allocated_bytes": 36080304128,
+  "control_peak_allocated_bytes": 35119060992,
+  "scope": "actual end-to-end training loop including online teacher, data movement, backward and optimizer",
+  "preflight_timing_caveat": "The per-batch teacher_seconds field in the preflight was measured without an immediate CUDA synchronize, so it is not standalone GPU latency. Use these synchronized complete-training-step costs."
+}

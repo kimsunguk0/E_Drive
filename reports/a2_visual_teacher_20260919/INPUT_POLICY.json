@@ -1,0 +1,9 @@
+{
+  "provided_status5": "past/current pose, frame-index difference * 0.1s, same nominal_status producer as existing A2",
+  "route": "shared scene attention query only; no new planner token or motion/state/history conditioning",
+  "goal": "existing scene conditioning; indirectly influences plan",
+  "supervision": "original measured-time state/history targets unchanged",
+  "teacher": "already augmented RGB only; current six cameras, upper FPN before conditioning",
+  "loss_normalization": "original normalizer key set retained; visual targets/mask/count stored separately",
+  "full_DEV_isolation": true
+}

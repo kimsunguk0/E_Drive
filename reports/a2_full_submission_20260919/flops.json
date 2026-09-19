@@ -1,0 +1,75 @@
+{
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/ckpt_step24931.pth",
+  "checkpoint_sha256": "aabdb2dca24491b46fd2e56e66d57fe0742e17a5b4c63c29f3199137cf8ff297",
+  "model_state_sha256": "387c32b7a5252c1e9ff14804d4518430e60e129ab75f7f24ece252dab2a6c2b3",
+  "flops": 729815616192,
+  "gflops": 729.815616192,
+  "passes_cutoff": true,
+  "cutoff_gflops": 7053.0,
+  "counter": "official-style torch.utils.flop_counter.FlopCounterMode Global sum",
+  "scope": "one complete A2 forward, including every current/history image encoding; no division",
+  "measured_clip": "00017c73feca4fde",
+  "precision": "FP32 counting",
+  "parameters": 26557208,
+  "input_shapes": {
+    "images": [
+      1,
+      6,
+      3,
+      432,
+      768
+    ],
+    "history_images": [
+      1,
+      4,
+      3,
+      216,
+      384
+    ],
+    "lidar2img": [
+      1,
+      6,
+      4,
+      4
+    ],
+    "history_transforms": [
+      1,
+      4,
+      4,
+      4
+    ],
+    "time_offsets": [
+      1,
+      4
+    ],
+    "goal_xy": [
+      1,
+      2
+    ],
+    "motion_current": [
+      1,
+      3,
+      432,
+      768
+    ],
+    "motion_history": [
+      1,
+      4,
+      3,
+      432,
+      768
+    ],
+    "provided_status5": [
+      1,
+      5
+    ]
+  },
+  "by_operator": {
+    "aten.convolution": 729160187904,
+    "aten.addmm": 469692608,
+    "aten.mm": 87228416,
+    "aten.bmm": 78447104,
+    "aten._scaled_dot_product_efficient_attention": 20060160
+  },
+  "teacher_in_forward": false
+}

@@ -1,0 +1,51 @@
+{
+  "checkpoint_sha256": "aabdb2dca24491b46fd2e56e66d57fe0742e17a5b4c63c29f3199137cf8ff297",
+  "device": "NVIDIA B200",
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "cuda": "13.1",
+  "precision": "bf16",
+  "teacher": false,
+  "projector": false,
+  "forwards_per_clip": 1,
+  "scope": "entire forward including all current/history backbone calls; raw preprocessing excluded",
+  "timing": [
+    {
+      "input": "first_clip_inputs.pt",
+      "median_ms": 19.515392303466797,
+      "p95_ms": 21.192275619506834,
+      "min_ms": 19.122655868530273,
+      "max_ms": 28.326656341552734,
+      "peak_allocated_bytes": 711283712,
+      "warmup": 30,
+      "repeats": 200
+    }
+  ],
+  "predictions": {
+    "first_clip_inputs.pt": [
+      [
+        1.9114198684692383,
+        -0.023951157927513123
+      ],
+      [
+        4.034915924072266,
+        -0.07556632161140442
+      ],
+      [
+        6.37404727935791,
+        -0.12496702373027802
+      ],
+      [
+        8.935624122619629,
+        -0.21494686603546143
+      ],
+      [
+        11.628412246704102,
+        -0.29529738426208496
+      ],
+      [
+        14.49422836303711,
+        -0.39099687337875366
+      ]
+    ]
+  }
+}

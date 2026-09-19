@@ -1,0 +1,8 @@
+{
+  "A2-VIS-TEACHER-s1": {
+    "optimizer_updates": 0,
+    "error": "Existing loss validates an exact normalizer key set; extra visual_count rejected",
+    "fix": "Pass original normalizer keys to original loss, keep separate visual count for visual loss",
+    "replacement": "A2-VIS-TEACHER-s1-r2"
+  }
+}

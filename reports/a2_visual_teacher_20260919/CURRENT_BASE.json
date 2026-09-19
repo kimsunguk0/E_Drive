@@ -1,0 +1,33 @@
+{
+  "source_commit": "cac6800b7b735b038b39dee2b805c9e395f2e299",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+  "model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+  "graph": "A2-QREFINE-NOM",
+  "seed": 1,
+  "step": 20554,
+  "train": {
+    "rows": 83700,
+    "rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+    "scenes": 310
+  },
+  "validation": {
+    "rows": 1998,
+    "rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "scenes": 37
+  },
+  "nominal_input": {
+    "manifest": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_nominal_status_20260918/manifest.json",
+    "sha256": "e63951eb1f2ddced7ecf38885af1a000f28afd2f900d0813be5500a8663c40c5",
+    "producer_sha256": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "allowed_splits": [
+      "train",
+      "tune"
+    ],
+    "input_field": "provided_status5",
+    "state_history_supervision": "original real-time definition retained"
+  },
+  "FULL_lineage_used": false,
+  "PREFIX": 0.16425176970362365,
+  "input_state_history_flag": true
+}

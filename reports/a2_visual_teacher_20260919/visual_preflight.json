@@ -1,0 +1,221 @@
+{
+  "rule": "lambda = clamp(0.10 / median(unweighted_visual/main_gradient_norm), 0.005, 0.25); 4 fixed train batches",
+  "lambda_vis": 0.25,
+  "median_ratio": 0.046375760129555875,
+  "batches": [
+    {
+      "batch": 0,
+      "rows": [
+        65664,
+        70572,
+        95575,
+        88018,
+        63481,
+        70171,
+        13931,
+        69044,
+        74370,
+        28086,
+        95276,
+        88901,
+        63793,
+        62399,
+        5898,
+        73926
+      ],
+      "loss": {
+        "main": 0.11285844072699547,
+        "visual": 1.0069907307624817
+      },
+      "norms": {
+        "main": 7.298498632478546,
+        "visual": 0.3675111797028612
+      },
+      "visual_main_ratio": 0.05035435343748987,
+      "teacher_seconds": 1.0768644455820322,
+      "dual_gradient_seconds": 2.2879736945033073,
+      "valid_count": 117312,
+      "projector_gradient_sq": 0.02559689711779356
+    },
+    {
+      "batch": 1,
+      "rows": [
+        3252,
+        29095,
+        9498,
+        101084,
+        68686,
+        34168,
+        108471,
+        55562,
+        52786,
+        537,
+        88725,
+        71788,
+        84806,
+        13710,
+        18087,
+        67063
+      ],
+      "loss": {
+        "main": 0.10616399720311165,
+        "visual": 1.0082114934921265
+      },
+      "norms": {
+        "main": 8.889744404419906,
+        "visual": 0.3286044232565232
+      },
+      "visual_main_ratio": 0.036964439955455175,
+      "teacher_seconds": 0.04117956385016441,
+      "dual_gradient_seconds": 0.7246027234941721,
+      "valid_count": 117312,
+      "projector_gradient_sq": 0.02529564406722784
+    },
+    {
+      "batch": 2,
+      "rows": [
+        51667,
+        54543,
+        77931,
+        44501,
+        78032,
+        88340,
+        102799,
+        32792,
+        106315,
+        83016,
+        6447,
+        45580,
+        45188,
+        73734,
+        66037,
+        47955
+      ],
+      "loss": {
+        "main": 0.10825463384389877,
+        "visual": 1.004848837852478
+      },
+      "norms": {
+        "main": 8.21766685230669,
+        "visual": 0.3484057924217591
+      },
+      "visual_main_ratio": 0.04239716682162188,
+      "teacher_seconds": 0.041078224778175354,
+      "dual_gradient_seconds": 0.7250519804656506,
+      "valid_count": 117312,
+      "projector_gradient_sq": 0.024755614809691906
+    },
+    {
+      "batch": 3,
+      "rows": [
+        3078,
+        67313,
+        58598,
+        7317,
+        31193,
+        11246,
+        29225,
+        110774,
+        1999,
+        89505,
+        4914,
+        102525,
+        13839,
+        29519,
+        45763,
+        34194
+      ],
+      "loss": {
+        "main": 0.12743231654167175,
+        "visual": 1.0051619410514832
+      },
+      "norms": {
+        "main": 4.325213788643944,
+        "visual": 0.3286792960555182
+      },
+      "visual_main_ratio": 0.07599145663469432,
+      "teacher_seconds": 0.04124026745557785,
+      "dual_gradient_seconds": 0.7265536673367023,
+      "valid_count": 117312,
+      "projector_gradient_sq": 0.024721618741750717
+    }
+  ],
+  "tests": {
+    "zero_visual_forward_parity": {
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "scene_visible": 0.0,
+      "motion_features": 0.0,
+      "history_hat": 0.0,
+      "state_hat": 0.0,
+      "history_logvar": 0.0,
+      "state_logvar": 0.0,
+      "plan_abs": 0.0
+    },
+    "input_boundary": {
+      "_visual_feature": 0.0,
+      "motion_features": 0.0,
+      "history_hat": 0.0,
+      "state_hat": 0.0,
+      "history_logvar": 0.0,
+      "state_logvar": 0.0
+    },
+    "shared_parent_state_unchanged": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+    "teacher_state_unchanged": "33b0f870335e04f2d08246e7fa5197b91b4b8322100cb63653cdedc8f64acacf",
+    "ramp_max_abs": 0.0001220703125,
+    "full_micro": {
+      "loss_max_diff": 5.960464477539063e-08,
+      "gradient_max_diff": 1.4551915228366852e-11
+    },
+    "all_invalid_zero": true,
+    "teacher_requires_grad": false,
+    "student_and_projection_nonzero_finite_gradient": true,
+    "student_export_strict_equivalence": "parent strict load of identical shared tensors; repeated after training"
+  },
+  "peak_allocated_bytes": 54833959424,
+  "teacher": {
+    "model": "dinov2_vitb14_reg",
+    "architecture": "ViT-B/14 with four registers",
+    "official_repository": "https://github.com/facebookresearch/dinov2",
+    "revision": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+    "checkpoint": "/NHNHOME/data/sukim/adcl/checkpoints/dinov2/dinov2_vitb14_reg4_pretrain.pth",
+    "checkpoint_sha256": "73182a088cf94833c94b1666d1c99e02fe87e2007bff57b564fb6206e25dba71",
+    "official_weights_url": "https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitb14_reg4_pretrain.pth",
+    "license": "Apache-2.0 (DINOv2 code/model weights; not Cell-DINO or XRay-DINO)",
+    "license_sha256": "600cc67cc4cb2f5ea317dcfc687ad1c74dc4bec8782bbe9db0afd83513b935b7",
+    "rgb_only": true,
+    "teacher_updated": false,
+    "output": "forward_features.x_norm_patchtokens after final norm; CLS/registers excluded",
+    "feature_channels": 768,
+    "teacher_input_hw": [
+      378,
+      672
+    ],
+    "teacher_grid_hw": [
+      27,
+      48
+    ],
+    "student_feature": "first/current-six-camera backbone_fpn forward output[0][1] = out3(P3)",
+    "student_shape_per_image": [
+      128,
+      27,
+      48
+    ],
+    "student_stride": 16,
+    "normalized_input": "RGB ImageNet mean [.485,.456,.406], std [.229,.224,.225]",
+    "augmentation": "same augmented student current-camera image; no extra teacher augmentation",
+    "resize": "full FOV to 378x672 bilinear align_corners=False antialias=True, no crop/pad",
+    "alignment": "teacher patch centre mapped to original pixel centre, then stride16 feature coordinate",
+    "valid_sites_per_image": 1222,
+    "spatial_mask": "bilinear support inside student grid, plus finite target",
+    "normalization": "sum masked cosine distances / all valid sites in logical B16",
+    "projector": "train-only bias-free Conv1x1 128->768; same 1e-5 head LR in selected recipe",
+    "teacher_batching": "online, chunk12 current images; no cached targets or repeated student pass",
+    "adaptation_data": "DEV train310 RGB only; no FULL/V0/H/test adaptation",
+    "pretraining_overlap": "Public provenance recorded; full pretraining corpus overlap is not certified",
+    "inference": "student only; teacher/projector excluded from deployment model"
+  },
+  "selection_used": "4 train effective batches only; no V0 selection",
+  "optimizer_updates": 0
+}
