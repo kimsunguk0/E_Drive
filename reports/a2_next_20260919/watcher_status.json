@@ -1,0 +1,18 @@
+{
+  "pid": 3449241,
+  "status": "completed",
+  "started_at_utc": "2026-09-18T17:24:41.729259+00:00",
+  "training_started_by_watcher": false,
+  "FULL_or_submission_actions": false,
+  "phases": {
+    "G": {
+      "work_commit": "51dd90a628904f648edcbdda79755a424a3fe4c1",
+      "mirror_commit": "ca80adeda5899bc3339375bd3509e08abe552f71"
+    },
+    "all": {
+      "work_commit": "e8639b85c018e9f84e50a4e4afd1aadd18554790",
+      "mirror_commit": "43b3ba41a14b98c98a6a6dfecc9ee8f7736b69e4"
+    }
+  },
+  "completed_at_utc": "2026-09-18T20:36:47.553781+00:00"
+}

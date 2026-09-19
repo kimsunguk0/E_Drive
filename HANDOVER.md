@@ -1,787 +1,130 @@
-# MotionDrive V2 — 인수인계 (2026-09-19)
+# MotionDrive V2 — 현재 인수인계
+
+**기준: 2026-09-19 12시대 KST.** 최근 학습·검증은 완료됐고 GPU 0–3은 확인 시 유휴다.
+이 문서가 현재 상태와 결정을 나타낸다. 과거 실행 계획의 ‘진행 중·다음 실행’ 문구는 당시 기록이다.
+[최근 작업 통합 보고서](reports/recent_work_20260919/SUMMARY_KO.md)에서 근거와 변경 이력을 확인할 수 있다.
+
+## 1. 지금 보존할 후보
+
+|역할|후보|점수|해석|
+|---|---|---:|---|
+|확인된 공식 제출 기준|MR-NATIVE-FULL-s1|**0.185968928**|사용자가 전달한 공식 서버 결과|
+|현재 A2의 고정 terminal 기준|A2-QREFINE-NOM-s1|**0.164251770**|DEV V0; 이전 A2 대비 이득은 작고 불확실|
+|선택된 DEV 중간 후보|A2-G1-s1 / step 2,284|**0.163882485**|같은 V0의 3개 예정 평가 중 선택; 일반 주행은 부모보다 약간 악화|
+|학습 완료, 배포 작업 잔여|A2-FULL-NOM-s1|공식 점수 없음|V0 0.088934는 **학습 내 진단**|
+|최신 command 보조 후보|A2-COMMAND-NOM-s1|**0.164884294**|BASE보다 0.38% 개선 관측, QREFINE보다 높음|
+
+공식 서버·DEV·FULL 학습 내 점수는 서로 다른 평가다. 하나의 순위표로 합치지 않는다.
+A3-DIRECT의 DEV 0.149289는 제공 status가 motion/state에 영향을 주는 경로 때문에 현재 제출 방향에서 제외됐다.
+A2 또는 command를 운영국이 개별 승인했다고 주장하지 않는다.
+
+## 2. 완료된 A2 비교
+
+아래는 같은 V0 1,998행의 예정 terminal 점수다. G0/G1만 QREFINE terminal 이후 3,426 update의 추가 학습이다.
+
+|실험|변경|Update|PREFIX|현재 판단|
+|---|---|---:|---:|---|
+|BASE-NOM|배포형 nominal status 대조|20,554|0.165510649|완료 control 재사용|
+|MH4-NOM|공통 scene의 독립 attention 4개|20,554|0.164495430|작은 이득; 기존 A2 배포형 평가보다 높음|
+|SIDE-SCENE-NOM|FL/FR 과거 4장을 공통 scene에 추가|20,554|0.172406018|이번 설정 추가 확대 제외|
+|QREFINE-NOM|첫 visual read로 query 갱신 후 재조회|20,554|0.164251770|현재 fixed terminal 기준으로 보존|
+|G0|기존 보조 비중으로 matched continuation|3,426|0.165084069|부모보다 악화|
+|G1|같은 continuation, 보조 묶음 ×0.25|3,426|0.164740804|terminal 악화; step 2,284만 별도 보존|
+|LEARNED-SAMPLE|영상·고정 metadata 기반 sampling offset|20,554|0.164667226|BASE 소폭 개선, QREFINE 미달|
+|COMMAND-NOM|제공 6종 command → 공통 scene query|20,554|0.164884294|보조 후보 보존|
+
+- 기존 A2-DIRECT의 실측 timestamp 평가 **0.164280979**, 동일 checkpoint의 배포형 nominal 평가 **0.164455314**.
+  새 BASE는 nominal status로 다시 학습했으므로 기존 모델과의 비교에는 입력 학습 정책 차이도 포함된다.
+- G1−G0, sampling−BASE, command−BASE의 session 신뢰구간은 모두 0을 포함한다.
+- 여러 예정 checkpoint 중 고른 G1 값과 fixed terminal을 구분한다.
+- FULL 가중치·teacher·feature cache를 DEV로 되돌리지 않는다.
+
+## 3. 최신 command 결과와 남은 병목
+
+Command는 원본 parquet의 LANE_KEEP / TURN_LEFT / TURN_RIGHT / LANE_CHANGE_L / LANE_CHANGE_R / U_TURN 6종이다.
+`vad_cmd`나 GT 미래 XY에서 계산한 지시를 이번 입력으로 사용하지 않았다.
+좌우 반전 때 회전·차선변경 command도 교환한다.
+
+- 전체: BASE **0.165511 → 0.164884**, 약 **0.38%** 개선.
+- 일반 주행: **0.169591 → 0.169269**, 약 **0.19%** 개선.
+- 의미 좌회전: **0.210316 → 0.206248**; 우회전: **0.288671 → 0.284718**.
+- 같은 완료 모델의 지시를 전부 LANE_KEEP으로 바꾸면 **0.165817**로 악화한다.
+  이는 command를 활용한다는 진단이며 독립 학습 대조의 개선폭은 아니다.
+- Command를 바꿔도 완료 checkpoint의 motion/state/history 출력 차이는 0이다.
+- V0 의미 좌회전은 39행/1session, 유턴은 0행이다. 회전 일반화에 대한 결론은 제한적이다.
+
+일반 주행과 첫 2초의 진행량 오류가 크게 줄어든 결과는 없다.
+오차 대부분을 ‘가속·감속 타이밍 하나’로 설명하거나 현재 점수를 아키텍처의 한계로 확정하지 않는다.
+자세한 분해는 [command 판정](reports/a2_command_20260919/DECISION_KO.md)에 있다.
+
+## 4. 고정할 입력·평가 계약
+
+- 현재 A2: 제공 status5는 **공통 scene query** 조건. Goal도 기존 공통 scene 조건이다.
+- Command arm만 같은 query에 6종 지시를 추가한다. 새 raw planner token/value/gate는 없다.
+- 영상 기반 motion/state/history 경로는 이 조건 입력과 분리한다.
+- 같은 최종 scene tensor를 occupancy·lane·planner가 읽는다.
+- 기존 pose alignment는 유지한다. 새 pose 수치 운동 token을 만들지 않는다.
+- Planner의 `state_on`은 예측 state 사용 설정이며 제공 status 직접 입력과 구분한다.
+- `provided_status5`는 train/DEV/test에서 동일한 nominal causal producer를 사용한다.
+  영상 state/history supervision은 기존 실측 timestamp 정의를 유지한다.
+- [OPEN_ISSUE.md](OPEN_ISSUE.md)의 Q1·Q7·Q8·Q10 및 공지2가 보존된 원문이다.
+  Q10에는 영상에서 추론한 state/history 사용 허용 답변이 있다.
+
+공식 지표는 **PREFIX**다. L2_1s/2s/3s는 앞 2/4/6점 평균이고 세 값의 평균이 점수다.
+시점별 가중치는 **[11,11,5,5,2,2]/36**. L2_3s를 3초 endpoint로 해석하지 않는다.
+판정은 plain V0로 한다. 과거 test-matched 재가중이나 단일 서버–DEV 차이를 새 모델의 점수 환산식으로 쓰지 않는다.
+
+DEV: train 310 scenes / 83,700행, V0 37 scenes / 1,998행 / 11sessions.
+FULL: **376 unique scenes / 101,520행 / 24,931 update**.
+historical_val 9 scenes는 H29에 포함되므로 385 scenes로 세지 않는다.
+FULL 사용과 독립 DEV 검증은 가중치 계보를 분리하면 병행할 수 있다.
+
+## 5. 재개할 때의 작업
+
+|항목|확인된 상태|남은 일|
+|---|---|---|
+|MR FULL 제출|패키지·raw B1 parity·공식 결과 확보|기존 후보 보존|
+|A2 FULL|24,931 update 완료|A2 raw adapter parity, 전체 추론·비용·패키징 확인|
+|DEV 기준·후보|QREFINE / G1 중간 / command 보존|새 근거가 생길 때만 후속 비교를 결정|
+|OOF-MR-T203|54,810행 producer 학습 완료|new107 예측/진단은 미완료, 재우선순위 시 진행|
+|G/S/command 결과 기록|완료 및 GitHub 반영|이번 통합본에서 연결|
+|실험 자동 watcher|두 개 모두 완료|재시작할 이유 없음|
+
+지금 새 FULL, 추가 λ/head/radius 스윕 또는 공식 업로드를 예약하지 않았다.
+준비되지 않은 recurrent BEV, A3 gate 복구, residual 추가를 자동 후속으로 취급하지 않는다.
+과거 SIDE residual의 일부 단계는 미완주·미평가였으므로 전체 계열을 완전학습 후 실패로 묶지 않는다.
+중단된 A3-FP-VA는 마지막 학습 로그 600이며 프로세스가 없다. 오래된 manifest의 `running`을 현재 실행으로 읽지 않는다.
+
+제출 횟수는 **2026-09-18 사용자 확인 기준 5회 중 2회 사용**이다. 계정의 현재 값을 재조회한 것은 아니다.
+저장소의 다른 계정 제출 기록을 우리 quota에 더하지 않는다.
+
+## 6. 실행·배포 메모
 
-새 세션이 이 문서 하나로 이어받을 수 있게 쓴다. 최상위 색인이다.
+작업 루트는 `/NHNHOME/data/sukim/adcl`. 현재 할당은 **GPU 0,1,2,3**이며 재사용 전 실제 점유를 확인한다.
+Python은 `~/cv2env/bin/python`. 공식 test 추출 위치 `/tmp/etri_test`는 재확인이 필요한 임시 저장소다.
+새 데이터 분할이나 checkpoint 계보 변경 없이 각 run의 `manifest.json`·`experiment.json`을 기준으로 재현한다.
 
-## 0Q. 2026-09-19 command 완료 — 소폭 개선, 주력 유지
+제출 출력은 이미 누적 absolute XY `6×2`이므로 `cumsum`을 다시 적용하지 않는다.
+ZIP 내부 `submission.json` 하나, 1,125 clip와 정수 `__flops__`를 검증한다.
+비용은 공식과 같은 `FlopCounterMode`의 전체 B1 forward를 측정한다.
+서버 응답 `elapsed_ms`를 모델 latency로 쓰지 않는다. 새 graph의 B200 측정은 RTX4090 시간 인증을 대신하지 않는다.
 
-A2-COMMAND-NOM-s1은2026-09-19T10:50:48에20,554 update 완료, nonfinite0.
-V0 PREFIX BASE0.165510646→COMMAND0.164884291(-0.000626354, -0.3784%).
-session95%CI[-0.001950163,+0.001721550], 6/11session 개선.
-기존 QREFINE0.164251767보다 높아 주력 교체/추가 FULL을 자동 진행하지 않는다.
-공통 초기값/레시피와412개 sample-order 로그 일치, 저장 예측에서 PREFIX 독립 재계산 완료.
+## 7. 파일과 Git 연결
 
-의미 좌회전0.210316211→0.206247798, 우회전0.288670720→0.284718121.
-일반 주행0.169590813→0.169268853(-0.1898%); 큰 주된 오류는 남아 있다.
-같은 COMMAND 모델의 지시를 LANE_KEEP으로 고정하면0.165816821로 악화한다.
-Command 활용은 확인됐지만, 이 개입을 독립 control 대비 이득으로 혼동하지 않는다.
-완료 checkpoint에서도 command 변경 시 motion/state/history 최대 차이0.
-V0 좌회전1session/유턴0행의 검증 한계를 유지한다.
-
-상세: reports/a2_command_20260919/DECISION_KO.md, RESULTS_KO.md, terminal_results.json,
-command_counterfactual.json, run_artifact_index.json.
-가중치: work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/ckpt_step20554.pth.
-원 watcher는 평가 후 Git 공백 검사에서 멈췄다. MD/CSV 생성기의 줄 끝 처리를 고쳐
-저장 예측 기반 보고서와 Git 기록을 복구했다. 재학습/새 FULL/공식 제출 없음.
-아래0P는 시작 시점 snapshot이다.
-
-## 0P. 2026-09-19 07:53 KST A2 semantic command 본 학습 시작
-
-사용자 “이번엔 command 넣어본거 해 봐” 지시에 따른 단일 matched 비교.
-A2-COMMAND-NOM-s1, GPU0, PID3522534, fresh20,554 update.
-완료된 BASE-NOM0.165510648966을 동일 초기화/레시피 control로 재사용한다.
-기존 최선 fixed terminal QREFINE0.164251769704도 최종 비교표에 포함한다.
-
-원본 command.parquet의6종 의미 지시만 공통 scene query에 추가(192파라미터, zero-init).
-Raw command/status/goal의 새 planner token/value/motion 경로 없음. Motion/state/history 분리 유지.
-vad_cmd를 사용하거나 미래 XY로 command를 만들지 않는다. Exact timestamp/frame join85,698행 확인.
-현재6cam/front H4, nominal status, split, PREFIX/LEN/보조 loss, LR/seed/batch16/micro8은 기존과 같다.
-좌/우회전 및 좌/우 차선변경 command의 flip 교환을 포함한다.
-
-실제 영상 FP32/BF16 초기 출력 차이0, shared consumers 및 command→motion 차단 검사 통과.
-2-update smoke+V01,998행 완료, nonfinite0, 첫 batch loss와 row SHA가 BASE와 같다.
-07:55 snapshot: step200, 약0.511s/update, 로그5개 sample-order SHA 일치.
-첫 평가 약08:25, terminal 약11:00 KST 예상(실측 속도/평가시간에 따라 변동).
-아직 command 성능 결과는 없다. GPU4–7 개입 없음.
-
-구현: work d039a8a → GitHub mirror e8b0033.
-상세: reports/a2_command_20260919/PLAN_KO.md, INPUT_POLICY.json, tests_summary.json,
-smoke_summary.json, launch_receipt.json, STARTUP_STATUS.json.
-Watcher PID3522828는 완료 후 terminal 비교/command LANE_KEEP 고정 진단/승인된 Git 기록만 수행한다.
-최신 상태: watcher_status.json 및 work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/manifest.json.
-완료 산출물: terminal_results.json, RESULTS_KO.md, command_counterfactual.json, run_artifact_index.json.
-V0 좌회전39행은1session, 유턴0행. 작은 subgroup 개선을 일반화로 단정하지 않는다.
-추가 FULL/스윕/공식 업로드 자동 실행 없음. 아래0O는 직전 G/S 결과다.
-
-## 0O. 2026-09-19 06:40 KST G/S 전부 완료 — 현재 우선 판정
-
-G0/G1 각3,426 및 learned sampling20,554 완료, nonfinite0. 자동 후처리/미러 push 완료.
-고정 terminal: 부모 QREFINE0.164251767, G0=0.165084065, G1=0.164740802,
-sampling=0.164667223. S control BASE는0.165510646.
-G1−G0=-0.000343264, S−BASE=-0.000843423이지만 둘 다 session CI가0을 포함한다.
-어느 terminal도 기존 QREFINE을 넘지 못했다. 이번 두 레시피의 추가 FULL/스윕은 진행하지 않는다.
-
-G1 step2,284의0.163882485는 개발 최저점으로 보존한다. 부모 대비 -0.000369282,
-session CI[-0.002074331,+0.000533726]. 같은 V0로 세 checkpoint 중 고른 값이며 독립 검증이 아니다.
-해당 checkpoint의 일반 주행0.168651014는 부모0.168445113보다 약간 높다.
-작은 best-on-V0 이득을 일반 주행 문제 해결로 설명하거나 자동 FULL 승격하지 않는다.
-
-G1 train probe0.088703→0.087293, V0 terminal0.164252→0.164741:
-train 적합도 개선이 DEV로 연결되지 않았다. Gradient 진단은 개선의 충분조건이 아니었다.
-S offset 평균0.031–0.078 cell, saturation0, 신규 invalid<0.059%; 분기는 학습됐지만 큰 이득은 없었다.
-G0/G1 69개 로그 row SHA, S/BASE412개 로그 row SHA 일치. row/GT/bucket/FULL 격리 확인.
-
-상세: reports/a2_next_20260919/DECISION_KO.md, terminal_results.json, RESULTS_KO.md,
-G1_selected_step2284_review.json. 모든 checkpoint/예측은 기존 work_dirs에 보존한다.
-자동 기록 commit: work e8639b8 / mirror43b3ba4. 아래0N은 시작 당시 snapshot이다.
-06:39 확인에서 GPU0–3 유휴. 새 학습/추가 FULL/공식 제출 없음.
-
-## 0N. 2026-09-19 02:14 KST G0/G1·learned sampling 본 학습 시작
-
-세 run을 실제 시작했고 02:15:58에 모두100 update 및 유한 loss/gradient를 확인했다.
-구현 commit: 57c12972f4694c664fcfdd4c2d3056e2bcb1e079.
-이 절은 시작 snapshot이다. 이후 완료 여부는 reports/a2_next_20260919/RESULTS_KO.md,
-G_RESULTS_KO.md, watcher_status.json 및 각 run manifest를 우선 확인한다.
-
-| GPU | Run | PID | Update 목표 | 초기 실측 |
-|---|---|---:|---:|---:|
-| 0 | A2-G0-s1 | 3446575 | 3,426 | 약0.526s/update |
-| 1 | A2-G1-s1 | 3446579 | 3,426 | 약0.529s/update |
-| 2 | A2-LEARNED-SAMPLE-s1 | 3446582 | 20,554 | 약0.582s/update |
-| 3 | 고정 probe/검증 | 별도 watcher receipt | 새 학습 없음 | — |
-
-G0/G1 공통 초기 state SHA1628bc58… 동일. 세 arm step1/50/100 row SHA 동일하며
-S는 기존 BASE의 로그 row SHA와도 일치한다. G와 S는 서로 다른 비교 실험이다.
-G는 수치상 최저 QREFINE terminal, S는 기존 BASE upstream에서 시작한다.
-학습 source/초기 tensor/입력 정책/프로토콜은 각 manifest와 protocol JSON에 고정했다.
-02:26 snapshot: G0/G1은1,250 update, S1,200 update. 첫1,142 평가 G0=0.1684886752,
-G1=0.1694247651로 parent0.1642517697보다 높다. 중간 결과이며 예정한 terminal 예산을 유지한다.
-Watcher PID3449241은 실제 실행 중이고 부모/BASE의 고정 train probe를 완료했다.
-
-
-완료 예상(초기 속도 추정, 보장 아님): G 02:46–02:50, S 05:35–05:50 KST.
-완료 후 GPU3이 비어 있을 때 고정 train probe 및 S의 train/V0 offset 통계를 계산하고,
-CPU에서 same-row terminal PREFIX·그룹 기여·session bootstrap을 생성하도록 watcher를 준비했다.
-Watcher는 새 학습/FULL/공식 제출을 시작하지 않는다. 승인된 실험 기록만 Git 및 미러에 반영한다.
-GPU4–7은 제외한다. A2 FULL은 재시작하지 않았다.
-
-기록: reports/a2_next_20260919/launch_receipt.json, launch_health_snapshot.json.
-실시간 로그: reports/a2_next_20260919/runtime/<ARM>-s1.log.
-가중치/평가: work_dirs/a2_next_20260919/<ARM>-s1/.
-S는 공식 counter733.1658G이며 B200 B1약28ms. 4090시간은 미측정.
-Offset pixel 범위는 실제 feature 크기로 환산한다. 과거 coarse level은14행이므로
-단순 stride16×2와 세로 범위가 다르며 tests_summary.json의 sampling_radius가 정확한 값이다.
-
-## 0M. 2026-09-19 공동 학습 균형·learned sampling 실행안 확정 및 사전 검사
-
-사용자 새 실행안이 0L의 motion-only/2,000 update 제안을 대체한다.
-G0/G1은 수치상 최저 DEV QREFINE terminal 0.164251769704에서 함께 시작한다.
-기존 auxiliary 묶음(occ/lane/motion) ×1.0 대 ×0.25만 다르고, PREFIX/LEN 유지.
-3,426 update, warmup100, backbone1e-6/head1e-5, B16/micro8, fresh optimizer/sampler seed1.
-
-32 effective train batch(512행) 진단 완료: backbone AUX/main norm 중앙값1.0183,
-cosine 중앙값0.0108, 15/32 음수. Shared scene norm 비율0.0404로 작다.
-모델 parameter/buffer hash 동일, optimizer0. 작은 진단을 인과 증거로 취급하지 않는다.
-공통 parent V01998 replay 최대 좌표 차이0. G0/G1 2-step smoke 완료, 초기 tensor/row stream 동일.
-
-S는 기존 fixed scene sampler에 source별 영상+고정 metadata 기반 ±2 feature-cell offset 하나를 추가한다.
-기존 BASE-NOM upstream에서20,554 update; 완료 BASE-NOM을 control로 재사용한다.
-QREFINE/G loss 변경/SIDE와 결합하지 않는다. Status/goal/conditioned query를 offset에 넣지 않는다.
-실제 영상 FP32/BF16 zero-offset scene/인지/plan parity0, offset/internal/image gradient 확인,
-status·goal 변경 시 offset/motion/state/history 불변, shared consumer tensor 일치.
-좌표/ramp/flip/mask 검사와 S 2-step smoke 완료.
-공식 counter BASE729.8156G→S733.1658G; B200 B1약19→28ms, 4090시간 미측정.
-
-GPU0=G0, GPU1=G1, GPU2=S, GPU3=검증으로 준비. GPU4–7 제외.
-이 절은 실행 전 사전 검사 기록이며 실제 시작은 launch_receipt.json 및 최신 manifest를 확인한다.
-완료된 FULL 재시작/공식 업로드는 하지 않는다.
-상세: reports/a2_next_20260919/PROTOCOL_KO.md, CURRENT_BASE.json, gradient_probe.json,
-tests_summary.json, smoke_summary.json. 코드: experiments/a2_next_20260919/.
-
-## 0L. 2026-09-18 22시대 개선 방향 재검토 — 신규 학습 없음
-
-사용자 요청에 따라 학습 기록/코드를 다시 검토하고 GPU 0–3에서 읽기 전용 진단을 마쳤다.
-FULL 배포 확보는 유지하되, 이를 유일한 다음 작업으로 두지 않는다.
-
-- BASE의 BF16 PREFIX 0.165511 → FP32 sampler 0.165531 / FP16 0.165749 / FP32 0.165744.
-  정밀도 손실은 확인했지만 추론 정밀도 변경만으로 개선되지 않았다.
-- SIDE에서 추가 영상 또는 평균의 추가 source를 제거하면 각각 0.219972 / 0.520714로 악화.
-  무가중 평균 경로가 있다는 사실만으로 SIDE 실패 원인이나 즉시 수정법을 확정하지 않는다.
-- train 32장면/8batch의 shared backbone gradient 검사:
-  motion 보조 loss의 norm은 PREFIX 대비 중앙값 0.852, cosine 0.059, 4/8 batch에서 음수.
-  모델 state hash 전후 동일, optimizer 0 step. 작은 train probe이며 인과/일반화 증거는 아니다.
-- 다음 첫 제안은 같은 A2-BASE-NOM terminal에서 새 control과 motion weight 0.2→0.02 arm을
-  동일 optimizer 초기화/row 순서/LR/추가 2,000 update로 비교하는 planning 중심 2단계 학습이다.
-  occ/lane/LEN 및 A2 query-only 입력 경계는 유지. **아직 착수하지 않았다.**
-- 기존 resume은 in-epoch sampler exact replay를 보장하지 않는다.
-  예전 terminal을 matched continuation control로 대체하지 말고 두 arm을 함께 시작해야 한다.
-- 더 큰 표현 변경은 front raw-image matching의 세밀도 개선을 후속으로 검토한다.
-  새 SIDE, residual MLP, command, A3 gate를 자동 재시작하지 않는다.
-
-기록: reports/md_a2_bottleneck_review_20260918/REVIEW_KO.md, 네 진단 JSON, artifact_index.json.
-재현: experiments/md_a2_bottleneck_review_20260918/.
-이번 점검으로 새 최고점이 생기지는 않았다. 새 학습/공식 제출/production 변경은 없었다.
-GPU 4–7에는 실행하지 않았다. 세부 caveat와 초기 진단 재시도는 보고서에 기록했다.
-
-## 0K. 2026-09-18 SIDE·QREFINE terminal 완료 — 현재 우선 기록
-
-SIDE와 QREFINE 모두20,554 update / V0 1,998행 평가 완료, nonfinite_count=0.
-QREFINE 완료21:22:29, SIDE 완료21:33:23 KST. 완료 확인 시 GPU0~3은 유휴였다.
-아래0J는 시작 시점 snapshot이며 현재 진행 상태가 아니다.
-
-| 후보 | V0 PREFIX | 기존 A2 배포형 평가와 관계 |
-|---|---:|---|
-| 기존 A2 nominal 입력 평가 | 0.164455314083 | 실제 이전 비교 후보 |
-| BASE-NOM | 0.165510648966 | 같은 학습 조건 대조 |
-| MH4-NOM | 0.164495430150 | 기존 A2보다 높음 |
-| SIDE-SCENE-NOM | 0.172406018129 | 이번 설정 확대 제외 |
-| QREFINE-NOM | 0.164251769704 | 수치상 최저, 이득은 매우 작음 |
-
-Matched BASE 대비 SIDE는4.17% 악화(10/11 session 악화), QREFINE은0.761% 개선.
-그러나 QREFINE의 기존 A2 대비 이득은0.000204(0.124%)다.
-일반 주행 평균은 기존0.168442→QREFINE0.168445로 사실상 동일하며,
-전체의 작은 이득은 출발/정지에서 나온다. 첫2초 점수 기여는0.123008→0.122951.
-기존 A2 대비 session bootstrap95% 구간[-0.001629,+0.000879]는0을 포함한다.
-이는11개 관측 session의 조건부 재표집이며 seed 변동/서버 test 성능 보장이 아니다.
-
-계보 점검: 네 새 DEV run의 초기 공통 tensor·budget 일치.
-412개 로그 시점 sample-order SHA 모두 일치. 저장1998행의 row/session/frame/GT/bucket 동일.
-기존 A2 NPZ도 row와 GT를 맞춰 재계산했다. 기존 A2는 학습 status 정책이 달라 순수 구조 대조는 아니다.
-FULL의 in-fit0.088934는 DEV 순위에서 제외한다.
-
-판단: SIDE FULL/단순 연장은 하지 않는다. QREFINE terminal은 보존하되,
-큰 개선이나 일반 주행 문제 해결로 주장하지 않는다. 신규 FULL도 자동 시작하지 않았다.
-다음 우선순위는 완료된 single-head A2 FULL의 raw-input 배포 정합성 및 제출 패키징이다.
-이번 확인에서는 새 학습/공식 제출을 실행하지 않았다.
-
-기록: reports/md_a2_scene_extensions_20260918/TERMINAL_REVIEW_KO.md,
-terminal_summary.json, terminal_records/<ARM>/.
-재현: experiments/md_a2_scene_extensions_20260918/terminal_review.py.
-가중치/전체 예측: work_dirs/md_a2_scene_extensions_20260918/<ARM>-s1/.
-
-## 0J. 2026-09-18 18:18 KST SIDE-SCENE·QREFINE 독립 본 학습 시작 — 현재 우선 기록
-
-BASE/MH4 terminal 판정: MH4는 matched BASE 대비 약0.6134% 개선에 그쳤고,
-이전 A2의 배포형 nominal 평가 0.164455314083 대비 새 최고점은 아니다.
-MH4 추가학습/FULL보다 계획한 SIDE-SCENE와 사용자가 명시한 QREFINE 독립 1회를 실행한다.
-두 변경을 하나의 모델에 합치지 않는다. Command/회전 전용 학습은 계속 후순위다.
-
-A2-FULL-NOM은 24,931 update 완료, nonfinite 0. 최종0.08893408501920225는
-학습 포함 V0의 in-fit 진단으로 제출 성능이 아니다. 체크포인트 hash 및 완료 기록:
-reports/md_a2_nominal_mh4_20260918/full_terminal_summary.json, full_terminal_records/.
-A2 raw-input 제출 adapter 인증/패키징은 별도 남은 작업이다.
-공식 서버의 확인된 MR FULL은0.18596892793122946이며 A2 FULL 서버 점수는 미측정이다.
-
-| GPU | Run / PID | 변경 | 목표 update |
-|---|---|---|---:|
-| 1 | A2-SIDE-SCENE-NOM-s1 / 3341915 | FL/FR -0.1/-0.5초 4장, shared scene만 확장 | 20,554 |
-| 2 | A2-QREFINE-NOM-s1 / 3341916 | 첫 영상 read로 query 갱신 후 두 번째 read | 20,554 |
-| 0 | FULL 완료, 사용 가능 | 새 run 자동 시작 없음 | — |
-| 3 | 실제 영상 preflight 완료, 검증용 | 새 run 자동 시작 없음 | — |
-
-18:20 KST 건강 검사: SIDE150 / QREFINE200 update, loss·gradient finite,
-원본 source hash·공통 초기 tensor·BASE와 로그 sample order 모두 일치.
-최근 실측은 SIDE0.5603s/update, QREFINE0.5321s/update.
-첫3,426 평가 완료 예상은 SIDE18:52/QREFINE18:50, terminal은SIDE21:34/QREFINE21:24.
-이는 초기 처리속도 추정이며 부하/IO에 따라 바뀐다.
-
-두 run은 r0_init_tplus.pth에서 fresh optimizer/seed1로 공동 학습한다.
-동일 train310 83,700행/V0 1,998행, batch16/micro8, LR·loss·flip·fixed BN을 유지한다.
-FULL weights/teacher/feature를 DEV로 가져오지 않는다.
-Status는 A2의 shared scene query에만 조건으로 들어간다.
-SIDE 새 영상도 query refinement도 scene의 occupancy·lane·planning에 공유한다.
-Native front image motion/state/history의 직접 입력 경계는 유지한다.
-
-사전 검사: 실제 영상 FP32/BF16 QREFINE zero-init parity0, BASE terminal replay0.
-SIDE의 각 추가 이미지와 QREFINE query-update에 planning gradient 확인.
-QREFINE은 출력 projection만0으로 초기화하며 query MLP는 일반 초기화한다.
-SIDE CONTROL pose index는0,2이고 camera calibration·flip교환·시간 일치 확인.
-기존 [0,W) mask의 외곽1픽셀 반전 비대칭은 보존하고 차이를 해당 경계로 제한해 검사했다.
-두 arm 2-step + 전체 V0 smoke 완료. Smoke 점수를 성능 결과로 쓰지 않는다.
-
-구현 commit: a572e233288347b03aff9a13d2b1150819103a16
-(미러 구현 commit: 165f760).
-설계/판정: reports/md_a2_scene_extensions_20260918/README_KO.md.
-실행: 같은 폴더 launch_receipt.json, launch_health_snapshot.json, runtime/<ARM>-s1.log.
-코드: experiments/md_a2_scene_extensions_20260918/.
-가중치/평가: work_dirs/md_a2_scene_extensions_20260918/<ARM>-s1/.
-
-## 0I. 2026-09-18 사용자 우선순위 확정 및 DEV terminal — 0H의 command 제안보다 우선
-
-사용자는 회전/command 전용 실험을 뒤로 두고 기존 통합안대로 진행하라고 정했다.
-현재 우선순위는 A2 FULL 확보 → BASE/MH4 비교 → 계획된 SIDE-SCENE다.
-command 또는 회전 전용 학습을 새로 시작하지 않는다. 회전 지표는 진단용으로 함께 본다.
-
-17:45 KST 확인에서 BASE/MH4 모두 20,554 update와 V0 최종 평가 완료:
-BASE-NOM 0.165510648966, MH4-NOM 0.164495430150.
-차이 -0.001015218816 (-0.6134%)로 작다. 기존 A2의 배포형 nominal 입력 평가
-0.164455314083 대비 새 MH4는 +0.000040116066이며 새로운 성능 최고점으로 주장하지 않는다.
-A2-FULL-NOM은 당시 GPU0에서 진행 중이다. FULL의 V0는 in-fit 진단이다.
-
-원인 진단: 기존 step17,130 예측에서 GT 경로의 같은 누적 진행거리에 맞춰 비교했다.
-우회전 최대오차 예시는 경로 모양 차이가 약0.185m로 작고 진행거리 차이가 약3.20m였다.
-좌회전 중앙 예시는 같은 거리에서도 약1.846m 떨어졌다.
-따라서 진행량과 경로 모양의 오차가 함께 남는다. 이 분석으로 영상 인식/goal 활용/학습 분포
-중 근본 원인을 구별하지 못한다. 새 보정 함수나 학습 loss를 도입한 것이 아니다.
-
-기록: reports/md_a2_nominal_mh4_20260918/dev_terminal_summary.json,
-reports/md_a2_turn_analysis_20260918/PROGRESS_SHAPE_AND_PRIORITY_KO.md.
-
-## 0H. 2026-09-18 회전/command 진단 — 학습 설정 변경 없음
-
-동일 step17,130의 BASE/MH4 저장 V0 예측을 CPU로 분해했다.
-nonstop은 직진 전용이 아니며 좌·우회전을 포함한다.
-현재 command/vad_cmd 입력은 없지만 5초 goal은 기존 shared scene query에서 사용한다.
-
-- 실제 GT 3초 |y|>=2m 202행: MH4 좌0.375895 / 우0.235222, 전체 점수 기여 합0.026668 (16.17%).
-  이 그룹은 교차로 회전 외에 차선 변경/굽은 도로도 포함한다.
-- 큰 좌·우 횡변위가 반대 부호로 예측된 경우 0. 다만 GT보다 덜 휘는 예측이 남는다.
-  끝점 바깥쪽 signed 횡오차 평균은 좌-0.839m, 우-0.352m.
-- semantic TURN_LEFT/RIGHT는 V0 81행이고 왼쪽39행은 한 session이다. U-turn은 V0 0행.
-  공식 test 제공 command에는 좌67 / 우32 / U-turn12개가 있다. 숨겨진 GT는 사용하지 않았다.
-- V0의 적은 회전 비중만으로 command의 우선순위를 낮추지 않는다.
-  같은 A2 shared-scene query 경계의 command 대조는 다음 검토 후보이며 아직 시작하지 않았다.
-- 17:33 KST 확인: BASE terminal20554 완료, V0 0.165510648966.
-  MH4/FULL은 당시 진행 중이며 이 절의 분해는 동일17130 대조다.
-
-상세와 실제 궤적 그림: reports/md_a2_turn_analysis_20260918/README_KO.md.
-재현: experiments/md_a2_nominal_mh4_20260918/analyze_turns.py.
-
-## 0G. 2026-09-18 14:31 KST A2 통합안 본 학습 시작 — 현재 우선 기록
-
-사용자의 GPU 0,1,2,3 사용 승인에 따라 다음 세 run을 시작했다.
-14:32 KST 관측에서 **각각 100 update 완료, 정상 실행 중**이다.
-이 상태는 시작 시점의 snapshot이다. 이후 상태는 각 run의 manifest/metrics를 확인한다.
-
-| GPU | Run / PID | 학습 행 | 목표 update | 첫 평가 |
-|---|---|---:|---:|---:|
-| 0 | A2-FULL-NOM-s1 / 3284355 | 101,520 (376 scenes) | 24,931 | 6,345, in-fit |
-| 1 | A2-BASE-NOM-s1 / 3284356 | 83,700 (310 scenes) | 20,554 | 3,426, DEV |
-| 2 | A2-MH4-NOM-s1 / 3284357 | 83,700 (310 scenes) | 20,554 | 3,426, DEV |
-| 3 | 검증/후속 SIDE-SCENE용 예약 | — | — | — |
-
-- 세 run 모두 upstream r0_init_tplus.pth에서 새 optimizer로 seed1 공동 학습한다.
-  공통 초기 tensor SHA는 116f67a476b5ab519ec4384d6e15d5f5e36e83d1c89812f733b056ba5874593f.
-  BASE/MH4의 step1/50/100 sample-order SHA도 같다.
-- input provided_status5는 배포형 nominal producer, state/history supervision은 기존 정의 그대로다.
-  A2의 status→shared scene query 경계, image-only motion/state/history 경로를 유지한다.
-- MH4는 head당 Q/K32, V32, concat128, 독립적인 identity 초기 head transforms다.
-  실제 영상의 FP32/BF16 초기 scene/인지/plan 차이 0, 각 head gradient 분화 확인.
-  등록 A2 재현, 1,998행 status parity, flip, source mask, 세 arm 2-step smoke 통과.
-- 유효 batch16 / microbatch8 / BF16, fixed BN, backbone LR5e-6 / 기타5e-5,
-  warmup200, LEN0.25, flip0.5를 유지한다.
-  micro16 benchmark는 두 arm 10% 이상 개선 조건 미충족으로 채택하지 않았다.
-- 최근 실측은 BASE/FULL 약0.515s/update, MH4 약0.553s/update다.
-  첫 DEV 평가는 대략 15:00~15:05 KST, FULL 진단은 15:26경 예상이다.
-  평가/IO 부하를 제외한 초기 속도 추정이며 완료 시각을 보장하지 않는다.
-- 현 입력 정책의 기존 A2 DEV 기준은 0.164455314083이다. 새 terminal 성능은 아직 없다.
-  FULL의 V0는 학습 포함 데이터다. DEV에 FULL weight/teacher/feature를 가져오지 않는다.
-- QREFINE, SIDE-SCENE, A3 gates, progress residual은 위 세 run에 섞지 않았다.
-  다음 관측 실험은 공통 예산의 BASE/MH4 평가 후 결정한다.
-
-코드 commit: a10610881036cb401824eed856c641e03adf8d5d
-(미러 구현 commit: db1a26a57a4cb206092565fbf9e35296f121af94).
-실행 정보: reports/md_a2_nominal_mh4_20260918/README_KO.md,
-launch_receipt.json, launch_health_snapshot.json.
-코드: experiments/md_a2_nominal_mh4_20260918/.
-실시간 stdout: reports/md_a2_nominal_mh4_20260918/runtime/<ARM>-s1.log.
-가중치/평가: work_dirs/md_a2_nominal_mh4_20260918/<ARM>-s1/.
-
-## 0F. 2026-09-18 A2 입력 정합성 실측 및 다음 방향 — 아래의 A3 우선순위보다 우선
-
-사용자는 A2의 query-only 공통 scene 경계를 다음 주력으로 선택했다. 현재 A3의
-status→motion/state/history 경로는 제출 주력에서 제외하고 기존 결과만 보존한다.
-새 방향은 배포 status 정합성 → A2 FULL/동일 입력 DEV control/4-head scene 비교 → SIDE-SCENE다.
-QREFINE은 별도 후속 가설이며 scene/global/motion status value gate를 첫 실험에 넣지 않는다.
-
-이번에 기존 A2 checkpoint, GPU 0, V0 1,998행에서 status만 교체해 평가했다.
-
-- 실측 timestamps status PREFIX: **0.164280978527**.
-- frame 차이×0.1초의 배포형 nominal status PREFIX: **0.164455314083**.
-- 차이 **+0.000174335556**. 두 plan 간 PREFIX 거리는 0.005607703121m.
-- 원래 저장 예측을 정확히 재현했고, status 교체에 따른 motion/state/history 변화는 모두 0.
-- 기존 보고의 vx 0.00885 / ax 0.01627 차이는 MAE다. 두 fit 모두 모든 행에서 11 poses를 썼다.
-- 실제 test 1,125개 모두 pose schema에 timestamp가 없다. 동일 producer로 status가 유효했고,
-  미래 +50 pose XYZ/RPY를 NaN으로 바꿔도 결과는 동일했다.
-- 이 비교는 cached image/geometry를 고정한 status 교체다. A2 전체 raw adapter의 parity나 제출 완료는 아니다.
-- 새 학습의 input producer는 통일하되 state/history supervision은 원래 정의를 유지한다.
-  이번 V0에서 timestamp 차이는 주요 성능 병목으로 관측되지 않았다.
-
-현행 masked_softmax를 이용한 합성 FP32/BF16 검사에서 Q/K head당32·V head당32의
-identity 초기화 4-head pooling은 기존 evidence를 정확히 재현하고 head별 gradient가 달랐다.
-이 기록 당시 남아 있던 실제 MH4 encoder/최종 plan 통합 검사는 위 0G 실행 전에 통과했다.
-
-계획한 A2-FULL-NOM(24,931), A2-BASE-NOM(20,554), A2-MH4-NOM(20,554)은
-동일 upstream 초기값 계보를 사용한다. terminal A2 continuation과 혼동하지 않는다.
-**이 절의 기록 당시에는 새 학습을 시작하지 않았다.** 이후 사용자의 실행 승인으로 위 0G의 본 학습을 시작했다.
-
-첫 2초의 현 A2 점수 기여 74.81%, 일반 주행 구간 속도 오차의 공통 성분 비중 75.20%를
-재계산했다. 후자는 제곱오차 분해이며 D3/v0/가감속 타이밍의 인과 기여도가 아니다.
-4-head 개선이 확인되면 first2s 진행량/시간변화 및 같은 mask의 종·횡 오차도 함께 본다.
-
-상세·재현 코드: `reports/md_a2_deploy_status_20260918/REVIEW_AND_P0_KO.md`,
-`experiments/md_a2_deploy_status_20260918/`.
-원본 paired prediction/status 배열은 같은 report 디렉터리의 `paired_status_eval.npz`에 보존한다.
-
-## 0E. 2026-09-18 MR FULL 공식 점수 — 현재 확인된 서버 결과
-
-사용자가 MR과 FULL 두 제출의 공식 채점 응답을 전달했다. FULL은 **0.18596892793122946**으로,
-기존 MR **0.19798776670488366** 대비 **0.0120188388 / 6.0705% 개선**됐다.
-세 PREFIX 지표 모두 개선: 1s `0.113672→0.105357`, 2s `0.196344→0.184546`,
-3s `0.283947→0.268004`. 두 제출의 FLOPs는 `729815613824`, cutoff=true로 같다.
-
-- 두 모델 모두 제공 status 입력이 없는 MR 계열이다. 모델 config·초기 tensor hash·seed가 같다.
-- train310/83,700행/20,554 update → FULL376/101,520행/24,931 update.
-  약 3.93회 노출을 유지했고, microbatch는 2→8이다. 데이터량만 바꾼 단독 대조는 아니다.
-- FULL의 V0 `0.097245`는 학습 행의 in-fit 진단이며 공식 점수로 대체해서 읽지 않는다.
-- 아래 0D의 미업로드·미측정 문구는 파일 준비 당시의 기록이다. 현재 두 MR 제출은 사용자 확인 완료다.
-- `elapsed_ms`는 응답 원문에 보존하며, 모델 latency 개선으로 해석하지 않는다.
-- 현재 status-free 서버 기준은 **0.185969**. 0.15까지 추가 절대 개선 0.035969가 필요하다.
-- A2/A3의 서버 점수는 여전히 없다. 이번 FULL 이득을 그 모델에 그대로 외삽하지 않는다.
-
-상세: `reports/md_full_submission_20260918/SERVER_RESULT_20260918_KO.md`.
-원문 응답·정확한 산술·설정 대조는 `server_comparison_20260918.json` 및 각 제출 폴더의
-`server_result_20260918.json`에 있다. 결과 출처는 사용자 전달이며 서버 API 재조회는 아니다.
-
-## 0D. 2026-09-18 MR FULL 제출 후보 확보 — 당시 준비 기록
-
-사용자의 요청에 따라 **완료된 status-free MR FULL을 재학습 없이 실제 제출 파일로 보존**했다.
-추가 학습은 0 update이고 서버 업로드도 하지 않았다.
-
-- 후보: `MR-NATIVE-FULL-s1`, 376 unique scenes / 101,520 rows / terminal step 24,931.
-- 모델 구조: 기존 제출 MR과 같은 native MR + direct XY. 제공 status 입력 및 A2/A3 경로 없음.
-  Pose의 scene 정렬과 goal의 공통 scene 조건은 기존대로 사용한다.
-- **업로드용 파일:** `reports/md_full_submission_20260918/submission/submission.zip`.
-  내부는 `submission.json` 하나이며 1,125 clip + 정수 `__flops__`로 구성된다.
-- 전 clip 누락·잉여 0, 6×2/유한값 검사 통과, clip 재실행 예측 차이 0.
-- FULL의 raw/cache B1 parity: 8 fixture 입력·출력 모두 bitwise 일치.
-  기존에 채점된 MR의 첫 공식 clip도 기존 예측과 정확히 재현됐다.
-- 공식 counter FLOPs: **729,815,613,824 = 729.816G**, cutoff 7,053G 통과.
-- checkpoint 원본과 별도 보존본 해시가 이전 실험 색인의 terminal 해시와 같다.
-  보존본: `work_dirs/md_full_submission_20260918/preserved/ckpt_step24931.pth`.
-- 로컬 사본: `~/Downloads/MR-NATIVE-FULL-s1_submission_20260918/`.
-- **FULL의 공식 점수는 아직 없다.** V0 0.097245는 학습 행의 in-fit 진단이다.
-
-재현 명령·입력 경로·검사 기록은 `reports/md_full_submission_20260918/README.md`,
-완료 상태와 ZIP/checkpoint 해시는 같은 폴더 `completion.json`에 있다.
-실행 스크립트는 `experiments/md_full_submission_20260918/prepare_mr_full_submission.py`다.
-
-## 0C. 2026-09-18 완료 결과와 규정 점검 — 가장 먼저 읽을 것
-
-등록 MR V0는 `0.191002`다. 같은 train310/tune37에서 20,554 update를 마친
-`A2-DIRECT-s1`은 **0.164281**, `A3-DIRECT-s1`은 **0.149289**였다. A3는 등록 MR 대비
-21.84% 개선됐고 검증 11개 session 모두 개선됐다. 아직 하나의 training seed 결과이며
-새 서버 제출 결과는 없다. A3의 일반 주행은 `0.196742→0.152271`, steady stop은
-`0.035835→0.045817`로 악화됐다.
-
-- `MR-NATIVE-FULL-s1`: 376 unique scenes / 101,520행 / 24,931 update 완료.
-  `0.097245`는 **학습에 포함된 V0 행의 in-fit 진단**이다. held-out 성능으로 비교하지 않는다.
-- `OOF-MR-T203-s1`: old203 / 54,810행 / 20,554 update와 V0 평가 완료, **V0 0.226444**.
-  unseen new107의 예측 생성·residual 분석은 아직 하지 않았다. producer의 학습 완료와
-  후속 OOF prediction 완료를 혼동하지 않는다.
-- A2/A3-DIRECT는 기존 제출 terminal에 부착해 이어 학습한 모델이 아니다. 기존 MR과 같은
-  `r0_init_tplus.pth`에서 status 조건을 추가한 전체 구조를 다시 공동 학습했다.
-- 현재 A3-DIRECT에는 progress residual / dv+da factorization / P×V selector가 없다.
-  `A3-FP-VA`의 실제 마지막 학습 로그는 **step 600**이다. 이전의 350은 중간 관측값이었다.
-
-**규정 및 입력의 정확한 설명:** A2부터 영상 추정값이 아닌, 제공된 past/current pose로
-계산한 `vx,vy,ax,ay,yaw_rate`를 학습·추론 입력으로 쓴다. A2는 공통 scene query만
-조건화한다. A3는 scene/motion/global FPN 채널 gate를 추가하므로 state/history 출력도
-제공 status의 영향을 받는다. A3를 Q10의 image-only state 추론이라고 설명하지 않는다.
-허용 근거는 Q6의 현재 status 계산과 Q7/Q8의 공통 인지 특징 간접 활용이며, 개별 구조의
-최종 승인은 코드 심사에 달려 있다. supervision으로만 사용했다는 설명도 틀리다.
-
-완료된 A3 checkpoint의 전체 V0 입력 교체 검사:
-
-| 조건 | PREFIX |
-|---|---:|
-| 정상 | 0.149289 |
-| 영상만 다른 session 영상으로 교체 | 0.894936 |
-| 영상 전체 단색 | 2.118935 |
-| status만 다른 session 값으로 교체 | 0.718751 |
-
-정상 예측은 저장 terminal과 좌표별 오차 0으로 재현됐다. 원본 ego_pose/timestamps에서
-미래 pose를 제외하고 현재까지 31개 pose만으로 status를 다시 계산한 결과, 전체 1,998행의
-다섯 status 값이 캐시 입력과 정확히 일치했다. 영상 의존성과 causal source의 근거이며,
-이 검사 자체가 운영국 승인이나 단순 임베딩 우회 부재의 증명은 아니다.
-
-새 기록 위치:
-
-- `reports/md_shared_dynamics_20260917/RESULTS_20260918_KO.md`: 완료 점수와 해석.
-- `reports/md_shared_dynamics_20260917/COMPLIANCE_AND_CHANGES_20260918_KO.md`: 실제 정보 경로와 Q&A 근거.
-- `reports/md_shared_dynamics_20260917/records_20260918/README.md`: **24개 실행 단계** 전체 색인.
-- 같은 폴더의 `experiment_index.json`: 설정·평가·paired 비교·원본 artifact 경로/해시 및 20개 로그 색인.
-- 같은 폴더 `runs/`: 학습 metrics.jsonl, manifest, experiment, 저장 평가 요약과 종료 기록.
-- `A2-DIRECT_terminal_input_audit_20260918.json`, `A3-DIRECT_terminal_input_audit_20260918.json`,
-  `causal_status_replay_20260918.json`: 실제 검사 결과.
-- 재실행 코드는 `experiments/md_shared_dynamics_20260917/`의 audit/replay/archive 스크립트.
-
-checkpoint, 이미지, 대형 prediction 배열은 서버에 보존한다. GitHub에는 텍스트 기록과
-원본 위치·크기·주요 파일 SHA256을 올린다. 다음 실험의 우선순위는 A3 재현 및 별도 FULL,
-그리고 새 strong base의 deployable oracle/OOF 분석이며 아직 새 학습은 시작하지 않았다.
-
-## 0B. 2026-09-17 19시대 방향 전환 — 당시 결정 기록
-
-최근 `FRONT/SIDE residual`, auxiliary, denoise, 짧은 A2 warmup은 모두 일반 주행
-1,875행을 `0.001`도 고치지 못했다. 마지막 `STATUS-A2-S-SCENE` 두 seed도
-base→final `0.191341→0.189591`, `0.190334→0.189498`이었고, nonstop 개선은
-각각 `0.000960`, `0.000257`뿐이었다. 이 작은 post-hoc adapter 계열은 종료한다.
-
-그러나 status-conditioned shared perception 자체를 기각한 것은 아니다. 과거 깨끗한
-flip50 비교에서 제공-status A2 `0.228957` 대 Q10 `0.258544`로 약 `0.02959`의
-차이가 있었다. 현재 warmup은 완성된 MR에 zero-init 경로를 사후 부착한 조건이었다.
-
-새 주력은 `reports/md_progress_residual_20260917/DIRECTION_RECHECK_KO.md`와 커밋
-`e101dc3`에 기록돼 있다.
-
-- GPU 0: `MR-NATIVE-FULL-s1` 제출 안전망.
-- GPU 1: `A2-DIRECT-s1`. 등록 MR과 같은 초기화·train310·20,554 update에서 shared
-  status query를 처음부터 함께 학습하는 control.
-- GPU 2: `OOF-MR-T203-s1`. old203만 학습해 unseen new107의 honest residual 분포를 생성.
-- GPU 3: `A3-DIRECT-s1`. A2의 shared query에 multiplicative status conditioning을
-  공통 image FPN 전체로 확장하되, direct XY planner의 정상적인 길이 gradient를 유지한다.
-
-최초 `A3-FP-VA-s1`은 마지막 학습 로그 step 600에서 종료했다. MR 이전 초기 base가 `0.477651`이고,
-실제 cap의 `delta_v+delta_a` oracle도 `0.222499`여서 등록 MR `0.191002`보다 나빴다.
-방향은 학습될 수 있지만, 약한 초기값에서 proposal 길이 gradient를 처음부터 막는 것은
-status 전달과 factorization을 불필요하게 섞는다. Factorization은 강한 direct checkpoint
-또는 GPU 2의 honest error distribution 위에서 stage-2로만 다시 검증한다.
-
-새 코드의 단위검사 6개와 `A3-DIRECT` 실제 2-step smoke가 통과했다. A2/A3-DIRECT의
-첫 step planning loss는 모두 `0.6594299078`로 같아 초기 함수 보존을 확인했다. 현재
-GPU1과 GPU3은 seed·sample order·budget이 같고, 공통 FPN status gate만 다르다.
-
-판정은 같은 plain V0와 같은 checkpoint budget에서 한다. 등록 MR seed1의
-step 3426/6852/10278/13704/17130/20554 값은
-`0.254811/0.218241/0.222304/0.206502/0.192196/0.191002`다. 곡선이 비단조이므로
-첫 중간점 하나만 보고 중단하지 않는다. 3위에는 단일 서버 관측 환산으로 DEV 약
-`0.12355`가 필요하며, 작은 `0.001~0.005` 개선을 모으는 전략으로는 닿지 않는다.
-
-## 0A. 2026-09-17 후속 교정 — 아래의 오래된 수치보다 우선한다
-
-- 공개 leaderboard `mode=best` 재확인 기준 현재 제출은 14위이고 3위는 `0.1305365832`다.
-  아래의 8위 및 3위 `0.14664` 표기는 당시 불완전한 snapshot이다.
-- split의 `historical_val` 9 scene은 `val` 29 scene에 전부 포함된다. 전체 자료는 385가 아니라
-  **376 unique scene / 101,520 stride-1 rows**이며 동일 노출량 terminal은 **24,931 update**다.
-- `OPEN_ISSUE.md` 질문 10에는 답변이 있다. 영상에서 직접 추론한 ego history/status를
-  planner가 사용하는 것은 허용된다. raw provided history/status 입력과 구분한다.
-- 사용자는 서버 응답의 `elapsed_ms`는 채점 harness 시간이라며 이번 모델 판단에서 제외하도록
-  지시했다. 아래 미해결 문단을 다시 실험 우선순위로 올리지 않는다.
-- `EXECUTION_REVIEW_KO.md`의 FRONT/SIDE residual 순서는 이후 실측으로 종료됐다. 최신 판단은
-  위 0C의 완료 결과와 최신 A2/A3-DIRECT / OOF 상태를 따른다.
-
----
-
-## 0. 가장 먼저 알아야 할 것 — 2차 제출 결과와 교정
-
-**2026-09-17 제출 (MR-NATIVE-s1): 리더보드 L2_avg = 0.19798776670488366, 8위.**
-
-| | L2_1s | L2_2s | L2_3s | **L2_avg** |
-|---|---:|---:|---:|---:|
-| 서버 실측 | 0.113672 | 0.196344 | 0.283947 | **0.197988** |
-| 우리 V0 plain | 0.110316 | 0.191025 | 0.271663 | **0.191002** |
-| 차이 | −2.95% | −2.71% | −4.33% | **−3.53%** |
-
-### ⚠️ 가장 중요한 발견 — test-matched 재가중을 쓰지 마라
-
-| 추정기 | 예측 | 서버 대비 |
-|---|---:|---:|
-| **V0 plain** | 0.191002 | **−3.53%** ✅ |
-| V0 test-matched 재가중 | 0.165804 | **−16.26%** ❌ |
-
-직전 세션에서 내가 test-matched 재가중을 "리더보드 예측기"로 권했다. **틀렸다.**
-plain V0가 훨씬 정확하다. 재가중은 2026-09-01에 실격된 `v2a_goal` 그래프에서
-0.236 수준에 맞춰 만들어진 것이고, 우리 그래프·0.17 수준으로 **이전되지 않았다**.
-(effective_n이 888/1998로 낮고 w_max 8.33으로 극단적이었던 것이 징후였다.)
-
-**앞으로 규칙**: 판정도 후보 선택도 **plain V0**로 한다.
-`reports/md_exp_diagnosis_20260915/test_matched_weighting.json`은 기록으로 남기되
-의사결정에 쓰지 않는다. `analyze_mr_round3.py`가 두 지표를 모두 출력하는데,
-**plain 열만 본다.**
-
-### 실용 환산식
-
-서버 ≈ V0_plain + 0.0070 (또는 × 1.0366). 단일 관측 1점에서 나온 값이다.
-
-| 목표 | 필요한 V0_plain |
-|---|---:|
-| 0.15 (목표) | ≈ **0.1430** |
-| 0.17421 (7위) | ≈ 0.1672 |
-| 0.14664 (3위) | ≈ 0.1396 |
-| 0.12803 (1위) | ≈ 0.1210 |
-
-현재 최고 V0_plain이 0.190515(MR-ADJ1)이므로 **0.15까지 약 −0.048, 25% 추가 감소**가
-필요하다. 짧은 거리가 아니다.
-
-### ⚠️ 미해결 — `elapsed_ms: 310`
-
-응답에 `"elapsed_ms": 310`이 있다. 우리 4090 실측은 clip당 24.27–24.52 ms다.
-이게 만약 T_infer라면 시간 페널티 `×(1 + (310−100)/200) = ×2.05`가 붙어 실효점수가
-0.406이 된다. **다만 표시된 점수 0.19798776670488366은 L2_avg와 정확히 같아서
-페널티가 적용돼 있지 않다.** `"cutoff": true`는 FLOPs 컷오프 통과로 보인다.
-
-**2026-09-18 갱신 — 거의 해결됐다.** 3차 제출은 2차와 **같은 아키텍처·같은
-`flops` 729,815,613,824**인데 `elapsed_ms`가 310 → **101**로 3배 줄었다. 모델이
-동일한데 값이 이렇게 움직이므로 **elapsed_ms는 모델 forward 시간이 아니다** —
-함께 오는 `runtime` 블록(`pull_mode`, `num_inflight`, `want`, `pull_interval_sec`)이
-가리키는 대로 polling harness의 값으로 보는 것이 맞다. 관측 2점이므로 단정은
-아니지만, 시간 페널티 ×2.05를 걱정할 근거는 사실상 사라졌다.
-
-**아직 확인할 것**: 시간 페널티가 최종 순위에 반영되는지. 함께 온 `runtime` 블록
-(`pull_mode: true, num_inflight: 1, want: 31, pull_interval_sec: 10`)을 보면
-polling harness의 값일 가능성이 있다. **확인 전까지 "시간 페널티 ×1.0"이라고 단정하지 마라.**
-
-### 제출 잔여
-
-**5회 중 2회 사용 → 3회 남음.** (사용자 확인, 2026-09-18)
-
-우리 계정의 제출은 두 건이다: 2026-09-17 `MR-NATIVE-s1` **0.197988**,
-2026-09-18 `MR-NATIVE-FULL-s1` **0.185969**.
-
-**2026-09-01 `v2a_goal` 0.236239는 우리 계정이 아니라 다른 팀 계정으로 낸 것이므로
-우리 quota에서 차감되지 않는다.** 저장소의 제출 이력만 세면 3회로 오산하기 쉽다 —
-실제로 한 번 그렇게 고쳤다가 되돌렸다. 이력 개수로 quota를 재계산하지 말 것.
-1차 2026-09-01 `v2a_goal` 0.236239 / 2차 2026-09-17 `MR-NATIVE-s1` 0.197988.
-개선폭 −16.2%.
-
----
-
-## 1. 어디에 무엇이 있나
-
-| 위치 | 내용 |
+|용도|문서|
 |---|---|
-| **B200** (주 작업) | `ssh -i ./<B200-KEY> -p 42101 <B200-USER>@<B200>` → `/NHNHOME/data/sukim/adcl` |
-| **H200** (구 프로젝트) | `ssh e2e` → `/home/pm97/workspace/sukim/adcl` |
-| **미러** | B200의 `~/edrive_mirror` → GitHub `kimsunguk0/E_Drive`, 브랜치 `motiondrive-v2-20260910` |
-| 로컬 제출물 | `~/Downloads/MR-NATIVE-s1_submission_20260917/` |
+|최근 작업 통합 보고서·판정 근거|[SUMMARY_KO.md](reports/recent_work_20260919/SUMMARY_KO.md)|
+|14개 주요 완료 학습·중간 후보·24개 이전 단계·SHA|[run_registry.json](reports/recent_work_20260919/run_registry.json)|
+|기계적으로 읽을 완료 결과표|[results.csv](reports/recent_work_20260919/results.csv)|
+|9/17–19 작업–미러 커밋 49개 대응|[commit_index.json](reports/recent_work_20260919/commit_index.json)|
+|읽기 쉬운 커밋 대응표|[COMMITS_KO.md](reports/recent_work_20260919/COMMITS_KO.md)|
+|공식 MR FULL 결과|[서버 결과](reports/md_full_submission_20260918/SERVER_RESULT_20260918_KO.md)|
+|G/S 최종 판정|[G/S decision](reports/a2_next_20260919/DECISION_KO.md)|
+|Command 최종 판정|[Command decision](reports/a2_command_20260919/DECISION_KO.md)|
+|정리 전 전체 시간 기록|[이전 HANDOVER, 고정 GitHub commit](https://github.com/kimsunguk0/E_Drive/blob/a8a6ee9ff6fee2597fce991f4300670d8d3f41ae/HANDOVER.md)|
 
-### 커밋·푸시 절차 (반드시 지킬 것)
-
-작업 저장소를 **직접 push하면 안 된다** — 히스토리에 B200 접속 정보가 있고 저장소는 공개다.
-
-```bash
-# 1) 작업 저장소에서 커밋 (메시지는 파일로 전달; 인라인 heredoc은 따옴표 때문에 깨진다)
-cd /NHNHOME/data/sukim/adcl && git commit -F /tmp/msg.txt
-
-# 2) 미러로 cherry-pick
-cd ~/edrive_mirror && git fetch /NHNHOME/data/sukim/adcl main:refs/remotes/work/main --force
-git cherry-pick <sha>
-
-# 3) 가드 grep — 트리와 커밋 메시지 둘 다 0이어야 함
-git grep -nIE "<B200-IP>|<B200-USER>|<B200-KEY>" HEAD
-git log --format=%B -1 | grep -cIE "<B200-IP>|<B200-USER>|<B200-KEY>"
-
-# 4) push (remote 이름은 origin이 아니라 github)
-git push github HEAD:motiondrive-v2-20260910
-```
-
-미러 SHA는 설계상 로컬과 다르다. GitHub push가 간헐적으로 실패하니 2–3회 재시도.
-
----
-
-## 2. 현재 성능 상태 (전부 plain V0)
-
-| run | V0 plain | 비고 |
-|---|---:|---|
-| R0 (기준선) | 0.258544 | |
-| E1-EXP | 0.225592 | 배포 fallback, 산출물 완비 |
-| LEN-s0 | 0.223644 | |
-| MR-LOWDETAIL-s0 | 0.193763 | |
-| MR-NATIVE-s0 | 0.191892 | |
-| MR-NATIVE-s1 | 0.191002 | **← 2차 제출, 서버 0.197988** |
-| MR-W64-s0 | 0.190892 | |
-| **MR-ADJ1-s0** | **0.190515** | 현재 최저 |
-| MR-ADJ0-s0 | 0.191743 | ADJ 대조군 |
-| MR-NATIVE-LONG-s0 | 0.194655 | 더 긴 일정, 나쁨 |
-
-**다섯 MR arm이 0.0014 안에 몰려 있다. 이 안에서 후보를 고르는 것은 잡음 고르기다.**
-seed 산포(s0 대 s1)가 0.000890으로 arm 간 차이와 같은 크기다.
-
----
-
-## 3. 무엇이 통했고 무엇이 안 통했나
-
-| 변경 | 결과 |
-|---|---|
-| **데이터 확대 203 → 310 scene** | **−0.033, 복제됨** ✅ |
-| **matching graph (radius 2→4, native 768×432 canvas)** | **−0.033, 두 seed 복제** ✅ |
-| native detail 대 lowdetail | 미확정 (CI 0 포함). readout은 −28% |
-| 길이 auxiliary λ=0.25 | 작음 |
-| descriptor 32 → 64 (W64) | 효과 없음 |
-| seed weight average | 효과 없음 (두 seed보다 나쁨) |
-| 인접 edge (ADJ) | 효과 없음 |
-| 더 긴 일정 (8 exposure) | 효과 없음 (오히려 나쁨) |
-
-**통한 건 둘뿐 — 데이터를 늘리는 것, matching 격자를 세밀하게 하는 것.**
-모듈 추가·폭 확대·연산 증가 계열은 네 번 연속 0이었다. 이 패턴이 강하다.
-
-### 더 긴 학습이 안 되는 이유 (반복하지 말 것)
-
-같은 3.93 exposure에서 LONG이 0.214189, 짧은 일정이 0.191892다. 차이는 데이터도
-구조도 아니고 **cosine LR 감쇠가 예산 안에서 끝나느냐**다. horizon을 2배로 늘리면
-같은 지점에서 LR이 훨씬 높고 끝까지 가도 회복하지 못한다. **조기 종료 질문은 닫혔다.**
-현재 정지점(3.93 exposure = 20,554 update)이 옳다.
-
----
-
-## 4. 다음 단계 — 전체 set 재학습
-
-점수를 보기 **전에** 정해 둔 다음 후보다. 리더보드를 보고 바꾼 것이 아니다.
-
-지금 held-out으로 놀리는 것: tune37(V0) + H29 + hist9 = **75 scene**.
-train 310 → 385 scene(**+24%**). 통한 두 가지 중 하나가 데이터 확대이므로 근거가 있다.
-
-### 실행 시 주의
-
-1. **정지점은 exposure로 이전한다.** 현재 20,554 update = 3.93 exposure of 83,700행.
-   385 scene이면 행이 약 103,900개가 되므로 같은 3.93 exposure는 약 **25,520 update**다.
-   cosine horizon을 그 총량으로 **처음부터** 설정해야 한다(나중에 이어 붙이면 안 됨).
-2. **V0를 학습에 넣으면 교정용 held-out이 사라진다.** 그러면 서버 점수만이 유일한 신호다.
-   위 환산식(V0_plain + 0.0070)은 그때 못 쓴다.
-3. **H를 넣으려면** `H_PREREGISTRATION_KO.md`에 revision 3을 먼저 써야 한다.
-   지금까지 revision 1(후보 목록 재동결), 2(s0→s1)가 있다. H는 아직 한 번도 열리지 않았다.
-
-### 대안으로 검토할 만한 것 (아직 안 해봄)
-
-- **H6-NEAR / H6-LONG** — 관측 시점 확대. 기존 H4(−0.1/−0.2/−0.5/−1.0)에
-  −0.3/−0.4를 더하거나(NEAR) −2.0/−2.5를 더한다(LONG). 기존 근접 관측을 교체하지 말 것.
-- matching 격자를 **더** 세밀하게 (radius 4 → 6/8). radius 2→4가 통했으므로
-  같은 축의 연장이다. 다만 W64가 실패한 것을 보면 "무조건 더"가 통하지는 않는다.
-- 3초 시점 오차가 서버에서 상대적으로 더 나쁘다(−4.33% 대 1s의 −2.95%).
-  후반 horizon을 표적으로 하는 실험이 근거가 있다.
-
----
-
-## 5. 함정 모음 (내가 실제로 밟은 것들)
-
-### 제출물
-- **`submission.json`에 `__flops__`가 반드시 있어야 한다.** 최상위 키로 정수. 없으면
-  7,053 GFLOPs 컷오프 판정 자체가 불가하고 누락은 `[0,0]` 처리된다.
-  앞서 만든 `official_test_MR-NATIVE-s0.json`은 1,125키로 **이 키가 없다 — 업로드 불가**.
-- `__flops__`는 주최측과 **같은 counter**로 재야 한다:
-  `torch.utils.flop_counter.FlopCounterMode`, Global 합, 1회 forward.
-  `torch.profiler`의 with_flops와 값이 다르다(729.8 G 대 1,119.9 G). **판정 기준은 전자.**
-  세기 전에 `torch.utils.module_tracker.register_multi_grad_hook`을 무력화해야 한다
-  (안 하면 `no_grad`에서 grad_fn assert로 죽는다). 주최측 스크립트도 그렇게 한다.
-- zip 안에는 `submission.json` **하나만**. 형식은
-  `experiments/md_r0_reset_20260914/package_submission.py`가 강제한다(실패 시 포장 거부).
-- 모델 출력은 **이미 누적 절대 좌표**다. 예제 스크립트의 `cumsum`을 다시 적용하면
-  끝점이 3.50배로 부푼다.
-
-### 환경
-- B200 기본 python3에 **cv2가 없다.** raw 입력 경로(제출물 빌드, raw B1 parity, flops)는
-  **`~/cv2env/bin/python`**을 써야 한다. (cv2 5.0.0; 기록된 4.8.1.78과 다르지만
-  parity가 bitwise로 나와 문제없음을 확인했다.)
-- 내부 trainer의 `--gpu`는 **0–3만** 받는다. 물리 GPU 5,6을 쓰려면
-  `CUDA_VISIBLE_DEVICES=5 ... --gpu 0`.
-- **GPU 4와 7은 다른 사람이 쓰고 있다.** 건드리지 말 것.
-- 공식 test clip 1,125개는 `/tmp/etri_test`에 추출돼 있다. **tmpfs라 사라질 수 있다.**
-  다시 필요하면 `ls test/*.tar | xargs -P 16 -I{} tar xf {} -C /tmp/etri_test`.
-- `evaluate.py`는 그래프를 알아야 한다: MR은 `--mr-detail native`,
-  ADJ는 거기에 `--adj off|on`을 더해야 한다(mask는 tensor가 아니라 forward 인자라
-  체크포인트에서 추론 불가). split도 명시해야 한다 —
-  `--split-manifest .../grouped_split_r0reset_tplus.json --supervision-root .../r0reset_tplus_geometry_v2`.
-  기본값은 다른 split이라 "Initialization/resume split lineage mismatch"가 난다.
-
-### 코드 수정
-- **`str.replace`로 패치할 때 반드시 `assert s.count(old) == 1`을 넣어라.**
-  앵커가 안 맞으면 조용히 no-op이 되고, 나는 그것 때문에 MR arm이 학습 중에
-  `KeyError`로 죽는 것을 겪었다. **정규식으로 중괄호를 잡지 마라** — `mr_restore = {`를
-  `{, "encoder_forward": None}`으로 망가뜨린 적이 있다. 수정 후 `ast.parse`로 검사.
-- `train.py`의 계획 파일은 `experiment_{arm}-s{seed}.json`이다. 예전에는 seed가 없어서
-  seed 1 실행이 seed 0 기록을 덮어썼다(9개 전부 run dir 사본에서 복구했다).
-- `flip_item`은 아는 키만 뒤집는다. **새 이미지 텐서를 추가하면 flip 래퍼도 추가해야 한다.**
-  안 하면 미러링된 샘플에서 라벨이 조용히 어긋난다.
-- pyramid **correlation은 각 level 고유 해상도에서** 하고 결과를 나중에 올려야 한다.
-  먼저 올려서 correlate하면 coarse level 탐색 범위가 ±64 → ±32 원본 px로 조용히 반토막 난다.
-  (ADJ 구현에서 실제로 밟았고 step-zero 차이 0.198로 드러났다.)
-
----
-
-## 6. 규정 관련
-
-- **실격 판정 받은 구조**: goal이 planner의 cross-attention **query항**으로 들어가는 것
-  (2026-08-31, `v2a_goal`). 현재 계보는 그 판정 이후 재작성한 것이다.
-  `DirectTrajectoryPlanner.forward`에 goal 인자가 없고, query는 학습된 `waypoint_queries`,
-  goal은 공유 scene feature에만 들어간다. `provided_status_used: false`.
-- **`OPEN_ISSUE.md`**(작업 저장소 루트)에 주최측 문의·답변 전문이 있다. Q3(지표=ADE1/2/3 평균,
-  서버 결과로 확인됨), Q4(T_infer 정의), Q7·Q8(과거 궤적·goal 사용 제한), Q10(미답변).
-- 시간 페널티식: `×(1 + (T_ms − 100)/200)`. T ≤ 100 ms면 ×1.0.
-  (§0의 `elapsed_ms: 310` 미해결 항목 참조.)
-
----
-
-## 7. 주요 산출물 위치
-
-전부 `/NHNHOME/data/sukim/adcl/` 아래.
-
-| 파일 | 내용 |
-|---|---|
-| `reports/md_exp_diagnosis_20260915/MR_ROUND3_RESULTS_KO.md` | ADJ·LONG 판정 (최신 실험 보고) |
-| `reports/md_exp_diagnosis_20260915/MR_ROUND2_RESULTS_KO.md` | seed 복제·W64·soup |
-| `reports/md_exp_diagnosis_20260915/MR_RESULTS_KO.md` | matching graph 1차 판정 |
-| `reports/md_exp_diagnosis_20260915/mr_round3_judgement.json` | 모든 CI·비교 수치 |
-| `reports/md_exp_diagnosis_20260915/test_matched_weighting.json` | **기록용. 의사결정에 쓰지 말 것** |
-| `reports/md_r0_reset_20260914/H_PREREGISTRATION_KO.md` | H 사용 규칙 + revision 1, 2 |
-| `reports/md_r0_reset_20260914/mr_candidate_registry.json` | 후보 동결 (SHA 포함) |
-| `reports/md_r0_reset_20260914/submission/2026-09-17_MR-NATIVE-s1/` | **2차 제출물 + README** |
-| `reports/md_r0_reset_20260914/mr_flops_s1.json` | `__flops__` 측정 근거 |
-| `reports/md_r0_reset_20260914/rtx4090_mr_forward_cost.json` | 4090 시간·FLOPs |
-| `experiments/md_r0_reset_20260914/train.py` | 모든 arm 정의·launcher |
-| `experiments/md_r0_reset_20260914/analyze_mr_round3.py` | 판정 스크립트 |
-| `experiments/md_r0_reset_20260914/package_submission.py` | 제출물 포장·검증 |
-| `experiments/md_r0_reset_20260914/measure_flops.py` | `__flops__` 측정 |
-
----
-
-## 8. 열려 있는 것 / 닫힌 것
-
-**닫혔다** (다시 하지 말 것): descriptor 폭 확대, seed weight average, 인접 edge(ADJ),
-더 긴 일정, test-matched 재가중을 예측기로 쓰는 것, 조기 종료 연구.
-
-**열려 있다**: 전체 set 재학습(다음 후보로 확정), H6-NEAR/H6-LONG,
-matching radius 추가 확대, 후반 horizon 표적 실험, `elapsed_ms` 해석.
-
-**H는 아직 한 번도 열리지 않았다.** 후보를 바꾸려면 revision을 먼저 쓴다.
-
-**리더보드 점수를 보고 후보를 바꾸면 그 순간부터 test set이 개발 집합이 된다.**
-남은 3회를 그렇게 쓰지 말 것.
+GitHub: `kimsunguk0/E_Drive`, branch `motiondrive-v2-20260910`.
+작업 저장소 이력을 직접 push하지 않고, 변경 파일을 명시해 commit한 뒤 별도 미러로 cherry-pick한다.
+작업 commit과 미러 commit은 SHA가 다르다. 비밀·접속 정보와 대형 가중치는 새 commit에 넣지 않는다.
+checkpoint·대형 예측은 서버에 보존하고 경로·크기·SHA를 색인에 남긴다.
+과거 미추적 worktree/backup/9월9일 산출물은 이번 정리 범위에서 보존했다.

@@ -1,0 +1,1344 @@
+{
+  "schema_version": 1,
+  "captured_at_local": "2026-09-19T12:30:29.578032",
+  "timezone": "Asia/Seoul",
+  "source_work_HEAD": "84d36bc5f2d86878012cb40c4624b14c689d075d",
+  "source_mirror_HEAD": "a8a6ee9ff6fee2597fce991f4300670d8d3f41ae",
+  "current_metric": "PREFIX mean of the first 2/4/6 point ADEs; weights [11,11,5,5,2,2]/36",
+  "completed_main_runs": [
+    {
+      "name": "MR-NATIVE-s1",
+      "run_dir": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "status_free",
+      "decision": "official_DEV_recipe",
+      "PREFIX_reported": 0.19100151807981058,
+      "PREFIX_recomputed_float64": 0.1910015148843424,
+      "L2_1s": 0.11031646773880072,
+      "L2_2s": 0.19102523885564648,
+      "L2_3s": 0.27166283805858005,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.19674226014333307,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 2,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "source_checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+        "source_run": "q10_q10_flip50_s0"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "ea695d772ece0d1caa6042ce19c2da43752334ef",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/ckpt_step20554.pth",
+        "bytes": 106843262,
+        "sha256": "e145237d9bf1e8129db48606d463ab020a4b821a993f3bdbded206c7b87e6f28"
+      },
+      "manifest": {
+        "path": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/manifest.json",
+        "bytes": 10991,
+        "sha256": "2913f4f3ac367e9c88647562e915faf4a1cdc62296128489439f9cd2d59936ad"
+      },
+      "prediction": {
+        "path": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/final_eval.json",
+        "bytes": 3786053,
+        "sha256": "3e303f2b8c0da5d803d6c1585734176a5e028d70e79764ffbcb3afa0e4fdd210"
+      },
+      "metrics": {
+        "path": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/metrics.jsonl",
+        "bytes": 317228,
+        "sha256": "be0c74b8f0a6b70d07e4d9bf6938587017a362ce3c2d5893ecb4ddcefaf2fe71"
+      }
+    },
+    {
+      "name": "MR-NATIVE-FULL-s1",
+      "run_dir": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 24931,
+      "last_logged_train_step": 24900,
+      "nonfinite_count": 0,
+      "evaluation_scope": "in_fit_only",
+      "input_policy": "status_free",
+      "decision": "official_submitted_FULL",
+      "PREFIX_reported": 0.09724460368779292,
+      "PREFIX_recomputed_float64": 0.09724460192336559,
+      "L2_1s": 0.054181126095144166,
+      "L2_2s": 0.09509619397842435,
+      "L2_3s": 0.14245648569652822,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.10233036075720917,
+      "seed": 1,
+      "train_rows": 101520,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "source_checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+        "source_run": "q10_q10_flip50_s0"
+      },
+      "train_rows_sha256": "ed29c24b9e8d35b563e50932afd00f8e6424ed63b746c8c35a3d05e5bb2cf4a8",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "803ac9d36dffba9b2113dffb51bc2c6203042664",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/ckpt_step24931.pth",
+        "bytes": 106843710,
+        "sha256": "ce569da5d3cfe70f89f042faa2a5f6449e30fccbd469f2e689e26445accf2b87"
+      },
+      "manifest": {
+        "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/manifest.json",
+        "bytes": 11580,
+        "sha256": "23b8dbf5ecc6cf54c54db7b7d5c9ff44b65a640403487c7abfb7c3a5e2b9ac93"
+      },
+      "prediction": {
+        "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/final_eval.json",
+        "bytes": 3787396,
+        "sha256": "f5023d8e3c41bb23c51c22de2ded81ca353442394b2c22a22413dc8177f1ae7e"
+      },
+      "metrics": {
+        "path": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1/metrics.jsonl",
+        "bytes": 380804,
+        "sha256": "48debfc1d98a04c564c3195844d9178b20ce2e8fb8f0ce11367a4da1d78dc07c"
+      }
+    },
+    {
+      "name": "A2-DIRECT-s1",
+      "run_dir": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "real_timestamp_status_query",
+      "decision": "historical_A2",
+      "PREFIX_reported": 0.1642809814144927,
+      "PREFIX_recomputed_float64": 0.16428097852739587,
+      "L2_1s": 0.0961080150235967,
+      "L2_2s": 0.1635525172626866,
+      "L2_3s": 0.23318240329590437,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.1682565902215157,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "e101dc3e4c5424d2ee746de1cce185b35c889ab3",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/ckpt_step20554.pth",
+        "bytes": 106849451,
+        "sha256": "ffeac3447eb777e744ab4f3501988b2279f895fa0077fe5111a7516157aa0469"
+      },
+      "manifest": {
+        "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/manifest.json",
+        "bytes": 10918,
+        "sha256": "8c68e3438dca8b88b7f16ce2a69205f7b9c447897026b948ffaa7fd5eafb7c91"
+      },
+      "prediction": {
+        "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/final_eval.json",
+        "bytes": 3785938,
+        "sha256": "4425a7a0efe894dbe61b1462f32417c0c84553271e798f33bb6e948a513dafdc"
+      },
+      "metrics": {
+        "path": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1/metrics.jsonl",
+        "bytes": 317713,
+        "sha256": "2b27749eb19ea469d432b293ee2c1d743588808dd390f0c6fd315e25466260dc"
+      }
+    },
+    {
+      "name": "A3-DIRECT-s1",
+      "run_dir": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "status_query_and_FPN_gates",
+      "decision": "excluded_from_current_submission_direction",
+      "PREFIX_reported": 0.14928921792950775,
+      "PREFIX_recomputed_float64": 0.14928921524854485,
+      "L2_1s": 0.08251080060014417,
+      "L2_2s": 0.1472756326323457,
+      "L2_3s": 0.21808121251314472,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.15227139339657236,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "4315a69389296e2fc09f4eeed026ab1461368e61",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/ckpt_step20554.pth",
+        "bytes": 107052824,
+        "sha256": "2c217341735f524e61d4a268930fbb9543c9411b153ad56619edad911fa3f373"
+      },
+      "manifest": {
+        "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/manifest.json",
+        "bytes": 11358,
+        "sha256": "19520214eef5fdb2398266f2d54d06ca823fdf97568eca09f02c1c7526fc96ae"
+      },
+      "prediction": {
+        "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/final_eval.json",
+        "bytes": 3785485,
+        "sha256": "ae2565c0c5f85c1b690ea7ecee765c69a778881416889bc20eefe51539adf889"
+      },
+      "metrics": {
+        "path": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1/metrics.jsonl",
+        "bytes": 317666,
+        "sha256": "42f87e2fa6ed204f831a09543b98c8051f451c7778e3080dedefe18a95894205"
+      }
+    },
+    {
+      "name": "OOF-MR-T203-s1",
+      "run_dir": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV_producer_diagnostic",
+      "input_policy": "status_free",
+      "decision": "completed_producer_new107_diagnostic_pending",
+      "PREFIX_reported": 0.22644411744638435,
+      "PREFIX_recomputed_float64": 0.22644411357617245,
+      "L2_1s": 0.13805304569916427,
+      "L2_2s": 0.22748244251190486,
+      "L2_3s": 0.3137968525174482,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.2234967686446552,
+      "seed": 1,
+      "train_rows": 54810,
+      "effective_batch": 16,
+      "microbatch": 2,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "source_checkpoint_sha256": "2e2fca25dff41cca62e2b24dfaef678b523585b5c2b880be37185342bc65fd44",
+        "source_run": "q10_q10_flip50_s0"
+      },
+      "train_rows_sha256": "75ebfad637566f0731d8989e8e8a18aa9ed7462384522d8e4880ad831f33f854",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "3123ad1698e269241c2d0ed3bae0122566a32806",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1/ckpt_step20554.pth",
+        "bytes": 106852862,
+        "sha256": "5cbf741a74cc06fcb4d1dfb9c985b24c4e0c6030d21e71e64814857f24bc1921"
+      },
+      "manifest": {
+        "path": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1/manifest.json",
+        "bytes": 24965,
+        "sha256": "41ad502e2194307ac96d4838d208e39655a8c5ab291328461760e423ef5417f2"
+      },
+      "prediction": {
+        "path": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1/final_eval.json",
+        "bytes": 3784869,
+        "sha256": "c6df86704044937733617d888bed4326158b60ca09255acb01098c63c64a29a1"
+      },
+      "metrics": {
+        "path": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1/metrics.jsonl",
+        "bytes": 311284,
+        "sha256": "ab467eb181ca79648cc684746f398f687d0dc3d63d8eee091123f4a7d9f2022f"
+      }
+    },
+    {
+      "name": "A2-FULL-NOM-s1",
+      "run_dir": "work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 24931,
+      "last_logged_train_step": 24900,
+      "nonfinite_count": 0,
+      "evaluation_scope": "in_fit_only",
+      "input_policy": "nominal_status_query",
+      "decision": "training_complete_raw_deployment_pending",
+      "PREFIX_reported": 0.08893408501920225,
+      "PREFIX_recomputed_float64": 0.08893408329814352,
+      "L2_1s": 0.04802246592263883,
+      "L2_2s": 0.08533955231630887,
+      "L2_3s": 0.1334402316554829,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.09338343796744669,
+      "seed": 1,
+      "train_rows": 101520,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "ed29c24b9e8d35b563e50932afd00f8e6424ed63b746c8c35a3d05e5bb2cf4a8",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "a10610881036cb401824eed856c641e03adf8d5d",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/ckpt_step24931.pth",
+        "bytes": 106851435,
+        "sha256": "aabdb2dca24491b46fd2e56e66d57fe0742e17a5b4c63c29f3199137cf8ff297"
+      },
+      "manifest": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/manifest.json",
+        "bytes": 13083,
+        "sha256": "0ecffd84ab2ec6ba2ae14d0fb97c788df79cff71946b7995ab87ef35ab60bc40"
+      },
+      "prediction": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/final_eval.json",
+        "bytes": 3787289,
+        "sha256": "9af9cd1eb7b196121f41305f769a390805edb7897868288b2afa0fbf39b639ce"
+      },
+      "metrics": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-FULL-NOM-s1/metrics.jsonl",
+        "bytes": 380818,
+        "sha256": "0dd1ac581510d87f032e83231b661f339269fa6d727c402ae0bcaf47efd11f05"
+      }
+    },
+    {
+      "name": "A2-BASE-NOM-s1",
+      "run_dir": "work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "nominal_status_query",
+      "decision": "matched_control",
+      "PREFIX_reported": 0.1655106489655904,
+      "PREFIX_recomputed_float64": 0.16551064587503816,
+      "L2_1s": 0.09674669730702547,
+      "L2_2s": 0.16469637305158608,
+      "L2_3s": 0.235088867266503,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.16959081269336226,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "a10610881036cb401824eed856c641e03adf8d5d",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/ckpt_step20554.pth",
+        "bytes": 106851435,
+        "sha256": "db9a49bbaa9385dc7d6d6a8b78a593d20fabd75c25d3789fcd8043a850853a33"
+      },
+      "manifest": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/manifest.json",
+        "bytes": 13077,
+        "sha256": "523c7b3f0f9bd60c5162a9701013f50001cdaa2074826495248cef170b636015"
+      },
+      "prediction": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/final_eval.json",
+        "bytes": 3785825,
+        "sha256": "391c6b92190489708963f13585b8af44528d455b4b314d81287330e87bae1c5d"
+      },
+      "metrics": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-BASE-NOM-s1/metrics.jsonl",
+        "bytes": 317578,
+        "sha256": "1e19ee8cffe4539fa8097a3e357a53c2cde6e33f35d71a1a929472f6380414d1"
+      }
+    },
+    {
+      "name": "A2-MH4-NOM-s1",
+      "run_dir": "work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "nominal_status_query",
+      "decision": "small_control_gain_preserved",
+      "PREFIX_reported": 0.16449543014956494,
+      "PREFIX_recomputed_float64": 0.16449542727930427,
+      "L2_1s": 0.09630191639438336,
+      "L2_2s": 0.1637180085174577,
+      "L2_3s": 0.23346635692607176,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.16869810855795253,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "a10610881036cb401824eed856c641e03adf8d5d",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1/ckpt_step20554.pth",
+        "bytes": 106951046,
+        "sha256": "bc9fbec2f424c486960777553fad61fca6e389b265595d6ee719ed979cdc027a"
+      },
+      "manifest": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1/manifest.json",
+        "bytes": 13457,
+        "sha256": "fd976deac73210c82e871eea9973d6afaf4a0d214dc9f54fe7da9fe753258012"
+      },
+      "prediction": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1/final_eval.json",
+        "bytes": 3786173,
+        "sha256": "49dcb94cf63deb2a4a400f6e4f46147495ebf521946ee2fb14077319a426d9a6"
+      },
+      "metrics": {
+        "path": "work_dirs/md_a2_nominal_mh4_20260918/A2-MH4-NOM-s1/metrics.jsonl",
+        "bytes": 317717,
+        "sha256": "c66b0cb1998a36892d8ba378d816f090e302e2e9e4dc1387ccf371c570e1c660"
+      }
+    },
+    {
+      "name": "A2-SIDE-SCENE-NOM-s1",
+      "run_dir": "work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "nominal_status_query",
+      "decision": "recipe_not_promoted",
+      "PREFIX_reported": 0.17240601812931686,
+      "PREFIX_recomputed_float64": 0.17240601507652195,
+      "L2_1s": 0.101956988025854,
+      "L2_2s": 0.17177432098699316,
+      "L2_3s": 0.24348673621671865,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.17436259510407445,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "a572e233288347b03aff9a13d2b1150819103a16",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1/ckpt_step20554.pth",
+        "bytes": 106852843,
+        "sha256": "db7620605a01246369364da01944cc5b4d90e1aa00672c6318f0876cbd8e2498"
+      },
+      "manifest": {
+        "path": "work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1/manifest.json",
+        "bytes": 14718,
+        "sha256": "9891a8e12364d5e789a5d6a9c0fe2a10282c3c6ea907fafeff3c6d170cd1c555"
+      },
+      "prediction": {
+        "path": "work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1/final_eval.json",
+        "bytes": 3785865,
+        "sha256": "f6b85e09bda4b2f11fd48d84434c76001c7642def3a91a3961121e63e5eeadf7"
+      },
+      "metrics": {
+        "path": "work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1/metrics.jsonl",
+        "bytes": 317533,
+        "sha256": "8c4335bfc50950f6ead519faff5c5d2a84c689971bb8ce8bf20f4d84ec3845fa"
+      }
+    },
+    {
+      "name": "A2-QREFINE-NOM-s1",
+      "run_dir": "work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "nominal_status_query",
+      "decision": "numerical_best_fixed_terminal_current_A2",
+      "PREFIX_reported": 0.16425176970362365,
+      "PREFIX_recomputed_float64": 0.1642517667968736,
+      "L2_1s": 0.09604649863001233,
+      "L2_2s": 0.1636846045296696,
+      "L2_3s": 0.23302419723093878,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.16844511321878103,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "a572e233288347b03aff9a13d2b1150819103a16",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+        "bytes": 106970456,
+        "sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b"
+      },
+      "manifest": {
+        "path": "work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/manifest.json",
+        "bytes": 15309,
+        "sha256": "4c515706969ba7ae47f8e9716bdbc466f13f4c99213e510ccce78acbdd4c90c5"
+      },
+      "prediction": {
+        "path": "work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/final_eval.json",
+        "bytes": 3786087,
+        "sha256": "4baaff85369c6882fa557ccf79c21cb7aede29a9da8053714cd2c232b024e2a9"
+      },
+      "metrics": {
+        "path": "work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/metrics.jsonl",
+        "bytes": 317558,
+        "sha256": "a80dc83c3019ee472b0a5d3aed0acba3dd035b02c7805d940a9e55fe7d61939d"
+      }
+    },
+    {
+      "name": "A2-G0-s1",
+      "run_dir": "work_dirs/a2_next_20260919/A2-G0-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 3426,
+      "last_logged_train_step": 3400,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "nominal_status_query",
+      "decision": "matched_continuation_control",
+      "PREFIX_reported": 0.1650840685144906,
+      "PREFIX_recomputed_float64": 0.16508406519641014,
+      "L2_1s": 0.0963413054460424,
+      "L2_2s": 0.1643324446471303,
+      "L2_3s": 0.2345784454960577,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.16871951376274416,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 1e-05,
+      "backbone_lr": 1e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+        "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+        "model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+        "source": "complete DEV QREFINE terminal model state, strict load; no optimizer state"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "57c12972f4694c664fcfdd4c2d3056e2bcb1e079",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/a2_next_20260919/A2-G0-s1/ckpt_step3426.pth",
+        "bytes": 106968115,
+        "sha256": "752e0aef943fec80ba30f84326a4eaded68ad214c0b783e9619c4ec6c40d9f0f"
+      },
+      "manifest": {
+        "path": "work_dirs/a2_next_20260919/A2-G0-s1/manifest.json",
+        "bytes": 12302,
+        "sha256": "e5410f0c067afa2583cf5c43a14946a02aa9c77b6eed963d823d269ebba64997"
+      },
+      "prediction": {
+        "path": "work_dirs/a2_next_20260919/A2-G0-s1/final_eval.json",
+        "bytes": 3786002,
+        "sha256": "224b73abdc3aebf9a7a68b0c762b9a019404a60c5e06ad8fccb4718857df61d8"
+      },
+      "metrics": {
+        "path": "work_dirs/a2_next_20260919/A2-G0-s1/metrics.jsonl",
+        "bytes": 58552,
+        "sha256": "ba915881e5b97333d41a785d88657124d95b1e4a52bc3fcf8d8f4ec63c56a5de"
+      }
+    },
+    {
+      "name": "A2-G1-s1",
+      "run_dir": "work_dirs/a2_next_20260919/A2-G1-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 3426,
+      "last_logged_train_step": 3400,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "nominal_status_query",
+      "decision": "terminal_not_promoted_selected_intermediate_preserved",
+      "PREFIX_reported": 0.1647408042244988,
+      "PREFIX_recomputed_float64": 0.16474080158049534,
+      "L2_1s": 0.0962053886366569,
+      "L2_2s": 0.16405817262114436,
+      "L2_3s": 0.23395884348368481,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.16837224069179071,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 1e-05,
+      "backbone_lr": 1e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+        "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+        "model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+        "source": "complete DEV QREFINE terminal model state, strict load; no optimizer state"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "57c12972f4694c664fcfdd4c2d3056e2bcb1e079",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/a2_next_20260919/A2-G1-s1/ckpt_step3426.pth",
+        "bytes": 106968115,
+        "sha256": "031131260c0039f2722fb9afdea2fa4196686541b68e2f55f318d69912d08190"
+      },
+      "manifest": {
+        "path": "work_dirs/a2_next_20260919/A2-G1-s1/manifest.json",
+        "bytes": 12303,
+        "sha256": "0aa0781ec9f756fb4ca2d1fc4353e9b4e39944741b7fb562bc853edeaca32143"
+      },
+      "prediction": {
+        "path": "work_dirs/a2_next_20260919/A2-G1-s1/final_eval.json",
+        "bytes": 3785929,
+        "sha256": "fdfb29a94c7888a4a3912237212bcecf5fd64db0eb6d3abc80d4f73716ce724a"
+      },
+      "metrics": {
+        "path": "work_dirs/a2_next_20260919/A2-G1-s1/metrics.jsonl",
+        "bytes": 58623,
+        "sha256": "30ed4b7c45df1cb336393f848e5eb2063596a7a2afe3cdf0a96a9aa4263bbd2e"
+      }
+    },
+    {
+      "name": "A2-LEARNED-SAMPLE-s1",
+      "run_dir": "work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "nominal_status_query",
+      "decision": "small_control_gain_not_promoted",
+      "PREFIX_reported": 0.16466722597327973,
+      "PREFIX_recomputed_float64": 0.16466722322100316,
+      "L2_1s": 0.09641009416943723,
+      "L2_2s": 0.16397344491435123,
+      "L2_3s": 0.23361813057922098,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.16942700861971818,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "57c12972f4694c664fcfdd4c2d3056e2bcb1e079",
+      "experiment_source_commit": null,
+      "checkpoint": {
+        "path": "work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/ckpt_step20554.pth",
+        "bytes": 106891087,
+        "sha256": "959f8a591540a0147e32e821ab79944f2ebcc0ad5dac83cd9d7202065d275bf1"
+      },
+      "manifest": {
+        "path": "work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/manifest.json",
+        "bytes": 14682,
+        "sha256": "fd4688d989d30908402db7ed0df21bf8a6070598bee5a5e81277f529e337cb7d"
+      },
+      "prediction": {
+        "path": "work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/final_eval.json",
+        "bytes": 3786101,
+        "sha256": "effd4fb1d39a39dfae7bba3e31dbb93349cbcb4925c330567d7216bec302087a"
+      },
+      "metrics": {
+        "path": "work_dirs/a2_next_20260919/A2-LEARNED-SAMPLE-s1/metrics.jsonl",
+        "bytes": 335219,
+        "sha256": "fb90d7fdcd94df7e3b3338f2e9b5e84b4d587fe828e3018d2bc9ed71cf8600fb"
+      }
+    },
+    {
+      "name": "A2-COMMAND-NOM-s1",
+      "run_dir": "work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1",
+      "effective_status": "completed",
+      "checkpoint_step": 20554,
+      "last_logged_train_step": 20550,
+      "nonfinite_count": 0,
+      "evaluation_scope": "heldout_DEV",
+      "input_policy": "nominal_status_and_semantic_command_query",
+      "decision": "small_control_gain_preserved",
+      "PREFIX_reported": 0.1648842944131765,
+      "PREFIX_recomputed_float64": 0.16488429144189873,
+      "L2_1s": 0.09650101802017573,
+      "L2_2s": 0.16418292871287524,
+      "L2_3s": 0.2339689275926452,
+      "n": 1998,
+      "n_sessions": 11,
+      "nonstop_PREFIX": 0.16926885257398439,
+      "seed": 1,
+      "train_rows": 83700,
+      "effective_batch": 16,
+      "microbatch": 8,
+      "head_lr": 5e-05,
+      "backbone_lr": 5e-06,
+      "initializer": {
+        "path": "/NHNHOME/data/sukim/adcl/work_dirs/md_r0_reset_20260914/r0_init_tplus.pth",
+        "checkpoint_sha256": "e0f3210d15d34275479ebc4429574b4a5b189afdafe22875049b682796911e76",
+        "model_state_sha256": "af609201533d41e5462142b4dbff7d3c19f7caa17ad2f0c201b9f3d09b4c46fc",
+        "source": "q10_flip50 initializer used by registered MR"
+      },
+      "train_rows_sha256": "e20e4541834331a5932bdb66a2b03248ba2eb30ebd4ad685c2045ceb5b1a0471",
+      "eval_rows_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+      "source_commit": "d039a8ae578d0220602710e51b07a89918bde2a8",
+      "experiment_source_commit": "d039a8ae578d0220602710e51b07a89918bde2a8",
+      "checkpoint": {
+        "path": "work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/ckpt_step20554.pth",
+        "bytes": 106854900,
+        "sha256": "cef1230340a66ed0a45aa901e3eb19ab0c7d39fb6a43dcc150039e21c98c7dcf"
+      },
+      "manifest": {
+        "path": "work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/manifest.json",
+        "bytes": 15587,
+        "sha256": "3325959f17b46337bc08bfda2b24daef05804b8cfc6fc3a37e32c9d042818032"
+      },
+      "prediction": {
+        "path": "work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/final_eval.json",
+        "bytes": 3786145,
+        "sha256": "8637bfeadf1d0478a7aa55e8443baa34b2adf90d040a06140c60fb0ef2aa5f4c"
+      },
+      "metrics": {
+        "path": "work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1/metrics.jsonl",
+        "bytes": 317569,
+        "sha256": "d4410eb7c7879580175f7ec8925e75b8be05262df4db016022b26d423cc8fad6"
+      }
+    }
+  ],
+  "selected_development_checkpoint": {
+    "evaluated_at_utc": "2026-09-18T21:40:17.056589+00:00",
+    "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/ckpt_step2284.pth",
+    "selected_on_reused_V0": true,
+    "PREFIX": 0.1638824849727284,
+    "parent_PREFIX": 0.16425176679687356,
+    "delta": -0.00036928182414516325,
+    "session_cluster_ci95": [
+      -0.002074330826709039,
+      0.0005337262611871875
+    ],
+    "sessions_improved": 6,
+    "nonstop_PREFIX": 0.16865101384321368,
+    "nonstop_delta": 0.00020590062443270036,
+    "warning": "Best of three scheduled G1 V0 evaluations, selected on repeatedly used DEV; not an independent validation or terminal primary comparison.",
+    "checkpoint_sha256": "c451778d7ab5d12e6e3ccdaaee6db4c23c4e21b534d5497845f9b0cb4e9a65a7",
+    "prediction_file": "/NHNHOME/data/sukim/adcl/work_dirs/a2_next_20260919/A2-G1-s1/predictions_step2284.json",
+    "prediction_sha256": "8868fdbecd43714746daeb9fe343422a53f9a176dc009c5d1bee1a2e6d3e7e14",
+    "bootstrap": {
+      "unit": "session",
+      "resamples": 20000,
+      "seed": 0,
+      "statistic": "row-weighted paired mean, 11 sessions with replacement",
+      "post_selection_correction": false
+    },
+    "checkpoint_artifact": {
+      "path": "work_dirs/a2_next_20260919/A2-G1-s1/ckpt_step2284.pth",
+      "bytes": 106968115,
+      "sha256": "c451778d7ab5d12e6e3ccdaaee6db4c23c4e21b534d5497845f9b0cb4e9a65a7"
+    },
+    "prediction_artifact": {
+      "path": "work_dirs/a2_next_20260919/A2-G1-s1/predictions_step2284.json",
+      "bytes": 3786259,
+      "sha256": "8868fdbecd43714746daeb9fe343422a53f9a176dc009c5d1bee1a2e6d3e7e14"
+    }
+  },
+  "prior_A2_nominal_eval_source": {
+    "path": "reports/md_a2_deploy_status_20260918/paired_status_eval.json",
+    "bytes": 4120,
+    "sha256": "7cd488713ef554470717fd60e88334184f88319e8cd06962a4a397cf3635d58e"
+  },
+  "earlier_24_stage_index": {
+    "path": "reports/md_shared_dynamics_20260917/records_20260918/experiment_index.json",
+    "bytes": 117878,
+    "sha256": "1bd7423159ca5f1c303f99eb907859a7b237a81586bc20049f42bcb7bcb131fb"
+  },
+  "earlier_24_stages": [
+    {
+      "run": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/joint",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/FRONT-S-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 2650,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19731716337046018,
+          "n": 1998,
+          "official_d3": 0.19375240459936918,
+          "step": 2616
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/FRONT-S-s1/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/FRONT-S-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19100151388652836,
+          "n": 1998,
+          "official_d3": 0.19023569968300177,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/MR-NATIVE-FULL-s1",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/MR-NATIVE-FULL-s1",
+      "evaluation_role": "overlapping in-fit diagnostic",
+      "has_final_eval": true,
+      "last_logged_train_step": 24900,
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.18470637226762535,
+          "step": 6345
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1290563141512969,
+          "step": 12690
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.11176391669387768,
+          "step": 19035
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.09724460368779292,
+          "step": 24931
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/OOF-MR-T203-s1",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/OOF-MR-T203-s1",
+      "evaluation_role": "held-out V0 diagnostic; producer new107 inference remains pending",
+      "has_final_eval": true,
+      "last_logged_train_step": 20550,
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.22644411744638435,
+          "step": 20554
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 2900,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.2102421814318489,
+          "n": 1998,
+          "official_d3": 0.19459413363035089,
+          "step": 2616
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-AUX-DN-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19100234399349694,
+          "n": 1998,
+          "official_d3": 0.1900136169082638,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-AUX-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 2750,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.197237908611777,
+          "n": 1998,
+          "official_d3": 0.19382978164038184,
+          "step": 2616
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-AUX-s1/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-AUX-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19100241642119037,
+          "n": 1998,
+          "official_d3": 0.19025565410032635,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/joint",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 350,
+      "saved_evaluations": []
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-S-s1/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-S-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.191001650423988,
+          "n": 1998,
+          "official_d3": 0.19026982006208445,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-VA-AUX-s1/joint",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-VA-AUX-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 1,
+      "saved_evaluations": []
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-VA-AUX-s1/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-VA-AUX-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 450,
+      "saved_evaluations": []
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/joint",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-VA-s1/joint",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 350,
+      "saved_evaluations": []
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/SIDE-VA-s1/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/SIDE-VA-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19100168126798864,
+          "n": 1998,
+          "official_d3": 0.190351677779353,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19134069979924978,
+          "n": 1998,
+          "official_d3": 0.1895910581690434,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s2/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/STATUS-A2-S-SCENE-s2/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19033407240146277,
+          "n": 1998,
+          "official_d3": 0.18949804239679366,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s1/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/STATUS-A2-S-s1/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.19084733118884847,
+          "n": 1998,
+          "official_d3": 0.18954487198639103,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_progress_residual_20260917/STATUS-A2-S-s2/warmup",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_progress_residual_20260917/STATUS-A2-S-s2/warmup",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 1000,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.1902864273369277,
+          "n": 1998,
+          "official_d3": 0.18953609198919852,
+          "step": 1000
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A2-DIRECT-s1",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 20550,
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.2196833017450926,
+          "step": 3426
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1870879986392403,
+          "step": 6852
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1791587688016693,
+          "step": 10278
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.17004717054363858,
+          "step": 13704
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.16580775024327873,
+          "step": 17130
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1642809814144927,
+          "step": 20554
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A2-DIRECT-s1-smoke",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 2,
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.4776506933259654,
+          "step": 2
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A3-DIRECT-s1",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 20550,
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.19514473202406196,
+          "step": 3426
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.18900559494389338,
+          "step": 6852
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.18587033758830238,
+          "step": 10278
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.1558204798444591,
+          "step": 13704
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.15023444274028352,
+          "step": 17130
+        },
+        {
+          "n": 1998,
+          "official_d3": 0.14928921792950775,
+          "step": 20554
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_shared_dynamics_20260917/A3-DIRECT-s1-smoke",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A3-DIRECT-s1-smoke",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 2,
+      "saved_evaluations": [
+        {
+          "n": 1998,
+          "official_d3": 0.4776452224966403,
+          "step": 2
+        }
+      ]
+    },
+    {
+      "run": "work_dirs/md_shared_dynamics_20260917/A3-FP-VA-s1",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A3-FP-VA-s1",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": false,
+      "last_logged_train_step": 600,
+      "saved_evaluations": []
+    },
+    {
+      "run": "work_dirs/md_shared_dynamics_20260917/A3-FP-VA-s1-smoke",
+      "archive": "reports/md_shared_dynamics_20260917/records_20260918/runs/md_shared_dynamics_20260917/A3-FP-VA-s1-smoke",
+      "evaluation_role": "held-out V0",
+      "has_final_eval": true,
+      "last_logged_train_step": 2,
+      "saved_evaluations": [
+        {
+          "base_official_d3": 0.48157025986836777,
+          "n": 1998,
+          "official_d3": 0.4815586143498634,
+          "step": 2
+        }
+      ]
+    }
+  ],
+  "stopped_run_with_stale_manifest": {
+    "name": "A3-FP-VA-s1",
+    "manifest_status": "running",
+    "effective_status": "stopped_incomplete",
+    "last_logged_train_step": 600,
+    "process_present": false,
+    "has_final_eval": false,
+    "source_archive": "reports/md_shared_dynamics_20260917/records_20260918/experiment_index.json",
+    "note": "Original running flag is stale; preserved without editing historical evidence."
+  },
+  "official_submissions": [
+    {
+      "name": "MR-NATIVE-s1",
+      "score": 0.19798776670488366,
+      "metrics": {
+        "L2_1s": 0.11367239131081722,
+        "L2_2s": 0.19634393043312198,
+        "L2_3s": 0.2839469783707119,
+        "L2_avg": 0.19798776670488366,
+        "flops": 729815613824,
+        "cutoff": true,
+        "elapsed_ms": 310,
+        "runtime": {
+          "pull_mode": true,
+          "num_inflight": 1,
+          "want": 31,
+          "pull_interval_sec": 10
+        }
+      },
+      "confirmation_source": "user-provided official scoring response in conversation",
+      "independently_fetched_from_server": false,
+      "checkpoint": {
+        "path": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/ckpt_step20554.pth",
+        "bytes": 106843262,
+        "sha256": "e145237d9bf1e8129db48606d463ab020a4b821a993f3bdbded206c7b87e6f28"
+      },
+      "package": null,
+      "submission_zip_sha256": "82d8a75bba655d06c7e9eaeccabda7bfa5b2a0d97a718a7a99041bd37ce2349e"
+    },
+    {
+      "name": "MR-NATIVE-FULL-s1",
+      "score": 0.18596892793122946,
+      "metrics": {
+        "L2_1s": 0.10535679219089805,
+        "L2_2s": 0.1845463179715652,
+        "L2_3s": 0.2680036736312251,
+        "L2_avg": 0.18596892793122946,
+        "flops": 729815613824,
+        "cutoff": true,
+        "elapsed_ms": 101,
+        "runtime": {
+          "pull_mode": true,
+          "num_inflight": 1,
+          "want": 31,
+          "pull_interval_sec": 10
+        }
+      },
+      "confirmation_source": "user-provided official scoring response in conversation",
+      "independently_fetched_from_server": false,
+      "checkpoint": {
+        "path": "work_dirs/md_full_submission_20260918/preserved/ckpt_step24931.pth",
+        "bytes": 106843710,
+        "sha256": "ce569da5d3cfe70f89f042faa2a5f6449e30fccbd469f2e689e26445accf2b87"
+      },
+      "package": {
+        "path": "reports/md_full_submission_20260918/submission/submission.zip",
+        "bytes": 143064,
+        "sha256": "dc7cd52a01db5e96a810b0397b81c113da11c72bb54455152f0e3a1f5d4ca428"
+      },
+      "submission_zip_sha256": "dc7cd52a01db5e96a810b0397b81c113da11c72bb54455152f0e3a1f5d4ca428"
+    }
+  ],
+  "A2_FULL_deployment": {
+    "training_completed": true,
+    "raw_input_adapter_certified": false,
+    "official_server_score": null,
+    "evidence": "reports/md_a2_nominal_mh4_20260918/full_terminal_summary.json"
+  },
+  "GPU_0_to_3_snapshot": "0, 0, 0\n1, 0, 0\n2, 0, 0\n3, 0, 0",
+  "watcher_final_states": {
+    "a2_next_20260919": {
+      "pid": 3449241,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T17:24:41.729259+00:00",
+      "training_started_by_watcher": false,
+      "FULL_or_submission_actions": false,
+      "phases": {
+        "G": {
+          "work_commit": "51dd90a628904f648edcbdda79755a424a3fe4c1",
+          "mirror_commit": "ca80adeda5899bc3339375bd3509e08abe552f71"
+        },
+        "all": {
+          "work_commit": "e8639b85c018e9f84e50a4e4afd1aadd18554790",
+          "mirror_commit": "43b3ba41a14b98c98a6a6dfecc9ee8f7736b69e4"
+        }
+      },
+      "completed_at_utc": "2026-09-18T20:36:47.553781+00:00"
+    },
+    "a2_command_20260919": {
+      "pid": 3522828,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:53:41.415630+00:00",
+      "starts_training": false,
+      "starts_FULL": false,
+      "uploads_submission": false,
+      "original_publication_error": "Traceback (most recent call last):\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 76, in main\n    state['publication']=publish()\n                         ^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 28, in publish\n    call(['git','add','--',*paths]);call(['git','diff','--cached','--check'])\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 13, in call\n    return subprocess.check_output(args,cwd=cwd,text=True,stderr=subprocess.STDOUT)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', 'diff', '--cached', '--check']' returned non-zero exit status 2.\n",
+      "publication": {
+        "work_commit": "84d36bc5f2d86878012cb40c4624b14c689d075d",
+        "mirror_commit": "a8a6ee9ff6fee2597fce991f4300670d8d3f41ae"
+      },
+      "recovered_manually": true,
+      "recovery_details": "reports/a2_command_20260919/publication_recovery.json",
+      "completed_at_utc": "2026-09-19T03:17:38.100996+00:00"
+    }
+  },
+  "submission_quota_last_user_confirmation": {
+    "date": "2026-09-18",
+    "used": 2,
+    "total": 5,
+    "remaining": 3,
+    "live_account_rechecked": false,
+    "do_not_count_other_team_submission": true
+  },
+  "pending_work": [
+    "A2 FULL raw-input parity / inference / packaging before any official submission",
+    "Unseen new107 inference and residual diagnostics from the completed OOF producer, only if reprioritized"
+  ],
+  "documentation_scope": "No training, model, split, threshold or official-submission changes during this consolidation.",
+  "git_worktree_note": "Old untracked worktrees/backups/20260909 artifacts are preserved; only recent documentation and final watcher records are staged."
+}

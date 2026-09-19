@@ -1,0 +1,159 @@
+{
+  "checked_at_local": "2026-09-19T12:41:22.061695",
+  "status": "passed",
+  "major_completed_run_count": 14,
+  "recomputed_PREFIX_count": 14,
+  "checkpoint_hashes_recomputed": 17,
+  "existing_selected_G1_hash_matches": true,
+  "explicit_same_row_comparison_sources": [
+    "reports/md_a2_scene_extensions_20260918/terminal_summary.json",
+    "reports/a2_next_20260919/terminal_results.json",
+    "reports/a2_command_20260919/terminal_results.json"
+  ],
+  "local_links_checked": 34,
+  "local_links": [
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/recent_work_20260919/SUMMARY_KO.md"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/a2_command_20260919/DECISION_KO.md"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "OPEN_ISSUE.md"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/recent_work_20260919/SUMMARY_KO.md"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/recent_work_20260919/run_registry.json"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/recent_work_20260919/results.csv"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/recent_work_20260919/commit_index.json"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/recent_work_20260919/COMMITS_KO.md"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/md_full_submission_20260918/SERVER_RESULT_20260918_KO.md"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/a2_next_20260919/DECISION_KO.md"
+    },
+    {
+      "document": "HANDOVER.md",
+      "target": "reports/a2_command_20260919/DECISION_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "HANDOVER.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/recent_work_20260919/run_registry.json"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/recent_work_20260919/results.csv"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_full_submission_20260918/server_comparison_20260918.json"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_full_submission_20260918/SERVER_RESULT_20260918_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_a2_nominal_mh4_20260918/full_terminal_summary.json"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_exp_diagnosis_20260915/MR_ROUND3_RESULTS_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_shared_dynamics_20260917/records_20260918/experiment_index.json"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_shared_dynamics_20260917/RESULTS_20260918_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_a2_deploy_status_20260918/REVIEW_AND_P0_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_a2_nominal_mh4_20260918/dev_terminal_summary.json"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_a2_scene_extensions_20260918/TERMINAL_REVIEW_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_a2_scene_extensions_20260918/TERMINAL_REVIEW_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/a2_next_20260919/DECISION_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/a2_next_20260919/RESULTS_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/a2_command_20260919/DECISION_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/a2_next_20260919/G1_selected_step2284_review.json"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "OPEN_ISSUE.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_a2_nominal_mh4_20260918/full_terminal_summary.json"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/a2_next_20260919/DECISION_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/a2_command_20260919/DECISION_KO.md"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/md_shared_dynamics_20260917/records_20260918/experiment_index.json"
+    },
+    {
+      "document": "reports/recent_work_20260919/SUMMARY_KO.md",
+      "target": "reports/recent_work_20260919/commit_index.json"
+    }
+  ],
+  "work_to_mirror_commit_mapping_count": 49,
+  "mapping_is_full_tree_identity_claim": false,
+  "JSON_parsed": true,
+  "MD_no_trailing_whitespace_or_CRLF": true,
+  "no_new_training_or_submission": true,
+  "old_handover_preserved_in_work_commit": "84d36bc5f2d86878012cb40c4624b14c689d075d",
+  "old_handover_preserved_in_mirror_commit": "a8a6ee9ff6fee2597fce991f4300670d8d3f41ae"
+}

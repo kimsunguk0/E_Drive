@@ -1,0 +1,16 @@
+{
+  "pid": 3522828,
+  "status": "completed",
+  "started_at_utc": "2026-09-18T22:53:41.415630+00:00",
+  "starts_training": false,
+  "starts_FULL": false,
+  "uploads_submission": false,
+  "original_publication_error": "Traceback (most recent call last):\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 76, in main\n    state['publication']=publish()\n                         ^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 28, in publish\n    call(['git','add','--',*paths]);call(['git','diff','--cached','--check'])\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/watch_results.py\", line 13, in call\n    return subprocess.check_output(args,cwd=cwd,text=True,stderr=subprocess.STDOUT)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', 'diff', '--cached', '--check']' returned non-zero exit status 2.\n",
+  "publication": {
+    "work_commit": "84d36bc5f2d86878012cb40c4624b14c689d075d",
+    "mirror_commit": "a8a6ee9ff6fee2597fce991f4300670d8d3f41ae"
+  },
+  "recovered_manually": true,
+  "recovery_details": "reports/a2_command_20260919/publication_recovery.json",
+  "completed_at_utc": "2026-09-19T03:17:38.100996+00:00"
+}

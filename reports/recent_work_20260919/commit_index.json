@@ -1,0 +1,345 @@
+[
+  {
+    "work_commit": "84d36bc5f2d86878012cb40c4624b14c689d075d",
+    "authored_at": "2026-09-19T12:16:36+09:00",
+    "subject": "Record A2 command outcome and repair result publication formatting",
+    "mirror_commit": "a8a6ee9ff6fee2597fce991f4300670d8d3f41ae",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "9702ed54b1ce57570b8a632c7aa8d6f57843254e",
+    "authored_at": "2026-09-19T07:55:16+09:00",
+    "subject": "Record command training launch, input contract and live handover",
+    "mirror_commit": "6c80659d32421005f18c883024882b63ab95f386",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "d039a8ae578d0220602710e51b07a89918bde2a8",
+    "authored_at": "2026-09-19T07:52:47+09:00",
+    "subject": "Add matched A2 shared-scene semantic command trial",
+    "mirror_commit": "e8b0033c0445edef1b67246eeb8c48722b4b5523",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "d80be1a38ebb2ef1e3c082106856cfc74669ab72",
+    "authored_at": "2026-09-19T06:42:21+09:00",
+    "subject": "Assess completed A2 G/S runs and preserve selected G1 checkpoint",
+    "mirror_commit": "d1893890e2fd955a2b56ca31cbb9750c244ecc31",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "e8639b85c018e9f84e50a4e4afd1aadd18554790",
+    "authored_at": "2026-09-19T05:36:37+09:00",
+    "subject": "Record A2 all terminal comparison and fixed probes",
+    "mirror_commit": "43b3ba41a14b98c98a6a6dfecc9ee8f7736b69e4",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "51dd90a628904f648edcbdda79755a424a3fe4c1",
+    "authored_at": "2026-09-19T02:46:48+09:00",
+    "subject": "Record A2 G terminal comparison and fixed probes",
+    "mirror_commit": "ca80adeda5899bc3339375bd3509e08abe552f71",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "52e2c16149b159356a505e2283867551b1fd1501",
+    "authored_at": "2026-09-19T02:27:17+09:00",
+    "subject": "Record early A2 continuation evaluations and active result watcher",
+    "mirror_commit": "2f58ea2e53ff86e6252b3c56ee46d5a96ab8934b",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "e7d811861ded01414a4dc2eb3232d9d7ef0359b9",
+    "authored_at": "2026-09-19T02:24:16+09:00",
+    "subject": "Record A2 G and sampling launches with bounded result finalization",
+    "mirror_commit": "2fc7a48fef39841d250ed4640eb0f673b1e60e5d",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "57c12972f4694c664fcfdd4c2d3056e2bcb1e079",
+    "authored_at": "2026-09-19T02:14:24+09:00",
+    "subject": "Add matched A2 auxiliary-balance and learned-sampling experiments",
+    "mirror_commit": "0c36b26c2710918bc1137b2514a6cba0f9324310",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "be11e6f53b691bea38d2b470756783ac44424acc",
+    "authored_at": "2026-09-18T22:45:34+09:00",
+    "subject": "docs: audit A2 plateau and specify matched planning specialization",
+    "mirror_commit": "d27c8622e8a72c7b83a08fc7027114899841e927",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "209fa2c99f55eee44f383d0c5fda257c5f8867e9",
+    "authored_at": "2026-09-18T22:05:09+09:00",
+    "subject": "Record terminal SIDE and QREFINE results and candidate decision",
+    "mirror_commit": "74ac3969982fd3dd264ea892dbcb747064dab1ab",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "2d672cf524b9d356293e97a27b9cf56dcd175b73",
+    "authored_at": "2026-09-18T18:21:56+09:00",
+    "subject": "Record SIDE and QREFINE launches and preserve A2 FULL terminal",
+    "mirror_commit": "571199eedd86fed6604439de9320382fe7640b2d",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "a572e233288347b03aff9a13d2b1150819103a16",
+    "authored_at": "2026-09-18T18:18:18+09:00",
+    "subject": "Add independent A2 side-scene and query-refinement experiments",
+    "mirror_commit": "165f760ffc21c28276484dddcd2f11bf171175d7",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "83ce56ca36d0703a22767e55e90c9b471c0d4dcc",
+    "authored_at": "2026-09-18T18:12:12+09:00",
+    "subject": "Our account has used 2 of 5, not 3 — the first submission was another team's",
+    "mirror_commit": "c30175215502f7c3e1a108537d6d8fc1882755cf",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "67b5446c8467ac6675502ff0fcd9ac58e488ab25",
+    "authored_at": "2026-09-18T18:11:34+09:00",
+    "subject": "MH4 beats its control but not the A2 it replaces; stale facts corrected",
+    "mirror_commit": "5bf03d3c8b1e5d236d8b0274648a972fca99a723",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "09bb27fef5ff82185dd8fdcc93dc6b31c28915e3",
+    "authored_at": "2026-09-18T17:50:17+09:00",
+    "subject": "Record DEV terminal results and defer turn-specific experiments",
+    "mirror_commit": "1cf7e3a49461cec65285a33d013e1eb545c2d9aa",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "61f44b11a6771717a88686f150c260eded6ddd06",
+    "authored_at": "2026-09-18T17:38:11+09:00",
+    "subject": "Analyze A2 turning errors and command coverage with trajectory examples",
+    "mirror_commit": "b7bd7530370282e5f41251ff5aec9ac82f8ffd94",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "6228c0b8ce0bc8289be904ff5def87d5ffb467f8",
+    "authored_at": "2026-09-18T14:34:03+09:00",
+    "subject": "Record A2 FULL BASE and MH4 main launches and verified training state",
+    "mirror_commit": "14df2d289622a959cf4ad8541a64f8e6e4b5de61",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "a10610881036cb401824eed856c641e03adf8d5d",
+    "authored_at": "2026-09-18T14:30:59+09:00",
+    "subject": "Implement matched A2 nominal-input FULL and four-head scene experiments",
+    "mirror_commit": "db1a26a57a4cb206092565fbf9e35296f121af94",
+    "mapping_basis": "explicit recorded mapping; titles differ"
+  },
+  {
+    "work_commit": "64c712a98e440276ff0247069992adae7deb4251",
+    "authored_at": "2026-09-18T14:04:01+09:00",
+    "subject": "Validate A2 deployment status and record MH4 experiment plan",
+    "mirror_commit": "3fb9d2b893ef0b4aedcc0a4e5e3fac8c906a31ef",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "9ea321c8b045378cb16b7538654cecaad1d48b4c",
+    "authored_at": "2026-09-18T11:45:05+09:00",
+    "subject": "Record official MR FULL score improvement",
+    "mirror_commit": "79520662897bd31530a7e8cef70ea96105ef0ac4",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "ec1c8c00732b2bcbc841a2e3c7aeb8c744c6f48b",
+    "authored_at": "2026-09-18T11:33:57+09:00",
+    "subject": "Preserve status-free MR FULL submission candidate",
+    "mirror_commit": "e620bfd10503817ccc8f1e56ccc0eea0f542883f",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "9ff07db8e2c3164f7ac1c3d8254bde5bc70ff093",
+    "authored_at": "2026-09-18T10:26:08+09:00",
+    "subject": "Archive MotionDrive outcomes and input compliance audits",
+    "mirror_commit": "fbe5f4fc38ecacf72b17b264c2245658cc5a6256",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "d23daf3efd0548a5555003e1f24d8feb493666b9",
+    "authored_at": "2026-09-17T19:41:00+09:00",
+    "subject": "Stage shared-status learning before progress factorization",
+    "mirror_commit": "9bb8bbe81baf8d6c54ec9e2728b29066aec56e56",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "4315a69389296e2fc09f4eeed026ab1461368e61",
+    "authored_at": "2026-09-17T19:26:55+09:00",
+    "subject": "Record the shared-dynamics direction reset",
+    "mirror_commit": "2fb32fa8cae0d7d6a16010abca9fbe7c1df3ee00",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "e101dc3e4c5424d2ee746de1cce185b35c889ab3",
+    "authored_at": "2026-09-17T19:22:03+09:00",
+    "subject": "Train shared-status factorized progress models",
+    "mirror_commit": "1a7d1553ff1108779f467f4d42e4707f3bdf8483",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "3123ad1698e269241c2d0ed3bae0122566a32806",
+    "authored_at": "2026-09-17T18:50:04+09:00",
+    "subject": "Add honest train203 residual producer",
+    "mirror_commit": "ecb09ee59f95cb6902a311c63e7cb603bc63757d",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "b158a282c21d72127b093b2ef2ac712ac4fb08bc",
+    "authored_at": "2026-09-17T18:41:22+09:00",
+    "subject": "Feed shared scene features to progress refinement",
+    "mirror_commit": "55956c3d8ecf6bfbae3893c1519f68aab0e50fbc",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "019be53b3ea993cef166087949bb1a5b1600bd0f",
+    "authored_at": "2026-09-17T18:30:05+09:00",
+    "subject": "Audit the visual longitudinal motion signal",
+    "mirror_commit": "87f075c70fe85a196d15679b785fd99b32fee035",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "eeae2aae9e10ffc398135188da7c496a5c1c979b",
+    "authored_at": "2026-09-17T18:27:33+09:00",
+    "subject": "Pin the longitudinal signal diagnosis",
+    "mirror_commit": "4cccebf654aafb0645b36705ac26230ebeee85ed",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "6bd8cf303ae217f10d60125f1e0475831032d97b",
+    "authored_at": "2026-09-17T18:17:40+09:00",
+    "subject": "Screen causal status in shared scene queries",
+    "mirror_commit": "974a3448f29aefbd2afce56b817a751c2fb2fcab",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "9700ebe3199c02158f54ff74d3da8e0fe775f609",
+    "authored_at": "2026-09-17T17:16:30+09:00",
+    "subject": "Record the evidence-based residual direction gate",
+    "mirror_commit": "69e47e184c188f1ccd2bc62d824630dff6d5dc5b",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "493a7b8073f5aa0a7b8c493d05e3cc83b3270d2e",
+    "authored_at": "2026-09-17T17:13:46+09:00",
+    "subject": "Do not advance an interrupted warmup into joint training",
+    "mirror_commit": "b010d7f9bd4e028601570c4cec1e800d91f97950",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "7cfd9b682ec19f3ae2f90239ed666d4b4ba77dd7",
+    "authored_at": "2026-09-17T17:05:13+09:00",
+    "subject": "Add plan-denoising supervision for residual generalization",
+    "mirror_commit": "ae5fe552d44d9a019e5d4388a884961c2e9bee37",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "5ef108e5bcc24ff030fd9d4a11d2db2accc123f5",
+    "authored_at": "2026-09-17T17:00:42+09:00",
+    "subject": "Supervise SIDE temporal features with image-only motion targets",
+    "mirror_commit": "ea91f31f451cb2ba110878e96a88d967337ef544",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "f03182bff44d01f2db1d93e3eda403e1d64bc023",
+    "authored_at": "2026-09-17T16:55:37+09:00",
+    "subject": "Keep per-row oracle output out of the console",
+    "mirror_commit": "2eb383d4ea1784675a65b8b37fca9d4cf0da66fe",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "382803ba296bc800e694b2915ddb62024ded064d",
+    "authored_at": "2026-09-17T16:54:31+09:00",
+    "subject": "Compare residual heads with the matching base-plan oracle",
+    "mirror_commit": "28439565d5f31d3a7159da93aa64a3dd2d5b0b13",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "6fdd67e6aa09ce822317a93bbdec767d32f34514",
+    "authored_at": "2026-09-17T16:49:51+09:00",
+    "subject": "Resume progress training cleanly after warmup",
+    "mirror_commit": "07cda8922189493f7a3c8e3a60b4f80c1c19792a",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "52cbe5b8658b8b6f5c4b77732a6e3f6f2fc7537f",
+    "authored_at": "2026-09-17T16:32:54+09:00",
+    "subject": "Measure the deployable progress correction oracle",
+    "mirror_commit": "dea368bb738711eff924fd65728898111106cdbf",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "6d05fd892072a9ac446b38cc5143994e9c764362",
+    "authored_at": "2026-09-17T16:26:42+09:00",
+    "subject": "Train base-plan-conditioned FRONT and SIDE progress refiners",
+    "mirror_commit": "df36523a3765024e9e2515241dba66d0677809db",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "803ac9d36dffba9b2113dffb51bc2c6203042664",
+    "authored_at": "2026-09-17T16:15:59+09:00",
+    "subject": "Add the corrected 376-scene MR final-fit protocol",
+    "mirror_commit": "82c73547246e5d353990b607abd3b34a7023c257",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "2f95d78c9aef5f99501292023194065ef120e76e",
+    "authored_at": "2026-09-17T14:34:30+09:00",
+    "subject": "Server says 0.197988, and the reweighting I recommended was wrong",
+    "mirror_commit": "bc371cb2c9f5e8e0f3ff41a82e4e4fe7f8d5a039",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "7e1bbd6e45451309fc5d7ee0aae2b6266038b598",
+    "authored_at": "2026-09-17T14:20:09+09:00",
+    "subject": "Calibration submission packaged: MR-NATIVE-s1, 1,126 keys, not uploaded",
+    "mirror_commit": "57ec898e8a233dc2738ac81fada930451a6b59cc",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "ea383faf2de7e97718de8d38b8d86836c88768c5",
+    "authored_at": "2026-09-17T14:12:21+09:00",
+    "subject": "The submission needs a __flops__ key, and ours did not have one",
+    "mirror_commit": "0c776156ee4971e1431610ec8342ea272b603578",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "7366f5c1d28f09c4a288e2138fe43e9a74ee5cab",
+    "authored_at": "2026-09-17T13:00:41+09:00",
+    "subject": "evaluate.py can load an ADJ checkpoint; the T0 probes agree with the verdict",
+    "mirror_commit": "b7d9d1d4bfe9f29b6d1ccd79034f18776ab6236c",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "ba34f8dc732719b4fb93fb6a64adff9ee6f703e7",
+    "authored_at": "2026-09-17T12:46:22+09:00",
+    "subject": "Adjacent edges do nothing, and my under-training hypothesis was wrong",
+    "mirror_commit": "126d39bfa9b994b4c49896ba35a150c09cc182a6",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "91286691ca80f4bf691767d4546788cc18390182",
+    "authored_at": "2026-09-17T01:10:42+09:00",
+    "subject": "The leaderboard predictor was a reweighting, and it is portable",
+    "mirror_commit": "35a2dbad00b1cefa463fbe849fc93d0704227cfb",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "b5d46520eb61d1d232e047e9b2400825e41b7a5f",
+    "authored_at": "2026-09-17T00:34:27+09:00",
+    "subject": "The C32 MR candidate has a full submission; H's candidate list is re-frozen",
+    "mirror_commit": "23bcdc3d6cd0b3938202131221141803bc4e21f3",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  },
+  {
+    "work_commit": "25b9e0c3520ad07a76ee07bbfae052becde2a51a",
+    "authored_at": "2026-09-17T00:31:11+09:00",
+    "subject": "MR-ADJ: three comparisons between past frames, over the same five images",
+    "mirror_commit": "a85da812e230c62eeba47a7b554535f1583de4e8",
+    "mapping_basis": "unique matching commit subject in mirror history"
+  }
+]
