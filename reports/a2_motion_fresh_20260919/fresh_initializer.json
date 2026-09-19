@@ -1,0 +1,29 @@
+{
+  "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/initializers/public_nuimages_qrefine_s1.pth",
+  "checkpoint_sha256": "588ffdebd1fc5158b0c6122b586ffa384902293dc8237d44f663760b9afc94f1",
+  "model_state_sha256": "1ba37b67d9de62b85e105b161656274e897f37250b51e33c472d1874b031f721",
+  "source": "public nuImages ResNet50 trunk + random nontrunk",
+  "public_path": "/NHNHOME/data/sukim/adcl/ckpt/backbones/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth",
+  "public_sha256": "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e",
+  "public_load": {
+    "injected": 318,
+    "unexpected": [],
+    "nonhead_missing": [],
+    "fpn_initialized_from_checkpoint": false
+  },
+  "ETRI_weight_BN_teacher_feature_imported": false,
+  "ETRI_optimizer_updates": 0,
+  "config_only_source": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/manifest.json",
+  "nontrunk_random_preserved": true,
+  "nontrunk_tensor_count": 161,
+  "nontrunk_state_sha256": "6ecca0993f1e894076bd4f01516615dd0c20348ba64b42ef4700b7b7c3962c66",
+  "fresh_parts": [
+    "compact FPN",
+    "scene/QREFINE",
+    "motion",
+    "state/history heads",
+    "planner",
+    "A2 query"
+  ],
+  "random_seed": 1
+}

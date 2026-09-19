@@ -1,0 +1,108 @@
+{
+  "status": "passed",
+  "physical_gpu": 2,
+  "preflight_weights_used_for_training": false,
+  "geometry": {
+    "translation_max_error_cells": 0.0,
+    "flip_flow_covariance": true,
+    "ramp_positive_dx": 35.0,
+    "spatially_varying_warp_ramp": 35.4,
+    "out_of_bounds_zero": true
+  },
+  "zero_init_parity": {
+    "fp32": {
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "plan_abs": 0.0
+    },
+    "bf16": {
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "plan_abs": 0.0
+    }
+  },
+  "initial_shared_sha256": "17e2f7488642a8e0acedb162999981ae5fd3ee430d32ee704e0f6a272d5e3133",
+  "gradients": {
+    "initial_output_norm": 0.7975398898124695,
+    "after_disposable_output_step": {
+      "backbone_fpn.layer1.0.conv1.weight": 6.296850681304932,
+      "motion_encoder.projections.1.weight": 0.33411771059036255,
+      "motion_encoder.fine_match.descriptor.weight": 0.0002472873020451516,
+      "motion_encoder.fine_match.refine.0.weight": 0.003230121685191989
+    }
+  },
+  "A2_isolation": {
+    "motion_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "shared_scene_consumers_same_tensor": true,
+  "existing_input_double_flip": true,
+  "fresh_initializer": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/initializers/public_nuimages_qrefine_s1.pth",
+    "checkpoint_sha256": "588ffdebd1fc5158b0c6122b586ffa384902293dc8237d44f663760b9afc94f1",
+    "model_state_sha256": "1ba37b67d9de62b85e105b161656274e897f37250b51e33c472d1874b031f721",
+    "source": "public nuImages ResNet50 trunk + random nontrunk",
+    "public_path": "/NHNHOME/data/sukim/adcl/ckpt/backbones/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth",
+    "public_sha256": "4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e",
+    "public_load": {
+      "injected": 318,
+      "unexpected": [],
+      "nonhead_missing": [],
+      "fpn_initialized_from_checkpoint": false
+    },
+    "ETRI_weight_BN_teacher_feature_imported": false,
+    "ETRI_optimizer_updates": 0,
+    "config_only_source": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/manifest.json",
+    "nontrunk_random_preserved": true,
+    "nontrunk_tensor_count": 161,
+    "nontrunk_state_sha256": "6ecca0993f1e894076bd4f01516615dd0c20348ba64b42ef4700b7b7c3962c66",
+    "fresh_parts": [
+      "compact FPN",
+      "scene/QREFINE",
+      "motion",
+      "state/history heads",
+      "planner",
+      "A2 query"
+    ],
+    "random_seed": 1
+  },
+  "fresh_initial_plan_abs_max_m": 3.1879730224609375,
+  "whole_forward_cost": {
+    "QREFINE": {
+      "official_counter_flops": 729991776960,
+      "B200_B1_forward_median_ms": 19.181709736585617,
+      "parameters": 26585976,
+      "RTX4090_ms": null
+    },
+    "C2F": {
+      "official_counter_flops": 744129768384,
+      "B200_B1_forward_median_ms": 21.881859749555588,
+      "parameters": 26893560,
+      "RTX4090_ms": null
+    }
+  },
+  "fine_trace": {
+    "fine_hw": [
+      108,
+      192
+    ],
+    "coarse_hw": [
+      27,
+      48
+    ],
+    "flow_mean_abs_fine_cells": 2.6509554386138916,
+    "invalid_fraction": 0.010246431455016136,
+    "correction_rms": 0.0004987290012650192
+  },
+  "elapsed_seconds": 8.125370502471924,
+  "peak_cuda_allocated_bytes": 5736316416
+}

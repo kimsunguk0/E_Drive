@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "phase": "two-update smoke; not a performance comparison",
+  "arms": {
+    "A2-C2F-MOTION": {
+      "status": "completed",
+      "steps": 2,
+      "nonfinite_count": 0,
+      "model_sha256": "05c86abf653193035c05f3646b4071af810136f5c4d23ac2ea8258680fbd0dbb",
+      "peak_memory_bytes": 44246531584,
+      "first_sample_order": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+      "elapsed_seconds": 38.570637380704284,
+      "evaluation_PREFIX_smoke_only": 0.47752423154505286
+    },
+    "A2-FRESH-NUIM": {
+      "status": "completed",
+      "steps": 2,
+      "nonfinite_count": 0,
+      "model_sha256": "1ba37b67d9de62b85e105b161656274e897f37250b51e33c472d1874b031f721",
+      "peak_memory_bytes": 35121288192,
+      "first_sample_order": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+      "elapsed_seconds": 37.26777636818588,
+      "evaluation_PREFIX_smoke_only": 16.59992959847799
+    }
+  },
+  "QREFINE_first_forward_losses_and_row_stream_exact": true
+}

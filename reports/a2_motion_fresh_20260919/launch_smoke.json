@@ -1,0 +1,48 @@
+{
+  "phase": "smoke",
+  "status": "spawned; verify actual updates before calling healthy",
+  "source_commit": "1ac6c9ce307e82178ade495a1cf2207057093a6d",
+  "started_utc": "2026-09-19T14:41:23.041695+00:00",
+  "runs": [
+    {
+      "arm": "A2-C2F-MOTION",
+      "gpu": 0,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-C2F-MOTION-s1-smoke",
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_motion_fresh_20260919/runtime/A2-C2F-MOTION-s1-smoke.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/a2_motion_fresh_20260919/train_experiment.py",
+        "--arm",
+        "A2-C2F-MOTION",
+        "--gpu",
+        "0",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-C2F-MOTION-s1-smoke",
+        "--smoke"
+      ],
+      "updates": 2,
+      "pid": 3733537
+    },
+    {
+      "arm": "A2-FRESH-NUIM",
+      "gpu": 1,
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-FRESH-NUIM-s1-smoke",
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_motion_fresh_20260919/runtime/A2-FRESH-NUIM-s1-smoke.log",
+      "command": [
+        "/home/korea_sdv01/cv2env/bin/python",
+        "-u",
+        "/NHNHOME/data/sukim/adcl/experiments/a2_motion_fresh_20260919/train_experiment.py",
+        "--arm",
+        "A2-FRESH-NUIM",
+        "--gpu",
+        "1",
+        "--run-dir",
+        "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-FRESH-NUIM-s1-smoke",
+        "--smoke"
+      ],
+      "updates": 2,
+      "pid": 3733538
+    }
+  ]
+}
