@@ -1,0 +1,199 @@
+{
+  "step": 17130,
+  "arms": {
+    "A2-H4-DIRECT": {
+      "PREFIX": 0.15731460567248035,
+      "L2_1s": 0.09562966539342206,
+      "L2_2s": 0.1508315327222739,
+      "L2_3s": 0.22548261890174498,
+      "per_waypoint_L2": [
+        0.06730991684147218,
+        0.12394941394537184,
+        0.17453018278857807,
+        0.23753661731367334,
+        0.31813605782203824,
+        0.4314335246993355
+      ],
+      "diagnostics": {
+        "n": 1998,
+        "official_weights": [
+          0.3055555555555556,
+          0.3055555555555556,
+          0.1388888888888889,
+          0.1388888888888889,
+          0.05555555555555555,
+          0.05555555555555555
+        ],
+        "first2s_PREFIX_contribution": 0.11567185108795953,
+        "groups": {
+          "all": {
+            "n": 1998,
+            "PREFIX": 0.15731460567248035,
+            "overall_PREFIX_contribution": 0.15731460567248035,
+            "first2s_common_progress_error_MAE_mps": 0.09626412057040878,
+            "first2s_time_varying_progress_error_RMS_mps": 0.11666950531266819
+          },
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.4545812917977048,
+            "overall_PREFIX_contribution": 0.005460435937509968,
+            "first2s_common_progress_error_MAE_mps": 0.3064325253149323,
+            "first2s_time_varying_progress_error_RMS_mps": 0.3572341153069739
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.15320229937553959,
+            "overall_PREFIX_contribution": 0.14377092659115953,
+            "first2s_common_progress_error_MAE_mps": 0.09235733135154293,
+            "first2s_time_varying_progress_error_RMS_mps": 0.11236769913789899
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.1631345434478184,
+            "overall_PREFIX_contribution": 0.008083243143810821,
+            "first2s_common_progress_error_MAE_mps": 0.1193064243229833,
+            "first2s_time_varying_progress_error_RMS_mps": 0.06807950897075964
+          }
+        },
+        "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+        "valid_tangent_fraction": 0.940357023690357,
+        "weighted_longitudinal_abs_m": 0.12760937542619097,
+        "weighted_lateral_abs_m": 0.059040913468364695,
+        "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+      },
+      "auxiliary": {
+        "occ_iou": 0.3730119370564518,
+        "lane_iou": 0.3570438157435522,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5473967106383363,
+          0.0428334342251147,
+          0.24452276160975253,
+          0.04937237025461382,
+          0.004818308066694533
+        ],
+        "history_position_mae_by_offset": [
+          0.06758885959624075,
+          0.1204257106906767,
+          0.3000391605019395,
+          0.5989244049904426
+        ]
+      },
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-DIRECT-s1/ckpt_step17130.pth",
+      "checkpoint_sha256": "84e2a139e2b057bb214ac2abb0d09cc12baf4958ad3586c38961fce8ea5a1eaa",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-DIRECT-s1/predictions_step17130.json",
+      "predictions_sha256": "36283485bbc3dcbe598a3c37b8f69e52866b438c01561fbc903e928264e33482"
+    },
+    "A2-H4-PROGRESS": {
+      "PREFIX": 0.15535070205114404,
+      "L2_1s": 0.09129516638059317,
+      "L2_2s": 0.14509219228719278,
+      "L2_3s": 0.22966474748564622,
+      "per_waypoint_L2": [
+        0.06737284809433162,
+        0.1152174846668548,
+        0.16528286688558372,
+        0.23249556950200145,
+        0.32761532074406025,
+        0.4700043950210459
+      ],
+      "diagnostics": {
+        "n": 1998,
+        "official_weights": [
+          0.3055555555555556,
+          0.3055555555555556,
+          0.1388888888888889,
+          0.1388888888888889,
+          0.05555555555555555,
+          0.05555555555555555
+        ],
+        "first2s_PREFIX_contribution": 0.1110384956197493,
+        "groups": {
+          "all": {
+            "n": 1998,
+            "PREFIX": 0.15535070205114404,
+            "overall_PREFIX_contribution": 0.15535070205114404,
+            "first2s_common_progress_error_MAE_mps": 0.08724666671132074,
+            "first2s_time_varying_progress_error_RMS_mps": 0.11596251436926366
+          },
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.3283084644710728,
+            "overall_PREFIX_contribution": 0.003943645218871745,
+            "first2s_common_progress_error_MAE_mps": 0.25377272861959105,
+            "first2s_time_varying_progress_error_RMS_mps": 0.24967839431314767
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.1599867885280641,
+            "overall_PREFIX_contribution": 0.15013775199705717,
+            "first2s_common_progress_error_MAE_mps": 0.08875920347343995,
+            "first2s_time_varying_progress_error_RMS_mps": 0.11624994615678656
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.025616879401615125,
+            "overall_PREFIX_contribution": 0.001269304835215164,
+            "first2s_common_progress_error_MAE_mps": 0.018230182723724925,
+            "first2s_time_varying_progress_error_RMS_mps": 0.018182003226938134
+          }
+        },
+        "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+        "valid_tangent_fraction": 0.940357023690357,
+        "weighted_longitudinal_abs_m": 0.1278195720816407,
+        "weighted_lateral_abs_m": 0.06884747110888959,
+        "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+      },
+      "auxiliary": {
+        "occ_iou": 0.367875936523634,
+        "lane_iou": 0.3458308482324118,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5511303243719184,
+          0.0427885324405159,
+          0.23876538662844943,
+          0.04979428185979268,
+          0.005291468178648238
+        ],
+        "history_position_mae_by_offset": [
+          0.06993198616605427,
+          0.12154734477738023,
+          0.2999449292766732,
+          0.6158459141446805
+        ]
+      },
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1/ckpt_step17130.pth",
+      "checkpoint_sha256": "7126d05b8b5055936708bdb711498789fc0850c990ff89fa1fe3f12110a48b24",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1/predictions_step17130.json",
+      "predictions_sha256": "25ba12665cfbf641886ddcfc41e748867edc49f20b02cf5f6fb4d5b26fc8e407"
+    }
+  },
+  "interpretation": "planned intermediate on reused V0",
+  "comparison": {
+    "delta_PROGRESS_minus_DIRECT": -0.001963903621336269,
+    "session_CI95": [
+      -0.010986847849530095,
+      0.01154242705013316
+    ],
+    "sessions_improved": 4,
+    "session_count": 11,
+    "limitation": "Conditional paired resampling of the same reused 11 DEV sessions, not independent test evidence."
+  },
+  "group_deltas": {
+    "all": {
+      "mean_PREFIX": -0.001963903621336305,
+      "overall_contribution": -0.001963903621336305
+    },
+    "depart": {
+      "mean_PREFIX": -0.12627282732663198,
+      "overall_contribution": -0.0015167907186382223
+    },
+    "nonstop": {
+      "mean_PREFIX": 0.0067844891525245254,
+      "overall_contribution": 0.0063668254058976415
+    },
+    "steady": {
+      "mean_PREFIX": -0.13751766404620325,
+      "overall_contribution": -0.006813938308595657
+    }
+  },
+  "no_automatic_server_conversion": true
+}
