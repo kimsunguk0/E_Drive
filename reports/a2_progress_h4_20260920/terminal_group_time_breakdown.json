@@ -1,0 +1,180 @@
+{
+  "arms": {
+    "A2-H4-DIRECT": {
+      "all": {
+        "n": 1998,
+        "PREFIX": 0.15421303140233023,
+        "per_point_L2": [
+          0.06234761292474088,
+          0.11814353775922964,
+          0.17654971123656657,
+          0.24141939027720138,
+          0.3175196581834689,
+          0.420690824512218
+        ],
+        "first2s_group_contribution": 0.11320133791923646,
+        "last_two_group_contribution": 0.04101169348309375,
+        "first2s_total_contribution": 0.11320133791923646,
+        "last_two_total_contribution": 0.04101169348309375
+      },
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.14801701942542977,
+        "per_point_L2": [
+          0.057696349415656434,
+          0.11053363211123038,
+          0.1686692845475815,
+          0.23431638115469533,
+          0.31273857754930656,
+          0.4188387094548601
+        ],
+        "first2s_group_contribution": 0.10737383681408713,
+        "last_two_group_contribution": 0.04064318261134263,
+        "first2s_total_contribution": 0.10076373574895564,
+        "last_two_total_contribution": 0.03814112482295667
+      },
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.4736602007371122,
+        "per_point_L2": [
+          0.23787457356947442,
+          0.45602454562349654,
+          0.5725253228531876,
+          0.6605063208024302,
+          0.7339887393026293,
+          0.8928706092650045
+        ],
+        "first2s_group_contribution": 0.38327912581668805,
+        "last_two_group_contribution": 0.09038107492042408,
+        "first2s_total_contribution": 0.00460395346326352,
+        "last_two_total_contribution": 0.0010856585576026916
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.19412000506549756,
+        "per_point_L2": [
+          0.10788773437988995,
+          0.1803599913072729,
+          0.22980612904513026,
+          0.27434924656097115,
+          0.3071082262864455,
+          0.3413009345978616
+        ],
+        "first2s_group_contribution": 0.15809727390525832,
+        "last_two_group_contribution": 0.03602273116023929,
+        "first2s_total_contribution": 0.007833648707017304,
+        "last_two_total_contribution": 0.0017849101025343794
+      }
+    },
+    "A2-H4-PROGRESS": {
+      "all": {
+        "n": 1998,
+        "PREFIX": 0.15117885989032362,
+        "per_point_L2": [
+          0.06276601953067121,
+          0.10990204723228564,
+          0.16385853858564967,
+          0.23314141273472908,
+          0.32354362084309957,
+          0.45550161168551717
+        ],
+        "first2s_group_contribution": 0.1078985691942893,
+        "last_two_group_contribution": 0.0432802906960343,
+        "first2s_total_contribution": 0.1078985691942893,
+        "last_two_total_contribution": 0.0432802906960343
+      },
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.1548905077577,
+        "per_point_L2": [
+          0.06403116415916231,
+          0.11188125455556332,
+          0.16760493533152146,
+          0.23931830781213806,
+          0.33353410213957063,
+          0.4696686267088901
+        ],
+        "first2s_group_contribution": 0.11026813393278546,
+        "last_two_group_contribution": 0.04462237382491451,
+        "first2s_total_contribution": 0.10347985541740379,
+        "last_two_total_contribution": 0.04187535081166903
+      },
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.35855651689498,
+        "per_point_L2": [
+          0.15941154143285644,
+          0.3113471212131799,
+          0.4087289653787463,
+          0.5282337433140968,
+          0.6354221153166516,
+          0.8870157725076805
+        ],
+        "first2s_group_contribution": 0.27397663423807267,
+        "last_two_group_contribution": 0.08457988265690734,
+        "first2s_total_contribution": 0.00329101062147835,
+        "last_two_total_contribution": 0.0010159745664493373
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.030609127370702812,
+        "per_point_L2": [
+          0.015375729590536806,
+          0.023581890599081057,
+          0.03354152705490258,
+          0.0446172288554686,
+          0.05872305217392529,
+          0.08257743967989904
+        ],
+        "first2s_group_contribution": 0.022759100045490345,
+        "last_two_group_contribution": 0.007850027325212462,
+        "first2s_total_contribution": 0.0011277031554071794,
+        "last_two_total_contribution": 0.0003889653179159328
+      }
+    }
+  },
+  "PROGRESS_minus_DIRECT": {
+    "all": {
+      "PREFIX": -0.003034171512006606,
+      "first2s_group_contribution": -0.005302768724947157,
+      "last_two_group_contribution": 0.0022685972129405513,
+      "first2s_total_contribution": -0.005302768724947157,
+      "last_two_total_contribution": 0.0022685972129405513
+    },
+    "nonstop": {
+      "PREFIX": 0.006873488332270222,
+      "first2s_group_contribution": 0.002894297118698333,
+      "last_two_group_contribution": 0.003979191213571882,
+      "first2s_total_contribution": 0.002716119668448147,
+      "last_two_total_contribution": 0.0037342259887123627
+    },
+    "depart": {
+      "PREFIX": -0.11510368384213215,
+      "first2s_group_contribution": -0.10930249157861538,
+      "last_two_group_contribution": -0.005801192263516733,
+      "first2s_total_contribution": -0.0013129428417851694,
+      "last_two_total_contribution": -6.968399115335434e-05
+    },
+    "steady": {
+      "PREFIX": -0.16351087769479475,
+      "first2s_group_contribution": -0.13533817385976799,
+      "last_two_group_contribution": -0.028172703835026826,
+      "first2s_total_contribution": -0.006705945551610125,
+      "last_two_total_contribution": -0.0013959447846184467
+    }
+  },
+  "optimizer_updates_added": 0,
+  "new_GPU_inference": false,
+  "finding": "Overall gain is from depart/steady; nonstop worsens in both first four and last two points.",
+  "promotion": "Preserve single DEV candidate; no automatic main-model replacement, FULL or submission.",
+  "session_comparison": {
+    "delta_PROGRESS_minus_DIRECT": -0.0030341715120065908,
+    "session_CI95": [
+      -0.013268346911518857,
+      0.010789212637656467
+    ],
+    "sessions_improved": 5,
+    "session_count": 11,
+    "limitation": "Conditional paired resampling of the same reused 11 DEV sessions, not independent test evidence."
+  }
+}

@@ -54,7 +54,12 @@
         17130,
         20554
       ],
-      "currently_completed": false
+      "currently_completed": true,
+      "terminal_PREFIX": 0.15421303140233023,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-DIRECT-s1/ckpt_step20554.pth",
+      "checkpoint_sha256": "ce034b85dfb2bdbf53b05ef9abff14d60ad548c6c1aae27518eb73be0a802a0c",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-DIRECT-s1/predictions_step20554.json",
+      "predictions_sha256": "bdbffc7d36bfcb5300aaf4510e71a5404a8c71f3027953445fe375a991f1fca6"
     },
     "A2-H4-PROGRESS": {
       "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1",
@@ -68,9 +73,16 @@
         17130,
         20554
       ],
-      "currently_completed": false
+      "currently_completed": true,
+      "terminal_PREFIX": 0.15117885989032362,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1/ckpt_step20554.pth",
+      "checkpoint_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1/predictions_step20554.json",
+      "predictions_sha256": "0b67c54c0fb8af4db63ac67d62664a0f09a73d81db802ccbb93f19c1a516399c"
     }
   },
   "source_implementation_commit": "d9935ec8e2ed0edb912656626537780cd2bee96b",
-  "result_collector": "collect.py --publish; exact checkpoint/prediction hashes written on completion of each planned evaluation"
+  "result_collector": "collect.py --publish; exact checkpoint/prediction hashes written on completion of each planned evaluation",
+  "completion_receipt": "completion_receipt.json",
+  "terminal_review": "TERMINAL_REVIEW_KO.md"
 }
