@@ -2,6 +2,8 @@
 
 **최신 완료: 2026-09-20.** `A2-FRESH-CONT-s1` 추가6,852 update 완료. 고정 terminal은 **0.156334059**(부모0.158707259), 예정 중간점 최저는 step5,710의 **0.153684060**이다. QREFINE과 동일1:1 저장 예측 평균은 terminal 사용0.149760692, 선택 중간점 사용 **0.148555967**이다. 모두 DEV이며 서버 점수가 아니다. 일반 주행·정지/출발·종/횡은 부모보다 개선됐지만 마지막 구간에서 일부 되돌아갔다. [완료 판정](reports/a2_fresh_continue_20260920/TERMINAL_REVIEW_KO.md), [전체 곡선](reports/a2_fresh_continue_20260920/RESULTS_KO.md). 새 학습·FULL·제출은 시작하지 않았다.
 
+**2026-09-20 후속 구조 관측:** 선택된 FRESH-CONT step5710의 V0 1,998행을 새 학습 없이 관측했다. Motion은 네 과거 시점을 192개 token으로 합친 후 planner로 전달되며, planner가 합치기 전 시점별 특징을 직접 읽는 경로는 없다. Attention 질량만으로 motion의 중요도나 성능 병목을 확정하지 않는다. 다음 제안은 waypoint query의 시점별 motion read이며, 기존 9/9 ordered residual과의 차이 및 저비용 checkpoint 평균 후보를 [관측·다음 제안](reports/a2_planner_readout_20260920/RESULTS_AND_NEXT_KO.md)에 기록했다. **관측만 완료했고 새 구조 학습/평균 평가/FULL/제출은 시작하지 않았다.**
+
 **이전 terminal 확인: 2026-09-20.** C2F/FRESH는 모두20,554 update를 완료했다. C2F DEV0.164204741은 기존과 거의 같고, 공개 nuImages trunk에서 새로 학습한 FRESH는0.158707259다. 기존 QREFINE+FRESH 저장 예측의 고정1:1 평균은0.150723838이며 배포·서버 평가 전이다. 이전 C2F/FRESH 두 학습은 종료됐다.
 [Terminal 결과](reports/a2_motion_fresh_20260919/RESULTS_KO.md), [상세 해석·고정 평균](reports/a2_motion_fresh_20260919/INTERPRETATION_20260920_KO.md), [실행 기록](reports/a2_motion_fresh_20260919/EXECUTION_KO.md). 당시 추가 학습·FULL·공식 제출은 시작하지 않았다. 이후 continuation은 상단 최신 실행을 따른다.
 
