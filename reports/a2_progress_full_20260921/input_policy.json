@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-09-20T23:38:09.831544+00:00",
+  "producer": "/NHNHOME/data/sukim/adcl/experiments/a2_progress_h4_20260920/h4_status.py",
+  "producer_sha256": "1d9374bc9e9789eaee35fb885da0682c0ef59195fd67757a460d83014563e643",
+  "split_manifest_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+  "supervision_unchanged": true,
+  "FULL_only": true,
+  "DEV_wrapper_cannot_read_this_cache": true,
+  "relative_fit_frames": [
+    -10,
+    -5,
+    -2,
+    -1,
+    0
+  ],
+  "time_policy": "frame differences *0.1 seconds",
+  "scenes": 376,
+  "rows": 101520,
+  "splits": {
+    "train": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_h4_status_full_20260921/train.npz",
+      "rows": 83700,
+      "sha256": "6e5e0a713a2819764ccd4c65198d6581468ea3050a00c96b6150e01890eb5e3b"
+    },
+    "tune": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_h4_status_full_20260921/tune.npz",
+      "rows": 9990,
+      "sha256": "489c9d4ba69a1e93ef937437547814364c6f250bd37f5c5d44e0acf69a2d3ec8"
+    },
+    "val": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_h4_status_full_20260921/val.npz",
+      "rows": 7830,
+      "sha256": "fb37365737312cf6ba9122ec835314eb6f9e0652ea85ecec74beb22d714ceebb"
+    }
+  },
+  "fit_rms_max_m": 0.04757070181545075,
+  "DEV_overlap_exact": {
+    "train": true,
+    "tune": true
+  }
+}

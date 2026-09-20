@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1-smoke",
+  "actual_updates": 2,
+  "nonfinite_count": 0,
+  "training_rows": 101520,
+  "unique_scenes": 376,
+  "same_initial_state_as_selected_DEV": true,
+  "initial_state_sha256": "75eec301bdc2abb533e0f0fa4ffa73c5b2e4340b7119a84f11b2d1b2212ed200",
+  "same_graph_loss_optimizer_recipe": true,
+  "evaluation_is_in_fit": true,
+  "manifest_sha256": "814943a0fbdf60f798da5494b0991916714ef3a997369867f8e58ec999c8eacc",
+  "DEV_weights_loaded": false,
+  "DEV_preflight_sha256": "0e414f890eddf39d4fc3084ff5cb2ca0d204a0d7aac06b86b8030faab82903f4"
+}
