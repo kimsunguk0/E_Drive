@@ -1,0 +1,27 @@
+{
+  "status": "running",
+  "primary_step": 20554,
+  "planned_steps": [
+    3426,
+    6852,
+    10278,
+    13704,
+    17130,
+    20554
+  ],
+  "available_steps": [],
+  "terminal": null,
+  "selected_on_reused_V0": {
+    "A2-H4-DIRECT": null,
+    "A2-H4-PROGRESS": null
+  },
+  "sample_stream": {
+    "logged_steps_compared": 7,
+    "last_compared_step": 300,
+    "mismatch_steps": [],
+    "all_compared_equal": true,
+    "unlogged_tail": "Digest covers logging steps; both use the checked deterministic sampler."
+  },
+  "new_input_policy": "five H4/current poses only, common scene query",
+  "automatic_training_FULL_submission": false
+}

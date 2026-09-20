@@ -1,0 +1,76 @@
+{
+  "large_artifacts": [
+    {
+      "role": "frozen_H4_input_predictions",
+      "arm": "CONT",
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_h4_20260920/policy_CONT.npz",
+      "bytes": 354193,
+      "sha256": "129ea79aa73b3feb95a76b160ca51ccb8a893f82768a861c8bd41c0a6ad50a5a",
+      "git_stored": false
+    },
+    {
+      "role": "frozen_H4_input_predictions",
+      "arm": "TEMPORAL",
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_h4_20260920/policy_TEMPORAL.npz",
+      "bytes": 354515,
+      "sha256": "37838cfc440117342a29d9784b59c12d8091319ba09913cae721998b0f4fa53d",
+      "git_stored": false
+    },
+    {
+      "role": "frozen_H4_input_predictions",
+      "arm": "QREFINE",
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_h4_20260920/policy_QREFINE.npz",
+      "bytes": 354128,
+      "sha256": "059da1e96e64010ff6f125bbcaa01d3d8dade357dc80005c1a70a012629280e3",
+      "git_stored": false
+    },
+    {
+      "role": "provided_status_input_cache",
+      "split": "train",
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_h4_status_20260920/train.npz",
+      "rows": 83700,
+      "sha256": "6e5e0a713a2819764ccd4c65198d6581468ea3050a00c96b6150e01890eb5e3b",
+      "git_stored": false
+    },
+    {
+      "role": "provided_status_input_cache",
+      "split": "tune",
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_h4_status_20260920/tune.npz",
+      "rows": 9990,
+      "sha256": "489c9d4ba69a1e93ef937437547814364c6f250bd37f5c5d44e0acf69a2d3ec8",
+      "git_stored": false
+    }
+  ],
+  "main_runs": {
+    "A2-H4-DIRECT": {
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-DIRECT-s1",
+      "launch_receipt": "launch_A2-H4-DIRECT_main.json",
+      "protocol": "protocol_A2-H4-DIRECT_s1.json",
+      "planned_checkpoint_steps": [
+        3426,
+        6852,
+        10278,
+        13704,
+        17130,
+        20554
+      ],
+      "currently_completed": false
+    },
+    "A2-H4-PROGRESS": {
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1",
+      "launch_receipt": "launch_A2-H4-PROGRESS_main.json",
+      "protocol": "protocol_A2-H4-PROGRESS_s1.json",
+      "planned_checkpoint_steps": [
+        3426,
+        6852,
+        10278,
+        13704,
+        17130,
+        20554
+      ],
+      "currently_completed": false
+    }
+  },
+  "source_implementation_commit": "d9935ec8e2ed0edb912656626537780cd2bee96b",
+  "result_collector": "collect.py --publish; exact checkpoint/prediction hashes written on completion of each planned evaluation"
+}

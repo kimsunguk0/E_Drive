@@ -1,0 +1,56 @@
+{
+  "checked_utc": "2026-09-20T14:12:19.102464+00:00",
+  "arms": {
+    "A2-H4-DIRECT": {
+      "pid": 4057924,
+      "status": "running, actual optimizer updates verified",
+      "latest_logged_step": 200,
+      "last_train_total": 4.096083641052246,
+      "last_train_PREFIX_not_validation": 3.872316837310791,
+      "seconds_per_update_after_startup": 0.5265913433933528,
+      "estimated_completion_KST": "2026-09-21T02:13:40.109706+09:00",
+      "recorded_nonfinite_loss_or_gradient": false,
+      "initial_state_sha256": "84d0c9f009d0530ff5fed049e10ffa5076fc819b16264ccabd9dacd4fad75760",
+      "peak_cuda_allocated_bytes": 35124564992,
+      "manifest": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-DIRECT-s1/manifest.json"
+    },
+    "A2-H4-PROGRESS": {
+      "pid": 4057969,
+      "status": "running, actual optimizer updates verified",
+      "latest_logged_step": 200,
+      "last_train_total": 4.879253387451172,
+      "last_train_PREFIX_not_validation": 4.759934902191162,
+      "seconds_per_update_after_startup": 0.5243523051054334,
+      "estimated_completion_KST": "2026-09-21T02:12:55.014655+09:00",
+      "recorded_nonfinite_loss_or_gradient": false,
+      "initial_state_sha256": "75eec301bdc2abb533e0f0fa4ffa73c5b2e4340b7119a84f11b2d1b2212ed200",
+      "peak_cuda_allocated_bytes": 35124565504,
+      "manifest": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1/manifest.json"
+    }
+  },
+  "sample_stream": {
+    "logged_steps": [
+      1,
+      50,
+      100,
+      150,
+      200
+    ],
+    "all_equal": true
+  },
+  "collector": {
+    "pid": 4058403,
+    "heartbeat": "2026-09-20T14:11:50.134799+00:00",
+    "status": "watching"
+  },
+  "GPU_snapshot": [
+    "0, 92 %, 38770 MiB",
+    "1, 98 %, 38770 MiB",
+    "2, 0 %, 0 MiB",
+    "3, 0 %, 0 MiB",
+    "4, 100 %, 50654 MiB",
+    "5, 99 %, 50134 MiB",
+    "6, 100 %, 50212 MiB",
+    "7, 100 %, 50434 MiB"
+  ]
+}

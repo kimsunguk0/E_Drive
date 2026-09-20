@@ -1,0 +1,15 @@
+{
+  "pid": 4058403,
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_progress_h4_20260920/collect.py",
+    "--publish"
+  ],
+  "started_utc": "2026-09-20T14:10:48.407773+00:00",
+  "CPU_only": true,
+  "automatic_new_training": false,
+  "automatic_FULL_submission": false,
+  "publishes_completed_results": true,
+  "status": "spawned; verify heartbeat"
+}
