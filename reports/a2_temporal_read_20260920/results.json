@@ -1,11 +1,156 @@
 {
-  "status": "running",
+  "status": "completed",
   "arm": "A2-TEMPORAL-READ",
   "primary_step": 20554,
   "matched_control": "A2-FRESH-NUIM-s1 same step",
   "control_terminal_PREFIX": 0.1587072591966789,
-  "terminal": null,
-  "selected_best_on_reused_V0": null,
+  "terminal": {
+    "step": 20554,
+    "PREFIX": 0.15411941110200755,
+    "control_same_step_PREFIX": 0.15870725916855608,
+    "delta_vs_matched_control": -0.004587848066548553,
+    "L2_1s": 0.08787824193813153,
+    "L2_2s": 0.14896487207676778,
+    "L2_3s": 0.2255151192911233,
+    "per_waypoint_L2": [
+      0.0601449566498929,
+      0.11561152722637034,
+      0.17578464791311876,
+      0.2443183565176896,
+      0.32562109315098803,
+      0.4316101342886814
+    ],
+    "diagnostics": {
+      "n": 1998,
+      "official_weights": [
+        0.3055555555555556,
+        0.3055555555555556,
+        0.1388888888888889,
+        0.1388888888888889,
+        0.05555555555555555,
+        0.05555555555555555
+      ],
+      "first2s_PREFIX_contribution": 0.1120510095775815,
+      "groups": {
+        "all": {
+          "n": 1998,
+          "PREFIX": 0.15411941110200755,
+          "overall_PREFIX_contribution": 0.15411941110200755,
+          "first2s_common_progress_error_MAE_mps": 0.097411119316172,
+          "first2s_time_varying_progress_error_RMS_mps": 0.0972158911407715
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.4799786636504453,
+          "overall_PREFIX_contribution": 0.005765509473278622,
+          "first2s_common_progress_error_MAE_mps": 0.3325883827506468,
+          "first2s_time_varying_progress_error_RMS_mps": 0.33167241250567725
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.14835235997938648,
+          "overall_PREFIX_contribution": 0.13921955703771252,
+          "first2s_common_progress_error_MAE_mps": 0.0923064163423027,
+          "first2s_time_varying_progress_error_RMS_mps": 0.09239445715737916
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.18434768174596772,
+          "overall_PREFIX_contribution": 0.009134344591016419,
+          "first2s_common_progress_error_MAE_mps": 0.1370784299583691,
+          "first2s_time_varying_progress_error_RMS_mps": 0.04886794385803699
+        }
+      },
+      "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+      "valid_tangent_fraction": 0.940357023690357,
+      "weighted_longitudinal_abs_m": 0.12049661470799612,
+      "weighted_lateral_abs_m": 0.06153962021541952,
+      "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+    },
+    "control_diagnostics": {
+      "n": 1998,
+      "official_weights": [
+        0.3055555555555556,
+        0.3055555555555556,
+        0.1388888888888889,
+        0.1388888888888889,
+        0.05555555555555555,
+        0.05555555555555555
+      ],
+      "first2s_PREFIX_contribution": 0.11414141490877822,
+      "groups": {
+        "all": {
+          "n": 1998,
+          "PREFIX": 0.15870725916855608,
+          "overall_PREFIX_contribution": 0.15870725916855608,
+          "first2s_common_progress_error_MAE_mps": 0.09438188096103609,
+          "first2s_time_varying_progress_error_RMS_mps": 0.09764022261446217
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.47364173153949046,
+          "overall_PREFIX_contribution": 0.005689390168642528,
+          "first2s_common_progress_error_MAE_mps": 0.31887344522158967,
+          "first2s_time_varying_progress_error_RMS_mps": 0.34112393680021197
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.1552740431621174,
+          "overall_PREFIX_contribution": 0.14571513059508015,
+          "first2s_common_progress_error_MAE_mps": 0.09099133145854243,
+          "first2s_time_varying_progress_error_RMS_mps": 0.09218507490986137
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.1473825387157284,
+          "overall_PREFIX_contribution": 0.007302738404833389,
+          "first2s_common_progress_error_MAE_mps": 0.10417463626328188,
+          "first2s_time_varying_progress_error_RMS_mps": 0.05698403855102137
+        }
+      },
+      "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+      "valid_tangent_fraction": 0.940357023690357,
+      "weighted_longitudinal_abs_m": 0.11944876710400607,
+      "weighted_lateral_abs_m": 0.07134294775948478,
+      "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+    },
+    "session_CI95": [
+      -0.016422691771004253,
+      0.0017663675388103486
+    ],
+    "sessions_improved": 8,
+    "session_count": 11,
+    "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_temporal_read_20260920/A2-TEMPORAL-READ-s1/ckpt_step20554.pth",
+    "checkpoint_sha256": "12b89ef4a80319dfc55e86533c3d6bda17c0d69eda7547b59a2f5e94091def55",
+    "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_temporal_read_20260920/A2-TEMPORAL-READ-s1/predictions_step20554.json",
+    "predictions_sha256": "0ed2b70de490ca96fa1062ec079273bb97f9be71431aeb0e50b1cdd44395820c",
+    "control_predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-FRESH-NUIM-s1/predictions_step20554.json",
+    "control_predictions_sha256": "6b9b47bd64f80da824bb278a130957afc6983bea9fc0ef74031a1fcfff315983",
+    "auxiliary": {
+      "occ_iou": 0.38165689546776527,
+      "lane_iou": 0.3583890197003166,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        0.5624432538676116,
+        0.04317082815070573,
+        0.23634784585148147,
+        0.05050390659409852,
+        0.004679411315907133
+      ],
+      "history_position_mae_by_offset": [
+        0.06951132497050565,
+        0.12704155714030507,
+        0.30810197636766407,
+        0.6062142790786482
+      ]
+    },
+    "interpretation": "primary fixed terminal",
+    "server_prediction": false
+  },
+  "selected_best_on_reused_V0": {
+    "step": 20554,
+    "PREFIX": 0.15411941110200755,
+    "independent_validation": false
+  },
   "planned_steps": [
     3426,
     6852,
@@ -14,10 +159,17 @@
     17130,
     20554
   ],
-  "available_steps": [],
+  "available_steps": [
+    3426,
+    6852,
+    10278,
+    13704,
+    17130,
+    20554
+  ],
   "sample_stream": {
-    "logged_steps_compared": 6,
-    "last_compared_step": 250,
+    "logged_steps_compared": 412,
+    "last_compared_step": 20550,
     "mismatch_steps": [],
     "all_compared_equal": true,
     "terminal_unlogged_tail_note": "Last row digest is at a logging step; deterministic sampler policy covers the remaining updates."
