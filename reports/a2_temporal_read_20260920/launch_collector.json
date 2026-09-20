@@ -1,0 +1,14 @@
+{
+  "pid": 3995176,
+  "started_utc": "2026-09-20T09:48:56.393271+00:00",
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_temporal_read_20260920/collect.py",
+    "--publish"
+  ],
+  "log": "/NHNHOME/data/sukim/adcl/reports/a2_temporal_read_20260920/runtime/collector.log",
+  "CPU_only": true,
+  "may_start_training": false,
+  "may_publish_completed_results": true
+}

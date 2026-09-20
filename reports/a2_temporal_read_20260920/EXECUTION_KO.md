@@ -43,3 +43,12 @@
 - B200 B1 forward median: 대조19.46ms / 새 모델19.58ms. 작은 fixture 측정이며 RTX4090 인증이 아니다.
 
 본 학습 전 별도 2-update smoke를 거친다. 실제 시작 PID/GPU/시각은 `launch_main.json`, 초기 건강 상태는 `launch_health.json`에 기록한다. 완료/중간 결과는 [RESULTS_KO.md](RESULTS_KO.md)와 `results.json`을 확인한다. CPU collector는 다음 학습을 자동 시작하지 않는다.
+
+## 본 학습 착수 기록
+
+- 시작: **2026-09-20 18:46:43 KST**, GPU0, PID `3994535`.
+- Source: `63b4b4ff6b7747aa0f61d39b07080baae2a88476` (미러 구현 commit `c83fe6f10353351243d14f6640e13d5f277fd52b`).
+- 2-update smoke는 완료됐고 nonfinite=0, V0 1,998행이 유한했다. 새 read의 output weight가 실제 갱신됐고 control의 첫 두 row digest가 동일했다.
+- 본 학습은 smoke 가중치를 사용하지 않고 공개 FRESH initializer에서 재시작했다.
+- 실행 디렉터리: `/NHNHOME/data/sukim/adcl/work_dirs/a2_temporal_read_20260920/A2-TEMPORAL-READ-s1`.
+- 최초 확인 이후의 현재 상태는 `results.json` 및 run manifest를 우선한다.

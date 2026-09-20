@@ -1,0 +1,23 @@
+{
+  "status": "healthy",
+  "checked_utc": "2026-09-20T09:48:56.391183+00:00",
+  "physical_gpu": 0,
+  "pid": 3994535,
+  "last_logged_step": 200,
+  "initial_model_state_sha256": "84d0c9f009d0530ff5fed049e10ffa5076fc819b16264ccabd9dacd4fad75760",
+  "checked_row_hash_steps": [
+    1,
+    50,
+    100,
+    150,
+    200
+  ],
+  "control_row_hashes_all_equal": true,
+  "logged_training_values_finite": true,
+  "observed_seconds_per_update": 0.521792077829116,
+  "estimated_terminal_utc": "2026-09-20T12:48:48.416088+00:00",
+  "ETA_is_estimate": true,
+  "peak_allocated_bytes": 35124564992,
+  "matched_control_terminal_PREFIX": 0.1587072591966789,
+  "input_boundary": "A2 shared-scene query only; raw status/pose/goal not added to temporal motion or planner"
+}

@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**최신 실행: 2026-09-20 18:46 KST.** 사용자 승인 1번의 `A2-TEMPORAL-READ-s1`을 GPU0에서 시작했다. 네 과거 시점의 영상 motion memory를 기존 planner의 waypoint query가 추가로 읽는 구조다. 기존 공개 FRESH 초기값·DEV split·loss·batch·20,554 update를 맞췄으며, 주 대조는 FRESH terminal **0.158707259**다. 초기 FP32/BF16 출력 일치, gradient/입력 경계/strict reload/2-update smoke를 통과했다. 기존 FRESH-CONT 및 고정 예측 평균 후보는 유지한다. [실행 명세](reports/a2_temporal_read_20260920/EXECUTION_KO.md), [수집 결과](reports/a2_temporal_read_20260920/RESULTS_KO.md). 아래 관측 문서의 ‘제안·미실행’은 이 승인 이전 기록이며, 가중치 평균(2번)/FULL/제출은 이번에 실행하지 않았다.
+
 **최신 완료: 2026-09-20.** `A2-FRESH-CONT-s1` 추가6,852 update 완료. 고정 terminal은 **0.156334059**(부모0.158707259), 예정 중간점 최저는 step5,710의 **0.153684060**이다. QREFINE과 동일1:1 저장 예측 평균은 terminal 사용0.149760692, 선택 중간점 사용 **0.148555967**이다. 모두 DEV이며 서버 점수가 아니다. 일반 주행·정지/출발·종/횡은 부모보다 개선됐지만 마지막 구간에서 일부 되돌아갔다. [완료 판정](reports/a2_fresh_continue_20260920/TERMINAL_REVIEW_KO.md), [전체 곡선](reports/a2_fresh_continue_20260920/RESULTS_KO.md). 새 학습·FULL·제출은 시작하지 않았다.
 
 **2026-09-20 후속 구조 관측:** 선택된 FRESH-CONT step5710의 V0 1,998행을 새 학습 없이 관측했다. Motion은 네 과거 시점을 192개 token으로 합친 후 planner로 전달되며, planner가 합치기 전 시점별 특징을 직접 읽는 경로는 없다. Attention 질량만으로 motion의 중요도나 성능 병목을 확정하지 않는다. 다음 제안은 waypoint query의 시점별 motion read이며, 기존 9/9 ordered residual과의 차이 및 저비용 checkpoint 평균 후보를 [관측·다음 제안](reports/a2_planner_readout_20260920/RESULTS_AND_NEXT_KO.md)에 기록했다. **관측만 완료했고 새 구조 학습/평균 평가/FULL/제출은 시작하지 않았다.**

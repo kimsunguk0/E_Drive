@@ -1,0 +1,21 @@
+{
+  "phase": "smoke",
+  "physical_gpu": 0,
+  "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_temporal_read_20260920/A2-TEMPORAL-READ-s1-smoke",
+  "log": "/NHNHOME/data/sukim/adcl/reports/a2_temporal_read_20260920/runtime/A2-TEMPORAL-READ-s1-smoke.log",
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_temporal_read_20260920/train_temporal.py",
+    "--gpu",
+    "0",
+    "--run-dir",
+    "/NHNHOME/data/sukim/adcl/work_dirs/a2_temporal_read_20260920/A2-TEMPORAL-READ-s1-smoke",
+    "--smoke"
+  ],
+  "started_utc": "2026-09-20T09:44:44.945560+00:00",
+  "source_commit": "63b4b4ff6b7747aa0f61d39b07080baae2a88476",
+  "status": "spawned; verify actual updates",
+  "updates": 2,
+  "pid": 3993564
+}

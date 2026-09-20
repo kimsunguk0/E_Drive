@@ -1,0 +1,28 @@
+{
+  "status": "running",
+  "arm": "A2-TEMPORAL-READ",
+  "primary_step": 20554,
+  "matched_control": "A2-FRESH-NUIM-s1 same step",
+  "control_terminal_PREFIX": 0.1587072591966789,
+  "terminal": null,
+  "selected_best_on_reused_V0": null,
+  "planned_steps": [
+    3426,
+    6852,
+    10278,
+    13704,
+    17130,
+    20554
+  ],
+  "available_steps": [],
+  "sample_stream": {
+    "logged_steps_compared": 6,
+    "last_compared_step": 250,
+    "mismatch_steps": [],
+    "all_compared_equal": true,
+    "terminal_unlogged_tail_note": "Last row digest is at a logging step; deterministic sampler policy covers the remaining updates."
+  },
+  "limits": "Same 11 DEV sessions reused. Additional attention parameters are part of the tested package. No hidden-test conversion.",
+  "automatic_new_training": false,
+  "automatic_FULL_or_submission": false
+}
