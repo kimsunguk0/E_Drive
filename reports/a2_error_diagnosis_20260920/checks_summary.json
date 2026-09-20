@@ -1,0 +1,14 @@
+{
+  "metric_PREFIX_equals_three_prefix_means": true,
+  "group_contributions_sum_to_PREFIX": true,
+  "frozen_model_hashes_unchanged": true,
+  "same_train_and_V0_rows_between_models": true,
+  "low_future_speed_variation": {
+    "definition": "GT first four interval-speed range <=0.5 m/s and nonstop; diagnosis only",
+    "n": 1306,
+    "first2s_contribution": 0.06749905909310554,
+    "share_of_first2s_contribution": 0.6084898451738726
+  },
+  "eval_only": true,
+  "new_training_jobs": 0
+}

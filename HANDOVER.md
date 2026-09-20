@@ -3,6 +3,8 @@
 **최신 확인: 2026-09-20.** C2F/FRESH는 모두20,554 update를 완료했다. C2F DEV0.164204741은 기존과 거의 같고, 공개 nuImages trunk에서 새로 학습한 FRESH는0.158707259다. 기존 QREFINE+FRESH 저장 예측의 고정1:1 평균은0.150723838이며 배포·서버 평가 전이다. GPU0–3의 이번 학습은 종료됐다.
 [Terminal 결과](reports/a2_motion_fresh_20260919/RESULTS_KO.md), [상세 해석·고정 평균](reports/a2_motion_fresh_20260919/INTERPRETATION_20260920_KO.md), [실행 기록](reports/a2_motion_fresh_20260919/EXECUTION_KO.md). 추가 학습·FULL·공식 제출은 새로 시작하지 않았다.
 
+**2026-09-20 추가 진단 완료:** 고정 QREFINE/FRESH의 V0 1,998행 및 무증강 train 1,024행을 GPU0/1에서 비교했다. 예측 state/history를 0으로 해도 점수 변화는 약 0.0002지만 continuous motion 제거는 +0.0710/+0.0441 악화했다. FRESH는 V0 정지 유지 99행을 모두 현재 정지로 분류하면서도 미래 경로를 전진시키며, train에서도 기존보다 정지·출발·횡방향 fitting이 부족하다. 미래 첫2초 속도 변화가 작은 일반 주행도 고정 평균 전체 오차의60.8%다. [잔여 오차 진단과 다음 우선순위](reports/a2_error_diagnosis_20260920/RESULTS_KO.md). 추가 학습·FULL 이전·제출은 시작하지 않았다.
+
 **직전 완료 상태:** State ON/OFF와 RGB 교사 학습·평가·strict student export를 완료했다. A2 FULL raw 추론·패키지도 확보했다.
 [이번 최종 결과](reports/a2_visual_teacher_20260919/RESULTS_KO.md), [FULL 배포 안내](reports/a2_full_submission_20260919/README_KO.md).
 이 문서가 현재 상태와 결정을 나타낸다. 과거 실행 계획의 ‘진행 중·다음 실행’ 문구는 당시 기록이다.
@@ -62,7 +64,7 @@ Command는 원본 parquet의 LANE_KEEP / TURN_LEFT / TURN_RIGHT / LANE_CHANGE_L 
 - Command를 바꿔도 완료 checkpoint의 motion/state/history 출력 차이는 0이다.
 - V0 의미 좌회전은 39행/1session, 유턴은 0행이다. 회전 일반화에 대한 결론은 제한적이다.
 
-일반 주행과 첫 2초의 진행량 오류가 크게 줄어든 결과는 없다.
+이 command 비교에서는 일반 주행과 첫 2초 진행량의 큰 개선을 얻지 못했다. 이후 FRESH의 개선과 회귀는 상단 최신 결과를 따른다.
 오차 대부분을 ‘가속·감속 타이밍 하나’로 설명하거나 현재 점수를 아키텍처의 한계로 확정하지 않는다.
 자세한 분해는 [command 판정](reports/a2_command_20260919/DECISION_KO.md)에 있다.
 

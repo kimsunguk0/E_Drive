@@ -1,0 +1,594 @@
+{
+  "arm": "QREFINE",
+  "created_at_utc": "2026-09-20T07:14:04.476366+00:00",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+  "model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+  "source_sha256": "06f1fff8644c7fce58a36356fd14630e732c84fa30a04c650fd0235117dc1e7b",
+  "source_commit": "4a47af9247c34da4fe9313239cabc995b2e1520d",
+  "physical_gpu": 0,
+  "optimizer_updates": 0,
+  "train_probe_seed": 20260920,
+  "train_probe_size": 1024,
+  "train_probe_selection": "uniform without replacement; no augmentation; same indices for both checkpoints",
+  "variants": [
+    "ON",
+    "STATE_OFF",
+    "HISTORY_OFF",
+    "BOTH_OFF",
+    "MOTION_OFF"
+  ],
+  "provided_status_pose_goal_unchanged": true,
+  "full_lineage_used": false,
+  "limitation": "Frozen-weight OOD interventions. Zero readout still leaves biased projection token. Not a trained removal ablation, deployable improvement, or hidden-test estimate.",
+  "V0": {
+    "n": 1998,
+    "sessions": 11,
+    "models": {
+      "ON": {
+        "PREFIX": 0.1642517619243559,
+        "L2_1s": 0.09604649777009745,
+        "L2_2s": 0.16368460222307946,
+        "L2_3s": 0.23302418577989073,
+        "per_waypoint_L2": [
+          0.0643359143931724,
+          0.1277570811470227,
+          0.19623167417535572,
+          0.26641373917676714,
+          0.33664870908044614,
+          0.4067579967065808
+        ],
+        "first2s_PREFIX_contribution": 0.12295138938063219,
+        "weighted_longitudinal_abs_m": 0.14340521500821143,
+        "weighted_lateral_abs_m": 0.06090156488633733,
+        "groups": {
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.3357339219870618,
+            "overall_contribution": 0.00403283990374849
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.16844511122690797,
+            "overall_contribution": 0.1580753671423686
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.04326083481536459,
+            "overall_contribution": 0.002143554878238786
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 161,
+            "PREFIX": 0.23751979124390246
+          },
+          "other": {
+            "n": 1796,
+            "PREFIX": 0.15293156154657175
+          },
+          "positive_y_ge2m": {
+            "n": 41,
+            "PREFIX": 0.3724207169988272
+          }
+        }
+      },
+      "STATE_OFF": {
+        "PREFIX": 0.16453124230541266,
+        "L2_1s": 0.0963116807421912,
+        "L2_2s": 0.16401415038337713,
+        "L2_3s": 0.23326789579066964,
+        "per_waypoint_L2": [
+          0.06451508475270143,
+          0.12810827673168076,
+          0.19697372357604997,
+          0.26645951647307575,
+          0.33670279580418566,
+          0.4068479774063237
+        ],
+        "first2s_PREFIX_contribution": 0.1232228660159399,
+        "weighted_longitudinal_abs_m": 0.14340539061384192,
+        "weighted_lateral_abs_m": 0.061340499579517135,
+        "groups": {
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.3357652505830466,
+            "overall_contribution": 0.0040332162232197795
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.16874430605703367,
+            "overall_contribution": 0.1583561430715406
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.04322709348770925,
+            "overall_contribution": 0.00214188301065226
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 161,
+            "PREFIX": 0.2411567192934654
+          },
+          "other": {
+            "n": 1796,
+            "PREFIX": 0.1529357368255432
+          },
+          "positive_y_ge2m": {
+            "n": 41,
+            "PREFIX": 0.371575780031485
+          }
+        },
+        "minus_ON": {
+          "PREFIX": 0.0002794803810567839,
+          "session_CI95": [
+            -0.0008292693183550126,
+            0.0013484722825913434
+          ],
+          "plan_PREFIX_distance": 0.007843317632875994
+        }
+      },
+      "HISTORY_OFF": {
+        "PREFIX": 0.16428191963472044,
+        "L2_1s": 0.09608305917006833,
+        "L2_2s": 0.16371705054230531,
+        "L2_3s": 0.2330456491917876,
+        "per_waypoint_L2": [
+          0.06436026311868948,
+          0.1278058552214471,
+          0.19630408612720882,
+          0.26639799770187594,
+          0.33664399720276617,
+          0.4067616957787375
+        ],
+        "first2s_PREFIX_contribution": 0.12298160335797019,
+        "weighted_longitudinal_abs_m": 0.14344866926354544,
+        "weighted_lateral_abs_m": 0.060880685650957396,
+        "groups": {
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.33583642329760527,
+            "overall_contribution": 0.004034071150721985
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.16847497958695046,
+            "overall_contribution": 0.1581033967595256
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.04327893480299784,
+            "overall_contribution": 0.0021444517244728657
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 161,
+            "PREFIX": 0.23801306740650718
+          },
+          "other": {
+            "n": 1796,
+            "PREFIX": 0.1529232792960406
+          },
+          "positive_y_ge2m": {
+            "n": 41,
+            "PREFIX": 0.37231614541548325
+          }
+        },
+        "minus_ON": {
+          "PREFIX": 3.0157710364550534e-05,
+          "session_CI95": [
+            -7.749734874646073e-05,
+            0.00010306724085126086
+          ],
+          "plan_PREFIX_distance": 0.0006591329499655025
+        }
+      },
+      "BOTH_OFF": {
+        "PREFIX": 0.16453447306228677,
+        "L2_1s": 0.09631496101522986,
+        "L2_2s": 0.1640160254843765,
+        "L2_3s": 0.23327243268725392,
+        "per_waypoint_L2": [
+          0.06451806110059705,
+          0.1281118609298626,
+          0.1969721299126931,
+          0.2664620499943528,
+          0.33671037651459595,
+          0.4068601176714212
+        ],
+        "first2s_PREFIX_contribution": 0.12322500116306359,
+        "weighted_longitudinal_abs_m": 0.14340640614035388,
+        "weighted_lateral_abs_m": 0.06134340531503021,
+        "groups": {
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.33584277704452403,
+            "overall_contribution": 0.004034147472006294
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.16874546507306235,
+            "overall_contribution": 0.1583572307367327
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.04325155068069195,
+            "overall_contribution": 0.002143094853547799
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 161,
+            "PREFIX": 0.24112020734650044
+          },
+          "other": {
+            "n": 1796,
+            "PREFIX": 0.15294296600178217
+          },
+          "positive_y_ge2m": {
+            "n": 41,
+            "PREFIX": 0.3715599233283325
+          }
+        },
+        "minus_ON": {
+          "PREFIX": 0.0002827111379308929,
+          "session_CI95": [
+            -0.0008153227963598122,
+            0.0013362275999347763
+          ],
+          "plan_PREFIX_distance": 0.007766542667441818
+        }
+      },
+      "MOTION_OFF": {
+        "PREFIX": 0.23524355848356535,
+        "L2_1s": 0.1513066118329475,
+        "L2_2s": 0.2328400742743348,
+        "L2_3s": 0.3215839893434137,
+        "per_waypoint_L2": [
+          0.1085333145419691,
+          0.19407990912392614,
+          0.27385080479995694,
+          0.3548962686314873,
+          0.4499342736710274,
+          0.5482093652921164
+        ],
+        "first2s_PREFIX_contribution": 0.1797911340967241,
+        "weighted_longitudinal_abs_m": 0.18540788336825423,
+        "weighted_lateral_abs_m": 0.08002674847430091,
+        "groups": {
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.7354676971652037,
+            "overall_contribution": 0.008834446812795238
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.2183112569874575,
+            "overall_contribution": 0.20487167510084225
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.43466462895672553,
+            "overall_contribution": 0.02153743656992784
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 161,
+            "PREFIX": 0.3726911511341048
+          },
+          "other": {
+            "n": 1796,
+            "PREFIX": 0.21046129260658825
+          },
+          "positive_y_ge2m": {
+            "n": 41,
+            "PREFIX": 0.7810944633204926
+          }
+        },
+        "minus_ON": {
+          "PREFIX": 0.07099179655920947,
+          "session_CI95": [
+            0.03922867303032182,
+            0.10886938820314504
+          ],
+          "plan_PREFIX_distance": 0.15006700019789787
+        }
+      }
+    },
+    "source_prediction_parity_max_abs_m": 0.00032138824462890625,
+    "same_forward_planner_parity_max_abs_m": 0.0,
+    "row_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "arrays_path": "/NHNHOME/data/sukim/adcl/reports/a2_error_diagnosis_20260920/QREFINE_V0.npz",
+    "arrays_sha256": "01952fe1b8f966a70071b89a9b576458345ad59c074c26b68a16ce77a64667c6",
+    "elapsed_seconds": 25.0326654817909
+  },
+  "train_probe": {
+    "n": 1024,
+    "sessions": 92,
+    "models": {
+      "ON": {
+        "PREFIX": 0.09286087795983215,
+        "L2_1s": 0.04857536899506962,
+        "L2_2s": 0.08808665340955338,
+        "L2_3s": 0.14192061147487345,
+        "per_waypoint_L2": [
+          0.03397774610444862,
+          0.06317299188569048,
+          0.10232443799085356,
+          0.15287143765722064,
+          0.21228997141884715,
+          0.28688708379218036
+        ],
+        "first2s_PREFIX_contribution": 0.0651288193369973,
+        "weighted_longitudinal_abs_m": 0.07330195279339115,
+        "weighted_lateral_abs_m": 0.04863867443903373,
+        "groups": {
+          "depart": {
+            "n": 16,
+            "PREFIX": 0.08010491416810554,
+            "overall_contribution": 0.001251639283876649
+          },
+          "nonstop": {
+            "n": 941,
+            "PREFIX": 0.09917914078924502,
+            "overall_contribution": 0.09114020652605426
+          },
+          "steady": {
+            "n": 67,
+            "PREFIX": 0.007168491365654781,
+            "overall_contribution": 0.00046903214990124054
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 126,
+            "PREFIX": 0.1112254896847329
+          },
+          "other": {
+            "n": 876,
+            "PREFIX": 0.0879546039350753
+          },
+          "positive_y_ge2m": {
+            "n": 22,
+            "PREFIX": 0.18304064924844587
+          }
+        }
+      },
+      "STATE_OFF": {
+        "PREFIX": 0.09306267688270672,
+        "L2_1s": 0.04882324037979323,
+        "L2_2s": 0.08831727414181444,
+        "L2_3s": 0.14204751612651248,
+        "per_waypoint_L2": [
+          0.03413018189113947,
+          0.06351629886844702,
+          0.10289835940021323,
+          0.15272425640745801,
+          0.21213957779336023,
+          0.28687642239845723
+        ],
+        "first2s_PREFIX_contribution": 0.0653395657609391,
+        "weighted_longitudinal_abs_m": 0.07350993744362723,
+        "weighted_lateral_abs_m": 0.0486660780252242,
+        "groups": {
+          "depart": {
+            "n": 16,
+            "PREFIX": 0.08013619289691779,
+            "overall_contribution": 0.0012521280140143404
+          },
+          "nonstop": {
+            "n": 941,
+            "PREFIX": 0.09939827167823193,
+            "overall_contribution": 0.09134157582931274
+          },
+          "steady": {
+            "n": 67,
+            "PREFIX": 0.007167587945145727,
+            "overall_contribution": 0.00046897303937965207
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 126,
+            "PREFIX": 0.11190414463094422
+          },
+          "other": {
+            "n": 876,
+            "PREFIX": 0.0880881175029713
+          },
+          "positive_y_ge2m": {
+            "n": 22,
+            "PREFIX": 0.1832303623540852
+          }
+        },
+        "minus_ON": {
+          "PREFIX": 0.0002017989228745755,
+          "session_CI95": [
+            -0.0001784187976898351,
+            0.0005817565126580604
+          ],
+          "plan_PREFIX_distance": 0.007426358555593119
+        }
+      },
+      "HISTORY_OFF": {
+        "PREFIX": 0.09286906417326646,
+        "L2_1s": 0.048586107481238594,
+        "L2_2s": 0.08809454788436731,
+        "L2_3s": 0.14192653715419346,
+        "per_waypoint_L2": [
+          0.0339800004681194,
+          0.06319221449435782,
+          0.10234478544467684,
+          0.1528611911303153,
+          0.21228770034310937,
+          0.28689333104458214
+        ],
+        "first2s_PREFIX_contribution": 0.06513678465172804,
+        "weighted_longitudinal_abs_m": 0.07329837566732739,
+        "weighted_lateral_abs_m": 0.04864075103067143,
+        "groups": {
+          "depart": {
+            "n": 16,
+            "PREFIX": 0.08016472815181391,
+            "overall_contribution": 0.0012525738773720924
+          },
+          "nonstop": {
+            "n": 941,
+            "PREFIX": 0.09918706964508063,
+            "overall_contribution": 0.09114749271095789
+          },
+          "steady": {
+            "n": 67,
+            "PREFIX": 0.007167963089178437,
+            "overall_contribution": 0.00046899758493647976
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 126,
+            "PREFIX": 0.11127356481373596
+          },
+          "other": {
+            "n": 876,
+            "PREFIX": 0.08795736778829322
+          },
+          "positive_y_ge2m": {
+            "n": 22,
+            "PREFIX": 0.1830362892886032
+          }
+        },
+        "minus_ON": {
+          "PREFIX": 8.186213434306144e-06,
+          "session_CI95": [
+            -3.809253803338148e-05,
+            5.279328290404684e-05
+          ],
+          "plan_PREFIX_distance": 0.0007036859818956554
+        }
+      },
+      "BOTH_OFF": {
+        "PREFIX": 0.09305929074857364,
+        "L2_1s": 0.048820490766451015,
+        "L2_2s": 0.08831205710098872,
+        "L2_3s": 0.14204532437828113,
+        "per_waypoint_L2": [
+          0.034130039938923454,
+          0.0635109415939786,
+          0.10288499580655772,
+          0.15272225106449527,
+          0.2121445454528822,
+          0.2868791724128496
+        ],
+        "first2s_PREFIX_contribution": 0.06533575086714408,
+        "weighted_longitudinal_abs_m": 0.0735059402892745,
+        "weighted_lateral_abs_m": 0.04866654357150542,
+        "groups": {
+          "depart": {
+            "n": 16,
+            "PREFIX": 0.08017623420241324,
+            "overall_contribution": 0.0012527536594127068
+          },
+          "nonstop": {
+            "n": 941,
+            "PREFIX": 0.09939395818508089,
+            "overall_contribution": 0.09133761196500109
+          },
+          "steady": {
+            "n": 67,
+            "PREFIX": 0.00716685562895021,
+            "overall_contribution": 0.0004689251241598282
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 126,
+            "PREFIX": 0.11189768309813132
+          },
+          "other": {
+            "n": 876,
+            "PREFIX": 0.08808535763907244
+          },
+          "positive_y_ge2m": {
+            "n": 22,
+            "PREFIX": 0.1832196529248815
+          }
+        },
+        "minus_ON": {
+          "PREFIX": 0.0001984127887414772,
+          "session_CI95": [
+            -0.00017859191095022785,
+            0.000574987917489439
+          ],
+          "plan_PREFIX_distance": 0.007360199959690846
+        }
+      },
+      "MOTION_OFF": {
+        "PREFIX": 0.1914182036376385,
+        "L2_1s": 0.1257454552707867,
+        "L2_2s": 0.18681348068208914,
+        "L2_3s": 0.2616956749600397,
+        "per_waypoint_L2": [
+          0.09321967903415543,
+          0.15827123150741787,
+          0.21747924148478062,
+          0.2782837707020026,
+          0.35951476306276514,
+          0.4634053639691171
+        ],
+        "first2s_PREFIX_contribution": 0.14570041880253398,
+        "weighted_longitudinal_abs_m": 0.14237621048150564,
+        "weighted_lateral_abs_m": 0.08518734540010198,
+        "groups": {
+          "depart": {
+            "n": 16,
+            "PREFIX": 0.500383746416951,
+            "overall_contribution": 0.00781849603776486
+          },
+          "nonstop": {
+            "n": 941,
+            "PREFIX": 0.18242448167808048,
+            "overall_contribution": 0.16763812232331418
+          },
+          "steady": {
+            "n": 67,
+            "PREFIX": 0.24395019885368524,
+            "overall_contribution": 0.015961585276559484
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 126,
+            "PREFIX": 0.22729649090964524
+          },
+          "other": {
+            "n": 876,
+            "PREFIX": 0.17389135561832542
+          },
+          "positive_y_ge2m": {
+            "n": 22,
+            "PREFIX": 0.683820688576067
+          }
+        },
+        "minus_ON": {
+          "PREFIX": 0.09855732567780638,
+          "session_CI95": [
+            0.08720106605845371,
+            0.1103735042080281
+          ],
+          "plan_PREFIX_distance": 0.15888770687980905
+        }
+      }
+    },
+    "source_prediction_parity_max_abs_m": null,
+    "same_forward_planner_parity_max_abs_m": 0.0,
+    "row_sha256": "ddb29c5d44f8b3884e81d4cbf02b88723cc2181525945f3ae99eaf19d9028496",
+    "arrays_path": "/NHNHOME/data/sukim/adcl/reports/a2_error_diagnosis_20260920/QREFINE_train_probe.npz",
+    "arrays_sha256": "2dcbb31593dd677c9a1a8a7ff04ebf9cf958bd26dc9ebcf28d0242978c04c37d",
+    "elapsed_seconds": 12.518170958384871
+  },
+  "parameter_buffer_hash_unchanged": true,
+  "original_flag_unchanged": true
+}
