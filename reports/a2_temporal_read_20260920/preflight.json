@@ -1,0 +1,125 @@
+{
+  "status": "passed",
+  "physical_gpu": 0,
+  "checked_weights_used_for_training": false,
+  "constructor_rng_matches_control": true,
+  "control_initial_state_sha256": "1ba37b67d9de62b85e105b161656274e897f37250b51e33c472d1874b031f721",
+  "new_initial_state_sha256": "84d0c9f009d0530ff5fed049e10ffa5076fc819b16264ccabd9dacd4fad75760",
+  "new_keys": [
+    "planner.temporal_read.attention.in_proj_bias",
+    "planner.temporal_read.attention.in_proj_weight",
+    "planner.temporal_read.attention.out_proj.bias",
+    "planner.temporal_read.attention.out_proj.weight",
+    "planner.temporal_read.memory_norm.bias",
+    "planner.temporal_read.memory_norm.weight",
+    "planner.temporal_read.query_norm.bias",
+    "planner.temporal_read.query_norm.weight"
+  ],
+  "all_parent_tensors_identical": true,
+  "new_parameter_names_and_optimizer_lr": {
+    "planner.temporal_read.query_norm.weight": 5e-05,
+    "planner.temporal_read.query_norm.bias": 5e-05,
+    "planner.temporal_read.memory_norm.weight": 5e-05,
+    "planner.temporal_read.memory_norm.bias": 5e-05,
+    "planner.temporal_read.attention.in_proj_weight": 5e-05,
+    "planner.temporal_read.attention.in_proj_bias": 5e-05,
+    "planner.temporal_read.attention.out_proj.weight": 5e-05,
+    "planner.temporal_read.attention.out_proj.bias": 5e-05
+  },
+  "train_fixture_rows": [
+    30,
+    47
+  ],
+  "zero_init_parity": {
+    "fp32": {
+      "outputs": {
+        "scene_features": 0.0,
+        "occ_logits": 0.0,
+        "lane_logits": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0,
+        "state_logvar": 0.0,
+        "history_logvar": 0.0,
+        "plan_abs": 0.0
+      },
+      "total_loss_abs_diff": 0.0
+    },
+    "bf16": {
+      "outputs": {
+        "scene_features": 0.0,
+        "occ_logits": 0.0,
+        "lane_logits": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0,
+        "state_logvar": 0.0,
+        "history_logvar": 0.0,
+        "plan_abs": 0.0
+      },
+      "total_loss_abs_diff": 0.0
+    }
+  },
+  "planning_gradients": {
+    "zero_init_output_norm": 21.926740646362305,
+    "after_disposable_output_step": {
+      "backbone_fpn.layer1.0.conv1.weight": 5.25783634185791,
+      "motion_encoder.correlation_fuse.0.weight": 13.552952766418457,
+      "planner.temporal_read.query_norm.weight": 0.011267182417213917,
+      "planner.temporal_read.memory_norm.weight": 0.0785602331161499,
+      "planner.temporal_read.attention.in_proj_weight": 0.6928715109825134
+    }
+  },
+  "isolated_new_read_gradients": {
+    "per_history_norm": [
+      0.0011083291610702872,
+      0.0010761580197140574,
+      0.0010782777098938823,
+      0.0010713457595556974
+    ],
+    "query_norm": 0.0026686443015933037
+  },
+  "same_shared_scene_consumers": true,
+  "input_isolation": {
+    "provided_status": {
+      "motion_pair_features": 0.0,
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "scene_max_change": 0.07175040245056152
+    },
+    "goal": {
+      "motion_pair_features": 0.0,
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "scene_max_change": 0.007790982723236084
+    }
+  },
+  "effective_batch_loss": {
+    "whole": 11.20655345916748,
+    "sum_micro": 11.206554412841797,
+    "absolute_difference": 9.5367431640625e-07
+  },
+  "existing_double_flip": true,
+  "strict_reload_B1_plan_max_diff": 0.0,
+  "whole_forward_cost": {
+    "FRESH": {
+      "official_counter_flops": 729991776960,
+      "parameters": 26585976,
+      "B200_B1_forward_median_ms": 19.463716074824333,
+      "RTX4090_ms": null
+    },
+    "TEMPORAL_READ": {
+      "official_counter_flops": 730044861120,
+      "parameters": 26652536,
+      "B200_B1_forward_median_ms": 19.584426656365395,
+      "RTX4090_ms": null
+    }
+  },
+  "elapsed_seconds": 7.049845438450575,
+  "source_sha256": "317e5c627e44208f5c5d4f62d254b4fcfefd68dab28bd5d00caaf8511f68ce98",
+  "model_source_sha256": "dd01226e745e1530ceef2f79f9ae9c495064aede07d61089607667881e66b6a7",
+  "peak_cuda_allocated_bytes": 8989719040,
+  "new_training_started": false
+}
