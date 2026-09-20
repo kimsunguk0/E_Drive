@@ -1,0 +1,20 @@
+[
+  {
+    "arm": "CONT_SELECTED",
+    "pid": 4039122,
+    "gpu": 0,
+    "log": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/runtime/CONT_SELECTED.log"
+  },
+  {
+    "arm": "TEMPORAL",
+    "pid": 4039123,
+    "gpu": 1,
+    "log": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/runtime/TEMPORAL.log"
+  },
+  {
+    "arm": "CONT_TERMINAL",
+    "pid": 4039124,
+    "gpu": 2,
+    "log": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/runtime/CONT_TERMINAL.log"
+  }
+]

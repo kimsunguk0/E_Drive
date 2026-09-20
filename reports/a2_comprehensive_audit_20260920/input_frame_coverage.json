@@ -1,0 +1,152 @@
+{
+  "fixture": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/deploy_fixture_train8/fixture_000",
+  "image_getter_calls": [
+    [
+      "camera_front",
+      0
+    ],
+    [
+      "camera_front_right",
+      0
+    ],
+    [
+      "camera_front_left",
+      0
+    ],
+    [
+      "camera_rear_wide",
+      0
+    ],
+    [
+      "camera_rear_left",
+      0
+    ],
+    [
+      "camera_rear_right",
+      0
+    ],
+    [
+      "camera_front",
+      -1
+    ],
+    [
+      "camera_front",
+      -2
+    ],
+    [
+      "camera_front",
+      -5
+    ],
+    [
+      "camera_front",
+      -10
+    ],
+    [
+      "camera_front",
+      0
+    ],
+    [
+      "camera_front",
+      -1
+    ],
+    [
+      "camera_front",
+      -2
+    ],
+    [
+      "camera_front",
+      -5
+    ],
+    [
+      "camera_front",
+      -10
+    ]
+  ],
+  "unique_image_frame_indices": [
+    -10,
+    -5,
+    -2,
+    -1,
+    0
+  ],
+  "status_fit_pose_frame_indices": [
+    -10,
+    -9,
+    -8,
+    -7,
+    -6,
+    -5,
+    -4,
+    -3,
+    -2,
+    -1,
+    0
+  ],
+  "pose_fit_frames_without_consumed_image": [
+    -9,
+    -8,
+    -7,
+    -6,
+    -4,
+    -3
+  ],
+  "status_fit_count": 11,
+  "input_shapes": {
+    "images": [
+      1,
+      6,
+      3,
+      432,
+      768
+    ],
+    "history_images": [
+      1,
+      4,
+      3,
+      216,
+      384
+    ],
+    "lidar2img": [
+      1,
+      6,
+      4,
+      4
+    ],
+    "history_transforms": [
+      1,
+      4,
+      4,
+      4
+    ],
+    "time_offsets": [
+      1,
+      4
+    ],
+    "goal_xy": [
+      1,
+      2
+    ],
+    "motion_current": [
+      1,
+      3,
+      432,
+      768
+    ],
+    "motion_history": [
+      1,
+      4,
+      3,
+      432,
+      768
+    ]
+  },
+  "source_sha256": {
+    "/NHNHOME/data/sukim/adcl/experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_visual_teacher_20260919/infer_a2.py": "b92ed2a034e9bc3c3a9c22c5fb0610b14ff7ce0dd288e987a4ed6a5e980f172b",
+    "/NHNHOME/data/sukim/adcl/experiments/md_r0_reset_20260914/mr_deploy.py": "d0f1898914e61e81457af2ef5964066f45295b45d0dbc23397bbeaf2dfc852b6",
+    "/NHNHOME/data/sukim/adcl/OPEN_ISSUE.md": "ba8b50097450612b985a250fc7f75027467d1da1140555fdc155926efc079006"
+  },
+  "finding": "A2 query-only destination and frame-coverage obligation are separate checks. Preserved notice Q2 requires images for every used past-information frame; Q4 reiterates this. Q7/Q8 do not explicitly waive it. No conclusion of organizer approval or final disqualification is made.",
+  "optimizer_updates": 0,
+  "model_or_package_changed": false
+}

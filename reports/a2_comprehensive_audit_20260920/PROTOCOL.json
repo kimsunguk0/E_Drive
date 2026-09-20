@@ -1,0 +1,30 @@
+{
+  "source_commit": "03b51aad517c7cadbb3ec946f34812ebeecefc47",
+  "created_at_utc": "2026-09-20T13:09:24.342250+00:00",
+  "optimizer_updates": 0,
+  "arms": {
+    "CONT_SELECTED": 0,
+    "TEMPORAL": 1,
+    "CONT_TERMINAL": 2
+  },
+  "train_probe": "Same uniform 1024, seed 20260920, no augmentation",
+  "frozen_interventions": [
+    "numeric OFF",
+    "pooled motion OFF",
+    "all continuous motion OFF",
+    "new temporal read OFF",
+    "native motion history repeated current",
+    "provided scene-query vx +/-0.1 m/s"
+  ],
+  "cpu_diagnostics": [
+    "all existing single candidates",
+    "fixed equal QREFINE+CONTselected reference",
+    "fixed equal QREFINE+TEMPORAL, CONTselected+TEMPORAL, all three; no coefficient search",
+    "GT progress/direction replacement, shared errors, ordinary-drive decomposition",
+    "source pose and future label/time recomputation"
+  ],
+  "limitations": [
+    "Repeated DEV; posthoc diagnostics not independent validation",
+    "No new training, submission, FULL, parameter averaging, coefficient fitting or V0-driven data selection"
+  ]
+}

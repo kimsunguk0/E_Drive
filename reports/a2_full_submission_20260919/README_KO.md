@@ -1,5 +1,9 @@
 # A2-FULL-NOM-s1 제출 후보 — 2026-09-19
 
+
+**2026-09-20 후속 점검:** raw 입출력 parity와 패키지 검증은 아래 기록대로 완료됐으나, 제공 status fit이 pose11시점을 사용하고 모델의 영상은5시점만 소비하는 차이가 확인됐다. OPEN_ISSUE 질문2/4의 모든 과거 사용 시점 영상 조건과 별도로 맞춰야 한다. 기존 ZIP을 규정 검토까지 완료한 최종본으로 설명하지 않는다. 가중치/ZIP은 수정하지 않았다. [실제 호출 기록](../a2_comprehensive_audit_20260920/input_frame_coverage.json), [해석과 수정 선택지](../a2_comprehensive_audit_20260920/RESULTS_KO.md).
+
+
 `submission.zip`은 **1,125개 clip + 정수 `__flops__`**가 있는 `submission.json` 하나만 담는다. 공식 업로드는 수행하지 않았다.
 
 - 완료돼 있던 A2 FULL step 24,931을 사용했다. 재학습하지 않았다.

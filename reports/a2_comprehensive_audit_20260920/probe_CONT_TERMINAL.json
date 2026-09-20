@@ -1,0 +1,148 @@
+{
+  "arm": "CONT_TERMINAL",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1/ckpt_step6852.pth",
+  "checkpoint_sha256": "f28f764c5ae173f58bdb0970bed1bdba268642e00c242f17f5d433741430d49c",
+  "source_commit": "03b51aad517c7cadbb3ec946f34812ebeecefc47",
+  "script_sha256": "9275e6c1c856b45919ea40e983a5cc50af2310539e180767fefb54b1aee24b95",
+  "model_state_sha256": "61c2e21ef775a5e06ea3d38ba8ceb103f82a21cf934cc4be6831bd6a662b6338",
+  "physical_gpu": 2,
+  "optimizer_updates": 0,
+  "train_probe_seed": 20260920,
+  "created_at_utc": "2026-09-20T13:09:31.536084+00:00",
+  "limitations": [
+    "Frozen OOD interventions; not trained ablations or submission candidates.",
+    "Train cohort is identical to earlier probe, but its distribution differs from V0.",
+    "Status perturbation measures local sensitivity, not a compliant numerical planner bypass."
+  ],
+  "V0": {
+    "n": 1998,
+    "models": {
+      "ON": {
+        "PREFIX": 0.15633405202928866,
+        "L2_1s": 0.08693448144600009,
+        "L2_2s": 0.15053984877482515,
+        "L2_3s": 0.2315278258670407,
+        "per_waypoint_L2": [
+          0.058401052318498174,
+          0.11546791057350204,
+          0.1776582115492979,
+          0.2506322206580027,
+          0.33678427215930196,
+          0.4502232879436423
+        ],
+        "first2s_PREFIX_contribution": 0.11261140980134735,
+        "weighted_longitudinal_abs_m": 0.11850800075555085,
+        "weighted_lateral_abs_m": 0.06944493932670832,
+        "groups": {
+          "depart": {
+            "n": 24,
+            "PREFIX": 0.4635847553286125,
+            "overall_contribution": 0.005568585649592943
+          },
+          "nonstop": {
+            "n": 1875,
+            "PREFIX": 0.15320498525594384,
+            "overall_contribution": 0.14377344712457193
+          },
+          "steady": {
+            "n": 99,
+            "PREFIX": 0.14111166133067976,
+            "overall_contribution": 0.006992019255123771
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 161,
+            "PREFIX": 0.21712200514657987
+          },
+          "other": {
+            "n": 1796,
+            "PREFIX": 0.1453383908008409
+          },
+          "positive_y_ge2m": {
+            "n": 41,
+            "PREFIX": 0.3992937377465644
+          }
+        }
+      }
+    },
+    "invariance_max_abs": {
+      "replay": 0.0,
+      "status_to_motion": 0.0,
+      "status_to_state": 0.0,
+      "status_to_history": 0.0,
+      "native_history_to_scene": 0.0
+    },
+    "source_prediction_parity_max_abs_m": 2.288818359375e-05,
+    "row_sha256": "1a65ade632db6a835be84ea6e30e9cc028917b6e7db344897d529a9e2d251d88",
+    "arrays_path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/CONT_TERMINAL_V0.npz",
+    "arrays_sha256": "9ed2f6c12747778e4f7c619963e3d194cbc1e7c459a65312e36c97cd34415297",
+    "elapsed_seconds": 26.293199541047215
+  },
+  "train_probe": {
+    "n": 1024,
+    "models": {
+      "ON": {
+        "PREFIX": 0.12363838965761631,
+        "L2_1s": 0.06282259956975308,
+        "L2_2s": 0.11795893459387582,
+        "L2_3s": 0.19013363480922,
+        "per_waypoint_L2": [
+          0.041411673970662186,
+          0.08423352516884385,
+          0.14024982174030404,
+          0.20594071749569312,
+          0.2833437734548531,
+          0.38562229702496353
+        ],
+        "first2s_PREFIX_contribution": 0.08647360796429315,
+        "weighted_longitudinal_abs_m": 0.09876417163521903,
+        "weighted_lateral_abs_m": 0.05851868588417216,
+        "groups": {
+          "depart": {
+            "n": 16,
+            "PREFIX": 0.25965204274818376,
+            "overall_contribution": 0.004057063167940371
+          },
+          "nonstop": {
+            "n": 941,
+            "PREFIX": 0.12783620995257278,
+            "overall_contribution": 0.11747448590368259
+          },
+          "steady": {
+            "n": 67,
+            "PREFIX": 0.032200071045629476,
+            "overall_contribution": 0.002106840585993335
+          }
+        },
+        "geometric_turn_bins": {
+          "negative_y_le_minus2m": {
+            "n": 126,
+            "PREFIX": 0.14719783548391674
+          },
+          "other": {
+            "n": 876,
+            "PREFIX": 0.11601380598501425
+          },
+          "positive_y_ge2m": {
+            "n": 22,
+            "PREFIX": 0.2923040770705961
+          }
+        }
+      }
+    },
+    "invariance_max_abs": {
+      "replay": 0.0,
+      "status_to_motion": 0.0,
+      "status_to_state": 0.0,
+      "status_to_history": 0.0,
+      "native_history_to_scene": 0.0
+    },
+    "source_prediction_parity_max_abs_m": null,
+    "row_sha256": "ddb29c5d44f8b3884e81d4cbf02b88723cc2181525945f3ae99eaf19d9028496",
+    "arrays_path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/CONT_TERMINAL_train_probe.npz",
+    "arrays_sha256": "748bf6131187d3f1cdc734ce6cff6ec29147cb065e1f56bdf3b06a1795404c17",
+    "elapsed_seconds": 12.699323697015643
+  },
+  "parameter_buffer_hash_unchanged": true
+}

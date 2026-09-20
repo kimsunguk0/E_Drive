@@ -1,0 +1,101 @@
+{
+  "created_at_utc": "2026-09-20T13:27:58.893832+00:00",
+  "artifacts": [
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/CONT_SELECTED_V0.npz",
+      "bytes": 1075718,
+      "sha256": "2417760b009b91b0e200e6b11ce747cef073b0d01814d2ec489aa0b1b734f3d0",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/CONT_SELECTED_train_probe.npz",
+      "bytes": 239664,
+      "sha256": "85279837844ffb31e848f694562ac899e6f79f3714b5f7b5d9121451d71e0e82",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/CONT_TERMINAL_V0.npz",
+      "bytes": 455794,
+      "sha256": "9ed2f6c12747778e4f7c619963e3d194cbc1e7c459a65312e36c97cd34415297",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/CONT_TERMINAL_train_probe.npz",
+      "bytes": 239694,
+      "sha256": "748bf6131187d3f1cdc734ce6cff6ec29147cb065e1f56bdf3b06a1795404c17",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/TEMPORAL_V0.npz",
+      "bytes": 1179493,
+      "sha256": "58899a2a40cbbf3b0a27551597074a8346ad47893766e8fdee93ed558884781c",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/TEMPORAL_train_probe.npz",
+      "bytes": 239753,
+      "sha256": "daa1d42fa6046c77419089c722a57bd0737c495488418d0f8d6ac00cc7c41f49",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/runtime/CONT_SELECTED.log",
+      "bytes": 783,
+      "sha256": "9e817502b285fc492016a280226db948ac89bb4b8e6bd4e3ba9de728cc848f9e",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/runtime/CONT_TERMINAL.log",
+      "bytes": 783,
+      "sha256": "58f573a139e1c4f50a8471c9c527507a6352861f0c39adc1ff7141961921290e",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_comprehensive_audit_20260920/runtime/TEMPORAL.log",
+      "bytes": 744,
+      "sha256": "0b9275b34c75cd3a9bafe84a835515d893903650b285764e8648c1aff13766e5",
+      "git_payload": false
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/experiments/a2_comprehensive_audit_20260920/analyze_probes.py",
+      "bytes": 3171,
+      "sha256": "3fe68ad5a1e59c34177ded703a5635cc82f34a988fc7b24e5954c0f1faa33c0d",
+      "git_payload": true
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/experiments/a2_comprehensive_audit_20260920/analyze_saved.py",
+      "bytes": 7263,
+      "sha256": "5596050882b1d8074e0e8c652f4681a7cba29055ddbcfe21b2be8a2d5f77eadc",
+      "git_payload": true
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/experiments/a2_comprehensive_audit_20260920/audit_frame_coverage.py",
+      "bytes": 2560,
+      "sha256": "c6e83ada593860c895be8384f20ada90ff12a8ef4724a5e4c2e8285b32482aa2",
+      "git_payload": true
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/experiments/a2_comprehensive_audit_20260920/audit_targets.py",
+      "bytes": 6675,
+      "sha256": "66865dd86b4bb16f77546ab49690e134f728efad4ef9b31490b4a478741bea70",
+      "git_payload": true
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/experiments/a2_comprehensive_audit_20260920/audit_timing_distribution.py",
+      "bytes": 3443,
+      "sha256": "97dffbc4c4d3708427efa39adabab475f69d6e3c942eb12f8109d0539495b4cc",
+      "git_payload": true
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/experiments/a2_comprehensive_audit_20260920/fixed_average_compare.py",
+      "bytes": 1856,
+      "sha256": "07d34d5a08e889d308896a41d0dbf929dd1686dc46c19eb0884f813337215245",
+      "git_payload": true
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/experiments/a2_comprehensive_audit_20260920/frozen_audit.py",
+      "bytes": 9294,
+      "sha256": "9275e6c1c856b45919ea40e983a5cc50af2310539e180767fefb54b1aee24b95",
+      "git_payload": true
+    }
+  ]
+}

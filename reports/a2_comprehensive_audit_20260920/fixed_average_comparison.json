@@ -1,0 +1,11 @@
+{
+  "three_equal_minus_QREFINE_CONT": -0.0023581768961081725,
+  "session_CI95": [
+    -0.004564897403856526,
+    -0.0007927096885984185
+  ],
+  "improving_sessions": 10,
+  "GT_rowwise_best_of_three_PREFIX": 0.11784307452111104,
+  "warning": "GT selection is not deployable. Fixed equal average is posthoc repeated-DEV analysis, not raw packaged candidate.",
+  "script_sha256": "07d34d5a08e889d308896a41d0dbf929dd1686dc46c19eb0884f813337215245"
+}

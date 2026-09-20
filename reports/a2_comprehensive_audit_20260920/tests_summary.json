@@ -1,0 +1,37 @@
+{
+  "created_at_utc": "2026-09-20T13:27:58.858551+00:00",
+  "optimizer_updates": 0,
+  "syntax": {
+    "analyze_saved.py": "pass",
+    "audit_targets.py": "pass",
+    "analyze_probes.py": "pass",
+    "frozen_audit.py": "pass",
+    "audit_timing_distribution.py": "pass",
+    "fixed_average_compare.py": "pass",
+    "audit_frame_coverage.py": "pass"
+  },
+  "frozen_checks": {
+    "CONT_SELECTED": {
+      "state_hash_unchanged": true,
+      "stored_PREFIX_absolute_delta": 7.3419486046333304e-09,
+      "max_coordinate_replay_m": 2.6702880859375e-05,
+      "same_forward_and_route_invariance": true
+    },
+    "CONT_TERMINAL": {
+      "state_hash_unchanged": true,
+      "stored_PREFIX_absolute_delta": 6.745180330947065e-09,
+      "max_coordinate_replay_m": 2.288818359375e-05,
+      "same_forward_and_route_invariance": true
+    },
+    "TEMPORAL": {
+      "state_hash_unchanged": true,
+      "stored_PREFIX_absolute_delta": 4.935152841945012e-10,
+      "max_coordinate_replay_m": 1.9073486328125e-05,
+      "same_forward_and_route_invariance": true
+    }
+  },
+  "private_original_files_unchanged": true,
+  "target_replay": "85698 official rows bitwise after float32",
+  "frame_coverage_status": "OPEN: status pose11 vs consumed image5, recorded without model mutation",
+  "no_new_trained_or_submitted_model": true
+}
