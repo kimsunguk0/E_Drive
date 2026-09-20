@@ -1,0 +1,11 @@
+{
+  "pid": 3960462,
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "experiments/a2_fresh_continue_20260920/collect.py",
+    "--publish"
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "purpose": "bounded progress/terminal collection and Git publication; no additional training"
+}

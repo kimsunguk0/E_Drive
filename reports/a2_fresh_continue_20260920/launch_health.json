@@ -1,0 +1,15 @@
+{
+  "status": "healthy",
+  "checked_utc": "2026-09-20T07:50:14.977519+00:00",
+  "last_logged_step": 150,
+  "last_elapsed_seconds": 86.5301762521267,
+  "seconds_per_update_excluding_startup": 0.5197052519718472,
+  "initial_full_parent_SHA_match": true,
+  "train_eval_row_SHA_match": true,
+  "finite_logged_loss_and_gradients": true,
+  "physical_gpu": 0,
+  "pid": 3959838,
+  "watcher_pid": 3960462,
+  "collector_status": "watching",
+  "startup_note": "First main launch attempt saw 1 MiB pending smoke context cleanup and started no process. GPU returned to 0 MiB with no compute apps; second attempt launched this single job."
+}

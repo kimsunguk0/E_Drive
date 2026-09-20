@@ -1,7 +1,9 @@
 # MotionDrive V2 — 현재 인수인계
 
-**최신 확인: 2026-09-20.** C2F/FRESH는 모두20,554 update를 완료했다. C2F DEV0.164204741은 기존과 거의 같고, 공개 nuImages trunk에서 새로 학습한 FRESH는0.158707259다. 기존 QREFINE+FRESH 저장 예측의 고정1:1 평균은0.150723838이며 배포·서버 평가 전이다. GPU0–3의 이번 학습은 종료됐다.
-[Terminal 결과](reports/a2_motion_fresh_20260919/RESULTS_KO.md), [상세 해석·고정 평균](reports/a2_motion_fresh_20260919/INTERPRETATION_20260920_KO.md), [실행 기록](reports/a2_motion_fresh_20260919/EXECUTION_KO.md). 추가 학습·FULL·공식 제출은 새로 시작하지 않았다.
+**최신 실행: 2026-09-20 16:48 KST.** 사용자 승인으로 GPU0에서 `A2-FRESH-CONT-s1`을 시작했다. FRESH DEV terminal 0.158707259에서 graph/input/loss를 유지하고 낮은 LR로 6,852 update를 추가한다. 1,142마다 그룹·시점·방향 오차를 저장하며 terminal을 주 비교로 사용한다. [실행 조건·검증](reports/a2_fresh_continue_20260920/EXECUTION_KO.md), [진행/최종 결과](reports/a2_fresh_continue_20260920/RESULTS_KO.md). 다른 신규 학습·FULL·제출은 시작하지 않았다.
+
+**이전 terminal 확인: 2026-09-20.** C2F/FRESH는 모두20,554 update를 완료했다. C2F DEV0.164204741은 기존과 거의 같고, 공개 nuImages trunk에서 새로 학습한 FRESH는0.158707259다. 기존 QREFINE+FRESH 저장 예측의 고정1:1 평균은0.150723838이며 배포·서버 평가 전이다. 이전 C2F/FRESH 두 학습은 종료됐다.
+[Terminal 결과](reports/a2_motion_fresh_20260919/RESULTS_KO.md), [상세 해석·고정 평균](reports/a2_motion_fresh_20260919/INTERPRETATION_20260920_KO.md), [실행 기록](reports/a2_motion_fresh_20260919/EXECUTION_KO.md). 당시 추가 학습·FULL·공식 제출은 시작하지 않았다. 이후 continuation은 상단 최신 실행을 따른다.
 
 **2026-09-20 추가 진단 완료:** 고정 QREFINE/FRESH의 V0 1,998행 및 무증강 train 1,024행을 GPU0/1에서 비교했다. 예측 state/history를 0으로 해도 점수 변화는 약 0.0002지만 continuous motion 제거는 +0.0710/+0.0441 악화했다. FRESH는 V0 정지 유지 99행을 모두 현재 정지로 분류하면서도 미래 경로를 전진시키며, train에서도 기존보다 정지·출발·횡방향 fitting이 부족하다. 미래 첫2초 속도 변화가 작은 일반 주행도 고정 평균 전체 오차의60.8%다. [잔여 오차 진단과 다음 우선순위](reports/a2_error_diagnosis_20260920/RESULTS_KO.md). 추가 학습·FULL 이전·제출은 시작하지 않았다.
 

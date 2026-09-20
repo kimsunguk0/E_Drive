@@ -1,0 +1,23 @@
+{
+  "status": "running",
+  "parent_checkpoint_sha256": "f5ed023c23733fcb83ba0c85fe9b5e3c8f97a91361f8e28b98ec9da2c2e9dfce",
+  "parent_PREFIX": 0.1587072618732656,
+  "primary_step": 6852,
+  "terminal": null,
+  "selected_best_on_reused_V0": {
+    "step": 0,
+    "PREFIX": 0.1587072618732656,
+    "independent_validation": false
+  },
+  "planned_steps": [
+    0,
+    1142,
+    2284,
+    3426,
+    4568,
+    5710,
+    6852
+  ],
+  "available_steps": [],
+  "limits": "same 11 DEV sessions reused; no hidden-test conversion; no automatic FULL or submission"
+}

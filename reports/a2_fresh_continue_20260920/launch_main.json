@@ -1,0 +1,20 @@
+{
+  "phase": "main",
+  "physical_gpu": 0,
+  "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1",
+  "log": "/NHNHOME/data/sukim/adcl/reports/a2_fresh_continue_20260920/runtime/A2-FRESH-CONT-s1.log",
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_fresh_continue_20260920/train_continue.py",
+    "--gpu",
+    "0",
+    "--run-dir",
+    "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1"
+  ],
+  "started_utc": "2026-09-20T07:48:20.390552+00:00",
+  "source_commit": "943ce0c5ce4ab12449581a037668951aeef49770",
+  "status": "spawned; verify actual updates",
+  "updates": 6852,
+  "pid": 3959838
+}
