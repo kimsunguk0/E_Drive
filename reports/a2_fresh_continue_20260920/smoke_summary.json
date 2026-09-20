@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "actual_updates": 2,
+  "optimizer_step_values": [
+    2.0
+  ],
+  "strict_parent_load": true,
+  "parent_checkpoint_unchanged": true,
+  "initial_model_state_sha256": "ff4bde855a81c4a8d3ecc0df8a7c2016a41ff27db0a5458bd8c18085cfd0ab1b",
+  "parameter_update_observed": true,
+  "loss_reconstruction_passed": true,
+  "fixed_BN": {
+    "policy": "fixed",
+    "modules": 53,
+    "affine_and_backbone_weights_trainable": true,
+    "inference_policy": "eval running statistics for both arms"
+  },
+  "batch": 16,
+  "microbatch": 8,
+  "warmup": 100,
+  "steps": 2,
+  "nonfinite_count": 0,
+  "smoke_eval_PREFIX": 0.15947714658944426,
+  "source_sha256": {
+    "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+    "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+    "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+    "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+    "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "experiments/a2_fresh_continue_20260920/train_continue.py": "0ebcf787b89f783fb2ad573541bfc176d8b645494dc879d1d8907bf0550ec76d",
+    "experiments/a2_motion_fresh_20260919/motion_model.py": "cabc7d6778ae3409f49c9df15941aa413f6623f10d4035134d6ef7f8a223d462",
+    "experiments/md_a2_scene_extensions_20260918/scene_extensions.py": "45f2fd1f3874e1468d99c0563893611b21ba6b16dcd5ddb1aeb7f8c83fe1fdf6",
+    "scripts/train_motiondrive_v2.py": "8a20e2676aad909c2952fe1418a61bc419105793148573a2f45738b432070f24"
+  },
+  "manifest_sha256": "990e8ed98a92c32585dcbcde21b13a9d0894d2bf403e0dd7e334a716134d243c",
+  "elapsed_seconds": 34.39493987336755,
+  "interpretation": "Execution/initialization check only, not a performance trial"
+}
