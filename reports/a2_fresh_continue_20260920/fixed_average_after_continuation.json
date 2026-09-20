@@ -1,0 +1,108 @@
+{
+  "created_utc": "2026-09-20T09:07:44.552168+00:00",
+  "method": "fixed 0.5*QREFINE + 0.5*FRESH; unchanged weights; saved DEV predictions only",
+  "source_sha256": "6d6ca14b17a0a8f03cac3841ad676d6fca451db42e7fa5699f3f409f74c65f50",
+  "QREFINE_source": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/final_eval.json",
+  "QREFINE_sha256": "4baaff85369c6882fa557ccf79c21cb7aede29a9da8053714cd2c232b024e2a9",
+  "models": {
+    "parent": {
+      "PREFIX": 0.15072383770872438,
+      "L2_1s": 0.08592839077593055,
+      "L2_2s": 0.14811483187938038,
+      "L2_3s": 0.2181282904708622,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3939777756509995,
+          "contribution": 0.00473246577358558
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15071108273982864,
+          "contribution": 0.14143307314173106
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.09199475746695622,
+          "contribution": 0.004558298793407741
+        }
+      },
+      "fresh_prediction_source": "/NHNHOME/data/sukim/adcl/work_dirs/a2_motion_fresh_20260919/A2-FRESH-NUIM-s1/final_eval.json",
+      "fresh_predictions_sha256": "6b9b47bd64f80da824bb278a130957afc6983bea9fc0ef74031a1fcfff315983"
+    },
+    "step5710": {
+      "PREFIX": 0.14855596653675854,
+      "L2_1s": 0.0843453996165281,
+      "L2_2s": 0.14608585955691472,
+      "L2_3s": 0.21523664043683277,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3785486788461286,
+          "contribution": 0.004547131277430974
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.14923498968641705,
+          "contribution": 0.14004785068169767
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.07993987056671199,
+          "contribution": 0.0039609845776298735
+        }
+      },
+      "fresh_prediction_source": "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1/predictions_step5710.json",
+      "fresh_predictions_sha256": "9a639d5a83821f235727e96b5b4c980f4cc60391f6cd785a5345feccb5e4b511",
+      "versus_original_equal_average": {
+        "PREFIX_delta": -0.0021678711719658726,
+        "session_CI95": [
+          -0.0032322383620146506,
+          -0.0010395520066513488
+        ],
+        "sessions_improved": 9
+      }
+    },
+    "step6852": {
+      "PREFIX": 0.1497606920562842,
+      "L2_1s": 0.08538434284975603,
+      "L2_2s": 0.14732213077482706,
+      "L2_3s": 0.2165756025442695,
+      "groups": {
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.38974603436519734,
+          "contribution": 0.004681634046428797
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.14990756164040217,
+          "contribution": 0.14067901805593297
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.08880080634279863,
+          "contribution": 0.004400039953922455
+        }
+      },
+      "fresh_prediction_source": "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1/predictions_step6852.json",
+      "fresh_predictions_sha256": "47331aface4ee164ebe9e4ffdf042425a1cd52eed89a85c64caf46119a56da0e",
+      "versus_original_equal_average": {
+        "PREFIX_delta": -0.0009631456524401834,
+        "session_CI95": [
+          -0.0023258289197528263,
+          -0.00035753293317473023
+        ],
+        "sessions_improved": 9
+      }
+    }
+  },
+  "new_forward_or_training": false,
+  "coefficient_sweep": false,
+  "raw_deployment_verified": false,
+  "limitations": [
+    "5710 was selected on the same reused V0; not independent validation.",
+    "No FULL or server score, no latency measurement.",
+    "Session bootstrap conditional on 11 observed sessions."
+  ]
+}

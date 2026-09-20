@@ -1,6 +1,6 @@
 # MotionDrive V2 — 현재 인수인계
 
-**최신 실행: 2026-09-20 16:48 KST.** 사용자 승인으로 GPU0에서 `A2-FRESH-CONT-s1`을 시작했다. FRESH DEV terminal 0.158707259에서 graph/input/loss를 유지하고 낮은 LR로 6,852 update를 추가한다. 1,142마다 그룹·시점·방향 오차를 저장하며 terminal을 주 비교로 사용한다. [실행 조건·검증](reports/a2_fresh_continue_20260920/EXECUTION_KO.md), [진행/최종 결과](reports/a2_fresh_continue_20260920/RESULTS_KO.md). 다른 신규 학습·FULL·제출은 시작하지 않았다.
+**최신 완료: 2026-09-20.** `A2-FRESH-CONT-s1` 추가6,852 update 완료. 고정 terminal은 **0.156334059**(부모0.158707259), 예정 중간점 최저는 step5,710의 **0.153684060**이다. QREFINE과 동일1:1 저장 예측 평균은 terminal 사용0.149760692, 선택 중간점 사용 **0.148555967**이다. 모두 DEV이며 서버 점수가 아니다. 일반 주행·정지/출발·종/횡은 부모보다 개선됐지만 마지막 구간에서 일부 되돌아갔다. [완료 판정](reports/a2_fresh_continue_20260920/TERMINAL_REVIEW_KO.md), [전체 곡선](reports/a2_fresh_continue_20260920/RESULTS_KO.md). 새 학습·FULL·제출은 시작하지 않았다.
 
 **이전 terminal 확인: 2026-09-20.** C2F/FRESH는 모두20,554 update를 완료했다. C2F DEV0.164204741은 기존과 거의 같고, 공개 nuImages trunk에서 새로 학습한 FRESH는0.158707259다. 기존 QREFINE+FRESH 저장 예측의 고정1:1 평균은0.150723838이며 배포·서버 평가 전이다. 이전 C2F/FRESH 두 학습은 종료됐다.
 [Terminal 결과](reports/a2_motion_fresh_20260919/RESULTS_KO.md), [상세 해석·고정 평균](reports/a2_motion_fresh_20260919/INTERPRETATION_20260920_KO.md), [실행 기록](reports/a2_motion_fresh_20260919/EXECUTION_KO.md). 당시 추가 학습·FULL·공식 제출은 시작하지 않았다. 이후 continuation은 상단 최신 실행을 따른다.
@@ -18,8 +18,11 @@
 |---|---|---:|---|
 |확인된 공식 제출 기준|MR-NATIVE-FULL-s1|**0.185968928**|사용자가 전달한 공식 서버 결과|
 |기존 A2 고정 terminal 대조|A2-QREFINE-NOM-s1|**0.164251770**|DEV V0; 이전 A2 대비 이득은 작고 불확실|
-|새 최선 단일 DEV terminal|A2-FRESH-NUIM-s1|**0.158707259**|일반 주행·첫2초 개선, 정지/출발·횡방향·인지 회귀 동반|
-|추가 저장 예측 분석|QREFINE+FRESH 고정1:1 평균|**0.150723838**|같은 DEV, 계수 스윕 없음, raw 배포/실측 비용/서버 미검증|
+|새 고정 단일 DEV terminal|A2-FRESH-CONT-s1 / step6,852|**0.156334059**|부모 대비1.50% 개선|
+|선택된 최저 단일 DEV|A2-FRESH-CONT-s1 / step5,710|**0.153684060**|예정 중간 평가에서 선택, 독립 검증 아님|
+|기존 FRESH 부모|A2-FRESH-NUIM-s1|**0.158707259**|기존 초기화 비교와 복귀용 보존|
+|최신 저장 예측 분석|QREFINE+FRESH-CONT step5,710 고정1:1 평균|**0.148555967**|같은 DEV의 선택 후보, raw 배포/실측 비용/서버 미검증|
+|이전 고정 평균|QREFINE+FRESH 부모|**0.150723838**|평균 비율0.5 유지한 기준|
 |선택된 DEV 중간 후보|A2-G1-s1 / step 2,284|**0.163882485**|같은 V0의 3개 예정 평가 중 선택; 일반 주행은 부모보다 약간 악화|
 |raw 배포·ZIP 확보|A2-FULL-NOM-s1|공식 점수 없음|8 fixture 정확 일치, 1125 clip 완료; 4090 시간은 아직 미측정|
 |최신 command 보조 후보|A2-COMMAND-NOM-s1|**0.164884294**|BASE보다 0.38% 개선 관측, QREFINE보다 높음|
@@ -44,7 +47,8 @@ A2 또는 command를 운영국이 개별 승인했다고 주장하지 않는다.
 |COMMAND-NOM|제공 6종 command → 공통 scene query|20,554|0.164884294|보조 후보 보존|
 |VIS-TEACHER|QREFINE 이후 RGB 공간 특징 증류|3,426|0.166137158|G0·부모 모두 미달, FULL 이전 제외|
 |C2F-MOTION|stride16 대응→stride4 세밀한 영상 비교|20,554|0.164204741|일반 주행 개선 미확인, 확대 후순위|
-|FRESH-NUIM|공개 trunk만 로드, 나머지 새 초기화|20,554|0.158707259|새 단일 DEV 후보, 회귀·추가 학습 검토 필요|
+|FRESH-NUIM|공개 trunk만 로드, 나머지 새 초기화|20,554|0.158707259|추가 학습의 부모로 보존|
+|FRESH-CONT|동일 FRESH graph/input/loss, 낮은 LR 추가 학습|6,852|0.156334059|고정 terminal 개선; 선택 중간점0.153684060 별도|
 
 - 기존 A2-DIRECT의 실측 timestamp 평가 **0.164280979**, 동일 checkpoint의 배포형 nominal 평가 **0.164455314**.
   새 BASE는 nominal status로 다시 학습했으므로 기존 모델과의 비교에는 입력 학습 정책 차이도 포함된다.

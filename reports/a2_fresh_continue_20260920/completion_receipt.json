@@ -1,0 +1,14 @@
+{
+  "verified_utc": "2026-09-20T09:09:15.589060+00:00",
+  "training_completed": true,
+  "additional_updates": 6852,
+  "nonfinite_count": 0,
+  "elapsed_seconds": 3711.1534730270505,
+  "work_result_commit": "9a77539318ab329539c256f1a57d90efc8f00c6c",
+  "mirror_result_commit": "a006b6638e89b3f868c86cb16416e52658202494",
+  "remote_HEAD_verified": true,
+  "prior_collector_status": "failed",
+  "prior_collector_error": "Traceback (most recent call last):\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_fresh_continue_20260920/collect.py\", line 144, in main\n    if args.publish:state['publication']=publish()\n                                         ^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_fresh_continue_20260920/collect.py\", line 117, in publish\n    assert command(['git','ls-remote','github','refs/heads/motiondrive-v2-20260910'],mirror).split()[0]==remote\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_fresh_continue_20260920/collect.py\", line 98, in command\n    return subprocess.check_output(argv,cwd=cwd,text=True,stderr=subprocess.STDOUT)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', 'ls-remote', 'github', 'refs/heads/motiondrive-v2-20260910']' returned non-zero exit status 128.\n",
+  "recovery": "Final post-push remote HEAD query had exited128; direct retry confirms the result commit is present. No training or publishing rerun.",
+  "no_new_training_FULL_submission": true
+}
