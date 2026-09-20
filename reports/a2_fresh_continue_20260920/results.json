@@ -1,12 +1,103 @@
 {
-  "status": "running",
+  "status": "completed",
   "parent_checkpoint_sha256": "f5ed023c23733fcb83ba0c85fe9b5e3c8f97a91361f8e28b98ec9da2c2e9dfce",
   "parent_PREFIX": 0.1587072618732656,
   "primary_step": 6852,
-  "terminal": null,
+  "terminal": {
+    "step": 6852,
+    "total_updates": 27406,
+    "PREFIX": 0.156334058774469,
+    "L2_1s": 0.08693449142968467,
+    "L2_2s": 0.15053985317171434,
+    "L2_3s": 0.231527831722008,
+    "per_waypoint_L2": [
+      0.058401061576286446,
+      0.11546792128308292,
+      0.1776582273227506,
+      0.25063220250473683,
+      0.33678426180505916,
+      0.45022331584013126
+    ],
+    "delta_vs_parent": -0.0023732003940870965,
+    "session_CI95": [
+      -0.005047610127357233,
+      -0.0011387468471526108
+    ],
+    "sessions_improved": 10,
+    "diagnostics": {
+      "n": 1998,
+      "official_weights": [
+        0.3055555555555556,
+        0.3055555555555556,
+        0.1388888888888889,
+        0.1388888888888889,
+        0.05555555555555555,
+        0.05555555555555555
+      ],
+      "first2s_PREFIX_contribution": 0.11261141557195842,
+      "groups": {
+        "all": {
+          "n": 1998,
+          "PREFIX": 0.156334058774469,
+          "overall_PREFIX_contribution": 0.156334058774469,
+          "first2s_common_progress_error_MAE_mps": 0.09379449042677811,
+          "first2s_time_varying_progress_error_RMS_mps": 0.09584165530652339
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.46358475290281187,
+          "overall_PREFIX_contribution": 0.005568585620454197,
+          "first2s_common_progress_error_MAE_mps": 0.3167366326460826,
+          "first2s_time_varying_progress_error_RMS_mps": 0.3349767541102727
+        },
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15320499212751712,
+          "overall_PREFIX_contribution": 0.1437734535731204,
+          "first2s_common_progress_error_MAE_mps": 0.0905267752538266,
+          "first2s_time_varying_progress_error_RMS_mps": 0.09070480334734872
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.14111166790532306,
+          "overall_PREFIX_contribution": 0.006992019580894386,
+          "first2s_common_progress_error_MAE_mps": 0.1016364554370886,
+          "first2s_time_varying_progress_error_RMS_mps": 0.04857003556936647
+        }
+      },
+      "tangent_mask": "GT segment chord length >0.05m; identical for compared models",
+      "valid_tangent_fraction": 0.940357023690357,
+      "weighted_longitudinal_abs_m": 0.1185080199330278,
+      "weighted_lateral_abs_m": 0.06944493494737089,
+      "warning": "Projected errors are not additive D3 components; interval speeds are not measured v0"
+    },
+    "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1/ckpt_step6852.pth",
+    "checkpoint_sha256": "f28f764c5ae173f58bdb0970bed1bdba268642e00c242f17f5d433741430d49c",
+    "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1/predictions_step6852.json",
+    "predictions_sha256": "47331aface4ee164ebe9e4ffdf042425a1cd52eed89a85c64caf46119a56da0e",
+    "auxiliary": {
+      "occ_iou": 0.38214836432221644,
+      "lane_iou": 0.359878498119239,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        0.547520778553856,
+        0.044059437579646414,
+        0.23545425857152874,
+        0.047689414725788845,
+        0.005154611786270539
+      ],
+      "history_position_mae_by_offset": [
+        0.06785001126028274,
+        0.12311950725407943,
+        0.2919071368168451,
+        0.5944287101874497
+      ]
+    },
+    "interpretation": "primary fixed terminal on reused DEV",
+    "server_prediction": false
+  },
   "selected_best_on_reused_V0": {
-    "step": 0,
-    "PREFIX": 0.1587072618732656,
+    "step": 5710,
+    "PREFIX": 0.15368406029504603,
     "independent_validation": false
   },
   "planned_steps": [
@@ -18,6 +109,13 @@
     5710,
     6852
   ],
-  "available_steps": [],
+  "available_steps": [
+    1142,
+    2284,
+    3426,
+    4568,
+    5710,
+    6852
+  ],
   "limits": "same 11 DEV sessions reused; no hidden-test conversion; no automatic FULL or submission"
 }
