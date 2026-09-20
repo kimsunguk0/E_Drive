@@ -1,0 +1,72 @@
+{
+  "created_at_utc": "2026-09-20T13:51:41.337580+00:00",
+  "producer_sha256": "1d9374bc9e9789eaee35fb885da0682c0ef59195fd67757a460d83014563e643",
+  "producer": "/NHNHOME/data/sukim/adcl/experiments/a2_progress_h4_20260920/h4_status.py",
+  "split_manifest_sha256": "7e40faf9b5e6ee3fff0bfc111ce1415f7c95e47d3d5ca8de67a799d8b99ada44",
+  "ego_cache_sha256": "d35a69bb229b2d4736aff7dddefd3522ddbd346e112283e2ce58ce3986a023bd",
+  "relative_fit_frames": [
+    -10,
+    -5,
+    -2,
+    -1,
+    0
+  ],
+  "time_policy": "frame differences * 0.1 seconds",
+  "supervision_unchanged": true,
+  "DEV_only": true,
+  "splits": {
+    "train": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_h4_status_20260920/train.npz",
+      "sha256": "6e5e0a713a2819764ccd4c65198d6581468ea3050a00c96b6150e01890eb5e3b",
+      "rows": 83700,
+      "old_input_difference_signed_mean": [
+        -0.0003139766281090672,
+        2.032123393043108e-05,
+        -0.0003235032357451692,
+        2.0400327676252727e-05,
+        8.774196120312493e-07
+      ],
+      "old_input_difference_MAE": [
+        0.009257201041643534,
+        0.006901846902824467,
+        0.01502040524009911,
+        0.01144207702282244,
+        0.0005863507835723338
+      ],
+      "old_input_difference_abs_p99": [
+        0.04346668243408197,
+        0.035406261235475175,
+        0.06894250348210323,
+        0.05574627470225089,
+        0.003950606063008299
+      ]
+    },
+    "tune": {
+      "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_h4_status_20260920/tune.npz",
+      "sha256": "489c9d4ba69a1e93ef937437547814364c6f250bd37f5c5d44e0acf69a2d3ec8",
+      "rows": 9990,
+      "old_input_difference_signed_mean": [
+        -0.00015146070667378944,
+        -1.9569266336824863e-05,
+        -0.00014780125251097448,
+        -2.173603402459198e-05,
+        2.310712874421362e-06
+      ],
+      "old_input_difference_MAE": [
+        0.00946329940901494,
+        0.006699019235906393,
+        0.015754669060102682,
+        0.011542820064233072,
+        0.0004962054318737711
+      ],
+      "old_input_difference_abs_p99": [
+        0.05723134040832521,
+        0.03483602806925774,
+        0.09411685094237343,
+        0.06283456325531026,
+        0.0032417804520810424
+      ]
+    }
+  },
+  "fit_rms_max_m": 0.04757070181545075
+}

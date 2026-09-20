@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "actual_two_smoke_predictions_compared": true,
+  "n": 1998,
+  "comparison": {
+    "delta_PROGRESS_minus_DIRECT": -3.780458302230461,
+    "session_CI95": [
+      -3.8374790361711173,
+      -3.733919466315655
+    ],
+    "sessions_improved": 11,
+    "session_count": 11,
+    "limitation": "Conditional paired resampling of the same reused 11 DEV sessions, not independent test evidence."
+  },
+  "collector_sha256": "4ffb0a15c403ce3f49f6b2677b46ac9726b50f74d33b7f7e01e74ac269bd8a2a"
+}

@@ -1,0 +1,61 @@
+{
+  "arm": "QREFINE",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "d15229570c08035a2069a390c7b84e8d725fa309a799555d9637567dab45346b",
+  "old_PREFIX": 0.16425176679687356,
+  "new": {
+    "PREFIX": 0.16426078569554983,
+    "L2_1s": 0.09607052543973829,
+    "L2_2s": 0.16371652179378748,
+    "L2_3s": 0.23299530985312378,
+    "per_waypoint_L2": [
+      0.06437664843304214,
+      0.12776440244643422,
+      0.19628591292783898,
+      0.2664391233678344,
+      0.33668662550028033,
+      0.4064191464433119
+    ],
+    "first2s_PREFIX_contribution": 0.12297713169868357,
+    "weighted_longitudinal_abs_m": 0.14336016206351437,
+    "weighted_lateral_abs_m": 0.06089719125801086,
+    "groups": {
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.3354865525670256,
+        "overall_contribution": 0.00402986849930361
+      },
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.16845703602608583,
+        "overall_contribution": 0.15808655783228776
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.043277070799889315,
+        "overall_contribution": 0.0021443593639584794
+      }
+    },
+    "geometric_turn_bins": {
+      "negative_y_le_minus2m": {
+        "n": 161,
+        "PREFIX": 0.23737761882119082
+      },
+      "other": {
+        "n": 1796,
+        "PREFIX": 0.1529536506381616
+      },
+      "positive_y_ge2m": {
+        "n": 41,
+        "PREFIX": 0.37245113764289256
+      }
+    }
+  },
+  "plan_PREFIX_change": 0.005182740570200417,
+  "state_hash_unchanged": true,
+  "model_state_sha256": "1628bc58731f3fe4faa01dcd046748a9f4b3ebc619b8818d49bb3423c302a4e3",
+  "arrays": "/NHNHOME/data/sukim/adcl/reports/a2_progress_h4_20260920/policy_QREFINE.npz",
+  "arrays_sha256": "059da1e96e64010ff6f125bbcaa01d3d8dade357dc80005c1a70a012629280e3",
+  "optimizer_updates": 0,
+  "interpretation": "Frozen input policy change; not new training or official submission."
+}

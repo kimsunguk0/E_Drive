@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "arms": {
+    "A2-H4-DIRECT": {
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-DIRECT-s1-smoke",
+      "status": "completed",
+      "step": 2,
+      "nonfinite_count": 0,
+      "initial_state_sha256": "84d0c9f009d0530ff5fed049e10ffa5076fc819b16264ccabd9dacd4fad75760",
+      "elapsed_seconds": 39.0183738861233,
+      "manifest_sha256": "27830327c0ec2aacd42a61780edc4ab58c5dd6881e4ae402ef59f3da557f7d7f",
+      "sample_hashes": {
+        "1": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "2": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16"
+      },
+      "smoke_PREFIX_not_model_quality": 16.598513577077483
+    },
+    "A2-H4-PROGRESS": {
+      "run": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1-smoke",
+      "status": "completed",
+      "step": 2,
+      "nonfinite_count": 0,
+      "initial_state_sha256": "75eec301bdc2abb533e0f0fa4ffa73c5b2e4340b7119a84f11b2d1b2212ed200",
+      "elapsed_seconds": 40.41878402791917,
+      "manifest_sha256": "81efcb0a9a87d098f801cb77649655599a48ffe46957dad32c11366eb96811f4",
+      "sample_hashes": {
+        "1": "7e8bd77d8b35f3870b53abd3ff7cb758696b3bd163bf5141249f6e1655afa184",
+        "2": "dc2055d2baaaa97a1c13179fd9023e1e2b0cb9bde76c995622a63a0dad06ce16"
+      },
+      "smoke_PREFIX_not_model_quality": 12.818055267165134
+    }
+  },
+  "same_all_logged_sample_hashes": true,
+  "same_data_arguments_loss_recipe_input_policy": true,
+  "preflight_sha256": "0e414f890eddf39d4fc3084ff5cb2ca0d204a0d7aac06b86b8030faab82903f4",
+  "purpose": "Implementation smoke only, no architecture selection from two updates",
+  "initial_trainable_tensors_identical": true,
+  "initial_plans_intentionally_different": true
+}

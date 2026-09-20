@@ -1,0 +1,61 @@
+{
+  "arm": "CONT",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1/ckpt_step5710.pth",
+  "checkpoint_sha256": "073dc47df742b49a93a53ff7cb4bb3f3af7ea7a174a998dc6126597e184696cd",
+  "old_PREFIX": 0.15368406029504603,
+  "new": {
+    "PREFIX": 0.1535115001236236,
+    "L2_1s": 0.08476081294737846,
+    "L2_2s": 0.14768764163792872,
+    "L2_3s": 0.22808604578556363,
+    "per_waypoint_L2": [
+      0.056896949623551824,
+      0.11262467627120497,
+      0.17477910528275628,
+      0.24644983537420212,
+      0.33206213696518927,
+      0.44570357119647774
+    ],
+    "first2s_PREFIX_contribution": 0.11030229411464211,
+    "weighted_longitudinal_abs_m": 0.11754735444411761,
+    "weighted_lateral_abs_m": 0.06837843410711208,
+    "groups": {
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.441221407414601,
+        "overall_contribution": 0.005299956845821033
+      },
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.15144046997624108,
+        "overall_contribution": 0.14211755816088692
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.1229876996322977,
+        "overall_contribution": 0.006093985116915652
+      }
+    },
+    "geometric_turn_bins": {
+      "negative_y_le_minus2m": {
+        "n": 161,
+        "PREFIX": 0.21349249898394587
+      },
+      "other": {
+        "n": 1796,
+        "PREFIX": 0.14250322661556475
+      },
+      "positive_y_ge2m": {
+        "n": 41,
+        "PREFIX": 0.4001924368056185
+      }
+    }
+  },
+  "plan_PREFIX_change": 0.008822237304097988,
+  "state_hash_unchanged": true,
+  "model_state_sha256": "38e8e5d7a610958462a07a63c143d475c5aea519622a887d2b8bfb7f3744f990",
+  "arrays": "/NHNHOME/data/sukim/adcl/reports/a2_progress_h4_20260920/policy_CONT.npz",
+  "arrays_sha256": "129ea79aa73b3feb95a76b160ca51ccb8a893f82768a861c8bd41c0a6ad50a5a",
+  "optimizer_updates": 0,
+  "interpretation": "Frozen input policy change; not new training or official submission."
+}

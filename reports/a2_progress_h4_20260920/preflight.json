@@ -1,0 +1,283 @@
+{
+  "status": "passed",
+  "physical_gpu": 0,
+  "checked_weights_used_for_training": false,
+  "initial_states": {
+    "A2-H4-DIRECT": "84d0c9f009d0530ff5fed049e10ffa5076fc819b16264ccabd9dacd4fad75760",
+    "A2-H4-PROGRESS": "75eec301bdc2abb533e0f0fa4ffa73c5b2e4340b7119a84f11b2d1b2212ed200"
+  },
+  "all_common_initial_tensors_identical": true,
+  "constructor_rng_identical": true,
+  "producer": {
+    "synthetic_quadratic_yaw_reflection": true,
+    "raw_fixture_checks": [
+      {
+        "clip": "fixture_000",
+        "row": 30,
+        "status_max_diff": 0.0,
+        "fit_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "consumed_image_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "image_getter_calls": 15,
+        "unused_future_pose_poison_invariant": true
+      },
+      {
+        "clip": "fixture_001",
+        "row": 180,
+        "status_max_diff": 0.0,
+        "fit_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "consumed_image_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "image_getter_calls": 15,
+        "unused_future_pose_poison_invariant": true
+      },
+      {
+        "clip": "fixture_002",
+        "row": 330,
+        "status_max_diff": 0.0,
+        "fit_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "consumed_image_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "image_getter_calls": 15,
+        "unused_future_pose_poison_invariant": true
+      },
+      {
+        "clip": "fixture_003",
+        "row": 480,
+        "status_max_diff": 0.0,
+        "fit_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "consumed_image_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "image_getter_calls": 15,
+        "unused_future_pose_poison_invariant": true
+      },
+      {
+        "clip": "fixture_004",
+        "row": 630,
+        "status_max_diff": 0.0,
+        "fit_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "consumed_image_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "image_getter_calls": 15,
+        "unused_future_pose_poison_invariant": true
+      },
+      {
+        "clip": "fixture_005",
+        "row": 780,
+        "status_max_diff": 0.0,
+        "fit_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "consumed_image_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "image_getter_calls": 15,
+        "unused_future_pose_poison_invariant": true
+      },
+      {
+        "clip": "fixture_006",
+        "row": 930,
+        "status_max_diff": 0.0,
+        "fit_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "consumed_image_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "image_getter_calls": 15,
+        "unused_future_pose_poison_invariant": true
+      },
+      {
+        "clip": "fixture_007",
+        "row": 1080,
+        "status_max_diff": 0.0,
+        "fit_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "consumed_image_frames": [
+          -10,
+          -5,
+          -2,
+          -1,
+          0
+        ],
+        "image_getter_calls": 15,
+        "unused_future_pose_poison_invariant": true
+      }
+    ],
+    "required_missing_duplicate_rejected": true,
+    "supervision_changed": false
+  },
+  "composition": {
+    "straight_curve_reflection_reverse_nearstop_departure": true,
+    "raw_channel_gradient_norms": [
+      1.8600149154663086,
+      1.3239140510559082
+    ],
+    "zero_length_is_limit_not_exact": true,
+    "no_heading_clamp": true,
+    "output_already_absolute": true
+  },
+  "fixture_rows": [
+    30,
+    47
+  ],
+  "common_features": {
+    "fp32": {
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "state_logvar": 0.0,
+      "history_logvar": 0.0
+    },
+    "bf16": {
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "state_logvar": 0.0,
+      "history_logvar": 0.0
+    }
+  },
+  "initial_plan_difference_expected": 4.058145523071289,
+  "PREFIX_gradients": {
+    "length_heading_output_rows": [
+      1.626668930053711,
+      1.1553798913955688
+    ],
+    "shared_visual_path": {
+      "backbone_fpn.layer1.0.conv1.weight": 0.2515755593776703,
+      "motion_encoder.correlation_fuse.0.weight": 0.6510498523712158,
+      "planner.temporal_read.attention.out_proj.weight": 1.0915757417678833
+    }
+  },
+  "shared_consumers_identical": true,
+  "input_isolation": {
+    "provided_status": {
+      "motion_pair_features": 0.0,
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "scene_max_change": 0.07175040245056152
+    },
+    "goal": {
+      "motion_pair_features": 0.0,
+      "motion_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "scene_max_change": 0.007790982723236084
+    }
+  },
+  "full_effective_batch_loss": {
+    "whole": 7.959927558898926,
+    "micro_sum": 7.959927558898926,
+    "absolute_difference": 0.0
+  },
+  "double_flip": true,
+  "strict_reload_max_diff": 0.0,
+  "wrong_graph_strict_load_rejected": true,
+  "whole_forward_cost": {
+    "A2-H4-DIRECT": {
+      "official_counter_flops": 730044861120,
+      "parameters": 26652536,
+      "B200_B1_median_ms": 19.58308555185795,
+      "RTX4090_ms": null
+    },
+    "A2-H4-PROGRESS": {
+      "official_counter_flops": 730044861120,
+      "parameters": 26652536,
+      "B200_B1_median_ms": 19.505279138684273,
+      "RTX4090_ms": null
+    }
+  },
+  "elapsed_seconds": 10.624480111524463,
+  "source_sha256": {
+    "progress_model.py": "3c71b534c121760732ba0fbf12f3fa28ebe90c50bce69fa99c5759ab8bc27f2e",
+    "h4_data.py": "cbe1087eed1438a195c8d7f94ee420c672601b9eccd6e083ac3ed70d2e35ac89",
+    "h4_status.py": "1d9374bc9e9789eaee35fb885da0682c0ef59195fd67757a460d83014563e643",
+    "preflight.py": "00ec3b92d365fd009a452f790da4a170eadd651e0c5ae619cd17f1e74065a065"
+  },
+  "peak_cuda_allocated_bytes": 8993493504
+}

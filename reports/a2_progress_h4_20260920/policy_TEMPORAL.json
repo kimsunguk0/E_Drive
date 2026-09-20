@@ -1,0 +1,61 @@
+{
+  "arm": "TEMPORAL",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_temporal_read_20260920/A2-TEMPORAL-READ-s1/ckpt_step20554.pth",
+  "checkpoint_sha256": "12b89ef4a80319dfc55e86533c3d6bda17c0d69eda7547b59a2f5e94091def55",
+  "old_PREFIX": 0.15411941110200755,
+  "new": {
+    "PREFIX": 0.153980106926648,
+    "L2_1s": 0.08792249922848942,
+    "L2_2s": 0.1489194325909707,
+    "L2_3s": 0.225098388960484,
+    "per_waypoint_L2": [
+      0.06019884042171428,
+      0.11564615803526454,
+      0.17581077637774417,
+      0.24402195552915926,
+      0.3248953924884106,
+      0.4300172109106113
+    ],
+    "first2s_PREFIX_contribution": 0.11204051784892463,
+    "weighted_longitudinal_abs_m": 0.12033518215625152,
+    "weighted_lateral_abs_m": 0.061528672167410585,
+    "groups": {
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.4799761158184988,
+        "overall_contribution": 0.005765478868690677
+      },
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.14818936617228953,
+        "overall_contribution": 0.13906659738390534
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.18462389178541358,
+        "overall_contribution": 0.009148030674052024
+      }
+    },
+    "geometric_turn_bins": {
+      "negative_y_le_minus2m": {
+        "n": 161,
+        "PREFIX": 0.20026867044053173
+      },
+      "other": {
+        "n": 1796,
+        "PREFIX": 0.14686407903949678
+      },
+      "positive_y_ge2m": {
+        "n": 41,
+        "PREFIX": 0.28392955472148645
+      }
+    }
+  },
+  "plan_PREFIX_change": 0.008914760848011594,
+  "state_hash_unchanged": true,
+  "model_state_sha256": "f24ece8b2c15ce5514a5280f5ba52a80933e2d5891cbf74a08112b70311449d3",
+  "arrays": "/NHNHOME/data/sukim/adcl/reports/a2_progress_h4_20260920/policy_TEMPORAL.npz",
+  "arrays_sha256": "37838cfc440117342a29d9784b59c12d8091319ba09913cae721998b0f4fa53d",
+  "optimizer_updates": 0,
+  "interpretation": "Frozen input policy change; not new training or official submission."
+}
