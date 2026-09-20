@@ -1,7 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
-**최신 착수: 2026-09-19 23:43 KST.** 사용자 승인으로 GPU0 A2-C2F-MOTION, GPU1 A2-FRESH-NUIM을 각각 20,554 update로 시작했다. 기존 QREFINE을 대조로 삼고 두 변경은 독립이다.
-[실행·검사 기록](reports/a2_motion_fresh_20260919/EXECUTION_KO.md), [구현·고정 레시피](experiments/a2_motion_fresh_20260919/README.md). 최신 동작 상태는 해당 reports의 watcher_status.json, 완료 결과는 RESULTS_KO.md와 result_A2-*.json을 우선한다.
+**최신 확인: 2026-09-20.** C2F/FRESH는 모두20,554 update를 완료했다. C2F DEV0.164204741은 기존과 거의 같고, 공개 nuImages trunk에서 새로 학습한 FRESH는0.158707259다. 기존 QREFINE+FRESH 저장 예측의 고정1:1 평균은0.150723838이며 배포·서버 평가 전이다. GPU0–3의 이번 학습은 종료됐다.
+[Terminal 결과](reports/a2_motion_fresh_20260919/RESULTS_KO.md), [상세 해석·고정 평균](reports/a2_motion_fresh_20260919/INTERPRETATION_20260920_KO.md), [실행 기록](reports/a2_motion_fresh_20260919/EXECUTION_KO.md). 추가 학습·FULL·공식 제출은 새로 시작하지 않았다.
 
 **직전 완료 상태:** State ON/OFF와 RGB 교사 학습·평가·strict student export를 완료했다. A2 FULL raw 추론·패키지도 확보했다.
 [이번 최종 결과](reports/a2_visual_teacher_20260919/RESULTS_KO.md), [FULL 배포 안내](reports/a2_full_submission_20260919/README_KO.md).
@@ -13,7 +13,9 @@
 |역할|후보|점수|해석|
 |---|---|---:|---|
 |확인된 공식 제출 기준|MR-NATIVE-FULL-s1|**0.185968928**|사용자가 전달한 공식 서버 결과|
-|현재 A2의 고정 terminal 기준|A2-QREFINE-NOM-s1|**0.164251770**|DEV V0; 이전 A2 대비 이득은 작고 불확실|
+|기존 A2 고정 terminal 대조|A2-QREFINE-NOM-s1|**0.164251770**|DEV V0; 이전 A2 대비 이득은 작고 불확실|
+|새 최선 단일 DEV terminal|A2-FRESH-NUIM-s1|**0.158707259**|일반 주행·첫2초 개선, 정지/출발·횡방향·인지 회귀 동반|
+|추가 저장 예측 분석|QREFINE+FRESH 고정1:1 평균|**0.150723838**|같은 DEV, 계수 스윕 없음, raw 배포/실측 비용/서버 미검증|
 |선택된 DEV 중간 후보|A2-G1-s1 / step 2,284|**0.163882485**|같은 V0의 3개 예정 평가 중 선택; 일반 주행은 부모보다 약간 악화|
 |raw 배포·ZIP 확보|A2-FULL-NOM-s1|공식 점수 없음|8 fixture 정확 일치, 1125 clip 완료; 4090 시간은 아직 미측정|
 |최신 command 보조 후보|A2-COMMAND-NOM-s1|**0.164884294**|BASE보다 0.38% 개선 관측, QREFINE보다 높음|
@@ -37,6 +39,8 @@ A2 또는 command를 운영국이 개별 승인했다고 주장하지 않는다.
 |LEARNED-SAMPLE|영상·고정 metadata 기반 sampling offset|20,554|0.164667226|BASE 소폭 개선, QREFINE 미달|
 |COMMAND-NOM|제공 6종 command → 공통 scene query|20,554|0.164884294|보조 후보 보존|
 |VIS-TEACHER|QREFINE 이후 RGB 공간 특징 증류|3,426|0.166137158|G0·부모 모두 미달, FULL 이전 제외|
+|C2F-MOTION|stride16 대응→stride4 세밀한 영상 비교|20,554|0.164204741|일반 주행 개선 미확인, 확대 후순위|
+|FRESH-NUIM|공개 trunk만 로드, 나머지 새 초기화|20,554|0.158707259|새 단일 DEV 후보, 회귀·추가 학습 검토 필요|
 
 - 기존 A2-DIRECT의 실측 timestamp 평가 **0.164280979**, 동일 checkpoint의 배포형 nominal 평가 **0.164455314**.
   새 BASE는 nominal status로 다시 학습했으므로 기존 모델과의 비교에는 입력 학습 정책 차이도 포함된다.
@@ -96,13 +100,22 @@ FULL 사용과 독립 DEV 검증은 가중치 계보를 분리하면 병행할 �
 - 로컬 ~/Downloads/A2-FULL-NOM-s1_submission_20260919/submission.zip. **공식 미업로드**, 이번 A2의 **RTX4090 시간은 장비 확인 대기**다.
 - 이번 결과는 짧은 RGB 교사 continuation 한 종류에 대한 것이며 A2 상한이나 모든 사전학습 방식의 실패를 뜻하지 않는다. 후속 스윕/FULL은 시작하지 않았다.
 
+## 5B. 2026-09-20 motion/fresh 결과
+
+- C2F−QREFINE −0.000047026, session CI95 [−0.000882082,+0.000931003]. 일반 주행은 소폭 악화했다.
+- FRESH−QREFINE −0.005544508(3.38%); 일반 주행0.168445113→0.155274043(7.82%). 첫2초 기여는0.122951391→0.114141415.
+- FRESH의 마지막 두 포인트·정지/출발·횡방향 및 occupancy/lane 지표는 악화했다. 단독 delta의 session CI는0을 포함한다.
+- 추가 학습 없이 고정1:1 예측 평균0.150723838. QREFINE 대비 delta−0.013527929, CI95 [−0.017196053,−0.007854766]. 반복사용 DEV11sessions의 조건부 분석이며 서버 성능 보장이 아니다.
+- FRESH 후반0.184436→0.162706→0.158707. 추가 수렴 비교를 검토할 근거이며 자동 예산 확대나 local minimum 증명은 아니다.
+- 구현/terminal 결과는 미러에 반영됐다. 상세 분해와 평균 계산 코드는 위 해석 문서에 연결된다.
+
 ## 5. 재개할 때의 작업
 
 |항목|확인된 상태|남은 일|
 |---|---|---|
 |MR FULL 제출|패키지·raw B1 parity·공식 결과 확보|기존 후보 보존|
 |A2 FULL|24,931 update 유지, raw parity/1125 추론/729.816G/ZIP/Docker smoke 완료|이번 A2의 RTX4090 시간 측정, 사용자 판단에 따른 공식 제출|
-|DEV 기준·후보|QREFINE / G1 중간 / command 보존|새 근거가 생길 때만 후속 비교를 결정|
+|DEV 기준·후보|FRESH terminal / QREFINE / G1 중간 / command 보존|FRESH 수렴 및 회귀, 고정 평균의 raw/비용 검토|
 |OOF-MR-T203|54,810행 producer 학습 완료|new107 예측/진단은 미완료, 재우선순위 시 진행|
 |G/S/command 결과 기록|완료 및 GitHub 반영|이번 통합본에서 연결|
 |실험 자동 watcher|두 개 모두 완료|재시작할 이유 없음|
