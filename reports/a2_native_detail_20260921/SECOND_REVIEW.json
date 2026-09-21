@@ -1,0 +1,48 @@
+{
+  "checked_utc": "2026-09-21T15:36:27.846998+00:00",
+  "evaluated_step": 6852,
+  "primary_terminal_step": 10277,
+  "status": "recovered_small_intermediate_improvement",
+  "health": {
+    "M-LOW": {
+      "step": 8781,
+      "target": 10277,
+      "all_logged_losses_gradients_finite": true,
+      "nonfinite_events": 0,
+      "seconds_per_update": 1.0280392576381565,
+      "terminal_eta_utc": "2026-09-21T16:04:05.793727+00:00"
+    },
+    "M-NATIVE": {
+      "step": 8813,
+      "target": 10277,
+      "all_logged_losses_gradients_finite": true,
+      "nonfinite_events": 0,
+      "seconds_per_update": 1.0297353661619126,
+      "terminal_eta_utc": "2026-09-21T16:03:35.379574+00:00"
+    },
+    "S-LOW": {
+      "step": 8938,
+      "target": 10277,
+      "all_logged_losses_gradients_finite": true,
+      "nonfinite_events": 0,
+      "seconds_per_update": 1.006922669131309,
+      "terminal_eta_utc": "2026-09-21T16:00:56.116452+00:00"
+    },
+    "S-NATIVE": {
+      "step": 8964,
+      "target": 10277,
+      "all_logged_losses_gradients_finite": true,
+      "nonfinite_events": 0,
+      "seconds_per_update": 1.0093791356682777,
+      "terminal_eta_utc": "2026-09-21T16:00:33.161803+00:00"
+    }
+  },
+  "fixed_train_probe256_PREFIX": {
+    "M-LOW": 0.11738050101303088,
+    "M-NATIVE": 0.11793751915138273,
+    "S-LOW": 0.11653069211206457,
+    "S-NATIVE": 0.11721163759284536
+  },
+  "decision": "continue unchanged to terminal; no additional training or FULL started",
+  "new_GPU_evaluation": false
+}
