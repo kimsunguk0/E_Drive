@@ -1,5 +1,10 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 사용자 전달 공식 결과:** A2-H4-PROGRESS-FULL-s1 / step24,931의 서버 PREFIX는 **0.1336848279459137**, 현재 **4등(사용자 보고)**이다. MR FULL0.185968928 대비28.11% 감소했다. [공식 응답 원문](reports/a2_progress_full_20260921/SERVER_RESULT_20260921.json). 동일 FULL RTX4090 전체 forward26.103ms 확인 완료. 서버 elapsed_ms303은 harness 시간이다.
+
+**추가 CPU 진단:** 같은 H4 DEV terminal의 PROGRESS 길이 + DIRECT 방향 저장예측 재조합은 **0.145104163**(부모PROGRESS0.151178860),11/11session 개선이다. GT로 방향/길이를 고르지 않았지만 새 학습 모델이나 배포/규정 승인을 뜻하지 않는다. [진단과 다음 제안](reports/a2_after_submission_20260921/RESULTS_KO.md). 다음 권고는 동일 DEV 부모의 matched low-LR continuation과 길이/방향 decoder 분리 비교다. **현재 진단·제안만 완료했으며 새 학습/추가 제출은 시작하지 않았다.** 과거 문서의 자동 추가 학습 없음은 당시 실행 상태이고 새 계획의 결과를 뜻하지 않는다.
+
+
 **최신 FULL 완료: 2026-09-21T03:26:57.114268+00:00.** 사용자 요청에 따라 **A2-H4-PROGRESS-FULL-s1** 24,931 update를 마쳤고, raw parity·1,125 clip·portable source 검증 후 제출 ZIP을 확보했다. 공식 업로드/서버 채점은 아직 없다. FULL의 로컬 점수는 in-fit이며 DEV 성능으로 사용하지 않는다. [제출 파일과 검증](reports/a2_progress_full_20260921/PACKAGE_KO.md).
 
 **추가 확인: 2026-09-21 10시대 KST.** 사용자가 지정한 chi@192.168.10.102의 RTX4090 접속·Docker CUDA 실행을 확인했다. 선택된 H4-PROGRESS DEV 가중치의 전체 B1 BF16 forward는 두 train fixture에서 **median26.087/26.058ms, p95최대26.152ms**다(각 warmup30/repeat200, 파일읽기·전처리·전송 제외). Raw 입력 hash는 B200과 같고 FP32 출력 최대차이1.907e-6m. 앞의 NVML 문제는 별도 /home/a PC였다. FULL 학습은 계속 진행하며 같은 최종 가중치의4090 검사도 완료 후 연결한다. [구조 변화·병목·4090 실측](reports/a2_progress_full_20260921/ARCHITECTURE_AND_BOTTLENECK_KO.md).
@@ -32,6 +37,7 @@
 
 |역할|후보|점수|해석|
 |---|---|---:|---|
+|최신 공식 제출|A2-H4-PROGRESS-FULL-s1|**0.133684828**|사용자 전달 공식 결과·4등 보고; 동일 FULL 4090 실측 완료|
 |확인된 공식 제출 기준|MR-NATIVE-FULL-s1|**0.185968928**|사용자가 전달한 공식 서버 결과|
 |새 단일 DEV 후보|A2-H4-PROGRESS-s1 / step20,554|**0.151178860**|정지·출발 개선, 일반 주행은 matched control보다 악화; 9/21 사용자 요청으로 FULL 진행|
 |기존 A2 고정 terminal 대조|A2-QREFINE-NOM-s1|**0.164251770**|DEV V0; 이전 A2 대비 이득은 작고 불확실|

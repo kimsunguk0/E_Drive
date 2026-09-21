@@ -1,0 +1,30 @@
+{
+  "score": 0.1336848279459137,
+  "metrics": {
+    "L2_1s": 0.07277257524810496,
+    "L2_2s": 0.12524497423827546,
+    "L2_3s": 0.20303693435136064,
+    "L2_avg": 0.1336848279459137,
+    "flops": 730044861120,
+    "cutoff": true,
+    "elapsed_ms": 303,
+    "runtime": {
+      "pull_mode": true,
+      "num_inflight": 1,
+      "want": 31,
+      "pull_interval_sec": 10
+    }
+  },
+  "provenance": {
+    "source": "User supplied official FULL scoring response in this conversation",
+    "reported_rank": 4,
+    "rank_source": "user report, leaderboard not independently queried",
+    "submission_id": null,
+    "official_submission_timestamp": null,
+    "run": "A2-H4-PROGRESS-FULL-s1",
+    "terminal_step": 24931,
+    "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+    "submission_zip_sha256": "3981ee5541458d62d1b3cb94cfe9f67ab619672e892879eec92f8e08e8f0c1cc",
+    "elapsed_ms_interpretation": "server harness time; not RTX4090 model-forward latency"
+  }
+}
