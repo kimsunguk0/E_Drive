@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "world_transform": true,
+  "missing_future_mask": true,
+  "sampling_ramp_loss": 3.552713678800501e-14,
+  "flip_covariance_loss": 3.552713678800501e-14,
+  "all310_cache_checksums_verified": true,
+  "valid_target_count": 3598766,
+  "agent_avg_speed_quantiles_mps": [
+    2.915218222672896e-06,
+    1.4033950328826905,
+    18.056398963928224,
+    23.82954380035401,
+    37.74740982055664
+  ],
+  "speed_over_50_mps_count": 0,
+  "inference_target_inputs": false
+}

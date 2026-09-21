@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "fresh_process_initial_diff": {
+    "plan_abs": 0.0,
+    "scene_features": 0.0,
+    "motion_features": 0.0,
+    "motion_pair_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0,
+    "occ_logits": 0.0,
+    "lane_logits": 0.0
+  },
+  "updated": [
+    "backbone_fpn.layer3.6.bn3.weight",
+    "backbone_fpn.layer3.6.conv1.weight",
+    "backbone_fpn.layer3.22.bn3.weight"
+  ],
+  "strict_student_export": true,
+  "stream": {
+    "microcalls": 10,
+    "rows_sha256": "4720bcc7fc5428605f2d2be39f7255cdee7340c509fc98587b022c2e497afc71",
+    "baseline_augmentation_sha256": "dd11e3f752c598ad92d921c49f9e78271dabe0d36381d64a990a438cdd9f94a8",
+    "detail_pixels_sha256": "e89012ef588eb9ec5970bdd53114c771fb1357df5c89286c1f8462b4041d1f30",
+    "detail_pixels_expected_to_differ": false
+  }
+}

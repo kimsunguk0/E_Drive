@@ -1,0 +1,38 @@
+{
+  "phase": "initial",
+  "status": "failed",
+  "pid": 304855,
+  "started_utc": "2026-09-21T16:46:34.479803+00:00",
+  "main_training_started": false,
+  "jobs": [
+    {
+      "gpu": 0,
+      "arm": "C-CTRL",
+      "pid": 304892,
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-CTRL_initial.log"
+    },
+    {
+      "gpu": 1,
+      "arm": "C-R101",
+      "pid": 304893,
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-R101_initial.log"
+    },
+    {
+      "gpu": 2,
+      "arm": "C-DECSPLIT",
+      "pid": 304894,
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-DECSPLIT_initial.log"
+    },
+    {
+      "gpu": 3,
+      "arm": "C-AGENT",
+      "pid": 304895,
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-AGENT_initial.log"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_capacity_dynamics_20260922/launch_capacity.py\", line 76, in main\n    try:{'initial':initial,'preflight':preflight,'main':main_training}[args.phase](state,path)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_capacity_dynamics_20260922/launch_capacity.py\", line 68, in initial\n    state.update(status='initial_checks',jobs=[r for _,r in jobs]);atomic(path,state);checked(jobs)\n                                                                                      ^^^^^^^^^^^^^\n  File \"/NHNHOME/data/sukim/adcl/experiments/a2_capacity_dynamics_20260922/launch_capacity.py\", line 24, in checked\n    if errors:raise RuntimeError(str(errors))\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: [{'gpu': 3, 'arm': 'C-AGENT', 'pid': 304895, 'log': '/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-AGENT_initial.log', 'returncode': -11}]\n",
+  "classification": "C-AGENT numerical/whole-V0 checks and artifacts completed; process teardown then SIGSEGV in __cxa_finalize/libnvrtc.so.13; root cause not established",
+  "subsequent_evidence": "Independent C-AGENT five-update train, strict reload, and student-export verification each exited successfully through preflight orchestrator",
+  "no_error_suppression_or_exit_override": true,
+  "preflight_verified": true
+}

@@ -1,5 +1,8 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-22 세 신규 실험 실행 준비 완료:** 사용자 “3 가지 다 해 봐”에 따라 공통 DEV 부모 M-NATIVE0.144597662에서 C-CTRL / identity-grown R101 / 길이·방향 query+decoder 분리 / agent 미래 궤적 보조 감독을 각10,277update 비교한다. GPU0/1/2/3. 네 arm의 실제 FP32/BF16 초기 출력 차이0, 초기V0 모두0.144597664, production5update 및 새 프로세스 strict reload/export를 통과했다. 4090 전체forward 중앙값 CTRL49.4/R10164.6/DECSPLIT50.2/AGENT49.3ms(전처리 제외). 이 커밋 시점 본 학습 착수 전이며 아래 원격 상태 파일로 실제 launch를 확인한다. FULL/공식 업로드는 포함하지 않는다. [명세](reports/a2_capacity_dynamics_20260922/EXECUTION_KO.md), [검증](reports/a2_capacity_dynamics_20260922/smoke_and_reload.json), [비용](reports/a2_capacity_dynamics_20260922/RTX4090_cost.json).
+
+
 **2026-09-22 native 완료 후 고정 가중치 진단:** M-NATIVE 추가 motion 분기 OFF는 DEV0.144598→0.144655로 영향이 작고, S-NATIVE 추가 scene OFF는0.144712→0.154468로 악화한다. 이는 추론 의존성 개입이며 native 대 LOW의 학습 이득과 다르다. 최신 길이+예전 DIRECT 방향 재조합은0.142352(차이−0.002246, session CI 0 포함). 다음 권고는 backbone 표현 용량 변경을 주력으로, 아직 공유 중인 query/decoder의 길이·방향 분리를 작은 독립 비교로 둔다. Agent 미래 감독은 후속축이다. 신규 학습·FULL·예약·제출 없음, 가중치/버퍼 복원 hash 일치, GPU0–3 유휴. [진단과 다음 방법](reports/a2_post_native_review_20260922/RECOMMENDATION_KO.md).
 
 **2026-09-22 01:03 KST Native1152 네 arm DEV 완료:** 동일10,277update에서 M-LOW0.144662448 / M-NATIVE0.144597662 / S-LOW0.144906334 / S-NATIVE0.144711511. 최저M-NATIVE는부모0.147393734대비1.90% 개선했지만 native−LOW 이득은motion0.000064786 / scene0.000194823뿐이며두paired CI는0포함이다. 일반주행/횡오차는개선됐고출발·정지는소폭악화했다. 새최저DEV와대조군을보존하고같은해상도확대/연장/FULL/공식업로드는자동실행하지않는다. GPU0–3유휴. [최종 판정](reports/a2_native_detail_20260921/TERMINAL_REVIEW_KO.md), [최종 지표](reports/a2_native_detail_20260921/result_step10277.json), [가중치 색인](reports/a2_native_detail_20260921/candidate_registry.json).

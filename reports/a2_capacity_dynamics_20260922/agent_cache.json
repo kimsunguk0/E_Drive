@@ -1,0 +1,42 @@
+{
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_agent_future_20260922",
+  "manifest_sha256": "e99245d72a252422dccdbd9954188d3085190c0c5e0a91906d069071e8a3480e",
+  "rows": 83700,
+  "scenes": 310,
+  "max_agents": 64,
+  "zero_valid_rows": 5526,
+  "valid_points": [
+    625491,
+    615987,
+    606921,
+    596700,
+    584271,
+    569396
+  ],
+  "policy": {
+    "schema": 1,
+    "max_agents": 128,
+    "offset_frames": [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "target": "world future minus world current, rotated into current ego XY",
+    "validity": "current and each future num_points>0, same obj_id and class, center inside shared grid and visible camera",
+    "classes": [
+      "Car",
+      "Pedestrian",
+      "Cyclist"
+    ],
+    "dtype": "float32 after float64 transforms",
+    "target_scale_m": 10.0,
+    "loss": "SmoothL1 beta0.1 on normalized displacement; valid agent-time-XY full-effective-batch mean",
+    "targets_in_model_forward": false,
+    "no_truncation": true,
+    "train_only": true
+  },
+  "seconds": 5.714090412482619
+}

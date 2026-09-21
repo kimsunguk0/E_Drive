@@ -1,0 +1,24 @@
+{
+  "status": "running",
+  "primary_step": 10277,
+  "available_steps": [
+    0
+  ],
+  "sample_stream": {
+    "steps_compared": 0,
+    "last_compared_step": 0,
+    "mismatch_steps": []
+  },
+  "terminal": null,
+  "parent_DEV_PREFIX": 0.14459766188205064,
+  "official_FULL_PREFIX": 0.1336848279459137,
+  "server_conversion_or_prediction": null,
+  "FULL_started": false,
+  "uploaded": false,
+  "selected_intermediate_on_reused_V0": {
+    "C-CTRL": null,
+    "C-R101": null,
+    "C-DECSPLIT": null,
+    "C-AGENT": null
+  }
+}

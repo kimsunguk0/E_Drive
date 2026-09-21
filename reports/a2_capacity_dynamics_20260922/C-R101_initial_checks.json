@@ -1,0 +1,53 @@
+{
+  "arm": "C-R101",
+  "parent_sha256": "8bc43364c05c899a563438f34538845ed0c33a969ab7e0cb6786e407ed9cbadf",
+  "mapping": {
+    "mapped_parent_tensors_equal": true,
+    "mapped_count": 822,
+    "new_keys": [
+      "capacity_dynamics_signature"
+    ]
+  },
+  "parity": {
+    "fp32": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0
+    },
+    "bf16": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0
+    }
+  },
+  "parameters": 46437624,
+  "boundary": {
+    "provided_status5": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "goal_xy": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "same_shared_scene_consumers": true,
+  "status": "passed",
+  "PREFIX": 0.14459766436030752,
+  "n": 1998,
+  "initial_state_sha256": "3955e26586df404fa31d6ddb69adfbec941ff4908b606b209c02fc2a6a6e8810"
+}

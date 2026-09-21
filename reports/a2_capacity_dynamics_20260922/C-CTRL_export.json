@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "strict_student_diff": {
+    "plan_abs": 0.0,
+    "scene_features": 0.0,
+    "motion_features": 0.0,
+    "motion_pair_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0,
+    "occ_logits": 0.0,
+    "lane_logits": 0.0
+  }
+}

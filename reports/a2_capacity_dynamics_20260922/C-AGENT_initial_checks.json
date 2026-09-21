@@ -1,0 +1,66 @@
+{
+  "arm": "C-AGENT",
+  "parent_sha256": "8bc43364c05c899a563438f34538845ed0c33a969ab7e0cb6786e407ed9cbadf",
+  "mapping": {
+    "mapped_parent_tensors_equal": true,
+    "mapped_count": 516,
+    "new_keys": [
+      "agent_future_head.0.bias",
+      "agent_future_head.0.weight",
+      "agent_future_head.2.bias",
+      "agent_future_head.2.weight",
+      "capacity_dynamics_signature"
+    ]
+  },
+  "parity": {
+    "fp32": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0
+    },
+    "bf16": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0
+    }
+  },
+  "parameters": 27594628,
+  "boundary": {
+    "provided_status5": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "goal_xy": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "same_shared_scene_consumers": true,
+  "agent_checks": {
+    "loss": 0.5828418731689453,
+    "valid_points": 162,
+    "flip": true,
+    "full_micro_loss_delta": 0.0,
+    "gradient_delta": 0.0,
+    "initial_head_grad_norm": 0.18166488409042358,
+    "initial_scene_gradient_zero_expected": 0.0
+  },
+  "status": "passed",
+  "PREFIX": 0.14459766436030752,
+  "n": 1998,
+  "initial_state_sha256": "cb7209c94732e1e800d1e8ab74ed9aa9d9c869d4c536c751bdd10607db6822a8"
+}

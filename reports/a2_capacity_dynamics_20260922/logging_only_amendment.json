@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "created_utc": "2026-09-21T17:02:50.066529+00:00",
+  "scope": "Logging-only amendment after production smoke; actual returned loss and gradients unchanged. No model, data, RNG, optimizer, recipe or evaluation change.",
+  "file": "experiments/a2_capacity_dynamics_20260922/train_capacity.py",
+  "preflight_sha256": "04cf1445a6f375bd6829b89a45dde5f2d4f0b2877d4dff75f4aa708e2e28c8ad",
+  "main_sha256": "8db8de529af865bd89a9359ed6084b43a806aca60affd869cd6853c2173aa654",
+  "exact_change": "Add total=total to existing agent parts.update; total field now includes weighted agent loss.",
+  "tests": [
+    {
+      "arm": "C-CTRL",
+      "step": 1,
+      "loss": 0.20000001788139343,
+      "gradient_equal": true,
+      "optimized_loss_equal": true,
+      "logged_total_matches": true
+    },
+    {
+      "arm": "C-CTRL",
+      "step": 500,
+      "loss": 0.20000001788139343,
+      "gradient_equal": true,
+      "optimized_loss_equal": true,
+      "logged_total_matches": true
+    },
+    {
+      "arm": "C-CTRL",
+      "step": 10277,
+      "loss": 0.20000001788139343,
+      "gradient_equal": true,
+      "optimized_loss_equal": true,
+      "logged_total_matches": true
+    },
+    {
+      "arm": "C-AGENT",
+      "step": 1,
+      "loss": 0.20003701746463776,
+      "gradient_equal": true,
+      "optimized_loss_equal": true,
+      "logged_total_matches": true
+    },
+    {
+      "arm": "C-AGENT",
+      "step": 500,
+      "loss": 0.218500018119812,
+      "gradient_equal": true,
+      "optimized_loss_equal": true,
+      "logged_total_matches": true
+    },
+    {
+      "arm": "C-AGENT",
+      "step": 10277,
+      "loss": 0.218500018119812,
+      "gradient_equal": true,
+      "optimized_loss_equal": true,
+      "logged_total_matches": true
+    }
+  ],
+  "other_source_files_unchanged": true,
+  "preflight_artifacts_not_rewritten": true,
+  "smoke_log_interpretation": "C-AGENT smoke total excludes agent_future_weighted; optimized loss includes it. Main total includes both."
+}

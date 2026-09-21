@@ -1,0 +1,115 @@
+{
+  "status": "passed",
+  "scope": "entire B1 student forward including baseline AND additional detail branch; file/preprocessing/transfer excluded",
+  "counter": "torch.utils.flop_counter.FlopCounterMode, FP32 Global sum",
+  "precision": "BF16 image path, FP32 planner",
+  "two_real_DEV_inputs": true,
+  "models": [
+    {
+      "arm": "C-CTRL",
+      "checkpoint_sha256": "7a93c0c8ce50bc6a7826ba5deb41726abbd1d1e1bcc9c8c270875ab39804982a",
+      "weights_role": "five-update smoke; cost check, not a candidate score",
+      "flops": 1444924132032,
+      "timing": [
+        {
+          "train_row": 0,
+          "median_ms": 49.356767654418945,
+          "p95_ms": 49.4371841430664,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2357986304
+        },
+        {
+          "train_row": 30000,
+          "median_ms": 49.38547134399414,
+          "p95_ms": 49.467699241638186,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2357986304
+        }
+      ],
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    },
+    {
+      "arm": "C-R101",
+      "checkpoint_sha256": "58667f1d0fd334965d3039b9cf6b574fa653cf4b71385c24a69c369a07c03f9b",
+      "weights_role": "five-update smoke; cost check, not a candidate score",
+      "flops": 2607682718400,
+      "timing": [
+        {
+          "train_row": 0,
+          "median_ms": 64.58009719848633,
+          "p95_ms": 64.71803131103516,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2470015488
+        },
+        {
+          "train_row": 30000,
+          "median_ms": 64.58111953735352,
+          "p95_ms": 64.77418212890625,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2470015488
+        }
+      ],
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    },
+    {
+      "arm": "C-DECSPLIT",
+      "checkpoint_sha256": "92b323845985e299d07aec1895e3629518d26a871ce4ea312ca89be34b9b051c",
+      "weights_role": "five-update smoke; cost check, not a candidate score",
+      "flops": 1445376074432,
+      "timing": [
+        {
+          "train_row": 0,
+          "median_ms": 50.151424407958984,
+          "p95_ms": 50.22197303771973,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2355690496
+        },
+        {
+          "train_row": 30000,
+          "median_ms": 50.167808532714844,
+          "p95_ms": 50.22332973480225,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2355690496
+        }
+      ],
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    },
+    {
+      "arm": "C-AGENT",
+      "checkpoint_sha256": "d15c9bb84227623a76b0ee5b13ddda86fadabd0439aa013cb560ec46762e8c3c",
+      "weights_role": "five-update smoke; cost check, not a candidate score",
+      "flops": 1444924132032,
+      "timing": [
+        {
+          "train_row": 0,
+          "median_ms": 49.35864067077637,
+          "p95_ms": 49.45622959136963,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2353570816
+        },
+        {
+          "train_row": 30000,
+          "median_ms": 49.33572769165039,
+          "p95_ms": 49.41219654083252,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2353570816
+        }
+      ],
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    }
+  ],
+  "agent_cost": "Agent auxiliary head is removed in student export; native branch remains in every model.",
+  "raw_submission_adapter_verified": false
+}

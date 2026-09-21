@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checked_utc": "2026-09-21T17:05:03.919412+00:00",
+  "docker_image": "md-v2:4090",
+  "docker_image_id": "sha256:811933f25cfcf8b5c3998e0fb8e33e5ed8934b22ff155135ad83984586b16312",
+  "driver": "595.91.07",
+  "runtime": "runc",
+  "network": "none",
+  "python": "/usr/bin/python3",
+  "initial_failure": "Default GPU injection used stale CDI libnvidia-egl-wayland.so.1.1.9 path; installed host version is 1.1.21.",
+  "resolution": "Per-container manual /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and read-only libcuda/libnvidia-ptxjitcompiler mounts; NVIDIA_VISIBLE_DEVICES=void.",
+  "host_configuration_modified": false,
+  "GPU_driver_or_other_jobs_restarted": false,
+  "code_path_alias": "Read-only same code mounted at /app/code and historical /NHNHOME/data/sukim/adcl for pre-existing absolute imports.",
+  "raw_adapter_or_official_upload": false
+}
