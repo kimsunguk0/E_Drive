@@ -1,6 +1,6 @@
 # MotionDrive V2 — 현재 인수인계
 
-**2026-09-21 Native1152 두 쌍 구현·검증 완료, 본 학습 준비:** 사용자 “둘 다 ㄱ”에 따라 GPU0/1 motion LOW/NATIVE, GPU2/3 shared-scene LOW/NATIVE를 준비했다. 같은 SplitRead DEV 부모0.147393734에서 모두 step-0 V0를 재현했고, 실제5update·새 분기 gradient·동일 row/기존 증강·fresh-process strict export를 통과했다. 원본1152 cache347scene/521,358장을 확보했다. 10,277update/arm, 예정평가3,426·6,852·10,277. 4090 실제 추가 graph 비용 확인 후 본 학습하며 FULL·업로드는 포함하지 않는다. [실행 명세](reports/a2_native_detail_20260921/EXECUTION_KO.md), [검증](reports/a2_native_detail_20260921/smoke_and_reload.json).
+**2026-09-21 22:03 KST Native1152 두 쌍 본 학습 시작:** GPU0 M-LOW / GPU1 M-NATIVE / GPU2 S-LOW / GPU3 S-NATIVE를 같은 SplitRead DEV 부모0.147393734에서 각10,277update 진행한다. 22:05:57 KST에149~150update, nonfinite0, 동일149update sample stream을 확인했다. 기존 예측을 보존한 추가 분기이며 각 쌍은 원본1152 대비768 down/up 정보만 다르다. 4090 전체forward는M49.4ms/S51.8ms. 첫 평가9/21 23:05전후, terminal9/22 01:05~01:15예상(실측1.01~1.03초/update). FULL·공식 업로드는 포함하지 않는다. [실행 명세](reports/a2_native_detail_20260921/EXECUTION_KO.md), [학습 상태](reports/a2_native_detail_20260921/launch_health.json), [결과](reports/a2_native_detail_20260921/RESULTS_KO.md).
 
 **2026-09-21 SplitRead 이후 관측 변경 검토:** 최신 DEV에서 속도 변화가 작은 일반 주행이 점수60.95%, 직진에 가까운 행이77.55%(집단 중첩)를 기여한다. 다음 우선 가설은 기존 함수를 보존한 원본1152 전방 current+H4 motion 추가, 독립 후속은 현재6-camera scene1152다. 기존 교체형41.29ms는 새 추가 분기 비용이 아니며 실제 새 비용/초기 parity 확인이 필요하다. 신규 학습·GPU 평가·FULL·제출 없음. [새 통계와 권고](reports/a2_after_splitread_20260921/RECOMMENDATION_KO.md).
 

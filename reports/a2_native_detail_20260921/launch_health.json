@@ -1,0 +1,151 @@
+{
+  "status": "training",
+  "checked_utc": "2026-09-21T13:05:57.552934+00:00",
+  "source_commit": "1d5ae53feb8e29f839fb1339d70d6609b9e13d56",
+  "parent_DEV_PREFIX": 0.14739373370951964,
+  "start_utc": "2026-09-21T13:03:00.897806+00:00",
+  "main_training_started": true,
+  "arms": {
+    "M-LOW": {
+      "gpu": 0,
+      "pid": 244800,
+      "step": 149,
+      "target_steps": 10277,
+      "seconds_per_update_last80": 1.0270228810142725,
+      "all_logged_updates_finite": true,
+      "nonfinite_count": 0,
+      "peak_allocated_bytes": 73751640064,
+      "eval_eta_utc": {
+        "3426": "2026-09-21T14:04:03.106915+00:00",
+        "6852": "2026-09-21T15:04:41.687305+00:00",
+        "10277": "2026-09-21T16:05:19.240673+00:00"
+      },
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/runtime/M-LOW_main.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/M-LOW-s1",
+      "optimizer_groups": [
+        {
+          "name": "backbone",
+          "base_lr": 1e-06,
+          "parameters": 23508032
+        },
+        {
+          "name": "head",
+          "base_lr": 1e-05,
+          "parameters": 3227832
+        },
+        {
+          "name": "native_detail",
+          "base_lr": 5e-05,
+          "parameters": 709632
+        }
+      ]
+    },
+    "M-NATIVE": {
+      "gpu": 1,
+      "pid": 244801,
+      "step": 149,
+      "target_steps": 10277,
+      "seconds_per_update_last80": 1.0259886753978207,
+      "all_logged_updates_finite": true,
+      "nonfinite_count": 0,
+      "peak_allocated_bytes": 73751640064,
+      "eval_eta_utc": {
+        "3426": "2026-09-21T14:03:59.717823+00:00",
+        "6852": "2026-09-21T15:04:34.755025+00:00",
+        "10277": "2026-09-21T16:05:08.766238+00:00"
+      },
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/runtime/M-NATIVE_main.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/M-NATIVE-s1",
+      "optimizer_groups": [
+        {
+          "name": "backbone",
+          "base_lr": 1e-06,
+          "parameters": 23508032
+        },
+        {
+          "name": "head",
+          "base_lr": 1e-05,
+          "parameters": 3227832
+        },
+        {
+          "name": "native_detail",
+          "base_lr": 5e-05,
+          "parameters": 709632
+        }
+      ]
+    },
+    "S-LOW": {
+      "gpu": 2,
+      "pid": 244802,
+      "step": 150,
+      "target_steps": 10277,
+      "seconds_per_update_last80": 1.0054674052633346,
+      "all_logged_updates_finite": true,
+      "nonfinite_count": 0,
+      "peak_allocated_bytes": 68098735104,
+      "eval_eta_utc": {
+        "3426": "2026-09-21T14:02:51.464154+00:00",
+        "6852": "2026-09-21T15:02:16.195484+00:00",
+        "10277": "2026-09-21T16:01:39.921347+00:00"
+      },
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/runtime/S-LOW_main.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/S-LOW-s1",
+      "optimizer_groups": [
+        {
+          "name": "backbone",
+          "base_lr": 1e-06,
+          "parameters": 23508032
+        },
+        {
+          "name": "head",
+          "base_lr": 1e-05,
+          "parameters": 3227832
+        },
+        {
+          "name": "native_detail",
+          "base_lr": 5e-05,
+          "parameters": 16384
+        }
+      ]
+    },
+    "S-NATIVE": {
+      "gpu": 3,
+      "pid": 244803,
+      "step": 150,
+      "target_steps": 10277,
+      "seconds_per_update_last80": 1.0069990420714021,
+      "all_logged_updates_finite": true,
+      "nonfinite_count": 0,
+      "peak_allocated_bytes": 68104469504,
+      "eval_eta_utc": {
+        "3426": "2026-09-21T14:02:56.481796+00:00",
+        "6852": "2026-09-21T15:02:26.460514+00:00",
+        "10277": "2026-09-21T16:01:55.432233+00:00"
+      },
+      "log": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/runtime/S-NATIVE_main.log",
+      "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/S-NATIVE-s1",
+      "optimizer_groups": [
+        {
+          "name": "backbone",
+          "base_lr": 1e-06,
+          "parameters": 23508032
+        },
+        {
+          "name": "head",
+          "base_lr": 1e-05,
+          "parameters": 3227832
+        },
+        {
+          "name": "native_detail",
+          "base_lr": 5e-05,
+          "parameters": 16384
+        }
+      ]
+    }
+  },
+  "sample_order_matching_updates": 149,
+  "collector_pid": 244804,
+  "FULL_started": false,
+  "uploaded": false,
+  "eta_note": "Based on first >=100 actual updates, adds 120 seconds per scheduled V0+probe/save; load variation remains."
+}

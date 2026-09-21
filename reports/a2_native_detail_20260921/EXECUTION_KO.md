@@ -127,3 +127,10 @@ Motion median **49.36/49.42ms**, p95최대49.51ms, **1,444.924G FLOPs**.
 Scene median **51.75/51.77ms**, p95최대51.91ms, **1,516.674G FLOPs**.
 추가 분기를 포함한 비용이며 파일 읽기·전처리·전송은 제외했다.
 최종 후보의 raw 제출 adapter와 동일 가중치 배포 검증은 DEV 결과 뒤 별도 작업이다.
+
+## 본 학습 착수
+
+2026-09-21 22:03:00 KST에 네 arm을 모두 시작했다.
+22:05:57 KST snapshot에서149~150update, nonfinite0, 동일149update sample stream을 확인했다.
+실측1.01~1.03초/update 기준 첫 결과9/21 23:05전후, terminal9/22 01:05~01:15예상이다.
+실제 PID·개별 ETA·optimizer group은 `launch_health.json`에 기록했다.
