@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 FULL 잔여 오차 진단 완료:** 저장 V0 1,998행(in-fit), 별도 유턴 command train375행, 동일 DEV를 구분해 분석했다. FULL in-fit PREFIX0.106606, 종/횡 MAE8.80/4.92cm이며 전체 횡오차의76.11%가 GT 방향변화5도 미만 구간이다. Nonstop은 전체 점수의98.15%, 속도변화가 작은 일반 주행도62.51%다. V0 유턴은0개이고 별도 train probe는0.274356(3세션, in-fit). 4090 비용 시제품은 기준26.11ms, current scene1152는37.87ms, 전체1.5배54.93ms, 전체2배101.30ms. **이미 계산한768 과거 FPN을 shared scene에도 공유**하면 새 high-history 별도 계산과FP32출력차이0,23.88ms/658.03G였다. 제출 baseline과의 출력parity나 정확도개선을 뜻하지 않는다. 다음 우선 후보는 shared-history768와 원본 current-scene1152이며 길이/방향분리는 독립축으로 유지한다. [전체 통계·해석](reports/a2_full_error_audit_20260921/RESULTS_KO.md), [그림](reports/a2_full_error_audit_20260921/ERROR_AND_COST.png). **신규 학습·checkpoint 변경·공식 제출 없음.**
+
 **2026-09-21 사용자 전달 공식 결과:** A2-H4-PROGRESS-FULL-s1 / step24,931의 서버 PREFIX는 **0.1336848279459137**, 현재 **4등(사용자 보고)**이다. MR FULL0.185968928 대비28.11% 감소했다. [공식 응답 원문](reports/a2_progress_full_20260921/SERVER_RESULT_20260921.json). 동일 FULL RTX4090 전체 forward26.103ms 확인 완료. 서버 elapsed_ms303은 harness 시간이다.
 
 **추가 CPU 진단:** 같은 H4 DEV terminal의 PROGRESS 길이 + DIRECT 방향 저장예측 재조합은 **0.145104163**(부모PROGRESS0.151178860),11/11session 개선이다. GT로 방향/길이를 고르지 않았지만 새 학습 모델이나 배포/규정 승인을 뜻하지 않는다. [진단과 다음 제안](reports/a2_after_submission_20260921/RESULTS_KO.md). 다음 권고는 동일 DEV 부모의 matched low-LR continuation과 길이/방향 decoder 분리 비교다. **현재 진단·제안만 완료했으며 새 학습/추가 제출은 시작하지 않았다.** 과거 문서의 자동 추가 학습 없음은 당시 실행 상태이고 새 계획의 결과를 뜻하지 않는다.

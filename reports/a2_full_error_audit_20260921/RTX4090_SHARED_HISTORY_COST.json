@@ -1,0 +1,55 @@
+{
+  "scope": "Cost/parity only, new 768 scene-history prototype; not accuracy or submitted-baseline parity",
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "script_sha256": "c9511b2c20a7bf6c58d1670fbef7900de193944cbe09aef6f86ec1a8835b1db6",
+  "created_utc": "2026-09-21T05:40:33.224039+00:00",
+  "unconditioned_FPN_shared_before_scene_status_query": true,
+  "motion_state_history_same_as_original_input_path": true,
+  "gflops": 658.03079136,
+  "timing": [
+    {
+      "clip": "fixture_000",
+      "median_ms": 23.84175968170166,
+      "p95_ms": 23.899715995788576,
+      "warmup": 30,
+      "repeats": 100,
+      "peak_allocated_bytes": 678593024
+    },
+    {
+      "clip": "fixture_001",
+      "median_ms": 23.88422393798828,
+      "p95_ms": 23.914451694488527,
+      "warmup": 30,
+      "repeats": 100,
+      "peak_allocated_bytes": 678593024
+    }
+  ],
+  "max_clip_median_ms": 23.88422393798828,
+  "max_clip_p95_ms": 23.914451694488527,
+  "parity": [
+    {
+      "clip": "fixture_000",
+      "FP32_max_abs_delta_vs_separate_HIGH_HISTORY": {
+        "plan_abs": 0.0,
+        "scene_features": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      }
+    },
+    {
+      "clip": "fixture_001",
+      "FP32_max_abs_delta_vs_separate_HIGH_HISTORY": {
+        "plan_abs": 0.0,
+        "scene_features": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      }
+    }
+  ],
+  "precision": "B1 BF16 with FP32 planner; FP32 parity",
+  "timing_scope": "whole forward, preprocessing excluded",
+  "accuracy_not_evaluated": true,
+  "completed": true
+}

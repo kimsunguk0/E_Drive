@@ -1,0 +1,137 @@
+{
+  "scope": "frozen FULL analysis and measured cost prototypes; no new training or submission",
+  "artifacts": [
+    {
+      "path": "reports/a2_full_error_audit_20260921/.gitignore",
+      "bytes": 29,
+      "sha256": "3d1ac1bf73f6682c7f64b065794f902f6137ee95a2ba7c0b551aa481a803e548",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/DEV_DIRECT_heldout_rows.csv",
+      "bytes": 492541,
+      "sha256": "c7d665e00af04ee9c311fd3802daadce9694420575b50db4ff315b012f37387e",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/DEV_PROGRESS_heldout_rows.csv",
+      "bytes": 492285,
+      "sha256": "06762cb1aa4464ba77d6037d60d63b028045eca06f5e8552e4c01cf3ce2af013",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/ERROR_AND_COST.pdf",
+      "bytes": 26301,
+      "sha256": "a04990b5473d76a1d7206e8e6bc2d8fc496f36211f0f094cf3ffc974572f091b",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/ERROR_AND_COST.png",
+      "bytes": 301615,
+      "sha256": "8c22c79d3f83674a0a6b8a7eaf1b1c1959e75055a03f45cf633bf16bc3524a4d",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/FULL_infit_UTURN_train375_rows.csv",
+      "bytes": 82770,
+      "sha256": "96975e15d20f11cb59526ceef4a19dcd624de55988cec079f5c310fc16e47084",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/FULL_infit_V0_rows.csv",
+      "bytes": 493968,
+      "sha256": "e9f8c331f66c29d5111efc168b8d9b1092061d4db065b91069ec7c35d8f27994",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/GROUP_SUMMARY.csv",
+      "bytes": 13737,
+      "sha256": "5292639f2a75c8493d1a92afb62d4ccd55327a0f7c06ed41e833ebcc77f022c0",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/RESULTS_KO.md",
+      "bytes": 15878,
+      "sha256": "b6d4a8d7e7b8b9d287aa8f93f3caad809b9e15ca393ae5e6a9aa57fd337dde0f",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/RTX4090_INPUT_COST.json",
+      "bytes": 12834,
+      "sha256": "18ca63b104f606c60b23bba8401da77aa7409237c0c8d664058364f04361c1e7",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/RTX4090_SHARED_HISTORY_COST.json",
+      "bytes": 1668,
+      "sha256": "11c5ff3e7943907b5bc5bbd0e46302a9627db6223bbc77c489e238579cddd783",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/STATISTICS.json",
+      "bytes": 289252,
+      "sha256": "db8e4d4ee1bdc7be51dbc8753e0764cfb8e9b8cc7062d92a51ec9f494910fd72",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/UTURN_probe_receipt.json",
+      "bytes": 849,
+      "sha256": "abf2f0e04ca3392bb4bb82441a20b635f672c2b38f42ee5fb4e67616568e3665",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/UTURN_train_probe.json",
+      "bytes": 583660,
+      "sha256": "21fb0ca84398d4953952c4b1f9883c79ebe2cb0e3ce726c77f4393e5398b9248",
+      "published_in_git": false
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/VERIFICATION.json",
+      "bytes": 719,
+      "sha256": "d9b42413a128772dd60d7ae3f7dd51e3a606dcdb229e1ee2a535896a8f91b43f",
+      "published_in_git": true
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/analysis.log",
+      "bytes": 36877,
+      "sha256": "d3ba0d4210091d4d32c77d36175411d6f2d78aa51f2118594d94c28941fd25bf",
+      "published_in_git": false
+    },
+    {
+      "path": "reports/a2_full_error_audit_20260921/uturn_probe.log",
+      "bytes": 981,
+      "sha256": "ed560b87a4c7b102c5480afda3a346b165be5781d18b69ba0b4ecd3f6a43f855",
+      "published_in_git": false
+    },
+    {
+      "path": "experiments/a2_full_error_audit_20260921/analyze_errors.py",
+      "bytes": 12897,
+      "sha256": "f4ef9bc8ad86b65cecdd5385d00f308bfba8af1e0f912aae09fa1bee980b7d72",
+      "published_in_git": true
+    },
+    {
+      "path": "experiments/a2_full_error_audit_20260921/benchmark_inputs.py",
+      "bytes": 7276,
+      "sha256": "440c12a1c8e02192b8e3cc2c804e6e263cc661596e7b99867190bbd0bcd4d465",
+      "published_in_git": true
+    },
+    {
+      "path": "experiments/a2_full_error_audit_20260921/benchmark_shared_history.py",
+      "bytes": 3491,
+      "sha256": "c9511b2c20a7bf6c58d1670fbef7900de193944cbe09aef6f86ec1a8835b1db6",
+      "published_in_git": true
+    },
+    {
+      "path": "experiments/a2_full_error_audit_20260921/make_report.py",
+      "bytes": 21778,
+      "sha256": "3499169de00b39cf1545484a190860c4b4e43b89b228ebe74096722eaddfe9e9",
+      "published_in_git": true
+    },
+    {
+      "path": "experiments/a2_full_error_audit_20260921/uturn_probe.py",
+      "bytes": 4259,
+      "sha256": "b0080d90baace436eefd52553933a219bf64d62c9d10db2a26f822f7b6535182",
+      "published_in_git": true
+    }
+  ]
+}

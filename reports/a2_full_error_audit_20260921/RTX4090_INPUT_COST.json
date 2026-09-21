@@ -1,0 +1,659 @@
+{
+  "scope": "COST ONLY: untrained resolution/radius prototypes; no accuracy claim, new learning, or submission",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.1+cu128",
+  "cuda": "12.8",
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "script_sha256": "440c12a1c8e02192b8e3cc2c804e6e263cc661596e7b99867190bbd0bcd4d465",
+  "created_utc": "2026-09-21T05:36:18.559341+00:00",
+  "precision": "B1 BF16 with FP32 planner",
+  "timing_scope": "Whole model including all image backbone passes; excludes preprocessing",
+  "counter": "torch.utils.flop_counter.FlopCounterMode FP32 Global sum; same method as submitted model",
+  "input_limitation": "Prototype tensors resized from baseline prepared inputs. Real accuracy experiments require original RGB decoding at target resolution.",
+  "cases": {
+    "BASE": {
+      "image_hw": [
+        432,
+        768
+      ],
+      "scene_history_hw": [
+        216,
+        384
+      ],
+      "motion_hw": [
+        432,
+        768
+      ],
+      "correlation_radius": 4,
+      "fuse_reinitialized_cost_prototype": false,
+      "gflops": 730.04486112,
+      "timing": [
+        {
+          "clip_index": 0,
+          "median_ms": 26.10908794403076,
+          "p95_ms": 26.196313190460206,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 711461376
+        },
+        {
+          "clip_index": 1,
+          "median_ms": 25.86843204498291,
+          "p95_ms": 25.921528911590578,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 710703616
+        }
+      ],
+      "max_clip_median_ms": 26.10908794403076,
+      "max_clip_p95_ms": 26.196313190460206,
+      "max_peak_allocated_bytes": 711461376,
+      "input_shapes": {
+        "images": [
+          1,
+          6,
+          3,
+          432,
+          768
+        ],
+        "history_images": [
+          1,
+          4,
+          3,
+          216,
+          384
+        ],
+        "lidar2img": [
+          1,
+          6,
+          4,
+          4
+        ],
+        "history_transforms": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "time_offsets": [
+          1,
+          4
+        ],
+        "goal_xy": [
+          1,
+          2
+        ],
+        "motion_current": [
+          1,
+          3,
+          432,
+          768
+        ],
+        "motion_history": [
+          1,
+          4,
+          3,
+          432,
+          768
+        ],
+        "provided_status5": [
+          1,
+          5
+        ]
+      }
+    },
+    "SCENE_HISTORY_768": {
+      "image_hw": [
+        432,
+        768
+      ],
+      "scene_history_hw": [
+        432,
+        768
+      ],
+      "motion_hw": [
+        432,
+        768
+      ],
+      "correlation_radius": 4,
+      "fuse_reinitialized_cost_prototype": false,
+      "gflops": 945.54443232,
+      "timing": [
+        {
+          "clip_index": 0,
+          "median_ms": 30.169968605041504,
+          "p95_ms": 30.258009719848634,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 744040960
+        },
+        {
+          "clip_index": 1,
+          "median_ms": 30.106016159057617,
+          "p95_ms": 30.24995403289795,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 746703360
+        }
+      ],
+      "max_clip_median_ms": 30.169968605041504,
+      "max_clip_p95_ms": 30.258009719848634,
+      "max_peak_allocated_bytes": 746703360,
+      "input_shapes": {
+        "images": [
+          1,
+          6,
+          3,
+          432,
+          768
+        ],
+        "history_images": [
+          1,
+          4,
+          3,
+          432,
+          768
+        ],
+        "lidar2img": [
+          1,
+          6,
+          4,
+          4
+        ],
+        "history_transforms": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "time_offsets": [
+          1,
+          4
+        ],
+        "goal_xy": [
+          1,
+          2
+        ],
+        "motion_current": [
+          1,
+          3,
+          432,
+          768
+        ],
+        "motion_history": [
+          1,
+          4,
+          3,
+          432,
+          768
+        ],
+        "provided_status5": [
+          1,
+          5
+        ]
+      }
+    },
+    "CURRENT_SCENE_1152": {
+      "image_hw": [
+        648,
+        1152
+      ],
+      "scene_history_hw": [
+        216,
+        384
+      ],
+      "motion_hw": [
+        432,
+        768
+      ],
+      "correlation_radius": 4,
+      "fuse_reinitialized_cost_prototype": false,
+      "gflops": 1166.662666944,
+      "timing": [
+        {
+          "clip_index": 0,
+          "median_ms": 37.87073516845703,
+          "p95_ms": 37.9190616607666,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 754805248
+        },
+        {
+          "clip_index": 1,
+          "median_ms": 37.871408462524414,
+          "p95_ms": 37.96865463256836,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 755141120
+        }
+      ],
+      "max_clip_median_ms": 37.871408462524414,
+      "max_clip_p95_ms": 37.96865463256836,
+      "max_peak_allocated_bytes": 755141120,
+      "input_shapes": {
+        "images": [
+          1,
+          6,
+          3,
+          648,
+          1152
+        ],
+        "history_images": [
+          1,
+          4,
+          3,
+          216,
+          384
+        ],
+        "lidar2img": [
+          1,
+          6,
+          4,
+          4
+        ],
+        "history_transforms": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "time_offsets": [
+          1,
+          4
+        ],
+        "goal_xy": [
+          1,
+          2
+        ],
+        "motion_current": [
+          1,
+          3,
+          432,
+          768
+        ],
+        "motion_history": [
+          1,
+          4,
+          3,
+          432,
+          768
+        ],
+        "provided_status5": [
+          1,
+          5
+        ]
+      }
+    },
+    "MOTION_1152_R6": {
+      "image_hw": [
+        432,
+        768
+      ],
+      "scene_history_hw": [
+        216,
+        384
+      ],
+      "motion_hw": [
+        648,
+        1152
+      ],
+      "correlation_radius": 6,
+      "fuse_reinitialized_cost_prototype": true,
+      "gflops": 1136.442051264,
+      "timing": [
+        {
+          "clip_index": 0,
+          "median_ms": 41.28598403930664,
+          "p95_ms": 41.33165531158447,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 2393271296
+        },
+        {
+          "clip_index": 1,
+          "median_ms": 41.22363090515137,
+          "p95_ms": 41.369300270080565,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 2392631808
+        }
+      ],
+      "max_clip_median_ms": 41.28598403930664,
+      "max_clip_p95_ms": 41.369300270080565,
+      "max_peak_allocated_bytes": 2393271296,
+      "input_shapes": {
+        "images": [
+          1,
+          6,
+          3,
+          432,
+          768
+        ],
+        "history_images": [
+          1,
+          4,
+          3,
+          216,
+          384
+        ],
+        "lidar2img": [
+          1,
+          6,
+          4,
+          4
+        ],
+        "history_transforms": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "time_offsets": [
+          1,
+          4
+        ],
+        "goal_xy": [
+          1,
+          2
+        ],
+        "motion_current": [
+          1,
+          3,
+          648,
+          1152
+        ],
+        "motion_history": [
+          1,
+          4,
+          3,
+          648,
+          1152
+        ],
+        "provided_status5": [
+          1,
+          5
+        ]
+      }
+    },
+    "ALL_1152_R6": {
+      "image_hw": [
+        648,
+        1152
+      ],
+      "scene_history_hw": [
+        324,
+        576
+      ],
+      "motion_hw": [
+        648,
+        1152
+      ],
+      "correlation_radius": 6,
+      "fuse_reinitialized_cost_prototype": true,
+      "gflops": 1666.280188608,
+      "timing": [
+        {
+          "clip_index": 0,
+          "median_ms": 54.93075180053711,
+          "p95_ms": 55.16099033355713,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 2453621760
+        },
+        {
+          "clip_index": 1,
+          "median_ms": 54.910335540771484,
+          "p95_ms": 55.081577110290525,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 2453621760
+        }
+      ],
+      "max_clip_median_ms": 54.93075180053711,
+      "max_clip_p95_ms": 55.16099033355713,
+      "max_peak_allocated_bytes": 2453621760,
+      "input_shapes": {
+        "images": [
+          1,
+          6,
+          3,
+          648,
+          1152
+        ],
+        "history_images": [
+          1,
+          4,
+          3,
+          324,
+          576
+        ],
+        "lidar2img": [
+          1,
+          6,
+          4,
+          4
+        ],
+        "history_transforms": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "time_offsets": [
+          1,
+          4
+        ],
+        "goal_xy": [
+          1,
+          2
+        ],
+        "motion_current": [
+          1,
+          3,
+          648,
+          1152
+        ],
+        "motion_history": [
+          1,
+          4,
+          3,
+          648,
+          1152
+        ],
+        "provided_status5": [
+          1,
+          5
+        ]
+      }
+    },
+    "ALL_1536_R8": {
+      "image_hw": [
+        864,
+        1536
+      ],
+      "scene_history_hw": [
+        432,
+        768
+      ],
+      "motion_hw": [
+        864,
+        1536
+      ],
+      "correlation_radius": 8,
+      "fuse_reinitialized_cost_prototype": true,
+      "gflops": 2972.615772864,
+      "timing": [
+        {
+          "clip_index": 0,
+          "median_ms": 101.28562927246094,
+          "p95_ms": 101.43962287902832,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 6812980736
+        },
+        {
+          "clip_index": 1,
+          "median_ms": 101.2999382019043,
+          "p95_ms": 101.46986236572266,
+          "warmup": 30,
+          "repeats": 100,
+          "peak_allocated_bytes": 6812980736
+        }
+      ],
+      "max_clip_median_ms": 101.2999382019043,
+      "max_clip_p95_ms": 101.46986236572266,
+      "max_peak_allocated_bytes": 6812980736,
+      "input_shapes": {
+        "images": [
+          1,
+          6,
+          3,
+          864,
+          1536
+        ],
+        "history_images": [
+          1,
+          4,
+          3,
+          432,
+          768
+        ],
+        "lidar2img": [
+          1,
+          6,
+          4,
+          4
+        ],
+        "history_transforms": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "time_offsets": [
+          1,
+          4
+        ],
+        "goal_xy": [
+          1,
+          2
+        ],
+        "motion_current": [
+          1,
+          3,
+          864,
+          1536
+        ],
+        "motion_history": [
+          1,
+          4,
+          3,
+          864,
+          1536
+        ],
+        "provided_status5": [
+          1,
+          5
+        ]
+      }
+    }
+  },
+  "baseline_profile": {
+    "component_median_ms": {
+      "backbone_0": 7.766016006469727,
+      "backbone_1": 1.9189759492874146,
+      "backbone_2": 6.155776023864746,
+      "motion_0": 2.1432321071624756,
+      "scene_0": 6.624368190765381,
+      "planner_0": 1.154047966003418
+    },
+    "backbone_calls": [
+      {
+        "input": [
+          6,
+          3,
+          432,
+          768
+        ],
+        "levels": [
+          [
+            6,
+            128,
+            54,
+            96
+          ],
+          [
+            6,
+            128,
+            27,
+            48
+          ]
+        ],
+        "p4": [
+          6,
+          128,
+          14,
+          24
+        ]
+      },
+      {
+        "input": [
+          5,
+          3,
+          216,
+          384
+        ],
+        "levels": [
+          [
+            5,
+            128,
+            27,
+            48
+          ],
+          [
+            5,
+            128,
+            14,
+            24
+          ]
+        ],
+        "p4": [
+          5,
+          128,
+          7,
+          12
+        ]
+      },
+      {
+        "input": [
+          5,
+          3,
+          432,
+          768
+        ],
+        "levels": [
+          [
+            5,
+            128,
+            54,
+            96
+          ],
+          [
+            5,
+            128,
+            27,
+            48
+          ]
+        ],
+        "p4": [
+          5,
+          128,
+          14,
+          24
+        ]
+      }
+    ],
+    "scope": "Separate instrumented pass; component medians are not additive whole-forward timing."
+  },
+  "completed": true
+}

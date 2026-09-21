@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "model_statistics": {
+    "FULL_infit_V0": "all partitions, score contributions, lateral shares and PREFIX arithmetic passed",
+    "DEV_PROGRESS_heldout": "all partitions, score contributions, lateral shares and PREFIX arithmetic passed",
+    "DEV_DIRECT_heldout": "all partitions, score contributions, lateral shares and PREFIX arithmetic passed",
+    "FULL_infit_UTURN_train375": "all partitions, score contributions, lateral shares and PREFIX arithmetic passed"
+  },
+  "server_PREFIX_reconstructed": true,
+  "tested_cost_script_hashes_match": true,
+  "analysis_script_hash_matches": true,
+  "figure_visually_inspected": true,
+  "training_started": false,
+  "official_upload_performed": false
+}

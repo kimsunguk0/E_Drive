@@ -1,0 +1,19 @@
+{
+  "report": {
+    "n": 375,
+    "official_d3": 0.27435569116804104,
+    "step": 24931
+  },
+  "scope": "FULL in-fit U-turn diagnostic; all 375 command U_TURN rows in train310, no error-based selection",
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "command_cache_sha256": "5bc806275aa56971b1aafe98443dde83f16f7a4a76e54ddfbb50d12f4d8409d1",
+  "model_parameter_buffer_hash_unchanged": true,
+  "row_sha256": "6bf40a0790ddd377dc14e2a8933efced794393b941c58551ffa5a2d97967d5e0",
+  "script_sha256": "b0080d90baace436eefd52553933a219bf64d62c9d10db2a26f822f7b6535182",
+  "created_utc": "2026-09-21T05:34:08.496752+00:00",
+  "batch": 8,
+  "precision": "BF16 with FP32 planner",
+  "seconds": 10.321038784459233,
+  "optimizer_updates": 0,
+  "source_command_is_current_provided_label_not_derived_from_GT": true
+}
