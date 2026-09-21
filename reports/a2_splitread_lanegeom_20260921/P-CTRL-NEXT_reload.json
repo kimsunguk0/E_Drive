@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "initial_new_process_maxdiff": {
+    "plan_abs": 0.0,
+    "scene_features": 0.0,
+    "occ_logits": 0.0,
+    "lane_logits": 0.0,
+    "motion_features": 0.0,
+    "motion_pair_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "five_updates_complete": true,
+  "new_branch_weights_changed": true,
+  "wrong_graph_rejected": true,
+  "sample_stream": {
+    "microcalls": 10,
+    "rows_sha256": "4720bcc7fc5428605f2d2be39f7255cdee7340c509fc98587b022c2e497afc71",
+    "augmentation_fingerprint_sha256": "dd11e3f752c598ad92d921c49f9e78271dabe0d36381d64a990a438cdd9f94a8",
+    "fingerprint": "ordered rows + sampled normalized current/history/motion pixels + status; deterministic row/epoch augmentation"
+  },
+  "optimizer_effective_groups": [
+    {
+      "name": "backbone",
+      "base_lr": 1e-06,
+      "parameters": 23508032
+    },
+    {
+      "name": "head",
+      "base_lr": 1e-05,
+      "parameters": 3144504
+    }
+  ]
+}

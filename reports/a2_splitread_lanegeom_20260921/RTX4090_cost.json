@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "scope": "entire B1 student forward, BF16 image path and FP32 planner; file/preprocessing/transfer excluded",
+  "counter": "torch.utils.flop_counter.FlopCounterMode, full FP32 graph Global sum",
+  "models": [
+    {
+      "arm": "P-CTRL-NEXT",
+      "checkpoint_sha256": "2aa2ee0ad5377d42f500875df08ec8ffe9cda23a5ec55276e2b495eb8df276e2",
+      "weights_role": "five-update smoke; not a trained candidate score",
+      "flops": 730044861120,
+      "timing": [
+        {
+          "clip": "fixture_000",
+          "median_ms": 25.384960174560547,
+          "p95_ms": 25.445700263977052,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 716241408
+        },
+        {
+          "clip": "fixture_001",
+          "median_ms": 25.472991943359375,
+          "p95_ms": 25.526319789886475,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 716241408
+        }
+      ],
+      "student_without_geometry_head": true,
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    },
+    {
+      "arm": "P-SPLITREAD",
+      "checkpoint_sha256": "a9979172549626e962fa37ea91b6ce9e1e11475fd41eb2732baf7dd89c7f7f7c",
+      "weights_role": "five-update smoke; not a trained candidate score",
+      "flops": 730098141888,
+      "timing": [
+        {
+          "clip": "fixture_000",
+          "median_ms": 25.661919593811035,
+          "p95_ms": 25.71985492706299,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 713675264
+        },
+        {
+          "clip": "fixture_001",
+          "median_ms": 25.667136192321777,
+          "p95_ms": 25.731002712249754,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 713675264
+        }
+      ],
+      "student_without_geometry_head": true,
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    },
+    {
+      "arm": "P-LANE-GEOM",
+      "checkpoint_sha256": "7b1f3d684832f1c0baf905c1a308af00af181828513604be52832701e8e9512b",
+      "weights_role": "five-update smoke; not a trained candidate score",
+      "flops": 730044861120,
+      "timing": [
+        {
+          "clip": "fixture_000",
+          "median_ms": 25.525728225708008,
+          "p95_ms": 25.584674072265624,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 713341440
+        },
+        {
+          "clip": "fixture_001",
+          "median_ms": 25.535856246948242,
+          "p95_ms": 25.59619884490967,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 713341440
+        }
+      ],
+      "student_without_geometry_head": true,
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    }
+  ]
+}

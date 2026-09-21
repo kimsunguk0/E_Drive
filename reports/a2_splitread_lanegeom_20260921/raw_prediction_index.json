@@ -1,0 +1,35 @@
+{
+  "scope": "raw step0 DEV/probe predictions remain on B200, summaries are tracked",
+  "files": [
+    {
+      "path": "reports/a2_splitread_lanegeom_20260921/P-CTRL-NEXT_step0.json",
+      "bytes": 3784532,
+      "sha256": "228e104965c3918465b252790698709fc08a587faf1e752ee302eb050e9a7bea"
+    },
+    {
+      "path": "reports/a2_splitread_lanegeom_20260921/P-CTRL-NEXT_train_probe_step0.json",
+      "bytes": 492384,
+      "sha256": "72ab804b500f778908b48f647d5fd29ebc19f08df03471dc5a5ad6ed51a8ac96"
+    },
+    {
+      "path": "reports/a2_splitread_lanegeom_20260921/P-LANE-GEOM_step0.json",
+      "bytes": 3784532,
+      "sha256": "228e104965c3918465b252790698709fc08a587faf1e752ee302eb050e9a7bea"
+    },
+    {
+      "path": "reports/a2_splitread_lanegeom_20260921/P-LANE-GEOM_train_probe_step0.json",
+      "bytes": 492384,
+      "sha256": "72ab804b500f778908b48f647d5fd29ebc19f08df03471dc5a5ad6ed51a8ac96"
+    },
+    {
+      "path": "reports/a2_splitread_lanegeom_20260921/P-SPLITREAD_step0.json",
+      "bytes": 3784695,
+      "sha256": "f8f6067220767d21be9d7b0c0769ead86b296284d9d35e70d13fbb4dc501aeaa"
+    },
+    {
+      "path": "reports/a2_splitread_lanegeom_20260921/P-SPLITREAD_train_probe_step0.json",
+      "bytes": 492491,
+      "sha256": "16e8ab49ce6d0d379825d1c9ee160618cfd207a82aac2088e262aa5474a40ff1"
+    }
+  ]
+}

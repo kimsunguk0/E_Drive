@@ -1,0 +1,16 @@
+{
+  "status": "resolved_cost_passed",
+  "host": "chi@192.168.10.102",
+  "device": "RTX4090",
+  "attempts": [
+    "--gpus all",
+    "--gpus all with NVIDIA_DRIVER_CAPABILITIES=compute,utility"
+  ],
+  "error": "OCI missing host library /usr/lib/x86_64-linux-gnu/libnvidia-egl-wayland.so.1.1.9",
+  "host_configuration_modified": false,
+  "B200_training_affected": false,
+  "note": "Trying existing explicit NVIDIA runtime without Docker GPU device request; no driver installation.",
+  "resolution": "Existing --runtime=nvidia plus NVIDIA_VISIBLE_DEVICES=0 works without --gpus request; no host changes.",
+  "result": "RTX4090_cost.json",
+  "python_executable": "python3"
+}

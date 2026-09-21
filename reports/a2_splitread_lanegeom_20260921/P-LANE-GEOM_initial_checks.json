@@ -1,0 +1,57 @@
+{
+  "arm": "P-LANE-GEOM",
+  "status": "passed",
+  "parent_sha256": "5021300b0d876a6b59b2137d78fd96ab21b80bfed7141ebc1248e5c8bc05a37a",
+  "mapping": {
+    "mapped_parent_tensors": 489,
+    "all_mapped_tensors_equal": true,
+    "new_keys": [
+      "lane_geometry_head.net.0.bias",
+      "lane_geometry_head.net.0.weight",
+      "lane_geometry_head.net.2.bias",
+      "lane_geometry_head.net.2.weight",
+      "next_execution_signature"
+    ]
+  },
+  "CPU_RNG_matches_control": true,
+  "parameters": 26726588,
+  "initial_parity": {
+    "fp32": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "bf16": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "boundary": {
+    "provided_status5": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "goal_xy": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "step0_PREFIX": 0.15028550432346113,
+  "step0_n": 1998,
+  "initial_state_sha256": "329cfa14272d15a150847f8cf908177732afdc9494ca17cb6395933d5ce566d8"
+}

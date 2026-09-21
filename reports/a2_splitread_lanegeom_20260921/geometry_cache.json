@@ -1,0 +1,20 @@
+{
+  "path": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/a2_lane_geometry_20260921_v3",
+  "manifest_sha256": "887f14594b3ceb629a5ab4c59962440d22f4d12f28a8ad3bfca7321b71489f13",
+  "rows": 83700,
+  "scenes": 310,
+  "elapsed_seconds": 477.9518902245909,
+  "policy": {
+    "schema_version": 3,
+    "radius_m": 4.0,
+    "near_distance_m": 0.05,
+    "point_agreement_m": 0.0001,
+    "axis_disagreement_degrees": 15.0,
+    "exact_distance_tie_m": 1e-09,
+    "minimum_segment_m": 1e-06,
+    "axis": "cos(2theta),sin(2theta); exact-distance ties average agreeing axes",
+    "masks": "offset and axis ambiguity handled independently",
+    "candidate_grouping": "nearest point per original polyline; adjacent segments are not separate competing lines",
+    "agreement": "all candidate pairs, independent of the first/argmin candidate"
+  }
+}

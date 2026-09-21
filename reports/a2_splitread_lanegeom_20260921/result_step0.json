@@ -1,0 +1,977 @@
+{
+  "step": 0,
+  "primary": false,
+  "parent": {
+    "PREFIX": 0.15028550170145288,
+    "L2_1s": 0.08525816725018938,
+    "L2_2s": 0.14182503057216272,
+    "L2_3s": 0.22377330728200656,
+    "point_L2": [
+      0.061467921012600235,
+      0.10904841348777855,
+      0.16353605257149406,
+      0.23324773521677766,
+      0.3229776915562352,
+      0.4523620298471526
+    ],
+    "pair_PREFIX_contributions": [
+      0.052102213319560164,
+      0.055108859415037806,
+      0.043074428966854914
+    ],
+    "groups": {
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.15356898834019775,
+        "contribution": 0.14411504161054595,
+        "L2_1s": 0.08666495665367684,
+        "first1s_contribution": 0.04970149958241812,
+        "signed_interval_length_m": [
+          0.007177119895397857,
+          0.00801860702478884,
+          0.004338610468539596,
+          -0.0008597854278094531,
+          -0.010898823702661944,
+          -0.020700341052844216
+        ]
+      },
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.36820329309494565,
+        "contribution": 0.0044228623795188665,
+        "L2_1s": 0.239501079767082,
+        "first1s_contribution": 0.0017580993509762439,
+        "signed_interval_length_m": [
+          0.16018978372689466,
+          0.14381708343741817,
+          0.07247884845568747,
+          -0.005086777418247851,
+          -0.15944330652269542,
+          -0.39618153333583944
+        ]
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.03526969926619529,
+        "contribution": 0.0017475977113880548,
+        "L2_1s": 0.021222207331558777,
+        "first1s_contribution": 0.000642614386165819,
+        "signed_interval_length_m": [
+          0.01564894426050783,
+          0.007794296596004405,
+          0.010623718155896024,
+          0.01382021899984245,
+          0.019365667702972777,
+          0.034735173887075074
+        ]
+      }
+    },
+    "interval_vector_MAE": [
+      0.061467921012600235,
+      0.05768180176312717,
+      0.07364525775605611,
+      0.09837707649557505,
+      0.13387438445706978,
+      0.18241143102940355
+    ],
+    "interval_length_MAE": [
+      0.05280797994751326,
+      0.04791277215079515,
+      0.05483301312414376,
+      0.06865803963178893,
+      0.09355168327521465,
+      0.12835504926993666
+    ],
+    "signed_interval_length_error": [
+      0.009434884932485853,
+      0.009638705473964731,
+      0.005468536080521479,
+      -0.00018317249959773195,
+      -0.011183549898118875,
+      -0.022463820850511816
+    ],
+    "weighted_longitudinal_abs": 0.12075784048198228,
+    "weighted_lateral_abs": 0.06833243658579992,
+    "GT_tangent_mask": "GT interval length > .05m",
+    "GT_mask_count_by_interval": [
+      1879,
+      1879,
+      1879,
+      1879,
+      1879,
+      1878
+    ],
+    "predicted_degenerate_on_GT_mask_by_interval": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "heading_MAE_deg_including_zero_pred_convention": [
+      0.30573118443388647,
+      0.28755556744207655,
+      0.46832507308832605,
+      0.7249359375964162,
+      1.0285248130402505,
+      1.4054898860614302
+    ],
+    "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+    "curve_n": 50,
+    "curve_PREFIX": 0.4144708478793999,
+    "curve_signed_interval_length": [
+      0.005441246157246154,
+      -0.05519848939679951,
+      -0.10952579344857959,
+      -0.13695016881103025,
+      -0.14440487120061532,
+      -0.14695126872276204
+    ]
+  },
+  "arms": {
+    "P-CTRL-NEXT": {
+      "PREFIX": 0.15028550170145288,
+      "L2_1s": 0.08525816725018938,
+      "L2_2s": 0.14182503057216272,
+      "L2_3s": 0.22377330728200656,
+      "point_L2": [
+        0.061467921012600235,
+        0.10904841348777855,
+        0.16353605257149406,
+        0.23324773521677766,
+        0.3229776915562352,
+        0.4523620298471526
+      ],
+      "pair_PREFIX_contributions": [
+        0.052102213319560164,
+        0.055108859415037806,
+        0.043074428966854914
+      ],
+      "groups": {
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15356898834019775,
+          "contribution": 0.14411504161054595,
+          "L2_1s": 0.08666495665367684,
+          "first1s_contribution": 0.04970149958241812,
+          "signed_interval_length_m": [
+            0.007177119895397857,
+            0.00801860702478884,
+            0.004338610468539596,
+            -0.0008597854278094531,
+            -0.010898823702661944,
+            -0.020700341052844216
+          ]
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.36820329309494565,
+          "contribution": 0.0044228623795188665,
+          "L2_1s": 0.239501079767082,
+          "first1s_contribution": 0.0017580993509762439,
+          "signed_interval_length_m": [
+            0.16018978372689466,
+            0.14381708343741817,
+            0.07247884845568747,
+            -0.005086777418247851,
+            -0.15944330652269542,
+            -0.39618153333583944
+          ]
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03526969926619529,
+          "contribution": 0.0017475977113880548,
+          "L2_1s": 0.021222207331558777,
+          "first1s_contribution": 0.000642614386165819,
+          "signed_interval_length_m": [
+            0.01564894426050783,
+            0.007794296596004405,
+            0.010623718155896024,
+            0.01382021899984245,
+            0.019365667702972777,
+            0.034735173887075074
+          ]
+        }
+      },
+      "interval_vector_MAE": [
+        0.061467921012600235,
+        0.05768180176312717,
+        0.07364525775605611,
+        0.09837707649557505,
+        0.13387438445706978,
+        0.18241143102940355
+      ],
+      "interval_length_MAE": [
+        0.05280797994751326,
+        0.04791277215079515,
+        0.05483301312414376,
+        0.06865803963178893,
+        0.09355168327521465,
+        0.12835504926993666
+      ],
+      "signed_interval_length_error": [
+        0.009434884932485853,
+        0.009638705473964731,
+        0.005468536080521479,
+        -0.00018317249959773195,
+        -0.011183549898118875,
+        -0.022463820850511816
+      ],
+      "weighted_longitudinal_abs": 0.12075784048198228,
+      "weighted_lateral_abs": 0.06833243658579992,
+      "GT_tangent_mask": "GT interval length > .05m",
+      "GT_mask_count_by_interval": [
+        1879,
+        1879,
+        1879,
+        1879,
+        1879,
+        1878
+      ],
+      "predicted_degenerate_on_GT_mask_by_interval": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "heading_MAE_deg_including_zero_pred_convention": [
+        0.30573118443388647,
+        0.28755556744207655,
+        0.46832507308832605,
+        0.7249359375964162,
+        1.0285248130402505,
+        1.4054898860614302
+      ],
+      "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+      "curve_n": 50,
+      "curve_PREFIX": 0.4144708478793999,
+      "curve_signed_interval_length": [
+        0.005441246157246154,
+        -0.05519848939679951,
+        -0.10952579344857959,
+        -0.13695016881103025,
+        -0.14440487120061532,
+        -0.14695126872276204
+      ],
+      "predictions": "/NHNHOME/data/sukim/adcl/reports/a2_splitread_lanegeom_20260921/P-CTRL-NEXT_step0.json",
+      "predictions_sha256": "228e104965c3918465b252790698709fc08a587faf1e752ee302eb050e9a7bea",
+      "auxiliary": {
+        "occ_iou": 0.3812072614783458,
+        "lane_iou": 0.3484311631809153,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5613543515773762,
+          0.04376041009465491,
+          0.23852235581716513,
+          0.049334454592239264,
+          0.005129386514509006
+        ],
+        "history_position_mae_by_offset": [
+          0.0696664924808766,
+          0.12156775486391005,
+          0.2977420603306414,
+          0.6130772042358564
+        ]
+      },
+      "delta_ctrl": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      },
+      "delta_parent": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      }
+    },
+    "P-SPLITREAD": {
+      "PREFIX": 0.15028554767828753,
+      "L2_1s": 0.0852582332634283,
+      "L2_2s": 0.14182508179657743,
+      "L2_3s": 0.22377332797485686,
+      "point_L2": [
+        0.0614679404625178,
+        0.10904852606433892,
+        0.16353609154789095,
+        0.2332477691115621,
+        0.3229777146234732,
+        0.4523619260393579
+      ],
+      "pair_PREFIX_contributions": [
+        0.052102253660983956,
+        0.05510886953603518,
+        0.0430744244812684
+      ],
+      "groups": {
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15356903744777567,
+          "contribution": 0.14411508769498468,
+          "L2_1s": 0.08666502710365163,
+          "first1s_contribution": 0.0497015399847852,
+          "signed_interval_length_m": [
+            0.00717705722546087,
+            0.008018686264485516,
+            0.004338527300288623,
+            -0.0008597913784440908,
+            -0.010898917266386407,
+            -0.02070035250504743
+          ]
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.36820328179780093,
+          "contribution": 0.0044228622438174285,
+          "L2_1s": 0.23950107209813262,
+          "first1s_contribution": 0.001758099294680987,
+          "signed_interval_length_m": [
+            0.160189784979981,
+            0.143817068439724,
+            0.0724788500024731,
+            -0.005086808369172149,
+            -0.15944336910258974,
+            -0.39618155055894516
+          ]
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03526969983325135,
+          "contribution": 0.0017475977394854274,
+          "L2_1s": 0.021222207178057877,
+          "first1s_contribution": 0.0006426143815177686,
+          "signed_interval_length_m": [
+            0.015648944238396544,
+            0.007794296367781992,
+            0.010623719003038308,
+            0.013820220451921729,
+            0.019365668903458314,
+            0.03473517336742191
+          ]
+        }
+      },
+      "interval_vector_MAE": [
+        0.0614679404625178,
+        0.057681898193611233,
+        0.07364524354042924,
+        0.09837703254163634,
+        0.13387448123970375,
+        0.18241134708041398
+      ],
+      "interval_length_MAE": [
+        0.052808007132150114,
+        0.04791289398695333,
+        0.05483301136719496,
+        0.06865798653621452,
+        0.09355180027669312,
+        0.12835493247206547
+      ],
+      "signed_interval_length_error": [
+        0.009434826134564535,
+        0.009638779644081157,
+        0.005468458092793448,
+        -0.00018317838373501123,
+        -0.011183638394141292,
+        -0.022463831830332258
+      ],
+      "weighted_longitudinal_abs": 0.12075790549022296,
+      "weighted_lateral_abs": 0.06833245018351053,
+      "GT_tangent_mask": "GT interval length > .05m",
+      "GT_mask_count_by_interval": [
+        1879,
+        1879,
+        1879,
+        1879,
+        1879,
+        1878
+      ],
+      "predicted_degenerate_on_GT_mask_by_interval": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "heading_MAE_deg_including_zero_pred_convention": [
+        0.30573122330893915,
+        0.28755565838422964,
+        0.46832511163749957,
+        0.7249358295486877,
+        1.0285247364738406,
+        1.405489821570964
+      ],
+      "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+      "curve_n": 50,
+      "curve_PREFIX": 0.41447081934889984,
+      "curve_signed_interval_length": [
+        0.005441213110752487,
+        -0.0551985927927419,
+        -0.10952585363942934,
+        -0.13695008388734872,
+        -0.14440478223652672,
+        -0.14695150598346396
+      ],
+      "predictions": "/NHNHOME/data/sukim/adcl/reports/a2_splitread_lanegeom_20260921/P-SPLITREAD_step0.json",
+      "predictions_sha256": "f8f6067220767d21be9d7b0c0769ead86b296284d9d35e70d13fbb4dc501aeaa",
+      "auxiliary": {
+        "occ_iou": 0.3812072614783458,
+        "lane_iou": 0.3484311631809153,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5613543515773762,
+          0.04376041009465491,
+          0.23852235581716513,
+          0.049334454592239264,
+          0.005129386514509006
+        ],
+        "history_position_mae_by_offset": [
+          0.0696664924808766,
+          0.12156775486391005,
+          0.2977420603306414,
+          0.6130772042358564
+        ]
+      },
+      "delta_ctrl": {
+        "mean_delta": 4.597683464039002e-08,
+        "session_CI95": [
+          -6.351481434658788e-08,
+          1.0945665929926989e-07
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": -1.0930545391672712e-07,
+            "overall_contribution": -2.954201457208841e-09
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 3.6417429351763e-08,
+            "overall_contribution": 1.968509694689892e-09
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 9.32773893519232e-08,
+            "overall_contribution": 1.764707366117466e-08
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": -1.0958233594523631e-07,
+            "overall_contribution": -5.923369510553314e-09
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 8.546247610386635e-08,
+            "overall_contribution": 2.3097966514558472e-08
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 2.1245864499998726e-07,
+            "overall_contribution": 3.4452753243241176e-08
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": -5.530574182617337e-08,
+            "overall_contribution": -2.9894995581715336e-09
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": -1.3314698821380774e-07,
+            "overall_contribution": -3.5985672490218307e-09
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": -1.9732287106536604e-07,
+            "overall_contribution": -1.5999151708002652e-08
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 6.388297066767065e-08,
+            "overall_contribution": 3.4531335496038193e-09
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": -1.1757906397703392e-07,
+            "overall_contribution": -3.177812539919836e-09
+          }
+        },
+        "largest_contribution_session": "session_076_20260213-134648",
+        "delta_excluding_largest_contribution_session": 1.3754548764338935e-08,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      },
+      "delta_parent": {
+        "mean_delta": 4.597683464039002e-08,
+        "session_CI95": [
+          -6.351481434658788e-08,
+          1.0945665929926989e-07
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": -1.0930545391672712e-07,
+            "overall_contribution": -2.954201457208841e-09
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 3.6417429351763e-08,
+            "overall_contribution": 1.968509694689892e-09
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 9.32773893519232e-08,
+            "overall_contribution": 1.764707366117466e-08
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": -1.0958233594523631e-07,
+            "overall_contribution": -5.923369510553314e-09
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 8.546247610386635e-08,
+            "overall_contribution": 2.3097966514558472e-08
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 2.1245864499998726e-07,
+            "overall_contribution": 3.4452753243241176e-08
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": -5.530574182617337e-08,
+            "overall_contribution": -2.9894995581715336e-09
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": -1.3314698821380774e-07,
+            "overall_contribution": -3.5985672490218307e-09
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": -1.9732287106536604e-07,
+            "overall_contribution": -1.5999151708002652e-08
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 6.388297066767065e-08,
+            "overall_contribution": 3.4531335496038193e-09
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": -1.1757906397703392e-07,
+            "overall_contribution": -3.177812539919836e-09
+          }
+        },
+        "largest_contribution_session": "session_076_20260213-134648",
+        "delta_excluding_largest_contribution_session": 1.3754548764338935e-08,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      }
+    },
+    "P-LANE-GEOM": {
+      "PREFIX": 0.15028550170145288,
+      "L2_1s": 0.08525816725018938,
+      "L2_2s": 0.14182503057216272,
+      "L2_3s": 0.22377330728200656,
+      "point_L2": [
+        0.061467921012600235,
+        0.10904841348777855,
+        0.16353605257149406,
+        0.23324773521677766,
+        0.3229776915562352,
+        0.4523620298471526
+      ],
+      "pair_PREFIX_contributions": [
+        0.052102213319560164,
+        0.055108859415037806,
+        0.043074428966854914
+      ],
+      "groups": {
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15356898834019775,
+          "contribution": 0.14411504161054595,
+          "L2_1s": 0.08666495665367684,
+          "first1s_contribution": 0.04970149958241812,
+          "signed_interval_length_m": [
+            0.007177119895397857,
+            0.00801860702478884,
+            0.004338610468539596,
+            -0.0008597854278094531,
+            -0.010898823702661944,
+            -0.020700341052844216
+          ]
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.36820329309494565,
+          "contribution": 0.0044228623795188665,
+          "L2_1s": 0.239501079767082,
+          "first1s_contribution": 0.0017580993509762439,
+          "signed_interval_length_m": [
+            0.16018978372689466,
+            0.14381708343741817,
+            0.07247884845568747,
+            -0.005086777418247851,
+            -0.15944330652269542,
+            -0.39618153333583944
+          ]
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03526969926619529,
+          "contribution": 0.0017475977113880548,
+          "L2_1s": 0.021222207331558777,
+          "first1s_contribution": 0.000642614386165819,
+          "signed_interval_length_m": [
+            0.01564894426050783,
+            0.007794296596004405,
+            0.010623718155896024,
+            0.01382021899984245,
+            0.019365667702972777,
+            0.034735173887075074
+          ]
+        }
+      },
+      "interval_vector_MAE": [
+        0.061467921012600235,
+        0.05768180176312717,
+        0.07364525775605611,
+        0.09837707649557505,
+        0.13387438445706978,
+        0.18241143102940355
+      ],
+      "interval_length_MAE": [
+        0.05280797994751326,
+        0.04791277215079515,
+        0.05483301312414376,
+        0.06865803963178893,
+        0.09355168327521465,
+        0.12835504926993666
+      ],
+      "signed_interval_length_error": [
+        0.009434884932485853,
+        0.009638705473964731,
+        0.005468536080521479,
+        -0.00018317249959773195,
+        -0.011183549898118875,
+        -0.022463820850511816
+      ],
+      "weighted_longitudinal_abs": 0.12075784048198228,
+      "weighted_lateral_abs": 0.06833243658579992,
+      "GT_tangent_mask": "GT interval length > .05m",
+      "GT_mask_count_by_interval": [
+        1879,
+        1879,
+        1879,
+        1879,
+        1879,
+        1878
+      ],
+      "predicted_degenerate_on_GT_mask_by_interval": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "heading_MAE_deg_including_zero_pred_convention": [
+        0.30573118443388647,
+        0.28755556744207655,
+        0.46832507308832605,
+        0.7249359375964162,
+        1.0285248130402505,
+        1.4054898860614302
+      ],
+      "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+      "curve_n": 50,
+      "curve_PREFIX": 0.4144708478793999,
+      "curve_signed_interval_length": [
+        0.005441246157246154,
+        -0.05519848939679951,
+        -0.10952579344857959,
+        -0.13695016881103025,
+        -0.14440487120061532,
+        -0.14695126872276204
+      ],
+      "predictions": "/NHNHOME/data/sukim/adcl/reports/a2_splitread_lanegeom_20260921/P-LANE-GEOM_step0.json",
+      "predictions_sha256": "228e104965c3918465b252790698709fc08a587faf1e752ee302eb050e9a7bea",
+      "auxiliary": {
+        "occ_iou": 0.3812072614783458,
+        "lane_iou": 0.3484311631809153,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5613543515773762,
+          0.04376041009465491,
+          0.23852235581716513,
+          0.049334454592239264,
+          0.005129386514509006
+        ],
+        "history_position_mae_by_offset": [
+          0.0696664924808766,
+          0.12156775486391005,
+          0.2977420603306414,
+          0.6130772042358564
+        ]
+      },
+      "delta_ctrl": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      },
+      "delta_parent": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      }
+    }
+  }
+}

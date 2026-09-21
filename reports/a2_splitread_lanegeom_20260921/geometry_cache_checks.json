@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "index": 0,
+      "cache_matches_generator": true,
+      "flip_and_double_flip_exact": true
+    },
+    {
+      "index": 30000,
+      "cache_matches_generator": true,
+      "flip_and_double_flip_exact": true
+    },
+    {
+      "index": 60000,
+      "cache_matches_generator": true,
+      "flip_and_double_flip_exact": true
+    }
+  ],
+  "manifest_sha256": "887f14594b3ceb629a5ab4c59962440d22f4d12f28a8ad3bfca7321b71489f13"
+}

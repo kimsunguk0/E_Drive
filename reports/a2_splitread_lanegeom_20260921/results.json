@@ -1,0 +1,20 @@
+{
+  "status": "running",
+  "terminal_primary_step": 6852,
+  "available_steps": [
+    0
+  ],
+  "sample_stream": {
+    "steps_compared": 755,
+    "last_compared_step": 755,
+    "mismatch_steps": []
+  },
+  "terminal": null,
+  "official_server_baseline": 0.1336848279459137,
+  "server_conversion_or_prediction": null,
+  "selected_intermediate_on_reused_V0": {
+    "P-CTRL-NEXT": null,
+    "P-SPLITREAD": null,
+    "P-LANE-GEOM": null
+  }
+}

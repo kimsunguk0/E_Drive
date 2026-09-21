@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 19:57 KST 후속 DEV 학습 시작:** 사용자 요청으로 GPU0 CTRL-NEXT / GPU1 SPLITREAD / GPU2 LANE-GEOM을 동일 DEV CTRL 부모에서6,852update씩 시작했다. 초기 V0는 모두0.1502855, 실제5update·같은 sample/augmentation·새 프로세스 strict student export를 통과했다. Lane target은train310/83,700행에만 생성했고 새 head는 배포에서 제거된다. GPU3은 유휴/후속용. 약350update 실측0.53초/update로 중간20:30·terminal21:00~21:10 KST 예상이며 변동 가능하다. 추가 update는 현재 horizon 뒤 결과를 보고 별도 matched stage로 판단하며 자동 FULL/업로드는 없다. [실행 계약](reports/a2_splitread_lanegeom_20260921/EXECUTION_KO.md), [실제 상태](reports/a2_splitread_lanegeom_20260921/launch_health.json), [결과](reports/a2_splitread_lanegeom_20260921/RESULTS_KO.md).
+
 **2026-09-21 SplitRead/LaneGeometry 설계 검증 완료:** 실제 DEV CTRL 가중치·고정 train 3행에서 GPU0 forward/backward만 검사했다(optimizer update 0). SplitRead 초기 최대차이는 FP32 1.14e-5m/BF16 3.81e-6m, 새 프로세스 strict 재구성은 차이0이다. 전체 모델 deepcopy hook 소유권 문제와 LaneGeometry의 인접 segment/세 선 동거리 mask 문제를 수정했다. 최종 지도 target의 flip·순서 불변성과 effective-batch 정규화를 확인했다. 다음 제안은 동일 CTRL 부모의 CTRL-NEXT/SPLITREAD/LANE-GEOM 독립 6,852-update 비교이며, 신규 학습·예약·전체 DEV 평가·공식 제출은 아직 없다. [실측 검증·남은 구현](reports/a2_design_preflight_20260921/DESIGN_VERIFICATION_KO.md).
 
 **2026-09-21 후속 방향 검토:** 새 학습 없이 latest CTRL 저장예측을 재계산했다. CTRL 길이+DIRECT 방향 진단은 DEV0.144266이며 단일 모델 성능이 아니다. GT 성분치환에서도 진행량/방향 여지가 남는다. GPU1 고정weights FP32 sampling 비교는0.150285498→0.150304091로 개선되지 않았다. 첫 strict parity 실패와 재현 오차도 보존했다. 다음 권고는 길이/방향 decoder 분리와 원본1152 motion의 충분한 공동 학습이며, 세부 기하/agent 감독은 별도 후속축이다. 신규 학습/예약/공식 제출 없음. [근거와 실행 제안](reports/a2_next_direction_20260921/RECOMMENDATION_KO.md).
