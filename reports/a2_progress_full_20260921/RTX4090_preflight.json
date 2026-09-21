@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "host": "chi@192.168.10.102",
+  "GPU": "NVIDIA GeForce RTX 4090",
+  "driver": "595.91.07",
+  "torch": "2.7.1+cu128",
+  "docker_image": "md-v2:4090",
+  "docker_image_id": "sha256:811933f25cfcf8b5c3998e0fb8e33e5ed8934b22ff155135ad83984586b16312",
+  "checkpoint_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+  "scope": "selected DEV weights, exact inference graph used by FULL; FULL weights still training",
+  "batch_size": 1,
+  "precision": "BF16 with FP32 planner",
+  "all_inputs_bitwise_equal_to_B200": true,
+  "FP32_max_abs_B200_vs_4090_m": 1.9073486328125e-06,
+  "timing": [
+    {
+      "clip": "fixture_000",
+      "median_ms": 26.087488174438477,
+      "p95_ms": 26.15249881744385,
+      "warmup": 30,
+      "repeats": 200,
+      "peak_allocated_bytes": 711178752
+    },
+    {
+      "clip": "fixture_001",
+      "median_ms": 26.057727813720703,
+      "p95_ms": 26.113025379180907,
+      "warmup": 30,
+      "repeats": 200,
+      "peak_allocated_bytes": 711379456
+    }
+  ],
+  "largest_clip_median_ms": 26.087488174438477,
+  "largest_clip_p95_ms": 26.15249881744385,
+  "timing_scope": "whole model forward including all current/history image encoders; preprocessing excluded",
+  "samples": "two raw training fixtures; warmup30, repeats200 each",
+  "not_server_elapsed_ms": true,
+  "official_upload_performed": false,
+  "previous_failure_host": "local /home/a NVML mismatch, not this 4090"
+}

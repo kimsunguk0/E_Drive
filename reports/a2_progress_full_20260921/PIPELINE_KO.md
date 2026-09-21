@@ -30,3 +30,5 @@ GPU 0에서 08:44:51 KST 시작. 공개 nuImages trunk 초기값에서 전체 37
 상태 파일: reports/a2_progress_full_20260921/runtime/finish_status.json, completion.json. PC 상태 파일: /home/a/a2_progress_full_20260921/local_delivery_state.json.
 
 이번 실험은 FULL→DEV 가중치·teacher·feature·통계 재사용을 하지 않는다. GPU 4–7의 다른 작업을 건드리지 않는다. 자동 추가 학습, 후보 ensemble 탐색, 복수 제출은 없다.
+
+2026-09-21 10시대 갱신: 사용자가 제공한 별도 RTX4090(chi@192.168.10.102)은 정상이며 Docker 실측26.1ms를 확보했다. 위의 미측정은 이전 /home/a 환경 상태다. 현재 결과는 같은 graph의 DEV 가중치 측정이며 FULL 최종 가중치는 Downloads 복사 뒤 독립 검사한다. RTX4090_preflight.json 및 ARCHITECTURE_AND_BOTTLENECK_KO.md 참조.

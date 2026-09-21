@@ -1,0 +1,304 @@
+{
+  "checkpoint_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+  "arm": "A2-H4-PROGRESS",
+  "step": 20554,
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.1+cu128",
+  "cuda": "12.8",
+  "precision": "bf16",
+  "output": "absolute XY6x2, no serving cumsum",
+  "forwards_per_clip": 1,
+  "predictions": {
+    "fixture_000": [
+      [
+        3.1618001461029053,
+        -0.16441595554351807
+      ],
+      [
+        6.20727014541626,
+        -0.4769933819770813
+      ],
+      [
+        9.121124267578125,
+        -0.9103817939758301
+      ],
+      [
+        11.930787086486816,
+        -1.4373061656951904
+      ],
+      [
+        14.646697998046875,
+        -2.0139663219451904
+      ],
+      [
+        17.301876068115234,
+        -2.618980884552002
+      ]
+    ],
+    "fixture_001": [
+      [
+        5.25078010559082,
+        -0.11616631597280502
+      ],
+      [
+        10.555557250976562,
+        -0.2422732412815094
+      ],
+      [
+        15.901802062988281,
+        -0.36807918548583984
+      ],
+      [
+        21.269577026367188,
+        -0.5025565028190613
+      ],
+      [
+        26.634145736694336,
+        -0.6473246216773987
+      ],
+      [
+        31.987306594848633,
+        -0.7889682650566101
+      ]
+    ]
+  },
+  "input_frame_checks": {
+    "fixture_000": {
+      "fit_relative_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "fit_count": 5,
+      "nominal_seconds": [
+        -1.0,
+        -0.5,
+        -0.2,
+        -0.1,
+        0.0
+      ],
+      "design_condition": 25.423738725278525,
+      "position_fit_rms_m": 0.0022137665415679964,
+      "all_fit_times_have_consumed_RGB": true,
+      "producer": "h4_status.status_from_clip_records",
+      "route": "shared scene query only",
+      "consumed_RGB_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "image_getter_calls": [
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front_right",
+          0
+        ],
+        [
+          "camera_front_left",
+          0
+        ],
+        [
+          "camera_rear_wide",
+          0
+        ],
+        [
+          "camera_rear_left",
+          0
+        ],
+        [
+          "camera_rear_right",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ],
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ]
+      ]
+    },
+    "fixture_001": {
+      "fit_relative_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "fit_count": 5,
+      "nominal_seconds": [
+        -1.0,
+        -0.5,
+        -0.2,
+        -0.1,
+        0.0
+      ],
+      "design_condition": 25.423738725278525,
+      "position_fit_rms_m": 0.001401233690657774,
+      "all_fit_times_have_consumed_RGB": true,
+      "producer": "h4_status.status_from_clip_records",
+      "route": "shared scene query only",
+      "consumed_RGB_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "image_getter_calls": [
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front_right",
+          0
+        ],
+        [
+          "camera_front_left",
+          0
+        ],
+        [
+          "camera_rear_wide",
+          0
+        ],
+        [
+          "camera_rear_left",
+          0
+        ],
+        [
+          "camera_rear_right",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ],
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ]
+      ]
+    }
+  },
+  "input_tensor_sha256": {
+    "fixture_000": {
+      "images": "db0c115d8bb7f79aa41846cd3e42a45dbe82331958024421bda56540ccbfcda0",
+      "history_images": "582d52df83d751ef6ada71a204215d89ab2631fdd7fadb37e23688e75a568e06",
+      "lidar2img": "1f7eadebde9318f8081b20b0ce9870b6bc68b5515f39f604938b7e4ee593ee57",
+      "history_transforms": "e8ac2b364cd22b2a825bcc033bf7f12d6414003a67559aa3ce3886ede89dc79a",
+      "time_offsets": "758558e79b808637343cedd0be341010a675b8d06f92bf137cb18e01f1b4ac5d",
+      "goal_xy": "4ce6935ec3e5a00c7302b94ea5cd0280aa30f53f2d9f84c5c23d2fbb810a380f",
+      "motion_current": "d596dbec99ee986b718e1c8a555215622fce7bcf8a7e24461997defe3d003bf8",
+      "motion_history": "6e7e044ee311e41bfe9522a4322867235809c26cf051756f63880c824e9bd94d",
+      "provided_status5": "75bcab3b1c6301594c7b5c34fdaf9f226ec5a8f9dcc2565e80eb95ff1fce5b61"
+    },
+    "fixture_001": {
+      "images": "92535c8a2104b89462aaf967443c55ceb768e1397ee5ec592954f1e3aa352bb5",
+      "history_images": "2c3434ebeca085150000096ceb982bcda6c7d9142fc0713b71078dd69eef836c",
+      "lidar2img": "1f7eadebde9318f8081b20b0ce9870b6bc68b5515f39f604938b7e4ee593ee57",
+      "history_transforms": "c6e2153ac15ea62b7eebd9e583af261592e6ca73ad20dc6d921908f4faccd3ba",
+      "time_offsets": "758558e79b808637343cedd0be341010a675b8d06f92bf137cb18e01f1b4ac5d",
+      "goal_xy": "2d679a4331cf7f577d131f8fb53b14e9a79f69a8c8b0fc481d22996b90384ac2",
+      "motion_current": "49dcf6eeea347ed81e591f7738b7fbcb72255107a750ae4b0618cf24151c51cc",
+      "motion_history": "6fd4e2abf3ec8595eb1a05b6a7cdbeaa72e5b4a461324460e38a5b577cee5ead",
+      "provided_status5": "01aab314ae1fa3283f61e336d0efb08f5a4864a28ce2010d917e8e1a2f838309"
+    }
+  },
+  "timing": [
+    {
+      "clip": "fixture_000",
+      "median_ms": 26.087488174438477,
+      "p95_ms": 26.15249881744385,
+      "warmup": 30,
+      "repeats": 200,
+      "peak_allocated_bytes": 711178752
+    },
+    {
+      "clip": "fixture_001",
+      "median_ms": 26.057727813720703,
+      "p95_ms": 26.113025379180907,
+      "warmup": 30,
+      "repeats": 200,
+      "peak_allocated_bytes": 711379456
+    }
+  ],
+  "timing_scope": "whole model forward including all current/history image encoders; preprocessing excluded",
+  "provided_status_route": "common scene query only",
+  "official_upload_performed": false,
+  "imported_source_files": {
+    "progress_model": "/workspace/code/experiments/a2_progress_h4_20260920/progress_model.py",
+    "temporal_model": "/workspace/code/experiments/a2_temporal_read_20260920/temporal_model.py",
+    "motion_model": "/workspace/code/experiments/a2_motion_fresh_20260919/motion_model.py",
+    "scene_extensions": "/workspace/code/experiments/md_a2_scene_extensions_20260918/scene_extensions.py",
+    "factorized_model": "/workspace/code/experiments/md_shared_dynamics_20260917/factorized_model.py",
+    "matching_resolution": "/workspace/code/experiments/md_r0_reset_20260914/matching_resolution.py",
+    "mr_deploy": "/workspace/code/experiments/md_r0_reset_20260914/mr_deploy.py",
+    "h4_status": "/workspace/code/experiments/a2_progress_h4_20260920/h4_status.py"
+  }
+}
