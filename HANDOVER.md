@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 20:59 KST SplitRead/LaneGeometry DEV 완료:** 동일 CTRL 부모에서 추가 6,852 update를 마쳤다. CTRL-NEXT **0.147582070**, SPLITREAD **0.147393734**, LANE-GEOM **0.147662130**. 부모0.150285502보다 모두 개선했으나 SplitRead의 CTRL 대비 추가 이득은0.000188337이고 session CI는0 포함이다. 일반 주행/종횡도 개선했으나 대부분 control에서 재현된다. SplitRead와 control을 보존하며 추가 연장·FULL·공식 업로드는 시작하지 않았다. GPU0–3 유휴. [최종 판정](reports/a2_splitread_lanegeom_20260921/TERMINAL_REVIEW_KO.md), [시점·그룹·세션 원자료 요약](reports/a2_splitread_lanegeom_20260921/result_step6852.json).
+
 **2026-09-21 19:57 KST 후속 DEV 학습 시작:** 사용자 요청으로 GPU0 CTRL-NEXT / GPU1 SPLITREAD / GPU2 LANE-GEOM을 동일 DEV CTRL 부모에서6,852update씩 시작했다. 초기 V0는 모두0.1502855, 실제5update·같은 sample/augmentation·새 프로세스 strict student export를 통과했다. Lane target은train310/83,700행에만 생성했고 새 head는 배포에서 제거된다. GPU3은 유휴/후속용. 약350update 실측0.53초/update로 중간20:30·terminal21:00~21:10 KST 예상이며 변동 가능하다. 추가 update는 현재 horizon 뒤 결과를 보고 별도 matched stage로 판단하며 자동 FULL/업로드는 없다. [실행 계약](reports/a2_splitread_lanegeom_20260921/EXECUTION_KO.md), [실제 상태](reports/a2_splitread_lanegeom_20260921/launch_health.json), [결과](reports/a2_splitread_lanegeom_20260921/RESULTS_KO.md).
 
 **2026-09-21 SplitRead/LaneGeometry 설계 검증 완료:** 실제 DEV CTRL 가중치·고정 train 3행에서 GPU0 forward/backward만 검사했다(optimizer update 0). SplitRead 초기 최대차이는 FP32 1.14e-5m/BF16 3.81e-6m, 새 프로세스 strict 재구성은 차이0이다. 전체 모델 deepcopy hook 소유권 문제와 LaneGeometry의 인접 segment/세 선 동거리 mask 문제를 수정했다. 최종 지도 target의 flip·순서 불변성과 effective-batch 정규화를 확인했다. 다음 제안은 동일 CTRL 부모의 CTRL-NEXT/SPLITREAD/LANE-GEOM 독립 6,852-update 비교이며, 신규 학습·예약·전체 DEV 평가·공식 제출은 아직 없다. [실측 검증·남은 구현](reports/a2_design_preflight_20260921/DESIGN_VERIFICATION_KO.md).
@@ -57,7 +59,9 @@
 |---|---|---:|---|
 |최신 공식 제출|A2-H4-PROGRESS-FULL-s1|**0.133684828**|사용자 전달 공식 결과·4등 보고; 동일 FULL 4090 실측 완료|
 |확인된 공식 제출 기준|MR-NATIVE-FULL-s1|**0.185968928**|사용자가 전달한 공식 서버 결과|
-|새 단일 DEV 후보|A2-H4-PROGRESS-s1 / step20,554|**0.151178860**|정지·출발 개선, 일반 주행은 matched control보다 악화; 9/21 사용자 요청으로 FULL 진행|
+|최신 고정 단일 DEV terminal|P-SPLITREAD-s1 / step6,852|**0.147393734**|같은 CTRL-NEXT 대비0.000188 개선·CI 0 포함; 새 FULL 미시작|
+|동일 추가 예산 control|P-CTRL-NEXT-s1 / step6,852|**0.147582070**|기존 DEV P-CTRL 이후 continuation; 입력/graph 유지|
+|제출 FULL의 DEV 기준|A2-H4-PROGRESS-s1 / step20,554|**0.151178860**|정지·출발 개선, 일반 주행은 matched control보다 악화; 9/21 사용자 요청으로 FULL 진행|
 |기존 A2 고정 terminal 대조|A2-QREFINE-NOM-s1|**0.164251770**|DEV V0; 이전 A2 대비 이득은 작고 불확실|
 |새 고정 단일 DEV terminal|A2-FRESH-CONT-s1 / step6,852|**0.156334059**|부모 대비1.50% 개선|
 |새 동일 예산 구조 후보|A2-TEMPORAL-READ-s1 / step20,554|**0.154119411**|FRESH control 대비2.89% 개선, 정지 유지 회귀|

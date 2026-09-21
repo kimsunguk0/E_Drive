@@ -1,0 +1,311 @@
+{
+  "status": "DEV_complete",
+  "lowest_terminal_arm": "P-SPLITREAD",
+  "candidate_for_FULL": "P-SPLITREAD",
+  "reason": "lowest terminal PREFIX below frozen parent",
+  "primary": {
+    "PREFIX": 0.14739373370951964,
+    "L2_1s": 0.08275785713430267,
+    "L2_2s": 0.13951408872811596,
+    "L2_3s": 0.21990925526614022,
+    "point_L2": [
+      0.058818403948901116,
+      0.10669731031970431,
+      0.16168343509547706,
+      0.23085720554838093,
+      0.3185816592381858,
+      0.44281751744619197
+    ],
+    "pair_PREFIX_contributions": [
+      0.0505742460265183,
+      0.05451953342275813,
+      0.04229995426024318
+    ],
+    "groups": {
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.15075866886392644,
+        "contribution": 0.14147772978972076,
+        "L2_1s": 0.08440430710779952,
+        "first1s_contribution": 0.048405039319829965,
+        "signed_interval_length_m": [
+          0.007498137496776406,
+          0.006412592640327266,
+          0.0029692702960853763,
+          -0.0005022969078989645,
+          -0.007499908456832482,
+          -0.01483713786954592
+        ]
+      },
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.3659068822340637,
+        "contribution": 0.004395277864673438,
+        "L2_1s": 0.21909265078019824,
+        "first1s_contribution": 0.0016082877267815686,
+        "signed_interval_length_m": [
+          0.1408373123998918,
+          0.13995975120766183,
+          0.0787102333361171,
+          0.007048128894642194,
+          -0.12224184143599037,
+          -0.3351268591135878
+        ]
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.03069101674889421,
+        "contribution": 0.0015207260551253889,
+        "L2_1s": 0.018524233419069717,
+        "first1s_contribution": 0.0005609189799067656,
+        "signed_interval_length_m": [
+          0.013269708983423629,
+          0.00694501895048176,
+          0.008877345940090283,
+          0.010755465543484907,
+          0.017094392326453524,
+          0.034017841382725365
+        ]
+      }
+    },
+    "interval_vector_MAE": [
+      0.058818403948901116,
+      0.05713563560583425,
+      0.07256602454870897,
+      0.09569746652544492,
+      0.12890151141881007,
+      0.17460536723631645
+    ],
+    "interval_length_MAE": [
+      0.05141758044702162,
+      0.0475405396029684,
+      0.053987570163440274,
+      0.06683042161604467,
+      0.08954629582385101,
+      0.12218572696010392
+    ],
+    "signed_interval_length_error": [
+      0.009385788034740782,
+      0.008043144197044641,
+      0.0041718141407887065,
+      0.0001462159559388696,
+      -0.00765955340876165,
+      -0.016263719633250694
+    ],
+    "weighted_longitudinal_abs": 0.11943925205888925,
+    "weighted_lateral_abs": 0.06583544683995984,
+    "GT_tangent_mask": "GT interval length > .05m",
+    "GT_mask_count_by_interval": [
+      1879,
+      1879,
+      1879,
+      1879,
+      1879,
+      1878
+    ],
+    "predicted_degenerate_on_GT_mask_by_interval": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "heading_MAE_deg_including_zero_pred_convention": [
+      0.26501044209516866,
+      0.2793249393792788,
+      0.452772009185899,
+      0.7018507531394987,
+      0.985771315051727,
+      1.3411895256129658
+    ],
+    "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+    "curve_n": 50,
+    "curve_PREFIX": 0.3887831022202557,
+    "curve_signed_interval_length": [
+      0.0014313346584081455,
+      -0.05390519981444093,
+      -0.09857480280530555,
+      -0.11258523770056962,
+      -0.10686417275024887,
+      -0.10857640232860627
+    ],
+    "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/predictions_step6852.json",
+    "predictions_sha256": "9624c1a9f52bc6b44eccd5da980fb015b8f392645138f2d5e0cf37bc84c82dd4",
+    "auxiliary": {
+      "occ_iou": 0.38378903758731003,
+      "lane_iou": 0.35148908063275475,
+      "state_mae_vx_vy_ax_ay_yawrate": [
+        0.5742577055912675,
+        0.044578887254255614,
+        0.23920042509395695,
+        0.04832587263171535,
+        0.0050922868042081945
+      ],
+      "history_position_mae_by_offset": [
+        0.06953452708628108,
+        0.12225908301498585,
+        0.30169960574896726,
+        0.6172271296899352
+      ]
+    },
+    "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/ckpt_step6852.pth",
+    "checkpoint_sha256": "8252ae12063b0e684899ae22cfac2f3a29fedc0ea06df41849bab3d47c2767f6",
+    "delta_ctrl": {
+      "mean_delta": -0.00018833659441946135,
+      "session_CI95": [
+        -0.0007020886845688975,
+        8.434169589139377e-05
+      ],
+      "session_delta": {
+        "session_019_20260113-102709": {
+          "n": 54,
+          "mean": 0.0003594508843688745,
+          "overall_contribution": 9.71488876672634e-06
+        },
+        "session_026_20260122-134906": {
+          "n": 108,
+          "mean": -0.0022720112307129227,
+          "overall_contribution": -0.0001228114178763742
+        },
+        "session_027_20260122-135506": {
+          "n": 378,
+          "mean": -3.7771646555714934e-05,
+          "overall_contribution": -7.145987186216339e-06
+        },
+        "session_040_20260209-153550": {
+          "n": 108,
+          "mean": 0.00011645124342478212,
+          "overall_contribution": 6.29466180674498e-06
+        },
+        "session_046_20260210-100504": {
+          "n": 540,
+          "mean": 6.312132383716396e-05,
+          "overall_contribution": 1.7059817253287556e-05
+        },
+        "session_076_20260213-134648": {
+          "n": 324,
+          "mean": 9.822293342026247e-05,
+          "overall_contribution": 1.592804325733986e-05
+        },
+        "session_087_20260219-90551": {
+          "n": 108,
+          "mean": 0.0005574154752593294,
+          "overall_contribution": 3.013056623023402e-05
+        },
+        "session_092_20260219-103747": {
+          "n": 54,
+          "mean": -0.0021691990908774485,
+          "overall_contribution": -5.862700245614725e-05
+        },
+        "session_097_20260219-110038": {
+          "n": 162,
+          "mean": -0.0009629370306312623,
+          "overall_contribution": -7.807597545658884e-05
+        },
+        "session_108_20260220-134317": {
+          "n": 108,
+          "mean": 0.0004733731433743991,
+          "overall_contribution": 2.558773747969725e-05
+        },
+        "session_112_20260303-142827": {
+          "n": 54,
+          "mean": -0.0009765012708120934,
+          "overall_contribution": -2.6391926238164687e-05
+        }
+      },
+      "largest_contribution_session": "session_026_20260122-134906",
+      "delta_excluding_largest_contribution_session": -6.926947234554923e-05,
+      "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+    },
+    "delta_parent": {
+      "mean_delta": -0.002891767991933276,
+      "session_CI95": [
+        -0.0053821675435691725,
+        -0.0016688541900041923
+      ],
+      "session_delta": {
+        "session_019_20260113-102709": {
+          "n": 54,
+          "mean": -0.0006904036721169523,
+          "overall_contribution": -1.8659558705863575e-05
+        },
+        "session_026_20260122-134906": {
+          "n": 108,
+          "mean": -0.0011725114569992158,
+          "overall_contribution": -6.337899767563329e-05
+        },
+        "session_027_20260122-135506": {
+          "n": 378,
+          "mean": -0.0020407088737331366,
+          "overall_contribution": -0.0003860800571927556
+        },
+        "session_040_20260209-153550": {
+          "n": 108,
+          "mean": -0.003222975824398792,
+          "overall_contribution": -0.00017421490942696175
+        },
+        "session_046_20260210-100504": {
+          "n": 540,
+          "mean": -0.0012209786413175283,
+          "overall_contribution": -0.0003299942273831157
+        },
+        "session_076_20260213-134648": {
+          "n": 324,
+          "mean": -0.0036997404490257536,
+          "overall_contribution": -0.0005999579106528249
+        },
+        "session_087_20260219-90551": {
+          "n": 108,
+          "mean": -0.00071548227620387,
+          "overall_contribution": -3.867471763264162e-05
+        },
+        "session_092_20260219-103747": {
+          "n": 54,
+          "mean": -0.026832782184169623,
+          "overall_contribution": -0.0007252103293018817
+        },
+        "session_097_20260219-110038": {
+          "n": 162,
+          "mean": -0.004202742308683761,
+          "overall_contribution": -0.00034076288989327787
+        },
+        "session_108_20260220-134317": {
+          "n": 108,
+          "mean": -0.0016989117172891515,
+          "overall_contribution": -9.183306579941359e-05
+        },
+        "session_112_20260303-142827": {
+          "n": 54,
+          "mean": -0.004551049145949525,
+          "overall_contribution": -0.00012300132826890606
+        }
+      },
+      "largest_contribution_session": "session_092_20260219-103747",
+      "delta_excluding_largest_contribution_session": -0.00222673981992671,
+      "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+    }
+  },
+  "parent_PREFIX": 0.15028550170145288,
+  "FULL_transfer_updates": 8311,
+  "FULL_started": false,
+  "uploaded": false,
+  "extension_requires_review": true,
+  "tradeoffs_require_reading": "group, signed length, auxiliary and session deltas retained in primary",
+  "no_fixed_minimum_gain_filter": true,
+  "CI_not_hard_gate": true,
+  "reviewed_decision": {
+    "reviewed_utc": "2026-09-21T12:09:11.793302+00:00",
+    "preserve_DEV_candidates": [
+      "P-CTRL-NEXT",
+      "P-SPLITREAD"
+    ],
+    "interpretation": "All arms improved over parent; most of the observed gain is already obtained by matched continuation. SplitRead incremental gain is small and session CI includes zero. Lane geometry did not improve over matched control.",
+    "additional_updates_now": false,
+    "extension_reason": "Only 0/3426/6852 DEV evaluations; mid-to-terminal decrease accompanies cosine LR decay and does not establish unfinished useful learning. Train probe also improves, so no claim of proven saturation or structural upper bound.",
+    "FULL_started": false,
+    "uploaded": false,
+    "next_experiment_not_launched": "If pursuing a larger new axis, prioritize carefully initialized native-resolution temporal visual observations with a matched control; no new run authorized by this record itself.",
+    "server_prediction": null
+  }
+}

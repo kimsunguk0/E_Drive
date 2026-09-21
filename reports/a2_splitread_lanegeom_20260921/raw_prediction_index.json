@@ -1,5 +1,5 @@
 {
-  "scope": "raw step0 DEV/probe predictions remain on B200, summaries are tracked",
+  "scope": "Raw DEV/probe predictions, runtime support and terminal checkpoints remain on B200; summaries and artifact hashes are tracked.",
   "files": [
     {
       "path": "reports/a2_splitread_lanegeom_20260921/P-CTRL-NEXT_step0.json",
@@ -30,6 +30,254 @@
       "path": "reports/a2_splitread_lanegeom_20260921/P-SPLITREAD_train_probe_step0.json",
       "bytes": 492491,
       "sha256": "16e8ab49ce6d0d379825d1c9ee160618cfd207a82aac2088e262aa5474a40ff1"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/diagnostics_step6852.json",
+      "bytes": 1698,
+      "sha256": "1d7976c2469687ce2bdac3e5e9966d46945af44f3bb0a1e25a7b845f1e938389"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/experiment.json",
+      "bytes": 17866,
+      "sha256": "5efbf2f0f7c29ba4b0d8dd6e8fddc51bed7de23e1b635ae41248a2d35ffb10ab"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/gradient_audit.json",
+      "bytes": 1742,
+      "sha256": "71d57cfd30fd75799ea87071048a6c451ff4211ed3bddc64b62a207c03faa30c"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/latest_eval.json",
+      "bytes": 1343,
+      "sha256": "dc4b490dc240b65b9150f779d5e9cf6d0d348f90a11bc298da55e90237ca173c"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/predictions_step6852.json",
+      "bytes": 3785179,
+      "sha256": "a30c5227672c6e361e7734ede514f0c95e05daabab3bf2ea6490591a991a0997"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/manifest.json",
+      "bytes": 27010,
+      "sha256": "416d25ddce541cb505e66f274b1b7ee887e5875d99ec87bd9caf8ec9655a0146"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/train_probe_step6852.json",
+      "bytes": 492540,
+      "sha256": "3233a68352c9bd41f05eefbe96baa9c422a4fd50c932b130aa99c01dd3b6b2e9"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/optimizer_groups.json",
+      "bytes": 162,
+      "sha256": "6b3f7b72063c40ace425f1e02bee926e49a6aeec44fe4deedde3c560f3c5dc03"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/diagnostics_step3426.json",
+      "bytes": 1695,
+      "sha256": "0556b384973f1fa68df361d616d26a3f0a787a9fa41e6b5b23e1e5722f87cf87"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/eval_step3426.json",
+      "bytes": 1350,
+      "sha256": "77a1e088f5c45e15103159477f65919032c4800f5635247a2001f3f95966de69"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/predictions_step3426.json",
+      "bytes": 3785064,
+      "sha256": "1a7e19b990dbbefc0c2f1cd67f67c7d447c71dd032a91dbadca1b502964603f7"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/eval_step6852.json",
+      "bytes": 1343,
+      "sha256": "dc4b490dc240b65b9150f779d5e9cf6d0d348f90a11bc298da55e90237ca173c"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/final_eval.json",
+      "bytes": 3785179,
+      "sha256": "a30c5227672c6e361e7734ede514f0c95e05daabab3bf2ea6490591a991a0997"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/train_probe_step3426.json",
+      "bytes": 492538,
+      "sha256": "0516ff4a62ab2531e639e8139637852c4cb7761c9f9045d8307d088906140c49"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/metrics.jsonl",
+      "bytes": 5686298,
+      "sha256": "4e85a0f9d9be1ff4cc94fcf7e54370ca163ecfa02a7ccf5d0a7feedfdd91ad1b"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-CTRL-NEXT-s1/ckpt_step6852.pth",
+      "bytes": 107250379,
+      "sha256": "08c2d04db4e8d784c3304e8177b8b416f70042f8074d92605e6e780a5dcc3dc5",
+      "hash_source": "terminal collector"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/diagnostics_step6852.json",
+      "bytes": 1695,
+      "sha256": "e50a7804c5f707a0f311492fb4718a72d19869747d6f3bf6ec2f677ff3b3066d"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/experiment.json",
+      "bytes": 17864,
+      "sha256": "2482f393128b3acdab8e0248aa43f3262a566f8467bba43bcc3b065fb4e4236a"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/gradient_audit.json",
+      "bytes": 3088,
+      "sha256": "f27ef0fce16f7c563caee1a3777c373ee4607f888782d25e45b1202048fc95ac"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/latest_eval.json",
+      "bytes": 1354,
+      "sha256": "87db572058fc1f700263f2b41c750e5e4de10e3b13b2a7911cd391bd115a6cff"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/predictions_step6852.json",
+      "bytes": 3785212,
+      "sha256": "9624c1a9f52bc6b44eccd5da980fb015b8f392645138f2d5e0cf37bc84c82dd4"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/manifest.json",
+      "bytes": 27007,
+      "sha256": "e45d8a4566e27bcc34a17a10171ddba64a4bfd53529c73bafc0f4a14daa7c5ea"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/train_probe_step6852.json",
+      "bytes": 492550,
+      "sha256": "95254ca407c93ec904a55730c991165a7cbf0995cd90b8df0d09bdf5b9db3b85"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/optimizer_groups.json",
+      "bytes": 162,
+      "sha256": "febc514bdd3f41e8f2a28fa6e4b85a05a4f7d65830378993ca6b0fd7282a3dc8"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/diagnostics_step3426.json",
+      "bytes": 1693,
+      "sha256": "bc156da645597e7a78ef78e2438a0ee36143db2f9ee07d17d571d0f1817501ae"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/eval_step3426.json",
+      "bytes": 1351,
+      "sha256": "3ce8ef577da047a68eb2cc0d9397311b4a128d980e99d2d02acd947b5f0d228d"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/predictions_step3426.json",
+      "bytes": 3785020,
+      "sha256": "98d3f2960e05020e4d6799ecdaf1d27b954ac2b6cb4a63c745fb1edba4ae1146"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/eval_step6852.json",
+      "bytes": 1354,
+      "sha256": "87db572058fc1f700263f2b41c750e5e4de10e3b13b2a7911cd391bd115a6cff"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/final_eval.json",
+      "bytes": 3785212,
+      "sha256": "9624c1a9f52bc6b44eccd5da980fb015b8f392645138f2d5e0cf37bc84c82dd4"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/train_probe_step3426.json",
+      "bytes": 492532,
+      "sha256": "c8a7984a4639a9f555e968237e16ab1012230aedac283519cd9bf277559e2f97"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/metrics.jsonl",
+      "bytes": 5686270,
+      "sha256": "a260fe5d8ca4c0122500027a9bec1df6e4638de2614bea075af2189fe960cd5c"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/ckpt_step6852.pth",
+      "bytes": 107588859,
+      "sha256": "8252ae12063b0e684899ae22cfac2f3a29fedc0ea06df41849bab3d47c2767f6",
+      "hash_source": "terminal collector"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/diagnostics_step6852.json",
+      "bytes": 1689,
+      "sha256": "a0a1271bd7a5ed8888a5f3381d17868adc46dc10fbb59c273a0a5dc88f4b295b"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/experiment.json",
+      "bytes": 18122,
+      "sha256": "542aa2a179fd784c06868f5ab80afc13d852e2e3a9f7ad2bb82b5bc7638eefdb"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/gradient_audit.json",
+      "bytes": 2890,
+      "sha256": "ba69e8ec26026b1f4d98d3073103f96b76696188ef4a4302fbc04fbf7dbead7f"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/geometry_gradient_contributions.json",
+      "bytes": 2168,
+      "sha256": "652badf0a7486870bf203635a1f1ba73aa8dc43d3f4c388dc25939b69db1cfe7"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/latest_eval.json",
+      "bytes": 1349,
+      "sha256": "2abc506de2bc5d8101e1f24cdfb53f27f0b3a989df206f84b4e12ce8e753167f"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/predictions_step6852.json",
+      "bytes": 3785017,
+      "sha256": "949b5015c9a955c481f1402def1fbdc36d729768b05d512000f832bb3578ca5b"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/manifest.json",
+      "bytes": 27544,
+      "sha256": "ed3d54f5bbdab3a2828cbf7066d176b3aeae10cfe6f0df4dedcf7d8d0efb5dca"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/train_probe_step6852.json",
+      "bytes": 492553,
+      "sha256": "ec3b9a8c15369b5b5a0166d56443512403c32ac072e6a6f5a778ff48b3f372a1"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/optimizer_groups.json",
+      "bytes": 246,
+      "sha256": "74ff92fa9cdb786337cc7f5ad0f54e2171d96c18bb30d00841484ef178c45cce"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/diagnostics_step3426.json",
+      "bytes": 1687,
+      "sha256": "6b4cd445a98cd1479d637e3f2e81f1dc775cefdd1dafe8b4867230ee896df772"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/eval_step3426.json",
+      "bytes": 1352,
+      "sha256": "302a8c4f26fe5f45af7d4d859167b8ff73e518aa6d4e15631cb85b4bd4d10ce4"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/predictions_step3426.json",
+      "bytes": 3784921,
+      "sha256": "e6f4d84428029c74ed9b0288c0784374e196f5f5cb274d15dff87586356ea2d3"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/eval_step6852.json",
+      "bytes": 1349,
+      "sha256": "2abc506de2bc5d8101e1f24cdfb53f27f0b3a989df206f84b4e12ce8e753167f"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/final_eval.json",
+      "bytes": 3785017,
+      "sha256": "949b5015c9a955c481f1402def1fbdc36d729768b05d512000f832bb3578ca5b"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/train_probe_step3426.json",
+      "bytes": 492505,
+      "sha256": "e242ad8e23ed4b1d175fc0cb8aac0e1f367415fea187d6d515edbaa89fb70520"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/metrics.jsonl",
+      "bytes": 6281945,
+      "sha256": "ba645cf3feeaecb4a3dbdbd4ab5d283bdcb46f678833e888ebb319a4e23c02a5"
+    },
+    {
+      "path": "work_dirs/a2_splitread_lanegeom_20260921/P-LANE-GEOM-s1/ckpt_step6852.pth",
+      "bytes": 107548459,
+      "sha256": "0df119e1f149b0a38becf19904f42f5a4bcd241fbab2858ec2cc1327f8b31fc8",
+      "hash_source": "terminal collector"
     }
   ]
 }
