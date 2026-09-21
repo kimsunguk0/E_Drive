@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 네 arm DEV 완료:** CONTROL/VECTOR/FINE/SHARED768의 같은 부모·3,426 update 대조가 끝났다. 최저 terminal은 P-CTRL / 0.150285502. 부모보다 낮은 P-CTRL 한 종류만 별도 FULL stage2로 이전한다. [점수·조건별 결과](reports/a2_progress_fourarm_20260921/RESULTS_KO.md). 서버 환산 또는 새 제출 결과가 아니다.
+
 **2026-09-21 15:56 KST 네 arm 본 학습 시작:** 사용자 통합 실행 명세에 따라 GPU0 P-CTRL / GPU1 P-VECTOR / GPU2 P-FINE / GPU3 P-SHARED768을 같은 DEV 부모에서3,426update씩 진행한다. 새 프로세스 strict export와 모든 arm의5update smoke를 통과했다. CTRL/VECTOR/FINE step0은0.151178862, SHARED768 step0은13.144899로 큰 입력 특징 적응이 필요하다. 실제 sample/augmentation stream을 대조한다. [실행 계약](reports/a2_progress_fourarm_20260921/EXECUTION_KO.md), [체크](reports/a2_progress_fourarm_20260921/smoke_and_reload.json), [결과](reports/a2_progress_fourarm_20260921/RESULTS_KO.md). Terminal 뒤 부모보다 좋아진 단일 후보만 별도 FULL4,156update 및 패키징으로 연결하며 기존0.133684828은 보존한다. 공식 업로드 없음.
 
 **2026-09-21 PRO 제안 검토 완료:** 첨부ZIP의4개 핵심source SHA와 현재코드 일치, DEV 구간벡터 통계/CPU검사를 재현했다. VECTOR는 LENGTH0.25를 교체하는 별도arm으로 타당하나, 같은계수에서 loss규모가달라지고 방향오차가남으면 길이를줄이는절충이있어 signed진행량도확인한다. FINE-READ24×32 시제품은 추가backbone0/파라미터66,560/FLOPs+0.211683G, 초기FP32·BF16출력차이0. 같은4090세션에서baseline25.77~25.78ms→fine26.14~26.16ms. 다음제안은 CONTROL/VECTOR/FINE/SHARED-HISTORY768의 동일DEV-parent stage-2 대조이며 길이·방향decoder분리와native1152는후순위. **학습·예약·추가제출없음.** [검토·조건·측정](reports/a2_pro_review_20260921/REVIEW_KO.md).
