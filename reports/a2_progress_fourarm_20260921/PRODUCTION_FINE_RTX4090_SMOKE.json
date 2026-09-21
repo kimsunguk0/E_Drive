@@ -1,0 +1,246 @@
+{
+  "status": "passed",
+  "scope": "production FINE factory, five-update DEV smoke; accuracy not measured",
+  "checkpoint_sha256": "529882c8aa62a25bf0568078925380c879731d0e7487f3b5060dfa368784becb",
+  "execution_config": {
+    "schema_version": 1,
+    "arm": "P-FINE",
+    "architecture_id": "a2_h4_progress_fine_v1",
+    "fine_read_enabled": true,
+    "fine_grid": [
+      24,
+      32
+    ],
+    "fine_read_position": "after_coarse_read_before_progress_head",
+    "scene_history_feature_source": "separate_low384",
+    "interval_auxiliary": "length",
+    "auxiliary_lambda": 0.25,
+    "status_policy": "five_RGB_consumed_pose_times_nominal_frame_dt",
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "image_hw": [
+      432,
+      768
+    ],
+    "motion_hw": [
+      432,
+      768
+    ],
+    "precision": "bf16_images_fp32_planner_output_loss",
+    "output": "absolute_xy_6x2"
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.1+cu128",
+  "timing": [
+    {
+      "clip": "fixture_000",
+      "median_ms": 26.594303131103516,
+      "p95_ms": 26.665791606903078,
+      "warmup": 30,
+      "repeats": 100,
+      "peak_allocated_bytes": 711451648
+    },
+    {
+      "clip": "fixture_001",
+      "median_ms": 26.50822353363037,
+      "p95_ms": 26.55846405029297,
+      "warmup": 30,
+      "repeats": 100,
+      "peak_allocated_bytes": 711652352
+    }
+  ],
+  "timing_scope": "whole model forward including all current/history image encoders; preprocessing excluded",
+  "isolated_network_none_Docker": true,
+  "all_inference_imports_within_portable_code": true,
+  "input_frame_checks": {
+    "fixture_000": {
+      "fit_relative_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "fit_count": 5,
+      "nominal_seconds": [
+        -1.0,
+        -0.5,
+        -0.2,
+        -0.1,
+        0.0
+      ],
+      "design_condition": 25.423738725278525,
+      "position_fit_rms_m": 0.0022137665415679964,
+      "all_fit_times_have_consumed_RGB": true,
+      "producer": "h4_status.status_from_clip_records",
+      "route": "shared scene query only",
+      "consumed_RGB_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "image_getter_calls": [
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front_right",
+          0
+        ],
+        [
+          "camera_front_left",
+          0
+        ],
+        [
+          "camera_rear_wide",
+          0
+        ],
+        [
+          "camera_rear_left",
+          0
+        ],
+        [
+          "camera_rear_right",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ],
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ]
+      ]
+    },
+    "fixture_001": {
+      "fit_relative_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "fit_count": 5,
+      "nominal_seconds": [
+        -1.0,
+        -0.5,
+        -0.2,
+        -0.1,
+        0.0
+      ],
+      "design_condition": 25.423738725278525,
+      "position_fit_rms_m": 0.001401233690657774,
+      "all_fit_times_have_consumed_RGB": true,
+      "producer": "h4_status.status_from_clip_records",
+      "route": "shared scene query only",
+      "consumed_RGB_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "image_getter_calls": [
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front_right",
+          0
+        ],
+        [
+          "camera_front_left",
+          0
+        ],
+        [
+          "camera_rear_wide",
+          0
+        ],
+        [
+          "camera_rear_left",
+          0
+        ],
+        [
+          "camera_rear_right",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ],
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ]
+      ]
+    }
+  },
+  "teacher_or_second_checkpoint": false,
+  "final_FULL_weights": false,
+  "official_upload_performed": false
+}

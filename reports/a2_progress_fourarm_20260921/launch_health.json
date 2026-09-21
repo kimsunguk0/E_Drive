@@ -1,0 +1,76 @@
+{
+  "checked_utc": "2026-09-21T07:12:43.042853+00:00",
+  "status": "all_four_training",
+  "arms": {
+    "P-CTRL": {
+      "pid": 115704,
+      "gpu": 0,
+      "stage_step": 1726,
+      "parent_step": 20554,
+      "latest_eval": [
+        {
+          "step": 1142,
+          "official_d3": 0.15227924525953113
+        }
+      ],
+      "all_logged_gradient_and_loss_finite": true,
+      "all_training_sources_match_manifest": true
+    },
+    "P-VECTOR": {
+      "pid": 115705,
+      "gpu": 1,
+      "stage_step": 1728,
+      "parent_step": 20554,
+      "latest_eval": [
+        {
+          "step": 1142,
+          "official_d3": 0.15152028606863352
+        }
+      ],
+      "all_logged_gradient_and_loss_finite": true,
+      "all_training_sources_match_manifest": true
+    },
+    "P-FINE": {
+      "pid": 115706,
+      "gpu": 2,
+      "stage_step": 1718,
+      "parent_step": 20554,
+      "latest_eval": [
+        {
+          "step": 1142,
+          "official_d3": 0.15822991744677598
+        }
+      ],
+      "all_logged_gradient_and_loss_finite": true,
+      "all_training_sources_match_manifest": true
+    },
+    "P-SHARED768": {
+      "pid": 115707,
+      "gpu": 3,
+      "stage_step": 1875,
+      "parent_step": 20554,
+      "latest_eval": [
+        {
+          "step": 1142,
+          "official_d3": 0.27481572913309865
+        }
+      ],
+      "all_logged_gradient_and_loss_finite": true,
+      "all_training_sources_match_manifest": true
+    }
+  },
+  "source_readonly_during_main": true,
+  "GPU4_7_touched": false,
+  "sample_stream": {
+    "steps_compared": 1716,
+    "last_compared_step": 1716,
+    "mismatch_steps": []
+  },
+  "conditional_FULL_pipeline": {
+    "status": "waiting_for_DEV_terminals",
+    "pid": 117544,
+    "started_utc": "2026-09-21T07:05:31.399386+00:00",
+    "upload_automated": false,
+    "FULL_started": false
+  }
+}
