@@ -1,0 +1,1519 @@
+{
+  "source_commit": "0b57c10f5442e971ac090fa6db50ac4424afce53",
+  "scope": "saved DEV predictions; no trained new model; no submission; no GT-optimized oracle",
+  "GT_direction_mask": "replace heading only where GT interval length > .05m",
+  "sources": {
+    "PARENT": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1/final_eval.json",
+      "sha256": "0b67c54c0fb8af4db63ac67d62664a0f09a73d81db802ccbb93f19c1a516399c"
+    },
+    "DIRECT": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-DIRECT-s1/final_eval.json",
+      "sha256": "bdbffc7d36bfcb5300aaf4510e71a5404a8c71f3027953445fe375a991f1fca6"
+    },
+    "P-CTRL": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_20260921/P-CTRL-s1/predictions_step3426.json",
+      "sha256": "fd09742c450ba98e4d85342c3bde83361b91004238a99e6fdd39e1bfa0062b04"
+    },
+    "P-VECTOR": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_20260921/P-VECTOR-s1/predictions_step3426.json",
+      "sha256": "14010c71ed3337c8cb2b5f849a96cd7c0cf48c6df1574e5eb900c3675d73be46"
+    },
+    "P-FINE": {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_20260921/P-FINE-s1/predictions_step3426.json",
+      "sha256": "f0f8137c9f5395d2685f250adadeecbf08297ef43d696359a34406d91030f43f"
+    }
+  },
+  "models": {
+    "PARENT": {
+      "original": {
+        "PREFIX": 0.15117885989032362,
+        "nonstop": 0.1548905077577,
+        "L2_1s": 0.08633403338147831,
+        "L2_2s": 0.14241700452083375,
+        "L2_3s": 0.22478554176865875,
+        "delta_vs_own_original": {
+          "mean_delta": 0.0,
+          "session_CI95": [
+            0.0,
+            0.0
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            }
+          },
+          "largest_contribution_session": "session_019_20260113-102709",
+          "delta_excluding_largest_contribution_session": 0.0,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_DIRECT_direction": {
+        "PREFIX": 0.1451041634972117,
+        "nonstop": 0.14849040620631723,
+        "L2_1s": 0.08305266481906014,
+        "L2_2s": 0.1378372152531494,
+        "L2_3s": 0.21442261041942545,
+        "delta_vs_own_original": {
+          "mean_delta": -0.006074696393111937,
+          "session_CI95": [
+            -0.01163838352260445,
+            -0.0033425597892496536
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.0014836203704926094,
+              "overall_contribution": -4.0097847851151604e-05
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.011529762172173044,
+              "overall_contribution": -0.0006232303876850294
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.005781178646169844,
+              "overall_contribution": -0.0010937365006267272
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.007192969366092924,
+              "overall_contribution": -0.00038880915492394184
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.0014332347441609941,
+              "overall_contribution": -0.00038736074166513356
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.005326093624232621,
+              "overall_contribution": -0.0008636908579836683
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.004162164195420742,
+              "overall_contribution": -0.0002249818484011212
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.04671974160562599,
+              "overall_contribution": -0.0012626957190709728
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.003244252198006543,
+              "overall_contribution": -0.000263047475514044
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.0018090173202162043,
+              "overall_contribution": -9.778472001168672e-05
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.030682662157003025,
+              "overall_contribution": -0.0008292611393784601
+            }
+          },
+          "largest_contribution_session": "session_092_20260219-103747",
+          "delta_excluding_largest_contribution_session": -0.00494566735943099,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "GT_length_predicted_direction": {
+        "PREFIX": 0.0655736335232828,
+        "nonstop": 0.06938625458583027,
+        "L2_1s": 0.02859142503644405,
+        "L2_2s": 0.05731571721724068,
+        "L2_3s": 0.1108137583161637,
+        "delta_vs_own_original": {
+          "mean_delta": -0.08560522636704082,
+          "session_CI95": [
+            -0.09624036799343283,
+            -0.07447999325842562
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.12660700819749182,
+              "overall_contribution": -0.003421811032364644
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.08661082913068352,
+              "overall_contribution": -0.004681666439496406
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.08083796055551766,
+              "overall_contribution": -0.015293668213206045
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.09277921595134002,
+              "overall_contribution": -0.0050150927541264875
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.09907061570194452,
+              "overall_contribution": -0.02677584208160663
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.06354305260636084,
+              "overall_contribution": -0.010304278801031488
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.09267510089930393,
+              "overall_contribution": -0.005009464913475888
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.11528576132488945,
+              "overall_contribution": -0.0031158313871591744
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.0666378027764071,
+              "overall_contribution": -0.005403065089978954
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.07152337861456562,
+              "overall_contribution": -0.003866128573760304
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.10057995199088746,
+              "overall_contribution": -0.002718377080834796
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.08061804513189127,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_GT_direction_on_valid": {
+        "PREFIX": 0.1184097551736542,
+        "nonstop": 0.12001443253844406,
+        "L2_1s": 0.07459802763598966,
+        "L2_2s": 0.11509018308575161,
+        "L2_3s": 0.16554105479922132,
+        "delta_vs_own_original": {
+          "mean_delta": -0.03276910471666942,
+          "session_CI95": [
+            -0.042123780793630446,
+            -0.028483760799562968
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.024654902099132295,
+              "overall_contribution": -0.0006663487053819539
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.03618662732286605,
+              "overall_contribution": -0.001956033909344111
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.026730983749770235,
+              "overall_contribution": -0.005057213141848423
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.031556135933969415,
+              "overall_contribution": -0.0017057370775118601
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.030862819407193928,
+              "overall_contribution": -0.008341302542484845
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.027987095139167358,
+              "overall_contribution": -0.004538447860405518
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.025464878412021965,
+              "overall_contribution": -0.0013764799141633495
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.10579860743682137,
+              "overall_contribution": -0.002859421822616794
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.025793046573257077,
+              "overall_contribution": -0.0020913281005343577
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.03511557471356052,
+              "overall_contribution": -0.001898139173705974
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.08431014134087274,
+              "overall_contribution": -0.002278652468672236
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.03347513631277146,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      }
+    },
+    "DIRECT": {
+      "original": {
+        "PREFIX": 0.15421303140233023,
+        "nonstop": 0.14801701942542977,
+        "L2_1s": 0.0902455753419852,
+        "L2_2s": 0.1496150630494345,
+        "L2_3s": 0.22277845581557087,
+        "delta_vs_own_original": {
+          "mean_delta": 0.0,
+          "session_CI95": [
+            0.0,
+            0.0
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            }
+          },
+          "largest_contribution_session": "session_019_20260113-102709",
+          "delta_excluding_largest_contribution_session": 0.0,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_DIRECT_direction": {
+        "PREFIX": 0.15421303140233023,
+        "nonstop": 0.14801701942542977,
+        "L2_1s": 0.0902455753419852,
+        "L2_2s": 0.1496150630494345,
+        "L2_3s": 0.22277845581557087,
+        "delta_vs_own_original": {
+          "mean_delta": -8.682299679563599e-21,
+          "session_CI95": [
+            -1.0023248306448398e-19,
+            1.2161421194017298e-19
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -2.569960705150825e-19,
+              "overall_contribution": -1.3891679487301758e-20
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -1.835686217964875e-20,
+              "overall_contribution": -3.4729198718254396e-21
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": 6.424901762877063e-19,
+              "overall_contribution": 3.4729198718254396e-20
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -6.424901762877063e-20,
+              "overall_contribution": -1.7364599359127198e-20
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": 1.0708169604795105e-20,
+              "overall_contribution": 1.7364599359127198e-21
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -2.569960705150825e-19,
+              "overall_contribution": -1.3891679487301758e-20
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -5.13992141030165e-19,
+              "overall_contribution": -1.3891679487301758e-20
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": 3.2124508814385315e-19,
+              "overall_contribution": 1.7364599359127198e-20
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            }
+          },
+          "largest_contribution_session": "session_040_20260209-153550",
+          "delta_excluding_largest_contribution_session": -4.589215544912188e-20,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "GT_length_predicted_direction": {
+        "PREFIX": 0.05703341223250733,
+        "nonstop": 0.06025928598958106,
+        "L2_1s": 0.023023818692012844,
+        "L2_2s": 0.05025906662159124,
+        "L2_3s": 0.09781735138391792,
+        "delta_vs_own_original": {
+          "mean_delta": -0.09717961916982287,
+          "session_CI95": [
+            -0.11410419748522577,
+            -0.07986045359795596
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.1283978797613314,
+              "overall_contribution": -0.003470212966522471
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.08901388448271898,
+              "overall_contribution": -0.004811561323390215
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.0889634936976884,
+              "overall_contribution": -0.016830931240103212
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.08996821496673225,
+              "overall_contribution": -0.004863146754958501
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.12501096503290834,
+              "overall_contribution": -0.033786747306191446
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.07149865041288264,
+              "overall_contribution": -0.011594375742629616
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.10771502876761489,
+              "overall_contribution": -0.005822433987438642
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.10786725624402323,
+              "overall_contribution": -0.0029153312498384656
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.06161868295403591,
+              "overall_contribution": -0.004996109428705614
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.07980719176758189,
+              "overall_contribution": -0.004313902257707129
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.13967007575648957,
+              "overall_contribution": -0.0037748669123375557
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.08687171329460601,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_GT_direction_on_valid": {
+        "PREFIX": 0.12714906227776399,
+        "nonstop": 0.11921477024470878,
+        "L2_1s": 0.08173046895642166,
+        "L2_2s": 0.1270780231226503,
+        "L2_3s": 0.17263869475422003,
+        "delta_vs_own_original": {
+          "mean_delta": -0.02706396912456622,
+          "session_CI95": [
+            -0.03205151106717551,
+            -0.023434420355569807
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.02427673167558531,
+              "overall_contribution": -0.0006561278831239273
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.02355447377569819,
+              "overall_contribution": -0.0012732147986863887
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.02051708422151241,
+              "overall_contribution": -0.00388161052839424
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.02668547960544949,
+              "overall_contribution": -0.0014424583570513238
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.029493803170607995,
+              "overall_contribution": -0.007971298154218378
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.024048821887397008,
+              "overall_contribution": -0.003899808954713028
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.020303413216800445,
+              "overall_contribution": -0.0010974817955027268
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.06281894640375223,
+              "overall_contribution": -0.0016978093622635735
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.023520641560801175,
+              "overall_contribution": -0.0019070790454703654
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.032528853968428854,
+              "overall_contribution": -0.001758316430725884
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.05471426113340607,
+              "overall_contribution": -0.0014787638144163804
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.02616403058899518,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      }
+    },
+    "P-CTRL": {
+      "original": {
+        "PREFIX": 0.15028550170145288,
+        "nonstop": 0.15356898834019775,
+        "L2_1s": 0.08525816725018938,
+        "L2_2s": 0.14182503057216272,
+        "L2_3s": 0.22377330728200656,
+        "delta_vs_own_original": {
+          "mean_delta": 0.0,
+          "session_CI95": [
+            0.0,
+            0.0
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            }
+          },
+          "largest_contribution_session": "session_019_20260113-102709",
+          "delta_excluding_largest_contribution_session": 0.0,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_DIRECT_direction": {
+        "PREFIX": 0.14426622042609966,
+        "nonstop": 0.14723284713366114,
+        "L2_1s": 0.08205811141623842,
+        "L2_2s": 0.13710658511700305,
+        "L2_3s": 0.21363396474505747,
+        "delta_vs_own_original": {
+          "mean_delta": -0.006019281275353249,
+          "session_CI95": [
+            -0.011374265700689674,
+            -0.0031896159422570244
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.0013490741472225647,
+              "overall_contribution": -3.6461463438447695e-05
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.011667871509717922,
+              "overall_contribution": -0.0006306957572820499
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.006443394299488188,
+              "overall_contribution": -0.0012190205431464138
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.006098453949334785,
+              "overall_contribution": -0.00032964615942350186
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.0009609652415572453,
+              "overall_contribution": -0.00025972033555601224
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.005516716529662486,
+              "overall_contribution": -0.0008946026804858086
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.004687686911652632,
+              "overall_contribution": -0.00025338848171095303
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.04324392959359553,
+              "overall_contribution": -0.0011687548538809602
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.00340992974059498,
+              "overall_contribution": -0.00027648078977797133
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.0029656124268084764,
+              "overall_contribution": -0.0001603033744220798
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.029237652940474895,
+              "overall_contribution": -0.0007902068362290513
+            }
+          },
+          "largest_contribution_session": "session_027_20260122-135506",
+          "delta_excluding_largest_contribution_session": -0.005920321569721764,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "GT_length_predicted_direction": {
+        "PREFIX": 0.06535800145902694,
+        "nonstop": 0.06921225395064505,
+        "L2_1s": 0.028414873106068914,
+        "L2_2s": 0.057355090048879113,
+        "L2_3s": 0.11030404122213278,
+        "delta_vs_own_original": {
+          "mean_delta": -0.08492750024242596,
+          "session_CI95": [
+            -0.09609099263746217,
+            -0.07318284951819501
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.12937523161898018,
+              "overall_contribution": -0.003496627881594059
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.08284257463989422,
+              "overall_contribution": -0.00447797700756185
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.08025528834329729,
+              "overall_contribution": -0.015183432929813001
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.09052636436930056,
+              "overall_contribution": -0.0048933169929351655
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.09952348648265474,
+              "overall_contribution": -0.026898239589906687
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.062130293421392396,
+              "overall_contribution": -0.01007518271698255
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.09016965800857214,
+              "overall_contribution": -0.004874035568030927
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.11854609611894279,
+              "overall_contribution": -0.003203948543755211
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.06542810323217929,
+              "overall_contribution": -0.005304981343149672
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.06978175814354803,
+              "overall_contribution": -0.003771986926678272
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.10166751745468684,
+              "overall_contribution": -0.002747770742018563
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.07952157941271157,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_GT_direction_on_valid": {
+        "PREFIX": 0.11738118268302113,
+        "nonstop": 0.11854212627549157,
+        "L2_1s": 0.07355633062067642,
+        "L2_2s": 0.1142134940202088,
+        "L2_3s": 0.16437372340817816,
+        "delta_vs_own_original": {
+          "mean_delta": -0.032904319018431764,
+          "session_CI95": [
+            -0.042259126409863956,
+            -0.028758965057812315
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.024205466824757327,
+              "overall_contribution": -0.0006542018060745223
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.036784307801744846,
+              "overall_contribution": -0.0019883409622564784
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.02723313972641869,
+              "overall_contribution": -0.005152215623917049
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.030933774854856162,
+              "overall_contribution": -0.0016720959381003333
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.03049945279091735,
+              "overall_contribution": -0.00824309534889658
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.028356803798792046,
+              "overall_contribution": -0.004598400616020332
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.02619718787373821,
+              "overall_contribution": -0.0014160642093912546
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.10526722027712848,
+              "overall_contribution": -0.002845060007489959
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.02604859142944026,
+              "overall_contribution": -0.0021120479537383996
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.03635485166810678,
+              "overall_contribution": -0.001965127117194961
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.08353376910802009,
+              "overall_contribution": -0.002257669435351894
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.033795010213807465,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      }
+    },
+    "P-VECTOR": {
+      "original": {
+        "PREFIX": 0.150329892161485,
+        "nonstop": 0.15354471666495562,
+        "L2_1s": 0.08537459873850896,
+        "L2_2s": 0.14202428113913876,
+        "L2_3s": 0.22359079660680736,
+        "delta_vs_own_original": {
+          "mean_delta": 0.0,
+          "session_CI95": [
+            0.0,
+            0.0
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            }
+          },
+          "largest_contribution_session": "session_019_20260113-102709",
+          "delta_excluding_largest_contribution_session": 0.0,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_DIRECT_direction": {
+        "PREFIX": 0.14467793307253402,
+        "nonstop": 0.14759483551526578,
+        "L2_1s": 0.08216017930495727,
+        "L2_2s": 0.1374515035247553,
+        "L2_3s": 0.21442211638788944,
+        "delta_vs_own_original": {
+          "mean_delta": -0.005651959088951002,
+          "session_CI95": [
+            -0.010734742453762153,
+            -0.0028447496395613563
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.0014567399972593733,
+              "overall_contribution": -3.9371351277280355e-05
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.011660253418016277,
+              "overall_contribution": -0.0006302839685414204
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.006617513096479954,
+              "overall_contribution": -0.001251961937171883
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.005243371753433592,
+              "overall_contribution": -0.00028342550018559955
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.0005731748817345325,
+              "overall_contribution": -0.0001549121301985223
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.004992263293438823,
+              "overall_contribution": -0.0008095562097468361
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.0044005903936163715,
+              "overall_contribution": -0.00023786975100629034
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.03905167099923464,
+              "overall_contribution": -0.0010554505675468822
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.003383866039920788,
+              "overall_contribution": -0.00027436751675033417
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.0027967023206720613,
+              "overall_contribution": -0.00015117309841470602
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.028252721150116143,
+              "overall_contribution": -0.0007635870581112471
+            }
+          },
+          "largest_contribution_session": "session_027_20260122-135506",
+          "delta_excluding_largest_contribution_session": -0.0054266631538609136,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "GT_length_predicted_direction": {
+        "PREFIX": 0.06491254041315576,
+        "nonstop": 0.06875229855990617,
+        "L2_1s": 0.028430345593347058,
+        "L2_2s": 0.057207705088356986,
+        "L2_3s": 0.10909957055776325,
+        "delta_vs_own_original": {
+          "mean_delta": -0.08541735174832925,
+          "session_CI95": [
+            -0.09678590192053146,
+            -0.07363721796035452
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.13038525339407578,
+              "overall_contribution": -0.0035239257674074534
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.08419897503818662,
+              "overall_contribution": -0.0045512959480100874
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.08001593431310904,
+              "overall_contribution": -0.01513814973491252
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.08986220118385108,
+              "overall_contribution": -0.0048574162802081655
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.10035045293539585,
+              "overall_contribution": -0.027121744036593474
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.06256059094540828,
+              "overall_contribution": -0.010144960693849991
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.0906100959759956,
+              "overall_contribution": -0.004897843025729492
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.12004072910207357,
+              "overall_contribution": -0.003244344029785772
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.06656429510850351,
+              "overall_contribution": -0.005397105008797581
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.06985706272149693,
+              "overall_contribution": -0.0037760574444052394
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.1022868618092908,
+              "overall_contribution": -0.002764509778629481
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.07988657353089718,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_GT_direction_on_valid": {
+        "PREFIX": 0.11785763232625347,
+        "nonstop": 0.11897057185620546,
+        "L2_1s": 0.0736446272276031,
+        "L2_2s": 0.11459026358079219,
+        "L2_3s": 0.16533800617036512,
+        "delta_vs_own_original": {
+          "mean_delta": -0.032472259835231554,
+          "session_CI95": [
+            -0.041393068356639265,
+            -0.028502013353633372
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.024148513021617243,
+              "overall_contribution": -0.0006526625140977633
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.036711087900188656,
+              "overall_contribution": -0.0019843831297399273
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.0273421408905885,
+              "overall_contribution": -0.005172837465787014
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.029961007362434657,
+              "overall_contribution": -0.0016195139114829544
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.030140452804345547,
+              "overall_contribution": -0.008146068325498796
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.02782642562624257,
+              "overall_contribution": -0.004512393344796093
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.025849017675123816,
+              "overall_contribution": -0.0013972441986553415
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.10007277639540568,
+              "overall_contribution": -0.0027046696323082616
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.025966027297994607,
+              "overall_contribution": -0.0021053535647022653
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.036148247911377426,
+              "overall_contribution": -0.0019539593465609417
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.0822574528592814,
+              "overall_contribution": -0.0022231744016022
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.03333589206889304,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      }
+    },
+    "P-FINE": {
+      "original": {
+        "PREFIX": 0.15037004257991185,
+        "nonstop": 0.1535292499060606,
+        "L2_1s": 0.08522630278003579,
+        "L2_2s": 0.14193604049313135,
+        "L2_3s": 0.22394778446656843,
+        "delta_vs_own_original": {
+          "mean_delta": 0.0,
+          "session_CI95": [
+            0.0,
+            0.0
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": 0.0,
+              "overall_contribution": 0.0
+            }
+          },
+          "largest_contribution_session": "session_019_20260113-102709",
+          "delta_excluding_largest_contribution_session": 0.0,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_DIRECT_direction": {
+        "PREFIX": 0.14443312903265615,
+        "nonstop": 0.1472783493735445,
+        "L2_1s": 0.08203071900013094,
+        "L2_2s": 0.13727155338210814,
+        "L2_3s": 0.21399711471572933,
+        "delta_vs_own_original": {
+          "mean_delta": -0.005936913547255708,
+          "session_CI95": [
+            -0.011248409052950473,
+            -0.0031716422390185117
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.0012121658043198853,
+              "overall_contribution": -3.27612379545915e-05
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.011563943577579571,
+              "overall_contribution": -0.0006250780312205173
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.006453837403092644,
+              "overall_contribution": -0.0012209962654499596
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.0059060361083301816,
+              "overall_contribution": -0.0003192451950448747
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.0010828061028084392,
+              "overall_contribution": -0.0002926502980563349
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.0051300849155703375,
+              "overall_contribution": -0.0008319056619843791
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.004374582600920538,
+              "overall_contribution": -0.00023646392437408315
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.042575746710296916,
+              "overall_contribution": -0.0011506958570350518
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.003707605136695913,
+              "overall_contribution": -0.000300616632705074
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.0020974014232627088,
+              "overall_contribution": -0.00011337304990609236
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.03008571356041574,
+              "overall_contribution": -0.0008131273935247498
+            }
+          },
+          "largest_contribution_session": "session_027_20260122-135506",
+          "delta_excluding_largest_contribution_session": -0.0058162979808937575,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "GT_length_predicted_direction": {
+        "PREFIX": 0.0652320740344793,
+        "nonstop": 0.06909005402435799,
+        "L2_1s": 0.028422073330727434,
+        "L2_2s": 0.057292703308744225,
+        "L2_3s": 0.10998144546396622,
+        "delta_vs_own_original": {
+          "mean_delta": -0.08513796854543257,
+          "session_CI95": [
+            -0.09654777698803721,
+            -0.07316298594262555
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.12854092610294304,
+              "overall_contribution": -0.0034740790838633253
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.08277724805332565,
+              "overall_contribution": -0.0044744458407203055
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.08014161330626686,
+              "overall_contribution": -0.015161926841726162
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.09137005923223548,
+              "overall_contribution": -0.004938922120661377
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.10009990908620595,
+              "overall_contribution": -0.02705402948275836
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.06190199792720428,
+              "overall_contribution": -0.010038161826033128
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.09027307282839736,
+              "overall_contribution": -0.004879625558291749
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.12044823792445476,
+              "overall_contribution": -0.003255357781742021
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.06519498831933297,
+              "overall_contribution": -0.00528608013399997
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.07010863424371747,
+              "overall_contribution": -0.003789655905065809
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.10307030691110305,
+              "overall_contribution": -0.002785683970570353
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.07959650908588689,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      },
+      "predicted_length_GT_direction_on_valid": {
+        "PREFIX": 0.11755623050912754,
+        "nonstop": 0.11859380871485024,
+        "L2_1s": 0.07351858589917727,
+        "L2_2s": 0.11438604845750024,
+        "L2_3s": 0.1647640571707051,
+        "delta_vs_own_original": {
+          "mean_delta": -0.03281381207078431,
+          "session_CI95": [
+            -0.04207030672353766,
+            -0.028633676582162957
+          ],
+          "session_delta": {
+            "session_019_20260113-102709": {
+              "n": 54,
+              "mean": -0.02413864372777789,
+              "overall_contribution": -0.0006523957764264295
+            },
+            "session_026_20260122-134906": {
+              "n": 108,
+              "mean": -0.03663633120606655,
+              "overall_contribution": -0.0019803422273549486
+            },
+            "session_027_20260122-135506": {
+              "n": 378,
+              "mean": -0.027193692656197054,
+              "overall_contribution": -0.005144752664685929
+            },
+            "session_040_20260209-153550": {
+              "n": 108,
+              "mean": -0.030581872625625638,
+              "overall_contribution": -0.0016530741959797641
+            },
+            "session_046_20260210-100504": {
+              "n": 540,
+              "mean": -0.030654067820943973,
+              "overall_contribution": -0.008284883194849723
+            },
+            "session_076_20260213-134648": {
+              "n": 324,
+              "mean": -0.027960628148773994,
+              "overall_contribution": -0.004534155916017404
+            },
+            "session_087_20260219-90551": {
+              "n": 108,
+              "mean": -0.025823250592860857,
+              "overall_contribution": -0.0013958513833978842
+            },
+            "session_092_20260219-103747": {
+              "n": 54,
+              "mean": -0.10473819474036432,
+              "overall_contribution": -0.0028307620200098463
+            },
+            "session_097_20260219-110038": {
+              "n": 162,
+              "mean": -0.02642342793178159,
+              "overall_contribution": -0.0021424401025768856
+            },
+            "session_108_20260220-134317": {
+              "n": 108,
+              "mean": -0.03546649134065871,
+              "overall_contribution": -0.001917107640035606
+            },
+            "session_112_20260303-142827": {
+              "n": 54,
+              "mean": -0.08428773712964578,
+              "overall_contribution": -0.002278046949449886
+            }
+          },
+          "largest_contribution_session": "session_046_20260210-100504",
+          "delta_excluding_largest_contribution_session": -0.03361371734850295,
+          "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+        }
+      }
+    }
+  }
+}
