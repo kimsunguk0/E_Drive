@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 PRO 제안 검토 완료:** 첨부ZIP의4개 핵심source SHA와 현재코드 일치, DEV 구간벡터 통계/CPU검사를 재현했다. VECTOR는 LENGTH0.25를 교체하는 별도arm으로 타당하나, 같은계수에서 loss규모가달라지고 방향오차가남으면 길이를줄이는절충이있어 signed진행량도확인한다. FINE-READ24×32 시제품은 추가backbone0/파라미터66,560/FLOPs+0.211683G, 초기FP32·BF16출력차이0. 같은4090세션에서baseline25.77~25.78ms→fine26.14~26.16ms. 다음제안은 CONTROL/VECTOR/FINE/SHARED-HISTORY768의 동일DEV-parent stage-2 대조이며 길이·방향decoder분리와native1152는후순위. **학습·예약·추가제출없음.** [검토·조건·측정](reports/a2_pro_review_20260921/REVIEW_KO.md).
+
 **2026-09-21 FULL 잔여 오차 진단 완료:** 저장 V0 1,998행(in-fit), 별도 유턴 command train375행, 동일 DEV를 구분해 분석했다. FULL in-fit PREFIX0.106606, 종/횡 MAE8.80/4.92cm이며 전체 횡오차의76.11%가 GT 방향변화5도 미만 구간이다. Nonstop은 전체 점수의98.15%, 속도변화가 작은 일반 주행도62.51%다. V0 유턴은0개이고 별도 train probe는0.274356(3세션, in-fit). 4090 비용 시제품은 기준26.11ms, current scene1152는37.87ms, 전체1.5배54.93ms, 전체2배101.30ms. **이미 계산한768 과거 FPN을 shared scene에도 공유**하면 새 high-history 별도 계산과FP32출력차이0,23.88ms/658.03G였다. 제출 baseline과의 출력parity나 정확도개선을 뜻하지 않는다. 다음 우선 후보는 shared-history768와 원본 current-scene1152이며 길이/방향분리는 독립축으로 유지한다. [전체 통계·해석](reports/a2_full_error_audit_20260921/RESULTS_KO.md), [그림](reports/a2_full_error_audit_20260921/ERROR_AND_COST.png). **신규 학습·checkpoint 변경·공식 제출 없음.**
 
 **2026-09-21 사용자 전달 공식 결과:** A2-H4-PROGRESS-FULL-s1 / step24,931의 서버 PREFIX는 **0.1336848279459137**, 현재 **4등(사용자 보고)**이다. MR FULL0.185968928 대비28.11% 감소했다. [공식 응답 원문](reports/a2_progress_full_20260921/SERVER_RESULT_20260921.json). 동일 FULL RTX4090 전체 forward26.103ms 확인 완료. 서버 elapsed_ms303은 harness 시간이다.

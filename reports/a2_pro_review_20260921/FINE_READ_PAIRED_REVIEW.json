@@ -1,0 +1,143 @@
+{
+  "scope": "UNTRAINED fine-read review prototype, no accuracy measurement or optimizer updates",
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "script_sha256": "0b88b0136656344a49c89761fb5949a11f1efb2cdcfb7d9a0d590a8c06e4a341",
+  "helper_sha256": "440c12a1c8e02192b8e3cc2c804e6e263cc661596e7b99867190bbd0bcd4d465",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.1+cu128",
+  "created_utc": "2026-09-21T06:11:25.139601+00:00",
+  "precision": "B1 BF16 with FP32 planner",
+  "timing_scope": "Whole forward including extra fine read, excludes preprocessing",
+  "raw_input_contract_unchanged": true,
+  "backbone_passes_unchanged": true,
+  "fine_input": "pre-pool image correlation map + existing visual XY and frame-time embeddings, no supplied pose/status/goal",
+  "queries": "Existing decoded interval queries after coarse temporal read; indirect scene goal/status influence remains",
+  "inference_teacher_or_second_checkpoint": false,
+  "runtime_shapes": [
+    {
+      "pre_pool": [
+        4,
+        128,
+        54,
+        96
+      ],
+      "fine_memory": [
+        1,
+        3072,
+        128
+      ],
+      "decoded": [
+        1,
+        6,
+        128
+      ]
+    }
+  ],
+  "parity": [
+    {
+      "clip": "fixture_000",
+      "precision": "fp32",
+      "max_abs_delta_vs_submitted": {
+        "plan_abs": 0.0,
+        "scene_features": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      }
+    },
+    {
+      "clip": "fixture_000",
+      "precision": "bf16",
+      "max_abs_delta_vs_submitted": {
+        "plan_abs": 0.0,
+        "scene_features": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      }
+    },
+    {
+      "clip": "fixture_001",
+      "precision": "fp32",
+      "max_abs_delta_vs_submitted": {
+        "plan_abs": 0.0,
+        "scene_features": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      }
+    },
+    {
+      "clip": "fixture_001",
+      "precision": "bf16",
+      "max_abs_delta_vs_submitted": {
+        "plan_abs": 0.0,
+        "scene_features": 0.0,
+        "motion_features": 0.0,
+        "state_hat": 0.0,
+        "history_hat": 0.0
+      }
+    }
+  ],
+  "synthetic_gradient": [
+    {
+      "stage": 0,
+      "output_weight_grad_norm": 0.027348710224032402,
+      "attention_in_proj_grad_norm": 0.0,
+      "memory_grad_norm": 0.0,
+      "max_feature_change": 0.0
+    },
+    {
+      "stage": 1,
+      "output_weight_grad_norm": 0.028584828600287437,
+      "attention_in_proj_grad_norm": 6.513300468213856e-05,
+      "memory_grad_norm": 1.0831893177964957e-06,
+      "max_feature_change": 0.0001150369644165039
+    }
+  ],
+  "extra_parameters": 66560,
+  "flops": {
+    "baseline": 730044861120,
+    "fine": 730256544448
+  },
+  "timing": [
+    {
+      "clip": "fixture_000",
+      "median_ms": 26.161200523376465,
+      "p95_ms": 26.220944595336913,
+      "warmup": 30,
+      "repeats": 100,
+      "peak_allocated_bytes": 710099456
+    },
+    {
+      "clip": "fixture_001",
+      "median_ms": 26.14401626586914,
+      "p95_ms": 26.24639835357666,
+      "warmup": 30,
+      "repeats": 100,
+      "peak_allocated_bytes": 710099456
+    }
+  ],
+  "paired_control_timing": [
+    {
+      "clip": "fixture_000",
+      "median_ms": 25.767855644226074,
+      "p95_ms": 25.82625570297241,
+      "warmup": 30,
+      "repeats": 100,
+      "peak_allocated_bytes": 710099456
+    },
+    {
+      "clip": "fixture_001",
+      "median_ms": 25.783552169799805,
+      "p95_ms": 25.828914165496826,
+      "warmup": 30,
+      "repeats": 100,
+      "peak_allocated_bytes": 710099456
+    }
+  ],
+  "timing_order": "baseline/fine on fixture0, fine/baseline on fixture1",
+  "max_clip_median_ms": 26.161200523376465,
+  "max_clip_p95_ms": 26.24639835357666,
+  "completed": true
+}

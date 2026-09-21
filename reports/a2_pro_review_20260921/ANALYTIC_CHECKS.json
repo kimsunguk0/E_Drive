@@ -1,0 +1,64 @@
+{
+  "interpretation": "Analytic fixed-direction minimizer of vector error; not a claim of realized model collapse",
+  "gt_length_m": 5.0,
+  "cases": [
+    {
+      "angle_deg": 1,
+      "optimal_nonnegative_length_m": 4.999238475781956,
+      "relative_shortening": 0.00015230484360873042
+    },
+    {
+      "angle_deg": 5,
+      "optimal_nonnegative_length_m": 4.9809734904587275,
+      "relative_shortening": 0.003805301908254455
+    },
+    {
+      "angle_deg": 15,
+      "optimal_nonnegative_length_m": 4.8296291314453415,
+      "relative_shortening": 0.03407417371093169
+    },
+    {
+      "angle_deg": 20,
+      "optimal_nonnegative_length_m": 4.698463103929543,
+      "relative_shortening": 0.06030737921409157
+    },
+    {
+      "angle_deg": 30,
+      "optimal_nonnegative_length_m": 4.330127018922194,
+      "relative_shortening": 0.1339745962155613
+    },
+    {
+      "angle_deg": 45,
+      "optimal_nonnegative_length_m": 3.5355339059327378,
+      "relative_shortening": 0.2928932188134524
+    },
+    {
+      "angle_deg": 60,
+      "optimal_nonnegative_length_m": 2.5000000000000004,
+      "relative_shortening": 0.4999999999999999
+    },
+    {
+      "angle_deg": 90,
+      "optimal_nonnegative_length_m": 3.061616997868383e-16,
+      "relative_shortening": 0.9999999999999999
+    }
+  ],
+  "prefix_output_displacement_gradient_upper_bounds": [
+    1,
+    0.6944444444444444,
+    0.3888888888888889,
+    0.25,
+    0.1111111111111111,
+    0.05555555555555555
+  ],
+  "vector_aux_output_displacement_gradient_max_per_valid_row": 0.041666666666666664,
+  "aux_bound_to_prefix_bound_ratio": [
+    0.041666666666666664,
+    0.06,
+    0.10714285714285714,
+    0.16666666666666666,
+    0.375,
+    0.75
+  ],
+  "note": "Network gradient also depends on length, angle Jacobians and shared parameters; ratios are NOT measured training gradients."
+}

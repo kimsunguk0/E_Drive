@@ -1,0 +1,17 @@
+{
+  "review_scope": "Source/statistic/CPU loss checks and untrained fine-read prototype. No training or submission.",
+  "zip_sha256": "8d758a6c950509c34faba9ee721fa85184046b05d37bec3739e2b279009709b3",
+  "request_md_sha256": "e884b4cc522d3cf728596aab9011c429f734c8d2299dd8fb27d5b31fa3367b27",
+  "work_source_commit": "d6680eaf9af7d79f0ff53200e70b4d7a7d6b1c94",
+  "mirror_source_commit": "8931739cb3c14dd15ccca1f8cfd87cf2ca52d2b0",
+  "four_reference_source_hashes_match_live_B200": true,
+  "reference_CPU_tests_replayed_identically": true,
+  "provided_DEV_predictions_hashes_and_statistics_match": true,
+  "actual_common_loss_integration_passed": true,
+  "fine_cost_script_sha256": "0b88b0136656344a49c89761fb5949a11f1efb2cdcfb7d9a0d590a8c06e4a341",
+  "proposal_has_FINE_implementation": false,
+  "review_added_untrained_FINE_cost_prototype": true,
+  "target_0p12_required_last_four_fraction_assuming_first_two_fixed": 0.15339551606923124,
+  "new_training_started": false,
+  "official_upload_performed": false
+}

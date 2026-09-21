@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "scope": "CPU synthetic outputs with actual uncertainty/common loss; no model fitting",
+  "coefficient": 0.25,
+  "batch": 15,
+  "complete_rows": 10,
+  "length_aux_removed": true,
+  "all_common_loss_parts_identical": true,
+  "lambda_zero_bitwise_common_loss": true,
+  "both_wrapper_nesting_cases_rejected": true,
+  "microbatch": [
+    {
+      "microbatch": 1,
+      "loss_gap": 4.76837158203125e-07,
+      "max_output_gradient_gap": 5.820766091346741e-11
+    },
+    {
+      "microbatch": 2,
+      "loss_gap": 2.384185791015625e-07,
+      "max_output_gradient_gap": 0.0
+    },
+    {
+      "microbatch": 8,
+      "loss_gap": 4.76837158203125e-07,
+      "max_output_gradient_gap": 0.0
+    },
+    {
+      "microbatch": 15,
+      "loss_gap": 0.0,
+      "max_output_gradient_gap": 0.0
+    }
+  ],
+  "script_sha256": "cbcc77778591c069b1fdf951247b5e7ea95243fccc49c3980d397e1a9364f2d9",
+  "reference_sha256": "45b4f6cc3b12b23d8ace09b77858724151caccdb368a26264d65410e6172fca1"
+}

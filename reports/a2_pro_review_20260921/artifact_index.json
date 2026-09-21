@@ -1,0 +1,75 @@
+{
+  "scope": "Review, no training",
+  "artifacts": [
+    {
+      "path": "experiments/a2_pro_review_20260921/fine_read_cost.py",
+      "bytes": 7034,
+      "sha256": "0b88b0136656344a49c89761fb5949a11f1efb2cdcfb7d9a0d590a8c06e4a341"
+    },
+    {
+      "path": "experiments/a2_pro_review_20260921/reference/interval_vector_auxiliary.py",
+      "bytes": 3289,
+      "sha256": "45b4f6cc3b12b23d8ace09b77858724151caccdb368a26264d65410e6172fca1"
+    },
+    {
+      "path": "experiments/a2_pro_review_20260921/reference/test_vector_auxiliary.py",
+      "bytes": 3906,
+      "sha256": "ad6588f2f296284d9d58c8ca91ccf2acec7bb21affee9295c54867bdb5b4f050"
+    },
+    {
+      "path": "experiments/a2_pro_review_20260921/review_saved.py",
+      "bytes": 3602,
+      "sha256": "2810ef954fa9e054b0adbf45343653358621440510e5ce515c1dfacb9bb5c83a"
+    },
+    {
+      "path": "experiments/a2_pro_review_20260921/test_reference_integration.py",
+      "bytes": 4142,
+      "sha256": "cbcc77778591c069b1fdf951247b5e7ea95243fccc49c3980d397e1a9364f2d9"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/ANALYTIC_CHECKS.json",
+      "bytes": 1844,
+      "sha256": "615766ed3e7c42c87e5035e3f698b00327a7a6e44e469d9a118ae5d45179e215"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/FINE_READ_PAIRED_REVIEW.json",
+      "bytes": 3869,
+      "sha256": "411dae38c30fc0537ff14e49abf279db61fe9fdee31df0f0a426e96479f1ec2f"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/INDEPENDENT_INTERVALS.json",
+      "bytes": 8062,
+      "sha256": "253a9603f2d4ac88100fff18a52a37f74db7d882bd429c3f27cdf86ca9e69df8"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/PROVENANCE.json",
+      "bytes": 1011,
+      "sha256": "9555de3d7ce43f2ea1394088f70725da55c43d57e71a32659789692daaf6cdf9"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/REVIEW_KO.md",
+      "bytes": 13031,
+      "sha256": "2ec707ca836bf35571db84c8425c2c621f2b02a0ec35692fc61188279ef0cd66"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/VECTOR_INTEGRATION.json",
+      "bytes": 989,
+      "sha256": "5a336fd7141ed57248b5069f12fa78bc7c3193c0453ff1f12c34a0cc3aa95a58"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/VECTOR_REFERENCE_REPLAY.json",
+      "bytes": 3327,
+      "sha256": "6161b5d0fe0259612b5a5841b1472bba3f21860fe65445293f7ddb00ac44d5ff"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/analysis.json",
+      "bytes": 20263,
+      "sha256": "a3f69826dac739bcf974c29a476df2f17228a233f838eb83e657439ce71213e9"
+    },
+    {
+      "path": "reports/a2_pro_review_20260921/source_provenance.json",
+      "bytes": 572,
+      "sha256": "97db68a00ec3fb95455be17c34e29780c7fbd0db6f261e01a113ea6f317c9641"
+    }
+  ]
+}
