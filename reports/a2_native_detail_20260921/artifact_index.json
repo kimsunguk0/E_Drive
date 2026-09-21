@@ -1,0 +1,70 @@
+{
+  "scope": "large artifacts retained on B200, not copied into Git",
+  "artifacts": [
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/M-NATIVE_train_probe_step0.json",
+      "bytes": 492550,
+      "sha256": "95254ca407c93ec904a55730c991165a7cbf0995cd90b8df0d09bdf5b9db3b85"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/S-LOW_step0.json",
+      "bytes": 3785086,
+      "sha256": "194da2342a0c8dfda5259ca205b40ed989fb07f183c35a0a86edcc13854d5623"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/M-NATIVE_step0.json",
+      "bytes": 3785086,
+      "sha256": "194da2342a0c8dfda5259ca205b40ed989fb07f183c35a0a86edcc13854d5623"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/cache_plan.json",
+      "bytes": 6726305,
+      "sha256": "f57ba938cdc85331e13fc92bef914c0a2c118226743b737c6bb7e63bd226fcff"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/M-LOW_step0.json",
+      "bytes": 3785086,
+      "sha256": "194da2342a0c8dfda5259ca205b40ed989fb07f183c35a0a86edcc13854d5623"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/S-LOW_train_probe_step0.json",
+      "bytes": 492550,
+      "sha256": "95254ca407c93ec904a55730c991165a7cbf0995cd90b8df0d09bdf5b9db3b85"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/M-LOW_train_probe_step0.json",
+      "bytes": 492550,
+      "sha256": "95254ca407c93ec904a55730c991165a7cbf0995cd90b8df0d09bdf5b9db3b85"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/S-NATIVE_step0.json",
+      "bytes": 3785086,
+      "sha256": "194da2342a0c8dfda5259ca205b40ed989fb07f183c35a0a86edcc13854d5623"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/S-NATIVE_train_probe_step0.json",
+      "bytes": 492550,
+      "sha256": "95254ca407c93ec904a55730c991165a7cbf0995cd90b8df0d09bdf5b9db3b85"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/verification/M-LOW_student.pth",
+      "bytes": 110424691,
+      "sha256": "0b636a55e4f2cce7f2947d279846c5a9e9dca9bf21a5551e6d2a8105d84fa4bc"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/verification/M-NATIVE_student.pth",
+      "bytes": 110426257,
+      "sha256": "0bfeb028cd0afa9045bebc7b8d1af06578224993070c496d73b5c199783c2553"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/verification/S-LOW_student.pth",
+      "bytes": 107647435,
+      "sha256": "139dab562ac5046643b8d72972d2554e32155a025820bed4e2c82455ace57ebd"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/verification/S-NATIVE_student.pth",
+      "bytes": 107648971,
+      "sha256": "4d63b3858a711e8227f9057cf786242562849e35e66c898ff49dbfbcfc7bdc38"
+    }
+  ]
+}

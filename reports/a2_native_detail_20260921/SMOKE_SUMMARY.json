@@ -1,0 +1,303 @@
+{
+  "status": "passed",
+  "scope": "implementation smoke, not accuracy screening",
+  "main_started": false,
+  "arms": {
+    "M-LOW": {
+      "updates": 5,
+      "nonfinite_count": 0,
+      "rough_step_seconds": 1.0419178996235132,
+      "peak_allocated_bytes": 73751640064,
+      "optimizer_groups": [
+        {
+          "name": "backbone",
+          "base_lr": 1e-06,
+          "parameters": 23508032
+        },
+        {
+          "name": "head",
+          "base_lr": 1e-05,
+          "parameters": 3227832
+        },
+        {
+          "name": "native_detail",
+          "base_lr": 5e-05,
+          "parameters": 709632
+        }
+      ],
+      "gradient_audit": [
+        {
+          "step": 1,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 4.430365085601807,
+            "scene_encoder.key_proj.0.weight": 0.2963971793651581,
+            "native_motion.projections.0.weight": 0.0,
+            "native_motion.correlation_fuse.0.weight": 0.0,
+            "native_projection.weight": 0.5071111917495728
+          }
+        },
+        {
+          "step": 2,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 1.8613176345825195,
+            "scene_encoder.key_proj.0.weight": 0.6359332203865051,
+            "native_motion.projections.0.weight": 1.1393718523322605e-05,
+            "native_motion.correlation_fuse.0.weight": 0.00011655455455183983,
+            "native_projection.weight": 0.5953050255775452
+          }
+        },
+        {
+          "step": 3,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.838775634765625,
+            "scene_encoder.key_proj.0.weight": 0.25463056564331055,
+            "native_motion.projections.0.weight": 1.3650152141053695e-05,
+            "native_motion.correlation_fuse.0.weight": 9.615618182579055e-05,
+            "native_projection.weight": 0.4562365412712097
+          }
+        },
+        {
+          "step": 4,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.5051472187042236,
+            "scene_encoder.key_proj.0.weight": 0.22432802617549896,
+            "native_motion.projections.0.weight": 1.9599134247982875e-05,
+            "native_motion.correlation_fuse.0.weight": 0.00018790744070429355,
+            "native_projection.weight": 0.31680038571357727
+          }
+        },
+        {
+          "step": 5,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.7279751300811768,
+            "scene_encoder.key_proj.0.weight": 0.4395139217376709,
+            "native_motion.projections.0.weight": 6.221253715921193e-05,
+            "native_motion.correlation_fuse.0.weight": 0.0005424775299616158,
+            "native_projection.weight": 0.6043812036514282
+          }
+        }
+      ],
+      "state_after_five_updates_sha256": "08f0abce7b74a3f3d66921ea37a2da95b10dac7893955db94d7b997c3cf97cf8",
+      "initial_checks": "reports/a2_native_detail_20260921/M-LOW_initial_checks.json",
+      "reload": "reports/a2_native_detail_20260921/M-LOW_reload.json",
+      "export": "reports/a2_native_detail_20260921/M-LOW_export.json"
+    },
+    "M-NATIVE": {
+      "updates": 5,
+      "nonfinite_count": 0,
+      "rough_step_seconds": 1.0275999326258898,
+      "peak_allocated_bytes": 73751640064,
+      "optimizer_groups": [
+        {
+          "name": "backbone",
+          "base_lr": 1e-06,
+          "parameters": 23508032
+        },
+        {
+          "name": "head",
+          "base_lr": 1e-05,
+          "parameters": 3227832
+        },
+        {
+          "name": "native_detail",
+          "base_lr": 5e-05,
+          "parameters": 709632
+        }
+      ],
+      "gradient_audit": [
+        {
+          "step": 1,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 4.432369709014893,
+            "scene_encoder.key_proj.0.weight": 0.2963753938674927,
+            "native_motion.projections.0.weight": 0.0,
+            "native_motion.correlation_fuse.0.weight": 0.0,
+            "native_projection.weight": 0.50103360414505
+          }
+        },
+        {
+          "step": 2,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 1.8621068000793457,
+            "scene_encoder.key_proj.0.weight": 0.6328276991844177,
+            "native_motion.projections.0.weight": 1.0853179446712602e-05,
+            "native_motion.correlation_fuse.0.weight": 0.0001192883646581322,
+            "native_projection.weight": 0.5959793925285339
+          }
+        },
+        {
+          "step": 3,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.836153507232666,
+            "scene_encoder.key_proj.0.weight": 0.25299063324928284,
+            "native_motion.projections.0.weight": 1.4010548511578236e-05,
+            "native_motion.correlation_fuse.0.weight": 9.866215259535238e-05,
+            "native_projection.weight": 0.4532201290130615
+          }
+        },
+        {
+          "step": 4,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.503614664077759,
+            "scene_encoder.key_proj.0.weight": 0.22896283864974976,
+            "native_motion.projections.0.weight": 1.6722733562346548e-05,
+            "native_motion.correlation_fuse.0.weight": 0.0001861903874669224,
+            "native_projection.weight": 0.3142803907394409
+          }
+        },
+        {
+          "step": 5,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.762887954711914,
+            "scene_encoder.key_proj.0.weight": 0.43846872448921204,
+            "native_motion.projections.0.weight": 5.834054900333285e-05,
+            "native_motion.correlation_fuse.0.weight": 0.0005342543590813875,
+            "native_projection.weight": 0.5937855243682861
+          }
+        }
+      ],
+      "state_after_five_updates_sha256": "dcf7197da10b5d38fc057993323f33a3ecb46a800b29bef223dd76f1ef4f731b",
+      "initial_checks": "reports/a2_native_detail_20260921/M-NATIVE_initial_checks.json",
+      "reload": "reports/a2_native_detail_20260921/M-NATIVE_reload.json",
+      "export": "reports/a2_native_detail_20260921/M-NATIVE_export.json"
+    },
+    "S-LOW": {
+      "updates": 5,
+      "nonfinite_count": 0,
+      "rough_step_seconds": 1.0029217302799225,
+      "peak_allocated_bytes": 68098735104,
+      "optimizer_groups": [
+        {
+          "name": "backbone",
+          "base_lr": 1e-06,
+          "parameters": 23508032
+        },
+        {
+          "name": "head",
+          "base_lr": 1e-05,
+          "parameters": 3227832
+        },
+        {
+          "name": "native_detail",
+          "base_lr": 5e-05,
+          "parameters": 16384
+        }
+      ],
+      "gradient_audit": [
+        {
+          "step": 1,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 4.431085586547852,
+            "scene_encoder.key_proj.0.weight": 0.29640138149261475,
+            "native_projection.weight": 1.8612217903137207
+          }
+        },
+        {
+          "step": 2,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 1.8696433305740356,
+            "scene_encoder.key_proj.0.weight": 0.638299822807312,
+            "native_projection.weight": 3.9013593196868896
+          }
+        },
+        {
+          "step": 3,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.8463294506073,
+            "scene_encoder.key_proj.0.weight": 0.25260746479034424,
+            "native_projection.weight": 1.3509138822555542
+          }
+        },
+        {
+          "step": 4,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.651703119277954,
+            "scene_encoder.key_proj.0.weight": 0.17632119357585907,
+            "native_projection.weight": 1.353014349937439
+          }
+        },
+        {
+          "step": 5,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.819671154022217,
+            "scene_encoder.key_proj.0.weight": 0.4598384499549866,
+            "native_projection.weight": 1.7767596244812012
+          }
+        }
+      ],
+      "state_after_five_updates_sha256": "4d9c14abcee40250669cd532bd863409709e32db1a48cc6998730f1895f82f09",
+      "initial_checks": "reports/a2_native_detail_20260921/S-LOW_initial_checks.json",
+      "reload": "reports/a2_native_detail_20260921/S-LOW_reload.json",
+      "export": "reports/a2_native_detail_20260921/S-LOW_export.json"
+    },
+    "S-NATIVE": {
+      "updates": 5,
+      "nonfinite_count": 0,
+      "rough_step_seconds": 1.012223405763507,
+      "peak_allocated_bytes": 68097596416,
+      "optimizer_groups": [
+        {
+          "name": "backbone",
+          "base_lr": 1e-06,
+          "parameters": 23508032
+        },
+        {
+          "name": "head",
+          "base_lr": 1e-05,
+          "parameters": 3227832
+        },
+        {
+          "name": "native_detail",
+          "base_lr": 5e-05,
+          "parameters": 16384
+        }
+      ],
+      "gradient_audit": [
+        {
+          "step": 1,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 4.430296897888184,
+            "scene_encoder.key_proj.0.weight": 0.2964121699333191,
+            "native_projection.weight": 1.899935245513916
+          }
+        },
+        {
+          "step": 2,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 1.8534047603607178,
+            "scene_encoder.key_proj.0.weight": 0.6372928619384766,
+            "native_projection.weight": 3.92539119720459
+          }
+        },
+        {
+          "step": 3,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.8293914794921875,
+            "scene_encoder.key_proj.0.weight": 0.254546195268631,
+            "native_projection.weight": 1.3723400831222534
+          }
+        },
+        {
+          "step": 4,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.625223398208618,
+            "scene_encoder.key_proj.0.weight": 0.17904473841190338,
+            "native_projection.weight": 1.3726129531860352
+          }
+        },
+        {
+          "step": 5,
+          "unclipped_grad_norms": {
+            "backbone_fpn.layer1.0.conv1.weight": 3.846484422683716,
+            "scene_encoder.key_proj.0.weight": 0.4620189070701599,
+            "native_projection.weight": 1.7940185070037842
+          }
+        }
+      ],
+      "state_after_five_updates_sha256": "e5d8836361748dcbbe723a739ba904c036503e2a306ece402ed689073b39f651",
+      "initial_checks": "reports/a2_native_detail_20260921/S-NATIVE_initial_checks.json",
+      "reload": "reports/a2_native_detail_20260921/S-NATIVE_reload.json",
+      "export": "reports/a2_native_detail_20260921/S-NATIVE_export.json"
+    }
+  }
+}

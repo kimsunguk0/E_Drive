@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "plan_sha256": "f57ba938cdc85331e13fc92bef914c0a2c118226743b737c6bb7e63bd226fcff",
+  "producer_sha256": "993990fecdcd5c9b5b140761091baa885c88bf112440a5c0a6826a340a2dc84c",
+  "seconds": 436.0473724361509,
+  "images": 521358,
+  "bytes": 96338253796,
+  "cache": "/NHNHOME/data/sukim/adcl/data/etri/motiondrive_v2/native_detail_1152_20260921",
+  "manifest_sha256": "a682251ad7482c75a32736c409960bd98fe52fd43a2db7661fdbe6a665326af5",
+  "n_scenes": 347
+}

@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "pairs": {
+    "M": {
+      "equal_weight_and_buffer_tensors": 515,
+      "only_different_tensor": "native_detail_signature"
+    },
+    "S": {
+      "equal_weight_and_buffer_tensors": 505,
+      "only_different_tensor": "native_detail_signature"
+    }
+  }
+}

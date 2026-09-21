@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "scope": "entire B1 student forward including baseline AND additional detail branch; file/preprocessing/transfer excluded",
+  "counter": "torch.utils.flop_counter.FlopCounterMode, FP32 Global sum",
+  "precision": "BF16 image path, FP32 planner",
+  "two_real_DEV_inputs": true,
+  "models": [
+    {
+      "arm": "M-NATIVE",
+      "checkpoint_sha256": "0bfeb028cd0afa9045bebc7b8d1af06578224993070c496d73b5c199783c2553",
+      "weights_role": "five-update smoke; cost check, not a candidate score",
+      "flops": 1444924132032,
+      "timing": [
+        {
+          "train_row": 0,
+          "median_ms": 49.359249114990234,
+          "p95_ms": 49.43741798400879,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2357985792
+        },
+        {
+          "train_row": 30000,
+          "median_ms": 49.418752670288086,
+          "p95_ms": 49.510654830932616,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 2357985792
+        }
+      ],
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    },
+    {
+      "arm": "S-NATIVE",
+      "checkpoint_sha256": "4d63b3858a711e8227f9057cf786242562849e35e66c898ff49dbfbcfc7bdc38",
+      "weights_role": "five-update smoke; cost check, not a candidate score",
+      "flops": 1516674164864,
+      "timing": [
+        {
+          "train_row": 0,
+          "median_ms": 51.75435256958008,
+          "p95_ms": 51.90558776855469,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 789156864
+        },
+        {
+          "train_row": 30000,
+          "median_ms": 51.7708797454834,
+          "p95_ms": 51.887203216552734,
+          "warmup": 30,
+          "repeats": 200,
+          "peak_allocated_bytes": 789156864
+        }
+      ],
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.7.1+cu128"
+    }
+  ],
+  "LOW_cost": "Identical tensor shapes and graph within each pair; LOW preprocessing is outside model forward.",
+  "raw_submission_adapter_verified": false
+}

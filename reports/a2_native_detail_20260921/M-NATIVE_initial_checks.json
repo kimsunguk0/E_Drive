@@ -1,0 +1,148 @@
+{
+  "arm": "M-NATIVE",
+  "parent_sha256": "8252ae12063b0e684899ae22cfac2f3a29fedc0ea06df41849bab3d47c2767f6",
+  "parameters": 27445496,
+  "CPU_RNG_matches_parent": true,
+  "initial_parity": {
+    "fp32": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0
+    },
+    "bf16": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0
+    }
+  },
+  "new_keys": [
+    "native_detail_signature",
+    "native_motion.correlation_fuse.0.bias",
+    "native_motion.correlation_fuse.0.weight",
+    "native_motion.correlation_fuse.1.bias",
+    "native_motion.correlation_fuse.1.weight",
+    "native_motion.correlation_fuse.3.bias",
+    "native_motion.correlation_fuse.3.weight",
+    "native_motion.correlation_fuse.4.bias",
+    "native_motion.correlation_fuse.4.weight",
+    "native_motion.projections.0.weight",
+    "native_motion.projections.1.weight",
+    "native_projection.weight"
+  ],
+  "boundary": {
+    "provided_status5": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "goal_xy": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "flip_roundtrip_by_tensor": {
+    "images": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "history_images": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "lidar2img": {
+      "exact": false,
+      "max_abs": 3.0517578125e-05
+    },
+    "goal_xy": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "gt_plan": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "plan_valid": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "proxy_weight": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "history_target": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "history_transforms": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "history_valid": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "time_offsets": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "state_target": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "state_valid": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "occ_target": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "lane_target": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "occ_valid": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "lane_valid": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "motion_current_images": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "motion_history_images": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "provided_status5": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "high_detail_images": {
+      "exact": true,
+      "max_abs": 0.0
+    }
+  },
+  "flip_involution": true,
+  "normalized_geometry_consistent": true,
+  "status": "passed",
+  "step0_PREFIX": 0.14739373617304918,
+  "step0_n": 1998,
+  "initial_state_sha256": "8b57bcb1cc0af0eaf833aaa71cdae87957d222190cd34b1e41949b0998a72d12"
+}

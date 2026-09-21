@@ -1,0 +1,1258 @@
+{
+  "step": 0,
+  "primary": false,
+  "parent": {
+    "PREFIX": 0.14739373370951964,
+    "L2_1s": 0.08275785713430267,
+    "L2_2s": 0.13951408872811596,
+    "L2_3s": 0.21990925526614022,
+    "point_L2": [
+      0.058818403948901116,
+      0.10669731031970431,
+      0.16168343509547706,
+      0.23085720554838093,
+      0.3185816592381858,
+      0.44281751744619197
+    ],
+    "pair_PREFIX_contributions": [
+      0.0505742460265183,
+      0.05451953342275813,
+      0.04229995426024318
+    ],
+    "groups": {
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.15075866886392644,
+        "contribution": 0.14147772978972076,
+        "L2_1s": 0.08440430710779952,
+        "first1s_contribution": 0.048405039319829965,
+        "signed_interval_length_m": [
+          0.007498137496776406,
+          0.006412592640327266,
+          0.0029692702960853763,
+          -0.0005022969078989645,
+          -0.007499908456832482,
+          -0.01483713786954592
+        ]
+      },
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.3659068822340637,
+        "contribution": 0.004395277864673438,
+        "L2_1s": 0.21909265078019824,
+        "first1s_contribution": 0.0016082877267815686,
+        "signed_interval_length_m": [
+          0.1408373123998918,
+          0.13995975120766183,
+          0.0787102333361171,
+          0.007048128894642194,
+          -0.12224184143599037,
+          -0.3351268591135878
+        ]
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.03069101674889421,
+        "contribution": 0.0015207260551253889,
+        "L2_1s": 0.018524233419069717,
+        "first1s_contribution": 0.0005609189799067656,
+        "signed_interval_length_m": [
+          0.013269708983423629,
+          0.00694501895048176,
+          0.008877345940090283,
+          0.010755465543484907,
+          0.017094392326453524,
+          0.034017841382725365
+        ]
+      }
+    },
+    "interval_vector_MAE": [
+      0.058818403948901116,
+      0.05713563560583425,
+      0.07256602454870897,
+      0.09569746652544492,
+      0.12890151141881007,
+      0.17460536723631645
+    ],
+    "interval_length_MAE": [
+      0.05141758044702162,
+      0.0475405396029684,
+      0.053987570163440274,
+      0.06683042161604467,
+      0.08954629582385101,
+      0.12218572696010392
+    ],
+    "signed_interval_length_error": [
+      0.009385788034740782,
+      0.008043144197044641,
+      0.0041718141407887065,
+      0.0001462159559388696,
+      -0.00765955340876165,
+      -0.016263719633250694
+    ],
+    "weighted_longitudinal_abs": 0.11943925205888925,
+    "weighted_lateral_abs": 0.06583544683995984,
+    "GT_tangent_mask": "GT interval length > .05m",
+    "GT_mask_count_by_interval": [
+      1879,
+      1879,
+      1879,
+      1879,
+      1879,
+      1878
+    ],
+    "predicted_degenerate_on_GT_mask_by_interval": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "heading_MAE_deg_including_zero_pred_convention": [
+      0.26501044209516866,
+      0.2793249393792788,
+      0.452772009185899,
+      0.7018507531394987,
+      0.985771315051727,
+      1.3411895256129658
+    ],
+    "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+    "curve_n": 50,
+    "curve_PREFIX": 0.3887831022202557,
+    "curve_signed_interval_length": [
+      0.0014313346584081455,
+      -0.05390519981444093,
+      -0.09857480280530555,
+      -0.11258523770056962,
+      -0.10686417275024887,
+      -0.10857640232860627
+    ]
+  },
+  "arms": {
+    "M-LOW": {
+      "PREFIX": 0.14739373370951964,
+      "L2_1s": 0.08275785713430267,
+      "L2_2s": 0.13951408872811596,
+      "L2_3s": 0.21990925526614022,
+      "point_L2": [
+        0.058818403948901116,
+        0.10669731031970431,
+        0.16168343509547706,
+        0.23085720554838093,
+        0.3185816592381858,
+        0.44281751744619197
+      ],
+      "pair_PREFIX_contributions": [
+        0.0505742460265183,
+        0.05451953342275813,
+        0.04229995426024318
+      ],
+      "groups": {
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15075866886392644,
+          "contribution": 0.14147772978972076,
+          "L2_1s": 0.08440430710779952,
+          "first1s_contribution": 0.048405039319829965,
+          "signed_interval_length_m": [
+            0.007498137496776406,
+            0.006412592640327266,
+            0.0029692702960853763,
+            -0.0005022969078989645,
+            -0.007499908456832482,
+            -0.01483713786954592
+          ]
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3659068822340637,
+          "contribution": 0.004395277864673438,
+          "L2_1s": 0.21909265078019824,
+          "first1s_contribution": 0.0016082877267815686,
+          "signed_interval_length_m": [
+            0.1408373123998918,
+            0.13995975120766183,
+            0.0787102333361171,
+            0.007048128894642194,
+            -0.12224184143599037,
+            -0.3351268591135878
+          ]
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03069101674889421,
+          "contribution": 0.0015207260551253889,
+          "L2_1s": 0.018524233419069717,
+          "first1s_contribution": 0.0005609189799067656,
+          "signed_interval_length_m": [
+            0.013269708983423629,
+            0.00694501895048176,
+            0.008877345940090283,
+            0.010755465543484907,
+            0.017094392326453524,
+            0.034017841382725365
+          ]
+        }
+      },
+      "interval_vector_MAE": [
+        0.058818403948901116,
+        0.05713563560583425,
+        0.07256602454870897,
+        0.09569746652544492,
+        0.12890151141881007,
+        0.17460536723631645
+      ],
+      "interval_length_MAE": [
+        0.05141758044702162,
+        0.0475405396029684,
+        0.053987570163440274,
+        0.06683042161604467,
+        0.08954629582385101,
+        0.12218572696010392
+      ],
+      "signed_interval_length_error": [
+        0.009385788034740782,
+        0.008043144197044641,
+        0.0041718141407887065,
+        0.0001462159559388696,
+        -0.00765955340876165,
+        -0.016263719633250694
+      ],
+      "weighted_longitudinal_abs": 0.11943925205888925,
+      "weighted_lateral_abs": 0.06583544683995984,
+      "GT_tangent_mask": "GT interval length > .05m",
+      "GT_mask_count_by_interval": [
+        1879,
+        1879,
+        1879,
+        1879,
+        1879,
+        1878
+      ],
+      "predicted_degenerate_on_GT_mask_by_interval": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "heading_MAE_deg_including_zero_pred_convention": [
+        0.26501044209516866,
+        0.2793249393792788,
+        0.452772009185899,
+        0.7018507531394987,
+        0.985771315051727,
+        1.3411895256129658
+      ],
+      "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+      "curve_n": 50,
+      "curve_PREFIX": 0.3887831022202557,
+      "curve_signed_interval_length": [
+        0.0014313346584081455,
+        -0.05390519981444093,
+        -0.09857480280530555,
+        -0.11258523770056962,
+        -0.10686417275024887,
+        -0.10857640232860627
+      ],
+      "predictions": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/M-LOW_step0.json",
+      "predictions_sha256": "194da2342a0c8dfda5259ca205b40ed989fb07f183c35a0a86edcc13854d5623",
+      "auxiliary": {
+        "occ_iou": 0.38378903758731003,
+        "lane_iou": 0.35148908063275475,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5742577055912675,
+          0.044578887254255614,
+          0.23920042509395695,
+          0.04832587263171535,
+          0.0050922868042081945
+        ],
+        "history_position_mae_by_offset": [
+          0.06953452708628108,
+          0.12225908301498585,
+          0.30169960574896726,
+          0.6172271296899352
+        ]
+      },
+      "delta_control": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      },
+      "delta_parent": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      }
+    },
+    "M-NATIVE": {
+      "PREFIX": 0.14739373370951964,
+      "L2_1s": 0.08275785713430267,
+      "L2_2s": 0.13951408872811596,
+      "L2_3s": 0.21990925526614022,
+      "point_L2": [
+        0.058818403948901116,
+        0.10669731031970431,
+        0.16168343509547706,
+        0.23085720554838093,
+        0.3185816592381858,
+        0.44281751744619197
+      ],
+      "pair_PREFIX_contributions": [
+        0.0505742460265183,
+        0.05451953342275813,
+        0.04229995426024318
+      ],
+      "groups": {
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15075866886392644,
+          "contribution": 0.14147772978972076,
+          "L2_1s": 0.08440430710779952,
+          "first1s_contribution": 0.048405039319829965,
+          "signed_interval_length_m": [
+            0.007498137496776406,
+            0.006412592640327266,
+            0.0029692702960853763,
+            -0.0005022969078989645,
+            -0.007499908456832482,
+            -0.01483713786954592
+          ]
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3659068822340637,
+          "contribution": 0.004395277864673438,
+          "L2_1s": 0.21909265078019824,
+          "first1s_contribution": 0.0016082877267815686,
+          "signed_interval_length_m": [
+            0.1408373123998918,
+            0.13995975120766183,
+            0.0787102333361171,
+            0.007048128894642194,
+            -0.12224184143599037,
+            -0.3351268591135878
+          ]
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03069101674889421,
+          "contribution": 0.0015207260551253889,
+          "L2_1s": 0.018524233419069717,
+          "first1s_contribution": 0.0005609189799067656,
+          "signed_interval_length_m": [
+            0.013269708983423629,
+            0.00694501895048176,
+            0.008877345940090283,
+            0.010755465543484907,
+            0.017094392326453524,
+            0.034017841382725365
+          ]
+        }
+      },
+      "interval_vector_MAE": [
+        0.058818403948901116,
+        0.05713563560583425,
+        0.07256602454870897,
+        0.09569746652544492,
+        0.12890151141881007,
+        0.17460536723631645
+      ],
+      "interval_length_MAE": [
+        0.05141758044702162,
+        0.0475405396029684,
+        0.053987570163440274,
+        0.06683042161604467,
+        0.08954629582385101,
+        0.12218572696010392
+      ],
+      "signed_interval_length_error": [
+        0.009385788034740782,
+        0.008043144197044641,
+        0.0041718141407887065,
+        0.0001462159559388696,
+        -0.00765955340876165,
+        -0.016263719633250694
+      ],
+      "weighted_longitudinal_abs": 0.11943925205888925,
+      "weighted_lateral_abs": 0.06583544683995984,
+      "GT_tangent_mask": "GT interval length > .05m",
+      "GT_mask_count_by_interval": [
+        1879,
+        1879,
+        1879,
+        1879,
+        1879,
+        1878
+      ],
+      "predicted_degenerate_on_GT_mask_by_interval": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "heading_MAE_deg_including_zero_pred_convention": [
+        0.26501044209516866,
+        0.2793249393792788,
+        0.452772009185899,
+        0.7018507531394987,
+        0.985771315051727,
+        1.3411895256129658
+      ],
+      "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+      "curve_n": 50,
+      "curve_PREFIX": 0.3887831022202557,
+      "curve_signed_interval_length": [
+        0.0014313346584081455,
+        -0.05390519981444093,
+        -0.09857480280530555,
+        -0.11258523770056962,
+        -0.10686417275024887,
+        -0.10857640232860627
+      ],
+      "predictions": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/M-NATIVE_step0.json",
+      "predictions_sha256": "194da2342a0c8dfda5259ca205b40ed989fb07f183c35a0a86edcc13854d5623",
+      "auxiliary": {
+        "occ_iou": 0.38378903758731003,
+        "lane_iou": 0.35148908063275475,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5742577055912675,
+          0.044578887254255614,
+          0.23920042509395695,
+          0.04832587263171535,
+          0.0050922868042081945
+        ],
+        "history_position_mae_by_offset": [
+          0.06953452708628108,
+          0.12225908301498585,
+          0.30169960574896726,
+          0.6172271296899352
+        ]
+      },
+      "delta_control": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      },
+      "delta_parent": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      }
+    },
+    "S-LOW": {
+      "PREFIX": 0.14739373370951964,
+      "L2_1s": 0.08275785713430267,
+      "L2_2s": 0.13951408872811596,
+      "L2_3s": 0.21990925526614022,
+      "point_L2": [
+        0.058818403948901116,
+        0.10669731031970431,
+        0.16168343509547706,
+        0.23085720554838093,
+        0.3185816592381858,
+        0.44281751744619197
+      ],
+      "pair_PREFIX_contributions": [
+        0.0505742460265183,
+        0.05451953342275813,
+        0.04229995426024318
+      ],
+      "groups": {
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15075866886392644,
+          "contribution": 0.14147772978972076,
+          "L2_1s": 0.08440430710779952,
+          "first1s_contribution": 0.048405039319829965,
+          "signed_interval_length_m": [
+            0.007498137496776406,
+            0.006412592640327266,
+            0.0029692702960853763,
+            -0.0005022969078989645,
+            -0.007499908456832482,
+            -0.01483713786954592
+          ]
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3659068822340637,
+          "contribution": 0.004395277864673438,
+          "L2_1s": 0.21909265078019824,
+          "first1s_contribution": 0.0016082877267815686,
+          "signed_interval_length_m": [
+            0.1408373123998918,
+            0.13995975120766183,
+            0.0787102333361171,
+            0.007048128894642194,
+            -0.12224184143599037,
+            -0.3351268591135878
+          ]
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03069101674889421,
+          "contribution": 0.0015207260551253889,
+          "L2_1s": 0.018524233419069717,
+          "first1s_contribution": 0.0005609189799067656,
+          "signed_interval_length_m": [
+            0.013269708983423629,
+            0.00694501895048176,
+            0.008877345940090283,
+            0.010755465543484907,
+            0.017094392326453524,
+            0.034017841382725365
+          ]
+        }
+      },
+      "interval_vector_MAE": [
+        0.058818403948901116,
+        0.05713563560583425,
+        0.07256602454870897,
+        0.09569746652544492,
+        0.12890151141881007,
+        0.17460536723631645
+      ],
+      "interval_length_MAE": [
+        0.05141758044702162,
+        0.0475405396029684,
+        0.053987570163440274,
+        0.06683042161604467,
+        0.08954629582385101,
+        0.12218572696010392
+      ],
+      "signed_interval_length_error": [
+        0.009385788034740782,
+        0.008043144197044641,
+        0.0041718141407887065,
+        0.0001462159559388696,
+        -0.00765955340876165,
+        -0.016263719633250694
+      ],
+      "weighted_longitudinal_abs": 0.11943925205888925,
+      "weighted_lateral_abs": 0.06583544683995984,
+      "GT_tangent_mask": "GT interval length > .05m",
+      "GT_mask_count_by_interval": [
+        1879,
+        1879,
+        1879,
+        1879,
+        1879,
+        1878
+      ],
+      "predicted_degenerate_on_GT_mask_by_interval": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "heading_MAE_deg_including_zero_pred_convention": [
+        0.26501044209516866,
+        0.2793249393792788,
+        0.452772009185899,
+        0.7018507531394987,
+        0.985771315051727,
+        1.3411895256129658
+      ],
+      "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+      "curve_n": 50,
+      "curve_PREFIX": 0.3887831022202557,
+      "curve_signed_interval_length": [
+        0.0014313346584081455,
+        -0.05390519981444093,
+        -0.09857480280530555,
+        -0.11258523770056962,
+        -0.10686417275024887,
+        -0.10857640232860627
+      ],
+      "predictions": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/S-LOW_step0.json",
+      "predictions_sha256": "194da2342a0c8dfda5259ca205b40ed989fb07f183c35a0a86edcc13854d5623",
+      "auxiliary": {
+        "occ_iou": 0.38378903758731003,
+        "lane_iou": 0.35148908063275475,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5742577055912675,
+          0.044578887254255614,
+          0.23920042509395695,
+          0.04832587263171535,
+          0.0050922868042081945
+        ],
+        "history_position_mae_by_offset": [
+          0.06953452708628108,
+          0.12225908301498585,
+          0.30169960574896726,
+          0.6172271296899352
+        ]
+      },
+      "delta_control": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      },
+      "delta_parent": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      }
+    },
+    "S-NATIVE": {
+      "PREFIX": 0.14739373370951964,
+      "L2_1s": 0.08275785713430267,
+      "L2_2s": 0.13951408872811596,
+      "L2_3s": 0.21990925526614022,
+      "point_L2": [
+        0.058818403948901116,
+        0.10669731031970431,
+        0.16168343509547706,
+        0.23085720554838093,
+        0.3185816592381858,
+        0.44281751744619197
+      ],
+      "pair_PREFIX_contributions": [
+        0.0505742460265183,
+        0.05451953342275813,
+        0.04229995426024318
+      ],
+      "groups": {
+        "nonstop": {
+          "n": 1875,
+          "PREFIX": 0.15075866886392644,
+          "contribution": 0.14147772978972076,
+          "L2_1s": 0.08440430710779952,
+          "first1s_contribution": 0.048405039319829965,
+          "signed_interval_length_m": [
+            0.007498137496776406,
+            0.006412592640327266,
+            0.0029692702960853763,
+            -0.0005022969078989645,
+            -0.007499908456832482,
+            -0.01483713786954592
+          ]
+        },
+        "depart": {
+          "n": 24,
+          "PREFIX": 0.3659068822340637,
+          "contribution": 0.004395277864673438,
+          "L2_1s": 0.21909265078019824,
+          "first1s_contribution": 0.0016082877267815686,
+          "signed_interval_length_m": [
+            0.1408373123998918,
+            0.13995975120766183,
+            0.0787102333361171,
+            0.007048128894642194,
+            -0.12224184143599037,
+            -0.3351268591135878
+          ]
+        },
+        "steady": {
+          "n": 99,
+          "PREFIX": 0.03069101674889421,
+          "contribution": 0.0015207260551253889,
+          "L2_1s": 0.018524233419069717,
+          "first1s_contribution": 0.0005609189799067656,
+          "signed_interval_length_m": [
+            0.013269708983423629,
+            0.00694501895048176,
+            0.008877345940090283,
+            0.010755465543484907,
+            0.017094392326453524,
+            0.034017841382725365
+          ]
+        }
+      },
+      "interval_vector_MAE": [
+        0.058818403948901116,
+        0.05713563560583425,
+        0.07256602454870897,
+        0.09569746652544492,
+        0.12890151141881007,
+        0.17460536723631645
+      ],
+      "interval_length_MAE": [
+        0.05141758044702162,
+        0.0475405396029684,
+        0.053987570163440274,
+        0.06683042161604467,
+        0.08954629582385101,
+        0.12218572696010392
+      ],
+      "signed_interval_length_error": [
+        0.009385788034740782,
+        0.008043144197044641,
+        0.0041718141407887065,
+        0.0001462159559388696,
+        -0.00765955340876165,
+        -0.016263719633250694
+      ],
+      "weighted_longitudinal_abs": 0.11943925205888925,
+      "weighted_lateral_abs": 0.06583544683995984,
+      "GT_tangent_mask": "GT interval length > .05m",
+      "GT_mask_count_by_interval": [
+        1879,
+        1879,
+        1879,
+        1879,
+        1879,
+        1878
+      ],
+      "predicted_degenerate_on_GT_mask_by_interval": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "heading_MAE_deg_including_zero_pred_convention": [
+        0.26501044209516866,
+        0.2793249393792788,
+        0.452772009185899,
+        0.7018507531394987,
+        0.985771315051727,
+        1.3411895256129658
+      ],
+      "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+      "curve_n": 50,
+      "curve_PREFIX": 0.3887831022202557,
+      "curve_signed_interval_length": [
+        0.0014313346584081455,
+        -0.05390519981444093,
+        -0.09857480280530555,
+        -0.11258523770056962,
+        -0.10686417275024887,
+        -0.10857640232860627
+      ],
+      "predictions": "/NHNHOME/data/sukim/adcl/reports/a2_native_detail_20260921/S-NATIVE_step0.json",
+      "predictions_sha256": "194da2342a0c8dfda5259ca205b40ed989fb07f183c35a0a86edcc13854d5623",
+      "auxiliary": {
+        "occ_iou": 0.38378903758731003,
+        "lane_iou": 0.35148908063275475,
+        "state_mae_vx_vy_ax_ay_yawrate": [
+          0.5742577055912675,
+          0.044578887254255614,
+          0.23920042509395695,
+          0.04832587263171535,
+          0.0050922868042081945
+        ],
+        "history_position_mae_by_offset": [
+          0.06953452708628108,
+          0.12225908301498585,
+          0.30169960574896726,
+          0.6172271296899352
+        ]
+      },
+      "delta_control": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      },
+      "delta_parent": {
+        "mean_delta": 0.0,
+        "session_CI95": [
+          0.0,
+          0.0
+        ],
+        "session_delta": {
+          "session_019_20260113-102709": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_026_20260122-134906": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_027_20260122-135506": {
+            "n": 378,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_040_20260209-153550": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_046_20260210-100504": {
+            "n": 540,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_076_20260213-134648": {
+            "n": 324,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_087_20260219-90551": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_092_20260219-103747": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_097_20260219-110038": {
+            "n": 162,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_108_20260220-134317": {
+            "n": 108,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          },
+          "session_112_20260303-142827": {
+            "n": 54,
+            "mean": 0.0,
+            "overall_contribution": 0.0
+          }
+        },
+        "largest_contribution_session": "session_019_20260113-102709",
+        "delta_excluding_largest_contribution_session": 0.0,
+        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+      }
+    }
+  }
+}

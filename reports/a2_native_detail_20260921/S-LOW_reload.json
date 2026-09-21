@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "initial_fresh_process_diff": {
+    "plan_abs": 0.0,
+    "scene_features": 0.0,
+    "motion_features": 0.0,
+    "motion_pair_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0,
+    "occ_logits": 0.0,
+    "lane_logits": 0.0
+  },
+  "new_branch_weights_changed": [
+    "native_projection.weight"
+  ],
+  "wrong_graph_rejected": true,
+  "stream": {
+    "microcalls": 10,
+    "rows_sha256": "4720bcc7fc5428605f2d2be39f7255cdee7340c509fc98587b022c2e497afc71",
+    "baseline_augmentation_sha256": "dd11e3f752c598ad92d921c49f9e78271dabe0d36381d64a990a438cdd9f94a8",
+    "detail_pixels_sha256": "a0d29557a397472045807ece25746660d74d6c5b177b0db535152fc95e1903eb",
+    "detail_pixels_expected_to_differ": true
+  }
+}
