@@ -1,0 +1,11 @@
+{
+  "arm": "M-NATIVE",
+  "source_commit": "5d9960200e110490f58e3750839cb7abc713f353",
+  "script_sha256": "d37117bb2ea7b4c4981116e5b4c0e7a8392e65830ffa155da2b55353e0e5d032",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/M-NATIVE-s1/ckpt_step10277.pth",
+  "checkpoint_sha256": "8bc43364c05c899a563438f34538845ed0c33a969ab7e0cb6786e407ed9cbadf",
+  "scope": "same batch ON versus zeroed native_projection output, frozen checkpoint; 1998 DEV rows",
+  "optimizer_updates": 0,
+  "GPU": "0",
+  "interpretation": "post-training dependency intervention, not a separately trained control"
+}

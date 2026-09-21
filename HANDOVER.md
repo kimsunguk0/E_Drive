@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-22 native 완료 후 고정 가중치 진단:** M-NATIVE 추가 motion 분기 OFF는 DEV0.144598→0.144655로 영향이 작고, S-NATIVE 추가 scene OFF는0.144712→0.154468로 악화한다. 이는 추론 의존성 개입이며 native 대 LOW의 학습 이득과 다르다. 최신 길이+예전 DIRECT 방향 재조합은0.142352(차이−0.002246, session CI 0 포함). 다음 권고는 backbone 표현 용량 변경을 주력으로, 아직 공유 중인 query/decoder의 길이·방향 분리를 작은 독립 비교로 둔다. Agent 미래 감독은 후속축이다. 신규 학습·FULL·예약·제출 없음, 가중치/버퍼 복원 hash 일치, GPU0–3 유휴. [진단과 다음 방법](reports/a2_post_native_review_20260922/RECOMMENDATION_KO.md).
+
 **2026-09-22 01:03 KST Native1152 네 arm DEV 완료:** 동일10,277update에서 M-LOW0.144662448 / M-NATIVE0.144597662 / S-LOW0.144906334 / S-NATIVE0.144711511. 최저M-NATIVE는부모0.147393734대비1.90% 개선했지만 native−LOW 이득은motion0.000064786 / scene0.000194823뿐이며두paired CI는0포함이다. 일반주행/횡오차는개선됐고출발·정지는소폭악화했다. 새최저DEV와대조군을보존하고같은해상도확대/연장/FULL/공식업로드는자동실행하지않는다. GPU0–3유휴. [최종 판정](reports/a2_native_detail_20260921/TERMINAL_REVIEW_KO.md), [최종 지표](reports/a2_native_detail_20260921/result_step10277.json), [가중치 색인](reports/a2_native_detail_20260921/candidate_registry.json).
 
 **2026-09-22 00:35 KST Native1152 두 번째 중간 결과:** 6,852update에서 M-LOW0.145679811 / M-NATIVE0.146098158 / S-LOW0.147021496 / S-NATIVE0.145376961로 모두 부모DEV0.147393734보다 낮아졌다. S-NATIVE는 동일S-LOW보다0.001644534 낮고 개선은 주로 횡방향이다. Motion 원본의 추가 이득은 아직 없다. 약8,700~9,000update 정상 진행, 예정terminal10,277의 결과는아직미측정이다. [두 번째 판정](reports/a2_native_detail_20260921/SECOND_REVIEW_KO.md), [실측 상세](reports/a2_native_detail_20260921/result_step6852.json).
