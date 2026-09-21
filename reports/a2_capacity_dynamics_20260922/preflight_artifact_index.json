@@ -1,0 +1,234 @@
+{
+  "recorded_utc": "2026-09-21T17:07:55.020609+00:00",
+  "weights_predictions_kept_on_B200": true,
+  "artifacts": [
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-AGENT-step0.json",
+      "bytes": 3785263,
+      "sha256": "162e892056ddd62ec0f85912745b7a152bfd79efd082ef72217ed58ef7884af4",
+      "role": "frozen parent initial predictions"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-AGENT-train-step0.json",
+      "bytes": 492597,
+      "sha256": "6972049032e316dcfd1c3101164d7a95df5ea1537dadb7bb33eeb1fbcf2947e5",
+      "role": "frozen parent initial predictions"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-CTRL-step0.json",
+      "bytes": 3785263,
+      "sha256": "162e892056ddd62ec0f85912745b7a152bfd79efd082ef72217ed58ef7884af4",
+      "role": "frozen parent initial predictions"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-CTRL-train-step0.json",
+      "bytes": 492597,
+      "sha256": "6972049032e316dcfd1c3101164d7a95df5ea1537dadb7bb33eeb1fbcf2947e5",
+      "role": "frozen parent initial predictions"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-DECSPLIT-step0.json",
+      "bytes": 3785263,
+      "sha256": "162e892056ddd62ec0f85912745b7a152bfd79efd082ef72217ed58ef7884af4",
+      "role": "frozen parent initial predictions"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-DECSPLIT-train-step0.json",
+      "bytes": 492597,
+      "sha256": "6972049032e316dcfd1c3101164d7a95df5ea1537dadb7bb33eeb1fbcf2947e5",
+      "role": "frozen parent initial predictions"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-R101-step0.json",
+      "bytes": 3785263,
+      "sha256": "162e892056ddd62ec0f85912745b7a152bfd79efd082ef72217ed58ef7884af4",
+      "role": "frozen parent initial predictions"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-R101-train-step0.json",
+      "bytes": 492597,
+      "sha256": "6972049032e316dcfd1c3101164d7a95df5ea1537dadb7bb33eeb1fbcf2947e5",
+      "role": "frozen parent initial predictions"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-AGENT-s1-smoke/ckpt_step5.pth",
+      "bytes": 111032534,
+      "sha256": "8911b642dbae4286d8af2a159691115d7694e3ae6bb68663bc8960129f0fe36a",
+      "role": "verification only; not main initializer"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-CTRL-s1-smoke/ckpt_step5.pth",
+      "bytes": 110434306,
+      "sha256": "b3b7e8c33f41add79a392d9b35781fa686047ce7e03814c29e64838b78e34a97",
+      "role": "verification only; not main initializer"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-DECSPLIT-s1-smoke/ckpt_step5.pth",
+      "bytes": 112569211,
+      "sha256": "92e9fcccb6d1ea24fc1b17d9729fb9c9df41dc30daaff3f6392ea9176fddff49",
+      "role": "verification only; not main initializer"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-R101-s1-smoke/ckpt_step5.pth",
+      "bytes": 186720252,
+      "sha256": "07c3bf97f57efd95dcc4d46cf911c0efdf6753e23294d4f2b539873330c46d0a",
+      "role": "verification only; not main initializer"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/protocol_C-AGENT.json",
+      "bytes": 24509,
+      "sha256": "c78af54b7abcf745f08c13fb02b4c5ff19ec3d3a8e0fbaa1ff0da9c2dd2440b2",
+      "role": "fixed training declaration"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/protocol_C-AGENT_smoke.json",
+      "bytes": 24446,
+      "sha256": "2ed631737edf4eedd15f7deaa547321d2a6167362109edcb550ceabb258f5a78",
+      "role": "fixed training declaration"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/protocol_C-CTRL.json",
+      "bytes": 24299,
+      "sha256": "08a819cc9db91d2564185926621f66a69ee1e3939ed52a6b78969d3da59b7158",
+      "role": "fixed training declaration"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/protocol_C-CTRL_smoke.json",
+      "bytes": 24236,
+      "sha256": "fc27203be9fe0104fb3e01c91ce1aedf6fc74a014ba6bfe83b819b9060cb9cf9",
+      "role": "fixed training declaration"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/protocol_C-DECSPLIT.json",
+      "bytes": 24310,
+      "sha256": "4fd3a13b169e429b82f4b7da51bac493ed9cf2c08abb31aa13dc98d88823060b",
+      "role": "fixed training declaration"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/protocol_C-DECSPLIT_smoke.json",
+      "bytes": 24247,
+      "sha256": "591d9c9f1467a90078f422d960c6ca2fade4fbd9f9b9a967f29e11a61b4b87ce",
+      "role": "fixed training declaration"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/protocol_C-R101.json",
+      "bytes": 24373,
+      "sha256": "7e3a12c4483fcb703d6e72a691b9cfbd82488ef40969bf5209d9b01045606a26",
+      "role": "fixed training declaration"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/protocol_C-R101_smoke.json",
+      "bytes": 24310,
+      "sha256": "65d36fb265712f5029f4206cf281f9049e19f1621e07da20fc1e00961b9bc79c",
+      "role": "fixed training declaration"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-AGENT_export.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-AGENT_initial.log",
+      "bytes": 2439,
+      "sha256": "fc5a6e624eb2f0b8dc47e7a1c158d46280798b301715eccd5e91ed54ecceeeb8",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-AGENT_reload.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-AGENT_smoke.log",
+      "bytes": 5364,
+      "sha256": "282461fdc5a94dfe726b2a162d8299a07a5a9c3c97bcc5fa0fbe46740027b456",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-CTRL_export.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-CTRL_initial.log",
+      "bytes": 1037,
+      "sha256": "4b960cb95f206c65dc5b2d6945430c0a332fc7dda80c13f2fef66fd2cc2e23e0",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-CTRL_reload.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-CTRL_smoke.log",
+      "bytes": 4957,
+      "sha256": "6f481bb09b63f868428f9248c17e49eca88b61343842a8fecbf181bfda7786a2",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-DECSPLIT_export.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-DECSPLIT_initial.log",
+      "bytes": 1041,
+      "sha256": "17d56062dab07b50603e8db03d2b4a5933387c3266674b087034c4309bc6c94c",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-DECSPLIT_reload.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-DECSPLIT_smoke.log",
+      "bytes": 4968,
+      "sha256": "1482dfbc2a4056d0107f28872d3783d348a028e0231679ea0452c36db4a66e93",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-R101_export.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-R101_initial.log",
+      "bytes": 1037,
+      "sha256": "f83d35b1556abe8ed0cd22eef0f282eb364613c274a75e3b9c0e18d4e1f00fcc",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-R101_reload.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/C-R101_smoke.log",
+      "bytes": 4972,
+      "sha256": "9d26beb17f7c3448252445a54c2bc46a497e4117962e4f2e73d1720d80b8ce2d",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/initial_orchestrator.json",
+      "bytes": 1963,
+      "sha256": "4b20c17c05bb33f8279f344f75009417dae9387ea9a50274346cc034bcf73510",
+      "role": "completed preflight or failure trace"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_capacity_dynamics_20260922/runtime/preflight_orchestrator.json",
+      "bytes": 967,
+      "sha256": "687ffbd91e48385ac255273b9339a7d6fcdb19a8b68ba4f126e013e65aabc2d8",
+      "role": "completed preflight or failure trace"
+    }
+  ]
+}

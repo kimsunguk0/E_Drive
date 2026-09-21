@@ -5,8 +5,8 @@
     0
   ],
   "sample_stream": {
-    "steps_compared": 0,
-    "last_compared_step": 0,
+    "steps_compared": 146,
+    "last_compared_step": 146,
     "mismatch_steps": []
   },
   "terminal": null,

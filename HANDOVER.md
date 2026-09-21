@@ -1,5 +1,8 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-22 02:05 KST 세 신규 축+공통 대조군 본 학습 시작:** GPU0 C-CTRL / GPU1 C-R101 / GPU2 C-DECSPLIT / GPU3 C-AGENT. 모두 DEV M-NATIVE0.144597662에서10,277update; initial V0는0.144597664로 동일하다. 02:08:27에CTRL154/R101126/DECSPLIT153/AGENT154update, 같은126update sample순서·모든 loss/gradient 유한값과 새 모듈 gradient를 확인했다. 최근1.03~1.26초/update 기준 첫평가03:05~03:25, terminal은기존계열05:05~05:20/R10105:40~06:00 KST 예상이다(현재 처리속도 유지 가정). R101은기존R50의출력을보존하며17block을추가했고, decoder분리는기존readout분리보다앞단query/decoder까지분리한다. Agent GT는공통scene의학습loss에만사용하며배포head는제거한다. 새 V0 성능은 아직 없고FULL/업로드는미착수다. [실행 명세](reports/a2_capacity_dynamics_20260922/EXECUTION_KO.md), [실측 상태·ETA](reports/a2_capacity_dynamics_20260922/launch_health.json), [결과](reports/a2_capacity_dynamics_20260922/RESULTS_KO.md).
+
+
 **2026-09-22 세 신규 실험 실행 준비 완료:** 사용자 “3 가지 다 해 봐”에 따라 공통 DEV 부모 M-NATIVE0.144597662에서 C-CTRL / identity-grown R101 / 길이·방향 query+decoder 분리 / agent 미래 궤적 보조 감독을 각10,277update 비교한다. GPU0/1/2/3. 네 arm의 실제 FP32/BF16 초기 출력 차이0, 초기V0 모두0.144597664, production5update 및 새 프로세스 strict reload/export를 통과했다. 4090 전체forward 중앙값 CTRL49.4/R10164.6/DECSPLIT50.2/AGENT49.3ms(전처리 제외). 이 커밋 시점 본 학습 착수 전이며 아래 원격 상태 파일로 실제 launch를 확인한다. FULL/공식 업로드는 포함하지 않는다. [명세](reports/a2_capacity_dynamics_20260922/EXECUTION_KO.md), [검증](reports/a2_capacity_dynamics_20260922/smoke_and_reload.json), [비용](reports/a2_capacity_dynamics_20260922/RTX4090_cost.json).
 
 
