@@ -13,7 +13,9 @@
   },
   "official_upload_performed": false,
   "official_server_score": null,
-  "RTX4090_ms": null,
+  "RTX4090_ms": 26.102783203125,
   "local_delivery_status": "delivered_and_checked",
-  "local_container_status": "passed"
+  "local_container_status": "passed",
+  "RTX4090_p95_ms": 26.231194686889648,
+  "RTX4090_full_weights_verified": true
 }

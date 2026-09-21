@@ -14,3 +14,5 @@ Status는 RGB를 실제 소비하는 5시점 [-10,-5,-2,-1,0]으로 만들고 �
 `reproduction/`에는 가중치, portable code, Dockerfile, train fixture 2개와 B200 FP32 기준 출력이 있다. 공식 ZIP에는 이 자료를 넣지 않았다. PC의 NVIDIA 드라이버/NVML 불일치 때문에 RTX4090 시간은 미측정이며, clean-container CPU 정합 검사는 GPU latency 검증이 아니다.
 
 사용자 PC의 Downloads/A2-H4-PROGRESS-FULL-s1_submission_20260921로 자동 복사를 연결했다. 복사 완료 여부는 PC의 LOCAL_DELIVERY.json을 확인한다. 공식 업로드는 실행하지 않았으며 이 작업으로 제출 횟수를 사용하지 않았다.
+
+추가 검증 완료: chi@192.168.10.102의 RTX4090에서 **동일 FULL terminal**의 전체 B1 BF16 forward 26.103ms, p95 26.231ms. 두 train fixture 각각 warmup30/repeat200, 전처리 제외. [측정·FP32 재현](RTX4090_FULL_validation.json). 앞의 4090 미측정 문구는 패키지 생성 당시 상태이며 이번 기록으로 갱신된다. 공식 업로드는 수행하지 않았다.

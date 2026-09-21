@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "actual_FULL_terminal_weights": true,
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "GPU": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.1+cu128",
+  "batch_size": 1,
+  "precision": "BF16 with FP32 planner",
+  "all_inputs_bitwise_equal_to_B200": true,
+  "FP32_max_abs_B200_vs_4090_m": 3.814697265625e-06,
+  "FP32_tolerance_m": 0.001,
+  "timing": [
+    {
+      "clip": "fixture_000",
+      "median_ms": 26.102783203125,
+      "p95_ms": 26.231194686889648,
+      "warmup": 30,
+      "repeats": 200,
+      "peak_allocated_bytes": 711178752
+    },
+    {
+      "clip": "fixture_001",
+      "median_ms": 26.077280044555664,
+      "p95_ms": 26.14185905456543,
+      "warmup": 30,
+      "repeats": 200,
+      "peak_allocated_bytes": 711379456
+    }
+  ],
+  "largest_clip_median_ms": 26.102783203125,
+  "largest_clip_p95_ms": 26.231194686889648,
+  "timing_scope": "whole model forward including all current/history image encoders; preprocessing excluded",
+  "official_upload_performed": false,
+  "host": "chi@192.168.10.102",
+  "docker_image": "md-v2:4090",
+  "docker_image_id": "sha256:811933f25cfcf8b5c3998e0fb8e33e5ed8934b22ff155135ad83984586b16312",
+  "completed_utc": "2026-09-21T03:28:09.142698+00:00",
+  "remote_artifacts": "/home/chi/adcl_h4_progress_20260921/full_dae99f86f29e"
+}
