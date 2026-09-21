@@ -1,5 +1,8 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-22 05:45 KST 세 축+CTRL DEV 완료:** 모두10,277update, NaN/Inf0·전update sample순서 및 최종 입력/증강hash 일치. Terminal CTRL0.143222134 / R1010.143181589 / DECSPLIT0.142952519 / AGENT0.143833604. 최저DECSPLIT은부모0.144597662대비1.14% 개선했지만 CTRL 대비추가이득은0.000269615·CI0포함이다. 횡오차는CTRL보다1.3% 감소, 종오차는0.19% 증가했다. R101추가이득은0.000040545뿐이며 비용은증가한다. AGENT중간6,852의0.142939500은재사용V0에서선택한별도후보로보존하고terminal승리로해석하지않는다. DECSPLIT잔여점수95.83%가일반주행에서나오며진행량정밀도병목은남아있다. GPU0–3유휴. 새FULL/연장/공식업로드없음. [최종 판정](reports/a2_capacity_dynamics_20260922/TERMINAL_REVIEW_KO.md), [원자료](reports/a2_capacity_dynamics_20260922/result_step10277.json), [가중치·SHA](reports/a2_capacity_dynamics_20260922/candidate_registry.json).
+
+
 **2026-09-22 02:05 KST 세 신규 축+공통 대조군 본 학습 시작:** GPU0 C-CTRL / GPU1 C-R101 / GPU2 C-DECSPLIT / GPU3 C-AGENT. 모두 DEV M-NATIVE0.144597662에서10,277update; initial V0는0.144597664로 동일하다. 02:08:27에CTRL154/R101126/DECSPLIT153/AGENT154update, 같은126update sample순서·모든 loss/gradient 유한값과 새 모듈 gradient를 확인했다. 최근1.03~1.26초/update 기준 첫평가03:05~03:25, terminal은기존계열05:05~05:20/R10105:40~06:00 KST 예상이다(현재 처리속도 유지 가정). R101은기존R50의출력을보존하며17block을추가했고, decoder분리는기존readout분리보다앞단query/decoder까지분리한다. Agent GT는공통scene의학습loss에만사용하며배포head는제거한다. 새 V0 성능은 아직 없고FULL/업로드는미착수다. [실행 명세](reports/a2_capacity_dynamics_20260922/EXECUTION_KO.md), [실측 상태·ETA](reports/a2_capacity_dynamics_20260922/launch_health.json), [결과](reports/a2_capacity_dynamics_20260922/RESULTS_KO.md).
 
 
@@ -77,7 +80,7 @@
 |---|---|---:|---|
 |최신 공식 제출|A2-H4-PROGRESS-FULL-s1|**0.133684828**|사용자 전달 공식 결과·4등 보고; 동일 FULL 4090 실측 완료|
 |확인된 공식 제출 기준|MR-NATIVE-FULL-s1|**0.185968928**|사용자가 전달한 공식 서버 결과|
-|최신 고정 단일 DEV terminal|M-NATIVE-s1 / step10,277|**0.144597662**|SplitRead 부모 대비1.90% 개선; 동일LOW 대비0.000065·CI 0 포함; 새 FULL 미시작|
+|최신 고정 단일 DEV terminal|C-DECSPLIT-s1 / step10,277|**0.142952519**|부모보다1.14% 개선, CTRL 대비0.000270·CI0포함; 새FULL 미시작|\n|선택된 중간 DEV 후보|C-AGENT-s1 / step6,852|**0.142939500**|재사용V0에서예정평가중선택; terminal은0.143833604|\n|최신 같은 예산 대조|C-CTRL-s1 / step10,277|**0.143222134**|동일 M-NATIVE 부모 continuation; 구조/입력 유지|\n|이번 세 축 실험의 DEV 부모|M-NATIVE-s1 / step10,277|**0.144597662**|SplitRead 부모 대비1.90% 개선; 동일LOW 대비0.000065·CI 0 포함; 새 FULL 미시작|
 |최신 동일 조건 대조|M-LOW-s1 / step10,277|**0.144662448**|동일 추가 motion 분기에768 down/up 입력; native와대부분개선공유|
 |Native1152 실험의 부모|P-SPLITREAD-s1 / step6,852|**0.147393734**|기존 graph의 고정 DEV 후보로 보존|
 |동일 추가 예산 control|P-CTRL-NEXT-s1 / step6,852|**0.147582070**|기존 DEV P-CTRL 이후 continuation; 입력/graph 유지|

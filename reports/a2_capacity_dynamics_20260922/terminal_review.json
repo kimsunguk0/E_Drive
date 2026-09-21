@@ -1,150 +1,137 @@
 {
-  "status": "completed",
-  "primary_step": 10277,
-  "available_steps": [
-    0,
-    3426,
-    6852,
-    10277
-  ],
-  "sample_stream": {
-    "steps_compared": 10277,
-    "last_compared_step": 10277,
-    "mismatch_steps": []
-  },
-  "terminal": {
-    "step": 10277,
-    "primary": true,
-    "parent": {
-      "PREFIX": 0.14459766188205064,
-      "L2_1s": 0.08074669328170829,
-      "L2_2s": 0.1374670674851344,
-      "L2_3s": 0.2155792248793092,
-      "point_L2": [
-        0.05652184203580597,
-        0.10497154452761058,
-        0.16000282660626866,
-        0.22837205677085193,
-        0.31317288837947216,
-        0.43043419095584634
-      ],
-      "pair_PREFIX_contributions": [
-        0.04934520144993285,
-        0.053940956024600153,
-        0.04131150440751763
-      ],
-      "groups": {
-        "nonstop": {
-          "n": 1875,
-          "PREFIX": 0.14762172825384745,
-          "contribution": 0.1385339041421241,
-          "L2_1s": 0.08224474812297,
-          "first1s_contribution": 0.04716655349895052,
-          "signed_interval_length_m": [
-            0.0066287817748347305,
-            0.007971044838711557,
-            0.004095228408807254,
-            0.0014557150935906012,
-            -0.004100611350927649,
-            -0.00990664109917848
-          ]
-        },
-        "depart": {
-          "n": 24,
-          "PREFIX": 0.3735697491961207,
-          "contribution": 0.004487324314668116,
-          "L2_1s": 0.2170042947405577,
-          "first1s_contribution": 0.0015929577858833067,
-          "signed_interval_length_m": [
-            0.1382212238633864,
-            0.13620237987260522,
-            0.07643599807641921,
-            0.0005810840681805563,
-            -0.12337876069614435,
-            -0.32141950016334114
-          ]
-        },
-        "steady": {
-          "n": 99,
-          "PREFIX": 0.03181529276430602,
-          "contribution": 0.0015764334252584065,
-          "L2_1s": 0.01934229669203063,
-          "first1s_contribution": 0.0005856901650990256,
-          "signed_interval_length_m": [
-            0.014316972710036064,
-            0.006602628776678135,
-            0.0082336950534622,
-            0.011137054111499714,
-            0.01982096383769604,
-            0.037245747417943766
-          ]
-        }
+  "checked_utc": "2026-09-21T22:51:15.218025+00:00",
+  "scope": "Existing saved predictions, manifests and checkpoints only; no new training or GPU evaluation.",
+  "parent": {
+    "PREFIX": 0.14459766188205064,
+    "L2_1s": 0.08074669328170829,
+    "L2_2s": 0.1374670674851344,
+    "L2_3s": 0.2155792248793092,
+    "point_L2": [
+      0.05652184203580597,
+      0.10497154452761058,
+      0.16000282660626866,
+      0.22837205677085193,
+      0.31317288837947216,
+      0.43043419095584634
+    ],
+    "pair_PREFIX_contributions": [
+      0.04934520144993285,
+      0.053940956024600153,
+      0.04131150440751763
+    ],
+    "groups": {
+      "nonstop": {
+        "n": 1875,
+        "PREFIX": 0.14762172825384745,
+        "contribution": 0.1385339041421241,
+        "L2_1s": 0.08224474812297,
+        "first1s_contribution": 0.04716655349895052,
+        "signed_interval_length_m": [
+          0.0066287817748347305,
+          0.007971044838711557,
+          0.004095228408807254,
+          0.0014557150935906012,
+          -0.004100611350927649,
+          -0.00990664109917848
+        ]
       },
-      "interval_vector_MAE": [
-        0.05652184203580597,
-        0.05689553301488366,
-        0.0713196061486813,
-        0.0930656108426846,
-        0.12386652649972334,
-        0.1665894222893808
-      ],
-      "interval_length_MAE": [
-        0.0501339141579073,
-        0.04765158943780788,
-        0.053705209825700095,
-        0.06595352476052348,
-        0.0867767415662045,
-        0.11728668120850623
-      ],
-      "signed_interval_length_error": [
-        0.008590418167582553,
-        0.009443556775984895,
-        0.00516924576108129,
-        0.001924915002581173,
-        -0.0043480786385209705,
-        -0.011312157692944639
-      ],
-      "weighted_longitudinal_abs": 0.11845917853674523,
-      "weighted_lateral_abs": 0.06291174782454947,
-      "GT_tangent_mask": "GT interval length > .05m",
-      "GT_mask_count_by_interval": [
-        1879,
-        1879,
-        1879,
-        1879,
-        1879,
-        1878
-      ],
-      "predicted_degenerate_on_GT_mask_by_interval": [
-        0,
-        0,
-        0,
-        1,
-        1,
-        0
-      ],
-      "heading_MAE_deg_including_zero_pred_convention": [
-        0.2367933530057696,
-        0.269162562127659,
-        0.42950418395729184,
-        0.6657965025857505,
-        0.9283393663241183,
-        1.2683584060994069
-      ],
-      "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
-      "curve_n": 50,
-      "curve_PREFIX": 0.3558895156277858,
-      "curve_signed_interval_length": [
-        -0.0019870926084270745,
-        -0.048039038651665165,
-        -0.0828635038642236,
-        -0.09051587378078901,
-        -0.08764452866291811,
-        -0.08969209039539855
-      ]
+      "depart": {
+        "n": 24,
+        "PREFIX": 0.3735697491961207,
+        "contribution": 0.004487324314668116,
+        "L2_1s": 0.2170042947405577,
+        "first1s_contribution": 0.0015929577858833067,
+        "signed_interval_length_m": [
+          0.1382212238633864,
+          0.13620237987260522,
+          0.07643599807641921,
+          0.0005810840681805563,
+          -0.12337876069614435,
+          -0.32141950016334114
+        ]
+      },
+      "steady": {
+        "n": 99,
+        "PREFIX": 0.03181529276430602,
+        "contribution": 0.0015764334252584065,
+        "L2_1s": 0.01934229669203063,
+        "first1s_contribution": 0.0005856901650990256,
+        "signed_interval_length_m": [
+          0.014316972710036064,
+          0.006602628776678135,
+          0.0082336950534622,
+          0.011137054111499714,
+          0.01982096383769604,
+          0.037245747417943766
+        ]
+      }
     },
-    "arms": {
-      "C-CTRL": {
+    "interval_vector_MAE": [
+      0.05652184203580597,
+      0.05689553301488366,
+      0.0713196061486813,
+      0.0930656108426846,
+      0.12386652649972334,
+      0.1665894222893808
+    ],
+    "interval_length_MAE": [
+      0.0501339141579073,
+      0.04765158943780788,
+      0.053705209825700095,
+      0.06595352476052348,
+      0.0867767415662045,
+      0.11728668120850623
+    ],
+    "signed_interval_length_error": [
+      0.008590418167582553,
+      0.009443556775984895,
+      0.00516924576108129,
+      0.001924915002581173,
+      -0.0043480786385209705,
+      -0.011312157692944639
+    ],
+    "weighted_longitudinal_abs": 0.11845917853674523,
+    "weighted_lateral_abs": 0.06291174782454947,
+    "GT_tangent_mask": "GT interval length > .05m",
+    "GT_mask_count_by_interval": [
+      1879,
+      1879,
+      1879,
+      1879,
+      1879,
+      1878
+    ],
+    "predicted_degenerate_on_GT_mask_by_interval": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    "heading_MAE_deg_including_zero_pred_convention": [
+      0.2367933530057696,
+      0.269162562127659,
+      0.42950418395729184,
+      0.6657965025857505,
+      0.9283393663241183,
+      1.2683584060994069
+    ],
+    "zero_prediction_heading_convention": "atan2(0,0)=0; counted separately, never excluded from PREFIX",
+    "curve_n": 50,
+    "curve_PREFIX": 0.3558895156277858,
+    "curve_signed_interval_length": [
+      -0.0019870926084270745,
+      -0.048039038651665165,
+      -0.0828635038642236,
+      -0.09051587378078901,
+      -0.08764452866291811,
+      -0.08969209039539855
+    ]
+  },
+  "arms": {
+    "C-CTRL": {
+      "terminal": {
         "PREFIX": 0.14322213392322708,
         "L2_1s": 0.07987237008891786,
         "L2_2s": 0.13658057489726694,
@@ -427,7 +414,33 @@
           "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
         }
       },
-      "C-R101": {
+      "train_probe": {
+        "3426": {
+          "PREFIX": 0.121361140452791,
+          "n": 256,
+          "file_sha256": "b344e97fe4889562aef3dc2d10a51b6599ff3a902f4a77fba369e740b96fc4ce"
+        },
+        "6852": {
+          "PREFIX": 0.11249888262136665,
+          "n": 256,
+          "file_sha256": "b2fc818cf041e31603d39233fdddb26c307c429c1673d2879f3ca236517a041a"
+        },
+        "10277": {
+          "PREFIX": 0.10776804135275597,
+          "n": 256,
+          "file_sha256": "afd13b4522f84dd97ea485d4f3f9c20db9f57127e3e9c74fc845ffa77c384b19"
+        }
+      },
+      "interval_length_MAE_mean": 0.06900077918023345,
+      "interval_vector_MAE_mean": 0.09265804394462425,
+      "nonstop_error_share": 0.9585717515222025,
+      "relative_improvement_vs_parent_percent": 0.9512795303326493,
+      "relative_improvement_vs_control_percent": 0.0,
+      "nonfinite_count": 0,
+      "manifest_sha256": "f07b39022fd048345baa4e13b610c3057b6c14ca64df8f00bb192bafad15a2fb"
+    },
+    "C-R101": {
+      "terminal": {
         "PREFIX": 0.14318158935093775,
         "L2_1s": 0.07991146724791753,
         "L2_2s": 0.1365656411773067,
@@ -710,7 +723,33 @@
           "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
         }
       },
-      "C-DECSPLIT": {
+      "train_probe": {
+        "3426": {
+          "PREFIX": 0.1166676310258481,
+          "n": 256,
+          "file_sha256": "ca2b5a0524821eab04128298f0a0d4bba4bc96744a516bf6a1294267b269aa23"
+        },
+        "6852": {
+          "PREFIX": 0.11398015727718303,
+          "n": 256,
+          "file_sha256": "1358c353a300a574ccf85385a695cfc822bdef5ba94540b9786b53768e87ce2f"
+        },
+        "10277": {
+          "PREFIX": 0.10756792508254875,
+          "n": 256,
+          "file_sha256": "d92d85aac74d38db78200c7a67ed14240fa56435ed83477f4a4b9fbf92ab9ba3"
+        }
+      },
+      "interval_length_MAE_mean": 0.06896764335365231,
+      "interval_vector_MAE_mean": 0.09256211377839248,
+      "nonstop_error_share": 0.9578367776570724,
+      "relative_improvement_vs_parent_percent": 0.9793191070184764,
+      "relative_improvement_vs_control_percent": 0.028308873201864215,
+      "nonfinite_count": 0,
+      "manifest_sha256": "e1d38cab418a21b0bd2d49f602d64fb49bd21dcb57d23a9a6d024041b9bb30cb"
+    },
+    "C-DECSPLIT": {
+      "terminal": {
         "PREFIX": 0.14295251850672389,
         "L2_1s": 0.07978737316302514,
         "L2_2s": 0.13633831655913997,
@@ -993,7 +1032,33 @@
           "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
         }
       },
-      "C-AGENT": {
+      "train_probe": {
+        "3426": {
+          "PREFIX": 0.11742218074323318,
+          "n": 256,
+          "file_sha256": "e3a8247b5125474410af7968f1807eaeb8c7241e07af098bdc46a238871dd9b7"
+        },
+        "6852": {
+          "PREFIX": 0.11358280235162965,
+          "n": 256,
+          "file_sha256": "cf8e4f79321768afb6090fc85082afc4ba3dd4c933191d8a9112dfd92ae0fd54"
+        },
+        "10277": {
+          "PREFIX": 0.10709460460839182,
+          "n": 256,
+          "file_sha256": "9112e005eae3841943a0209134c180e8cd54f58b51b27ad82b02ba3e795c0037"
+        }
+      },
+      "interval_length_MAE_mean": 0.06916390837506457,
+      "interval_vector_MAE_mean": 0.09239368790073303,
+      "nonstop_error_share": 0.9582647770055949,
+      "relative_improvement_vs_parent_percent": 1.1377385733032894,
+      "relative_improvement_vs_control_percent": 0.18824982502196116,
+      "nonfinite_count": 0,
+      "manifest_sha256": "e4ee057ed9524c597640abfc53ba0f49aaf3bdde7ba53d1239d4acbdee45c792"
+    },
+    "C-AGENT": {
+      "terminal": {
         "PREFIX": 0.1438336043272194,
         "L2_1s": 0.08004434322761135,
         "L2_2s": 0.13717420262376054,
@@ -1275,242 +1340,46 @@
           "delta_excluding_largest_contribution_session": -0.0005557559320822449,
           "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
         }
-      }
+      },
+      "train_probe": {
+        "3426": {
+          "PREFIX": 0.12291523444400809,
+          "n": 256,
+          "file_sha256": "cd19f3ea8ce246cecdb086949cad175d4a4dc10793c007a06edb65d221107ac9"
+        },
+        "6852": {
+          "PREFIX": 0.1115896621322463,
+          "n": 256,
+          "file_sha256": "2d4803237489b98d05a63c5c8bdc5a5445d23a7cf5e4a1da41c3f1c03756c83f"
+        },
+        "10277": {
+          "PREFIX": 0.10791796530702413,
+          "n": 256,
+          "file_sha256": "3ab153eb7695d2cba3145e2d9833e095f1c0b39e41e05c67690739428e46193f"
+        }
+      },
+      "interval_length_MAE_mean": 0.06931194980055014,
+      "interval_vector_MAE_mean": 0.09292132114624958,
+      "nonstop_error_share": 0.956684540658567,
+      "relative_improvement_vs_parent_percent": 0.5284024270423516,
+      "relative_improvement_vs_control_percent": -0.42693848167357135,
+      "nonfinite_count": 0,
+      "manifest_sha256": "6e3b2259441483da720756fac8e23aa07fb92668a5e774ded8f6cfd150f3b36d"
     }
   },
-  "parent_DEV_PREFIX": 0.14459766188205064,
-  "official_FULL_PREFIX": 0.1336848279459137,
-  "server_conversion_or_prediction": null,
+  "primary_lowest": {
+    "arm": "C-DECSPLIT",
+    "step": 10277,
+    "PREFIX": 0.14295251850672389
+  },
+  "selected_intermediate": {
+    "arm": "C-AGENT",
+    "step": 6852,
+    "PREFIX": 0.1429395003329356
+  },
+  "all_treatment_vs_control_terminal_CI_include_zero": true,
+  "decision": "Preserve DECSPLIT terminal, CTRL, and AGENT selected middle point. R101 has negligible incremental gain at higher cost. No demonstrated large breakthrough; no automatic extension/FULL/upload.",
+  "limitation": "Single-seed matched continuations on repeatedly used V0, 11-session conditional bootstrap. Not a test score or a universal capacity/pretraining bound.",
   "FULL_started": false,
-  "uploaded": false,
-  "selected_intermediate_on_reused_V0": {
-    "C-CTRL": {
-      "step": 10277,
-      "PREFIX": 0.14322213392322708
-    },
-    "C-R101": {
-      "step": 10277,
-      "PREFIX": 0.14318158935093775
-    },
-    "C-DECSPLIT": {
-      "step": 10277,
-      "PREFIX": 0.14295251850672389
-    },
-    "C-AGENT": {
-      "step": 6852,
-      "PREFIX": 0.1429395003329356
-    }
-  },
-  "terminal_baseline_and_sample_stream_equal": true,
-  "decision": {
-    "lowest_terminal_arm": "C-DECSPLIT",
-    "PREFIX": 0.14295251850672389,
-    "improves_parent": true,
-    "treatment_minus_control": {
-      "C-R101": {
-        "mean_delta": -4.054457228928198e-05,
-        "session_CI95": [
-          -0.0006177724507025531,
-          0.0002996856586769555
-        ],
-        "session_delta": {
-          "session_019_20260113-102709": {
-            "n": 54,
-            "mean": -0.00010141563495997967,
-            "overall_contribution": -2.7409631070264776e-06
-          },
-          "session_026_20260122-134906": {
-            "n": 108,
-            "mean": -0.0007208689536200199,
-            "overall_contribution": -3.896588938486594e-05
-          },
-          "session_027_20260122-135506": {
-            "n": 378,
-            "mean": 0.0002119834797058178,
-            "overall_contribution": 4.0104982647046605e-05
-          },
-          "session_040_20260209-153550": {
-            "n": 108,
-            "mean": -0.0008177880690434872,
-            "overall_contribution": -4.4204760488837145e-05
-          },
-          "session_046_20260210-100504": {
-            "n": 540,
-            "mean": 0.000640068073816055,
-            "overall_contribution": 0.00017299137130163646
-          },
-          "session_076_20260213-134648": {
-            "n": 324,
-            "mean": -0.00019813713516231437,
-            "overall_contribution": -3.213034624253746e-05
-          },
-          "session_087_20260219-90551": {
-            "n": 108,
-            "mean": -0.0009428901905589893,
-            "overall_contribution": -5.0967037327512936e-05
-          },
-          "session_092_20260219-103747": {
-            "n": 54,
-            "mean": -0.0025819692604404595,
-            "overall_contribution": -6.978295298487728e-05
-          },
-          "session_097_20260219-110038": {
-            "n": 162,
-            "mean": -0.00024443131364625435,
-            "overall_contribution": -1.981875516050711e-05
-          },
-          "session_108_20260220-134317": {
-            "n": 108,
-            "mean": 0.0004891554241570374,
-            "overall_contribution": 2.644083373821824e-05
-          },
-          "session_112_20260303-142827": {
-            "n": 54,
-            "mean": -0.0007944290453606998,
-            "overall_contribution": -2.1471055280018913e-05
-          }
-        },
-        "largest_contribution_session": "session_046_20260210-100504",
-        "delta_excluding_largest_contribution_session": -0.00029262333010607344,
-        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
-      },
-      "C-DECSPLIT": {
-        "mean_delta": -0.00026961541650315343,
-        "session_CI95": [
-          -0.0013273184293779816,
-          0.0002470092409025773
-        ],
-        "session_delta": {
-          "session_019_20260113-102709": {
-            "n": 54,
-            "mean": 0.0005766482357337071,
-            "overall_contribution": 1.5585087452262355e-05
-          },
-          "session_026_20260122-134906": {
-            "n": 108,
-            "mean": -0.0013325464283549598,
-            "overall_contribution": -7.202953666783567e-05
-          },
-          "session_027_20260122-135506": {
-            "n": 378,
-            "mean": 0.0004137361193592301,
-            "overall_contribution": 7.827440095985435e-05
-          },
-          "session_040_20260209-153550": {
-            "n": 108,
-            "mean": -0.0016476202722217085,
-            "overall_contribution": -8.906055525522749e-05
-          },
-          "session_046_20260210-100504": {
-            "n": 540,
-            "mean": 0.000474354399135557,
-            "overall_contribution": 0.00012820389165825864
-          },
-          "session_076_20260213-134648": {
-            "n": 324,
-            "mean": -0.000621787568786617,
-            "overall_contribution": -0.00010083041655999195
-          },
-          "session_087_20260219-90551": {
-            "n": 108,
-            "mean": 0.0006632338138185133,
-            "overall_contribution": 3.585047642262234e-05
-          },
-          "session_092_20260219-103747": {
-            "n": 54,
-            "mean": -0.00833785376545852,
-            "overall_contribution": -0.0002253473990664465
-          },
-          "session_097_20260219-110038": {
-            "n": 162,
-            "mean": 0.0005110220954725096,
-            "overall_contribution": 4.143422395723051e-05
-          },
-          "session_108_20260220-134317": {
-            "n": 108,
-            "mean": -0.0006100701623427721,
-            "overall_contribution": -3.297676553204174e-05
-          },
-          "session_112_20260303-142827": {
-            "n": 54,
-            "mean": -0.0018025964832580202,
-            "overall_contribution": -4.871882387183838e-05
-          }
-        },
-        "largest_contribution_session": "session_092_20260219-103747",
-        "delta_excluding_largest_contribution_session": -4.549768458772664e-05,
-        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
-      },
-      "C-AGENT": {
-        "mean_delta": 0.0006114704039923265,
-        "session_CI95": [
-          -9.491067656153479e-06,
-          0.0011284828589077423
-        ],
-        "session_delta": {
-          "session_019_20260113-102709": {
-            "n": 54,
-            "mean": -0.00018372331935023384,
-            "overall_contribution": -4.965495117573888e-06
-          },
-          "session_026_20260122-134906": {
-            "n": 108,
-            "mean": -0.0002261028528589876,
-            "overall_contribution": -1.2221775830215546e-05
-          },
-          "session_027_20260122-135506": {
-            "n": 378,
-            "mean": -8.913282930837669e-05,
-            "overall_contribution": -1.6862967706990185e-05
-          },
-          "session_040_20260209-153550": {
-            "n": 108,
-            "mean": -2.1799957752193142e-05,
-            "overall_contribution": -1.1783760947131428e-06
-          },
-          "session_046_20260210-100504": {
-            "n": 540,
-            "mean": 0.0011976796121297762,
-            "overall_contribution": 0.00032369719246750706
-          },
-          "session_076_20260213-134648": {
-            "n": 324,
-            "mean": 0.0010765362048656816,
-            "overall_contribution": 0.0001745734386268673
-          },
-          "session_087_20260219-90551": {
-            "n": 108,
-            "mean": -0.0014093491243332562,
-            "overall_contribution": -7.618103374774358e-05
-          },
-          "session_092_20260219-103747": {
-            "n": 54,
-            "mean": 0.005020708867359418,
-            "overall_contribution": 0.00013569483425295725
-          },
-          "session_097_20260219-110038": {
-            "n": 162,
-            "mean": 0.0002688096743898755,
-            "overall_contribution": 2.17953790045845e-05
-          },
-          "session_108_20260220-134317": {
-            "n": 108,
-            "mean": 0.0009164865601024004,
-            "overall_contribution": 4.9539814059589216e-05
-          },
-          "session_112_20260303-142827": {
-            "n": 54,
-            "mean": 0.0006504375808881261,
-            "overall_contribution": 1.7579394078057464e-05
-          }
-        },
-        "largest_contribution_session": "session_046_20260210-100504",
-        "delta_excluding_largest_contribution_session": 0.0003943558824599378,
-        "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
-      }
-    },
-    "requires_review_of_cost_auxiliary_groups": true,
-    "automatic_FULL": false,
-    "automatic_sweep": false
-  }
+  "uploaded": false
 }

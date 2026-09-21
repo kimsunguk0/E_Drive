@@ -1,0 +1,70 @@
+{
+  "artifacts": [
+    {
+      "arm": "C-CTRL",
+      "step": 10277,
+      "scope": "DEV",
+      "selection": "scheduled terminal",
+      "PREFIX": 0.14322213392322708,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-CTRL-s1/ckpt_step10277.pth",
+      "checkpoint_bytes": 110436398,
+      "checkpoint_sha256": "39de98a9d2d3caf2cd802b0718536645a7f0a1e19d9b9735aeed405e559f263c",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-CTRL-s1/predictions_step10277.json",
+      "predictions_sha256": "697c61095849ef5961455aaaa226f39af222618d8e51f7793fe906a9e30eaf64",
+      "deploy_validation": "Architecture and five-update exports checked; terminal raw adapter/package not built."
+    },
+    {
+      "arm": "C-R101",
+      "step": 10277,
+      "scope": "DEV",
+      "selection": "scheduled terminal",
+      "PREFIX": 0.14318158935093775,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-R101-s1/ckpt_step10277.pth",
+      "checkpoint_bytes": 186723632,
+      "checkpoint_sha256": "15901480d2045e317489a0bdd1546ac331b67dfc34f4917fcd226a1cd0c3d541",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-R101-s1/predictions_step10277.json",
+      "predictions_sha256": "b02937dec843495870ba5ce0886ac5e4e9f303b2480ec5d197c45e625a8d5073",
+      "deploy_validation": "Architecture and five-update exports checked; terminal raw adapter/package not built."
+    },
+    {
+      "arm": "C-DECSPLIT",
+      "step": 10277,
+      "scope": "DEV",
+      "selection": "scheduled terminal",
+      "PREFIX": 0.14295251850672389,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-DECSPLIT-s1/ckpt_step10277.pth",
+      "checkpoint_bytes": 112571451,
+      "checkpoint_sha256": "1d566f1ef9095918ab2717067913486ed4414c1845e160d81c29c9355eeb4361",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-DECSPLIT-s1/predictions_step10277.json",
+      "predictions_sha256": "3ca1ed466715d03771ef5bb5b3124a365a5cfc01085c398a33c734da27453860",
+      "deploy_validation": "Architecture and five-update exports checked; terminal raw adapter/package not built."
+    },
+    {
+      "arm": "C-AGENT",
+      "step": 10277,
+      "scope": "DEV",
+      "selection": "scheduled terminal",
+      "PREFIX": 0.1438336043272194,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-AGENT-s1/ckpt_step10277.pth",
+      "checkpoint_bytes": 111034642,
+      "checkpoint_sha256": "865c29aebf0ce71aa52441eb12539b5184d33b9df930b211e510a5e60fddb8c0",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-AGENT-s1/predictions_step10277.json",
+      "predictions_sha256": "a6eda4461e4a8e697deef48bd607a8cd3ef0571211a264c2c44a60eecca4e272",
+      "deploy_validation": "Architecture and five-update exports checked; terminal raw adapter/package not built."
+    },
+    {
+      "arm": "C-AGENT",
+      "step": 6852,
+      "scope": "DEV",
+      "selection": "best of scheduled points on reused V0",
+      "PREFIX": 0.1429395003329356,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-AGENT-s1/ckpt_step6852.pth",
+      "checkpoint_bytes": 111034115,
+      "checkpoint_sha256": "17856d205ffec1997b3271308a88b2be8bce20a2a9131bdca2de5fd8d1c6c740",
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_capacity_dynamics_20260922/C-AGENT-s1/predictions_step6852.json",
+      "predictions_sha256": "26b60aa64c2d924dc25308a6f9cdb1ce82333721f5b1acf0b3a5383e8c1b70c6",
+      "deploy_validation": "Architecture and five-update exports checked; terminal raw adapter/package not built."
+    }
+  ],
+  "official_server_result_unchanged": 0.1336848279459137
+}
