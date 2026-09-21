@@ -2,11 +2,12 @@
   "status": "running",
   "primary_step": 10277,
   "available_steps": [
-    0
+    0,
+    3426
   ],
   "sample_stream": {
-    "steps_compared": 182,
-    "last_compared_step": 182,
+    "steps_compared": 4418,
+    "last_compared_step": 4418,
     "mismatch_steps": []
   },
   "terminal": null,
@@ -16,9 +17,21 @@
   "FULL_started": false,
   "uploaded": false,
   "selected_intermediate_on_reused_V0": {
-    "M-LOW": null,
-    "M-NATIVE": null,
-    "S-LOW": null,
-    "S-NATIVE": null
+    "M-LOW": {
+      "step": 3426,
+      "PREFIX": 0.14792704396470208
+    },
+    "M-NATIVE": {
+      "step": 3426,
+      "PREFIX": 0.16405887799434302
+    },
+    "S-LOW": {
+      "step": 3426,
+      "PREFIX": 0.1517306711988441
+    },
+    "S-NATIVE": {
+      "step": 3426,
+      "PREFIX": 0.1535892882996266
+    }
   }
 }

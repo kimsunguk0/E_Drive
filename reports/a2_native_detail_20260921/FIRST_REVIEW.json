@@ -1,0 +1,72 @@
+{
+  "checked_utc": "2026-09-21T14:20:48.425178+00:00",
+  "evaluated_step": 3426,
+  "primary_terminal_step": 10277,
+  "status": "intermediate_not_improved",
+  "health": {
+    "M-LOW": {
+      "step": 4444,
+      "target": 10277,
+      "all_logged_losses_gradients_finite": true,
+      "nonfinite_events": 0,
+      "seconds_per_update": 1.0277184127271175,
+      "next_eval_eta_utc": "2026-09-21T15:04:03.171116+00:00",
+      "terminal_eta_utc": "2026-09-21T16:04:43.106679+00:00"
+    },
+    "M-NATIVE": {
+      "step": 4463,
+      "target": 10277,
+      "all_logged_losses_gradients_finite": true,
+      "nonfinite_events": 0,
+      "seconds_per_update": 1.0250559777207673,
+      "next_eval_eta_utc": "2026-09-21T15:03:37.283909+00:00",
+      "terminal_eta_utc": "2026-09-21T16:04:08.100632+00:00"
+    },
+    "S-LOW": {
+      "step": 4526,
+      "target": 10277,
+      "all_logged_losses_gradients_finite": true,
+      "nonfinite_events": 0,
+      "seconds_per_update": 1.0120092177391051,
+      "next_eval_eta_utc": "2026-09-21T15:02:02.358618+00:00",
+      "terminal_eta_utc": "2026-09-21T16:01:48.490189+00:00"
+    },
+    "S-NATIVE": {
+      "step": 4539,
+      "target": 10277,
+      "all_logged_losses_gradients_finite": true,
+      "nonfinite_events": 0,
+      "seconds_per_update": 1.0074124202132224,
+      "next_eval_eta_utc": "2026-09-21T15:01:38.570106+00:00",
+      "terminal_eta_utc": "2026-09-21T16:01:08.957645+00:00"
+    }
+  },
+  "fixed_train_probe": {
+    "M-LOW": {
+      "n": 256,
+      "same_indices": true,
+      "step0_PREFIX": 0.11802057923523535,
+      "step3426_PREFIX": 0.12151284867832146
+    },
+    "M-NATIVE": {
+      "n": 256,
+      "same_indices": true,
+      "step0_PREFIX": 0.11802057923523535,
+      "step3426_PREFIX": 0.12956967857280688
+    },
+    "S-LOW": {
+      "n": 256,
+      "same_indices": true,
+      "step0_PREFIX": 0.11802057923523535,
+      "step3426_PREFIX": 0.12108667583379429
+    },
+    "S-NATIVE": {
+      "n": 256,
+      "same_indices": true,
+      "step0_PREFIX": 0.11802057923523535,
+      "step3426_PREFIX": 0.12532649502281856
+    }
+  },
+  "decision": "continue unchanged to scheduled 6852 and 10277; no claim of convergence or forecast recovery",
+  "no_new_GPU_evaluation": true
+}
