@@ -1,0 +1,22 @@
+{
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1/ckpt_step24931.pth",
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "model_state_sha256": "d5a9e05ab5ad38e63b8c7ce14e8c85ae65f947ca077a9789ca0493a6a314f032",
+  "flops": 730044861120,
+  "gflops": 730.04486112,
+  "passes_cutoff": true,
+  "cutoff_gflops": 7053.0,
+  "counter": "torch.utils.flop_counter.FlopCounterMode Global sum",
+  "scope": "entire B1 forward including every current/history encoder; FP32 counting",
+  "by_operator": {
+    "aten.convolution": 729160187904,
+    "aten.addmm": 595914944,
+    "aten.mm": 187891712,
+    "aten.bmm": 78447104,
+    "aten._scaled_dot_product_efficient_attention": 22419456
+  },
+  "parameters": 26652536,
+  "B200_BF16_median_ms": 20.17807587981224,
+  "RTX4090_ms": null,
+  "device": "NVIDIA B200"
+}

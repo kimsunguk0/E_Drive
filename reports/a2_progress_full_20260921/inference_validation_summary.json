@@ -1,0 +1,15 @@
+{
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1/ckpt_step24931.pth",
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "clips": 1125,
+  "all_finite": true,
+  "all_shapes_6x2": true,
+  "absolute_XY_no_second_cumsum": true,
+  "clip_isolation_max_abs": 0.0,
+  "all_status_pose_times_covered_by_RGB": true,
+  "provided_status_route": "common scene query only",
+  "elapsed_seconds": 102.300866343081,
+  "official_upload_performed": false,
+  "predictions_sha256": "6f8c989114d02304b705a48b2898f616f2b8870ef71c1605fb167743220c5f3e",
+  "source_sha256": "685750117c96590fcbf330c68f5d7a0af01ec2623b831d06d9a30ace913ced06"
+}

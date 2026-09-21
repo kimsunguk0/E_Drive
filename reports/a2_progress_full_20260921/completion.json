@@ -1,0 +1,19 @@
+{
+  "status": "ready_for_one_submission",
+  "completed_utc": "2026-09-21T03:26:57.111486+00:00",
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "package": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/package",
+  "submission_zip_sha256": "3981ee5541458d62d1b3cb94cfe9f67ab619672e892879eec92f8e08e8f0c1cc",
+  "submission_json_sha256": "f0d80f2656f15a029ad90d76c612c9af5302490d1b996598cd48cda2dc02f6c1",
+  "clips": 1125,
+  "archive": {
+    "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1_submission_20260921.tar.gz",
+    "bytes": 106895340,
+    "sha256": "0a4e399d3f1f44ee361f7e59b70a0a1e1c95d0c75730b95108efcc168a9fcd21"
+  },
+  "official_upload_performed": false,
+  "official_server_score": null,
+  "RTX4090_ms": null,
+  "local_delivery_status": "delivered_and_checked",
+  "local_container_status": "passed"
+}

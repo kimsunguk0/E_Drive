@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "scope": "two train fixture clips in isolated CPU Docker, not RTX4090 timing",
+  "actual_FULL_weights": true,
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "max_abs_CPU_vs_B200_FP32_m": 2.6226043701171875e-06,
+  "tolerance_m": 0.001,
+  "image": "adcl-a2-full:20260919",
+  "image_id": "sha256:2fe421f31cd80e8de5bac03dfc681fd1728c1ed016f92df10a2f13c2aca7f3ec",
+  "input_tensors_bitwise_equal_to_B200": true,
+  "GPU_latency_measured": false,
+  "local_GPU_issue": "NVML driver/library version mismatch"
+}

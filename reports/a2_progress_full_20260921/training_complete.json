@@ -1,0 +1,40 @@
+{
+  "status": "completed",
+  "step": 24931,
+  "nonfinite_count": 0,
+  "train_rows": 101520,
+  "unique_scenes": 376,
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1/ckpt_step24931.pth",
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "manifest_sha256": "56b1d5ed66825095b2adc43b5666f236e45b799e41577f9426c3cdef80367476",
+  "training_source_commit": "c5d41e50f6eb1d165c639edc682d548b0cf46f4b",
+  "initial_state_sha256": "75eec301bdc2abb533e0f0fa4ffa73c5b2e4340b7119a84f11b2d1b2212ed200",
+  "elapsed_seconds": 13181.381419122219,
+  "evaluation_role": "in-fit diagnostic, not unseen DEV accuracy",
+  "in_fit_evaluations": [
+    {
+      "step": 6345,
+      "PREFIX": 0.230126787468351,
+      "rows": 1998
+    },
+    {
+      "step": 12690,
+      "PREFIX": 0.17161587968625286,
+      "rows": 1998
+    },
+    {
+      "step": 19035,
+      "PREFIX": 0.11600690462078352,
+      "rows": 1998
+    },
+    {
+      "step": 24931,
+      "PREFIX": 0.10660578484471712,
+      "rows": 1998
+    }
+  ],
+  "selection": "fixed terminal, no choice by in-fit score",
+  "selected_DEV_PREFIX": 0.15117885989032362,
+  "official_server_score": null,
+  "FULL_to_DEV_artifacts_imported": false
+}

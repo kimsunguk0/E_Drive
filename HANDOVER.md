@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**최신 FULL 완료: 2026-09-21T03:26:57.114268+00:00.** 사용자 요청에 따라 **A2-H4-PROGRESS-FULL-s1** 24,931 update를 마쳤고, raw parity·1,125 clip·portable source 검증 후 제출 ZIP을 확보했다. 공식 업로드/서버 채점은 아직 없다. FULL의 로컬 점수는 in-fit이며 DEV 성능으로 사용하지 않는다. [제출 파일과 검증](reports/a2_progress_full_20260921/PACKAGE_KO.md).
+
 **추가 확인: 2026-09-21 10시대 KST.** 사용자가 지정한 chi@192.168.10.102의 RTX4090 접속·Docker CUDA 실행을 확인했다. 선택된 H4-PROGRESS DEV 가중치의 전체 B1 BF16 forward는 두 train fixture에서 **median26.087/26.058ms, p95최대26.152ms**다(각 warmup30/repeat200, 파일읽기·전처리·전송 제외). Raw 입력 hash는 B200과 같고 FP32 출력 최대차이1.907e-6m. 앞의 NVML 문제는 별도 /home/a PC였다. FULL 학습은 계속 진행하며 같은 최종 가중치의4090 검사도 완료 후 연결한다. [구조 변화·병목·4090 실측](reports/a2_progress_full_20260921/ARCHITECTURE_AND_BOTTLENECK_KO.md).
 
 **최신 실행: 2026-09-21 08:44:51 KST.** 사용자 “지금까지 가장 잘 나온 것으로 Full 돌리자, 1회 제출하게” 요청으로 **A2-H4-PROGRESS-FULL-s1**을 GPU0에서 시작했다. 최고 단일 DEV **0.151178860**의 같은 공개 초기값·graph·loss·레시피를 전체376scene/101,520행/24,931 update로 이전한다. 5시점 RGB coverage를 유지하며, 이전의 자동 FULL 미실행 결정은 이번 명시적 요청으로 갱신됐다. FULL 2-step smoke와 raw8clip parity, FLOPs730.045G, portable source/격리 Docker CPU 정합 검사를 통과했다. 학습 종료 후 test1,125clip→ZIP→Downloads 복사를 자동 연결한다. 공식 업로드는 아직 없으며 서버점수와 RTX4090 시간은 미측정이다. [실행·후속 파이프라인](reports/a2_progress_full_20260921/PIPELINE_KO.md), [건강 상태](reports/a2_progress_full_20260921/launch_health.json). GPU4–7은 사용하지 않는다.

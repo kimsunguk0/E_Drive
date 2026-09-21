@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "actual_FULL_weights": true,
+  "clips": 2,
+  "FP32_max_abs_m": 0.0,
+  "imports_resolved_inside_bundle": true,
+  "checkpoint_sha256": "dae99f86f29e92296b1d036db3f7933d41bf9a5c3dd3af5153416a8eaa676b14",
+  "scope": "B200 original versus portable sources; not RTX4090 latency"
+}
