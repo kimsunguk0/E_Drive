@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 SplitRead 이후 관측 변경 검토:** 최신 DEV에서 속도 변화가 작은 일반 주행이 점수60.95%, 직진에 가까운 행이77.55%(집단 중첩)를 기여한다. 다음 우선 가설은 기존 함수를 보존한 원본1152 전방 current+H4 motion 추가, 독립 후속은 현재6-camera scene1152다. 기존 교체형41.29ms는 새 추가 분기 비용이 아니며 실제 새 비용/초기 parity 확인이 필요하다. 신규 학습·GPU 평가·FULL·제출 없음. [새 통계와 권고](reports/a2_after_splitread_20260921/RECOMMENDATION_KO.md).
+
 **2026-09-21 20:59 KST SplitRead/LaneGeometry DEV 완료:** 동일 CTRL 부모에서 추가 6,852 update를 마쳤다. CTRL-NEXT **0.147582070**, SPLITREAD **0.147393734**, LANE-GEOM **0.147662130**. 부모0.150285502보다 모두 개선했으나 SplitRead의 CTRL 대비 추가 이득은0.000188337이고 session CI는0 포함이다. 일반 주행/종횡도 개선했으나 대부분 control에서 재현된다. SplitRead와 control을 보존하며 추가 연장·FULL·공식 업로드는 시작하지 않았다. GPU0–3 유휴. [최종 판정](reports/a2_splitread_lanegeom_20260921/TERMINAL_REVIEW_KO.md), [시점·그룹·세션 원자료 요약](reports/a2_splitread_lanegeom_20260921/result_step6852.json).
 
 **2026-09-21 19:57 KST 후속 DEV 학습 시작:** 사용자 요청으로 GPU0 CTRL-NEXT / GPU1 SPLITREAD / GPU2 LANE-GEOM을 동일 DEV CTRL 부모에서6,852update씩 시작했다. 초기 V0는 모두0.1502855, 실제5update·같은 sample/augmentation·새 프로세스 strict student export를 통과했다. Lane target은train310/83,700행에만 생성했고 새 head는 배포에서 제거된다. GPU3은 유휴/후속용. 약350update 실측0.53초/update로 중간20:30·terminal21:00~21:10 KST 예상이며 변동 가능하다. 추가 update는 현재 horizon 뒤 결과를 보고 별도 matched stage로 판단하며 자동 FULL/업로드는 없다. [실행 계약](reports/a2_splitread_lanegeom_20260921/EXECUTION_KO.md), [실제 상태](reports/a2_splitread_lanegeom_20260921/launch_health.json), [결과](reports/a2_splitread_lanegeom_20260921/RESULTS_KO.md).

@@ -1,0 +1,70 @@
+{
+  "source_commit": "d3af285a935e8b6f98c334f999c7d031ce018bd6",
+  "prediction_path": "work_dirs/a2_splitread_lanegeom_20260921/P-SPLITREAD-s1/predictions_step6852.json",
+  "prediction_sha256": "9624c1a9f52bc6b44eccd5da980fb015b8f392645138f2d5e0cf37bc84c82dd4",
+  "n": 1998,
+  "definitions": {
+    "stable": "nonstop and max-min of GT first 4 interval progress speeds <=0.5m/s",
+    "near_straight": "all GT intervals >0.05m, total progress >=3m, max absolute interval heading <5deg",
+    "groups_overlap": true,
+    "long_lat": "GT valid-tangent mask and renormalized PREFIX weights; not additive score components",
+    "source": "same saved DEV predictions; no new model inference/training"
+  },
+  "groups": {
+    "all": {
+      "n": 1998,
+      "PREFIX": 0.14739373370951964,
+      "PREFIX_contribution": 0.14739373370951964,
+      "score_share_percent": 100.0,
+      "long_abs_m": 0.11943925205888925,
+      "lat_abs_m": 0.06583544683995984,
+      "lateral_mass_share_percent": 100.0,
+      "signed_long_m": 0.010859277796183385,
+      "signed_lat_m": -0.01784801428196017
+    },
+    "nonstop": {
+      "n": 1875,
+      "PREFIX": 0.15075866886392644,
+      "PREFIX_contribution": 0.14147772978972076,
+      "score_share_percent": 95.9862581868928,
+      "long_abs_m": 0.11690093819696974,
+      "lat_abs_m": 0.0660597572636484,
+      "lateral_mass_share_percent": 99.68504722511511,
+      "signed_long_m": 0.0091791618941066,
+      "signed_lat_m": -0.018136869598129927
+    },
+    "stable": {
+      "n": 1306,
+      "PREFIX": 0.13744303842939046,
+      "PREFIX_contribution": 0.0898401442386306,
+      "score_share_percent": 60.95248554846001,
+      "long_abs_m": 0.10204749884215444,
+      "lat_abs_m": 0.06705699909097362,
+      "lateral_mass_share_percent": 70.57694248047886,
+      "signed_long_m": 0.01745671349895612,
+      "signed_lat_m": -0.01918667297689737
+    },
+    "near_straight": {
+      "n": 1648,
+      "PREFIX": 0.1385796196661241,
+      "PREFIX_contribution": 0.11430391051540165,
+      "score_share_percent": 77.55004750790106,
+      "long_abs_m": 0.11090118406937946,
+      "lat_abs_m": 0.057752292598038754,
+      "lateral_mass_share_percent": 76.94009347728681,
+      "signed_long_m": 0.015502830913702666,
+      "signed_lat_m": -0.019724264412198687
+    },
+    "stable_and_near_straight": {
+      "n": 1179,
+      "PREFIX": 0.12869488689813138,
+      "PREFIX_contribution": 0.07594157740385231,
+      "score_share_percent": 51.52293485794743,
+      "long_abs_m": 0.09767131092769121,
+      "lat_abs_m": 0.06055881824701794,
+      "lateral_mass_share_percent": 57.71882346632826,
+      "signed_long_m": 0.02411106944292722,
+      "signed_lat_m": -0.02123332151371963
+    }
+  }
+}
