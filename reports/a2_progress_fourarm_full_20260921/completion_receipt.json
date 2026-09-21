@@ -1,0 +1,15 @@
+{
+  "status": "B200_package_complete",
+  "arm": "P-CTRL",
+  "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_full_20260921/P-CTRL-FULL-STAGE2-s1/ckpt_step4156.pth",
+  "checkpoint_sha256": "fe821be8546cc54db27c3a81e57bc04126461b29d1a74732e3ad308953c3a3a2",
+  "package": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_full_20260921/package",
+  "submission_zip_sha256": "75a69af4ff6ad2ca6d8cb9cea6c4ae41c5dccb08cd3387fe87b0f819e9d1a724",
+  "portable_exact": true,
+  "clips": 1125,
+  "flops": 730044861120,
+  "FULL_local_eval_role": "in-fit only; fixed terminal, no checkpoint selection",
+  "RTX4090_validation": "pending separate target-device check",
+  "official_upload_performed": false,
+  "completed_utc": "2026-09-21T08:10:02.687386+00:00"
+}

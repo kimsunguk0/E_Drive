@@ -1,0 +1,390 @@
+{
+  "created_utc": "2026-09-21T08:02:00.046645+00:00",
+  "scope": "DEV terminal 3426; 1998 rows; 11 reused sessions; no new training",
+  "parent_PREFIX": 0.15117885989032362,
+  "definitions": {
+    "length": "abs(norm(pred interval displacement)-norm(GT interval displacement)), metres",
+    "heading": "absolute wrapped angle between predicted and GT interval displacement, degrees; GT interval length > 0.05m",
+    "vector": "norm(pred interval displacement-GT interval displacement), metres",
+    "aggregate": "uniform six-interval average, not PREFIX weighting; all-valid-heading pooled count separately specified",
+    "joint": "paired row/interval descriptive sign changes on the same GT mask; not proof of significant improvement"
+  },
+  "models": {
+    "PARENT": {
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1/final_eval.json",
+      "sha256": "0b67c54c0fb8af4db63ac67d62664a0f09a73d81db802ccbb93f19c1a516399c",
+      "PREFIX": 0.15117885989032362,
+      "length_cm_all": 7.547810341961848,
+      "length_cm_same_GT_mask": 7.83986754193798,
+      "heading_deg_same_GT_mask": 0.7194848270428319,
+      "vector_cm_all": 10.267029383077597,
+      "longitudinal_cm": 12.223000339317716,
+      "lateral_cm": 6.834315962147297,
+      "length_cm_by_interval": [
+        5.387175861075812,
+        4.817125878072312,
+        5.518159104672867,
+        6.919342610876926,
+        9.525083690679406,
+        13.11997490639378
+      ],
+      "heading_deg_by_interval": [
+        0.3143498306049184,
+        0.29564228998809994,
+        0.4768701601687889,
+        0.7390235993395236,
+        1.0554407490063429,
+        1.4359636417255248
+      ],
+      "vector_cm_by_interval": [
+        6.276601953067121,
+        5.788863072988618,
+        7.397210568268036,
+        9.922985739636855,
+        13.629558411339826,
+        18.58695655316513
+      ],
+      "mask_n": 11273,
+      "group_1s": [
+        {
+          "seconds": [
+            0.0,
+            1.0
+          ],
+          "length_cm": 5.102150869574062,
+          "heading_deg": 0.30499606029650955,
+          "vector_cm": 6.0327325130278675
+        },
+        {
+          "seconds": [
+            1.0,
+            2.0
+          ],
+          "length_cm": 6.2187508577749,
+          "heading_deg": 0.6079468797541551,
+          "vector_cm": 8.660098153952458
+        },
+        {
+          "seconds": [
+            2.0,
+            3.0
+          ],
+          "length_cm": 11.322529298536587,
+          "heading_deg": 1.245651553511697,
+          "vector_cm": 16.108257482252462
+        }
+      ],
+      "predicted_degenerate_on_GT_mask": 0
+    },
+    "P-CTRL": {
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_20260921/P-CTRL-s1/predictions_step3426.json",
+      "sha256": "fd09742c450ba98e4d85342c3bde83361b91004238a99e6fdd39e1bfa0062b04",
+      "PREFIX": 0.15028550170145288,
+      "length_cm_all": 7.435308956656541,
+      "length_cm_same_GT_mask": 7.69223822439301,
+      "heading_deg_same_GT_mask": 0.7033647986851381,
+      "vector_cm_all": 10.124297875230527,
+      "longitudinal_cm": 12.075784048198228,
+      "lateral_cm": 6.833243658579992,
+      "length_cm_by_interval": [
+        5.280797994751326,
+        4.791277215079515,
+        5.483301312414376,
+        6.865803963178893,
+        9.355168327521465,
+        12.835504926993666
+      ],
+      "heading_deg_by_interval": [
+        0.30573118443388647,
+        0.28755556744207655,
+        0.46832507308832605,
+        0.7249359375964162,
+        1.0285248130402505,
+        1.4054898860614302
+      ],
+      "vector_cm_by_interval": [
+        6.146792101260024,
+        5.768180176312717,
+        7.364525775605611,
+        9.837707649557505,
+        13.387438445706978,
+        18.241143102940356
+      ],
+      "mask_n": 11273,
+      "group_1s": [
+        {
+          "seconds": [
+            0.0,
+            1.0
+          ],
+          "length_cm": 5.036037604915418,
+          "heading_deg": 0.29664337593798124,
+          "vector_cm": 5.9574861387863765
+        },
+        {
+          "seconds": [
+            1.0,
+            2.0
+          ],
+          "length_cm": 6.1745526377966335,
+          "heading_deg": 0.5966305053423712,
+          "vector_cm": 8.601116712581547
+        },
+        {
+          "seconds": [
+            2.0,
+            3.0
+          ],
+          "length_cm": 11.095336627257572,
+          "heading_deg": 1.2169571811887137,
+          "vector_cm": 15.81429077432366
+        }
+      ],
+      "predicted_degenerate_on_GT_mask": 0
+    },
+    "P-VECTOR": {
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_20260921/P-VECTOR-s1/predictions_step3426.json",
+      "sha256": "14010c71ed3337c8cb2b5f849a96cd7c0cf48c6df1574e5eb900c3675d73be46",
+      "PREFIX": 0.150329892161485,
+      "length_cm_all": 7.4660494514727365,
+      "length_cm_same_GT_mask": 7.727136166639245,
+      "heading_deg_same_GT_mask": 0.6910547107698525,
+      "vector_cm_all": 10.084603874906925,
+      "longitudinal_cm": 12.115561722855734,
+      "lateral_cm": 6.787176249105671,
+      "length_cm_by_interval": [
+        5.28352006076794,
+        4.806830329916024,
+        5.51410405970763,
+        6.901582914643203,
+        9.387690358274924,
+        12.902568985526724
+      ],
+      "heading_deg_by_interval": [
+        0.30330064735593837,
+        0.28784233017028926,
+        0.4648303048709691,
+        0.7147736234872226,
+        1.005391539347236,
+        1.3705514461758619
+      ],
+      "vector_cm_by_interval": [
+        6.139816210660004,
+        5.787874365394153,
+        7.379010405073029,
+        9.814567702408567,
+        13.310327506374794,
+        18.076027059531036
+      ],
+      "mask_n": 11273,
+      "group_1s": [
+        {
+          "seconds": [
+            0.0,
+            1.0
+          ],
+          "length_cm": 5.045175195341981,
+          "heading_deg": 0.29557148876311357,
+          "vector_cm": 5.96384528802707
+        },
+        {
+          "seconds": [
+            1.0,
+            2.0
+          ],
+          "length_cm": 6.20784348717542,
+          "heading_deg": 0.5898019641790956,
+          "vector_cm": 8.596789053740798
+        },
+        {
+          "seconds": [
+            2.0,
+            3.0
+          ],
+          "length_cm": 11.145129671900808,
+          "heading_deg": 1.1879228954888805,
+          "vector_cm": 15.693177282952911
+        }
+      ],
+      "predicted_degenerate_on_GT_mask": 0
+    },
+    "P-FINE": {
+      "predictions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_20260921/P-FINE-s1/predictions_step3426.json",
+      "sha256": "f0f8137c9f5395d2685f250adadeecbf08297ef43d696359a34406d91030f43f",
+      "PREFIX": 0.15037004257991185,
+      "length_cm_all": 7.439558820071909,
+      "length_cm_same_GT_mask": 7.690328337896067,
+      "heading_deg_same_GT_mask": 0.700604040293225,
+      "vector_cm_all": 10.12538014388456,
+      "longitudinal_cm": 12.080581790891145,
+      "lateral_cm": 6.8220767220429135,
+      "length_cm_by_interval": [
+        5.274546484317695,
+        4.797681651716721,
+        5.516298978124293,
+        6.875089672652909,
+        9.350908739971727,
+        12.822827393648096
+      ],
+      "heading_deg_by_interval": [
+        0.30549767747878137,
+        0.2873067299126724,
+        0.46748869136668436,
+        0.7225569037358537,
+        1.022499815309229,
+        1.3986459204330506
+      ],
+      "vector_cm_by_interval": [
+        6.14076765843168,
+        5.77642767807429,
+        7.391598198649019,
+        9.840770587694578,
+        13.38046030879526,
+        18.222256431662554
+      ],
+      "mask_n": 11273,
+      "group_1s": [
+        {
+          "seconds": [
+            0.0,
+            1.0
+          ],
+          "length_cm": 5.036114068017202,
+          "heading_deg": 0.29640220369572684,
+          "vector_cm": 5.958597668252984
+        },
+        {
+          "seconds": [
+            1.0,
+            2.0
+          ],
+          "length_cm": 6.1956943253886045,
+          "heading_deg": 0.5950227975512687,
+          "vector_cm": 8.6161843931718
+        },
+        {
+          "seconds": [
+            2.0,
+            3.0
+          ],
+          "length_cm": 11.08686806680992,
+          "heading_deg": 1.2105228085012816,
+          "vector_cm": 15.801358370228897
+        }
+      ],
+      "predicted_degenerate_on_GT_mask": 0
+    }
+  },
+  "comparisons": {
+    "P-VECTOR": {
+      "PARENT": {
+        "delta_length_cm_all": -0.08176089048911184,
+        "relative_length_pct": -1.083239864077723,
+        "delta_heading_deg": -0.028430116272979422,
+        "relative_heading_pct": -3.9514545970108284,
+        "delta_vector_cm_all": -0.18242550817067205,
+        "relative_vector_pct": -1.7768090590190688,
+        "PREFIX_delta": -0.0008489677288386066,
+        "valid_interval_both_improved_pct": 29.743635234631423,
+        "valid_interval_both_worsened_pct": 20.908365120198706,
+        "valid_interval_length_better_heading_worse_pct": 24.279251308436088,
+        "valid_interval_length_worse_heading_better_pct": 25.068748336733787
+      },
+      "P-CTRL": {
+        "delta_length_cm_all": 0.030740494816195785,
+        "relative_length_pct": 0.413439374145641,
+        "delta_heading_deg": -0.01231008791528565,
+        "relative_heading_pct": -1.7501711684033694,
+        "delta_vector_cm_all": -0.039694000323601486,
+        "relative_vector_pct": -0.3920666974913334,
+        "PREFIX_delta": 4.4390460032128765e-05,
+        "valid_interval_both_improved_pct": 26.55903486205979,
+        "valid_interval_both_worsened_pct": 23.684910848931075,
+        "valid_interval_length_better_heading_worse_pct": 20.48256897010556,
+        "valid_interval_length_worse_heading_better_pct": 29.273485318903575,
+        "PREFIX_session_CI95": [
+          -0.00041064406024527946,
+          0.0004028852707068997
+        ],
+        "point_pair_PREFIX_contribution_deltas": [
+          {
+            "point_seconds": [
+              0.5,
+              1.0
+            ],
+            "PREFIX_contribution_delta": 7.115257619531856e-05
+          },
+          {
+            "point_seconds": [
+              1.5,
+              2.0
+            ],
+            "PREFIX_contribution_delta": 7.835267934233614e-05
+          },
+          {
+            "point_seconds": [
+              2.5,
+              3.0
+            ],
+            "PREFIX_contribution_delta": -0.00010511479550550512
+          }
+        ]
+      }
+    },
+    "P-FINE": {
+      "PARENT": {
+        "delta_length_cm_all": -0.10825152188993936,
+        "relative_length_pct": -1.4342109431144334,
+        "delta_heading_deg": -0.018880786749606915,
+        "relative_heading_pct": -2.62420916188173,
+        "delta_vector_cm_all": -0.14164923919303796,
+        "relative_vector_pct": -1.3796516393194347,
+        "PREFIX_delta": -0.0008088173104117691,
+        "valid_interval_both_improved_pct": 29.344451343919097,
+        "valid_interval_both_worsened_pct": 21.076909429610573,
+        "valid_interval_length_better_heading_worse_pct": 25.34374168366894,
+        "valid_interval_length_worse_heading_better_pct": 24.234897542801384
+      },
+      "P-CTRL": {
+        "delta_length_cm_all": 0.00424986341536826,
+        "relative_length_pct": 0.05715785907676185,
+        "delta_heading_deg": -0.002760758391913143,
+        "relative_heading_pct": -0.392507330061731,
+        "delta_vector_cm_all": 0.0010822686540326032,
+        "relative_vector_pct": 0.01068981441845196,
+        "PREFIX_delta": 8.45408784589663e-05,
+        "valid_interval_both_improved_pct": 25.65421804311186,
+        "valid_interval_both_worsened_pct": 24.01312871462787,
+        "valid_interval_length_better_heading_worse_pct": 24.58085691475206,
+        "valid_interval_length_worse_heading_better_pct": 25.751796327508202,
+        "PREFIX_session_CI95": [
+          -0.00040154777034446095,
+          0.0005452183811275454
+        ],
+        "point_pair_PREFIX_contribution_deltas": [
+          {
+            "point_seconds": [
+              0.5,
+              1.0
+            ],
+            "PREFIX_contribution_delta": -1.947273176051284e-05
+          },
+          {
+            "point_seconds": [
+              1.5,
+              2.0
+            ],
+            "PREFIX_contribution_delta": 7.052342002523276e-05
+          },
+          {
+            "point_seconds": [
+              2.5,
+              3.0
+            ],
+            "PREFIX_contribution_delta": 3.349019019426719e-05
+          }
+        ]
+      }
+    }
+  }
+}

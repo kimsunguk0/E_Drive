@@ -1,0 +1,317 @@
+{
+  "checkpoint_sha256": "fe821be8546cc54db27c3a81e57bc04126461b29d1a74732e3ad308953c3a3a2",
+  "arm": "P-CTRL",
+  "execution_config": {
+    "schema_version": 1,
+    "arm": "P-CTRL",
+    "architecture_id": "a2_h4_progress_v1",
+    "fine_read_enabled": false,
+    "fine_grid": null,
+    "fine_read_position": null,
+    "scene_history_feature_source": "separate_low384",
+    "interval_auxiliary": "length",
+    "auxiliary_lambda": 0.25,
+    "status_policy": "five_RGB_consumed_pose_times_nominal_frame_dt",
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "image_hw": [
+      432,
+      768
+    ],
+    "motion_hw": [
+      432,
+      768
+    ],
+    "precision": "bf16_images_fp32_planner_output_loss",
+    "output": "absolute_xy_6x2"
+  },
+  "step": 4156,
+  "device": "NVIDIA B200",
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "cuda": "13.1",
+  "precision": "bf16",
+  "output": "absolute XY6x2, no serving cumsum",
+  "forwards_per_clip": 1,
+  "predictions": {
+    "fixture_000": [
+      [
+        3.1337857246398926,
+        -0.1254889965057373
+      ],
+      [
+        6.167562961578369,
+        -0.44128963351249695
+      ],
+      [
+        9.089333534240723,
+        -0.9140695333480835
+      ],
+      [
+        11.931567192077637,
+        -1.5236164331436157
+      ],
+      [
+        14.727240562438965,
+        -2.2417359352111816
+      ],
+      [
+        17.457857131958008,
+        -3.041097640991211
+      ]
+    ],
+    "fixture_001": [
+      [
+        5.243520736694336,
+        -0.12185435742139816
+      ],
+      [
+        10.534198760986328,
+        -0.2444995641708374
+      ],
+      [
+        15.874631881713867,
+        -0.36148884892463684
+      ],
+      [
+        21.244909286499023,
+        -0.47880488634109497
+      ],
+      [
+        26.63896942138672,
+        -0.6095262169837952
+      ],
+      [
+        32.045921325683594,
+        -0.7488555908203125
+      ]
+    ]
+  },
+  "input_frame_checks": {
+    "fixture_000": {
+      "fit_relative_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "fit_count": 5,
+      "nominal_seconds": [
+        -1.0,
+        -0.5,
+        -0.2,
+        -0.1,
+        0.0
+      ],
+      "design_condition": 25.423738725278525,
+      "position_fit_rms_m": 0.0022137665415679964,
+      "all_fit_times_have_consumed_RGB": true,
+      "producer": "h4_status.status_from_clip_records",
+      "route": "shared scene query only",
+      "consumed_RGB_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "image_getter_calls": [
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front_right",
+          0
+        ],
+        [
+          "camera_front_left",
+          0
+        ],
+        [
+          "camera_rear_wide",
+          0
+        ],
+        [
+          "camera_rear_left",
+          0
+        ],
+        [
+          "camera_rear_right",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ],
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ]
+      ]
+    },
+    "fixture_001": {
+      "fit_relative_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "fit_count": 5,
+      "nominal_seconds": [
+        -1.0,
+        -0.5,
+        -0.2,
+        -0.1,
+        0.0
+      ],
+      "design_condition": 25.423738725278525,
+      "position_fit_rms_m": 0.001401233690657774,
+      "all_fit_times_have_consumed_RGB": true,
+      "producer": "h4_status.status_from_clip_records",
+      "route": "shared scene query only",
+      "consumed_RGB_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "image_getter_calls": [
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front_right",
+          0
+        ],
+        [
+          "camera_front_left",
+          0
+        ],
+        [
+          "camera_rear_wide",
+          0
+        ],
+        [
+          "camera_rear_left",
+          0
+        ],
+        [
+          "camera_rear_right",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ],
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ]
+      ]
+    }
+  },
+  "input_tensor_sha256": {
+    "fixture_000": {
+      "images": "db0c115d8bb7f79aa41846cd3e42a45dbe82331958024421bda56540ccbfcda0",
+      "history_images": "582d52df83d751ef6ada71a204215d89ab2631fdd7fadb37e23688e75a568e06",
+      "lidar2img": "1f7eadebde9318f8081b20b0ce9870b6bc68b5515f39f604938b7e4ee593ee57",
+      "history_transforms": "e8ac2b364cd22b2a825bcc033bf7f12d6414003a67559aa3ce3886ede89dc79a",
+      "time_offsets": "758558e79b808637343cedd0be341010a675b8d06f92bf137cb18e01f1b4ac5d",
+      "goal_xy": "4ce6935ec3e5a00c7302b94ea5cd0280aa30f53f2d9f84c5c23d2fbb810a380f",
+      "motion_current": "d596dbec99ee986b718e1c8a555215622fce7bcf8a7e24461997defe3d003bf8",
+      "motion_history": "6e7e044ee311e41bfe9522a4322867235809c26cf051756f63880c824e9bd94d",
+      "provided_status5": "75bcab3b1c6301594c7b5c34fdaf9f226ec5a8f9dcc2565e80eb95ff1fce5b61"
+    },
+    "fixture_001": {
+      "images": "92535c8a2104b89462aaf967443c55ceb768e1397ee5ec592954f1e3aa352bb5",
+      "history_images": "2c3434ebeca085150000096ceb982bcda6c7d9142fc0713b71078dd69eef836c",
+      "lidar2img": "1f7eadebde9318f8081b20b0ce9870b6bc68b5515f39f604938b7e4ee593ee57",
+      "history_transforms": "c6e2153ac15ea62b7eebd9e583af261592e6ca73ad20dc6d921908f4faccd3ba",
+      "time_offsets": "758558e79b808637343cedd0be341010a675b8d06f92bf137cb18e01f1b4ac5d",
+      "goal_xy": "2d679a4331cf7f577d131f8fb53b14e9a79f69a8c8b0fc481d22996b90384ac2",
+      "motion_current": "49dcf6eeea347ed81e591f7738b7fbcb72255107a750ae4b0618cf24151c51cc",
+      "motion_history": "6fd4e2abf3ec8595eb1a05b6a7cdbeaa72e5b4a461324460e38a5b577cee5ead",
+      "provided_status5": "01aab314ae1fa3283f61e336d0efb08f5a4864a28ce2010d917e8e1a2f838309"
+    }
+  },
+  "timing": [],
+  "timing_scope": "whole model forward including all current/history image encoders; preprocessing excluded",
+  "provided_status_route": "common scene query only",
+  "official_upload_performed": false,
+  "imported_source_files": {
+    "arm_model": "/NHNHOME/data/sukim/adcl/experiments/a2_progress_fourarm_20260921/arm_model.py",
+    "fine_motion": "/NHNHOME/data/sukim/adcl/experiments/a2_progress_fourarm_20260921/fine_motion.py",
+    "progress_model": "/NHNHOME/data/sukim/adcl/experiments/a2_progress_h4_20260920/progress_model.py",
+    "temporal_model": "/NHNHOME/data/sukim/adcl/experiments/a2_temporal_read_20260920/temporal_model.py",
+    "motion_model": "/NHNHOME/data/sukim/adcl/experiments/a2_motion_fresh_20260919/motion_model.py",
+    "scene_extensions": "/NHNHOME/data/sukim/adcl/experiments/md_a2_scene_extensions_20260918/scene_extensions.py",
+    "factorized_model": "/NHNHOME/data/sukim/adcl/experiments/md_shared_dynamics_20260917/factorized_model.py",
+    "matching_resolution": "/NHNHOME/data/sukim/adcl/experiments/md_r0_reset_20260914/matching_resolution.py",
+    "mr_deploy": "/NHNHOME/data/sukim/adcl/experiments/md_r0_reset_20260914/mr_deploy.py",
+    "h4_status": "/NHNHOME/data/sukim/adcl/experiments/a2_progress_h4_20260920/h4_status.py"
+  }
+}

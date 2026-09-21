@@ -1,5 +1,9 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 FULL stage2 완료:** P-CTRL /4,156update, raw parity·1,125clip·portable 재현과 ZIP 확보. 로컬 V0는 in-fit이며 새로운 서버 성능은 아직 없다. [제출 준비 상태](reports/a2_progress_fourarm_full_20260921/RESULTS_KO.md).
+
+**2026-09-21 FULL stage2 시작:** DEV에서 선택한 P-CTRL 레시피 하나를 제출 FULL terminal의 복사본에4,156 update 적용한다. DEV 가중치를 FULL에 복사하지 않고 선택된 변경·레시피만 이전한다. Fresh AdamW·warmup100·고정 terminal. 기존 서버0.133684828 제출물은 보존되며 업로드는 자동화하지 않는다.
+
 **2026-09-21 네 arm DEV 완료:** CONTROL/VECTOR/FINE/SHARED768의 같은 부모·3,426 update 대조가 끝났다. 최저 terminal은 P-CTRL / 0.150285502. 부모보다 낮은 P-CTRL 한 종류만 별도 FULL stage2로 이전한다. [점수·조건별 결과](reports/a2_progress_fourarm_20260921/RESULTS_KO.md). 서버 환산 또는 새 제출 결과가 아니다.
 
 **2026-09-21 15:56 KST 네 arm 본 학습 시작:** 사용자 통합 실행 명세에 따라 GPU0 P-CTRL / GPU1 P-VECTOR / GPU2 P-FINE / GPU3 P-SHARED768을 같은 DEV 부모에서3,426update씩 진행한다. 새 프로세스 strict export와 모든 arm의5update smoke를 통과했다. CTRL/VECTOR/FINE step0은0.151178862, SHARED768 step0은13.144899로 큰 입력 특징 적응이 필요하다. 실제 sample/augmentation stream을 대조한다. [실행 계약](reports/a2_progress_fourarm_20260921/EXECUTION_KO.md), [체크](reports/a2_progress_fourarm_20260921/smoke_and_reload.json), [결과](reports/a2_progress_fourarm_20260921/RESULTS_KO.md). Terminal 뒤 부모보다 좋아진 단일 후보만 별도 FULL4,156update 및 패키징으로 연결하며 기존0.133684828은 보존한다. 공식 업로드 없음.
