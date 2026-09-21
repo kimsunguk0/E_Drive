@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "scope": "actual FULL terminal, two raw train fixtures, isolated GPU Docker",
+  "checkpoint_sha256": "fe821be8546cc54db27c3a81e57bc04126461b29d1a74732e3ad308953c3a3a2",
+  "architecture": {
+    "schema_version": 1,
+    "arm": "P-CTRL",
+    "architecture_id": "a2_h4_progress_v1",
+    "fine_read_enabled": false,
+    "fine_grid": null,
+    "fine_read_position": null,
+    "scene_history_feature_source": "separate_low384",
+    "interval_auxiliary": "length",
+    "auxiliary_lambda": 0.25,
+    "status_policy": "five_RGB_consumed_pose_times_nominal_frame_dt",
+    "history_frame_offsets": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "image_hw": [
+      432,
+      768
+    ],
+    "motion_hw": [
+      432,
+      768
+    ],
+    "precision": "bf16_images_fp32_planner_output_loss",
+    "output": "absolute_xy_6x2"
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.1+cu128",
+  "docker_image_id": "sha256:811933f25cfcf8b5c3998e0fb8e33e5ed8934b22ff155135ad83984586b16312",
+  "input_tensors_bitwise_equal": true,
+  "FP32_max_abs_B200_vs_4090_m": 3.814697265625e-06,
+  "tolerance_m": 0.001,
+  "timing": [
+    {
+      "clip": "fixture_000",
+      "median_ms": 26.073087692260742,
+      "p95_ms": 26.126539993286134,
+      "warmup": 30,
+      "repeats": 200,
+      "peak_allocated_bytes": 711179264
+    },
+    {
+      "clip": "fixture_001",
+      "median_ms": 26.137248039245605,
+      "p95_ms": 26.19805202484131,
+      "warmup": 30,
+      "repeats": 200,
+      "peak_allocated_bytes": 711379968
+    }
+  ],
+  "largest_clip_median_ms": 26.137248039245605,
+  "largest_clip_p95_ms": 26.19805202484131,
+  "scope_of_time": "entire B1 BF16 student forward, FP32 planner; preprocessing excluded",
+  "official_upload_performed": false,
+  "completed_utc": "2026-09-21T08:11:25.132137+00:00"
+}
