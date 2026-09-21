@@ -1,0 +1,67 @@
+{
+  "arm": "P-SHARED768",
+  "parent_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+  "parent_tensors_exact": true,
+  "constructor_RNG_matches_parent": true,
+  "extra_keys": [
+    "execution_signature"
+  ],
+  "initial_parity": {
+    "fp32": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "bf16": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "parity_reference": "separate_768_history",
+  "legitimate_change_vs_old384": {
+    "plan_abs": 17.245710372924805,
+    "scene_features": 3.2737598419189453,
+    "occ_logits": 10.234375,
+    "lane_logits": 3.447265625,
+    "motion_features": 0.0,
+    "motion_pair_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "input_boundary": {
+    "provided_status5": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "goal_xy": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "vector_replaces_length_total_identity_error": 4.172325134277344e-07,
+  "scene_gradient_to_shared_native_FPN": [
+    0.000431060791015625,
+    0.00177001953125
+  ],
+  "initial_backward_finite": true,
+  "status": "passed",
+  "step0_PREFIX": 13.144899453360912,
+  "step0_n": 1998,
+  "parameters": 26652536,
+  "initial_state_sha256": "ce85d1fe03c134bf02899556fc6833cff56098e6e40208b45f146cc7cce56c1b"
+}

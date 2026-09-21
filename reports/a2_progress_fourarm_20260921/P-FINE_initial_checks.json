@@ -1,0 +1,62 @@
+{
+  "arm": "P-FINE",
+  "parent_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+  "parent_tensors_exact": true,
+  "constructor_RNG_matches_parent": true,
+  "extra_keys": [
+    "execution_signature",
+    "planner.fine_read.attention.in_proj_bias",
+    "planner.fine_read.attention.in_proj_weight",
+    "planner.fine_read.attention.out_proj.bias",
+    "planner.fine_read.attention.out_proj.weight",
+    "planner.fine_read.memory_norm.bias",
+    "planner.fine_read.memory_norm.weight",
+    "planner.fine_read.positions",
+    "planner.fine_read.query_norm.bias",
+    "planner.fine_read.query_norm.weight"
+  ],
+  "initial_parity": {
+    "fp32": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "bf16": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "parity_reference": "frozen_DEV_parent_384_history",
+  "input_boundary": {
+    "provided_status5": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "goal_xy": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "vector_replaces_length_total_identity_error": 2.421438694000244e-08,
+  "initial_backward_finite": true,
+  "status": "passed",
+  "step0_PREFIX": 0.15117886232993416,
+  "step0_n": 1998,
+  "parameters": 26719096,
+  "initial_state_sha256": "f3d10f535acf9e193fa3b2845b45d3138ba69152b469c34e85b68640862e1678"
+}

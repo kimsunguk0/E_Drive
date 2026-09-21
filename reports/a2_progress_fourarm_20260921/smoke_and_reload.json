@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "actual_smoke_updates_per_arm": 5,
+  "fresh_main_restarts_from_DEV_parent": true,
+  "source": {
+    "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+    "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+    "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+    "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+    "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "experiments/a2_temporal_read_20260920/train_temporal.py": "2dd6e1688a7c1a6cd73ab988fd313b961840d4d7b46c7aec4dc9ad690e31037f",
+    "experiments/a2_temporal_read_20260920/temporal_model.py": "dd01226e745e1530ceef2f79f9ae9c495064aede07d61089607667881e66b6a7",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "scripts/train_motiondrive_v2.py": "8a20e2676aad909c2952fe1418a61bc419105793148573a2f45738b432070f24",
+    "scripts/motiondrive_v2_training.py": "6e3d5ecccee0a87cf6a85cd490ee192990fd2ca92f0c307040a93ca2cdc7077c",
+    "scripts/motiondrive_v2_flip_augment.py": "563981f95804e3e1272971e11d9547cb5bbadeb2e2a3026d3985cbda6565ad95",
+    "experiments/a2_motion_fresh_20260919/train_experiment.py": "97a82665ae106af9ef027c79f79f9abba2c841693ea8b4f79545cc1c76430346",
+    "experiments/a2_motion_fresh_20260919/motion_model.py": "cabc7d6778ae3409f49c9df15941aa413f6623f10d4035134d6ef7f8a223d462",
+    "experiments/a2_progress_h4_20260920/train_progress.py": "34d549a3908b8811fc1913e1ac71240cd49a988f6a701fc69a51ecbfa1832cc5",
+    "experiments/a2_progress_h4_20260920/h4_status.py": "1d9374bc9e9789eaee35fb885da0682c0ef59195fd67757a460d83014563e643",
+    "experiments/a2_progress_h4_20260920/h4_data.py": "cbe1087eed1438a195c8d7f94ee420c672601b9eccd6e083ac3ed70d2e35ac89",
+    "experiments/a2_progress_h4_20260920/progress_model.py": "3c71b534c121760732ba0fbf12f3fa28ebe90c50bce69fa99c5759ab8bc27f2e",
+    "experiments/a2_progress_fourarm_20260921/collect.py": "d445249062bc97a6d089d1c942835a2629a42df16ebe8ad25a5f40e5b0638d02",
+    "experiments/a2_progress_fourarm_20260921/fine_motion.py": "1ecfa410af47a9132994919a6c10838709ca7fe7ad1d1bd2e7ecda7963a22654",
+    "experiments/a2_progress_fourarm_20260921/arm_model.py": "b61fe74bec7f9a80ce0d3f9f3aff5f31e5fe47bc0c64676478124b7158d20b53",
+    "experiments/a2_progress_fourarm_20260921/verify.py": "6f81d85008d6c2959f03ebd58d63a824e01185994a6067ac8908c6b4b6df818f",
+    "experiments/a2_progress_fourarm_20260921/train_fourarm.py": "e62c84ce14e8e0f21117dff4c03ee44e53aa0ab7c7af30cecbd49318f1020b8a",
+    "experiments/a2_pro_review_20260921/reference/interval_vector_auxiliary.py": "45b4f6cc3b12b23d8ace09b77858724151caccdb368a26264d65410e6172fca1"
+  },
+  "checks": {
+    "P-CTRL": {
+      "initial_checks": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-CTRL_initial_checks.json",
+        "sha256": "72c01cc749824fe083b13dbe5a15db0f631ae3ff4bc2daf42c4e73d7fc88bfdb"
+      },
+      "reload": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-CTRL_reload.json",
+        "sha256": "7f4da7ddf8e5c74ef65561f0ba9c2486aec8c835f381cbe5ff5788035c4a7bef"
+      },
+      "export": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-CTRL_export.json",
+        "sha256": "32644ab8df53cbb7d0ac5a09b651e0e0a1064484672da3a1b3b7965d6402c21d"
+      }
+    },
+    "P-VECTOR": {
+      "initial_checks": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-VECTOR_initial_checks.json",
+        "sha256": "635ad6c5f17537b47a6b423800df0bc15d15e1571daa6a26e4295b030ade64c2"
+      },
+      "reload": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-VECTOR_reload.json",
+        "sha256": "7f4da7ddf8e5c74ef65561f0ba9c2486aec8c835f381cbe5ff5788035c4a7bef"
+      },
+      "export": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-VECTOR_export.json",
+        "sha256": "32644ab8df53cbb7d0ac5a09b651e0e0a1064484672da3a1b3b7965d6402c21d"
+      }
+    },
+    "P-FINE": {
+      "initial_checks": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-FINE_initial_checks.json",
+        "sha256": "4ebf2cbfb3929caa30e78af0b18f07cec458a5fea4900f75c207d4a152f89c63"
+      },
+      "reload": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-FINE_reload.json",
+        "sha256": "7f4da7ddf8e5c74ef65561f0ba9c2486aec8c835f381cbe5ff5788035c4a7bef"
+      },
+      "export": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-FINE_export.json",
+        "sha256": "32644ab8df53cbb7d0ac5a09b651e0e0a1064484672da3a1b3b7965d6402c21d"
+      }
+    },
+    "P-SHARED768": {
+      "initial_checks": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-SHARED768_initial_checks.json",
+        "sha256": "1fbf69206e43610ed58d0f7d72df417e049bbc670e2334a63f5a0cb4771132d4"
+      },
+      "reload": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-SHARED768_reload.json",
+        "sha256": "7f4da7ddf8e5c74ef65561f0ba9c2486aec8c835f381cbe5ff5788035c4a7bef"
+      },
+      "export": {
+        "path": "/NHNHOME/data/sukim/adcl/reports/a2_progress_fourarm_20260921/P-SHARED768_export.json",
+        "sha256": "32644ab8df53cbb7d0ac5a09b651e0e0a1064484672da3a1b3b7965d6402c21d"
+      }
+    }
+  },
+  "same_smoke_sample_and_augmentation_stream": {
+    "microcalls": 10,
+    "rows_sha256": "4720bcc7fc5428605f2d2be39f7255cdee7340c509fc98587b022c2e497afc71",
+    "augmentation_fingerprint_sha256": "dd11e3f752c598ad92d921c49f9e78271dabe0d36381d64a990a438cdd9f94a8",
+    "fingerprint": "ordered rows + sampled normalized current/history/motion pixels + status; deterministic row/epoch augmentation"
+  },
+  "reused_reference_tests": [
+    "reports/a2_pro_review_20260921/VECTOR_INTEGRATION.json",
+    "reports/a2_pro_review_20260921/VECTOR_REFERENCE_REPLAY.json",
+    "reports/a2_pro_review_20260921/FINE_READ_PAIRED_REVIEW.json"
+  ],
+  "construction_and_loss_preparation_notes": [
+    "Initial import-only attempt used a colliding train.py name; renamed before GPU forwards.",
+    "First five-update smoke preserved; added the common fixed train-probe callback and reran from parent.",
+    "No smoke optimizer state is used by the main runs."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "arm": "P-VECTOR",
+  "parent_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+  "parent_tensors_exact": true,
+  "constructor_RNG_matches_parent": true,
+  "extra_keys": [
+    "execution_signature"
+  ],
+  "initial_parity": {
+    "fp32": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "bf16": {
+      "plan_abs": 0.0,
+      "scene_features": 0.0,
+      "occ_logits": 0.0,
+      "lane_logits": 0.0,
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "parity_reference": "frozen_DEV_parent_384_history",
+  "input_boundary": {
+    "provided_status5": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    },
+    "goal_xy": {
+      "motion_features": 0.0,
+      "motion_pair_features": 0.0,
+      "state_hat": 0.0,
+      "history_hat": 0.0
+    }
+  },
+  "vector_replaces_length_total_identity_error": 2.421438694000244e-08,
+  "initial_backward_finite": true,
+  "status": "passed",
+  "step0_PREFIX": 0.15117886232993416,
+  "step0_n": 1998,
+  "parameters": 26652536,
+  "initial_state_sha256": "2c08b08ea7dd7c3d035af132d56d8efd3e00966cca960b06a2145dc8b00db063"
+}

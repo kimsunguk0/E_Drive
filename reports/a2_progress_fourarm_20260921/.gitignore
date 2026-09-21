@@ -1,4 +1,4 @@
 runtime/
-*_step0.json
-*_train_probe_step0.json
+P-*_step0.json
+P-*_train_probe_step0.json
 *_before_probe_hook.json
