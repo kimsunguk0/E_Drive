@@ -1,0 +1,71 @@
+{
+  "status": "DEV_completed",
+  "checked_utc": "2026-09-21T16:10:55.140899+00:00",
+  "lowest_terminal": "M-NATIVE",
+  "preserved_matched_control": "M-LOW",
+  "all_arms": {
+    "M-LOW": {
+      "role": "DEV terminal, fixed budget",
+      "step": 10277,
+      "PREFIX": 0.14466244785495558,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/M-LOW-s1/ckpt_step10277.pth",
+      "bytes": 110434533,
+      "sha256": "432780413b6682bda1ca89c50b6cccf53fd54a6fbd44581db33e9c90bf7156c3",
+      "source_commit": "1d5ae53feb8e29f839fb1339d70d6609b9e13d56",
+      "source_hashes_unchanged": true,
+      "train_probe256_PREFIX": 0.11238051848158648,
+      "nonfinite_count": 0,
+      "experiment": "work_dirs/a2_native_detail_20260921/M-LOW-s1/experiment.json",
+      "manifest": "work_dirs/a2_native_detail_20260921/M-LOW-s1/manifest.json"
+    },
+    "M-NATIVE": {
+      "role": "DEV terminal, fixed budget",
+      "step": 10277,
+      "PREFIX": 0.14459766188205064,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/M-NATIVE-s1/ckpt_step10277.pth",
+      "bytes": 110434597,
+      "sha256": "8bc43364c05c899a563438f34538845ed0c33a969ab7e0cb6786e407ed9cbadf",
+      "source_commit": "1d5ae53feb8e29f839fb1339d70d6609b9e13d56",
+      "source_hashes_unchanged": true,
+      "train_probe256_PREFIX": 0.11225672250293428,
+      "nonfinite_count": 0,
+      "experiment": "work_dirs/a2_native_detail_20260921/M-NATIVE-s1/experiment.json",
+      "manifest": "work_dirs/a2_native_detail_20260921/M-NATIVE-s1/manifest.json"
+    },
+    "S-LOW": {
+      "role": "DEV terminal, fixed budget",
+      "step": 10277,
+      "PREFIX": 0.14490633358788885,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/S-LOW-s1/ckpt_step10277.pth",
+      "bytes": 107657163,
+      "sha256": "38a7e9e566ee37a802e80594946413d8a57de3780db9079772a631d429edb56a",
+      "source_commit": "1d5ae53feb8e29f839fb1339d70d6609b9e13d56",
+      "source_hashes_unchanged": true,
+      "train_probe256_PREFIX": 0.11217041859345045,
+      "nonfinite_count": 0,
+      "experiment": "work_dirs/a2_native_detail_20260921/S-LOW-s1/experiment.json",
+      "manifest": "work_dirs/a2_native_detail_20260921/S-LOW-s1/manifest.json"
+    },
+    "S-NATIVE": {
+      "role": "DEV terminal, fixed budget",
+      "step": 10277,
+      "PREFIX": 0.1447115109571625,
+      "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_native_detail_20260921/S-NATIVE-s1/ckpt_step10277.pth",
+      "bytes": 107657163,
+      "sha256": "67c7bf3b6f073c4a561a0f1e112fa54ab57875514d66857bf93ed9e75c8546d4",
+      "source_commit": "1d5ae53feb8e29f839fb1339d70d6609b9e13d56",
+      "source_hashes_unchanged": true,
+      "train_probe256_PREFIX": 0.11222405323678686,
+      "nonfinite_count": 0,
+      "experiment": "work_dirs/a2_native_detail_20260921/S-NATIVE-s1/experiment.json",
+      "manifest": "work_dirs/a2_native_detail_20260921/S-NATIVE-s1/manifest.json"
+    }
+  },
+  "same_row_and_baseline_augmentation_stream": true,
+  "all_step_order_hashes_matched": 10277,
+  "official_submitted_FULL_PREFIX": 0.1336848279459137,
+  "FULL_started": false,
+  "uploaded": false,
+  "deployment_status": "graph measured on five-update smoke; terminal raw adapter/package not created",
+  "no_automatic_extension": true
+}

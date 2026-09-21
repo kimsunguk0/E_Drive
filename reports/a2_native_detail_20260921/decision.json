@@ -1,0 +1,144 @@
+{
+  "lowest_terminal_arm": "M-NATIVE",
+  "PREFIX": 0.14459766188205064,
+  "improves_parent": true,
+  "paired_native_deltas": {
+    "M": {
+      "mean_delta": -6.478597290497935e-05,
+      "session_CI95": [
+        -0.0003910587976595096,
+        0.00030387627270259983
+      ],
+      "session_delta": {
+        "session_019_20260113-102709": {
+          "n": 54,
+          "mean": -0.0007296534868204257,
+          "overall_contribution": -1.9720364508660154e-05
+        },
+        "session_026_20260122-134906": {
+          "n": 108,
+          "mean": -0.00018701165287816348,
+          "overall_contribution": -1.0108737993414242e-05
+        },
+        "session_027_20260122-135506": {
+          "n": 378,
+          "mean": 0.00030644227794485266,
+          "overall_contribution": 5.7975566097674826e-05
+        },
+        "session_040_20260209-153550": {
+          "n": 108,
+          "mean": 0.0013780351651886775,
+          "overall_contribution": 7.448838730749607e-05
+        },
+        "session_046_20260210-100504": {
+          "n": 540,
+          "mean": -0.0004653504722909196,
+          "overall_contribution": -0.00012577039791646476
+        },
+        "session_076_20260213-134648": {
+          "n": 324,
+          "mean": 0.0002473153537284943,
+          "overall_contribution": 4.010519249651259e-05
+        },
+        "session_087_20260219-90551": {
+          "n": 108,
+          "mean": -0.00024781989565919376,
+          "overall_contribution": -1.3395670035632097e-05
+        },
+        "session_092_20260219-103747": {
+          "n": 54,
+          "mean": 0.00144448428583937,
+          "overall_contribution": 3.904011583349649e-05
+        },
+        "session_097_20260219-110038": {
+          "n": 162,
+          "mean": -0.00047404448682040123,
+          "overall_contribution": -3.843603947192442e-05
+        },
+        "session_108_20260220-134317": {
+          "n": 108,
+          "mean": -0.0006355981375740593,
+          "overall_contribution": -3.435665608508428e-05
+        },
+        "session_112_20260303-142827": {
+          "n": 54,
+          "mean": -0.0012804726392722358,
+          "overall_contribution": -3.460736862897935e-05
+        }
+      },
+      "largest_contribution_session": "session_046_20260210-100504",
+      "delta_excluding_largest_contribution_session": 8.357124908981337e-05,
+      "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+    },
+    "S": {
+      "mean_delta": -0.00019482263072633643,
+      "session_CI95": [
+        -0.0003458361032622707,
+        6.756966312624996e-05
+      ],
+      "session_delta": {
+        "session_019_20260113-102709": {
+          "n": 54,
+          "mean": -0.0005513667785450002,
+          "overall_contribution": -1.4901804825540546e-05
+        },
+        "session_026_20260122-134906": {
+          "n": 108,
+          "mean": -0.0005709086702692214,
+          "overall_contribution": -3.085992812266062e-05
+        },
+        "session_027_20260122-135506": {
+          "n": 378,
+          "mean": -0.0002100655764788579,
+          "overall_contribution": -3.974213609059474e-05
+        },
+        "session_040_20260209-153550": {
+          "n": 108,
+          "mean": 0.0002508975157427005,
+          "overall_contribution": 1.356202787798381e-05
+        },
+        "session_046_20260210-100504": {
+          "n": 540,
+          "mean": -0.0003707660320671875,
+          "overall_contribution": -0.00010020703569383447
+        },
+        "session_076_20260213-134648": {
+          "n": 324,
+          "mean": -0.00024150704645006004,
+          "overall_contribution": -3.9163304829739464e-05
+        },
+        "session_087_20260219-90551": {
+          "n": 108,
+          "mean": 0.0008435852322492741,
+          "overall_contribution": 4.5599201743204e-05
+        },
+        "session_092_20260219-103747": {
+          "n": 54,
+          "mean": 0.0002518496907106651,
+          "overall_contribution": 6.8067483975855425e-06
+        },
+        "session_097_20260219-110038": {
+          "n": 162,
+          "mean": -0.0001758801146939465,
+          "overall_contribution": -1.4260549840049717e-05
+        },
+        "session_108_20260220-134317": {
+          "n": 108,
+          "mean": -0.0008185262460147375,
+          "overall_contribution": -4.424466194674257e-05
+        },
+        "session_112_20260303-142827": {
+          "n": 54,
+          "mean": 0.0008357860663499365,
+          "overall_contribution": 2.2588812604052336e-05
+        }
+      },
+      "largest_contribution_session": "session_046_20260210-100504",
+      "delta_excluding_largest_contribution_session": -0.00012965840800750265,
+      "limitation": "Conditional resampling of reused DEV sessions, not hidden-test proof"
+    }
+  },
+  "requires_review_of_cost_auxiliary_groups": true,
+  "automatic_FULL": false,
+  "automatic_sweep": false
+}

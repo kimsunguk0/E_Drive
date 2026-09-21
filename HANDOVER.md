@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-22 01:03 KST Native1152 네 arm DEV 완료:** 동일10,277update에서 M-LOW0.144662448 / M-NATIVE0.144597662 / S-LOW0.144906334 / S-NATIVE0.144711511. 최저M-NATIVE는부모0.147393734대비1.90% 개선했지만 native−LOW 이득은motion0.000064786 / scene0.000194823뿐이며두paired CI는0포함이다. 일반주행/횡오차는개선됐고출발·정지는소폭악화했다. 새최저DEV와대조군을보존하고같은해상도확대/연장/FULL/공식업로드는자동실행하지않는다. GPU0–3유휴. [최종 판정](reports/a2_native_detail_20260921/TERMINAL_REVIEW_KO.md), [최종 지표](reports/a2_native_detail_20260921/result_step10277.json), [가중치 색인](reports/a2_native_detail_20260921/candidate_registry.json).
+
 **2026-09-22 00:35 KST Native1152 두 번째 중간 결과:** 6,852update에서 M-LOW0.145679811 / M-NATIVE0.146098158 / S-LOW0.147021496 / S-NATIVE0.145376961로 모두 부모DEV0.147393734보다 낮아졌다. S-NATIVE는 동일S-LOW보다0.001644534 낮고 개선은 주로 횡방향이다. Motion 원본의 추가 이득은 아직 없다. 약8,700~9,000update 정상 진행, 예정terminal10,277의 결과는아직미측정이다. [두 번째 판정](reports/a2_native_detail_20260921/SECOND_REVIEW_KO.md), [실측 상세](reports/a2_native_detail_20260921/result_step6852.json).
 
 **2026-09-21 23:20 KST Native1152 첫 중간 결과:** 3,426update의M-LOW0.147927044 / M-NATIVE0.164058878 / S-LOW0.151730671 / S-NATIVE0.153589288로 모두 부모DEV0.147393734보다 높다. M-NATIVE 일반 주행·종횡 악화, S-NATIVE는 횡 개선보다 종방향/첫1초 악화가 크다. 고정train256도 악화했으므로 좋은 수렴·해상도 이득을 아직 주장하지 않는다. 학습은 유한값/정상진행이며 예정6,852·10,277평가를 유지한다. [첫 판정](reports/a2_native_detail_20260921/FIRST_REVIEW_KO.md), [실측 결과](reports/a2_native_detail_20260921/result_step3426.json).
@@ -67,7 +69,9 @@
 |---|---|---:|---|
 |최신 공식 제출|A2-H4-PROGRESS-FULL-s1|**0.133684828**|사용자 전달 공식 결과·4등 보고; 동일 FULL 4090 실측 완료|
 |확인된 공식 제출 기준|MR-NATIVE-FULL-s1|**0.185968928**|사용자가 전달한 공식 서버 결과|
-|최신 고정 단일 DEV terminal|P-SPLITREAD-s1 / step6,852|**0.147393734**|같은 CTRL-NEXT 대비0.000188 개선·CI 0 포함; 새 FULL 미시작|
+|최신 고정 단일 DEV terminal|M-NATIVE-s1 / step10,277|**0.144597662**|SplitRead 부모 대비1.90% 개선; 동일LOW 대비0.000065·CI 0 포함; 새 FULL 미시작|
+|최신 동일 조건 대조|M-LOW-s1 / step10,277|**0.144662448**|동일 추가 motion 분기에768 down/up 입력; native와대부분개선공유|
+|Native1152 실험의 부모|P-SPLITREAD-s1 / step6,852|**0.147393734**|기존 graph의 고정 DEV 후보로 보존|
 |동일 추가 예산 control|P-CTRL-NEXT-s1 / step6,852|**0.147582070**|기존 DEV P-CTRL 이후 continuation; 입력/graph 유지|
 |제출 FULL의 DEV 기준|A2-H4-PROGRESS-s1 / step20,554|**0.151178860**|정지·출발 개선, 일반 주행은 matched control보다 악화; 9/21 사용자 요청으로 FULL 진행|
 |기존 A2 고정 terminal 대조|A2-QREFINE-NOM-s1|**0.164251770**|DEV V0; 이전 A2 대비 이득은 작고 불확실|
