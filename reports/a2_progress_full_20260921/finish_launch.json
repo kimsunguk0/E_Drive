@@ -1,0 +1,17 @@
+{
+  "pid": 4187375,
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_progress_full_20260921/finish.py",
+    "--gpu",
+    "0",
+    "--publish"
+  ],
+  "started_utc": "2026-09-21T00:02:44.886947+00:00",
+  "source_commit": "736b72ff1e043b723fcc0ae5d58ccf709d00340f",
+  "log": "/NHNHOME/data/sukim/adcl/reports/a2_progress_full_20260921/runtime/finish.log",
+  "status": "spawned; verify watcher state",
+  "additional_training": false,
+  "official_upload_performed": false
+}

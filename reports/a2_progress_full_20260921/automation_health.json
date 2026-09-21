@@ -1,0 +1,29 @@
+{
+  "checked_utc": "2026-09-21T00:04:01.163197+00:00",
+  "training_pid": 4181956,
+  "last_logged_training_step": 2150,
+  "training_updates": 24931,
+  "finish_watcher": {
+    "status": "watching_training",
+    "pid": 4187375,
+    "started_utc": "2026-09-21T00:02:44.912629+00:00",
+    "gpu": 0,
+    "official_upload_performed": false,
+    "training_status": "running",
+    "step": null,
+    "last_checked_utc": "2026-09-21T00:03:44.919304+00:00"
+  },
+  "local_delivery_receipt": {
+    "pid": 3923436,
+    "started_utc": "2026-09-21T00:02:44.951474+00:00",
+    "destination": "/home/a/Downloads/A2-H4-PROGRESS-FULL-s1_submission_20260921",
+    "status_file": "/home/a/a2_progress_full_20260921/local_delivery_state.json",
+    "script": "/home/a/a2_progress_full_20260921/download_when_ready.py",
+    "log": "/home/a/a2_progress_full_20260921/local_delivery.log",
+    "official_upload_performed": false
+  },
+  "pipeline_scope": "terminal FULL -> raw parity ->1125 test inference -> one ZIP -> portable FULL parity -> local clean-container CPU -> local Downloads",
+  "official_upload_performed": false,
+  "training_completion_ETA_KST": "2026-09-21 around 12:30, plus inference/packaging",
+  "fully_completed": false
+}

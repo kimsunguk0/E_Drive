@@ -1,0 +1,263 @@
+{
+  "checkpoint_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+  "arm": "A2-H4-PROGRESS",
+  "step": 20554,
+  "device": "NVIDIA B200",
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "cuda": "13.1",
+  "precision": "fp32",
+  "output": "absolute XY6x2, no serving cumsum",
+  "forwards_per_clip": 1,
+  "predictions": {
+    "fixture_000": [
+      [
+        3.164348840713501,
+        -0.1657957136631012
+      ],
+      [
+        6.210334777832031,
+        -0.47618618607521057
+      ],
+      [
+        9.125944137573242,
+        -0.9035661816596985
+      ],
+      [
+        11.938676834106445,
+        -1.421839952468872
+      ],
+      [
+        14.659894943237305,
+        -1.9887503385543823
+      ],
+      [
+        17.323055267333984,
+        -2.5836641788482666
+      ]
+    ],
+    "fixture_001": [
+      [
+        5.254246711730957,
+        -0.11584383249282837
+      ],
+      [
+        10.560842514038086,
+        -0.24098698794841766
+      ],
+      [
+        15.907880783081055,
+        -0.3654620945453644
+      ],
+      [
+        21.274810791015625,
+        -0.4983587861061096
+      ],
+      [
+        26.637161254882812,
+        -0.6412538290023804
+      ],
+      [
+        31.98661231994629,
+        -0.7805214524269104
+      ]
+    ]
+  },
+  "input_frame_checks": {
+    "fixture_000": {
+      "fit_relative_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "fit_count": 5,
+      "nominal_seconds": [
+        -1.0,
+        -0.5,
+        -0.2,
+        -0.1,
+        0.0
+      ],
+      "design_condition": 25.423738725278525,
+      "position_fit_rms_m": 0.0022137665415679964,
+      "all_fit_times_have_consumed_RGB": true,
+      "producer": "h4_status.status_from_clip_records",
+      "route": "shared scene query only",
+      "consumed_RGB_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "image_getter_calls": [
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front_right",
+          0
+        ],
+        [
+          "camera_front_left",
+          0
+        ],
+        [
+          "camera_rear_wide",
+          0
+        ],
+        [
+          "camera_rear_left",
+          0
+        ],
+        [
+          "camera_rear_right",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ],
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ]
+      ]
+    },
+    "fixture_001": {
+      "fit_relative_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "fit_count": 5,
+      "nominal_seconds": [
+        -1.0,
+        -0.5,
+        -0.2,
+        -0.1,
+        0.0
+      ],
+      "design_condition": 25.423738725278525,
+      "position_fit_rms_m": 0.001401233690657774,
+      "all_fit_times_have_consumed_RGB": true,
+      "producer": "h4_status.status_from_clip_records",
+      "route": "shared scene query only",
+      "consumed_RGB_frames": [
+        -10,
+        -5,
+        -2,
+        -1,
+        0
+      ],
+      "image_getter_calls": [
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front_right",
+          0
+        ],
+        [
+          "camera_front_left",
+          0
+        ],
+        [
+          "camera_rear_wide",
+          0
+        ],
+        [
+          "camera_rear_left",
+          0
+        ],
+        [
+          "camera_rear_right",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ],
+        [
+          "camera_front",
+          0
+        ],
+        [
+          "camera_front",
+          -1
+        ],
+        [
+          "camera_front",
+          -2
+        ],
+        [
+          "camera_front",
+          -5
+        ],
+        [
+          "camera_front",
+          -10
+        ]
+      ]
+    }
+  },
+  "timing": [],
+  "timing_scope": "whole model forward including all current/history image encoders; preprocessing excluded",
+  "provided_status_route": "common scene query only",
+  "official_upload_performed": false,
+  "imported_source_files": {
+    "progress_model": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/portable_preflight/code/experiments/a2_progress_h4_20260920/progress_model.py",
+    "temporal_model": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/portable_preflight/code/experiments/a2_temporal_read_20260920/temporal_model.py",
+    "motion_model": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/portable_preflight/code/experiments/a2_motion_fresh_20260919/motion_model.py",
+    "scene_extensions": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/portable_preflight/code/experiments/md_a2_scene_extensions_20260918/scene_extensions.py",
+    "factorized_model": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/portable_preflight/code/experiments/md_shared_dynamics_20260917/factorized_model.py",
+    "matching_resolution": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/portable_preflight/code/experiments/md_r0_reset_20260914/matching_resolution.py",
+    "mr_deploy": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/portable_preflight/code/experiments/md_r0_reset_20260914/mr_deploy.py",
+    "h4_status": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/portable_preflight/code/experiments/a2_progress_h4_20260920/h4_status.py"
+  }
+}

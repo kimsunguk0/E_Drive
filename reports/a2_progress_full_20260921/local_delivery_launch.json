@@ -1,0 +1,9 @@
+{
+  "pid": 3923436,
+  "started_utc": "2026-09-21T00:02:44.951474+00:00",
+  "destination": "/home/a/Downloads/A2-H4-PROGRESS-FULL-s1_submission_20260921",
+  "status_file": "/home/a/a2_progress_full_20260921/local_delivery_state.json",
+  "script": "/home/a/a2_progress_full_20260921/download_when_ready.py",
+  "log": "/home/a/a2_progress_full_20260921/local_delivery.log",
+  "official_upload_performed": false
+}
