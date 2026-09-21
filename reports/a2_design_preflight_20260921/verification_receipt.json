@@ -1,0 +1,80 @@
+{
+  "scope": "design preflight only; three fixed DEV-train rows; no optimizer updates",
+  "attempts": {
+    "check1": "failed whole-model deepcopy hook ownership; all initial records retained",
+    "check2": "passed real-weight CUDA FP32/BF16, gradient routes, unchanged state, fresh-process strict export",
+    "check3": "passed CPU geometry fix for order-independent three-way ambiguity; no GPU rerun"
+  },
+  "final_geometry_targets_equal_GPU_checked_targets": [
+    {
+      "train_index": 0,
+      "all_four_arrays_exactly_equal": true,
+      "sha256": {
+        "offset": "c2a3d5d62b3cd3f9c1b10726b7fabb76788f50d9cdeda3b511d2c6e67b45b7fb",
+        "axis": "30d623eea6c85e8f6d4447078537fbb68c6e40801cecce9a7dc83e4a14bc6b23",
+        "offset_valid": "962cc3fdc7fcdac5c34cfb86871775b3856861931c5ea18bdb4e773168d83dc2",
+        "axis_valid": "c08d1372a9f0e7759eefd485911ec7ea951a9aee931cdee2fff5b619ee7088b6"
+      }
+    },
+    {
+      "train_index": 30000,
+      "all_four_arrays_exactly_equal": true,
+      "sha256": {
+        "offset": "28c16a991d07946f2eb883ff545165ca02a80be79061037a5d31b6ad5041ee9f",
+        "axis": "1568083dbd5dd777e6d9072e0575817d03850cc2f62eeec02fab094a58b09c3f",
+        "offset_valid": "de67aae69c9b2c6889f2f5eb1653a31ccda5aac8bfdc7f0eca1001cadbb295c5",
+        "axis_valid": "c4fa075db852b32bfffe5f3d47ad5d28f5c7124a11222d98fc06fafd7173023a"
+      }
+    },
+    {
+      "train_index": 60000,
+      "all_four_arrays_exactly_equal": true,
+      "sha256": {
+        "offset": "13f2c00901c87d1f7b31e856226804088fa2c7880610a1ef5d05a0723c690210",
+        "axis": "d8f8d184343639dd0b637c2ac947be4bd54b3db4e60bed1b4d80bc2e0be6d94b",
+        "offset_valid": "406b36305d9bbc76a80726558a8d8b9545c510279ee60ccc1f70eb166a477c70",
+        "axis_valid": "88ffb10e0f595d0309e088f622b2c3cce95325b7adc35f35339af70ebb780c71"
+      }
+    }
+  ],
+  "SplitRead_class_source_changed_after_GPU_check": false,
+  "runtime_artifacts_not_committed": [
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_design_preflight_20260921/check2/split_prototype.pth",
+      "bytes": 107562367,
+      "sha256": "73e8812c4d2a63e2248c461ed34d3a9cde1b9a43f9309d4783061682894e83cf"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_design_preflight_20260921/check2/fixtures.pth",
+      "bytes": 149602439,
+      "sha256": "6f8c9d1ab13ef0bc3d8322553e636367508b707bee72bd8e45b897f638c883cb"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/work_dirs/a2_design_preflight_20260921/check2/reload.json",
+      "bytes": 338,
+      "sha256": "aeecb7aea76a8aa60606142516c32198fa2564f36ee6beaaf6d439529274d423"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_design_preflight_20260921/check1/train_geometry_overlay.png",
+      "bytes": 1111909,
+      "sha256": "d080adb019fcf395bb47434cc76e8fd85e3ddea718c6ce0406779218248f593b"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_design_preflight_20260921/check2/train_geometry_overlay.png",
+      "bytes": 1124062,
+      "sha256": "d559057f4526c839dddead36349a693228aa140204513ea0ac0d730209090bb4"
+    },
+    {
+      "path": "/NHNHOME/data/sukim/adcl/reports/a2_design_preflight_20260921/check3/train_geometry_overlay.png",
+      "bytes": 1124062,
+      "sha256": "d559057f4526c839dddead36349a693228aa140204513ea0ac0d730209090bb4"
+    }
+  ],
+  "not_measured": [
+    "new DEV score",
+    "new server score",
+    "SplitRead RTX4090 latency/FLOPs",
+    "production optimizer groups and sample stream",
+    "training-time geometry head removal export"
+  ]
+}

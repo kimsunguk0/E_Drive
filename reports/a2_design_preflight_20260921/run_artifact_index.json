@@ -1,0 +1,96 @@
+{
+  "source_commit": "b3e967a0c692db8319ac29d7821f0bf3308ca542",
+  "parent_checkpoint_sha256": "5021300b0d876a6b59b2137d78fd96ab21b80bfed7141ebc1248e5c8bc05a37a",
+  "files": [
+    {
+      "path": "experiments/a2_design_preflight_20260921/audit_artifacts.py",
+      "bytes": 4729,
+      "sha256": "8455796035e7ff03c8036f4a1176dd379226cfff6f66749869fa52916852b72f"
+    },
+    {
+      "path": "experiments/a2_design_preflight_20260921/check_design.py",
+      "bytes": 24002,
+      "sha256": "74eca5a46619cb7b3a3b9e75eb6d6d34c694ff56d85896a9d158ef99995fc24c"
+    },
+    {
+      "path": "experiments/a2_design_preflight_20260921/design.py",
+      "bytes": 9951,
+      "sha256": "ae6e7a6337ee632e03b9ec08304b557870eb875918915fc192223a3f78071679"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/A2_Next_012_Combined_Review_20260921.md",
+      "bytes": 11373,
+      "sha256": "7527e356192696e36f8938dafbffb670ef26d7c0644d032d274077e317e88ef9"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/DESIGN_VERIFICATION_KO.md",
+      "bytes": 9656,
+      "sha256": "473a9e4ab9796a9e5e97d546e3dec5b44e0df60df2348334fa355667a4a69385"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check1/checks.json",
+      "bytes": 7845,
+      "sha256": "075eec2af8da13680ef7a3d73e8f944d32ee3edaddb943050ed4698e80ddc8e9"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check1/source/check_design.py",
+      "bytes": 22875,
+      "sha256": "b4c7d8365a680d276cb03ccbbb313e799c8221335de91977668026930c21b2ee"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check1/source/design.py",
+      "bytes": 7950,
+      "sha256": "f0ab6d4e5c97edee815e830228d3e1bc997f5c1fc0395602e5786ae27102f3d4"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check1/train_geometry_overlay.png",
+      "bytes": 1111909,
+      "sha256": "d080adb019fcf395bb47434cc76e8fd85e3ddea718c6ce0406779218248f593b"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check2/checks.json",
+      "bytes": 7212,
+      "sha256": "b936010bd942c903da3f9502e044d90ddc182af22b828696dba3b56e8a5f3ce7"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check2/source/check_design.py",
+      "bytes": 23223,
+      "sha256": "1b4624878d12444d19416443cb4cf3f6c71ec0b7ca80a72326e4146796d3c234"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check2/source/design.py",
+      "bytes": 9454,
+      "sha256": "a36ca96030eb77a07b97f558e8fc6aa7fccdbdc67e8c1244dd0097af81a1797f"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check2/train_geometry_overlay.png",
+      "bytes": 1124062,
+      "sha256": "d559057f4526c839dddead36349a693228aa140204513ea0ac0d730209090bb4"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check3/checks.json",
+      "bytes": 4395,
+      "sha256": "c8e70c55eb5b091f9acc4fd3e298ec027d3a43c3eb62c7364c7e358c0746c657"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check3/source/check_design.py",
+      "bytes": 24002,
+      "sha256": "74eca5a46619cb7b3a3b9e75eb6d6d34c694ff56d85896a9d158ef99995fc24c"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check3/source/design.py",
+      "bytes": 9951,
+      "sha256": "ae6e7a6337ee632e03b9ec08304b557870eb875918915fc192223a3f78071679"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/check3/train_geometry_overlay.png",
+      "bytes": 1124062,
+      "sha256": "d559057f4526c839dddead36349a693228aa140204513ea0ac0d730209090bb4"
+    },
+    {
+      "path": "reports/a2_design_preflight_20260921/verification_receipt.json",
+      "bytes": 3536,
+      "sha256": "a188d79664ed6bf590e630512095844bde542596828c6cf481bb7e8d879372af"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**2026-09-21 SplitRead/LaneGeometry 설계 검증 완료:** 실제 DEV CTRL 가중치·고정 train 3행에서 GPU0 forward/backward만 검사했다(optimizer update 0). SplitRead 초기 최대차이는 FP32 1.14e-5m/BF16 3.81e-6m, 새 프로세스 strict 재구성은 차이0이다. 전체 모델 deepcopy hook 소유권 문제와 LaneGeometry의 인접 segment/세 선 동거리 mask 문제를 수정했다. 최종 지도 target의 flip·순서 불변성과 effective-batch 정규화를 확인했다. 다음 제안은 동일 CTRL 부모의 CTRL-NEXT/SPLITREAD/LANE-GEOM 독립 6,852-update 비교이며, 신규 학습·예약·전체 DEV 평가·공식 제출은 아직 없다. [실측 검증·남은 구현](reports/a2_design_preflight_20260921/DESIGN_VERIFICATION_KO.md).
+
 **2026-09-21 후속 방향 검토:** 새 학습 없이 latest CTRL 저장예측을 재계산했다. CTRL 길이+DIRECT 방향 진단은 DEV0.144266이며 단일 모델 성능이 아니다. GT 성분치환에서도 진행량/방향 여지가 남는다. GPU1 고정weights FP32 sampling 비교는0.150285498→0.150304091로 개선되지 않았다. 첫 strict parity 실패와 재현 오차도 보존했다. 다음 권고는 길이/방향 decoder 분리와 원본1152 motion의 충분한 공동 학습이며, 세부 기하/agent 감독은 별도 후속축이다. 신규 학습/예약/공식 제출 없음. [근거와 실행 제안](reports/a2_next_direction_20260921/RECOMMENDATION_KO.md).
 
 **2026-09-21 FULL stage2 완료:** P-CTRL /4,156update, raw parity·1,125clip·portable 재현과 ZIP 확보. 로컬 V0는 in-fit이며 새로운 서버 성능은 아직 없다. [제출 준비 상태](reports/a2_progress_fourarm_full_20260921/RESULTS_KO.md).

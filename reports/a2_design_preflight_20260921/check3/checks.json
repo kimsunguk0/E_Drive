@@ -1,0 +1,135 @@
+{
+  "status": "passed",
+  "optimizer_updates": 0,
+  "DEV_evaluator_called": false,
+  "scope": "geometry_only_CPU",
+  "train_indices": [
+    0,
+    30000,
+    60000
+  ],
+  "geometry_policy": {
+    "schema_version": 3,
+    "radius_m": 4.0,
+    "near_distance_m": 0.05,
+    "point_agreement_m": 0.0001,
+    "axis_disagreement_degrees": 15.0,
+    "exact_distance_tie_m": 1e-09,
+    "minimum_segment_m": 1e-06,
+    "axis": "cos(2theta),sin(2theta); exact-distance ties average agreeing axes",
+    "masks": "offset and axis ambiguity handled independently",
+    "candidate_grouping": "nearest point per original polyline; adjacent segments are not separate competing lines",
+    "agreement": "all candidate pairs, independent of the first/argmin candidate"
+  },
+  "parent_checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_fourarm_20260921/P-CTRL-s1/ckpt_step3426.pth",
+  "parent_sha256": "5021300b0d876a6b59b2137d78fd96ab21b80bfed7141ebc1248e5c8bc05a37a",
+  "source_commit": "b3e967a0c692db8319ac29d7821f0bf3308ca542",
+  "synthetic_geometry": {
+    "continuous_segment_not_vertex": true,
+    "parallel_equal_distance_offset_off_axis_on": true,
+    "crossing_same_point_offset_on_axis_off": true,
+    "degenerate_and_outside_support_safe": true,
+    "empty_annotation_unknown": true,
+    "exact_tie_polyline_reversal_invariant": true,
+    "three_way_crossing_all_six_orders_invariant": true
+  },
+  "actual_train_geometry": [
+    {
+      "dataset_index": 0,
+      "row": 30,
+      "scene": "20260112-105434",
+      "frame": 30,
+      "source_map": "/tmp/pm97/data/etri/meta_train/20260112-105434/annotation/map.parquet",
+      "source_map_sha256": "a11a12e9966ac07d1805f695fb9b5a24cdce7617c0b0accb2e7f8d1339ecb314",
+      "map_schema": [
+        "lane_id",
+        "points"
+      ],
+      "segments_in_ROI": 175,
+      "original_valid_cells": 1035,
+      "within_4m_supported_cells": 737,
+      "offset_valid_cells": 729,
+      "axis_valid_cells": 730,
+      "ambiguous_offset_cells": 8,
+      "ambiguous_axis_cells": 7,
+      "old_raster_and_valid_exactly_reproduced": true,
+      "flip_maxdiff": {
+        "offset": 0.0,
+        "axis": 0.0
+      },
+      "polyline_order_reversal_maxdiff": {
+        "offset": 0.0,
+        "axis": 0.0
+      },
+      "metadata_and_target_wall_seconds": 0.791786627843976
+    },
+    {
+      "dataset_index": 30000,
+      "row": 37560,
+      "scene": "20260209-154800",
+      "frame": 60,
+      "source_map": "/tmp/pm97/data/etri/meta_train/20260209-154800/annotation/map.parquet",
+      "source_map_sha256": "e781ae4fd2a98f74f6f09bafca379fcb6a6c0bbfbbc4b847ccd1c52b0b9b9239",
+      "map_schema": [
+        "lane_id",
+        "points"
+      ],
+      "segments_in_ROI": 334,
+      "original_valid_cells": 1558,
+      "within_4m_supported_cells": 1110,
+      "offset_valid_cells": 1098,
+      "axis_valid_cells": 1110,
+      "ambiguous_offset_cells": 12,
+      "ambiguous_axis_cells": 0,
+      "old_raster_and_valid_exactly_reproduced": true,
+      "flip_maxdiff": {
+        "offset": 0.0,
+        "axis": 0.0
+      },
+      "polyline_order_reversal_maxdiff": {
+        "offset": 0.0,
+        "axis": 0.0
+      },
+      "metadata_and_target_wall_seconds": 0.4945568311959505
+    },
+    {
+      "dataset_index": 60000,
+      "row": 77790,
+      "scene": "20260213-135258",
+      "frame": 90,
+      "source_map": "/tmp/pm97/data/etri/meta_train/20260213-135258/annotation/map.parquet",
+      "source_map_sha256": "5c46cc480daa34541bad6400a4684ae73f52c61b85b82160da15f824f29cfcdd",
+      "map_schema": [
+        "lane_id",
+        "points"
+      ],
+      "segments_in_ROI": 382,
+      "original_valid_cells": 1535,
+      "within_4m_supported_cells": 1090,
+      "offset_valid_cells": 1076,
+      "axis_valid_cells": 1090,
+      "ambiguous_offset_cells": 14,
+      "ambiguous_axis_cells": 0,
+      "old_raster_and_valid_exactly_reproduced": true,
+      "flip_maxdiff": {
+        "offset": 0.0,
+        "axis": 0.0
+      },
+      "polyline_order_reversal_maxdiff": {
+        "offset": 0.0,
+        "axis": 0.0
+      },
+      "metadata_and_target_wall_seconds": 0.5111022125929594
+    }
+  ],
+  "geometry_loss": {
+    "full_effective_batch_counts": {
+      "offset": 5806,
+      "axis": 5860
+    },
+    "full_minus_micro_loss": 1.1920928955078125e-07,
+    "max_gradient_difference": 0.0,
+    "partial_invalid_NaN_safe": true,
+    "all_invalid_graph_zero": true
+  }
+}
