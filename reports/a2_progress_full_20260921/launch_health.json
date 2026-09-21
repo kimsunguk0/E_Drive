@@ -1,0 +1,12 @@
+{
+  "checked_utc": "2026-09-21T00:01:15.527098+00:00",
+  "status": "training",
+  "last_logged_step": 1850,
+  "total_updates": 24931,
+  "seconds_per_update_recent": 0.5233774348795414,
+  "remaining_training_seconds_estimate": 12080.074574454695,
+  "training_process_pid": 4181956,
+  "GPU": 0,
+  "completed": false,
+  "official_upload_performed": false
+}

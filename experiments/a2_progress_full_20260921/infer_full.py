@@ -60,6 +60,7 @@ def predict(model,prepared,precision='bf16'):
 def configure():
     torch.set_num_threads(4);torch.manual_seed(1)
     torch.backends.cudnn.benchmark=False;torch.backends.cudnn.deterministic=True
+    torch.backends.cudnn.allow_tf32=False
     torch.backends.cuda.matmul.allow_tf32=False
 
 def main():
@@ -75,10 +76,11 @@ def main():
     clips=sorted(p for p in Path(args.clips_root).iterdir() if p.is_dir())
     if args.limit:clips=clips[:args.limit]
     assert clips
-    predictions={};timing=[];frames={}
+    predictions={};timing=[];frames={};input_sha={}
     for clip in clips:
         prepared=prepare_clip(clip);predictions[clip.name]=predict(model,prepared,args.precision).tolist()
         frames[clip.name]=prepared.metadata['provided_status']
+        input_sha[clip.name]={k:hashlib.sha256(v.contiguous().numpy().tobytes()).hexdigest() for k,v in prepared.inputs.items()}
         if args.timing:
             inp={k:v.cuda() for k,v in prepared.inputs.items()}
             def forward():
@@ -93,7 +95,7 @@ def main():
     result={'checkpoint_sha256':sha(args.checkpoint),'arm':payload['manifest']['experimental_protocol']['arm'],
         'step':payload['step'],'device':name,'torch':torch.__version__,'cuda':torch.version.cuda,
         'precision':args.precision,'output':'absolute XY6x2, no serving cumsum','forwards_per_clip':1,
-        'predictions':predictions,'input_frame_checks':frames,'timing':timing,
+        'predictions':predictions,'input_frame_checks':frames,'input_tensor_sha256':input_sha,'timing':timing,
         'timing_scope':'whole model forward including all current/history image encoders; preprocessing excluded',
         'provided_status_route':'common scene query only','official_upload_performed':False,
         'imported_source_files':{module.__name__:str(Path(module.__file__).resolve()) for module in

@@ -1,5 +1,7 @@
 # MotionDrive V2 — 현재 인수인계
 
+**최신 실행: 2026-09-21 08:44:51 KST.** 사용자 “지금까지 가장 잘 나온 것으로 Full 돌리자, 1회 제출하게” 요청으로 **A2-H4-PROGRESS-FULL-s1**을 GPU0에서 시작했다. 최고 단일 DEV **0.151178860**의 같은 공개 초기값·graph·loss·레시피를 전체376scene/101,520행/24,931 update로 이전한다. 5시점 RGB coverage를 유지하며, 이전의 자동 FULL 미실행 결정은 이번 명시적 요청으로 갱신됐다. FULL 2-step smoke와 raw8clip parity, FLOPs730.045G, portable source/격리 Docker CPU 정합 검사를 통과했다. 학습 종료 후 test1,125clip→ZIP→Downloads 복사를 자동 연결한다. 공식 업로드는 아직 없으며 서버점수와 RTX4090 시간은 미측정이다. [실행·후속 파이프라인](reports/a2_progress_full_20260921/PIPELINE_KO.md), [건강 상태](reports/a2_progress_full_20260921/launch_health.json). GPU4–7은 사용하지 않는다.
+
 **최신 완료: 2026-09-21 02:13 KST.** H4 입력의 DIRECT/PROGRESS가 모두20,554 update를 완료했다. **PROGRESS DEV0.151178860**, matched DIRECT0.154213031 대비1.97% 개선이며 새 단일 후보로 보존한다. 다만 **일반 주행0.148017→0.154891로4.64% 악화**했고 전체 개선은 출발0.473660→0.358557, 정지 유지0.194120→0.030609에서 나왔다. 일반 주행은 첫2초와2.5/3초 기여 모두 악화했다. 이 결과를 일반 주행 병목 해결로 해석하지 않으며 자동 FULL 이전·제출은 실행하지 않는다. Sample-order412개 로그 일치/nonfinite0, 세션5/11개 개선·95%CI는0 포함. [최종 판정](reports/a2_progress_h4_20260920/TERMINAL_REVIEW_KO.md), [전체 결과](reports/a2_progress_h4_20260920/RESULTS_KO.md), [시점·그룹 분해](reports/a2_progress_h4_20260920/terminal_group_time_breakdown.json). 완료 결과는 미러8db4313에 자동 푸시됐다. GPU0–3 유휴. 공식 서버의 새 점수는 없다.
 
 **직전 실행 기록(완료 전): 2026-09-20 23:10 KST 시작.** 사용자 “방법 찾아서 해보자”에 따라 **A2-H4-DIRECT / A2-H4-PROGRESS** matched full-budget 비교를 구현했다. 두 arm 모두 실제 RGB가 소비되는 [-10,-5,-2,-1,0] pose만으로 새 provided status를 만들고 공통 scene query에만 사용한다. 고정 CONT의 새 입력 PREFIX **0.153511500**, TEMPORAL **0.153980107**, QREFINE **0.164260786**으로 기존 성능은 거의 유지됐다. 새 PROGRESS는 TemporalRead 위에서 구간 길이/방향을 NN으로 직접 예측한다. 공통 초기 tensor/RNG, raw8clip status, gradient/반전/정규화/strict export/비용 검사와 양쪽2-step smoke를 통과했다. **GPU0 DIRECT / GPU1 PROGRESS가 각각20,554-update 본 학습 중이다.** 두 arm의 실제100-step 이상 업데이트와 동일 sample stream을 확인했다. 첫 V0 예정23:40경, terminal은9/21 02:15전후 예상(처리속도에 따라 변동). CPU collector가 예정 평가 수집·완료 결과 커밋/푸시를 맡는다. GPU2/3은 입력 평가를 마쳤으며 유휴다. [실행 상태](reports/a2_progress_h4_20260920/launch_health.json), [최신 결과](reports/a2_progress_h4_20260920/RESULTS_KO.md). [실행 명세](reports/a2_progress_h4_20260920/EXECUTION_KO.md), [검사](reports/a2_progress_h4_20260920/preflight.json), [학습 경로 검사](reports/a2_progress_h4_20260920/smoke_summary.json). 새 입력의 coverage 해소를 기존 FULL ZIP 교체나 운영국 개별 승인으로 설명하지 않는다.
@@ -27,7 +29,7 @@
 |역할|후보|점수|해석|
 |---|---|---:|---|
 |확인된 공식 제출 기준|MR-NATIVE-FULL-s1|**0.185968928**|사용자가 전달한 공식 서버 결과|
-|새 단일 DEV 후보|A2-H4-PROGRESS-s1 / step20,554|**0.151178860**|정지·출발 개선, 일반 주행은 matched control보다 악화; FULL 자동 이전 없음|
+|새 단일 DEV 후보|A2-H4-PROGRESS-s1 / step20,554|**0.151178860**|정지·출발 개선, 일반 주행은 matched control보다 악화; 9/21 사용자 요청으로 FULL 진행|
 |기존 A2 고정 terminal 대조|A2-QREFINE-NOM-s1|**0.164251770**|DEV V0; 이전 A2 대비 이득은 작고 불확실|
 |새 고정 단일 DEV terminal|A2-FRESH-CONT-s1 / step6,852|**0.156334059**|부모 대비1.50% 개선|
 |새 동일 예산 구조 후보|A2-TEMPORAL-READ-s1 / step20,554|**0.154119411**|FRESH control 대비2.89% 개선, 정지 유지 회귀|

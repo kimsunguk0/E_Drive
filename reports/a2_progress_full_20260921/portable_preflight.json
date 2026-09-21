@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checkpoint_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+  "weights": "DEV selected checkpoint, deployment preparation only",
+  "fixture_clips": 2,
+  "original_vs_portable_B200_FP32_max_abs_m": 0.0,
+  "clean_container_CPU_vs_B200_FP32_max_abs_m": 9.5367431640625e-06,
+  "CPU_tolerance_m": 0.001,
+  "input_tensors_bitwise_equal": true,
+  "all_module_imports_from_bundle": true,
+  "clean_container_image": "adcl-a2-full:20260919",
+  "image_id": "sha256:2fe421f31cd80e8de5bac03dfc681fd1728c1ed016f92df10a2f13c2aca7f3ec",
+  "GPU_latency_measured": false,
+  "local_GPU_issue": "NVML driver/library mismatch, NVML 580.178",
+  "official_upload_performed": false,
+  "revision": 2,
+  "revision1_difference_m": 0.004391670227050781,
+  "revision2_change": "disable cuDNN TF32 for FP32 reference; input tensor hashes added; BF16 submission path and training recipe unchanged"
+}

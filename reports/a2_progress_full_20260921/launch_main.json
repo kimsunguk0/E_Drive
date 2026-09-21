@@ -1,0 +1,21 @@
+{
+  "phase": "main",
+  "physical_gpu": 0,
+  "arm": "A2-H4-PROGRESS-FULL",
+  "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1",
+  "log": "/NHNHOME/data/sukim/adcl/reports/a2_progress_full_20260921/runtime/A2-H4-PROGRESS-FULL-s1.log",
+  "command": [
+    "/home/korea_sdv01/cv2env/bin/python",
+    "-u",
+    "/NHNHOME/data/sukim/adcl/experiments/a2_progress_full_20260921/train_full.py",
+    "--gpu",
+    "0",
+    "--run-dir",
+    "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1"
+  ],
+  "started_utc": "2026-09-20T23:44:51.809875+00:00",
+  "source_commit": "c5d41e50f6eb1d165c639edc682d548b0cf46f4b",
+  "updates": 24931,
+  "status": "spawned; verify actual updates",
+  "pid": 4181956
+}

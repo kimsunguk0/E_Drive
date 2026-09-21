@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "weights": "selected DEV only for deployment preparation",
+  "checkpoint_sha256": "18128b1af6624333a00baa493a0601459804e8dfb660bf4dd7dbf60f381f2958",
+  "raw_parity": true,
+  "flops": 730044861120,
+  "official_test_predictions_written": false,
+  "official_upload_performed": false
+}
