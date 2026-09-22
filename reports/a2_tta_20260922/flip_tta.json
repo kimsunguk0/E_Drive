@@ -1,0 +1,38 @@
+{
+ "PREFIX": {
+  "averaged": 0.14654554426670074,
+  "mirrored_only": 0.15083643794059753,
+  "upright": 0.15117885172367096
+ },
+ "averaged_minus_upright": {
+  "ci95": [
+   -0.006790834479033947,
+   -0.003436540486291051
+  ],
+  "ci_includes_zero": false,
+  "delta": -0.004633322823792696,
+  "sessions": 11,
+  "sessions_improved": 11
+ },
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_h4_20260920/A2-H4-PROGRESS-s1/ckpt_step20554.pth",
+ "cost_if_adopted": "two forwards per clip instead of one",
+ "documented_counterargument": "motiondrive_v2_flip_augment states flipping is training-only because the labels carry a real right-hand bias; averaging with a mirror can therefore bias toward symmetry rather than reduce variance",
+ "eval": "held-out V0, tune 37 scenes, stride 5, augment off",
+ "gt_roundtrip_max_abs_error_m": 0.0,
+ "mirrored_minus_upright": {
+  "ci95": [
+   -0.0043959422037005424,
+   0.0019546975381672382
+  ],
+  "ci_includes_zero": true,
+  "delta": -0.000342405925039202,
+  "sessions": 11,
+  "sessions_improved": 5
+ },
+ "rows": 1998,
+ "schema_version": 1,
+ "seconds": {
+  "mirrored": 45.654184103012085,
+  "upright": 41.88346600532532
+ }
+}

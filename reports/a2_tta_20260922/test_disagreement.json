@@ -1,0 +1,43 @@
+{
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1/ckpt_step24931.pth",
+ "clips": 300,
+ "flip_convention_check": {
+  "goal_xy": 0.0,
+  "history_images": 0.0,
+  "history_transforms": 0.0,
+  "images": 0.0,
+  "lidar2img": 0.0,
+  "motion_current": 0.0,
+  "motion_history": 0.0,
+  "provided_status5": 0.0
+ },
+ "reading": "if test disagreement matches V0, the variance TTA cancels is present at the same strength on the scored set; this is not a score and no gain is claimed from it",
+ "schema_version": 1,
+ "test_disagreement_m": {
+  "mean": 0.10030819475650787,
+  "p50": 0.055344775319099426,
+  "p95": 0.33587995171546936,
+  "per_waypoint_mean": [
+   0.026411784812808037,
+   0.04492257907986641,
+   0.06786548346281052,
+   0.10149576514959335,
+   0.14788439869880676,
+   0.21326905488967896
+  ]
+ },
+ "v0_disagreement_m": {
+  "mean": 0.08443144708871841,
+  "p50": 0.055968333035707474,
+  "p95": 0.2572244107723236,
+  "per_waypoint_mean": [
+   0.024050895124673843,
+   0.04003224894404411,
+   0.05758232623338699,
+   0.08270405232906342,
+   0.12315012514591217,
+   0.17906899750232697
+  ],
+  "what_it_is": "L2 between the upright prediction and the mirrored one mapped back; it is how much disagreement averaging has to cancel, and it is label-free"
+ }
+}

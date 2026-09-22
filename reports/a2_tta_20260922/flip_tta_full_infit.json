@@ -1,0 +1,53 @@
+{
+ "PREFIX": {
+  "averaged": 0.10144557803869247,
+  "mirrored_only": 0.10519114136695862,
+  "upright": 0.10660578310489655
+ },
+ "averaged_minus_upright": {
+  "ci95": [
+   -0.006283930502831936,
+   -0.004346396308392286
+  ],
+  "ci_includes_zero": false,
+  "delta": -0.0051602027378976345,
+  "sessions": 11,
+  "sessions_improved": 11
+ },
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1/ckpt_step24931.pth",
+ "checkpoint_is_full": true,
+ "cost_if_adopted": "two forwards per clip instead of one",
+ "documented_counterargument": "motiondrive_v2_flip_augment states flipping is training-only because the labels carry a real right-hand bias; averaging with a mirror can therefore bias toward symmetry rather than reduce variance",
+ "eval": "V0, tune 37 scenes, stride 5, augment off. IN-FIT: this FULL checkpoint trained on these very rows, so the PREFIX values are not generalization estimates and the TTA delta measured here need not match the server.",
+ "gt_roundtrip_max_abs_error_m": 0.0,
+ "mirrored_minus_upright": {
+  "ci95": [
+   -0.0034050852991640568,
+   8.34365637274459e-05
+  ],
+  "ci_includes_zero": true,
+  "delta": -0.0014146390603855252,
+  "sessions": 11,
+  "sessions_improved": 7
+ },
+ "rows": 1998,
+ "schema_version": 1,
+ "seconds": {
+  "mirrored": 44.27631878852844,
+  "upright": 42.333900928497314
+ },
+ "upright_vs_mirrored_disagreement_m": {
+  "mean": 0.08443144708871841,
+  "p50": 0.055968333035707474,
+  "p95": 0.2572244107723236,
+  "per_waypoint_mean": [
+   0.024050895124673843,
+   0.04003224894404411,
+   0.05758232623338699,
+   0.08270405232906342,
+   0.12315012514591217,
+   0.17906899750232697
+  ],
+  "what_it_is": "L2 between the upright prediction and the mirrored one mapped back; it is how much disagreement averaging has to cancel, and it is label-free"
+ }
+}
