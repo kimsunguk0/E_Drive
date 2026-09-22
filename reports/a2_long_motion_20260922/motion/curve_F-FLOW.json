@@ -4,5 +4,41 @@
     "PREFIX": 0.13882307988918713,
     "train_probe_PREFIX": 0.09647500639948703,
     "elapsed_seconds": 49.60946339927614
+  },
+  {
+    "step": 100,
+    "PREFIX": 0.14750523785002403,
+    "train_probe_PREFIX": 0.11132511065261497,
+    "elapsed_seconds": 185.89980366081
+  },
+  {
+    "step": 500,
+    "PREFIX": 0.15566702085888354,
+    "train_probe_PREFIX": 0.12140909839763481,
+    "elapsed_seconds": 553.5731096044183
+  },
+  {
+    "step": 5721,
+    "PREFIX": 0.14687847021852504,
+    "train_probe_PREFIX": 0.11433321342155978,
+    "elapsed_seconds": 4754.15596996434
+  },
+  {
+    "step": 11442,
+    "PREFIX": 0.14841166658742302,
+    "train_probe_PREFIX": 0.10363529436563113,
+    "elapsed_seconds": 9341.23465040885
+  },
+  {
+    "step": 17163,
+    "PREFIX": 0.13797049477996604,
+    "train_probe_PREFIX": 0.0948347316843865,
+    "elapsed_seconds": 13922.420356240124
+  },
+  {
+    "step": 22884,
+    "PREFIX": 0.13800062313668887,
+    "train_probe_PREFIX": 0.09053092745853064,
+    "elapsed_seconds": 18492.884260334074
   }
 ]

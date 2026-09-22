@@ -1,0 +1,93 @@
+[
+  {
+    "step": 0,
+    "PREFIX": 0.15117886232993416,
+    "train_probe_PREFIX": 0.12520068777848792,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 50.19037345983088
+  },
+  {
+    "step": 2861,
+    "PREFIX": 0.15003230905736442,
+    "train_probe_PREFIX": 0.12685284644612693,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 1591.5534414574504
+  },
+  {
+    "step": 5721,
+    "PREFIX": 0.15131231404149212,
+    "train_probe_PREFIX": 0.12444238581701939,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 3118.391197638586
+  },
+  {
+    "step": 8582,
+    "PREFIX": 0.15150941339754,
+    "train_probe_PREFIX": 0.1312166906609491,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 4637.157241960987
+  },
+  {
+    "step": 11442,
+    "PREFIX": 0.15474964476384417,
+    "train_probe_PREFIX": 0.12855495153235097,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 6157.2435948215425
+  },
+  {
+    "step": 14303,
+    "PREFIX": 0.15301384374352958,
+    "train_probe_PREFIX": 0.12546502672921633,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 7689.36218357645
+  },
+  {
+    "step": 17163,
+    "PREFIX": 0.1495831878813873,
+    "train_probe_PREFIX": 0.12421873483253876,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 9229.167545050383
+  },
+  {
+    "step": 20024,
+    "PREFIX": 0.14503085744815195,
+    "train_probe_PREFIX": 0.11094736842642305,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 10767.882003961131
+  },
+  {
+    "step": 22884,
+    "PREFIX": 0.15361992285695966,
+    "train_probe_PREFIX": 0.11754462149292522,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 12307.906057404354
+  },
+  {
+    "step": 25745,
+    "PREFIX": 0.14315382659237635,
+    "train_probe_PREFIX": 0.109157701879667,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 13845.048769958317
+  },
+  {
+    "step": 28605,
+    "PREFIX": 0.14209655928005976,
+    "train_probe_PREFIX": 0.10825235294123559,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 15384.620359709486
+  },
+  {
+    "step": 31466,
+    "PREFIX": 0.1434948117935096,
+    "train_probe_PREFIX": 0.10679583428645856,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 16927.010682104155
+  },
+  {
+    "step": 34326,
+    "PREFIX": 0.14276439945858618,
+    "train_probe_PREFIX": 0.10658249532025366,
+    "evaluation_is_in_fit": false,
+    "elapsed_seconds": 18462.67808430828
+  }
+]
