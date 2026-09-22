@@ -7,7 +7,7 @@ import time
 import traceback
 from command_common import *
 
-PYTHON='/home/korea_sdv01/cv2env/bin/python'
+PYTHON='/home/<B200-USER>/cv2env/bin/python'
 
 def call(args,cwd=ROOT):
     return subprocess.check_output(args,cwd=cwd,text=True,stderr=subprocess.STDOUT)
@@ -30,7 +30,7 @@ def publish():
         return {'already_published':True}
     print(call(['git','commit','-m','Record terminal A2 semantic command comparison']),flush=True)
     work=call(['git','rev-parse','HEAD']).strip()
-    mirror=Path('/home/korea_sdv01/edrive_mirror')
+    mirror=Path('/home/<B200-USER>/edrive_mirror')
     assert call(['git','branch','--show-current'],mirror).strip()=='motiondrive-v2-20260910'
     if call(['git','status','--porcelain'],mirror).strip():
         raise RuntimeError('Mirror is not clean; no reset or automatic conflict resolution')

@@ -114,7 +114,7 @@ def publish():
         command(['git','add','--',*files]);command(['git','diff','--cached','--check'])
         command(['git','commit','-m','Record matched H4-status progress-heading training results'])
         work=command(['git','rev-parse','HEAD']).strip();receipt['work_commit']=work
-        mirror=Path('/home/korea_sdv01/edrive_mirror')
+        mirror=Path('/home/<B200-USER>/edrive_mirror')
         if command(['git','status','--porcelain'],mirror).strip():raise RuntimeError('Concurrent mirror changes; defer publication')
         assert command(['git','branch','--show-current'],mirror).strip()=='motiondrive-v2-20260910'
         command(['git','fetch','github','motiondrive-v2-20260910'],mirror);command(['git','merge','--ff-only','FETCH_HEAD'],mirror)

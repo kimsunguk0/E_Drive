@@ -14,7 +14,7 @@
       "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-SIDE-SCENE-NOM-s1",
       "log": "/NHNHOME/data/sukim/adcl/reports/md_a2_scene_extensions_20260918/runtime/A2-SIDE-SCENE-NOM-s1.log",
       "command": [
-        "/home/korea_sdv01/cv2env/bin/python",
+        "/home/<B200-USER>/cv2env/bin/python",
         "-u",
         "/NHNHOME/data/sukim/adcl/experiments/md_a2_scene_extensions_20260918/train_scene_extension.py",
         "--arm",
@@ -34,7 +34,7 @@
       "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/md_a2_scene_extensions_20260918/A2-QREFINE-NOM-s1",
       "log": "/NHNHOME/data/sukim/adcl/reports/md_a2_scene_extensions_20260918/runtime/A2-QREFINE-NOM-s1.log",
       "command": [
-        "/home/korea_sdv01/cv2env/bin/python",
+        "/home/<B200-USER>/cv2env/bin/python",
         "-u",
         "/NHNHOME/data/sukim/adcl/experiments/md_a2_scene_extensions_20260918/train_scene_extension.py",
         "--arm",

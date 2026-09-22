@@ -39,7 +39,7 @@ def main():
     opts=['-o','BatchMode=yes','-o','ConnectTimeout=10','-o','StrictHostKeyChecking=accept-new']
     target=['ssh',*opts,'chi@192.168.10.102'];scp=['scp','-q',*opts]
     bopts=['-i',a.b200_key,'-o','BatchMode=yes','-o','ConnectTimeout=10','-o','StrictHostKeyChecking=no','-o','UserKnownHostsFile=/dev/null']
-    bssh=['ssh',*bopts,'-p','42101','korea_sdv01@59.150.32.1']
+    bssh=['ssh',*bopts,'-p','42101','<B200-USER>@<B200-IP>']
     bscp=['scp','-q',*bopts,'-P','42101']
     def target_cmd(argv,timeout=600):return subprocess.check_output([*target,shlex.join(map(str,argv))],text=True,stderr=subprocess.STDOUT,timeout=timeout)
     deadline=time.monotonic()+8*3600
@@ -81,7 +81,7 @@ def main():
         result.update(host='chi@192.168.10.102',docker_image='md-v2:4090',docker_image_id=image_id,completed_utc=now(),remote_artifacts=stage)
         atomic(a.delivery/'RTX4090_FULL_validation.json',result)
         with (a.delivery/'README_KO.md').open('a') as f:f.write('\n추가 완료: 동일 FULL terminal의 RTX4090 전체 B1 BF16 forward '+str(round(result['largest_clip_median_ms'],3))+'ms (두 train fixture 중 큰 median). 전처리 제외. 상세: RTX4090_FULL_validation.json. 공식 업로드 아님.\n')
-        destination='korea_sdv01@59.150.32.1:'+B200_REPORT+'/RTX4090_FULL_validation.json'
+        destination='<B200-USER>@<B200-IP>:'+B200_REPORT+'/RTX4090_FULL_validation.json'
         subprocess.run([*bscp,str(a.delivery/'RTX4090_FULL_validation.json'),destination+'.tmp'],check=True,timeout=60)
         code='from pathlib import Path; p=Path('+repr(B200_REPORT)+'); (p/"RTX4090_FULL_validation.json.tmp").replace(p/"RTX4090_FULL_validation.json")'
         subprocess.run([*bssh,'python3 -c '+shlex.quote(code)],check=True,timeout=60)

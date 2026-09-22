@@ -137,7 +137,7 @@ def publish():
         command(['git','add','--',*files]);command(['git','diff','--cached','--check'])
         command(['git','commit','-m','Record matched FRESH temporal-memory read results'])
         work=command(['git','rev-parse','HEAD']).strip();receipt['work_commit']=work
-        mirror=Path('/home/korea_sdv01/edrive_mirror')
+        mirror=Path('/home/<B200-USER>/edrive_mirror')
         if command(['git','status','--porcelain'],mirror).strip():
             raise RuntimeError('Concurrent mirror changes; result publication deferred')
         assert command(['git','branch','--show-current'],mirror).strip()=='motiondrive-v2-20260910'

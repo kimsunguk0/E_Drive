@@ -9,7 +9,7 @@ import subprocess
 ROOT=Path('/NHNHOME/data/sukim/adcl')
 REPORT=ROOT/'reports/a2_motion_fresh_20260919'
 RUNS=ROOT/'work_dirs/a2_motion_fresh_20260919'
-PYTHON='/home/korea_sdv01/cv2env/bin/python'
+PYTHON='/home/<B200-USER>/cv2env/bin/python'
 ARMS=((0,'A2-C2F-MOTION'),(1,'A2-FRESH-NUIM'))
 
 

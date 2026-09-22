@@ -106,7 +106,7 @@ def publish():
     command(['git','add','--',*files]);command(['git','diff','--cached','--check'])
     command(['git','commit','-m','Record fixed-budget FRESH continuation results and group tradeoffs'])
     work=command(['git','rev-parse','HEAD']).strip()
-    mirror=Path('/home/korea_sdv01/edrive_mirror')
+    mirror=Path('/home/<B200-USER>/edrive_mirror')
     if command(['git','status','--porcelain'],mirror).strip():raise RuntimeError('Concurrent mirror changes')
     assert command(['git','branch','--show-current'],mirror).strip()=='motiondrive-v2-20260910'
     command(['git','fetch','github','motiondrive-v2-20260910'],mirror)

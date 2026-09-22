@@ -15,7 +15,7 @@ def main():
     with (REPORT/'PACKAGE_KO.md').open('a') as f:f.write(note)
     paths=[str((REPORT/n).relative_to(ROOT)) for n in ('RTX4090_FULL_validation.json','completion.json','PACKAGE_KO.md')]
     command(['git','add','--',*paths]);command(['git','diff','--cached','--check']);command(['git','commit','-m','Verify exact FULL terminal on RTX4090 and record complete forward latency'])
-    work=command(['git','rev-parse','HEAD']).strip();mirror=Path('/home/korea_sdv01/edrive_mirror')
+    work=command(['git','rev-parse','HEAD']).strip();mirror=Path('/home/<B200-USER>/edrive_mirror')
     assert not command(['git','status','--porcelain'],mirror).strip()
     assert command(['git','branch','--show-current'],mirror).strip()=='motiondrive-v2-20260910'
     command(['git','fetch','github','motiondrive-v2-20260910'],mirror);command(['git','merge','--ff-only','FETCH_HEAD'],mirror)

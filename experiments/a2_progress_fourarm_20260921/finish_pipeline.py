@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[2];HERE=Path(__file__).resolve().parent
 DEV=ROOT/'reports/a2_progress_fourarm_20260921'
 OUT=ROOT/'reports/a2_progress_fourarm_full_20260921'
 RUNS=ROOT/'work_dirs/a2_progress_fourarm_full_20260921'
-PY='/home/korea_sdv01/cv2env/bin/python'
+PY='/home/<B200-USER>/cv2env/bin/python'
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def atomic(path,value):
     path.parent.mkdir(parents=True,exist_ok=True);tmp=path.with_suffix(path.suffix+'.tmp')
@@ -42,7 +42,7 @@ def publish(message):
         command(['git','-c','core.whitespace=-blank-at-eol,-blank-at-eof','diff','--cached','--check'])
         if command(['git','diff','--cached','--name-only']).strip():command(['git','commit','-m',message])
         work=command(['git','rev-parse','HEAD']).strip();receipt['work_commit']=work
-        mirror=Path('/home/korea_sdv01/edrive_mirror')
+        mirror=Path('/home/<B200-USER>/edrive_mirror')
         if command(['git','status','--porcelain'],mirror).strip():raise RuntimeError('Concurrent mirror changes')
         assert command(['git','branch','--show-current'],mirror).strip()=='motiondrive-v2-20260910'
         command(['git','fetch','github','motiondrive-v2-20260910'],mirror)

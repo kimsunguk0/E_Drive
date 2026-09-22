@@ -11,7 +11,7 @@ import time
 import traceback
 from common import *
 
-PYTHON='/home/korea_sdv01/cv2env/bin/python'
+PYTHON='/home/<B200-USER>/cv2env/bin/python'
 
 def command(args,cwd=ROOT):
     return subprocess.check_output(args,cwd=cwd,text=True,stderr=subprocess.STDOUT)
@@ -30,7 +30,7 @@ def publish(phase):
     if not command(['git','diff','--cached','--name-only']).strip():return {'already_published':True}
     print(command(['git','commit','-m',f'Record A2 {phase} terminal comparison and fixed probes']),flush=True)
     work=command(['git','rev-parse','HEAD']).strip()
-    mirror=Path('/home/korea_sdv01/edrive_mirror')
+    mirror=Path('/home/<B200-USER>/edrive_mirror')
     assert command(['git','branch','--show-current'],mirror).strip()=='motiondrive-v2-20260910'
     if command(['git','status','--porcelain'],mirror).strip():raise RuntimeError('Mirror is not clean; publishing stopped')
     print(command(['git','fetch',str(ROOT),work],mirror),flush=True)

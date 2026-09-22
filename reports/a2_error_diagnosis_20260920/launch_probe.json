@@ -4,7 +4,7 @@
     "pid": 3949452,
     "gpu": 0,
     "argv": [
-      "/home/korea_sdv01/cv2env/bin/python",
+      "/home/<B200-USER>/cv2env/bin/python",
       "-u",
       "experiments/a2_error_diagnosis_20260920/frozen_probe.py",
       "--arm",
@@ -18,7 +18,7 @@
     "pid": 3949453,
     "gpu": 1,
     "argv": [
-      "/home/korea_sdv01/cv2env/bin/python",
+      "/home/<B200-USER>/cv2env/bin/python",
       "-u",
       "experiments/a2_error_diagnosis_20260920/frozen_probe.py",
       "--arm",

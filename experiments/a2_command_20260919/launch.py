@@ -5,7 +5,7 @@ import os
 import subprocess
 from command_common import *
 
-PYTHON='/home/korea_sdv01/cv2env/bin/python'
+PYTHON='/home/<B200-USER>/cv2env/bin/python'
 
 def main():
     assert json.loads((REPORT/'tests_summary.json').read_text())['status']=='passed'

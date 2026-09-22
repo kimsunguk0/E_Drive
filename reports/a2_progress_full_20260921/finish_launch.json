@@ -1,7 +1,7 @@
 {
   "pid": 4187375,
   "command": [
-    "/home/korea_sdv01/cv2env/bin/python",
+    "/home/<B200-USER>/cv2env/bin/python",
     "-u",
     "/NHNHOME/data/sukim/adcl/experiments/a2_progress_full_20260921/finish.py",
     "--gpu",

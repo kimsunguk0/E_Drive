@@ -5,7 +5,7 @@
   "started_at_utc": "2026-09-18T22:53:07.788425+00:00",
   "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_command_20260919/A2-COMMAND-NOM-s1",
   "argv": [
-    "/home/korea_sdv01/cv2env/bin/python",
+    "/home/<B200-USER>/cv2env/bin/python",
     "/NHNHOME/data/sukim/adcl/experiments/a2_command_20260919/train_command.py",
     "--gpu",
     "0",

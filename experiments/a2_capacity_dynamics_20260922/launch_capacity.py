@@ -4,7 +4,7 @@ import argparse,datetime,hashlib,json,os,subprocess,traceback
 
 ROOT=Path(__file__).resolve().parents[2];HERE=Path(__file__).resolve().parent
 REPORT=ROOT/'reports/a2_capacity_dynamics_20260922';RUNS=ROOT/'work_dirs/a2_capacity_dynamics_20260922'
-PY='/home/korea_sdv01/cv2env/bin/python'
+PY='/home/<B200-USER>/cv2env/bin/python'
 ARMS=('C-CTRL','C-R101','C-DECSPLIT','C-AGENT')
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def atomic(path,obj):

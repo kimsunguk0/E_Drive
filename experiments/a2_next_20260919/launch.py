@@ -19,7 +19,7 @@ def main():
         run=RUNS/f'{arm}-s1'
         assert not run.exists()
         logfile=REPORT/'runtime'/f'{arm}-s1.log'
-        args=['/home/korea_sdv01/cv2env/bin/python','-u',str(HERE/'train_next.py'),
+        args=['/home/<B200-USER>/cv2env/bin/python','-u',str(HERE/'train_next.py'),
               '--arm',arm,'--gpu',str(gpu),'--run-dir',str(run)]
         env=dict(os.environ,CUDA_VISIBLE_DEVICES=str(gpu),OMP_NUM_THREADS='4',MKL_NUM_THREADS='4')
         with logfile.open('xb') as stream:

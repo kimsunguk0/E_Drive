@@ -7,9 +7,9 @@
 - `analyze.py`: 저장된 예측, FRESH의 6개 평가 시점, 위 probe를 분석한다. GT는 metric/진단 그룹/기하 구성요소 교체에만 사용한다.
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 /home/korea_sdv01/cv2env/bin/python experiments/a2_error_diagnosis_20260920/frozen_probe.py --arm QREFINE --gpu 0
-CUDA_VISIBLE_DEVICES=1 /home/korea_sdv01/cv2env/bin/python experiments/a2_error_diagnosis_20260920/frozen_probe.py --arm FRESH --gpu 1
-/home/korea_sdv01/cv2env/bin/python experiments/a2_error_diagnosis_20260920/analyze.py
+CUDA_VISIBLE_DEVICES=0 /home/<B200-USER>/cv2env/bin/python experiments/a2_error_diagnosis_20260920/frozen_probe.py --arm QREFINE --gpu 0
+CUDA_VISIBLE_DEVICES=1 /home/<B200-USER>/cv2env/bin/python experiments/a2_error_diagnosis_20260920/frozen_probe.py --arm FRESH --gpu 1
+/home/<B200-USER>/cv2env/bin/python experiments/a2_error_diagnosis_20260920/analyze.py
 ```
 
 같은 산출물이 있으면 중단한다. 위 두 GPU 평가는 독립적으로 병행할 수 있고, 분석은 둘 다 완료한 뒤 실행한다. 재현 시 기존 결과를 덮어쓰지 않고 별도 출력 디렉터리를 정한다.

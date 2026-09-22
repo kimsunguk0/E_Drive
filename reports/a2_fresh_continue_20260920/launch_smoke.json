@@ -4,7 +4,7 @@
   "run_dir": "/NHNHOME/data/sukim/adcl/work_dirs/a2_fresh_continue_20260920/A2-FRESH-CONT-s1-smoke",
   "log": "/NHNHOME/data/sukim/adcl/reports/a2_fresh_continue_20260920/runtime/A2-FRESH-CONT-s1-smoke.log",
   "command": [
-    "/home/korea_sdv01/cv2env/bin/python",
+    "/home/<B200-USER>/cv2env/bin/python",
     "-u",
     "/NHNHOME/data/sukim/adcl/experiments/a2_fresh_continue_20260920/train_continue.py",
     "--gpu",

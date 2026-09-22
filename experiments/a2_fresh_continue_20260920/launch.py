@@ -9,7 +9,7 @@ import subprocess
 ROOT=Path('/NHNHOME/data/sukim/adcl')
 REPORT=ROOT/'reports/a2_fresh_continue_20260920'
 RUNS=ROOT/'work_dirs/a2_fresh_continue_20260920'
-PYTHON='/home/korea_sdv01/cv2env/bin/python'
+PYTHON='/home/<B200-USER>/cv2env/bin/python'
 
 
 def main():

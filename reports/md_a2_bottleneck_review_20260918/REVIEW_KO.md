@@ -162,10 +162,10 @@ A2 FULL의 raw-input 배포 정합성 및 제출 패키징은 별도로 진행�
 원래 실행 명령은 repo root에서 해당 GPU를 명시했다:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 /home/korea_sdv01/cv2env/bin/python experiments/md_a2_bottleneck_review_20260918/diagnose_inference.py --kind precision --gpu 0
-CUDA_VISIBLE_DEVICES=1 /home/korea_sdv01/cv2env/bin/python experiments/md_a2_bottleneck_review_20260918/diagnose_inference.py --kind side --gpu 1
-CUDA_VISIBLE_DEVICES=2 /home/korea_sdv01/cv2env/bin/python experiments/md_a2_bottleneck_review_20260918/diagnose_inference.py --kind fp32 --gpu 2
-CUDA_VISIBLE_DEVICES=3 /home/korea_sdv01/cv2env/bin/python experiments/md_a2_bottleneck_review_20260918/inspect_training_pressure.py
+CUDA_VISIBLE_DEVICES=0 /home/<B200-USER>/cv2env/bin/python experiments/md_a2_bottleneck_review_20260918/diagnose_inference.py --kind precision --gpu 0
+CUDA_VISIBLE_DEVICES=1 /home/<B200-USER>/cv2env/bin/python experiments/md_a2_bottleneck_review_20260918/diagnose_inference.py --kind side --gpu 1
+CUDA_VISIBLE_DEVICES=2 /home/<B200-USER>/cv2env/bin/python experiments/md_a2_bottleneck_review_20260918/diagnose_inference.py --kind fp32 --gpu 2
+CUDA_VISIBLE_DEVICES=3 /home/<B200-USER>/cv2env/bin/python experiments/md_a2_bottleneck_review_20260918/inspect_training_pressure.py
 ```
 
 기존 근거:

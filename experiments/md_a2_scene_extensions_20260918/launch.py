@@ -7,7 +7,7 @@ import subprocess
 
 ROOT = Path('/NHNHOME/data/sukim/adcl')
 REPORT = ROOT / 'reports/md_a2_scene_extensions_20260918'
-PYTHON = '/home/korea_sdv01/cv2env/bin/python'
+PYTHON = '/home/<B200-USER>/cv2env/bin/python'
 ARMS = [(1, 'A2-SIDE-SCENE-NOM'), (2, 'A2-QREFINE-NOM')]
 
 

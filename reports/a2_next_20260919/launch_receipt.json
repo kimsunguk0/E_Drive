@@ -6,7 +6,7 @@
       "gpu": 0,
       "pid": 3446575,
       "command": [
-        "/home/korea_sdv01/cv2env/bin/python",
+        "/home/<B200-USER>/cv2env/bin/python",
         "-u",
         "/NHNHOME/data/sukim/adcl/experiments/a2_next_20260919/train_next.py",
         "--arm",
@@ -25,7 +25,7 @@
       "gpu": 1,
       "pid": 3446579,
       "command": [
-        "/home/korea_sdv01/cv2env/bin/python",
+        "/home/<B200-USER>/cv2env/bin/python",
         "-u",
         "/NHNHOME/data/sukim/adcl/experiments/a2_next_20260919/train_next.py",
         "--arm",
@@ -44,7 +44,7 @@
       "gpu": 2,
       "pid": 3446582,
       "command": [
-        "/home/korea_sdv01/cv2env/bin/python",
+        "/home/<B200-USER>/cv2env/bin/python",
         "-u",
         "/NHNHOME/data/sukim/adcl/experiments/a2_next_20260919/train_next.py",
         "--arm",

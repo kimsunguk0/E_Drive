@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,datetime,json,os,subprocess
 ROOT=Path('/NHNHOME/data/sukim/adcl');REPORT=ROOT/'reports/a2_progress_full_20260921'
 RUNS=ROOT/'work_dirs/a2_progress_full_20260921';ARM='A2-H4-PROGRESS-FULL'
-PYTHON='/home/korea_sdv01/cv2env/bin/python'
+PYTHON='/home/<B200-USER>/cv2env/bin/python'
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--gpu',type=int,choices=range(4),default=0)
     ap.add_argument('--smoke',action='store_true');args=ap.parse_args()

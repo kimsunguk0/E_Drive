@@ -1,7 +1,7 @@
 {
   "pid": 3449241,
   "command": [
-    "/home/korea_sdv01/cv2env/bin/python",
+    "/home/<B200-USER>/cv2env/bin/python",
     "-u",
     "/NHNHOME/data/sukim/adcl/experiments/a2_next_20260919/watch_results.py"
   ],

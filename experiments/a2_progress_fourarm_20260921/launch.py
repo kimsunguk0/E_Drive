@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,json,os,subprocess,time,datetime,traceback
 ROOT=Path(__file__).resolve().parents[2];HERE=Path(__file__).resolve().parent
 REPORT=ROOT/'reports/a2_progress_fourarm_20260921';RUNS=ROOT/'work_dirs/a2_progress_fourarm_20260921'
-PY='/home/korea_sdv01/cv2env/bin/python'
+PY='/home/<B200-USER>/cv2env/bin/python'
 ARMS=('P-CTRL','P-VECTOR','P-FINE','P-SHARED768')
 def atomic(path,value):
     tmp=path.with_suffix(path.suffix+'.tmp');tmp.write_text(json.dumps(value,indent=2)+'\n');tmp.replace(path)

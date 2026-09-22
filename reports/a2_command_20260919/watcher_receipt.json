@@ -2,7 +2,7 @@
   "pid": 3522828,
   "started_at_utc": "2026-09-18T22:53:39.981613+00:00",
   "argv": [
-    "/home/korea_sdv01/cv2env/bin/python",
+    "/home/<B200-USER>/cv2env/bin/python",
     "experiments/a2_command_20260919/watch_results.py"
   ],
   "physical_gpu_for_posttrain_only": 3

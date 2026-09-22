@@ -4,7 +4,7 @@ import datetime,hashlib,json,os,subprocess,time,traceback
 
 ROOT=Path(__file__).resolve().parents[2];HERE=Path(__file__).resolve().parent
 REPORT=ROOT/'reports/a2_splitread_lanegeom_20260921';RUNS=ROOT/'work_dirs/a2_splitread_lanegeom_20260921'
-PY='/home/korea_sdv01/cv2env/bin/python'
+PY='/home/<B200-USER>/cv2env/bin/python'
 ARMS=('P-CTRL-NEXT','P-SPLITREAD','P-LANE-GEOM')
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def atomic(path,value):
