@@ -40,7 +40,18 @@ def prepare_clip(clip):
 def load_model(checkpoint,require_full=False,device=None):
     payload=torch.load(checkpoint,map_location='cpu',weights_only=False)
     protocol=payload['manifest']['experimental_protocol']
-    assert protocol['arm'] in ('A2-H4-PROGRESS','A2-H4-PROGRESS-FULL')
+    # Continuations of the H4-PROGRESS graph keep the same deployed architecture:
+    # they differ in weights, data and schedule only. The flow arms train an extra
+    # readout head, but it is never written to the checkpoint -- asserted below --
+    # so the loaded graph is identical for all of them.
+    assert protocol['arm'] in ('A2-H4-PROGRESS','A2-H4-PROGRESS-FULL','L-FULL6',
+                               'L-TRAIN3106','F-CTRL','F-FLOW','F-LENW',
+                               # the flow arms inherit the parent protocol
+                               # verbatim, so their checkpoints report the
+                               # parent's arm name rather than their own
+                               'P-NEARFULL-H'), protocol['arm']
+    assert not any('flow_readout' in k for k in payload['model']), (
+        'a training-only flow head reached the checkpoint')
     if require_full:
         assert protocol['arm']=='A2-H4-PROGRESS-FULL' and payload['step']==24931 and not protocol['smoke']
     assert protocol['nominal_input']['producer_sha256']==sha(h4_status.__file__)

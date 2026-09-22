@@ -1,0 +1,15 @@
+{
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_progress_full_20260921/A2-H4-PROGRESS-FULL-s1/ckpt_step24931.pth",
+ "counter": "torch.utils.flop_counter.FlopCounterMode, Global sum",
+ "cutoff_gflops": 7053.0,
+ "gflops": {
+  "single": 730.04486112,
+  "tta": 1460.08972224
+ },
+ "schema_version": 1,
+ "single_forward_flops": 730044861120,
+ "tta_headroom_x": 4.83052506470604,
+ "tta_passes_cutoff": true,
+ "tta_two_forward_flops": 1460089722240,
+ "what_is_submitted": "the TTA figure, because the scored inference runs both forwards; reporting the single-forward count for a two-forward model would understate it"
+}
