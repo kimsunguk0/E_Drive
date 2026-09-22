@@ -1,0 +1,190 @@
+{
+  "status": "passed",
+  "lambda_": 0.18009180846610684,
+  "lambda_value": 0.18009180846610684,
+  "rule": "0.1 / median raw visual-to-PREFIX+LEN gradient norm ratio on shared motion projections/fuse; clamp [.01,1]",
+  "target_motion_gradient_ratio": 0.1,
+  "raw_motion_gradient_ratio": 0.5552723405452389,
+  "achieved_initial_motion_ratio": 0.1,
+  "batches": [
+    {
+      "batch": 0,
+      "rows": [
+        100273,
+        71006,
+        15429,
+        91418,
+        94360,
+        11876,
+        10445,
+        32981,
+        45360,
+        43640,
+        79010,
+        62047,
+        66237,
+        30826,
+        29434,
+        90558
+      ],
+      "loss": {
+        "main": 0.15814974159002304,
+        "flow": 0.6693069636821747
+      },
+      "gradients": {
+        "motion": {
+          "main": 1.8562479237926859,
+          "visual": 1.1077819305910115
+        },
+        "backbone_fpn": {
+          "main": 9.543342215621228,
+          "visual": 0.8989862527546574
+        }
+      },
+      "valid_fraction": 0.20668162405490875,
+      "valid_count": 17143,
+      "pair_counts": [
+        10,
+        6
+      ]
+    },
+    {
+      "batch": 1,
+      "rows": [
+        83986,
+        61449,
+        96714,
+        64490,
+        73287,
+        75482,
+        31663,
+        65585,
+        46238,
+        92740,
+        54149,
+        33176,
+        12247,
+        28612,
+        80774,
+        24884
+      ],
+      "loss": {
+        "main": 0.12875358760356903,
+        "flow": 0.8296515643596649
+      },
+      "gradients": {
+        "motion": {
+          "main": 1.153722874342013,
+          "visual": 1.0578789867998886
+        },
+        "backbone_fpn": {
+          "main": 7.225470899935212,
+          "visual": 0.7161638350312926
+        }
+      },
+      "valid_fraction": 0.2085021287202835,
+      "valid_count": 17294,
+      "pair_counts": [
+        10,
+        6
+      ]
+    },
+    {
+      "batch": 2,
+      "rows": [
+        74579,
+        28740,
+        52404,
+        64617,
+        68822,
+        68331,
+        79238,
+        101646,
+        89735,
+        8493,
+        103874,
+        58499,
+        11182,
+        105857,
+        59511,
+        58594
+      ],
+      "loss": {
+        "main": 0.15337400138378143,
+        "flow": 0.47155240178108215
+      },
+      "gradients": {
+        "motion": {
+          "main": 1.7705287971392947,
+          "visual": 0.7349392467442013
+        },
+        "backbone_fpn": {
+          "main": 8.411866865418165,
+          "visual": 0.616113857010365
+        }
+      },
+      "valid_fraction": 0.24346546828746796,
+      "valid_count": 20194,
+      "pair_counts": [
+        8,
+        8
+      ]
+    },
+    {
+      "batch": 3,
+      "rows": [
+        19261,
+        30983,
+        84257,
+        96591,
+        15578,
+        22567,
+        23808,
+        74670,
+        64195,
+        68469,
+        52768,
+        43756,
+        88353,
+        81538,
+        10334,
+        69344
+      ],
+      "loss": {
+        "main": 0.13379015773534775,
+        "flow": 0.5735904574394226
+      },
+      "gradients": {
+        "motion": {
+          "main": 1.907141287478042,
+          "visual": 0.9798112584743485
+        },
+        "backbone_fpn": {
+          "main": 11.460181310533834,
+          "visual": 0.8164644646036512
+        }
+      },
+      "valid_fraction": 0.20875529944896698,
+      "valid_count": 17315,
+      "pair_counts": [
+        8,
+        8
+      ]
+    }
+  ],
+  "tests": {
+    "coordinate_ramp": true,
+    "full_micro_loss_difference": 0.0,
+    "full_micro_gradient_difference": 0.0,
+    "all_invalid_nan_safe": true
+  },
+  "model_unchanged": true,
+  "teacher_unchanged": true,
+  "optimizer_updates": 0,
+  "source": {
+    "experiments/a2_long_motion_20260922/flow_common.py": "88901de6d6dfab1fe2581af5f0f6fbf7400ef1c92695e2058afecdfb729f2c61",
+    "experiments/a2_long_motion_20260922/flow_teacher.py": "9dc69ef4c4d4d29ca87a69e7ebbd6c7746f489911bf51bcd67d3ca488a81f26c",
+    "experiments/a2_long_motion_20260922/calibrate_flow.py": "63d1073c8083096806dca8d2fe5472ae5842a86c953a5de55a2a73c732ea7c02"
+  },
+  "lambda": 0.18009180846610684
+}

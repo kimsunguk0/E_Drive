@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "teacher_and_head_absent": true,
+  "strict_student_reload": true,
+  "differences": {
+    "plan_abs": 0.0,
+    "scene_features": 0.0,
+    "motion_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  }
+}

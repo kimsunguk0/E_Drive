@@ -1,0 +1,3553 @@
+{
+  "status": "passed",
+  "arm": "F-FLOW",
+  "steps": 100,
+  "teacher_unchanged": true,
+  "BN_buffers_unchanged": true,
+  "input_boundary": {
+    "motion_features": 0.0,
+    "motion_pair_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "seconds_per_update_median": 0.7995774690061808,
+  "estimated_training_hours": 5.082647444649289,
+  "sample_order_sha256": "8b8d7fd1064979bf3e3e885747c8c6b8898f42c114058063a8f17a1357fbe5a4",
+  "sampled_input_sha256": "d8015f74045451e982812058f124bf7713a4563c1e66ebcbde48e2dd77ee5b8e",
+  "elapsed_seconds": 91.78801229223609,
+  "updates": [
+    {
+      "losses": {
+        "total": -0.8421338200569153,
+        "plan_d3": 0.13694657012820244,
+        "occ_bce": 0.27643827348947525,
+        "lane_bce": 0.509526714682579,
+        "history": -2.974360227584839,
+        "state": -2.7070424556732178,
+        "stop_bce": 0.00017818808555603027,
+        "motion": -5.681366920471191,
+        "plan_interval_length": 0.08481268025934696,
+        "flow_raw": 0.6693069636821747,
+        "flow_weighted": 0.0002410734086879529,
+        "optimized_total": -0.8206895589828491
+      },
+      "gradient_norm": 38.93001174926758,
+      "motion_fuse_gradient_norm": 1.8845725521087369,
+      "flow_readout_gradient_norm": 0.0002577457179849799,
+      "motion_fuse_update_norm": 5.777553029149916e-05,
+      "teacher_seconds": 1.1612871512770653,
+      "flow_coefficient": 0.0003601836169322137,
+      "lr": {
+        "backbone": 1e-08,
+        "head": 1.0000000000000001e-07,
+        "flow_readout": 1.0000000000000002e-06
+      },
+      "valid_fraction": 0.20668162405490875,
+      "valid_count": 17143,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 1,
+      "seconds": 4.973043471574783
+    },
+    {
+      "losses": {
+        "total": -0.8760731816291809,
+        "plan_d3": 0.11573788151144981,
+        "occ_bce": 0.26337045431137085,
+        "lane_bce": 0.5139968395233154,
+        "history": -2.9704878330230713,
+        "state": -2.7659753561019897,
+        "stop_bce": 0.00020483136177062988,
+        "motion": -5.736422300338745,
+        "plan_interval_length": 0.05044183135032654,
+        "flow_raw": 0.8296521902084351,
+        "flow_weighted": 0.000597654259763658,
+        "optimized_total": -0.8628650605678558
+      },
+      "gradient_norm": 18.888099670410156,
+      "motion_fuse_gradient_norm": 1.3925195628469627,
+      "flow_readout_gradient_norm": 0.0005080121437318711,
+      "motion_fuse_update_norm": 7.942712448076228e-05,
+      "teacher_seconds": 0.26149449683725834,
+      "flow_coefficient": 0.0007203672338644274,
+      "lr": {
+        "backbone": 2e-08,
+        "head": 2.0000000000000002e-07,
+        "flow_readout": 2.0000000000000003e-06
+      },
+      "valid_fraction": 0.2085021287202835,
+      "valid_count": 17294,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 2,
+      "seconds": 0.8461570497602224
+    },
+    {
+      "losses": {
+        "total": -0.8641961514949799,
+        "plan_d3": 0.13532772660255432,
+        "occ_bce": 0.27800603210926056,
+        "lane_bce": 0.48751428723335266,
+        "history": -2.9667266607284546,
+        "state": -2.805993676185608,
+        "stop_bce": 0.04790442204102874,
+        "motion": -5.763139486312866,
+        "plan_interval_length": 0.0697167906910181,
+        "flow_raw": 0.4715190529823303,
+        "flow_weighted": 0.0005095002998132259,
+        "optimized_total": -0.8462574481964111
+      },
+      "gradient_norm": 36.21961212158203,
+      "motion_fuse_gradient_norm": 2.108376919006578,
+      "flow_readout_gradient_norm": 0.0005294352502527522,
+      "motion_fuse_update_norm": 8.968563519005498e-05,
+      "teacher_seconds": 0.2644214127212763,
+      "flow_coefficient": 0.001080550850796641,
+      "lr": {
+        "backbone": 3e-08,
+        "head": 3.0000000000000004e-07,
+        "flow_readout": 3e-06
+      },
+      "valid_fraction": 0.24346546828746796,
+      "valid_count": 20194,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 3,
+      "seconds": 0.8041297681629658
+    },
+    {
+      "losses": {
+        "total": -0.8657125532627106,
+        "plan_d3": 0.12901940569281578,
+        "occ_bce": 0.28083815425634384,
+        "lane_bce": 0.4676981568336487,
+        "history": -2.9742671251296997,
+        "state": -2.7490017414093018,
+        "stop_bce": 0.005362808704376221,
+        "motion": -5.722196102142334,
+        "plan_interval_length": 0.0514404121786356,
+        "flow_raw": 0.5734466910362244,
+        "flow_weighted": 0.0008261844050139189,
+        "optimized_total": -0.8520262837409973
+      },
+      "gradient_norm": 59.383399963378906,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2689943388104439,
+      "flow_coefficient": 0.0014407344677288547,
+      "lr": {
+        "backbone": 4e-08,
+        "head": 4.0000000000000003e-07,
+        "flow_readout": 4.000000000000001e-06
+      },
+      "valid_fraction": 0.20875529944896698,
+      "valid_count": 17315,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 4,
+      "seconds": 0.9946987684816122
+    },
+    {
+      "losses": {
+        "total": -0.9055436253547668,
+        "plan_d3": 0.09730250760912895,
+        "occ_bce": 0.23854568600654602,
+        "lane_bce": 0.5015974640846252,
+        "history": -2.9694329500198364,
+        "state": -2.788437843322754,
+        "stop_bce": 0.0174862127751112,
+        "motion": -5.754373788833618,
+        "plan_interval_length": 0.06306834146380424,
+        "flow_raw": 0.7511908113956451,
+        "flow_weighted": 0.00135283317649737,
+        "optimized_total": -0.8884236812591553
+      },
+      "gradient_norm": 24.976760864257812,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.265779260545969,
+      "flow_coefficient": 0.0018009180846610684,
+      "lr": {
+        "backbone": 5e-08,
+        "head": 5.000000000000001e-07,
+        "flow_readout": 5e-06
+      },
+      "valid_fraction": 0.3136935830116272,
+      "valid_count": 26019,
+      "pair_counts": [
+        11,
+        5
+      ],
+      "step": 5,
+      "seconds": 0.8030663952231407
+    },
+    {
+      "losses": {
+        "total": -0.8737116456031799,
+        "plan_d3": 0.12744445726275444,
+        "occ_bce": 0.2872113585472107,
+        "lane_bce": 0.49243785440921783,
+        "history": -2.9704155921936035,
+        "state": -2.8150185346603394,
+        "stop_bce": 2.2172927856445312e-05,
+        "motion": -5.7854297161102295,
+        "plan_interval_length": 0.05884804017841816,
+        "flow_raw": 0.7082578539848328,
+        "flow_weighted": 0.001530617242679,
+        "optimized_total": -0.8574690222740173
+      },
+      "gradient_norm": 44.25614547729492,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27001007460057735,
+      "flow_coefficient": 0.002161101701593282,
+      "lr": {
+        "backbone": 6e-08,
+        "head": 6.000000000000001e-07,
+        "flow_readout": 6e-06
+      },
+      "valid_fraction": 0.1963372826576233,
+      "valid_count": 16285,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 6,
+      "seconds": 0.8065682016313076
+    },
+    {
+      "losses": {
+        "total": -0.828275203704834,
+        "plan_d3": 0.164772130548954,
+        "occ_bce": 0.2609153389930725,
+        "lane_bce": 0.49732016026973724,
+        "history": -2.9694430828094482,
+        "state": -2.7549432516098022,
+        "stop_bce": 0.004571505822241306,
+        "motion": -5.7234718799591064,
+        "plan_interval_length": 0.07682834938168526,
+        "flow_raw": 0.7247301638126373,
+        "flow_weighted": 0.0018272515153512359,
+        "optimized_total": -0.8072408735752106
+      },
+      "gradient_norm": 26.493911743164062,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26801933348178864,
+      "flow_coefficient": 0.0025212853185254958,
+      "lr": {
+        "backbone": 7e-08,
+        "head": 7.000000000000001e-07,
+        "flow_readout": 7.000000000000001e-06
+      },
+      "valid_fraction": 0.2635513246059418,
+      "valid_count": 21860,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 7,
+      "seconds": 0.8047277871519327
+    },
+    {
+      "losses": {
+        "total": -0.8859635293483734,
+        "plan_d3": 0.11032358929514885,
+        "occ_bce": 0.2419915795326233,
+        "lane_bce": 0.49362945556640625,
+        "history": -2.9794524908065796,
+        "state": -2.7641199827194214,
+        "stop_bce": 0.13258001813665032,
+        "motion": -5.717056512832642,
+        "plan_interval_length": 0.04590599052608013,
+        "flow_raw": 0.6028022766113281,
+        "flow_weighted": 0.0017369560664519668,
+        "optimized_total": -0.8727501034736633
+      },
+      "gradient_norm": 28.059852600097656,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26953588239848614,
+      "flow_coefficient": 0.0028814689354577094,
+      "lr": {
+        "backbone": 8e-08,
+        "head": 8.000000000000001e-07,
+        "flow_readout": 8.000000000000001e-06
+      },
+      "valid_fraction": 0.23597849905490875,
+      "valid_count": 19573,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 8,
+      "seconds": 0.8055415898561478
+    },
+    {
+      "losses": {
+        "total": -0.8984884023666382,
+        "plan_d3": 0.1135064959526062,
+        "occ_bce": 0.2296665459871292,
+        "lane_bce": 0.44855834543704987,
+        "history": -2.964411735534668,
+        "state": -2.775647521018982,
+        "stop_bce": 0.009299654979258776,
+        "motion": -5.738199234008789,
+        "plan_interval_length": 0.0603133849799633,
+        "flow_raw": 0.9517836272716522,
+        "flow_weighted": 0.0030853518983349204,
+        "optimized_total": -0.8803247213363647
+      },
+      "gradient_norm": 32.887203216552734,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27286215499043465,
+      "flow_coefficient": 0.0032416525523899227,
+      "lr": {
+        "backbone": 9e-08,
+        "head": 9.000000000000001e-07,
+        "flow_readout": 9e-06
+      },
+      "valid_fraction": 0.2616102397441864,
+      "valid_count": 21699,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 9,
+      "seconds": 0.8095205444842577
+    },
+    {
+      "losses": {
+        "total": -0.9102571308612823,
+        "plan_d3": 0.09492254257202148,
+        "occ_bce": 0.27031421661376953,
+        "lane_bce": 0.4725085198879242,
+        "history": -2.974300265312195,
+        "state": -2.7944451570510864,
+        "stop_bce": 0.00012156367301940918,
+        "motion": -5.768721103668213,
+        "plan_interval_length": 0.047042135149240494,
+        "flow_raw": 1.0537769794464111,
+        "flow_weighted": 0.003795532160438597,
+        "optimized_total": -0.8947010636329651
+      },
+      "gradient_norm": 52.57420349121094,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2698931284248829,
+      "flow_coefficient": 0.003601836169322137,
+      "lr": {
+        "backbone": 1e-07,
+        "head": 1.0000000000000002e-06,
+        "flow_readout": 1e-05
+      },
+      "valid_fraction": 0.20202787220478058,
+      "valid_count": 16757,
+      "pair_counts": [
+        5,
+        11
+      ],
+      "step": 10,
+      "seconds": 0.8010509852319956
+    },
+    {
+      "losses": {
+        "total": -0.8462948501110077,
+        "plan_d3": 0.1324085146188736,
+        "occ_bce": 0.34614069759845734,
+        "lane_bce": 0.5039187669754028,
+        "history": -2.9722999334335327,
+        "state": -2.77142596244812,
+        "stop_bce": 0.0007492601871490479,
+        "motion": -5.7435760498046875,
+        "plan_interval_length": 0.08047700300812721,
+        "flow_raw": 0.7054526805877686,
+        "flow_weighted": 0.0027950176736339927,
+        "optimized_total": -0.8233805894851685
+      },
+      "gradient_norm": 37.34144592285156,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27079801447689533,
+      "flow_coefficient": 0.0039620197862543505,
+      "lr": {
+        "backbone": 1.0999999999999999e-07,
+        "head": 1.1e-06,
+        "flow_readout": 1.1000000000000001e-05
+      },
+      "valid_fraction": 0.21483169496059418,
+      "valid_count": 17819,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 11,
+      "seconds": 0.8068595305085182
+    },
+    {
+      "losses": {
+        "total": -0.8887241780757904,
+        "plan_d3": 0.11205125227570534,
+        "occ_bce": 0.2477765530347824,
+        "lane_bce": 0.4875354617834091,
+        "history": -2.966871976852417,
+        "state": -2.772333264350891,
+        "stop_bce": 8.240342140197754e-05,
+        "motion": -5.73918890953064,
+        "plan_interval_length": 0.052647367119789124,
+        "flow_raw": 0.7361846566200256,
+        "flow_weighted": 0.003181939711794257,
+        "optimized_total": -0.872380405664444
+      },
+      "gradient_norm": 30.43389892578125,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.264949394389987,
+      "flow_coefficient": 0.004322203403186564,
+      "lr": {
+        "backbone": 1.2e-07,
+        "head": 1.2000000000000002e-06,
+        "flow_readout": 1.2e-05
+      },
+      "valid_fraction": 0.20184703171253204,
+      "valid_count": 16742,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 12,
+      "seconds": 0.8011973183602095
+    },
+    {
+      "losses": {
+        "total": -0.8480577766895294,
+        "plan_d3": 0.13676667213439941,
+        "occ_bce": 0.2710806131362915,
+        "lane_bce": 0.4790218025445938,
+        "history": -2.9592697620391846,
+        "state": -2.7149840593338013,
+        "stop_bce": 0.00014513731002807617,
+        "motion": -5.674224615097046,
+        "plan_interval_length": 0.0642960611730814,
+        "flow_raw": 1.0590702891349792,
+        "flow_weighted": 0.004958977224305272,
+        "optimized_total": -0.8270247876644135
+      },
+      "gradient_norm": 42.967926025390625,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27216437831521034,
+      "flow_coefficient": 0.004682387020118778,
+      "lr": {
+        "backbone": 1.3e-07,
+        "head": 1.3e-06,
+        "flow_readout": 1.3000000000000001e-05
+      },
+      "valid_fraction": 0.21139563620090485,
+      "valid_count": 17534,
+      "pair_counts": [
+        4,
+        12
+      ],
+      "step": 13,
+      "seconds": 0.8083594795316458
+    },
+    {
+      "losses": {
+        "total": -0.9130944907665253,
+        "plan_d3": 0.09250731021165848,
+        "occ_bce": 0.24938374757766724,
+        "lane_bce": 0.4889792650938034,
+        "history": -2.965628504753113,
+        "state": -2.8045804500579834,
+        "stop_bce": 0.019184636417776346,
+        "motion": -5.766371965408325,
+        "plan_interval_length": 0.04329650476574898,
+        "flow_raw": 0.5787979960441589,
+        "flow_weighted": 0.0029186297324486077,
+        "optimized_total": -0.8993517458438873
+      },
+      "gradient_norm": 46.571685791015625,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.272517628967762,
+      "flow_coefficient": 0.0050425706370509915,
+      "lr": {
+        "backbone": 1.4e-07,
+        "head": 1.4000000000000001e-06,
+        "flow_readout": 1.4000000000000001e-05
+      },
+      "valid_fraction": 0.23230130970478058,
+      "valid_count": 19268,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 14,
+      "seconds": 0.8114855960011482
+    },
+    {
+      "losses": {
+        "total": -0.9062479138374329,
+        "plan_d3": 0.08831456303596497,
+        "occ_bce": 0.31362463533878326,
+        "lane_bce": 0.46206432580947876,
+        "history": -2.957910180091858,
+        "state": -2.7905960083007812,
+        "stop_bce": 2.3484230041503906e-05,
+        "motion": -5.748501300811768,
+        "plan_interval_length": 0.04669097624719143,
+        "flow_raw": 0.5101556032896042,
+        "flow_weighted": 0.0027562452014535666,
+        "optimized_total": -0.8918188810348511
+      },
+      "gradient_norm": 33.11581039428711,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2702146880328655,
+      "flow_coefficient": 0.005402754253983205,
+      "lr": {
+        "backbone": 1.5e-07,
+        "head": 1.5e-06,
+        "flow_readout": 1.5e-05
+      },
+      "valid_fraction": 0.14807580411434174,
+      "valid_count": 12282,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 15,
+      "seconds": 0.808389212936163
+    },
+    {
+      "losses": {
+        "total": -0.9007274508476257,
+        "plan_d3": 0.09238284453749657,
+        "occ_bce": 0.3042951971292496,
+        "lane_bce": 0.48583559691905975,
+        "history": -2.9672040939331055,
+        "state": -2.788662910461426,
+        "stop_bce": 0.0009246468544006348,
+        "motion": -5.7556822299957275,
+        "plan_interval_length": 0.058009903877973557,
+        "flow_raw": 0.8687371164560318,
+        "flow_weighted": 0.0050064780516549945,
+        "optimized_total": -0.8812184929847717
+      },
+      "gradient_norm": 28.568620681762695,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27469296380877495,
+      "flow_coefficient": 0.005762937870915419,
+      "lr": {
+        "backbone": 1.6e-07,
+        "head": 1.6000000000000001e-06,
+        "flow_readout": 1.6000000000000003e-05
+      },
+      "valid_fraction": 0.21504871547222137,
+      "valid_count": 17837,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 16,
+      "seconds": 0.811022887006402
+    },
+    {
+      "losses": {
+        "total": -0.8177347779273987,
+        "plan_d3": 0.1564611718058586,
+        "occ_bce": 0.29474130272865295,
+        "lane_bce": 0.5132588148117065,
+        "history": -2.975508689880371,
+        "state": -2.704093813896179,
+        "stop_bce": 0.0031137096229940653,
+        "motion": -5.6789796352386475,
+        "plan_interval_length": 0.09316037595272064,
+        "flow_raw": 0.4535222798585892,
+        "flow_weighted": 0.0027769720181822777,
+        "optimized_total": -0.7916676998138428
+      },
+      "gradient_norm": 35.4041862487793,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2708818018436432,
+      "flow_coefficient": 0.006123121487847633,
+      "lr": {
+        "backbone": 1.7000000000000001e-07,
+        "head": 1.7000000000000002e-06,
+        "flow_readout": 1.7000000000000003e-05
+      },
+      "valid_fraction": 0.2980565130710602,
+      "valid_count": 24722,
+      "pair_counts": [
+        12,
+        4
+      ],
+      "step": 17,
+      "seconds": 0.8108312729746103
+    },
+    {
+      "losses": {
+        "total": -0.8802331387996674,
+        "plan_d3": 0.099764134734869,
+        "occ_bce": 0.2783273905515671,
+        "lane_bce": 0.48269328474998474,
+        "history": -2.963313102722168,
+        "state": -2.697717308998108,
+        "stop_bce": 0.00011652708053588867,
+        "motion": -5.6610071659088135,
+        "plan_interval_length": 0.051950084045529366,
+        "flow_raw": 0.8070493936538696,
+        "flow_weighted": 0.005232347408309579,
+        "optimized_total": -0.8620132505893707
+      },
+      "gradient_norm": 60.526546478271484,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2667338643223047,
+      "flow_coefficient": 0.006483305104779845,
+      "lr": {
+        "backbone": 1.8e-07,
+        "head": 1.8000000000000001e-06,
+        "flow_readout": 1.8e-05
+      },
+      "valid_fraction": 0.18454620242118835,
+      "valid_count": 15307,
+      "pair_counts": [
+        12,
+        4
+      ],
+      "step": 18,
+      "seconds": 0.8073470629751682
+    },
+    {
+      "losses": {
+        "total": -0.7705990374088287,
+        "plan_d3": 0.1789960265159607,
+        "occ_bce": 0.27558252215385437,
+        "lane_bce": 0.4976978003978729,
+        "history": -2.969033360481262,
+        "state": -2.5706452131271362,
+        "stop_bce": 0.09211457334458828,
+        "motion": -5.521255731582642,
+        "plan_interval_length": 0.07078468054533005,
+        "flow_raw": 0.5137155055999756,
+        "flow_weighted": 0.0035156062804162502,
+        "optimized_total": -0.749387264251709
+      },
+      "gradient_norm": 64.9909439086914,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.272060239687562,
+      "flow_coefficient": 0.00684348872171206,
+      "lr": {
+        "backbone": 1.8999999999999998e-07,
+        "head": 1.9000000000000002e-06,
+        "flow_readout": 1.9e-05
+      },
+      "valid_fraction": 0.26634839177131653,
+      "valid_count": 22092,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 19,
+      "seconds": 0.8131205569952726
+    },
+    {
+      "losses": {
+        "total": -0.8726387619972229,
+        "plan_d3": 0.12731299549341202,
+        "occ_bce": 0.26253892481327057,
+        "lane_bce": 0.4830368757247925,
+        "history": -2.9730736017227173,
+        "state": -2.7760462760925293,
+        "stop_bce": 0.018927118740975857,
+        "motion": -5.7453343868255615,
+        "plan_interval_length": 0.07363622635602951,
+        "flow_raw": 0.6361198872327805,
+        "flow_weighted": 0.00458239926956594,
+        "optimized_total": -0.8496473133563995
+      },
+      "gradient_norm": 49.81062698364258,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27186073176562786,
+      "flow_coefficient": 0.007203672338644274,
+      "lr": {
+        "backbone": 2e-07,
+        "head": 2.0000000000000003e-06,
+        "flow_readout": 2e-05
+      },
+      "valid_fraction": 0.2952594459056854,
+      "valid_count": 24490,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 20,
+      "seconds": 0.8096454609185457
+    },
+    {
+      "losses": {
+        "total": -0.8383741974830627,
+        "plan_d3": 0.14254550635814667,
+        "occ_bce": 0.2788054496049881,
+        "lane_bce": 0.5262534618377686,
+        "history": -2.982484221458435,
+        "state": -2.7295210361480713,
+        "stop_bce": 0.011739710345864296,
+        "motion": -5.709657192230225,
+        "plan_interval_length": 0.06262280978262424,
+        "flow_raw": 0.6142785847187042,
+        "flow_weighted": 0.004646314773708582,
+        "optimized_total": -0.8180721998214722
+      },
+      "gradient_norm": 22.678924560546875,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2732151970267296,
+      "flow_coefficient": 0.007563855955576488,
+      "lr": {
+        "backbone": 2.0999999999999997e-07,
+        "head": 2.1000000000000002e-06,
+        "flow_readout": 2.1e-05
+      },
+      "valid_fraction": 0.2836250960826874,
+      "valid_count": 23525,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 21,
+      "seconds": 0.8113711029291153
+    },
+    {
+      "losses": {
+        "total": -0.8762776553630829,
+        "plan_d3": 0.1092248484492302,
+        "occ_bce": 0.26072870939970016,
+        "lane_bce": 0.4546622186899185,
+        "history": -2.9593288898468018,
+        "state": -2.688924193382263,
+        "stop_bce": 0.026746732648462057,
+        "motion": -5.642903566360474,
+        "plan_interval_length": 0.05799703113734722,
+        "flow_raw": 0.8149166703224182,
+        "flow_weighted": 0.006457432173192501,
+        "optimized_total": -0.8553209602832794
+      },
+      "gradient_norm": 51.49203872680664,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2669329922646284,
+      "flow_coefficient": 0.007924039572508701,
+      "lr": {
+        "backbone": 2.1999999999999998e-07,
+        "head": 2.2e-06,
+        "flow_readout": 2.2000000000000003e-05
+      },
+      "valid_fraction": 0.30488041043281555,
+      "valid_count": 25288,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 22,
+      "seconds": 0.8083029091358185
+    },
+    {
+      "losses": {
+        "total": -0.889268696308136,
+        "plan_d3": 0.09339683502912521,
+        "occ_bce": 0.32051360607147217,
+        "lane_bce": 0.4771398603916168,
+        "history": -2.963451862335205,
+        "state": -2.754855513572693,
+        "stop_bce": 0.036632657051086426,
+        "motion": -5.7109808921813965,
+        "plan_interval_length": 0.050900448113679886,
+        "flow_raw": 0.41838519275188446,
+        "flow_weighted": 0.0034659963566809893,
+        "optimized_total": -0.8730776011943817
+      },
+      "gradient_norm": 27.835636138916016,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.267063507810235,
+      "flow_coefficient": 0.008284223189440915,
+      "lr": {
+        "backbone": 2.3e-07,
+        "head": 2.3000000000000004e-06,
+        "flow_readout": 2.3000000000000003e-05
+      },
+      "valid_fraction": 0.2527247369289398,
+      "valid_count": 20962,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 23,
+      "seconds": 0.8051915168762207
+    },
+    {
+      "losses": {
+        "total": -0.895715594291687,
+        "plan_d3": 0.09262461215257645,
+        "occ_bce": 0.27964766323566437,
+        "lane_bce": 0.5080934464931488,
+        "history": -2.968460202217102,
+        "state": -2.7620956897735596,
+        "stop_bce": 0.005567736458033323,
+        "motion": -5.729442358016968,
+        "plan_interval_length": 0.05192479491233826,
+        "flow_raw": 0.5397577583789825,
+        "flow_weighted": 0.004665885586291552,
+        "optimized_total": -0.8780685067176819
+      },
+      "gradient_norm": 18.922386169433594,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2669349443167448,
+      "flow_coefficient": 0.008644406806373128,
+      "lr": {
+        "backbone": 2.4e-07,
+        "head": 2.4000000000000003e-06,
+        "flow_readout": 2.4e-05
+      },
+      "valid_fraction": 0.2560884356498718,
+      "valid_count": 21241,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 24,
+      "seconds": 0.8036963883787394
+    },
+    {
+      "losses": {
+        "total": -0.8679502904415131,
+        "plan_d3": 0.12227597087621689,
+        "occ_bce": 0.2277590036392212,
+        "lane_bce": 0.4878135025501251,
+        "history": -2.9414689540863037,
+        "state": -2.7260597944259644,
+        "stop_bce": 0.004123121500015259,
+        "motion": -5.666703939437866,
+        "plan_interval_length": 0.07665339857339859,
+        "flow_raw": 0.7435871362686157,
+        "flow_weighted": 0.006695697316899896,
+        "optimized_total": -0.8420912325382233
+      },
+      "gradient_norm": 29.35249900817871,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26547669619321823,
+      "flow_coefficient": 0.009004590423305342,
+      "lr": {
+        "backbone": 2.5e-07,
+        "head": 2.5e-06,
+        "flow_readout": 2.5e-05
+      },
+      "valid_fraction": 0.27578848600387573,
+      "valid_count": 22875,
+      "pair_counts": [
+        11,
+        5
+      ],
+      "step": 25,
+      "seconds": 0.8031240124255419
+    },
+    {
+      "losses": {
+        "total": -0.8794046640396118,
+        "plan_d3": 0.12284044921398163,
+        "occ_bce": 0.2676689326763153,
+        "lane_bce": 0.4809575378894806,
+        "history": -2.966393828392029,
+        "state": -2.7934820652008057,
+        "stop_bce": 0.00011807680130004883,
+        "motion": -5.759851932525635,
+        "plan_interval_length": 0.07726427912712097,
+        "flow_raw": 1.0844816416502,
+        "flow_weighted": 0.010155925527215004,
+        "optimized_total": -0.8499326705932617
+      },
+      "gradient_norm": 54.28410720825195,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2759607080370188,
+      "flow_coefficient": 0.009364774040237556,
+      "lr": {
+        "backbone": 2.6e-07,
+        "head": 2.6e-06,
+        "flow_readout": 2.6000000000000002e-05
+      },
+      "valid_fraction": 0.18016976118087769,
+      "valid_count": 14944,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 26,
+      "seconds": 0.814461762085557
+    },
+    {
+      "losses": {
+        "total": -0.9055991768836975,
+        "plan_d3": 0.08919179439544678,
+        "occ_bce": 0.2680624723434448,
+        "lane_bce": 0.4911433756351471,
+        "history": -2.969044327735901,
+        "state": -2.7657933235168457,
+        "stop_bce": 0.008384902030229568,
+        "motion": -5.733160734176636,
+        "plan_interval_length": 0.05480430833995342,
+        "flow_raw": 0.5470744222402573,
+        "flow_weighted": 0.005320275900885463,
+        "optimized_total": -0.8865778148174286
+      },
+      "gradient_norm": 58.54724884033203,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2691873572766781,
+      "flow_coefficient": 0.00972495765716977,
+      "lr": {
+        "backbone": 2.7e-07,
+        "head": 2.7000000000000004e-06,
+        "flow_readout": 2.7000000000000002e-05
+      },
+      "valid_fraction": 0.26797598600387573,
+      "valid_count": 22227,
+      "pair_counts": [
+        12,
+        4
+      ],
+      "step": 27,
+      "seconds": 0.8027671743184328
+    },
+    {
+      "losses": {
+        "total": -0.8674184679985046,
+        "plan_d3": 0.12685516104102135,
+        "occ_bce": 0.24741649627685547,
+        "lane_bce": 0.5002321749925613,
+        "history": -2.981423854827881,
+        "state": -2.7383975982666016,
+        "stop_bce": 0.004024353809654713,
+        "motion": -5.7190165519714355,
+        "plan_interval_length": 0.04982057027518749,
+        "flow_raw": 0.6785666942596436,
+        "flow_weighted": 0.006843440933153033,
+        "optimized_total": -0.8481198847293854
+      },
+      "gradient_norm": 16.587026596069336,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26858787797391415,
+      "flow_coefficient": 0.010085141274101983,
+      "lr": {
+        "backbone": 2.8e-07,
+        "head": 2.8000000000000003e-06,
+        "flow_readout": 2.8000000000000003e-05
+      },
+      "valid_fraction": 0.21714651584625244,
+      "valid_count": 18011,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 28,
+      "seconds": 0.8088633883744478
+    },
+    {
+      "losses": {
+        "total": -0.9221153557300568,
+        "plan_d3": 0.08023861795663834,
+        "occ_bce": 0.23376041650772095,
+        "lane_bce": 0.4981123208999634,
+        "history": -2.9744768142700195,
+        "state": -2.7708702087402344,
+        "stop_bce": 0.008522141724824905,
+        "motion": -5.743642568588257,
+        "plan_interval_length": 0.05292907916009426,
+        "flow_raw": 0.5100124627351761,
+        "flow_weighted": 0.005327245919033885,
+        "optimized_total": -0.90355584025383
+      },
+      "gradient_norm": 24.127315521240234,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2687203660607338,
+      "flow_coefficient": 0.010445324891034197,
+      "lr": {
+        "backbone": 2.9e-07,
+        "head": 2.9e-06,
+        "flow_readout": 2.9e-05
+      },
+      "valid_fraction": 0.2477213591337204,
+      "valid_count": 20547,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 29,
+      "seconds": 0.8064782954752445
+    },
+    {
+      "losses": {
+        "total": -0.8964572250843048,
+        "plan_d3": 0.09307199716567993,
+        "occ_bce": 0.25730638206005096,
+        "lane_bce": 0.5170676559209824,
+        "history": -2.983116865158081,
+        "state": -2.741295099258423,
+        "stop_bce": 0.011959488037973642,
+        "motion": -5.722020149230957,
+        "plan_interval_length": 0.04330705478787422,
+        "flow_raw": 0.5571690499782562,
+        "flow_weighted": 0.006020494736731052,
+        "optimized_total": -0.8796099424362183
+      },
+      "gradient_norm": 26.3205509185791,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.269328810274601,
+      "flow_coefficient": 0.01080550850796641,
+      "lr": {
+        "backbone": 3e-07,
+        "head": 3e-06,
+        "flow_readout": 3e-05
+      },
+      "valid_fraction": 0.3025655746459961,
+      "valid_count": 25096,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 30,
+      "seconds": 0.8053146190941334
+    },
+    {
+      "losses": {
+        "total": -0.8802620768547058,
+        "plan_d3": 0.11237731575965881,
+        "occ_bce": 0.24560707807540894,
+        "lane_bce": 0.49280670285224915,
+        "history": -2.9560922384262085,
+        "state": -2.745534658432007,
+        "stop_bce": 8.32974910736084e-05,
+        "motion": -5.701610565185547,
+        "plan_interval_length": 0.06054193340241909,
+        "flow_raw": 1.0392951369285583,
+        "flow_weighted": 0.011604449711740017,
+        "optimized_total": -0.8535221517086029
+      },
+      "gradient_norm": 55.17174530029297,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27394686453044415,
+      "flow_coefficient": 0.011165692124898624,
+      "lr": {
+        "backbone": 3.1e-07,
+        "head": 3.1000000000000004e-06,
+        "flow_readout": 3.1e-05
+      },
+      "valid_fraction": 0.16837866604328156,
+      "valid_count": 13966,
+      "pair_counts": [
+        3,
+        13
+      ],
+      "step": 31,
+      "seconds": 0.8109746873378754
+    },
+    {
+      "losses": {
+        "total": -0.908704936504364,
+        "plan_d3": 0.0894593596458435,
+        "occ_bce": 0.24459236860275269,
+        "lane_bce": 0.4691394865512848,
+        "history": -2.9742218255996704,
+        "state": -2.732610821723938,
+        "stop_bce": 0.011399859562516212,
+        "motion": -5.704553127288818,
+        "plan_interval_length": 0.0525075513869524,
+        "flow_raw": 0.5584288537502289,
+        "flow_weighted": 0.006436381721869111,
+        "optimized_total": -0.8891416490077972
+      },
+      "gradient_norm": 26.090524673461914,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27228857576847076,
+      "flow_coefficient": 0.011525875741830838,
+      "lr": {
+        "backbone": 3.2e-07,
+        "head": 3.2000000000000003e-06,
+        "flow_readout": 3.2000000000000005e-05
+      },
+      "valid_fraction": 0.2299262136220932,
+      "valid_count": 19071,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 32,
+      "seconds": 0.8106593638658524
+    },
+    {
+      "losses": {
+        "total": -0.8864328861236572,
+        "plan_d3": 0.09599030762910843,
+        "occ_bce": 0.28857969492673874,
+        "lane_bce": 0.5220037996768951,
+        "history": -2.9667437076568604,
+        "state": -2.7559759616851807,
+        "stop_bce": 0.00010180473327636719,
+        "motion": -5.722699165344238,
+        "plan_interval_length": 0.0422704704105854,
+        "flow_raw": 0.7558083534240723,
+        "flow_weighted": 0.008983582956716418,
+        "optimized_total": -0.8668816983699799
+      },
+      "gradient_norm": 38.20796203613281,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2710227333009243,
+      "flow_coefficient": 0.011886059358763051,
+      "lr": {
+        "backbone": 3.3e-07,
+        "head": 3.3000000000000006e-06,
+        "flow_readout": 3.3e-05
+      },
+      "valid_fraction": 0.24113860726356506,
+      "valid_count": 20001,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 33,
+      "seconds": 0.809891652315855
+    },
+    {
+      "losses": {
+        "total": -0.8741934597492218,
+        "plan_d3": 0.12236654758453369,
+        "occ_bce": 0.27544310688972473,
+        "lane_bce": 0.4936103820800781,
+        "history": -2.975410223007202,
+        "state": -2.7776046991348267,
+        "stop_bce": 0.005806060042232275,
+        "motion": -5.751853704452515,
+        "plan_interval_length": 0.05288774147629738,
+        "flow_raw": 0.5912685692310333,
+        "flow_weighted": 0.007240818347781897,
+        "optimized_total": -0.853730708360672
+      },
+      "gradient_norm": 85.51947784423828,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2666035108268261,
+      "flow_coefficient": 0.012246242975695267,
+      "lr": {
+        "backbone": 3.4000000000000003e-07,
+        "head": 3.4000000000000005e-06,
+        "flow_readout": 3.4000000000000007e-05
+      },
+      "valid_fraction": 0.21026234328746796,
+      "valid_count": 17440,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 34,
+      "seconds": 0.8024796731770039
+    },
+    {
+      "losses": {
+        "total": -0.920465737581253,
+        "plan_d3": 0.08147353306412697,
+        "occ_bce": 0.3033459484577179,
+        "lane_bce": 0.4844246804714203,
+        "history": -2.969355821609497,
+        "state": -2.831853747367859,
+        "stop_bce": 0.018713396973907948,
+        "motion": -5.79746675491333,
+        "plan_interval_length": 0.0462500024586916,
+        "flow_raw": 0.44471871852874756,
+        "flow_weighted": 0.005606313701719046,
+        "optimized_total": -0.9032969176769257
+      },
+      "gradient_norm": 38.12745666503906,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2753415871411562,
+      "flow_coefficient": 0.01260642659262748,
+      "lr": {
+        "backbone": 3.5e-07,
+        "head": 3.5e-06,
+        "flow_readout": 3.5e-05
+      },
+      "valid_fraction": 0.3166835606098175,
+      "valid_count": 26267,
+      "pair_counts": [
+        11,
+        5
+      ],
+      "step": 35,
+      "seconds": 0.8133624736219645
+    },
+    {
+      "losses": {
+        "total": -0.8644879460334778,
+        "plan_d3": 0.13559968769550323,
+        "occ_bce": 0.2597016170620918,
+        "lane_bce": 0.4465588927268982,
+        "history": -2.9724771976470947,
+        "state": -2.7348222732543945,
+        "stop_bce": 0.0030054664239287376,
+        "motion": -5.706698417663574,
+        "plan_interval_length": 0.07002559676766396,
+        "flow_raw": 0.5691978335380554,
+        "flow_weighted": 0.007380566792562604,
+        "optimized_total": -0.8396009802818298
+      },
+      "gradient_norm": 49.91116714477539,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26843459717929363,
+      "flow_coefficient": 0.01296661020955969,
+      "lr": {
+        "backbone": 3.6e-07,
+        "head": 3.6000000000000003e-06,
+        "flow_readout": 3.6e-05
+      },
+      "valid_fraction": 0.18192997574806213,
+      "valid_count": 15090,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 36,
+      "seconds": 0.8085854221135378
+    },
+    {
+      "losses": {
+        "total": -0.8913280367851257,
+        "plan_d3": 0.08386055007576942,
+        "occ_bce": 0.2849890664219856,
+        "lane_bce": 0.5136599242687225,
+        "history": -2.9746716022491455,
+        "state": -2.701991558074951,
+        "stop_bce": 0.01035624137148261,
+        "motion": -5.674591779708862,
+        "plan_interval_length": 0.05064782314002514,
+        "flow_raw": 0.4808462858200073,
+        "flow_weighted": 0.006408139364793897,
+        "optimized_total": -0.8722579479217529
+      },
+      "gradient_norm": 42.350528717041016,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26673691906034946,
+      "flow_coefficient": 0.013326793826491906,
+      "lr": {
+        "backbone": 3.7e-07,
+        "head": 3.7e-06,
+        "flow_readout": 3.7e-05
+      },
+      "valid_fraction": 0.24027054011821747,
+      "valid_count": 19929,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 37,
+      "seconds": 0.8020101767033339
+    },
+    {
+      "losses": {
+        "total": -0.8890227377414703,
+        "plan_d3": 0.10623547434806824,
+        "occ_bce": 0.27503135055303574,
+        "lane_bce": 0.500847801566124,
+        "history": -2.957443118095398,
+        "state": -2.7991182804107666,
+        "stop_bce": 0.0219567958265543,
+        "motion": -5.752170085906982,
+        "plan_interval_length": 0.0567903034389019,
+        "flow_raw": 0.42386940121650696,
+        "flow_weighted": 0.0058014909736812115,
+        "optimized_total": -0.8690236806869507
+      },
+      "gradient_norm": 28.85847282409668,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26574695110321045,
+      "flow_coefficient": 0.01368697744342412,
+      "lr": {
+        "backbone": 3.7999999999999996e-07,
+        "head": 3.8000000000000005e-06,
+        "flow_readout": 3.8e-05
+      },
+      "valid_fraction": 0.2934630513191223,
+      "valid_count": 24341,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 38,
+      "seconds": 0.8037407882511616
+    },
+    {
+      "losses": {
+        "total": -0.8850703537464142,
+        "plan_d3": 0.09765683114528656,
+        "occ_bce": 0.3028898686170578,
+        "lane_bce": 0.4785526394844055,
+        "history": -2.969626307487488,
+        "state": -2.72604763507843,
+        "stop_bce": 0.0029767388477921486,
+        "motion": -5.695078372955322,
+        "plan_interval_length": 0.05778986029326916,
+        "flow_raw": 0.7011663019657135,
+        "flow_weighted": 0.009849395835772157,
+        "optimized_total": -0.8607734739780426
+      },
+      "gradient_norm": 13.728401184082031,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2727954350411892,
+      "flow_coefficient": 0.014047161060356333,
+      "lr": {
+        "backbone": 3.8999999999999997e-07,
+        "head": 3.900000000000001e-06,
+        "flow_readout": 3.9000000000000006e-05
+      },
+      "valid_fraction": 0.18954958021640778,
+      "valid_count": 15722,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 39,
+      "seconds": 0.8116733971983194
+    },
+    {
+      "losses": {
+        "total": -0.8522651493549347,
+        "plan_d3": 0.15210536867380142,
+        "occ_bce": 0.2985573038458824,
+        "lane_bce": 0.45212937891483307,
+        "history": -2.982438564300537,
+        "state": -2.807293653488159,
+        "stop_bce": 0.08596446365118027,
+        "motion": -5.772539377212524,
+        "plan_interval_length": 0.06843500770628452,
+        "flow_raw": 0.59315125644207,
+        "flow_weighted": 0.008545734686776996,
+        "optimized_total": -0.826610654592514
+      },
+      "gradient_norm": 68.2560043334961,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26670852676033974,
+      "flow_coefficient": 0.014407344677288547,
+      "lr": {
+        "backbone": 4e-07,
+        "head": 4.000000000000001e-06,
+        "flow_readout": 4e-05
+      },
+      "valid_fraction": 0.20310088992118835,
+      "valid_count": 16846,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 40,
+      "seconds": 0.801883228123188
+    },
+    {
+      "losses": {
+        "total": -0.8342081308364868,
+        "plan_d3": 0.14190854877233505,
+        "occ_bce": 0.2937249541282654,
+        "lane_bce": 0.5053680390119553,
+        "history": -2.960339307785034,
+        "state": -2.720124125480652,
+        "stop_bce": 0.003935272805392742,
+        "motion": -5.679676294326782,
+        "plan_interval_length": 0.06252437084913254,
+        "flow_raw": 0.7690308690071106,
+        "flow_weighted": 0.011356685310602188,
+        "optimized_total": -0.8072203695774078
+      },
+      "gradient_norm": 84.6573257446289,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26633746922016144,
+      "flow_coefficient": 0.01476752829422076,
+      "lr": {
+        "backbone": 4.0999999999999994e-07,
+        "head": 4.1e-06,
+        "flow_readout": 4.1e-05
+      },
+      "valid_fraction": 0.22636960446834564,
+      "valid_count": 18776,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 41,
+      "seconds": 0.8034678474068642
+    },
+    {
+      "losses": {
+        "total": -0.7332955300807953,
+        "plan_d3": 0.21790465340018272,
+        "occ_bce": 0.25171779096126556,
+        "lane_bce": 0.5051500797271729,
+        "history": -2.946967840194702,
+        "state": -2.567838430404663,
+        "stop_bce": 0.009687999030575156,
+        "motion": -5.512868642807007,
+        "plan_interval_length": 0.07170574739575386,
+        "flow_raw": 0.7821725606918335,
+        "flow_weighted": 0.011832480784505606,
+        "optimized_total": -0.7035366296768188
+      },
+      "gradient_norm": 60.56361389160156,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27001991868019104,
+      "flow_coefficient": 0.015127711911152976,
+      "lr": {
+        "backbone": 4.1999999999999995e-07,
+        "head": 4.2000000000000004e-06,
+        "flow_readout": 4.2e-05
+      },
+      "valid_fraction": 0.3295838236808777,
+      "valid_count": 27337,
+      "pair_counts": [
+        12,
+        4
+      ],
+      "step": 42,
+      "seconds": 0.8087919000536203
+    },
+    {
+      "losses": {
+        "total": -0.8927262425422668,
+        "plan_d3": 0.1129446029663086,
+        "occ_bce": 0.24451974034309387,
+        "lane_bce": 0.4457180052995682,
+        "history": -2.97724187374115,
+        "state": -2.7425457239151,
+        "stop_bce": 0.005978814791887999,
+        "motion": -5.718591928482056,
+        "plan_interval_length": 0.04558531939983368,
+        "flow_raw": 0.5151374489068985,
+        "flow_weighted": 0.00797839486040175,
+        "optimized_total": -0.8733514845371246
+      },
+      "gradient_norm": 68.62928771972656,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2658528499305248,
+      "flow_coefficient": 0.015487895528085186,
+      "lr": {
+        "backbone": 4.2999999999999996e-07,
+        "head": 4.3e-06,
+        "flow_readout": 4.3e-05
+      },
+      "valid_fraction": 0.2376302033662796,
+      "valid_count": 19710,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 43,
+      "seconds": 0.7972692884504795
+    },
+    {
+      "losses": {
+        "total": -0.8862434327602386,
+        "plan_d3": 0.11311523616313934,
+        "occ_bce": 0.28994446992874146,
+        "lane_bce": 0.4864371418952942,
+        "history": -2.9676482677459717,
+        "state": -2.8070461750030518,
+        "stop_bce": 0.007597682066261768,
+        "motion": -5.773175001144409,
+        "plan_interval_length": 0.052044106647372246,
+        "flow_raw": 0.5275715291500092,
+        "flow_weighted": 0.00836099567823112,
+        "optimized_total": -0.8648714125156403
+      },
+      "gradient_norm": 73.96257781982422,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2816846910864115,
+      "flow_coefficient": 0.015848079145017402,
+      "lr": {
+        "backbone": 4.3999999999999997e-07,
+        "head": 4.4e-06,
+        "flow_readout": 4.4000000000000006e-05
+      },
+      "valid_fraction": 0.23564091324806213,
+      "valid_count": 19545,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 44,
+      "seconds": 0.8190532587468624
+    },
+    {
+      "losses": {
+        "total": -0.9198540151119232,
+        "plan_d3": 0.09415328875184059,
+        "occ_bce": 0.2411518171429634,
+        "lane_bce": 0.505867063999176,
+        "history": -2.9795788526535034,
+        "state": -2.8392125368118286,
+        "stop_bce": 0.008680753642693162,
+        "motion": -5.8170552253723145,
+        "plan_interval_length": 0.048102909699082375,
+        "flow_raw": 0.4434560686349869,
+        "flow_weighted": 0.007187652634456754,
+        "optimized_total": -0.900640606880188
+      },
+      "gradient_norm": 14.903034210205078,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26455133594572544,
+      "flow_coefficient": 0.016208262761949616,
+      "lr": {
+        "backbone": 4.5e-07,
+        "head": 4.5e-06,
+        "flow_readout": 4.5e-05
+      },
+      "valid_fraction": 0.2410542070865631,
+      "valid_count": 19994,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 45,
+      "seconds": 0.8030731044709682
+    },
+    {
+      "losses": {
+        "total": -0.8952861130237579,
+        "plan_d3": 0.10903596878051758,
+        "occ_bce": 0.265441358089447,
+        "lane_bce": 0.50365149974823,
+        "history": -2.9774621725082397,
+        "state": -2.8164329528808594,
+        "stop_bce": 0.015958774834871292,
+        "motion": -5.790703296661377,
+        "plan_interval_length": 0.04934066720306873,
+        "flow_raw": 0.4130440205335617,
+        "flow_weighted": 0.0068434979766607285,
+        "optimized_total": -0.8761074244976044
+      },
+      "gradient_norm": 47.3476676940918,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2677586320787668,
+      "flow_coefficient": 0.01656844637888183,
+      "lr": {
+        "backbone": 4.6e-07,
+        "head": 4.600000000000001e-06,
+        "flow_readout": 4.600000000000001e-05
+      },
+      "valid_fraction": 0.2994671165943146,
+      "valid_count": 24839,
+      "pair_counts": [
+        11,
+        5
+      ],
+      "step": 46,
+      "seconds": 0.8023289553821087
+    },
+    {
+      "losses": {
+        "total": -0.8809714019298553,
+        "plan_d3": 0.1348407343029976,
+        "occ_bce": 0.23433806747198105,
+        "lane_bce": 0.48319804668426514,
+        "history": -2.982227325439453,
+        "state": -2.818025827407837,
+        "stop_bce": 0.018283349694684148,
+        "motion": -5.796596527099609,
+        "plan_interval_length": 0.06489487737417221,
+        "flow_raw": 0.46360327303409576,
+        "flow_weighted": 0.007848168257623911,
+        "optimized_total": -0.8568995594978333
+      },
+      "gradient_norm": 62.701377868652344,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2678553480654955,
+      "flow_coefficient": 0.016928629995814043,
+      "lr": {
+        "backbone": 4.6999999999999995e-07,
+        "head": 4.7e-06,
+        "flow_readout": 4.7e-05
+      },
+      "valid_fraction": 0.2547743022441864,
+      "valid_count": 21132,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 47,
+      "seconds": 0.8049655370414257
+    },
+    {
+      "losses": {
+        "total": -0.8547020554542542,
+        "plan_d3": 0.1437968760728836,
+        "occ_bce": 0.2666984796524048,
+        "lane_bce": 0.47781336307525635,
+        "history": -2.9740209579467773,
+        "state": -2.76545250415802,
+        "stop_bce": 0.012335614301264286,
+        "motion": -5.737006425857544,
+        "plan_interval_length": 0.06669912114739418,
+        "flow_raw": 0.5082222670316696,
+        "flow_weighted": 0.008786560036242008,
+        "optimized_total": -0.8292407095432281
+      },
+      "gradient_norm": 69.84684753417969,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26647908985614777,
+      "flow_coefficient": 0.017288813612746257,
+      "lr": {
+        "backbone": 4.8e-07,
+        "head": 4.800000000000001e-06,
+        "flow_readout": 4.8e-05
+      },
+      "valid_fraction": 0.26276764273643494,
+      "valid_count": 21795,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 48,
+      "seconds": 0.7994764056056738
+    },
+    {
+      "losses": {
+        "total": -0.8696940243244171,
+        "plan_d3": 0.12242594361305237,
+        "occ_bce": 0.2782691717147827,
+        "lane_bce": 0.5009304583072662,
+        "history": -2.973367929458618,
+        "state": -2.768579840660095,
+        "stop_bce": 0.010742327198386192,
+        "motion": -5.73979926109314,
+        "plan_interval_length": 0.05743641406297684,
+        "flow_raw": 0.5132987946271896,
+        "flow_weighted": 0.009059208910912275,
+        "optimized_total": -0.8462757170200348
+      },
+      "gradient_norm": 54.275882720947266,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2692443020641804,
+      "flow_coefficient": 0.01764899722967847,
+      "lr": {
+        "backbone": 4.9e-07,
+        "head": 4.9000000000000005e-06,
+        "flow_readout": 4.9e-05
+      },
+      "valid_fraction": 0.2825038731098175,
+      "valid_count": 23432,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 49,
+      "seconds": 0.8114542793482542
+    },
+    {
+      "losses": {
+        "total": -0.9119749665260315,
+        "plan_d3": 0.09130734205245972,
+        "occ_bce": 0.29496343433856964,
+        "lane_bce": 0.4448956251144409,
+        "history": -2.973327398300171,
+        "state": -2.784717321395874,
+        "stop_bce": 0.008871620520949364,
+        "motion": -5.756270408630371,
+        "plan_interval_length": 0.05608734115958214,
+        "flow_raw": 0.5771403908729553,
+        "flow_weighted": 0.010393825359642506,
+        "optimized_total": -0.8875592947006226
+      },
+      "gradient_norm": 29.95139503479004,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2641725707799196,
+      "flow_coefficient": 0.018009180846610684,
+      "lr": {
+        "backbone": 5e-07,
+        "head": 5e-06,
+        "flow_readout": 5e-05
+      },
+      "valid_fraction": 0.2702787518501282,
+      "valid_count": 22418,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 50,
+      "seconds": 0.7963241040706635
+    },
+    {
+      "losses": {
+        "total": -0.9022189974784851,
+        "plan_d3": 0.08969193696975708,
+        "occ_bce": 0.2821997404098511,
+        "lane_bce": 0.46961574256420135,
+        "history": -2.9432501792907715,
+        "state": -2.770562529563904,
+        "stop_bce": 0.012213396839797497,
+        "motion": -5.71136999130249,
+        "plan_interval_length": 0.03930155374109745,
+        "flow_raw": 0.35310761630535126,
+        "flow_weighted": 0.006486362311989069,
+        "optimized_total": -0.8859072625637054
+      },
+      "gradient_norm": 68.34611511230469,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26328971050679684,
+      "flow_coefficient": 0.018369364463542898,
+      "lr": {
+        "backbone": 5.1e-07,
+        "head": 5.1e-06,
+        "flow_readout": 5.1000000000000006e-05
+      },
+      "valid_fraction": 0.1839192658662796,
+      "valid_count": 15255,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 51,
+      "seconds": 0.7956162691116333
+    },
+    {
+      "losses": {
+        "total": -0.9101134240627289,
+        "plan_d3": 0.076559878885746,
+        "occ_bce": 0.29881589114665985,
+        "lane_bce": 0.48788973689079285,
+        "history": -2.9796969890594482,
+        "state": -2.7500709295272827,
+        "stop_bce": 0.04848141223192215,
+        "motion": -5.720071792602539,
+        "plan_interval_length": 0.03859005495905876,
+        "flow_raw": 0.4397316873073578,
+        "flow_weighted": 0.008235976099967957,
+        "optimized_total": -0.8922299444675446
+      },
+      "gradient_norm": 38.94816970825195,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26559755206108093,
+      "flow_coefficient": 0.01872954808047511,
+      "lr": {
+        "backbone": 5.2e-07,
+        "head": 5.2e-06,
+        "flow_readout": 5.2000000000000004e-05
+      },
+      "valid_fraction": 0.25264033675193787,
+      "valid_count": 20955,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 52,
+      "seconds": 0.7980145681649446
+    },
+    {
+      "losses": {
+        "total": -0.8505013585090637,
+        "plan_d3": 0.1335567757487297,
+        "occ_bce": 0.24909395724534988,
+        "lane_bce": 0.4852762520313263,
+        "history": -2.97758686542511,
+        "state": -2.679608702659607,
+        "stop_bce": 0.012672976590692997,
+        "motion": -5.654660940170288,
+        "plan_interval_length": 0.07451925240457058,
+        "flow_raw": 0.3925418555736542,
+        "flow_weighted": 0.0074935187585651875,
+        "optimized_total": -0.8243780434131622
+      },
+      "gradient_norm": 63.27279281616211,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2627258636057377,
+      "flow_coefficient": 0.019089731697407325,
+      "lr": {
+        "backbone": 5.3e-07,
+        "head": 5.300000000000001e-06,
+        "flow_readout": 5.300000000000001e-05
+      },
+      "valid_fraction": 0.3135368525981903,
+      "valid_count": 26006,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 53,
+      "seconds": 0.7970398589968681
+    },
+    {
+      "losses": {
+        "total": -0.8988862335681915,
+        "plan_d3": 0.09673279151320457,
+        "occ_bce": 0.34382833540439606,
+        "lane_bce": 0.47861747443675995,
+        "history": -2.977662205696106,
+        "state": -2.823728561401367,
+        "stop_bce": 0.0042494433000683784,
+        "motion": -5.800540924072266,
+        "plan_interval_length": 0.0407478678971529,
+        "flow_raw": 0.7210314869880676,
+        "flow_weighted": 0.01402400154620409,
+        "optimized_total": -0.8746752738952637
+      },
+      "gradient_norm": 43.37454605102539,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2624901570379734,
+      "flow_coefficient": 0.01944991531433954,
+      "lr": {
+        "backbone": 5.4e-07,
+        "head": 5.400000000000001e-06,
+        "flow_readout": 5.4000000000000005e-05
+      },
+      "valid_fraction": 0.21925637125968933,
+      "valid_count": 18186,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 54,
+      "seconds": 0.7962347697466612
+    },
+    {
+      "losses": {
+        "total": -0.8889136016368866,
+        "plan_d3": 0.10422330349683762,
+        "occ_bce": 0.2738268971443176,
+        "lane_bce": 0.4930695593357086,
+        "history": -2.9783904552459717,
+        "state": -2.7701032161712646,
+        "stop_bce": 0.0795641541481018,
+        "motion": -5.732580900192261,
+        "plan_interval_length": 0.04739056248217821,
+        "flow_raw": 0.44747602939605713,
+        "flow_weighted": 0.008864544797688723,
+        "optimized_total": -0.8682014048099518
+      },
+      "gradient_norm": 22.020971298217773,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26505007967352867,
+      "flow_coefficient": 0.019810098931271752,
+      "lr": {
+        "backbone": 5.5e-07,
+        "head": 5.500000000000001e-06,
+        "flow_readout": 5.500000000000001e-05
+      },
+      "valid_fraction": 0.26364776492118835,
+      "valid_count": 21868,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 55,
+      "seconds": 0.798983845859766
+    },
+    {
+      "losses": {
+        "total": -0.9240267276763916,
+        "plan_d3": 0.07677256315946579,
+        "occ_bce": 0.25813576579093933,
+        "lane_bce": 0.49077388644218445,
+        "history": -2.9678176641464233,
+        "state": -2.7851295471191406,
+        "stop_bce": 0.00020462274551391602,
+        "motion": -5.752906084060669,
+        "plan_interval_length": 0.045432403683662415,
+        "flow_raw": 0.8368865251541138,
+        "flow_weighted": 0.016880237497389317,
+        "optimized_total": -0.8957883715629578
+      },
+      "gradient_norm": 33.19303512573242,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26494070515036583,
+      "flow_coefficient": 0.020170282548203966,
+      "lr": {
+        "backbone": 5.6e-07,
+        "head": 5.600000000000001e-06,
+        "flow_readout": 5.6000000000000006e-05
+      },
+      "valid_fraction": 0.19674719870090485,
+      "valid_count": 16319,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 56,
+      "seconds": 0.7978363204747438
+    },
+    {
+      "losses": {
+        "total": -0.8900618851184845,
+        "plan_d3": 0.09890150278806686,
+        "occ_bce": 0.31761736422777176,
+        "lane_bce": 0.4809246361255646,
+        "history": -2.9813575744628906,
+        "state": -2.7627216577529907,
+        "stop_bce": 0.0036036523524671793,
+        "motion": -5.743358850479126,
+        "plan_interval_length": 0.056492604315280914,
+        "flow_raw": 0.8885388076305389,
+        "flow_weighted": 0.01824211608618498,
+        "optimized_total": -0.8576965928077698
+      },
+      "gradient_norm": 28.447328567504883,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26593782380223274,
+      "flow_coefficient": 0.02053046616513618,
+      "lr": {
+        "backbone": 5.699999999999999e-07,
+        "head": 5.7e-06,
+        "flow_readout": 5.6999999999999996e-05
+      },
+      "valid_fraction": 0.21307146549224854,
+      "valid_count": 17673,
+      "pair_counts": [
+        4,
+        12
+      ],
+      "step": 57,
+      "seconds": 0.8008200097829103
+    },
+    {
+      "losses": {
+        "total": -0.8815262019634247,
+        "plan_d3": 0.11592181026935577,
+        "occ_bce": 0.24090154469013214,
+        "lane_bce": 0.49501094222068787,
+        "history": -2.9679880142211914,
+        "state": -2.7552242279052734,
+        "stop_bce": 0.00029900670051574707,
+        "motion": -5.72315239906311,
+        "plan_interval_length": 0.06297468580305576,
+        "flow_raw": 0.6207449734210968,
+        "flow_weighted": 0.012967765796929598,
+        "optimized_total": -0.852814793586731
+      },
+      "gradient_norm": 60.09440231323242,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2676474265754223,
+      "flow_coefficient": 0.020890649782068393,
+      "lr": {
+        "backbone": 5.8e-07,
+        "head": 5.8e-06,
+        "flow_readout": 5.8e-05
+      },
+      "valid_fraction": 0.21128714084625244,
+      "valid_count": 17525,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 58,
+      "seconds": 0.7965211402624846
+    },
+    {
+      "losses": {
+        "total": -0.8870132863521576,
+        "plan_d3": 0.10620276257395744,
+        "occ_bce": 0.30270442366600037,
+        "lane_bce": 0.49120405316352844,
+        "history": -2.9892858266830444,
+        "state": -2.7715935707092285,
+        "stop_bce": 0.004454662557691336,
+        "motion": -5.75998854637146,
+        "plan_interval_length": 0.06594366021454334,
+        "flow_raw": 0.5057312995195389,
+        "flow_weighted": 0.010747211053967476,
+        "optimized_total": -0.8597801625728607
+      },
+      "gradient_norm": 30.609582901000977,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2627115622162819,
+      "flow_coefficient": 0.021250833399000607,
+      "lr": {
+        "backbone": 5.9e-07,
+        "head": 5.9e-06,
+        "flow_readout": 5.9e-05
+      },
+      "valid_fraction": 0.21297502517700195,
+      "valid_count": 17665,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 59,
+      "seconds": 0.7937268447130919
+    },
+    {
+      "losses": {
+        "total": -0.8452780842781067,
+        "plan_d3": 0.14776554703712463,
+        "occ_bce": 0.25276659429073334,
+        "lane_bce": 0.4767993241548538,
+        "history": -2.980523705482483,
+        "state": -2.718369483947754,
+        "stop_bce": 0.020544543862342834,
+        "motion": -5.694784164428711,
+        "plan_interval_length": 0.0695196408778429,
+        "flow_raw": 0.6224357783794403,
+        "flow_weighted": 0.013451469596475363,
+        "optimized_total": -0.8144466876983643
+      },
+      "gradient_norm": 37.32331085205078,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2603910267353058,
+      "flow_coefficient": 0.02161101701593282,
+      "lr": {
+        "backbone": 6e-07,
+        "head": 6e-06,
+        "flow_readout": 6e-05
+      },
+      "valid_fraction": 0.19098427891731262,
+      "valid_count": 15841,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 60,
+      "seconds": 0.7903018053621054
+    },
+    {
+      "losses": {
+        "total": -0.8363586068153381,
+        "plan_d3": 0.1409897431731224,
+        "occ_bce": 0.2641274631023407,
+        "lane_bce": 0.4886355698108673,
+        "history": -2.953659176826477,
+        "state": -2.6914690732955933,
+        "stop_bce": 0.028118930757045746,
+        "motion": -5.639504671096802,
+        "plan_interval_length": 0.075815225020051,
+        "flow_raw": 0.9349803030490875,
+        "flow_weighted": 0.020542640704661608,
+        "optimized_total": -0.7968621551990509
+      },
+      "gradient_norm": 63.58533477783203,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26128217950463295,
+      "flow_coefficient": 0.021971200632865034,
+      "lr": {
+        "backbone": 6.1e-07,
+        "head": 6.1e-06,
+        "flow_readout": 6.1e-05
+      },
+      "valid_fraction": 0.2496141940355301,
+      "valid_count": 20704,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 61,
+      "seconds": 0.7915593031793833
+    },
+    {
+      "losses": {
+        "total": -0.9096574783325195,
+        "plan_d3": 0.08283781632781029,
+        "occ_bce": 0.2395765334367752,
+        "lane_bce": 0.48242315649986267,
+        "history": -2.9863128662109375,
+        "state": -2.7182435989379883,
+        "stop_bce": 0.1004023440182209,
+        "motion": -5.684475898742676,
+        "plan_interval_length": 0.04403710924088955,
+        "flow_raw": 0.22517286986112595,
+        "flow_weighted": 0.005028422106988728,
+        "optimized_total": -0.8936197757720947
+      },
+      "gradient_norm": 45.390769958496094,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26557034254074097,
+      "flow_coefficient": 0.022331384249797248,
+      "lr": {
+        "backbone": 6.2e-07,
+        "head": 6.200000000000001e-06,
+        "flow_readout": 6.2e-05
+      },
+      "valid_fraction": 0.3478250503540039,
+      "valid_count": 28850,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 62,
+      "seconds": 0.7971265316009521
+    },
+    {
+      "losses": {
+        "total": -0.9007921814918518,
+        "plan_d3": 0.09782101213932037,
+        "occ_bce": 0.28686075657606125,
+        "lane_bce": 0.45443063974380493,
+        "history": -2.980926752090454,
+        "state": -2.7872512340545654,
+        "stop_bce": 0.1691034883260727,
+        "motion": -5.734357118606567,
+        "plan_interval_length": 0.06222229264676571,
+        "flow_raw": 0.3511864244937897,
+        "flow_weighted": 0.007968970807269216,
+        "optimized_total": -0.8772676587104797
+      },
+      "gradient_norm": 24.526485443115234,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26429232954978943,
+      "flow_coefficient": 0.022691567866729462,
+      "lr": {
+        "backbone": 6.3e-07,
+        "head": 6.300000000000001e-06,
+        "flow_readout": 6.3e-05
+      },
+      "valid_fraction": 0.3317660093307495,
+      "valid_count": 27518,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 63,
+      "seconds": 0.7922262083739042
+    },
+    {
+      "losses": {
+        "total": -0.9107175171375275,
+        "plan_d3": 0.09668704122304916,
+        "occ_bce": 0.2580534815788269,
+        "lane_bce": 0.4461476653814316,
+        "history": -2.960713267326355,
+        "state": -2.7811321020126343,
+        "stop_bce": 0.003107078606262803,
+        "motion": -5.7412238121032715,
+        "plan_interval_length": 0.043087663128972054,
+        "flow_raw": 0.557936817407608,
+        "flow_weighted": 0.01286142086610198,
+        "optimized_total": -0.8870842158794403
+      },
+      "gradient_norm": 43.44151306152344,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2613843325525522,
+      "flow_coefficient": 0.023051751483661675,
+      "lr": {
+        "backbone": 6.4e-07,
+        "head": 6.4000000000000006e-06,
+        "flow_readout": 6.400000000000001e-05
+      },
+      "valid_fraction": 0.19127362966537476,
+      "valid_count": 15865,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 64,
+      "seconds": 0.791398361325264
+    },
+    {
+      "losses": {
+        "total": -0.8772410750389099,
+        "plan_d3": 0.09414329379796982,
+        "occ_bce": 0.2837716192007065,
+        "lane_bce": 0.4918545186519623,
+        "history": -2.9580172300338745,
+        "state": -2.6772875785827637,
+        "stop_bce": 0.013784713111817837,
+        "motion": -5.632547855377197,
+        "plan_interval_length": 0.05617173761129379,
+        "flow_raw": 0.640270322561264,
+        "flow_weighted": 0.014989966992288828,
+        "optimized_total": -0.8482081592082977
+      },
+      "gradient_norm": 37.350563049316406,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.25991301983594894,
+      "flow_coefficient": 0.02341193510059389,
+      "lr": {
+        "backbone": 6.5e-07,
+        "head": 6.5000000000000004e-06,
+        "flow_readout": 6.500000000000001e-05
+      },
+      "valid_fraction": 0.2344835102558136,
+      "valid_count": 19449,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 65,
+      "seconds": 0.7923028711229563
+    },
+    {
+      "losses": {
+        "total": -0.9084515571594238,
+        "plan_d3": 0.10176603496074677,
+        "occ_bce": 0.24111174046993256,
+        "lane_bce": 0.45450639724731445,
+        "history": -2.970748543739319,
+        "state": -2.808742880821228,
+        "stop_bce": 0.1639263101387769,
+        "motion": -5.746706008911133,
+        "plan_interval_length": 0.04209331050515175,
+        "flow_raw": 0.4757448732852936,
+        "flow_weighted": 0.011309463530778885,
+        "optimized_total": -0.8866187632083893
+      },
+      "gradient_norm": 88.92033386230469,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2637342382222414,
+      "flow_coefficient": 0.023772118717526103,
+      "lr": {
+        "backbone": 6.6e-07,
+        "head": 6.600000000000001e-06,
+        "flow_readout": 6.6e-05
+      },
+      "valid_fraction": 0.2208598554134369,
+      "valid_count": 18319,
+      "pair_counts": [
+        11,
+        5
+      ],
+      "step": 66,
+      "seconds": 0.793990371748805
+    },
+    {
+      "losses": {
+        "total": -0.832635909318924,
+        "plan_d3": 0.1774374172091484,
+        "occ_bce": 0.29312939941883087,
+        "lane_bce": 0.4754481613636017,
+        "history": -2.9772205352783203,
+        "state": -2.8426249027252197,
+        "stop_bce": 0.00450639333575964,
+        "motion": -5.818944215774536,
+        "plan_interval_length": 0.07774210721254349,
+        "flow_raw": 0.6854538321495056,
+        "flow_weighted": 0.016541579272598028,
+        "optimized_total": -0.7966588139533997
+      },
+      "gradient_norm": 90.46669006347656,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2655861768871546,
+      "flow_coefficient": 0.024132302334458317,
+      "lr": {
+        "backbone": 6.7e-07,
+        "head": 6.700000000000001e-06,
+        "flow_readout": 6.7e-05
+      },
+      "valid_fraction": 0.21606144309043884,
+      "valid_count": 17921,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 67,
+      "seconds": 0.7980908434838057
+    },
+    {
+      "losses": {
+        "total": -0.8355569243431091,
+        "plan_d3": 0.15296272933483124,
+        "occ_bce": 0.28926101326942444,
+        "lane_bce": 0.4868169277906418,
+        "history": -2.972352981567383,
+        "state": -2.7471050024032593,
+        "stop_bce": 0.003908354556187987,
+        "motion": -5.718676328659058,
+        "plan_interval_length": 0.08838937804102898,
+        "flow_raw": 0.7574621438980103,
+        "flow_weighted": 0.01855213101953268,
+        "optimized_total": -0.7949074804782867
+      },
+      "gradient_norm": 66.2518310546875,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2673411946743727,
+      "flow_coefficient": 0.024492485951390534,
+      "lr": {
+        "backbone": 6.800000000000001e-07,
+        "head": 6.800000000000001e-06,
+        "flow_readout": 6.800000000000001e-05
+      },
+      "valid_fraction": 0.24406829476356506,
+      "valid_count": 20244,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 68,
+      "seconds": 0.7983442526310682
+    },
+    {
+      "losses": {
+        "total": -0.9339503347873688,
+        "plan_d3": 0.09288089722394943,
+        "occ_bce": 0.22149360179901123,
+        "lane_bce": 0.4525325894355774,
+        "history": -2.97287380695343,
+        "state": -2.8367522954940796,
+        "stop_bce": 0.007217372069135308,
+        "motion": -5.80818247795105,
+        "plan_interval_length": 0.054593322798609734,
+        "flow_raw": 0.6226019412279129,
+        "flow_weighted": 0.01547332014888525,
+        "optimized_total": -0.904828667640686
+      },
+      "gradient_norm": 60.52214431762695,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26546494476497173,
+      "flow_coefficient": 0.024852669568322747,
+      "lr": {
+        "backbone": 6.9e-07,
+        "head": 6.9e-06,
+        "flow_readout": 6.9e-05
+      },
+      "valid_fraction": 0.18485966324806213,
+      "valid_count": 15333,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 69,
+      "seconds": 0.7965808864682913
+    },
+    {
+      "losses": {
+        "total": -0.8616712093353271,
+        "plan_d3": 0.09167957305908203,
+        "occ_bce": 0.35195374488830566,
+        "lane_bce": 0.4775177240371704,
+        "history": -2.9599053859710693,
+        "state": -2.6540762186050415,
+        "stop_bce": 0.08878113329410553,
+        "motion": -5.596225261688232,
+        "plan_interval_length": 0.06045070290565491,
+        "flow_raw": 1.045932799577713,
+        "flow_weighted": 0.026370949111878872,
+        "optimized_total": -0.8201875686645508
+      },
+      "gradient_norm": 33.37527084350586,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2630708497017622,
+      "flow_coefficient": 0.02521285318525496,
+      "lr": {
+        "backbone": 7e-07,
+        "head": 7e-06,
+        "flow_readout": 7e-05
+      },
+      "valid_fraction": 0.26428675651550293,
+      "valid_count": 21921,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 70,
+      "seconds": 0.796921581029892
+    },
+    {
+      "losses": {
+        "total": -0.7483590245246887,
+        "plan_d3": 0.2106615975499153,
+        "occ_bce": 0.32183660566806793,
+        "lane_bce": 0.4876302182674408,
+        "history": -2.96768057346344,
+        "state": -2.644443988800049,
+        "stop_bce": 0.03777371719479561,
+        "motion": -5.604569911956787,
+        "plan_interval_length": 0.07166736572980881,
+        "flow_raw": 0.695534348487854,
+        "flow_weighted": 0.01778692565858364,
+        "optimized_total": -0.7126552760601044
+      },
+      "gradient_norm": 71.05680084228516,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2663401197642088,
+      "flow_coefficient": 0.025573036802187168,
+      "lr": {
+        "backbone": 7.1e-07,
+        "head": 7.100000000000001e-06,
+        "flow_readout": 7.1e-05
+      },
+      "valid_fraction": 0.25127798318862915,
+      "valid_count": 20842,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 71,
+      "seconds": 0.7974017467349768
+    },
+    {
+      "losses": {
+        "total": -0.8588807284832001,
+        "plan_d3": 0.13420483469963074,
+        "occ_bce": 0.33682797849178314,
+        "lane_bce": 0.48821015655994415,
+        "history": -2.9840033054351807,
+        "state": -2.8083237409591675,
+        "stop_bce": 0.009305862709879875,
+        "motion": -5.790466070175171,
+        "plan_interval_length": 0.04908840358257294,
+        "flow_raw": 0.40599751472473145,
+        "flow_weighted": 0.010528822895139456,
+        "optimized_total": -0.8360797762870789
+      },
+      "gradient_norm": 68.19770812988281,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.27173615992069244,
+      "flow_coefficient": 0.02593322041911938,
+      "lr": {
+        "backbone": 7.2e-07,
+        "head": 7.2000000000000005e-06,
+        "flow_readout": 7.2e-05
+      },
+      "valid_fraction": 0.21536217629909515,
+      "valid_count": 17863,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 72,
+      "seconds": 0.8015142027288675
+    },
+    {
+      "losses": {
+        "total": -0.8233186304569244,
+        "plan_d3": 0.18311181664466858,
+        "occ_bce": 0.20083294808864594,
+        "lane_bce": 0.471975713968277,
+        "history": -2.9475085735321045,
+        "state": -2.75896155834198,
+        "stop_bce": 0.007547632325440645,
+        "motion": -5.704960584640503,
+        "plan_interval_length": 0.08742699027061462,
+        "flow_raw": 0.4366281032562256,
+        "flow_weighted": 0.011480439687147737,
+        "optimized_total": -0.7899814546108246
+      },
+      "gradient_norm": 78.91075897216797,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26485734805464745,
+      "flow_coefficient": 0.0262934040360516,
+      "lr": {
+        "backbone": 7.3e-07,
+        "head": 7.3e-06,
+        "flow_readout": 7.3e-05
+      },
+      "valid_fraction": 0.2167486548423767,
+      "valid_count": 17978,
+      "pair_counts": [
+        5,
+        11
+      ],
+      "step": 73,
+      "seconds": 0.7945671901106834
+    },
+    {
+      "losses": {
+        "total": -0.8522842824459076,
+        "plan_d3": 0.15448754280805588,
+        "occ_bce": 0.2269883081316948,
+        "lane_bce": 0.4912767857313156,
+        "history": -2.9619140625,
+        "state": -2.792712092399597,
+        "stop_bce": 0.01251103333197534,
+        "motion": -5.752124071121216,
+        "plan_interval_length": 0.08021925389766693,
+        "flow_raw": 0.4287571460008621,
+        "flow_weighted": 0.011427916120737791,
+        "optimized_total": -0.8208015561103821
+      },
+      "gradient_norm": 84.82133483886719,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2609690111130476,
+      "flow_coefficient": 0.026653587652983812,
+      "lr": {
+        "backbone": 7.4e-07,
+        "head": 7.4e-06,
+        "flow_readout": 7.4e-05
+      },
+      "valid_fraction": 0.26560088992118835,
+      "valid_count": 22030,
+      "pair_counts": [
+        11,
+        5
+      ],
+      "step": 74,
+      "seconds": 0.789313517510891
+    },
+    {
+      "losses": {
+        "total": -0.8064835667610168,
+        "plan_d3": 0.13872752338647842,
+        "occ_bce": 0.43929457664489746,
+        "lane_bce": 0.45125801861286163,
+        "history": -2.948961019515991,
+        "state": -2.668350100517273,
+        "stop_bce": 0.003517147386446595,
+        "motion": -5.616607666015625,
+        "plan_interval_length": 0.0700486321002245,
+        "flow_raw": 0.706220805644989,
+        "flow_weighted": 0.019077687058597803,
+        "optimized_total": -0.7698937356472015
+      },
+      "gradient_norm": 104.5882568359375,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26413992792367935,
+      "flow_coefficient": 0.027013771269916026,
+      "lr": {
+        "backbone": 7.5e-07,
+        "head": 7.500000000000001e-06,
+        "flow_readout": 7.500000000000001e-05
+      },
+      "valid_fraction": 0.1993272602558136,
+      "valid_count": 16533,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 75,
+      "seconds": 0.7941048238426447
+    },
+    {
+      "losses": {
+        "total": -0.8765807747840881,
+        "plan_d3": 0.10183042660355568,
+        "occ_bce": 0.28308501839637756,
+        "lane_bce": 0.47340552508831024,
+        "history": -2.9632723331451416,
+        "state": -2.6873568296432495,
+        "stop_bce": 0.010414052987471223,
+        "motion": -5.648546457290649,
+        "plan_interval_length": 0.05501450039446354,
+        "flow_raw": 0.5472669899463654,
+        "flow_weighted": 0.014980861451476812,
+        "optimized_total": -0.8478462994098663
+      },
+      "gradient_norm": 28.942663192749023,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2631389629095793,
+      "flow_coefficient": 0.02737395488684824,
+      "lr": {
+        "backbone": 7.599999999999999e-07,
+        "head": 7.600000000000001e-06,
+        "flow_readout": 7.6e-05
+      },
+      "valid_fraction": 0.2719666361808777,
+      "valid_count": 22558,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 76,
+      "seconds": 0.7965027038007975
+    },
+    {
+      "losses": {
+        "total": -0.7974765300750732,
+        "plan_d3": 0.141957089304924,
+        "occ_bce": 0.31990552693605423,
+        "lane_bce": 0.5112065374851227,
+        "history": -2.9460604190826416,
+        "state": -2.58226215839386,
+        "stop_bce": 0.00021332502365112305,
+        "motion": -5.528280019760132,
+        "plan_interval_length": 0.07505567371845245,
+        "flow_raw": 0.8534466922283173,
+        "flow_weighted": 0.023669607937335968,
+        "optimized_total": -0.7550430297851562
+      },
+      "gradient_norm": 52.748756408691406,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2632159497588873,
+      "flow_coefficient": 0.027734138503780453,
+      "lr": {
+        "backbone": 7.699999999999999e-07,
+        "head": 7.7e-06,
+        "flow_readout": 7.7e-05
+      },
+      "valid_fraction": 0.2282503843307495,
+      "valid_count": 18932,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 77,
+      "seconds": 0.7957680858671665
+    },
+    {
+      "losses": {
+        "total": -0.8552160561084747,
+        "plan_d3": 0.13719560205936432,
+        "occ_bce": 0.31186556816101074,
+        "lane_bce": 0.4797145426273346,
+        "history": -2.971810817718506,
+        "state": -2.782783627510071,
+        "stop_bce": 0.00477951904758811,
+        "motion": -5.75363826751709,
+        "plan_interval_length": 0.060216471552848816,
+        "flow_raw": 0.5356375724077225,
+        "flow_weighted": 0.015048373956233263,
+        "optimized_total": -0.8251135647296906
+      },
+      "gradient_norm": 38.773494720458984,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26760319992899895,
+      "flow_coefficient": 0.028094322120712667,
+      "lr": {
+        "backbone": 7.799999999999999e-07,
+        "head": 7.800000000000002e-06,
+        "flow_readout": 7.800000000000001e-05
+      },
+      "valid_fraction": 0.2008463591337204,
+      "valid_count": 16659,
+      "pair_counts": [
+        12,
+        4
+      ],
+      "step": 78,
+      "seconds": 0.8013046197593212
+    },
+    {
+      "losses": {
+        "total": -0.8718164563179016,
+        "plan_d3": 0.1197257898747921,
+        "occ_bce": 0.2859511524438858,
+        "lane_bce": 0.47591713070869446,
+        "history": -2.972525954246521,
+        "state": -2.7629905939102173,
+        "stop_bce": 0.07968596648424864,
+        "motion": -5.719579219818115,
+        "plan_interval_length": 0.06112697906792164,
+        "flow_raw": 0.8424511849880219,
+        "flow_weighted": 0.023971530608832836,
+        "optimized_total": -0.8325631320476532
+      },
+      "gradient_norm": 64.03759765625,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2664910275489092,
+      "flow_coefficient": 0.02845450573764488,
+      "lr": {
+        "backbone": 7.9e-07,
+        "head": 7.9e-06,
+        "flow_readout": 7.900000000000001e-05
+      },
+      "valid_fraction": 0.24521364271640778,
+      "valid_count": 20339,
+      "pair_counts": [
+        4,
+        12
+      ],
+      "step": 79,
+      "seconds": 0.8022687900811434
+    },
+    {
+      "losses": {
+        "total": -0.8860619366168976,
+        "plan_d3": 0.116424560546875,
+        "occ_bce": 0.25115281343460083,
+        "lane_bce": 0.494286373257637,
+        "history": -2.970332384109497,
+        "state": -2.7882773876190186,
+        "stop_bce": 0.0036902499850839376,
+        "motion": -5.757871627807617,
+        "plan_interval_length": 0.04739333130419254,
+        "flow_raw": 0.7605043947696686,
+        "flow_weighted": 0.021913698874413967,
+        "optimized_total": -0.8522998988628387
+      },
+      "gradient_norm": 61.458656311035156,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.263658806681633,
+      "flow_coefficient": 0.028814689354577094,
+      "lr": {
+        "backbone": 8e-07,
+        "head": 8.000000000000001e-06,
+        "flow_readout": 8e-05
+      },
+      "valid_fraction": 0.19681954383850098,
+      "valid_count": 16325,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 80,
+      "seconds": 0.7975585721433163
+    },
+    {
+      "losses": {
+        "total": -0.8413293659687042,
+        "plan_d3": 0.1344689428806305,
+        "occ_bce": 0.3226862698793411,
+        "lane_bce": 0.47312551736831665,
+        "history": -2.9791611433029175,
+        "state": -2.69598650932312,
+        "stop_bce": 0.001721709966659546,
+        "motion": -5.674803256988525,
+        "plan_interval_length": 0.07293480448424816,
+        "flow_raw": 0.7386815845966339,
+        "flow_weighted": 0.02155094174668193,
+        "optimized_total": -0.8015446960926056
+      },
+      "gradient_norm": 47.84657287597656,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26511627808213234,
+      "flow_coefficient": 0.029174872971509308,
+      "lr": {
+        "backbone": 8.1e-07,
+        "head": 8.1e-06,
+        "flow_readout": 8.1e-05
+      },
+      "valid_fraction": 0.2703390121459961,
+      "valid_count": 22423,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 81,
+      "seconds": 0.7945529390126467
+    },
+    {
+      "losses": {
+        "total": -0.8613777458667755,
+        "plan_d3": 0.14530635997653008,
+        "occ_bce": 0.2571253776550293,
+        "lane_bce": 0.46746988594532013,
+        "history": -2.9747012853622437,
+        "state": -2.7857320308685303,
+        "stop_bce": 0.012087766081094742,
+        "motion": -5.7580156326293945,
+        "plan_interval_length": 0.09055186808109283,
+        "flow_raw": 0.4214055836200714,
+        "flow_weighted": 0.012446237727999687,
+        "optimized_total": -0.826293557882309
+      },
+      "gradient_norm": 50.97826385498047,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2624628245830536,
+      "flow_coefficient": 0.02953505658844152,
+      "lr": {
+        "backbone": 8.199999999999999e-07,
+        "head": 8.2e-06,
+        "flow_readout": 8.2e-05
+      },
+      "valid_fraction": 0.19415509700775146,
+      "valid_count": 16104,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 82,
+      "seconds": 0.7902304027229548
+    },
+    {
+      "losses": {
+        "total": -0.8862068355083466,
+        "plan_d3": 0.104039516299963,
+        "occ_bce": 0.3183897137641907,
+        "lane_bce": 0.45186886191368103,
+        "history": -2.9593000411987305,
+        "state": -2.763646364212036,
+        "stop_bce": 0.007282092934474349,
+        "motion": -5.721490144729614,
+        "plan_interval_length": 0.04209657199680805,
+        "flow_raw": 0.5751885771751404,
+        "flow_weighted": 0.017195400781929493,
+        "optimized_total": -0.8584872782230377
+      },
+      "gradient_norm": 93.85629272460938,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26712009496986866,
+      "flow_coefficient": 0.029895240205373735,
+      "lr": {
+        "backbone": 8.299999999999999e-07,
+        "head": 8.3e-06,
+        "flow_readout": 8.3e-05
+      },
+      "valid_fraction": 0.2498432695865631,
+      "valid_count": 20723,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 83,
+      "seconds": 0.7994775902479887
+    },
+    {
+      "losses": {
+        "total": -0.8808423578739166,
+        "plan_d3": 0.11173374950885773,
+        "occ_bce": 0.2695651352405548,
+        "lane_bce": 0.5015030801296234,
+        "history": -2.982432246208191,
+        "state": -2.7536215782165527,
+        "stop_bce": 0.010526342317461967,
+        "motion": -5.733948707580566,
+        "plan_interval_length": 0.0507936691865325,
+        "flow_raw": 0.49700213968753815,
+        "flow_weighted": 0.015037010423839092,
+        "optimized_total": -0.8531068861484528
+      },
+      "gradient_norm": 61.83864212036133,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2673533037304878,
+      "flow_coefficient": 0.030255423822305953,
+      "lr": {
+        "backbone": 8.399999999999999e-07,
+        "head": 8.400000000000001e-06,
+        "flow_readout": 8.4e-05
+      },
+      "valid_fraction": 0.27694588899612427,
+      "valid_count": 22971,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 84,
+      "seconds": 0.801723949611187
+    },
+    {
+      "losses": {
+        "total": -0.850694328546524,
+        "plan_d3": 0.12487800419330597,
+        "occ_bce": 0.3325672149658203,
+        "lane_bce": 0.46975040435791016,
+        "history": -2.9679473638534546,
+        "state": -2.7124189138412476,
+        "stop_bce": 0.0009360909461975098,
+        "motion": -5.680179119110107,
+        "plan_interval_length": 0.062323037534952164,
+        "flow_raw": 0.5605675727128983,
+        "flow_weighted": 0.017162116710096598,
+        "optimized_total": -0.8179514110088348
+      },
+      "gradient_norm": 76.7864761352539,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2648846674710512,
+      "flow_coefficient": 0.030615607439238166,
+      "lr": {
+        "backbone": 8.499999999999999e-07,
+        "head": 8.5e-06,
+        "flow_readout": 8.5e-05
+      },
+      "valid_fraction": 0.19473379850387573,
+      "valid_count": 16152,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 85,
+      "seconds": 0.7974875345826149
+    },
+    {
+      "losses": {
+        "total": -0.8588675856590271,
+        "plan_d3": 0.15033815801143646,
+        "occ_bce": 0.25277113914489746,
+        "lane_bce": 0.48608095943927765,
+        "history": -2.9780458211898804,
+        "state": -2.8101712465286255,
+        "stop_bce": 0.016680829226970673,
+        "motion": -5.784880876541138,
+        "plan_interval_length": 0.08315188623964787,
+        "flow_raw": 0.3430033326148987,
+        "flow_weighted": 0.01062479941174388,
+        "optimized_total": -0.8274548053741455
+      },
+      "gradient_norm": 33.40635681152344,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26548321172595024,
+      "flow_coefficient": 0.030975791056170373,
+      "lr": {
+        "backbone": 8.599999999999999e-07,
+        "head": 8.6e-06,
+        "flow_readout": 8.6e-05
+      },
+      "valid_fraction": 0.3242669701576233,
+      "valid_count": 26896,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 86,
+      "seconds": 0.7954735867679119
+    },
+    {
+      "losses": {
+        "total": -0.8521062135696411,
+        "plan_d3": 0.11934561282396317,
+        "occ_bce": 0.3204861581325531,
+        "lane_bce": 0.503803014755249,
+        "history": -2.9722121953964233,
+        "state": -2.7125924825668335,
+        "stop_bce": 0.016284383833408356,
+        "motion": -5.681548118591309,
+        "plan_interval_length": 0.06783637404441833,
+        "flow_raw": 0.47282086312770844,
+        "flow_weighted": 0.014816302806138992,
+        "optimized_total": -0.820330798625946
+      },
+      "gradient_norm": 60.43244934082031,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2664984408766031,
+      "flow_coefficient": 0.03133597467310259,
+      "lr": {
+        "backbone": 8.699999999999999e-07,
+        "head": 8.700000000000001e-06,
+        "flow_readout": 8.7e-05
+      },
+      "valid_fraction": 0.2615017294883728,
+      "valid_count": 21690,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 87,
+      "seconds": 0.7950664591044188
+    },
+    {
+      "losses": {
+        "total": -0.8459421396255493,
+        "plan_d3": 0.13870614767074585,
+        "occ_bce": 0.27721740305423737,
+        "lane_bce": 0.4937547743320465,
+        "history": -2.959261894226074,
+        "state": -2.7408498525619507,
+        "stop_bce": 0.02949049510061741,
+        "motion": -5.694213390350342,
+        "plan_interval_length": 0.07007023878395557,
+        "flow_raw": 0.8344093412160873,
+        "flow_weighted": 0.02644757181406021,
+        "optimized_total": -0.8019770085811615
+      },
+      "gradient_norm": 78.013671875,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2645658403635025,
+      "flow_coefficient": 0.031696158290034804,
+      "lr": {
+        "backbone": 8.799999999999999e-07,
+        "head": 8.8e-06,
+        "flow_readout": 8.800000000000001e-05
+      },
+      "valid_fraction": 0.2752700746059418,
+      "valid_count": 22832,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 88,
+      "seconds": 0.7974045276641846
+    },
+    {
+      "losses": {
+        "total": -0.8243256211280823,
+        "plan_d3": 0.14472157508134842,
+        "occ_bce": 0.3159988075494766,
+        "lane_bce": 0.5041388273239136,
+        "history": -2.9642891883850098,
+        "state": -2.701996684074402,
+        "stop_bce": 0.004561449401080608,
+        "motion": -5.6653733253479,
+        "plan_interval_length": 0.06422379985451698,
+        "flow_raw": 0.39816538989543915,
+        "flow_weighted": 0.012763726525008678,
+        "optimized_total": -0.795505940914154
+      },
+      "gradient_norm": 83.00354766845703,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26567169465124607,
+      "flow_coefficient": 0.03205634190696702,
+      "lr": {
+        "backbone": 8.9e-07,
+        "head": 8.900000000000001e-06,
+        "flow_readout": 8.900000000000001e-05
+      },
+      "valid_fraction": 0.2462625354528427,
+      "valid_count": 20426,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 89,
+      "seconds": 0.7968318276107311
+    },
+    {
+      "losses": {
+        "total": -0.8434900641441345,
+        "plan_d3": 0.1403220072388649,
+        "occ_bce": 0.31321124732494354,
+        "lane_bce": 0.4771164059638977,
+        "history": -2.9612441062927246,
+        "state": -2.7492868900299072,
+        "stop_bce": 0.005715139675885439,
+        "motion": -5.709388017654419,
+        "plan_interval_length": 0.06363074295222759,
+        "flow_raw": 0.6397571712732315,
+        "flow_weighted": 0.020738704595714808,
+        "optimized_total": -0.8068436682224274
+      },
+      "gradient_norm": 66.03330993652344,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.25845885276794434,
+      "flow_coefficient": 0.03241652552389923,
+      "lr": {
+        "backbone": 9e-07,
+        "head": 9e-06,
+        "flow_readout": 9e-05
+      },
+      "valid_fraction": 0.22159530222415924,
+      "valid_count": 18380,
+      "pair_counts": [
+        6,
+        10
+      ],
+      "step": 90,
+      "seconds": 0.7877740599215031
+    },
+    {
+      "losses": {
+        "total": -0.8770800828933716,
+        "plan_d3": 0.11785392835736275,
+        "occ_bce": 0.2724156975746155,
+        "lane_bce": 0.5096834301948547,
+        "history": -2.981703042984009,
+        "state": -2.786110997200012,
+        "stop_bce": 0.05522432271391153,
+        "motion": -5.756769180297852,
+        "plan_interval_length": 0.0755348913371563,
+        "flow_raw": 0.3237451910972595,
+        "flow_weighted": 0.010611302452161908,
+        "optimized_total": -0.8475850820541382
+      },
+      "gradient_norm": 56.69794464111328,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26366559602320194,
+      "flow_coefficient": 0.032776709140831445,
+      "lr": {
+        "backbone": 9.1e-07,
+        "head": 9.100000000000001e-06,
+        "flow_readout": 9.1e-05
+      },
+      "valid_fraction": 0.29126879572868347,
+      "valid_count": 24159,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 91,
+      "seconds": 0.7960123922675848
+    },
+    {
+      "losses": {
+        "total": -0.8464681804180145,
+        "plan_d3": 0.1382511556148529,
+        "occ_bce": 0.25236107409000397,
+        "lane_bce": 0.5272673666477203,
+        "history": -2.9759936332702637,
+        "state": -2.727321982383728,
+        "stop_bce": 0.00045299530029296875,
+        "motion": -5.703225135803223,
+        "plan_interval_length": 0.08119555003941059,
+        "flow_raw": 0.5105501115322113,
+        "flow_weighted": 0.016918044537305832,
+        "optimized_total": -0.8092512488365173
+      },
+      "gradient_norm": 27.82430648803711,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26176000759005547,
+      "flow_coefficient": 0.03313689275776366,
+      "lr": {
+        "backbone": 9.2e-07,
+        "head": 9.200000000000002e-06,
+        "flow_readout": 9.200000000000001e-05
+      },
+      "valid_fraction": 0.22235484421253204,
+      "valid_count": 18443,
+      "pair_counts": [
+        11,
+        5
+      ],
+      "step": 92,
+      "seconds": 0.7897567134350538
+    },
+    {
+      "losses": {
+        "total": -0.8586519658565521,
+        "plan_d3": 0.14337490499019623,
+        "occ_bce": 0.24246083945035934,
+        "lane_bce": 0.5030274391174316,
+        "history": -2.9734798669815063,
+        "state": -2.785873532295227,
+        "stop_bce": 0.01865246891975403,
+        "motion": -5.755622625350952,
+        "plan_interval_length": 0.06781432591378689,
+        "flow_raw": 0.4735734164714813,
+        "flow_weighted": 0.015863324515521526,
+        "optimized_total": -0.825835108757019
+      },
+      "gradient_norm": 100.7009506225586,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26000869274139404,
+      "flow_coefficient": 0.03349707637469587,
+      "lr": {
+        "backbone": 9.3e-07,
+        "head": 9.3e-06,
+        "flow_readout": 9.300000000000001e-05
+      },
+      "valid_fraction": 0.16196469962596893,
+      "valid_count": 13434,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 93,
+      "seconds": 0.7936103921383619
+    },
+    {
+      "losses": {
+        "total": -0.8611997663974762,
+        "plan_d3": 0.1539100483059883,
+        "occ_bce": 0.2684676796197891,
+        "lane_bce": 0.4591093361377716,
+        "history": -2.972938299179077,
+        "state": -2.8308929204940796,
+        "stop_bce": 0.0035278189461678267,
+        "motion": -5.803125858306885,
+        "plan_interval_length": 0.06365474127233028,
+        "flow_raw": 0.6321629285812378,
+        "flow_weighted": 0.021403304301202297,
+        "optimized_total": -0.8238827884197235
+      },
+      "gradient_norm": 102.82612609863281,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26050754450261593,
+      "flow_coefficient": 0.033857259991628086,
+      "lr": {
+        "backbone": 9.399999999999999e-07,
+        "head": 9.4e-06,
+        "flow_readout": 9.4e-05
+      },
+      "valid_fraction": 0.1926601082086563,
+      "valid_count": 15980,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 94,
+      "seconds": 0.7931615356355906
+    },
+    {
+      "losses": {
+        "total": -0.8381003439426422,
+        "plan_d3": 0.1460948958992958,
+        "occ_bce": 0.2862107679247856,
+        "lane_bce": 0.49596521258354187,
+        "history": -2.976872444152832,
+        "state": -2.7293792963027954,
+        "stop_bce": 0.015498253516852856,
+        "motion": -5.703152179718018,
+        "plan_interval_length": 0.04869077913463116,
+        "flow_raw": 0.35415956377983093,
+        "flow_weighted": 0.01211843453347683,
+        "optimized_total": -0.8138092160224915
+      },
+      "gradient_norm": 77.3388900756836,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.259246788918972,
+      "flow_coefficient": 0.0342174436085603,
+      "lr": {
+        "backbone": 9.499999999999999e-07,
+        "head": 9.5e-06,
+        "flow_readout": 9.5e-05
+      },
+      "valid_fraction": 0.24455054104328156,
+      "valid_count": 20284,
+      "pair_counts": [
+        7,
+        9
+      ],
+      "step": 95,
+      "seconds": 0.7884378265589476
+    },
+    {
+      "losses": {
+        "total": -0.8923620581626892,
+        "plan_d3": 0.10803942009806633,
+        "occ_bce": 0.2377391904592514,
+        "lane_bce": 0.49397890269756317,
+        "history": -2.976133108139038,
+        "state": -2.7607311010360718,
+        "stop_bce": 0.01569500472396612,
+        "motion": -5.733725070953369,
+        "plan_interval_length": 0.043541621416807175,
+        "flow_raw": 0.42928844690322876,
+        "flow_weighted": 0.014843775890767574,
+        "optimized_total": -0.8666328489780426
+      },
+      "gradient_norm": 57.40855026245117,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2656496614217758,
+      "flow_coefficient": 0.03457762722549251,
+      "lr": {
+        "backbone": 9.6e-07,
+        "head": 9.600000000000001e-06,
+        "flow_readout": 9.6e-05
+      },
+      "valid_fraction": 0.2190755158662796,
+      "valid_count": 18171,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 96,
+      "seconds": 0.7976019866764545
+    },
+    {
+      "losses": {
+        "total": -0.8421656489372253,
+        "plan_d3": 0.1456739529967308,
+        "occ_bce": 0.3699561506509781,
+        "lane_bce": 0.4835340529680252,
+        "history": -2.97143816947937,
+        "state": -2.8212571144104004,
+        "stop_bce": 3.647804260253906e-05,
+        "motion": -5.792687892913818,
+        "plan_interval_length": 0.06987050548195839,
+        "flow_raw": 0.7404867112636566,
+        "flow_weighted": 0.025870983488857746,
+        "optimized_total": -0.7988270223140717
+      },
+      "gradient_norm": 33.26581954956055,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.2660823818296194,
+      "flow_coefficient": 0.03493781084242473,
+      "lr": {
+        "backbone": 9.7e-07,
+        "head": 9.7e-06,
+        "flow_readout": 9.7e-05
+      },
+      "valid_fraction": 0.2053554207086563,
+      "valid_count": 17033,
+      "pair_counts": [
+        8,
+        8
+      ],
+      "step": 97,
+      "seconds": 0.7966194078326225
+    },
+    {
+      "losses": {
+        "total": -0.8634523153305054,
+        "plan_d3": 0.13246894627809525,
+        "occ_bce": 0.3441459536552429,
+        "lane_bce": 0.45548878610134125,
+        "history": -2.966178297996521,
+        "state": -2.813076972961426,
+        "stop_bce": 7.078051567077637e-05,
+        "motion": -5.77924108505249,
+        "plan_interval_length": 0.05802224762737751,
+        "flow_raw": 0.6347935199737549,
+        "flow_weighted": 0.022406937554478645,
+        "optimized_total": -0.8265398144721985
+      },
+      "gradient_norm": 62.33396530151367,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26048124581575394,
+      "flow_coefficient": 0.03529799445935694,
+      "lr": {
+        "backbone": 9.8e-07,
+        "head": 9.800000000000001e-06,
+        "flow_readout": 9.8e-05
+      },
+      "valid_fraction": 0.15828752517700195,
+      "valid_count": 13129,
+      "pair_counts": [
+        9,
+        7
+      ],
+      "step": 98,
+      "seconds": 0.791706183925271
+    },
+    {
+      "losses": {
+        "total": -0.8489038348197937,
+        "plan_d3": 0.14010216295719147,
+        "occ_bce": 0.2680998891592026,
+        "lane_bce": 0.4804684817790985,
+        "history": -2.9651224613189697,
+        "state": -2.7303333282470703,
+        "stop_bce": 0.009287960827350616,
+        "motion": -5.69359827041626,
+        "plan_interval_length": 0.06119992397725582,
+        "flow_raw": 0.40121832489967346,
+        "flow_weighted": 0.014306714292615652,
+        "optimized_total": -0.8192971348762512
+      },
+      "gradient_norm": 61.680294036865234,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.26152729615569115,
+      "flow_coefficient": 0.035658178076289154,
+      "lr": {
+        "backbone": 9.9e-07,
+        "head": 9.9e-06,
+        "flow_readout": 9.900000000000001e-05
+      },
+      "valid_fraction": 0.2230300009250641,
+      "valid_count": 18499,
+      "pair_counts": [
+        10,
+        6
+      ],
+      "step": 99,
+      "seconds": 0.7958086580038071
+    },
+    {
+      "losses": {
+        "total": -0.8419369757175446,
+        "plan_d3": 0.14954934269189835,
+        "occ_bce": 0.29250411689281464,
+        "lane_bce": 0.45887404680252075,
+        "history": -2.977213501930237,
+        "state": -2.7349408864974976,
+        "stop_bce": 0.016723443754017353,
+        "motion": -5.7088096141815186,
+        "plan_interval_length": 0.05813727341592312,
+        "flow_raw": 0.3655562549829483,
+        "flow_weighted": 0.01316673681139946,
+        "optimized_total": -0.8142359256744385
+      },
+      "gradient_norm": 86.79186248779297,
+      "motion_fuse_gradient_norm": 3.3152235875630125,
+      "flow_readout_gradient_norm": 0.007008309432737493,
+      "motion_fuse_update_norm": 0.0008997027584611579,
+      "teacher_seconds": 0.265274565666914,
+      "flow_coefficient": 0.03601836169322137,
+      "lr": {
+        "backbone": 1e-06,
+        "head": 1e-05,
+        "flow_readout": 0.0001
+      },
+      "valid_fraction": 0.23180700838565826,
+      "valid_count": 19227,
+      "pair_counts": [
+        11,
+        5
+      ],
+      "step": 100,
+      "seconds": 0.7995774690061808
+    }
+  ],
+  "source": {
+    "experiments/a2_long_motion_20260922/calibrate_flow.py": "63d1073c8083096806dca8d2fe5472ae5842a86c953a5de55a2a73c732ea7c02",
+    "experiments/a2_long_motion_20260922/flow_common.py": "88901de6d6dfab1fe2581af5f0f6fbf7400ef1c92695e2058afecdfb729f2c61",
+    "experiments/a2_long_motion_20260922/flow_teacher.py": "9dc69ef4c4d4d29ca87a69e7ebbd6c7746f489911bf51bcd67d3ca488a81f26c",
+    "experiments/a2_long_motion_20260922/probe_flow.py": "ffe6fe939f327370e8c48e79ffda7ec565a11e8b8d86158219f1ea79bd998f94",
+    "experiments/a2_long_motion_20260922/train_flow.py": "150f6018aa7aa2dfc55d8c19bd81bf93b59e20e23f34db1d1a86c71771ce645b",
+    "experiments/a2_long_motion_20260922/train_long.py": "76ea1523ba27eefe5d9497916633660b2e9163f0870308298353d6b29ab88c30",
+    "experiments/a2_long_motion_20260922/verify_long.py": "ed7cabe057b86cb93d58c02329a9e8adbdeacf8433f02044021890dc119e9928",
+    "experiments/a2_motion_fresh_20260919/motion_model.py": "cabc7d6778ae3409f49c9df15941aa413f6623f10d4035134d6ef7f8a223d462",
+    "experiments/a2_motion_fresh_20260919/train_experiment.py": "97a82665ae106af9ef027c79f79f9abba2c841693ea8b4f79545cc1c76430346",
+    "experiments/a2_nearfull_overfit_20260922/data.py": "f50a270a7b1d1bed4bd6e1d8741b128e76999d1722cc7482096ab97be36873ce",
+    "experiments/a2_nearfull_overfit_20260922/monitor.py": "593a3228ac1898dad84c4322f608f19726307e01e7d7fd028ccec9aed1c78132",
+    "experiments/a2_nearfull_overfit_20260922/train_nearfull.py": "7b3d48bffa290a7c72d1cc9b229bb4960bf5033b4a4e82063e37000ad190563b",
+    "experiments/a2_nearfull_overfit_20260922/verify.py": "019f2359991ad3acbf96907836f56ce3a19116a2b60303dcaa7cd57c3a92d6ee",
+    "experiments/a2_progress_h4_20260920/h4_data.py": "cbe1087eed1438a195c8d7f94ee420c672601b9eccd6e083ac3ed70d2e35ac89",
+    "experiments/a2_progress_h4_20260920/h4_status.py": "1d9374bc9e9789eaee35fb885da0682c0ef59195fd67757a460d83014563e643",
+    "experiments/a2_progress_h4_20260920/progress_model.py": "3c71b534c121760732ba0fbf12f3fa28ebe90c50bce69fa99c5759ab8bc27f2e",
+    "experiments/a2_progress_h4_20260920/train_progress.py": "34d549a3908b8811fc1913e1ac71240cd49a988f6a701fc69a51ecbfa1832cc5",
+    "experiments/a2_temporal_read_20260920/temporal_model.py": "dd01226e745e1530ceef2f79f9ae9c495064aede07d61089607667881e66b6a7",
+    "experiments/a2_temporal_read_20260920/train_temporal.py": "2dd6e1688a7c1a6cd73ab988fd313b961840d4d7b46c7aec4dc9ad690e31037f",
+    "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+    "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+    "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+    "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+    "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "scripts/motiondrive_v2_flip_augment.py": "563981f95804e3e1272971e11d9547cb5bbadeb2e2a3026d3985cbda6565ad95",
+    "scripts/motiondrive_v2_training.py": "6e3d5ecccee0a87cf6a85cd490ee192990fd2ca92f0c307040a93ca2cdc7077c",
+    "scripts/train_motiondrive_v2.py": "8a20e2676aad909c2952fe1418a61bc419105793148573a2f45738b432070f24"
+  }
+}

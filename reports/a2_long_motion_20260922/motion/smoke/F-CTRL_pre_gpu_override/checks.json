@@ -1,0 +1,2753 @@
+{
+  "status": "passed",
+  "arm": "F-CTRL",
+  "steps": 100,
+  "teacher_unchanged": true,
+  "BN_buffers_unchanged": true,
+  "input_boundary": {
+    "motion_features": 0.0,
+    "motion_pair_features": 0.0,
+    "state_hat": 0.0,
+    "history_hat": 0.0
+  },
+  "seconds_per_update_median": 0.5295059122145176,
+  "estimated_training_hours": 3.3658925819769503,
+  "sample_order_sha256": "8b8d7fd1064979bf3e3e885747c8c6b8898f42c114058063a8f17a1357fbe5a4",
+  "sampled_input_sha256": "d8015f74045451e982812058f124bf7713a4563c1e66ebcbde48e2dd77ee5b8e",
+  "elapsed_seconds": 63.974205724895,
+  "updates": [
+    {
+      "losses": {
+        "total": -0.8421338200569153,
+        "plan_d3": 0.13694657012820244,
+        "occ_bce": 0.27643827348947525,
+        "lane_bce": 0.509526714682579,
+        "history": -2.974360227584839,
+        "state": -2.7070424556732178,
+        "stop_bce": 0.00017818808555603027,
+        "motion": -5.681366920471191,
+        "plan_interval_length": 0.08481268025934696,
+        "optimized_total": -0.8209306299686432
+      },
+      "gradient_norm": 38.93022155761719,
+      "motion_fuse_gradient_norm": 1.8845467851001434,
+      "flow_readout_gradient_norm": 0.0,
+      "motion_fuse_update_norm": 5.777567429562911e-05,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1e-08,
+        "head": 1.0000000000000001e-07,
+        "flow_readout": 1.0000000000000002e-06
+      },
+      "step": 1,
+      "seconds": 3.773617187514901
+    },
+    {
+      "losses": {
+        "total": -0.8763280808925629,
+        "plan_d3": 0.11552070453763008,
+        "occ_bce": 0.26337210088968277,
+        "lane_bce": 0.5139996409416199,
+        "history": -2.9705350399017334,
+        "state": -2.766121745109558,
+        "stop_bce": 0.00020495057106018066,
+        "motion": -5.7366156578063965,
+        "plan_interval_length": 0.05042707361280918,
+        "optimized_total": -0.8637213110923767
+      },
+      "gradient_norm": 18.917387008666992,
+      "motion_fuse_gradient_norm": 1.3972728656998958,
+      "flow_readout_gradient_norm": 0.0,
+      "motion_fuse_update_norm": 7.939858177013905e-05,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2e-08,
+        "head": 2.0000000000000002e-07,
+        "flow_readout": 2.0000000000000003e-06
+      },
+      "step": 2,
+      "seconds": 0.7514425832778215
+    },
+    {
+      "losses": {
+        "total": -0.8642563819885254,
+        "plan_d3": 0.13526128232479095,
+        "occ_bce": 0.2780996412038803,
+        "lane_bce": 0.4874770939350128,
+        "history": -2.9667314291000366,
+        "state": -2.8060086965560913,
+        "stop_bce": 0.04787590820342302,
+        "motion": -5.76316499710083,
+        "plan_interval_length": 0.06964423879981041,
+        "optimized_total": -0.8468453288078308
+      },
+      "gradient_norm": 36.239749908447266,
+      "motion_fuse_gradient_norm": 2.1087465451863334,
+      "flow_readout_gradient_norm": 0.0,
+      "motion_fuse_update_norm": 8.963647954653706e-05,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3e-08,
+        "head": 3.0000000000000004e-07,
+        "flow_readout": 3e-06
+      },
+      "step": 3,
+      "seconds": 0.5347262881696224
+    },
+    {
+      "losses": {
+        "total": -0.8660471737384796,
+        "plan_d3": 0.12869932502508163,
+        "occ_bce": 0.2808852940797806,
+        "lane_bce": 0.4677991569042206,
+        "history": -2.9742438793182373,
+        "state": -2.7492470741271973,
+        "stop_bce": 0.005370703991502523,
+        "motion": -5.722416877746582,
+        "plan_interval_length": 0.051453784108161926,
+        "optimized_total": -0.8531837165355682
+      },
+      "gradient_norm": 59.129432678222656,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4e-08,
+        "head": 4.0000000000000003e-07,
+        "flow_readout": 4.000000000000001e-06
+      },
+      "step": 4,
+      "seconds": 0.5271646436303854
+    },
+    {
+      "losses": {
+        "total": -0.9055920541286469,
+        "plan_d3": 0.09724835306406021,
+        "occ_bce": 0.23858971148729324,
+        "lane_bce": 0.5015293955802917,
+        "history": -2.9694656133651733,
+        "state": -2.788354516029358,
+        "stop_bce": 0.017495201900601387,
+        "motion": -5.754321098327637,
+        "plan_interval_length": 0.06305412389338017,
+        "optimized_total": -0.8898285031318665
+      },
+      "gradient_norm": 24.968820571899414,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5e-08,
+        "head": 5.000000000000001e-07,
+        "flow_readout": 5e-06
+      },
+      "step": 5,
+      "seconds": 0.5280891116708517
+    },
+    {
+      "losses": {
+        "total": -0.8736942410469055,
+        "plan_d3": 0.12758076936006546,
+        "occ_bce": 0.28723936527967453,
+        "lane_bce": 0.4923432171344757,
+        "history": -2.9705324172973633,
+        "state": -2.8154298067092896,
+        "stop_bce": 2.2172927856445312e-05,
+        "motion": -5.78595757484436,
+        "plan_interval_length": 0.05877393297851086,
+        "optimized_total": -0.8590007722377777
+      },
+      "gradient_norm": 44.59942626953125,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6e-08,
+        "head": 6.000000000000001e-07,
+        "flow_readout": 6e-06
+      },
+      "step": 6,
+      "seconds": 0.5291076917201281
+    },
+    {
+      "losses": {
+        "total": -0.8280604779720306,
+        "plan_d3": 0.1649073213338852,
+        "occ_bce": 0.2609480991959572,
+        "lane_bce": 0.49731355905532837,
+        "history": -2.9693758487701416,
+        "state": -2.7546393871307373,
+        "stop_bce": 0.0045743766240775585,
+        "motion": -5.723100423812866,
+        "plan_interval_length": 0.07695422694087029,
+        "optimized_total": -0.8088219165802002
+      },
+      "gradient_norm": 26.518159866333008,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7e-08,
+        "head": 7.000000000000001e-07,
+        "flow_readout": 7.000000000000001e-06
+      },
+      "step": 7,
+      "seconds": 0.5304219424724579
+    },
+    {
+      "losses": {
+        "total": -0.8858914077281952,
+        "plan_d3": 0.11041305959224701,
+        "occ_bce": 0.2422018200159073,
+        "lane_bce": 0.4934965521097183,
+        "history": -2.979546308517456,
+        "state": -2.7641669511795044,
+        "stop_bce": 0.13246352039277554,
+        "motion": -5.717220306396484,
+        "plan_interval_length": 0.046011943370103836,
+        "optimized_total": -0.8743884265422821
+      },
+      "gradient_norm": 27.983314514160156,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8e-08,
+        "head": 8.000000000000001e-07,
+        "flow_readout": 8.000000000000001e-06
+      },
+      "step": 8,
+      "seconds": 0.5293193403631449
+    },
+    {
+      "losses": {
+        "total": -0.8982447385787964,
+        "plan_d3": 0.11374172940850258,
+        "occ_bce": 0.2297036498785019,
+        "lane_bce": 0.4485589563846588,
+        "history": -2.964445948600769,
+        "state": -2.7756088972091675,
+        "stop_bce": 0.009301483631134033,
+        "motion": -5.738194704055786,
+        "plan_interval_length": 0.0603884719312191,
+        "optimized_total": -0.8831476271152496
+      },
+      "gradient_norm": 32.890254974365234,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9e-08,
+        "head": 9.000000000000001e-07,
+        "flow_readout": 9e-06
+      },
+      "step": 9,
+      "seconds": 0.5305677745491266
+    },
+    {
+      "losses": {
+        "total": -0.910038411617279,
+        "plan_d3": 0.09509212151169777,
+        "occ_bce": 0.2703792378306389,
+        "lane_bce": 0.47255583107471466,
+        "history": -2.9742223024368286,
+        "state": -2.7943896055221558,
+        "stop_bce": 0.00012159347534179688,
+        "motion": -5.768587589263916,
+        "plan_interval_length": 0.04716835916042328,
+        "optimized_total": -0.8982463479042053
+      },
+      "gradient_norm": 53.44735336303711,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1e-07,
+        "head": 1.0000000000000002e-06,
+        "flow_readout": 1e-05
+      },
+      "step": 10,
+      "seconds": 0.5288262814283371
+    },
+    {
+      "losses": {
+        "total": -0.8462200164794922,
+        "plan_d3": 0.13258903473615646,
+        "occ_bce": 0.3459232449531555,
+        "lane_bce": 0.5038633942604065,
+        "history": -2.972317934036255,
+        "state": -2.771663546562195,
+        "stop_bce": 0.0007486343383789062,
+        "motion": -5.7438318729400635,
+        "plan_interval_length": 0.08051864802837372,
+        "optimized_total": -0.8260903656482697
+      },
+      "gradient_norm": 37.07991409301758,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.0999999999999999e-07,
+        "head": 1.1e-06,
+        "flow_readout": 1.1000000000000001e-05
+      },
+      "step": 11,
+      "seconds": 0.528453852981329
+    },
+    {
+      "losses": {
+        "total": -0.8889102935791016,
+        "plan_d3": 0.11180149018764496,
+        "occ_bce": 0.24780315905809402,
+        "lane_bce": 0.4875311255455017,
+        "history": -2.9670310020446777,
+        "state": -2.771878480911255,
+        "stop_bce": 8.243322372436523e-05,
+        "motion": -5.738893032073975,
+        "plan_interval_length": 0.05263836123049259,
+        "optimized_total": -0.875750720500946
+      },
+      "gradient_norm": 30.342649459838867,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.2e-07,
+        "head": 1.2000000000000002e-06,
+        "flow_readout": 1.2e-05
+      },
+      "step": 12,
+      "seconds": 0.5306598208844662
+    },
+    {
+      "losses": {
+        "total": -0.848120927810669,
+        "plan_d3": 0.13666826859116554,
+        "occ_bce": 0.27109476923942566,
+        "lane_bce": 0.47895148396492004,
+        "history": -2.9592232704162598,
+        "state": -2.7147979736328125,
+        "stop_bce": 0.00014507770538330078,
+        "motion": -5.673992156982422,
+        "plan_interval_length": 0.0642476286739111,
+        "optimized_total": -0.8320590257644653
+      },
+      "gradient_norm": 42.2698974609375,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.3e-07,
+        "head": 1.3e-06,
+        "flow_readout": 1.3000000000000001e-05
+      },
+      "step": 13,
+      "seconds": 0.5298916585743427
+    },
+    {
+      "losses": {
+        "total": -0.9127500653266907,
+        "plan_d3": 0.09268052503466606,
+        "occ_bce": 0.2493172511458397,
+        "lane_bce": 0.48897820711135864,
+        "history": -2.9653836488723755,
+        "state": -2.80389940738678,
+        "stop_bce": 0.019174573943018913,
+        "motion": -5.765448331832886,
+        "plan_interval_length": 0.043322643265128136,
+        "optimized_total": -0.9019193947315216
+      },
+      "gradient_norm": 46.78779983520508,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.4e-07,
+        "head": 1.4000000000000001e-06,
+        "flow_readout": 1.4000000000000001e-05
+      },
+      "step": 14,
+      "seconds": 0.7440810818225145
+    },
+    {
+      "losses": {
+        "total": -0.9064125418663025,
+        "plan_d3": 0.08827374503016472,
+        "occ_bce": 0.31359075009822845,
+        "lane_bce": 0.4619826078414917,
+        "history": -2.9578733444213867,
+        "state": -2.7911365032196045,
+        "stop_bce": 2.3424625396728516e-05,
+        "motion": -5.74900484085083,
+        "plan_interval_length": 0.046736808493733406,
+        "optimized_total": -0.8947283327579498
+      },
+      "gradient_norm": 32.68257522583008,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.5e-07,
+        "head": 1.5e-06,
+        "flow_readout": 1.5e-05
+      },
+      "step": 15,
+      "seconds": 0.5271208398044109
+    },
+    {
+      "losses": {
+        "total": -0.9007571339607239,
+        "plan_d3": 0.09228991344571114,
+        "occ_bce": 0.304200142621994,
+        "lane_bce": 0.4858406335115433,
+        "history": -2.9671801328659058,
+        "state": -2.7882803678512573,
+        "stop_bce": 0.0009227991104125977,
+        "motion": -5.7552759647369385,
+        "plan_interval_length": 0.05795922130346298,
+        "optimized_total": -0.8862673342227936
+      },
+      "gradient_norm": 28.28147315979004,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.6e-07,
+        "head": 1.6000000000000001e-06,
+        "flow_readout": 1.6000000000000003e-05
+      },
+      "step": 16,
+      "seconds": 0.5267353300005198
+    },
+    {
+      "losses": {
+        "total": -0.8180517852306366,
+        "plan_d3": 0.15612134337425232,
+        "occ_bce": 0.29477423429489136,
+        "lane_bce": 0.5132788270711899,
+        "history": -2.9753893613815308,
+        "state": -2.7041525840759277,
+        "stop_bce": 0.0031183853279799223,
+        "motion": -5.678918361663818,
+        "plan_interval_length": 0.09310217201709747,
+        "optimized_total": -0.7947762310504913
+      },
+      "gradient_norm": 35.63083267211914,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.7000000000000001e-07,
+        "head": 1.7000000000000002e-06,
+        "flow_readout": 1.7000000000000003e-05
+      },
+      "step": 17,
+      "seconds": 0.5323810558766127
+    },
+    {
+      "losses": {
+        "total": -0.8800859749317169,
+        "plan_d3": 0.0999869592487812,
+        "occ_bce": 0.27832647413015366,
+        "lane_bce": 0.48257359862327576,
+        "history": -2.963259696960449,
+        "state": -2.6980282068252563,
+        "stop_bce": 0.00011658668518066406,
+        "motion": -5.661264419555664,
+        "plan_interval_length": 0.05198480188846588,
+        "optimized_total": -0.8670897781848907
+      },
+      "gradient_norm": 60.47362518310547,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.8e-07,
+        "head": 1.8000000000000001e-06,
+        "flow_readout": 1.8e-05
+      },
+      "step": 18,
+      "seconds": 0.5288805905729532
+    },
+    {
+      "losses": {
+        "total": -0.7707594633102417,
+        "plan_d3": 0.17887727543711662,
+        "occ_bce": 0.2754279896616936,
+        "lane_bce": 0.4977080971002579,
+        "history": -2.9689825773239136,
+        "state": -2.570762276649475,
+        "stop_bce": 0.09212582744657993,
+        "motion": -5.521319627761841,
+        "plan_interval_length": 0.07079168409109116,
+        "optimized_total": -0.7530615627765656
+      },
+      "gradient_norm": 65.06695556640625,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1.8999999999999998e-07,
+        "head": 1.9000000000000002e-06,
+        "flow_readout": 1.9e-05
+      },
+      "step": 19,
+      "seconds": 0.5306417234241962
+    },
+    {
+      "losses": {
+        "total": -0.8730415105819702,
+        "plan_d3": 0.1269262284040451,
+        "occ_bce": 0.262569896876812,
+        "lane_bce": 0.48308494687080383,
+        "history": -2.972967743873596,
+        "state": -2.776309013366699,
+        "stop_bce": 0.018917753361165524,
+        "motion": -5.745493412017822,
+        "plan_interval_length": 0.07350407727062702,
+        "optimized_total": -0.8546654880046844
+      },
+      "gradient_norm": 49.35894775390625,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2e-07,
+        "head": 2.0000000000000003e-06,
+        "flow_readout": 2e-05
+      },
+      "step": 20,
+      "seconds": 0.5309267528355122
+    },
+    {
+      "losses": {
+        "total": -0.8385385870933533,
+        "plan_d3": 0.14241750538349152,
+        "occ_bce": 0.27874553203582764,
+        "lane_bce": 0.5263688266277313,
+        "history": -2.9824650287628174,
+        "state": -2.7297799587249756,
+        "stop_bce": 0.011751416139304638,
+        "motion": -5.70989465713501,
+        "plan_interval_length": 0.06261894293129444,
+        "optimized_total": -0.8228838443756104
+      },
+      "gradient_norm": 22.701271057128906,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.0999999999999997e-07,
+        "head": 2.1000000000000002e-06,
+        "flow_readout": 2.1e-05
+      },
+      "step": 21,
+      "seconds": 0.5298895165324211
+    },
+    {
+      "losses": {
+        "total": -0.8763741254806519,
+        "plan_d3": 0.10906729847192764,
+        "occ_bce": 0.2605733424425125,
+        "lane_bce": 0.4547480046749115,
+        "history": -2.959376096725464,
+        "state": -2.68850040435791,
+        "stop_bce": 0.026739106979221106,
+        "motion": -5.642528533935547,
+        "plan_interval_length": 0.057937148958444595,
+        "optimized_total": -0.8618898391723633
+      },
+      "gradient_norm": 51.14459991455078,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.1999999999999998e-07,
+        "head": 2.2e-06,
+        "flow_readout": 2.2000000000000003e-05
+      },
+      "step": 22,
+      "seconds": 0.5279271975159645
+    },
+    {
+      "losses": {
+        "total": -0.8890858888626099,
+        "plan_d3": 0.09365513175725937,
+        "occ_bce": 0.3203839212656021,
+        "lane_bce": 0.4770406186580658,
+        "history": -2.9635767936706543,
+        "state": -2.754875898361206,
+        "stop_bce": 0.03661611117422581,
+        "motion": -5.711129426956177,
+        "plan_interval_length": 0.05107279680669308,
+        "optimized_total": -0.8763176798820496
+      },
+      "gradient_norm": 27.33143424987793,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.3e-07,
+        "head": 2.3000000000000004e-06,
+        "flow_readout": 2.3000000000000003e-05
+      },
+      "step": 23,
+      "seconds": 0.5290130004286766
+    },
+    {
+      "losses": {
+        "total": -0.8959673047065735,
+        "plan_d3": 0.09239155799150467,
+        "occ_bce": 0.279609352350235,
+        "lane_bce": 0.5079196095466614,
+        "history": -2.9685052633285522,
+        "state": -2.76193106174469,
+        "stop_bce": 0.005564970895648003,
+        "motion": -5.729323387145996,
+        "plan_interval_length": 0.05180329829454422,
+        "optimized_total": -0.8830164670944214
+      },
+      "gradient_norm": 19.050567626953125,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.4e-07,
+        "head": 2.4000000000000003e-06,
+        "flow_readout": 2.4e-05
+      },
+      "step": 24,
+      "seconds": 0.5308112092316151
+    },
+    {
+      "losses": {
+        "total": -0.8678598999977112,
+        "plan_d3": 0.12227976322174072,
+        "occ_bce": 0.2279818058013916,
+        "lane_bce": 0.4877296984195709,
+        "history": -2.9412847757339478,
+        "state": -2.7259504795074463,
+        "stop_bce": 0.004126367159187794,
+        "motion": -5.666409730911255,
+        "plan_interval_length": 0.07667331397533417,
+        "optimized_total": -0.8486915826797485
+      },
+      "gradient_norm": 29.46943473815918,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.5e-07,
+        "head": 2.5e-06,
+        "flow_readout": 2.5e-05
+      },
+      "step": 25,
+      "seconds": 0.5300639178603888
+    },
+    {
+      "losses": {
+        "total": -0.8798143267631531,
+        "plan_d3": 0.12257105857133865,
+        "occ_bce": 0.2677442878484726,
+        "lane_bce": 0.4809289276599884,
+        "history": -2.966508984565735,
+        "state": -2.79411518573761,
+        "stop_bce": 0.00011855363845825195,
+        "motion": -5.760600328445435,
+        "plan_interval_length": 0.07718204706907272,
+        "optimized_total": -0.8605188131332397
+      },
+      "gradient_norm": 54.25914001464844,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.6e-07,
+        "head": 2.6e-06,
+        "flow_readout": 2.6000000000000002e-05
+      },
+      "step": 26,
+      "seconds": 0.5302834566682577
+    },
+    {
+      "losses": {
+        "total": -0.9056639969348907,
+        "plan_d3": 0.08910957723855972,
+        "occ_bce": 0.2680051177740097,
+        "lane_bce": 0.49111421406269073,
+        "history": -2.9689724445343018,
+        "state": -2.7656872272491455,
+        "stop_bce": 0.008362237364053726,
+        "motion": -5.73298716545105,
+        "plan_interval_length": 0.0547524057328701,
+        "optimized_total": -0.8919759094715118
+      },
+      "gradient_norm": 58.130332946777344,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.7e-07,
+        "head": 2.7000000000000004e-06,
+        "flow_readout": 2.7000000000000002e-05
+      },
+      "step": 27,
+      "seconds": 0.5278068613260984
+    },
+    {
+      "losses": {
+        "total": -0.8671721518039703,
+        "plan_d3": 0.12721788883209229,
+        "occ_bce": 0.24741128832101822,
+        "lane_bce": 0.5001431107521057,
+        "history": -2.9814532995224,
+        "state": -2.7388572692871094,
+        "stop_bce": 0.004029414616525173,
+        "motion": -5.7195045948028564,
+        "plan_interval_length": 0.050040228292346,
+        "optimized_total": -0.8546620905399323
+      },
+      "gradient_norm": 16.4647274017334,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.8e-07,
+        "head": 2.8000000000000003e-06,
+        "flow_readout": 2.8000000000000003e-05
+      },
+      "step": 28,
+      "seconds": 0.5328515637665987
+    },
+    {
+      "losses": {
+        "total": -0.921947181224823,
+        "plan_d3": 0.0804760605096817,
+        "occ_bce": 0.23369292169809341,
+        "lane_bce": 0.49817129969596863,
+        "history": -2.9744455814361572,
+        "state": -2.7712396383285522,
+        "stop_bce": 0.008524958975613117,
+        "motion": -5.743980407714844,
+        "plan_interval_length": 0.05292496271431446,
+        "optimized_total": -0.9087159335613251
+      },
+      "gradient_norm": 23.901626586914062,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 2.9e-07,
+        "head": 2.9e-06,
+        "flow_readout": 2.9e-05
+      },
+      "step": 29,
+      "seconds": 0.5285654291510582
+    },
+    {
+      "losses": {
+        "total": -0.8965199291706085,
+        "plan_d3": 0.09298311918973923,
+        "occ_bce": 0.25730545818805695,
+        "lane_bce": 0.5170389711856842,
+        "history": -2.983154296875,
+        "state": -2.741098403930664,
+        "stop_bce": 0.011966226622462273,
+        "motion": -5.721859455108643,
+        "plan_interval_length": 0.043215369805693626,
+        "optimized_total": -0.8857160806655884
+      },
+      "gradient_norm": 26.053714752197266,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3e-07,
+        "head": 3e-06,
+        "flow_readout": 3e-05
+      },
+      "step": 30,
+      "seconds": 0.528455812484026
+    },
+    {
+      "losses": {
+        "total": -0.880219429731369,
+        "plan_d3": 0.11248084902763367,
+        "occ_bce": 0.24560391902923584,
+        "lane_bce": 0.4927223026752472,
+        "history": -2.9562129974365234,
+        "state": -2.745631217956543,
+        "stop_bce": 8.33272933959961e-05,
+        "motion": -5.701827764511108,
+        "plan_interval_length": 0.060656990855932236,
+        "optimized_total": -0.8650552034378052
+      },
+      "gradient_norm": 55.473793029785156,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.1e-07,
+        "head": 3.1000000000000004e-06,
+        "flow_readout": 3.1e-05
+      },
+      "step": 31,
+      "seconds": 0.5267696026712656
+    },
+    {
+      "losses": {
+        "total": -0.9086775183677673,
+        "plan_d3": 0.08941690623760223,
+        "occ_bce": 0.24455836415290833,
+        "lane_bce": 0.4690835475921631,
+        "history": -2.974175810813904,
+        "state": -2.7322198152542114,
+        "stop_bce": 0.01140838023275137,
+        "motion": -5.704113960266113,
+        "plan_interval_length": 0.05256162770092487,
+        "optimized_total": -0.8955371379852295
+      },
+      "gradient_norm": 25.433801651000977,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.2e-07,
+        "head": 3.2000000000000003e-06,
+        "flow_readout": 3.2000000000000005e-05
+      },
+      "step": 32,
+      "seconds": 0.5295596998184919
+    },
+    {
+      "losses": {
+        "total": -0.8863141238689423,
+        "plan_d3": 0.09603969752788544,
+        "occ_bce": 0.2885933071374893,
+        "lane_bce": 0.522016853094101,
+        "history": -2.96674644947052,
+        "state": -2.7556533813476562,
+        "stop_bce": 0.00010186433792114258,
+        "motion": -5.722379207611084,
+        "plan_interval_length": 0.04228186421096325,
+        "optimized_total": -0.8757436573505402
+      },
+      "gradient_norm": 37.602725982666016,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.3e-07,
+        "head": 3.3000000000000006e-06,
+        "flow_readout": 3.3e-05
+      },
+      "step": 33,
+      "seconds": 0.5292119104415178
+    },
+    {
+      "losses": {
+        "total": -0.87453293800354,
+        "plan_d3": 0.12205547466874123,
+        "occ_bce": 0.2755657583475113,
+        "lane_bce": 0.4936738610267639,
+        "history": -2.9755066633224487,
+        "state": -2.777839422225952,
+        "stop_bce": 0.0058203344233334064,
+        "motion": -5.752181768417358,
+        "plan_interval_length": 0.052863918244838715,
+        "optimized_total": -0.8613169491291046
+      },
+      "gradient_norm": 84.02870178222656,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.4000000000000003e-07,
+        "head": 3.4000000000000005e-06,
+        "flow_readout": 3.4000000000000007e-05
+      },
+      "step": 34,
+      "seconds": 0.5280488021671772
+    },
+    {
+      "losses": {
+        "total": -0.9208846688270569,
+        "plan_d3": 0.0812407061457634,
+        "occ_bce": 0.30332520604133606,
+        "lane_bce": 0.484381765127182,
+        "history": -2.9694395065307617,
+        "state": -2.8326363563537598,
+        "stop_bce": 0.018711315467953682,
+        "motion": -5.798333644866943,
+        "plan_interval_length": 0.04630018025636673,
+        "optimized_total": -0.9093096256256104
+      },
+      "gradient_norm": 35.64889144897461,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.5e-07,
+        "head": 3.5e-06,
+        "flow_readout": 3.5e-05
+      },
+      "step": 35,
+      "seconds": 0.5289833340793848
+    },
+    {
+      "losses": {
+        "total": -0.865062028169632,
+        "plan_d3": 0.13496588915586472,
+        "occ_bce": 0.25969958305358887,
+        "lane_bce": 0.4465618431568146,
+        "history": -2.97244930267334,
+        "state": -2.734553337097168,
+        "stop_bce": 0.0030078613199293613,
+        "motion": -5.706401109695435,
+        "plan_interval_length": 0.06986534968018532,
+        "optimized_total": -0.8475956916809082
+      },
+      "gradient_norm": 47.68256378173828,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.6e-07,
+        "head": 3.6000000000000003e-06,
+        "flow_readout": 3.6e-05
+      },
+      "step": 36,
+      "seconds": 0.5276024919003248
+    },
+    {
+      "losses": {
+        "total": -0.8919360935688019,
+        "plan_d3": 0.08330616727471352,
+        "occ_bce": 0.2848115637898445,
+        "lane_bce": 0.5137368440628052,
+        "history": -2.974803328514099,
+        "state": -2.702029585838318,
+        "stop_bce": 0.01036539813503623,
+        "motion": -5.674759387969971,
+        "plan_interval_length": 0.050589196383953094,
+        "optimized_total": -0.8792887926101685
+      },
+      "gradient_norm": 39.782840728759766,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.7e-07,
+        "head": 3.7e-06,
+        "flow_readout": 3.7e-05
+      },
+      "step": 37,
+      "seconds": 0.5277285724878311
+    },
+    {
+      "losses": {
+        "total": -0.8897570371627808,
+        "plan_d3": 0.10567231476306915,
+        "occ_bce": 0.27510417252779007,
+        "lane_bce": 0.5009651184082031,
+        "history": -2.957854390144348,
+        "state": -2.799754500389099,
+        "stop_bce": 0.02196449786424637,
+        "motion": -5.753216028213501,
+        "plan_interval_length": 0.056695783510804176,
+        "optimized_total": -0.8755831122398376
+      },
+      "gradient_norm": 27.72786521911621,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.7999999999999996e-07,
+        "head": 3.8000000000000005e-06,
+        "flow_readout": 3.8e-05
+      },
+      "step": 38,
+      "seconds": 0.5320601034909487
+    },
+    {
+      "losses": {
+        "total": -0.8853257894515991,
+        "plan_d3": 0.09743104130029678,
+        "occ_bce": 0.30275070667266846,
+        "lane_bce": 0.47856681048870087,
+        "history": -2.9695712327957153,
+        "state": -2.7261253595352173,
+        "stop_bce": 0.0029759628232568502,
+        "motion": -5.695101499557495,
+        "plan_interval_length": 0.057829681783914566,
+        "optimized_total": -0.8708683550357819
+      },
+      "gradient_norm": 14.710054397583008,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 3.8999999999999997e-07,
+        "head": 3.900000000000001e-06,
+        "flow_readout": 3.9000000000000006e-05
+      },
+      "step": 39,
+      "seconds": 0.5309606250375509
+    },
+    {
+      "losses": {
+        "total": -0.8531135022640228,
+        "plan_d3": 0.15124067664146423,
+        "occ_bce": 0.29852423816919327,
+        "lane_bce": 0.45216748118400574,
+        "history": -2.9823495149612427,
+        "state": -2.807287573814392,
+        "stop_bce": 0.08587183989584446,
+        "motion": -5.772462606430054,
+        "plan_interval_length": 0.0682384055107832,
+        "optimized_total": -0.8360539078712463
+      },
+      "gradient_norm": 67.67131042480469,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4e-07,
+        "head": 4.000000000000001e-06,
+        "flow_readout": 4e-05
+      },
+      "step": 40,
+      "seconds": 0.5313766580075026
+    },
+    {
+      "losses": {
+        "total": -0.8363921940326691,
+        "plan_d3": 0.13962846249341965,
+        "occ_bce": 0.2936360687017441,
+        "lane_bce": 0.5054072290658951,
+        "history": -2.9601285457611084,
+        "state": -2.7198047637939453,
+        "stop_bce": 0.003935390152037144,
+        "motion": -5.6791465282440186,
+        "plan_interval_length": 0.06221679784357548,
+        "optimized_total": -0.8208380043506622
+      },
+      "gradient_norm": 83.37606811523438,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.0999999999999994e-07,
+        "head": 4.1e-06,
+        "flow_readout": 4.1e-05
+      },
+      "step": 41,
+      "seconds": 0.5283060800284147
+    },
+    {
+      "losses": {
+        "total": -0.7362316846847534,
+        "plan_d3": 0.21521587669849396,
+        "occ_bce": 0.2517218142747879,
+        "lane_bce": 0.5050739049911499,
+        "history": -2.9471524953842163,
+        "state": -2.568813920021057,
+        "stop_bce": 0.009666085010394454,
+        "motion": -5.514033317565918,
+        "plan_interval_length": 0.07131399028003216,
+        "optimized_total": -0.7184031903743744
+      },
+      "gradient_norm": 55.98857498168945,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.1999999999999995e-07,
+        "head": 4.2000000000000004e-06,
+        "flow_readout": 4.2e-05
+      },
+      "step": 42,
+      "seconds": 0.5246300809085369
+    },
+    {
+      "losses": {
+        "total": -0.8959524631500244,
+        "plan_d3": 0.10980629175901413,
+        "occ_bce": 0.24440640211105347,
+        "lane_bce": 0.4458199441432953,
+        "history": -2.9774633646011353,
+        "state": -2.7427518367767334,
+        "stop_bce": 0.005977126769721508,
+        "motion": -5.719019889831543,
+        "plan_interval_length": 0.04597834683954716,
+        "optimized_total": -0.8844578862190247
+      },
+      "gradient_norm": 65.40685272216797,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.2999999999999996e-07,
+        "head": 4.3e-06,
+        "flow_readout": 4.3e-05
+      },
+      "step": 43,
+      "seconds": 0.5247835516929626
+    },
+    {
+      "losses": {
+        "total": -0.890984296798706,
+        "plan_d3": 0.10840597748756409,
+        "occ_bce": 0.28984659910202026,
+        "lane_bce": 0.486370325088501,
+        "history": -2.9678261280059814,
+        "state": -2.806856632232666,
+        "stop_bce": 0.0075722429901361465,
+        "motion": -5.773168325424194,
+        "plan_interval_length": 0.0511616375297308,
+        "optimized_total": -0.8781938850879669
+      },
+      "gradient_norm": 67.35327911376953,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.3999999999999997e-07,
+        "head": 4.4e-06,
+        "flow_readout": 4.4000000000000006e-05
+      },
+      "step": 44,
+      "seconds": 0.5274469386786222
+    },
+    {
+      "losses": {
+        "total": -0.9200387299060822,
+        "plan_d3": 0.0939524695277214,
+        "occ_bce": 0.24125193059444427,
+        "lane_bce": 0.5057744681835175,
+        "history": -2.979659676551819,
+        "state": -2.8390599489212036,
+        "stop_bce": 0.00868571293540299,
+        "motion": -5.8169825077056885,
+        "plan_interval_length": 0.048317309468984604,
+        "optimized_total": -0.9079594016075134
+      },
+      "gradient_norm": 13.207892417907715,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.5e-07,
+        "head": 4.5e-06,
+        "flow_readout": 4.5e-05
+      },
+      "step": 45,
+      "seconds": 0.5278333984315395
+    },
+    {
+      "losses": {
+        "total": -0.8946982324123383,
+        "plan_d3": 0.10988229885697365,
+        "occ_bce": 0.26547789573669434,
+        "lane_bce": 0.503772959113121,
+        "history": -2.9778788089752197,
+        "state": -2.8174606561660767,
+        "stop_bce": 0.015933141112327576,
+        "motion": -5.7921531200408936,
+        "plan_interval_length": 0.049320146441459656,
+        "optimized_total": -0.8823682069778442
+      },
+      "gradient_norm": 50.10732650756836,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.6e-07,
+        "head": 4.600000000000001e-06,
+        "flow_readout": 4.600000000000001e-05
+      },
+      "step": 46,
+      "seconds": 0.5260672681033611
+    },
+    {
+      "losses": {
+        "total": -0.882811576128006,
+        "plan_d3": 0.13283420726656914,
+        "occ_bce": 0.23442721366882324,
+        "lane_bce": 0.4832890033721924,
+        "history": -2.9821895360946655,
+        "state": -2.8174304962158203,
+        "stop_bce": 0.018376525957137346,
+        "motion": -5.795944929122925,
+        "plan_interval_length": 0.06445631384849548,
+        "optimized_total": -0.8666974902153015
+      },
+      "gradient_norm": 65.62519073486328,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.6999999999999995e-07,
+        "head": 4.7e-06,
+        "flow_readout": 4.7e-05
+      },
+      "step": 47,
+      "seconds": 0.5245004035532475
+    },
+    {
+      "losses": {
+        "total": -0.8594237267971039,
+        "plan_d3": 0.13874615728855133,
+        "occ_bce": 0.26666656136512756,
+        "lane_bce": 0.47784920036792755,
+        "history": -2.9734485149383545,
+        "state": -2.7643933296203613,
+        "stop_bce": 0.012383153662085533,
+        "motion": -5.735365152359009,
+        "plan_interval_length": 0.06552951969206333,
+        "optimized_total": -0.8430413603782654
+      },
+      "gradient_norm": 68.55374908447266,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.8e-07,
+        "head": 4.800000000000001e-06,
+        "flow_readout": 4.8e-05
+      },
+      "step": 48,
+      "seconds": 0.52799853682518
+    },
+    {
+      "losses": {
+        "total": -0.8749133348464966,
+        "plan_d3": 0.11693431064486504,
+        "occ_bce": 0.2780856192111969,
+        "lane_bce": 0.5009311586618423,
+        "history": -2.972905158996582,
+        "state": -2.767494320869446,
+        "stop_bce": 0.010721269063651562,
+        "motion": -5.738255023956299,
+        "plan_interval_length": 0.05623093247413635,
+        "optimized_total": -0.8608556091785431
+      },
+      "gradient_norm": 49.4635124206543,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 4.9e-07,
+        "head": 4.9000000000000005e-06,
+        "flow_readout": 4.9e-05
+      },
+      "step": 49,
+      "seconds": 0.5297820437699556
+    },
+    {
+      "losses": {
+        "total": -0.9120274782180786,
+        "plan_d3": 0.09067178890109062,
+        "occ_bce": 0.2952495962381363,
+        "lane_bce": 0.4451594054698944,
+        "history": -2.9731377363204956,
+        "state": -2.7825429439544678,
+        "stop_bce": 0.008876673877239227,
+        "motion": -5.753905534744263,
+        "plan_interval_length": 0.05622520111501217,
+        "optimized_total": -0.8979711830615997
+      },
+      "gradient_norm": 25.61219024658203,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5e-07,
+        "head": 5e-06,
+        "flow_readout": 5e-05
+      },
+      "step": 50,
+      "seconds": 0.5280063077807426
+    },
+    {
+      "losses": {
+        "total": -0.9004237353801727,
+        "plan_d3": 0.09100606292486191,
+        "occ_bce": 0.28229910135269165,
+        "lane_bce": 0.4694724977016449,
+        "history": -2.9429237842559814,
+        "state": -2.7684319019317627,
+        "stop_bce": 0.012175273848697543,
+        "motion": -5.70892071723938,
+        "plan_interval_length": 0.03998442180454731,
+        "optimized_total": -0.8904276490211487
+      },
+      "gradient_norm": 67.63146209716797,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.1e-07,
+        "head": 5.1e-06,
+        "flow_readout": 5.1000000000000006e-05
+      },
+      "step": 51,
+      "seconds": 0.5279511455446482
+    },
+    {
+      "losses": {
+        "total": -0.9093454778194427,
+        "plan_d3": 0.07721076905727386,
+        "occ_bce": 0.29862189292907715,
+        "lane_bce": 0.48780518770217896,
+        "history": -2.9796271324157715,
+        "state": -2.749268889427185,
+        "stop_bce": 0.048437513411045074,
+        "motion": -5.719208240509033,
+        "plan_interval_length": 0.038719115778803825,
+        "optimized_total": -0.8996657133102417
+      },
+      "gradient_norm": 43.81991195678711,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.2e-07,
+        "head": 5.2e-06,
+        "flow_readout": 5.2000000000000004e-05
+      },
+      "step": 52,
+      "seconds": 0.5314230490475893
+    },
+    {
+      "losses": {
+        "total": -0.8520027101039886,
+        "plan_d3": 0.13236834481358528,
+        "occ_bce": 0.24902650713920593,
+        "lane_bce": 0.48534128069877625,
+        "history": -2.977603554725647,
+        "state": -2.681151509284973,
+        "stop_bce": 0.012662498280405998,
+        "motion": -5.656222820281982,
+        "plan_interval_length": 0.07384102046489716,
+        "optimized_total": -0.8335424661636353
+      },
+      "gradient_norm": 62.40678405761719,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.3e-07,
+        "head": 5.300000000000001e-06,
+        "flow_readout": 5.300000000000001e-05
+      },
+      "step": 53,
+      "seconds": 0.532602259889245
+    },
+    {
+      "losses": {
+        "total": -0.9026591181755066,
+        "plan_d3": 0.09301473200321198,
+        "occ_bce": 0.3439380079507828,
+        "lane_bce": 0.4786684215068817,
+        "history": -2.9773539304733276,
+        "state": -2.8244731426239014,
+        "stop_bce": 0.004259972833096981,
+        "motion": -5.800975322723389,
+        "plan_interval_length": 0.0409385971724987,
+        "optimized_total": -0.892424464225769
+      },
+      "gradient_norm": 38.43407440185547,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.4e-07,
+        "head": 5.400000000000001e-06,
+        "flow_readout": 5.4000000000000005e-05
+      },
+      "step": 54,
+      "seconds": 0.5264865756034851
+    },
+    {
+      "losses": {
+        "total": -0.8855963945388794,
+        "plan_d3": 0.10715186595916748,
+        "occ_bce": 0.27388913929462433,
+        "lane_bce": 0.4930869936943054,
+        "history": -2.977931022644043,
+        "state": -2.7688063383102417,
+        "stop_bce": 0.08010104624554515,
+        "motion": -5.730717420578003,
+        "plan_interval_length": 0.04773661866784096,
+        "optimized_total": -0.8736622333526611
+      },
+      "gradient_norm": 26.071868896484375,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.5e-07,
+        "head": 5.500000000000001e-06,
+        "flow_readout": 5.500000000000001e-05
+      },
+      "step": 55,
+      "seconds": 0.5253327637910843
+    },
+    {
+      "losses": {
+        "total": -0.918816089630127,
+        "plan_d3": 0.08165300264954567,
+        "occ_bce": 0.25819818675518036,
+        "lane_bce": 0.49061617255210876,
+        "history": -2.96744441986084,
+        "state": -2.783755898475647,
+        "stop_bce": 0.00020259618759155273,
+        "motion": -5.75115966796875,
+        "plan_interval_length": 0.04650985822081566,
+        "optimized_total": -0.9071886241436005
+      },
+      "gradient_norm": 48.188812255859375,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.6e-07,
+        "head": 5.600000000000001e-06,
+        "flow_readout": 5.6000000000000006e-05
+      },
+      "step": 56,
+      "seconds": 0.5259125363081694
+    },
+    {
+      "losses": {
+        "total": -0.8903887569904327,
+        "plan_d3": 0.09870726987719536,
+        "occ_bce": 0.31768718361854553,
+        "lane_bce": 0.4807748347520828,
+        "history": -2.9812248945236206,
+        "state": -2.7634432315826416,
+        "stop_bce": 0.0036289896816015244,
+        "motion": -5.743942022323608,
+        "plan_interval_length": 0.056855108588933945,
+        "optimized_total": -0.8761749565601349
+      },
+      "gradient_norm": 24.567583084106445,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.699999999999999e-07,
+        "head": 5.7e-06,
+        "flow_readout": 5.6999999999999996e-05
+      },
+      "step": 57,
+      "seconds": 0.5320339854806662
+    },
+    {
+      "losses": {
+        "total": -0.8810023665428162,
+        "plan_d3": 0.11614999920129776,
+        "occ_bce": 0.24100519716739655,
+        "lane_bce": 0.49498552083969116,
+        "history": -2.9663145542144775,
+        "state": -2.755496382713318,
+        "stop_bce": 0.00029200315475463867,
+        "motion": -5.721752405166626,
+        "plan_interval_length": 0.06315443478524685,
+        "optimized_total": -0.8652137517929077
+      },
+      "gradient_norm": 58.46842575073242,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.8e-07,
+        "head": 5.8e-06,
+        "flow_readout": 5.8e-05
+      },
+      "step": 58,
+      "seconds": 0.5318987015634775
+    },
+    {
+      "losses": {
+        "total": -0.8872962296009064,
+        "plan_d3": 0.10586051642894745,
+        "occ_bce": 0.30280669033527374,
+        "lane_bce": 0.491205632686615,
+        "history": -2.9895964860916138,
+        "state": -2.771090269088745,
+        "stop_bce": 0.004452488385140896,
+        "motion": -5.759796142578125,
+        "plan_interval_length": 0.06662669219076633,
+        "optimized_total": -0.8706395626068115
+      },
+      "gradient_norm": 24.565349578857422,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 5.9e-07,
+        "head": 5.9e-06,
+        "flow_readout": 5.9e-05
+      },
+      "step": 59,
+      "seconds": 0.5276469476521015
+    },
+    {
+      "losses": {
+        "total": -0.8436891436576843,
+        "plan_d3": 0.14851108938455582,
+        "occ_bce": 0.2525968551635742,
+        "lane_bce": 0.47672468423843384,
+        "history": -2.979751229286194,
+        "state": -2.714778184890747,
+        "stop_bce": 0.02103329263627529,
+        "motion": -5.6903228759765625,
+        "plan_interval_length": 0.06925121136009693,
+        "optimized_total": -0.826376348733902
+      },
+      "gradient_norm": 43.48179244995117,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6e-07,
+        "head": 6e-06,
+        "flow_readout": 6e-05
+      },
+      "step": 60,
+      "seconds": 0.5260674860328436
+    },
+    {
+      "losses": {
+        "total": -0.8381736278533936,
+        "plan_d3": 0.13948233425617218,
+        "occ_bce": 0.2643512859940529,
+        "lane_bce": 0.4885375052690506,
+        "history": -2.9535434246063232,
+        "state": -2.6933517456054688,
+        "stop_bce": 0.028633801266551018,
+        "motion": -5.641168594360352,
+        "plan_interval_length": 0.0747300386428833,
+        "optimized_total": -0.8194911181926727
+      },
+      "gradient_norm": 68.58138275146484,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.1e-07,
+        "head": 6.1e-06,
+        "flow_readout": 6.1e-05
+      },
+      "step": 61,
+      "seconds": 0.5297359153628349
+    },
+    {
+      "losses": {
+        "total": -0.9085218608379364,
+        "plan_d3": 0.08420826867222786,
+        "occ_bce": 0.23965635150671005,
+        "lane_bce": 0.4821770191192627,
+        "history": -2.9863404035568237,
+        "state": -2.7192517518997192,
+        "stop_bce": 0.1005416065454483,
+        "motion": -5.685483932495117,
+        "plan_interval_length": 0.043984148651361465,
+        "optimized_total": -0.8975258469581604
+      },
+      "gradient_norm": 48.880393981933594,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.2e-07,
+        "head": 6.200000000000001e-06,
+        "flow_readout": 6.2e-05
+      },
+      "step": 62,
+      "seconds": 0.5300468187779188
+    },
+    {
+      "losses": {
+        "total": -0.9006372690200806,
+        "plan_d3": 0.09792870655655861,
+        "occ_bce": 0.2865796387195587,
+        "lane_bce": 0.4545036405324936,
+        "history": -2.9811781644821167,
+        "state": -2.7864359617233276,
+        "stop_bce": 0.16850591637194157,
+        "motion": -5.733912944793701,
+        "plan_interval_length": 0.06280352547764778,
+        "optimized_total": -0.8849363923072815
+      },
+      "gradient_norm": 27.047040939331055,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.3e-07,
+        "head": 6.300000000000001e-06,
+        "flow_readout": 6.3e-05
+      },
+      "step": 63,
+      "seconds": 0.5389697290956974
+    },
+    {
+      "losses": {
+        "total": -0.9052029252052307,
+        "plan_d3": 0.1021152213215828,
+        "occ_bce": 0.2580677270889282,
+        "lane_bce": 0.4461565762758255,
+        "history": -2.960748553276062,
+        "state": -2.780696153640747,
+        "stop_bce": 0.0031485615763813257,
+        "motion": -5.740814924240112,
+        "plan_interval_length": 0.04451473616063595,
+        "optimized_total": -0.8940742611885071
+      },
+      "gradient_norm": 52.307586669921875,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.4e-07,
+        "head": 6.4000000000000006e-06,
+        "flow_readout": 6.400000000000001e-05
+      },
+      "step": 64,
+      "seconds": 0.54153055511415
+    },
+    {
+      "losses": {
+        "total": -0.878603994846344,
+        "plan_d3": 0.09278807416558266,
+        "occ_bce": 0.28390541672706604,
+        "lane_bce": 0.49171000719070435,
+        "history": -2.958139181137085,
+        "state": -2.677162766456604,
+        "stop_bce": 0.013631436973810196,
+        "motion": -5.632575750350952,
+        "plan_interval_length": 0.05727214366197586,
+        "optimized_total": -0.864285945892334
+      },
+      "gradient_norm": 28.703723907470703,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.5e-07,
+        "head": 6.5000000000000004e-06,
+        "flow_readout": 6.500000000000001e-05
+      },
+      "step": 65,
+      "seconds": 0.5339521840214729
+    },
+    {
+      "losses": {
+        "total": -0.9181256890296936,
+        "plan_d3": 0.09201391786336899,
+        "occ_bce": 0.24117381870746613,
+        "lane_bce": 0.45450757443904877,
+        "history": -2.9704333543777466,
+        "state": -2.8085451126098633,
+        "stop_bce": 0.16299423365853727,
+        "motion": -5.746379375457764,
+        "plan_interval_length": 0.03913604095578194,
+        "optimized_total": -0.9083416759967804
+      },
+      "gradient_norm": 77.49504089355469,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.6e-07,
+        "head": 6.600000000000001e-06,
+        "flow_readout": 6.6e-05
+      },
+      "step": 66,
+      "seconds": 0.5325281005352736
+    },
+    {
+      "losses": {
+        "total": -0.8415703773498535,
+        "plan_d3": 0.16868066787719727,
+        "occ_bce": 0.2929515987634659,
+        "lane_bce": 0.4753703474998474,
+        "history": -2.977207660675049,
+        "state": -2.843279004096985,
+        "stop_bce": 0.004546168725937605,
+        "motion": -5.819577217102051,
+        "plan_interval_length": 0.07688138261437416,
+        "optimized_total": -0.822350025177002
+      },
+      "gradient_norm": 88.72821807861328,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.7e-07,
+        "head": 6.700000000000001e-06,
+        "flow_readout": 6.7e-05
+      },
+      "step": 67,
+      "seconds": 0.5300659723579884
+    },
+    {
+      "losses": {
+        "total": -0.841805100440979,
+        "plan_d3": 0.14712990820407867,
+        "occ_bce": 0.2892082631587982,
+        "lane_bce": 0.48693861067295074,
+        "history": -2.972266912460327,
+        "state": -2.7493479251861572,
+        "stop_bce": 0.0039652930572628975,
+        "motion": -5.720821857452393,
+        "plan_interval_length": 0.087261613458395,
+        "optimized_total": -0.8199897110462189
+      },
+      "gradient_norm": 62.223445892333984,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.800000000000001e-07,
+        "head": 6.800000000000001e-06,
+        "flow_readout": 6.800000000000001e-05
+      },
+      "step": 68,
+      "seconds": 0.5329375118017197
+    },
+    {
+      "losses": {
+        "total": -0.9368945956230164,
+        "plan_d3": 0.08983856439590454,
+        "occ_bce": 0.22154369950294495,
+        "lane_bce": 0.45279964804649353,
+        "history": -2.972632884979248,
+        "state": -2.8368401527404785,
+        "stop_bce": 0.007318971678614616,
+        "motion": -5.808009147644043,
+        "plan_interval_length": 0.05641881935298443,
+        "optimized_total": -0.9227899014949799
+      },
+      "gradient_norm": 49.35182189941406,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 6.9e-07,
+        "head": 6.9e-06,
+        "flow_readout": 6.9e-05
+      },
+      "step": 69,
+      "seconds": 0.5329240914434195
+    },
+    {
+      "losses": {
+        "total": -0.8632433414459229,
+        "plan_d3": 0.09084218367934227,
+        "occ_bce": 0.35166414082050323,
+        "lane_bce": 0.47758007049560547,
+        "history": -2.9602848291397095,
+        "state": -2.656865119934082,
+        "stop_bce": 0.08739316579885781,
+        "motion": -5.5996716022491455,
+        "plan_interval_length": 0.06240909732878208,
+        "optimized_total": -0.8476410508155823
+      },
+      "gradient_norm": 29.043376922607422,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7e-07,
+        "head": 7e-06,
+        "flow_readout": 7e-05
+      },
+      "step": 70,
+      "seconds": 0.5320098176598549
+    },
+    {
+      "losses": {
+        "total": -0.7451668977737427,
+        "plan_d3": 0.2139948308467865,
+        "occ_bce": 0.32184894382953644,
+        "lane_bce": 0.4876082241535187,
+        "history": -2.968130111694336,
+        "state": -2.644827127456665,
+        "stop_bce": 0.03845911845564842,
+        "motion": -5.6052656173706055,
+        "plan_interval_length": 0.07209860160946846,
+        "optimized_total": -0.7271422445774078
+      },
+      "gradient_norm": 72.59457397460938,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.1e-07,
+        "head": 7.100000000000001e-06,
+        "flow_readout": 7.1e-05
+      },
+      "step": 71,
+      "seconds": 0.5316694565117359
+    },
+    {
+      "losses": {
+        "total": -0.8592732548713684,
+        "plan_d3": 0.1340041309595108,
+        "occ_bce": 0.33678247034549713,
+        "lane_bce": 0.48829732835292816,
+        "history": -2.984511137008667,
+        "state": -2.808828830718994,
+        "stop_bce": 0.009366407059133053,
+        "motion": -5.79146671295166,
+        "plan_interval_length": 0.0497627854347229,
+        "optimized_total": -0.8468325436115265
+      },
+      "gradient_norm": 67.45758819580078,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.2e-07,
+        "head": 7.2000000000000005e-06,
+        "flow_readout": 7.2e-05
+      },
+      "step": 72,
+      "seconds": 0.5310009643435478
+    },
+    {
+      "losses": {
+        "total": -0.8277012705802917,
+        "plan_d3": 0.17801403999328613,
+        "occ_bce": 0.20106670260429382,
+        "lane_bce": 0.47196562588214874,
+        "history": -2.947347044944763,
+        "state": -2.755792737007141,
+        "stop_bce": 0.007654866203665733,
+        "motion": -5.701608896255493,
+        "plan_interval_length": 0.08728013560175896,
+        "optimized_total": -0.8058812320232391
+      },
+      "gradient_norm": 78.8132553100586,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.3e-07,
+        "head": 7.3e-06,
+        "flow_readout": 7.3e-05
+      },
+      "step": 73,
+      "seconds": 0.5292337704449892
+    },
+    {
+      "losses": {
+        "total": -0.8584613800048828,
+        "plan_d3": 0.14917824417352676,
+        "occ_bce": 0.22704117000102997,
+        "lane_bce": 0.4912673532962799,
+        "history": -2.962495803833008,
+        "state": -2.79653799533844,
+        "stop_bce": 0.012636270141229033,
+        "motion": -5.756506443023682,
+        "plan_interval_length": 0.08072583936154842,
+        "optimized_total": -0.8382799029350281
+      },
+      "gradient_norm": 80.44579315185547,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.4e-07,
+        "head": 7.4e-06,
+        "flow_readout": 7.4e-05
+      },
+      "step": 74,
+      "seconds": 0.5295585952699184
+    },
+    {
+      "losses": {
+        "total": -0.8100039660930634,
+        "plan_d3": 0.1350385844707489,
+        "occ_bce": 0.440703883767128,
+        "lane_bce": 0.45111507177352905,
+        "history": -2.9495352506637573,
+        "state": -2.6682034730911255,
+        "stop_bce": 0.0035342946648597717,
+        "motion": -5.617031812667847,
+        "plan_interval_length": 0.07225312851369381,
+        "optimized_total": -0.7919406592845917
+      },
+      "gradient_norm": 103.45565032958984,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.5e-07,
+        "head": 7.500000000000001e-06,
+        "flow_readout": 7.500000000000001e-05
+      },
+      "step": 75,
+      "seconds": 0.5325170047581196
+    },
+    {
+      "losses": {
+        "total": -0.8778798580169678,
+        "plan_d3": 0.10058771446347237,
+        "occ_bce": 0.2834756001830101,
+        "lane_bce": 0.4734935760498047,
+        "history": -2.9627822637557983,
+        "state": -2.68862783908844,
+        "stop_bce": 0.010515951784327626,
+        "motion": -5.649306774139404,
+        "plan_interval_length": 0.05408455431461334,
+        "optimized_total": -0.8643587231636047
+      },
+      "gradient_norm": 22.084545135498047,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.599999999999999e-07,
+        "head": 7.600000000000001e-06,
+        "flow_readout": 7.6e-05
+      },
+      "step": 76,
+      "seconds": 0.5322154518216848
+    },
+    {
+      "losses": {
+        "total": -0.7958696782588959,
+        "plan_d3": 0.14400210976600647,
+        "occ_bce": 0.319967657327652,
+        "lane_bce": 0.5112749338150024,
+        "history": -2.9468618631362915,
+        "state": -2.583782196044922,
+        "stop_bce": 0.0002130270004272461,
+        "motion": -5.530601263046265,
+        "plan_interval_length": 0.07793743908405304,
+        "optimized_total": -0.7763853073120117
+      },
+      "gradient_norm": 50.232948303222656,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.699999999999999e-07,
+        "head": 7.7e-06,
+        "flow_readout": 7.7e-05
+      },
+      "step": 77,
+      "seconds": 0.5292767696082592
+    },
+    {
+      "losses": {
+        "total": -0.8579221367835999,
+        "plan_d3": 0.1342131793498993,
+        "occ_bce": 0.3116341829299927,
+        "lane_bce": 0.47998738288879395,
+        "history": -2.9714865684509277,
+        "state": -2.781787395477295,
+        "stop_bce": 0.004878944251686335,
+        "motion": -5.75229811668396,
+        "plan_interval_length": 0.062198175117373466,
+        "optimized_total": -0.8423725962638855
+      },
+      "gradient_norm": 31.798173904418945,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.799999999999999e-07,
+        "head": 7.800000000000002e-06,
+        "flow_readout": 7.800000000000001e-05
+      },
+      "step": 78,
+      "seconds": 0.5295059122145176
+    },
+    {
+      "losses": {
+        "total": -0.8860039710998535,
+        "plan_d3": 0.10514642298221588,
+        "occ_bce": 0.2864115983247757,
+        "lane_bce": 0.4759386479854584,
+        "history": -2.9716473817825317,
+        "state": -2.7621864080429077,
+        "stop_bce": 0.0786576047539711,
+        "motion": -5.718102216720581,
+        "plan_interval_length": 0.05654129199683666,
+        "optimized_total": -0.8718686699867249
+      },
+      "gradient_norm": 40.63932418823242,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 7.9e-07,
+        "head": 7.9e-06,
+        "flow_readout": 7.900000000000001e-05
+      },
+      "step": 79,
+      "seconds": 0.5311501212418079
+    },
+    {
+      "losses": {
+        "total": -0.8854197859764099,
+        "plan_d3": 0.11603676155209541,
+        "occ_bce": 0.2529936581850052,
+        "lane_bce": 0.49422064423561096,
+        "history": -2.9699610471725464,
+        "state": -2.7852898836135864,
+        "stop_bce": 0.003770633600652218,
+        "motion": -5.754496812820435,
+        "plan_interval_length": 0.04757000878453255,
+        "optimized_total": -0.8735272884368896
+      },
+      "gradient_norm": 47.04050827026367,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8e-07,
+        "head": 8.000000000000001e-06,
+        "flow_readout": 8e-05
+      },
+      "step": 80,
+      "seconds": 0.5289994049817324
+    },
+    {
+      "losses": {
+        "total": -0.8343282043933868,
+        "plan_d3": 0.14188111945986748,
+        "occ_bce": 0.32477451860904694,
+        "lane_bce": 0.4730876088142395,
+        "history": -2.9791513681411743,
+        "state": -2.700088381767273,
+        "stop_bce": 0.0016555339097976685,
+        "motion": -5.678908586502075,
+        "plan_interval_length": 0.07600123062729836,
+        "optimized_total": -0.815327912569046
+      },
+      "gradient_norm": 45.02964401245117,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.1e-07,
+        "head": 8.1e-06,
+        "flow_readout": 8.1e-05
+      },
+      "step": 81,
+      "seconds": 0.5274151805788279
+    },
+    {
+      "losses": {
+        "total": -0.8601321876049042,
+        "plan_d3": 0.1457000896334648,
+        "occ_bce": 0.25954554975032806,
+        "lane_bce": 0.4676620215177536,
+        "history": -2.97487211227417,
+        "state": -2.7839735746383667,
+        "stop_bce": 0.012383274734020233,
+        "motion": -5.75636887550354,
+        "plan_interval_length": 0.08790402486920357,
+        "optimized_total": -0.8381561934947968
+      },
+      "gradient_norm": 61.514892578125,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.199999999999999e-07,
+        "head": 8.2e-06,
+        "flow_readout": 8.2e-05
+      },
+      "step": 82,
+      "seconds": 0.5263806525617838
+    },
+    {
+      "losses": {
+        "total": -0.883579820394516,
+        "plan_d3": 0.10408352687954903,
+        "occ_bce": 0.3201729506254196,
+        "lane_bce": 0.4518159031867981,
+        "history": -2.956820011138916,
+        "state": -2.754972457885742,
+        "stop_bce": 0.007434333907440305,
+        "motion": -5.710305452346802,
+        "plan_interval_length": 0.038822151720523834,
+        "optimized_total": -0.8738742768764496
+      },
+      "gradient_norm": 98.31002807617188,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.299999999999999e-07,
+        "head": 8.3e-06,
+        "flow_readout": 8.3e-05
+      },
+      "step": 83,
+      "seconds": 0.5291706398129463
+    },
+    {
+      "losses": {
+        "total": -0.8810413479804993,
+        "plan_d3": 0.10964734107255936,
+        "occ_bce": 0.2713012173771858,
+        "lane_bce": 0.5019779801368713,
+        "history": -2.9808980226516724,
+        "state": -2.7479658126831055,
+        "stop_bce": 0.010707644745707512,
+        "motion": -5.726722478866577,
+        "plan_interval_length": 0.0500201815739274,
+        "optimized_total": -0.8685362935066223
+      },
+      "gradient_norm": 57.89472961425781,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.399999999999999e-07,
+        "head": 8.400000000000001e-06,
+        "flow_readout": 8.4e-05
+      },
+      "step": 84,
+      "seconds": 0.5293980799615383
+    },
+    {
+      "losses": {
+        "total": -0.8499540388584137,
+        "plan_d3": 0.12579552829265594,
+        "occ_bce": 0.33333951234817505,
+        "lane_bce": 0.4699349105358124,
+        "history": -2.965517044067383,
+        "state": -2.716692328453064,
+        "stop_bce": 0.0009371042251586914,
+        "motion": -5.6820220947265625,
+        "plan_interval_length": 0.06203540973365307,
+        "optimized_total": -0.8344451785087585
+      },
+      "gradient_norm": 74.36177062988281,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.499999999999999e-07,
+        "head": 8.5e-06,
+        "flow_readout": 8.5e-05
+      },
+      "step": 85,
+      "seconds": 0.5287338234484196
+    },
+    {
+      "losses": {
+        "total": -0.8605979681015015,
+        "plan_d3": 0.14841315150260925,
+        "occ_bce": 0.25266388803720474,
+        "lane_bce": 0.48644623160362244,
+        "history": -2.9772545099258423,
+        "state": -2.810294032096863,
+        "stop_bce": 0.016914641484618187,
+        "motion": -5.784165620803833,
+        "plan_interval_length": 0.08339455910027027,
+        "optimized_total": -0.8397493362426758
+      },
+      "gradient_norm": 22.70453453063965,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.599999999999999e-07,
+        "head": 8.6e-06,
+        "flow_readout": 8.6e-05
+      },
+      "step": 86,
+      "seconds": 0.5334402229636908
+    },
+    {
+      "losses": {
+        "total": -0.8474198579788208,
+        "plan_d3": 0.1234748512506485,
+        "occ_bce": 0.3205411434173584,
+        "lane_bce": 0.5041135847568512,
+        "history": -2.971998929977417,
+        "state": -2.710338592529297,
+        "stop_bce": 0.016046538949012756,
+        "motion": -5.679128170013428,
+        "plan_interval_length": 0.0689685270190239,
+        "optimized_total": -0.8301777243614197
+      },
+      "gradient_norm": 72.31700897216797,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.699999999999999e-07,
+        "head": 8.700000000000001e-06,
+        "flow_readout": 8.7e-05
+      },
+      "step": 87,
+      "seconds": 0.5304743908345699
+    },
+    {
+      "losses": {
+        "total": -0.845647394657135,
+        "plan_d3": 0.13820117712020874,
+        "occ_bce": 0.2778230980038643,
+        "lane_bce": 0.4937228858470917,
+        "history": -2.9571621417999268,
+        "state": -2.7395042181015015,
+        "stop_bce": 0.029387380927801132,
+        "motion": -5.690788984298706,
+        "plan_interval_length": 0.06701161712408066,
+        "optimized_total": -0.8288944959640503
+      },
+      "gradient_norm": 83.90087890625,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.799999999999999e-07,
+        "head": 8.8e-06,
+        "flow_readout": 8.800000000000001e-05
+      },
+      "step": 88,
+      "seconds": 0.528511468321085
+    },
+    {
+      "losses": {
+        "total": -0.8308343291282654,
+        "plan_d3": 0.13787627965211868,
+        "occ_bce": 0.31624433398246765,
+        "lane_bce": 0.5042669177055359,
+        "history": -2.9646029472351074,
+        "state": -2.7003843784332275,
+        "stop_bce": 0.004614898003637791,
+        "motion": -5.664064407348633,
+        "plan_interval_length": 0.05866982229053974,
+        "optimized_total": -0.816166877746582
+      },
+      "gradient_norm": 85.21017456054688,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 8.9e-07,
+        "head": 8.900000000000001e-06,
+        "flow_readout": 8.900000000000001e-05
+      },
+      "step": 89,
+      "seconds": 0.5313676651567221
+    },
+    {
+      "losses": {
+        "total": -0.8461955189704895,
+        "plan_d3": 0.13672911003232002,
+        "occ_bce": 0.3133370280265808,
+        "lane_bce": 0.47719070315361023,
+        "history": -2.959460973739624,
+        "state": -2.7468494176864624,
+        "stop_bce": 0.005797346588224173,
+        "motion": -5.705150842666626,
+        "plan_interval_length": 0.058847760781645775,
+        "optimized_total": -0.8314835727214813
+      },
+      "gradient_norm": 68.02234649658203,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9e-07,
+        "head": 9e-06,
+        "flow_readout": 9e-05
+      },
+      "step": 90,
+      "seconds": 0.5313059333711863
+    },
+    {
+      "losses": {
+        "total": -0.872269868850708,
+        "plan_d3": 0.12203796207904816,
+        "occ_bce": 0.2723853886127472,
+        "lane_bce": 0.5097904801368713,
+        "history": -2.980638861656189,
+        "state": -2.7840973138809204,
+        "stop_bce": 0.05510628595948219,
+        "motion": -5.7537150382995605,
+        "plan_interval_length": 0.07225548475980759,
+        "optimized_total": -0.854205995798111
+      },
+      "gradient_norm": 66.26570129394531,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.1e-07,
+        "head": 9.100000000000001e-06,
+        "flow_readout": 9.1e-05
+      },
+      "step": 91,
+      "seconds": 0.5290323421359062
+    },
+    {
+      "losses": {
+        "total": -0.8446318507194519,
+        "plan_d3": 0.13968757539987564,
+        "occ_bce": 0.2521220073103905,
+        "lane_bce": 0.5272490531206131,
+        "history": -2.977471351623535,
+        "state": -2.723586916923523,
+        "stop_bce": 0.0004512667655944824,
+        "motion": -5.700968027114868,
+        "plan_interval_length": 0.08216213621199131,
+        "optimized_total": -0.8240913152694702
+      },
+      "gradient_norm": 21.022258758544922,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.2e-07,
+        "head": 9.200000000000002e-06,
+        "flow_readout": 9.200000000000001e-05
+      },
+      "step": 92,
+      "seconds": 0.5298937875777483
+    },
+    {
+      "losses": {
+        "total": -0.861161082983017,
+        "plan_d3": 0.13937430083751678,
+        "occ_bce": 0.24262011051177979,
+        "lane_bce": 0.5034023076295853,
+        "history": -2.9700686931610107,
+        "state": -2.7823902368545532,
+        "stop_bce": 0.018798664212226868,
+        "motion": -5.748698949813843,
+        "plan_interval_length": 0.06711104698479176,
+        "optimized_total": -0.8443832993507385
+      },
+      "gradient_norm": 104.2864761352539,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.3e-07,
+        "head": 9.3e-06,
+        "flow_readout": 9.300000000000001e-05
+      },
+      "step": 93,
+      "seconds": 0.5311125908046961
+    },
+    {
+      "losses": {
+        "total": -0.8564352095127106,
+        "plan_d3": 0.157926544547081,
+        "occ_bce": 0.2692676782608032,
+        "lane_bce": 0.4591934531927109,
+        "history": -2.971961498260498,
+        "state": -2.8290154933929443,
+        "stop_bce": 0.003535648575052619,
+        "motion": -5.800269842147827,
+        "plan_interval_length": 0.06280442699790001,
+        "optimized_total": -0.8407340943813324
+      },
+      "gradient_norm": 107.7252426147461,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.399999999999999e-07,
+        "head": 9.4e-06,
+        "flow_readout": 9.4e-05
+      },
+      "step": 94,
+      "seconds": 0.5261889025568962
+    },
+    {
+      "losses": {
+        "total": -0.8277875185012817,
+        "plan_d3": 0.15516655892133713,
+        "occ_bce": 0.2863150015473366,
+        "lane_bce": 0.49601253867149353,
+        "history": -2.975206136703491,
+        "state": -2.7250120639801025,
+        "stop_bce": 0.0156032033264637,
+        "motion": -5.697097539901733,
+        "plan_interval_length": 0.04941444471478462,
+        "optimized_total": -0.8154338896274567
+      },
+      "gradient_norm": 81.45771026611328,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.499999999999999e-07,
+        "head": 9.5e-06,
+        "flow_readout": 9.5e-05
+      },
+      "step": 95,
+      "seconds": 0.5274234414100647
+    },
+    {
+      "losses": {
+        "total": -0.8819295167922974,
+        "plan_d3": 0.11680884659290314,
+        "occ_bce": 0.23870102316141129,
+        "lane_bce": 0.49483785033226013,
+        "history": -2.97579562664032,
+        "state": -2.7545993328094482,
+        "stop_bce": 0.015824283007532358,
+        "motion": -5.7272303104400635,
+        "plan_interval_length": 0.043395454064011574,
+        "optimized_total": -0.8710806667804718
+      },
+      "gradient_norm": 91.02932739257812,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.6e-07,
+        "head": 9.600000000000001e-06,
+        "flow_readout": 9.6e-05
+      },
+      "step": 96,
+      "seconds": 0.5317741390317678
+    },
+    {
+      "losses": {
+        "total": -0.8271655440330505,
+        "plan_d3": 0.15981779992580414,
+        "occ_bce": 0.369867242872715,
+        "lane_bce": 0.48343783617019653,
+        "history": -2.97123384475708,
+        "state": -2.8169952630996704,
+        "stop_bce": 3.594160079956055e-05,
+        "motion": -5.788221836090088,
+        "plan_interval_length": 0.07124659232795238,
+        "optimized_total": -0.8093538880348206
+      },
+      "gradient_norm": 78.38253021240234,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.7e-07,
+        "head": 9.7e-06,
+        "flow_readout": 9.7e-05
+      },
+      "step": 97,
+      "seconds": 0.5304683428257704
+    },
+    {
+      "losses": {
+        "total": -0.8608186841011047,
+        "plan_d3": 0.13209499418735504,
+        "occ_bce": 0.34508076310157776,
+        "lane_bce": 0.45496444404125214,
+        "history": -2.9656448364257812,
+        "state": -2.7989825010299683,
+        "stop_bce": 6.842613220214844e-05,
+        "motion": -5.764613389968872,
+        "plan_interval_length": 0.05963619612157345,
+        "optimized_total": -0.8459096252918243
+      },
+      "gradient_norm": 23.83032989501953,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.8e-07,
+        "head": 9.800000000000001e-06,
+        "flow_readout": 9.8e-05
+      },
+      "step": 98,
+      "seconds": 0.5287828762084246
+    },
+    {
+      "losses": {
+        "total": -0.8579732477664948,
+        "plan_d3": 0.12891144677996635,
+        "occ_bce": 0.2689165323972702,
+        "lane_bce": 0.4813409149646759,
+        "history": -2.9653100967407227,
+        "state": -2.7213127613067627,
+        "stop_bce": 0.009710337966680527,
+        "motion": -5.684680938720703,
+        "plan_interval_length": 0.058428673073649406,
+        "optimized_total": -0.8433660864830017
+      },
+      "gradient_norm": 48.98859786987305,
+      "motion_fuse_gradient_norm": null,
+      "flow_readout_gradient_norm": null,
+      "motion_fuse_update_norm": null,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 9.9e-07,
+        "head": 9.9e-06,
+        "flow_readout": 9.900000000000001e-05
+      },
+      "step": 99,
+      "seconds": 0.5306335035711527
+    },
+    {
+      "losses": {
+        "total": -0.8652658760547638,
+        "plan_d3": 0.12426126003265381,
+        "occ_bce": 0.2927464097738266,
+        "lane_bce": 0.4595480263233185,
+        "history": -2.976624011993408,
+        "state": -2.7266666889190674,
+        "stop_bce": 0.01680329255759716,
+        "motion": -5.69992995262146,
+        "plan_interval_length": 0.05387564189732075,
+        "optimized_total": -0.851796954870224
+      },
+      "gradient_norm": 78.28099060058594,
+      "motion_fuse_gradient_norm": 3.435055487860984,
+      "flow_readout_gradient_norm": 0.0,
+      "motion_fuse_update_norm": 0.0011558891916127448,
+      "teacher_seconds": 0.0,
+      "flow_coefficient": 0.0,
+      "lr": {
+        "backbone": 1e-06,
+        "head": 1e-05,
+        "flow_readout": 0.0001
+      },
+      "step": 100,
+      "seconds": 0.5284798797219992
+    }
+  ],
+  "source": {
+    "experiments/a2_long_motion_20260922/calibrate_flow.py": "63d1073c8083096806dca8d2fe5472ae5842a86c953a5de55a2a73c732ea7c02",
+    "experiments/a2_long_motion_20260922/flow_common.py": "88901de6d6dfab1fe2581af5f0f6fbf7400ef1c92695e2058afecdfb729f2c61",
+    "experiments/a2_long_motion_20260922/flow_teacher.py": "9dc69ef4c4d4d29ca87a69e7ebbd6c7746f489911bf51bcd67d3ca488a81f26c",
+    "experiments/a2_long_motion_20260922/probe_flow.py": "ffe6fe939f327370e8c48e79ffda7ec565a11e8b8d86158219f1ea79bd998f94",
+    "experiments/a2_long_motion_20260922/train_flow.py": "150f6018aa7aa2dfc55d8c19bd81bf93b59e20e23f34db1d1a86c71771ce645b",
+    "experiments/a2_long_motion_20260922/train_long.py": "76ea1523ba27eefe5d9497916633660b2e9163f0870308298353d6b29ab88c30",
+    "experiments/a2_long_motion_20260922/verify_long.py": "ed7cabe057b86cb93d58c02329a9e8adbdeacf8433f02044021890dc119e9928",
+    "experiments/a2_motion_fresh_20260919/motion_model.py": "cabc7d6778ae3409f49c9df15941aa413f6623f10d4035134d6ef7f8a223d462",
+    "experiments/a2_motion_fresh_20260919/train_experiment.py": "97a82665ae106af9ef027c79f79f9abba2c841693ea8b4f79545cc1c76430346",
+    "experiments/a2_nearfull_overfit_20260922/data.py": "f50a270a7b1d1bed4bd6e1d8741b128e76999d1722cc7482096ab97be36873ce",
+    "experiments/a2_nearfull_overfit_20260922/monitor.py": "593a3228ac1898dad84c4322f608f19726307e01e7d7fd028ccec9aed1c78132",
+    "experiments/a2_nearfull_overfit_20260922/train_nearfull.py": "7b3d48bffa290a7c72d1cc9b229bb4960bf5033b4a4e82063e37000ad190563b",
+    "experiments/a2_nearfull_overfit_20260922/verify.py": "019f2359991ad3acbf96907836f56ce3a19116a2b60303dcaa7cd57c3a92d6ee",
+    "experiments/a2_progress_h4_20260920/h4_data.py": "cbe1087eed1438a195c8d7f94ee420c672601b9eccd6e083ac3ed70d2e35ac89",
+    "experiments/a2_progress_h4_20260920/h4_status.py": "1d9374bc9e9789eaee35fb885da0682c0ef59195fd67757a460d83014563e643",
+    "experiments/a2_progress_h4_20260920/progress_model.py": "3c71b534c121760732ba0fbf12f3fa28ebe90c50bce69fa99c5759ab8bc27f2e",
+    "experiments/a2_progress_h4_20260920/train_progress.py": "34d549a3908b8811fc1913e1ac71240cd49a988f6a701fc69a51ecbfa1832cc5",
+    "experiments/a2_temporal_read_20260920/temporal_model.py": "dd01226e745e1530ceef2f79f9ae9c495064aede07d61089607667881e66b6a7",
+    "experiments/a2_temporal_read_20260920/train_temporal.py": "2dd6e1688a7c1a6cd73ab988fd313b961840d4d7b46c7aec4dc9ad690e31037f",
+    "experiments/md_a2_deploy_status_20260918/nominal_status.py": "b35ebeae779884bf13c9200ef25f8a661c4486544e04612d9bc2926114a47437",
+    "experiments/md_a2_nominal_mh4_20260918/a2_model.py": "ff8e33d80c59376602e2ac3a2fe0bc0c2a9ef788ae2a328b979987e4eda45633",
+    "experiments/md_a2_nominal_mh4_20260918/build_nominal_inputs.py": "a1d43a5efa2b028be2ba8b1775012ee432424cc4daf80f55da239492dc9032c7",
+    "experiments/md_a2_nominal_mh4_20260918/nominal_data.py": "4df582f401a439f57c466679b93b13ede186805361bfe6d2a5756047c51e842f",
+    "experiments/md_a2_nominal_mh4_20260918/train_nominal.py": "093d8c3b3e8212c96167257d85e45f9a724262d5106289354e8163b6a2d84bc2",
+    "experiments/md_shared_dynamics_20260917/train_shared_dynamics.py": "e8a18e8c1967cf60c342aebc7ca831655b84e485f495ddd567f4f9ccb1049341",
+    "models/motiondrive_v2/motion_encoder.py": "80c84387a0337c6bfcf700db8b49a3e761f1610f8f5e6a3830c4ade58069eacd",
+    "models/motiondrive_v2/planner.py": "94811887bf7edd72f4796d83fb1193c5b87b83d2313eafdc50daabab4e8f6599",
+    "models/motiondrive_v2/scene_encoder.py": "1ea114d4f55715bc58f282582539283f9817d59b9810eb0fe7c76a2e6fcc09ca",
+    "scripts/motiondrive_v2_flip_augment.py": "563981f95804e3e1272971e11d9547cb5bbadeb2e2a3026d3985cbda6565ad95",
+    "scripts/motiondrive_v2_training.py": "6e3d5ecccee0a87cf6a85cd490ee192990fd2ca92f0c307040a93ca2cdc7077c",
+    "scripts/train_motiondrive_v2.py": "8a20e2676aad909c2952fe1418a61bc419105793148573a2f45738b432070f24"
+  }
+}
