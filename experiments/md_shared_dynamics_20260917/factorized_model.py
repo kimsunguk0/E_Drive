@@ -235,19 +235,31 @@ class SharedDynamicsMotionDriveV2(MotionDriveV2):
                                     mode="bilinear", align_corners=False, antialias=True)
         scene_stack = torch.cat([scene_small[:, None], history_images], dim=1)
         scene_levels, _ = self.backbone_fpn(scene_stack.flatten(0, 1))
-        scene_levels = tuple(value.reshape(b, self.config.n_history + 1, *value.shape[1:])
+        # Derive the stack length from the tensor rather than the config, so a
+        # motion branch with more timepoints than the scene branch reshapes
+        # correctly. Identical to config.n_history + 1 whenever they agree.
+        scene_levels = tuple(value.reshape(b, history_images.shape[1] + 1, *value.shape[1:])
                              for value in scene_levels)
         history_levels = tuple(value[:, 1:] for value in scene_levels)
 
         motion_stack = torch.cat([motion_current[:, None], motion_history], dim=1)
         motion_levels, _ = self.backbone_fpn(motion_stack.flatten(0, 1))
-        motion_levels = tuple(value.reshape(b, self.config.n_history + 1, *value.shape[1:])
+        motion_levels = tuple(value.reshape(b, motion_history.shape[1] + 1, *value.shape[1:])
                               for value in motion_levels)
         current_levels, current_p4, history_levels, motion_levels = self._condition_features(
             status5, current_levels, current_p4, history_levels, motion_levels)
 
+        # The motion branch may observe more timepoints than the scene branch and
+        # than the supervised history targets. Its nominal times are constant per
+        # row, so they are attached to the model rather than threaded through the
+        # forward signature; absent, everything behaves exactly as before.
+        motion_times = getattr(self, "_motion_time_offsets", None)
+        if motion_times is None:
+            motion_times = time_offsets
+        else:
+            motion_times = motion_times.to(time_offsets.device).expand(b, -1)
         motion = self.motion_encoder(tuple(value[:, 0] for value in motion_levels),
-                                     tuple(value[:, 1:] for value in motion_levels), time_offsets)
+                                     tuple(value[:, 1:] for value in motion_levels), motion_times)
         scene = self.scene_encoder(current_levels, history_levels, current_p4, lidar2img,
                                    history_transforms, time_offsets, goal_xy, images.shape[-2:])
         return {**scene, **motion}

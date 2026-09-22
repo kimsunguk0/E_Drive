@@ -76,8 +76,13 @@ class WaypointTemporalRead(nn.Module):
     def forward(self, decoded, pair_features):
         if decoded.ndim != 3 or decoded.shape[1:] != (6, 128):
             raise ValueError('Temporal read requires six 128D decoded waypoint features')
-        if pair_features.shape != (decoded.shape[0], 4, 192, 128):
-            raise ValueError('Temporal memory must retain four time-labelled 12x16 grids')
+        # The attention runs over the flattened [time x site] memory, so the time
+        # count need not be four; H6 feeds six. The spatial grid and channel width
+        # stay strict because those would change the read's meaning, not its length.
+        if (pair_features.ndim != 4 or pair_features.shape[0] != decoded.shape[0]
+                or pair_features.shape[2:] != (192, 128) or pair_features.shape[1] < 4):
+            raise ValueError('Temporal memory must retain time-labelled 12x16x128 grids, '
+                             'at least four of them')
         with torch.autocast(device_type=decoded.device.type, enabled=False):
             q = self.query_norm(decoded.float())
             memory = self.memory_norm(pair_features.float().flatten(1, 2))
