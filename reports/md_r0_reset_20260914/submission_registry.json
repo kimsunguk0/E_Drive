@@ -1,4 +1,13 @@
 {
+ "candidate_actually_submitted_2026_09_17": {
+  "checkpoint": "work_dirs/md_r0_reset_20260914/MR-NATIVE-s1/ckpt_step20554.pth",
+  "entry_below_still_names": "MR-NATIVE-s0",
+  "server_score": 0.19798776670488366,
+  "submitted": "MR-NATIVE-s1",
+  "was_the_change_recorded": true,
+  "what_was_missed": "only this registry file, which was never updated to match",
+  "where": "reports/md_r0_reset_20260914/H_PREREGISTRATION_KO.md Revision 2, which states the reason (the submission was for calibration, so it had to be a model that had not trained on V0 or H -- both seeds qualified), states explicitly that s1's lower score was NOT the reason since both CIs include zero, and records that the choice was made after seeing the numbers"
+ },
  "entries": {
   "E1-EXP_terminal": {
    "build_seconds": 1318.6033947151154,
@@ -198,25 +207,50 @@
   "provided_numeric_ego_status_used": false
  },
  "pending": [
-  "H confirmation is unopened.",
   "Seed 1 replication is still running.",
-  "The candidate may change if EXP-LONG improves; a new candidate requires rebuilding this file and re-linking its SHA in this entry."
+  "The candidate may change if EXP-LONG improves; a new candidate requires rebuilding this file and re-linking its SHA in this entry.",
+  "H was opened and absorbed into training on 2026-09-22; H_no_longer_holdout_in_this_lineage is true. V0 is the only remaining holdout and it has been reused repeatedly."
  ],
  "runtime_source_git_sha": "e9869d54a2bc0a960bb7a3bf090feb308b9da1dd",
  "schema_version": 2,
- "upload_policy": {
-  "guide_document_values": {
-   "caveat": "these are document values; the live deadline, time zone and actual remaining count were not confirmed from the account screen",
-   "max_submissions_per_team": "5 per the printed guide page 4",
-   "submission_period_ends": "2026-09-23 per the printed guide page 1"
-  },
-  "quota_consumed": 0,
-  "requires": [
-   "user approval",
-   "confirmed remaining submission count",
-   "confirmed current submission form and field naming"
+ "stale_record_notice": {
+  "corrected": "2026-09-22",
+  "what_was_wrong": [
+   "quota_consumed said 0; three submissions have since been scored",
+   "pending said H confirmation is unopened; H was absorbed into training on 2026-09-22",
+   "the entry below names MR-NATIVE-s0 as the candidate, but MR-NATIVE-s1 was submitted"
   ],
-  "uploaded": false
+  "why_it_matters": "this file is one of four places in the repo asserting a different quota. Do not read any of them as authoritative; see the correction block below and confirm on the account before spending a slot.",
+  "written": "2026-09-17, before any of our submissions were scored"
+ },
+ "upload_policy": {
+  "conflicting_records_in_repo": [
+   "HANDOVER.md line 225: 2 of 5 used (2026-09-18 snapshot)",
+   "H_PREREGISTRATION_KO.md line 183: 1 of 5 used",
+   "reports/a2_long_motion_20260922/EXECUTION_KO.md: 2 remaining (current)",
+   "this file, before this correction: quota_consumed 0"
+  ],
+  "not_on_our_account": "2026-09-01 v2a_goal 0.236238922 went through a different team's account and does not consume our quota",
+  "provenance_warning": "the 5-submission limit and the 2026-09-23 deadline come from the printed guide (pages 4 and 1) plus a 2026-09-18 user report. Neither has ever been read off the account screen. Verify there before committing a slot.",
+  "quota_consumed": 3,
+  "quota_remaining": 2,
+  "scored_submissions": [
+   {
+    "candidate": "MR-NATIVE-s1",
+    "date": "2026-09-17",
+    "score": 0.19798776670488366
+   },
+   {
+    "candidate": "MR-NATIVE-FULL-s1",
+    "date": "2026-09-18",
+    "score": 0.18596892793122946
+   },
+   {
+    "candidate": "A2-H4-PROGRESS-FULL-s1",
+    "date": "2026-09-21",
+    "score": 0.1336848279459137
+   }
+  ]
  },
  "writer": "experiments/md_r0_reset_20260914/submit_official_test.py"
 }
