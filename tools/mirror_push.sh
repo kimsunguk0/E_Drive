@@ -7,7 +7,7 @@
 # that runs beside the push instead of before it does not stop anything.
 set -euo pipefail
 
-PATTERN='59\.150\.32\.1|korea_sdv01|DCTN-beyless_key'
+PATTERN='59\.150\.32\.1|<B200-USER>|<B200-KEY>'
 BRANCH="${1:-motiondrive-v2-20260910}"
 cd ~/edrive_mirror
 
@@ -16,9 +16,9 @@ if [ "${#leaky[@]}" -gt 0 ]; then
     printf 'scrubbing %d file(s)\n' "${#leaky[@]}"
     for f in "${leaky[@]}"; do
         [ -f "$f" ] || continue
-        sed -i "s#/home/korea_sdv01#/home/<B200-USER>#g; \
-                s/korea_sdv01/<B200-USER>/g; \
-                s/DCTN-beyless_key/<B200-KEY>/g; \
+        sed -i "s#/home/<B200-USER>#/home/<B200-USER>#g; \
+                s/<B200-USER>/<B200-USER>/g; \
+                s/<B200-KEY>/<B200-KEY>/g; \
                 s/59\.150\.32\.1/<B200-IP>/g" "$f"
     done
     git add -u
