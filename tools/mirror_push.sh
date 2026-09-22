@@ -17,7 +17,10 @@ PATTERN="${IP_TOKEN//./\\.}|${USER_TOKEN}|${KEY_TOKEN}"
 BRANCH="${1:-motiondrive-v2-20260910}"
 cd ~/edrive_mirror
 
-mapfile -t leaky < <(git grep -lIE "$PATTERN" HEAD -- | sed 's/^HEAD://' | sort -u)
+# git grep exits 1 when it finds nothing, which under `set -e` with pipefail
+# kills the script exactly when the tree is clean. Every grep here is therefore
+# allowed to fail.
+mapfile -t leaky < <(git grep -lIE "$PATTERN" HEAD -- 2>/dev/null | sed 's/^HEAD://' | sort -u || true)
 if [ "${#leaky[@]}" -gt 0 ]; then
     printf 'scrubbing %d file(s)\n' "${#leaky[@]}"
     for f in "${leaky[@]}"; do
@@ -31,12 +34,12 @@ if [ "${#leaky[@]}" -gt 0 ]; then
     git diff --cached --quiet || git commit -q -m "Scrub connection details before mirror push"
 fi
 
-tree_hits=$(git grep -lIE "$PATTERN" HEAD -- 2>/dev/null | wc -l)
-msg_hits=$(git log --format=%B -50 | grep -cIE "$PATTERN" || true)
+tree_hits=$( { git grep -lIE "$PATTERN" HEAD -- 2>/dev/null || true; } | wc -l )
+msg_hits=$( { git log --format=%B -50 || true; } | grep -cIE "$PATTERN" || true )
 printf 'guard: tree files %s, recent messages %s\n' "$tree_hits" "$msg_hits"
 if [ "$tree_hits" -ne 0 ] || [ "$msg_hits" -ne 0 ]; then
     echo "REFUSING TO PUSH: connection details still present" >&2
-    git grep -lIE "$PATTERN" HEAD -- | head -10 >&2
+    { git grep -lIE "$PATTERN" HEAD -- || true; } | head -10 >&2
     exit 1
 fi
 
