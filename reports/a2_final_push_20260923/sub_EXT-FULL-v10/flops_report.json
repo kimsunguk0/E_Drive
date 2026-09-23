@@ -1,0 +1,10 @@
+{
+ "flops": 762760698560,
+ "gflops": 762.76069856,
+ "passes_cutoff": true,
+ "cutoff_gflops": 7053.0,
+ "counter": "torch.utils.flop_counter.FlopCounterMode Global sum",
+ "scope": "one full forward per clip: every encoder, the K-candidate planner and the goal selection",
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_ext_select_20260923/EXT-FULL-v10/ckpt_step6344.pth",
+ "model_state_sha256": "4823617be89d6bfc6571882cc6cda3704f1fabb0563c7220a1ebc201e875061f"
+}

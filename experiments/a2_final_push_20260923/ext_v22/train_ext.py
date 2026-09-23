@@ -72,6 +72,8 @@ def planner_modes(model, x):
 
 EXT_W = float(os.environ.get('EXT_EXT_W', '0.3'))
 ALL_W = float(os.environ.get('EXT_ALL_W', '0.0'))
+NEIGH_W = float(os.environ.get('EXT_NEIGH_W', '0.0'))
+NEIGH_M = float(os.environ.get('EXT_NEIGH_M', '1.0'))
 
 
 def loss_fn(modes, gt5, w6):
@@ -81,6 +83,16 @@ def loss_fn(modes, gt5, w6):
     main = (torch.linalg.norm(ch[:, :6] - gt5[:, :6], dim=-1) @ w6).mean()
     ext = torch.linalg.norm(ch[:, 6:] - gt5[:, 6:], dim=-1).mean()
     loss = main + EXT_W * ext
+    if NEIGH_W:
+        # Candidates whose 5 s endpoint is almost as close to the GT 5 s point as
+        # the winner must also have a correct 3 s prefix, so that the goal-only
+        # endpoint argmin at inference cannot land on a plausible-looking
+        # endpoint with a wrong prefix. Training labels only; inference unchanged.
+        dmin = d5.detach().min(1, keepdim=True).values
+        neigh = (d5.detach() <= dmin + NEIGH_M).float()
+        neigh[torch.arange(len(a), device=modes.device), a] = 0.
+        per = torch.linalg.norm(modes[:, :, :6] - gt5[:, None, :6], dim=-1) @ w6
+        loss = loss + NEIGH_W * ((per * neigh).sum(1) / neigh.sum(1).clamp_min(1.)).mean()
     if ALL_W:
         # every candidate stays a plausible plan, so a wrong pick costs less
         loss = loss + ALL_W * (torch.linalg.norm(modes[:, :, :6] - gt5[:, None, :6], dim=-1) @ w6).mean()
