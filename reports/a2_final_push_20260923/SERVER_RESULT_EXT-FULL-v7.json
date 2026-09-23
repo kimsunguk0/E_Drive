@@ -1,0 +1,35 @@
+{
+ "candidate": "EXT-FULL-v7",
+ "date": "2026-09-23",
+ "reported_by": "user",
+ "final_submission": true,
+ "server": {
+  "L2_1s": 0.06543614481168947,
+  "L2_2s": 0.11529903249369534,
+  "L2_3s": 0.17046542992049715,
+  "L2_avg": 0.11706686907529398,
+  "flops": 743777233600,
+  "cutoff": true,
+  "elapsed_ms": 200,
+  "runtime": {
+   "pull_mode": true,
+   "num_inflight": 1,
+   "want": 31,
+   "pull_interval_sec": 10
+  }
+ },
+ "held_out_twin_V0": {
+  "EXT-TWIN-v7": 0.1302,
+  "stationary_29pct_mix": 0.1128
+ },
+ "server_over_twin_ratio": 0.8991310988885866,
+ "previous_best_server": 0.11969072141808204,
+ "improvement_vs_previous": -0.021921936067399006,
+ "leaderboard_user_report_before": {
+  "UNICON": 0.1097,
+  "SAFE": 0.1106,
+  "4th": 0.1174
+ },
+ "quota_consumed": 5,
+ "quota_remaining": 0
+}
