@@ -1,0 +1,39 @@
+{
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_long_motion_20260922/L-FULL6-s1/ckpt_step38070.pth",
+ "checks": {
+  "all_finite": true,
+  "all_shapes_6x2": true,
+  "clips_expected": 1125,
+  "clips_present": 1125,
+  "endpoint_m": {
+   "max": 68.96010644849268,
+   "p50": 22.582781772329277
+  },
+  "extra_clips": [],
+  "failures": [],
+  "flops": 730044861120,
+  "flops_cutoff_gflops": 7053.0,
+  "flops_passes_cutoff": true,
+  "flops_present": true,
+  "gflops": 730.04486112,
+  "interval_speed_max_ms": 23.35618738655612,
+  "missing_clips": [],
+  "n_extra": 0,
+  "n_missing": 0,
+  "n_nan_or_inf": 0
+ },
+ "flops_report": "/NHNHOME/data/sukim/adcl/reports/a2_final_push_20260923/sub_L-FULL6-UPRIGHT/flops_report.json",
+ "format": {
+  "container": "submission.zip containing exactly one member, submission.json",
+  "coordinates": "cumulative absolute XY in metres, current ego frame, 0.5 s steps to 3.0 s",
+  "json": "top-level object: 1,125 clip tokens plus the integer __flops__",
+  "matches": "the packaging of the submission that scored on 2026-09-01"
+ },
+ "keys_in_json": 1126,
+ "label": "L-FULL6-UPRIGHT-s1",
+ "model_state_sha256": "8f2cdee13d035ec12a5254e19151eee82268a2e02aff741a9b7a89e585f4ce8b",
+ "schema_version": 1,
+ "submission_json_sha256": "f4f7330cb19b48ea95e6937ae6bb44a8bb6aecb1308f956c19172f01650a713a",
+ "submission_zip_sha256": "e7773d22428dc834747f363b3a394ff733d8a040d620c86906a60225d335a2c5",
+ "uploaded": false
+}

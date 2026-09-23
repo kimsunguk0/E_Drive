@@ -1,0 +1,13 @@
+{
+ "flops": 730044861120,
+ "gflops": 730.04486112,
+ "passes_cutoff": true,
+ "cutoff_gflops": 7053.0,
+ "counter": "torch.utils.flop_counter.FlopCounterMode, Global sum",
+ "scope": "single full forward per clip (no TTA), FP32 counting",
+ "single_forward_flops": 730044861120,
+ "checkpoint": "/NHNHOME/data/sukim/adcl/work_dirs/a2_long_motion_20260922/L-FULL6-s1/ckpt_step38070.pth",
+ "weight_soup": false,
+ "model_state_sha256": "8f2cdee13d035ec12a5254e19151eee82268a2e02aff741a9b7a89e585f4ce8b",
+ "source": "/NHNHOME/data/sukim/adcl/reports/a2_final_push_20260923/sub_L-FULL6-TTA/tta_flops.json"
+}
