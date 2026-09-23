@@ -1,0 +1,5 @@
+*.log
+predictions*.json
+shard_*.json
+submission.json
+submission.zip
