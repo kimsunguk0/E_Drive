@@ -1,0 +1,16 @@
+[
+  {
+    "step": 0,
+    "PREFIX": 0.10660578484471712,
+    "train_probe_PREFIX": 0.11323347610596102,
+    "evaluation_is_in_fit": true,
+    "elapsed_seconds": 52.14463138207793
+  },
+  {
+    "step": 5,
+    "PREFIX": 0.10639971585452997,
+    "train_probe_PREFIX": 0.1133885211256711,
+    "evaluation_is_in_fit": true,
+    "elapsed_seconds": 91.67867428995669
+  }
+]

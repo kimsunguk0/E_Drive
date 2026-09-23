@@ -1,0 +1,1 @@
+{"tag": "SOUP_L34_W34", "n_ckpts": 2, "upright": 0.1433847955728957, "mirrored": 0.14305307252861493, "tta": 0.13897129464288674, "buffer_mismatch": [], "seconds": 70.7}

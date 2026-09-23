@@ -1,0 +1,1 @@
+{"tag": "W34", "n_ckpts": 1, "upright": 0.14276439702607596, "mirrored": 0.14255771722453234, "tta": 0.138375794685815, "buffer_mismatch": [], "seconds": 74.6}

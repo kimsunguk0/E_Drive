@@ -1,0 +1,2 @@
+{"tag": "L34", "n_ckpts": 1, "upright": 0.14355415690174872, "mirrored": 0.14332167664174345, "tta": 0.1392144442058316, "buffer_mismatch": [], "seconds": 76.7}
+{"tag": "F22", "n_ckpts": 1, "upright": 0.13811727329906207, "mirrored": 0.13935187300159452, "tta": 0.13455931695687398, "buffer_mismatch": [], "seconds": 67.6}

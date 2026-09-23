@@ -1,0 +1,10 @@
+{
+ "single_forward_flops": 730044861120,
+ "tta_two_forward_flops": 1460089722240,
+ "gflops": {
+  "single": 730.04486112,
+  "tta": 1460.08972224
+ },
+ "tta_headroom_x": 4.83052506470604,
+ "tta_passes_cutoff": true
+}

@@ -1,0 +1,2 @@
+{"tag": "SWA_L28_34", "n_ckpts": 2, "upright": 0.1429005256905751, "mirrored": 0.14302003447642406, "tta": 0.13872473778689162, "buffer_mismatch": [], "seconds": 70.2}
+{"tag": "SWA_F17_22", "n_ckpts": 2, "upright": 0.13792701769634838, "mirrored": 0.1401082535024175, "tta": 0.13468105722344514, "buffer_mismatch": [], "seconds": 64.5}
