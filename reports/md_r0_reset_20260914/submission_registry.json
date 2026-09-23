@@ -232,8 +232,8 @@
   ],
   "not_on_our_account": "2026-09-01 v2a_goal 0.236238922 went through a different team's account and does not consume our quota",
   "provenance_warning": "the 5-submission limit and the 2026-09-23 deadline come from the printed guide (pages 4 and 1) plus a 2026-09-18 user report. Neither has ever been read off the account screen. Verify there before committing a slot.",
-  "quota_consumed": 3,
-  "quota_remaining": 2,
+  "quota_consumed": 4,
+  "quota_remaining": 1,
   "scored_submissions": [
    {
     "candidate": "MR-NATIVE-s1",
@@ -249,6 +249,13 @@
     "candidate": "A2-H4-PROGRESS-FULL-s1",
     "date": "2026-09-21",
     "score": 0.1336848279459137
+   },
+   {
+    "candidate": "EXT-FULL-s1",
+    "date": "2026-09-23",
+    "score": 0.11969072141808204,
+    "submission_zip_sha256": "efa2f833017afd886f6f6e4ac1c6dda93adb5afd9a2138262b091c73d04ebd5f",
+    "checkpoint": "work_dirs/a2_ext_select_20260923/EXT-FULL-s1/ckpt_step6344.pth"
    }
   ]
  },
