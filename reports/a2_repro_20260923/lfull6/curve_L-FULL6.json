@@ -5,5 +5,47 @@
     "train_probe_PREFIX": 0.11323347610596102,
     "evaluation_is_in_fit": true,
     "elapsed_seconds": 50.67071907222271
+  },
+  {
+    "step": 6345,
+    "PREFIX": 0.13008415426169098,
+    "train_probe_PREFIX": 0.13973993408035312,
+    "evaluation_is_in_fit": true,
+    "elapsed_seconds": 3406.1330936178565
+  },
+  {
+    "step": 12690,
+    "PREFIX": 0.11035916570807575,
+    "train_probe_PREFIX": 0.11844304132500838,
+    "evaluation_is_in_fit": true,
+    "elapsed_seconds": 6748.9144043028355
+  },
+  {
+    "step": 19035,
+    "PREFIX": 0.11108428471720777,
+    "train_probe_PREFIX": 0.11902673096301442,
+    "evaluation_is_in_fit": true,
+    "elapsed_seconds": 10131.100046133623
+  },
+  {
+    "step": 25380,
+    "PREFIX": 0.09722022279058476,
+    "train_probe_PREFIX": 0.10467452350803796,
+    "evaluation_is_in_fit": true,
+    "elapsed_seconds": 13511.717892659828
+  },
+  {
+    "step": 31725,
+    "PREFIX": 0.09266855228888998,
+    "train_probe_PREFIX": 0.09900927838953066,
+    "evaluation_is_in_fit": true,
+    "elapsed_seconds": 16879.99233544804
+  },
+  {
+    "step": 38070,
+    "PREFIX": 0.09184343826915561,
+    "train_probe_PREFIX": 0.09835523819492664,
+    "evaluation_is_in_fit": true,
+    "elapsed_seconds": 20240.72361572832
   }
 ]
