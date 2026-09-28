@@ -55,6 +55,8 @@
 ## 4. 학습
 공통 설정: 대회 제공 train 376 scenario에서 frame 30 이상 전체(101,520행)를 사용합니다. 최적화는 AdamW(weight decay 0.01), BF16, BN 통계 고정, gradient clip 5이고, seed는 1입니다. 모든 단계는 NVIDIA B200 GPU 1장으로 학습합니다.
 
+occupancy·lane 손실은 scene encoder에 붙은 보조 head에 걸립니다. planner는 occupancy·lane 예측값을 입력으로 받지 않습니다. 대신 이 손실의 gradient가 공통 scene 특징과 백본을 학습시키고, planner는 그 scene 특징을 읽는 구조입니다. 3단계에서는 몸통과 보조 head를 동결하므로 이 손실을 쓰지 않습니다.
+
 "평가식 가중 L2"는 6개 waypoint(0.5~3.0 s)의 L2 오차에 평가식과 같은 가중치 [11, 11, 5, 5, 2, 2] / 36을 곱한 손실입니다.
 
 | | 1단계 | 2단계 | 3단계 |
@@ -63,7 +65,7 @@
 | 학습 대상 | 전체 | 전체 | planner와 후보 확장 파라미터 (몸통 동결) |
 | update / batch | 24,931 / 16 | 38,070 / 16 | 6,344 / 16 (2 프레임 간격 50,760행, 2 epoch) |
 | 학습률 | backbone 5e-6, head 5e-5, warmup 200, cosine | backbone 1e-6, head 1e-5, warmup 100, cosine | planner 2e-5, 신규 1e-3, warmup 100, cosine |
-| 손실 | 평가식 가중 L2 + 구간 길이 보조(λ 0.25) + occupancy·lane·motion 보조(각 0.2, 불확실성 가중) | 1단계와 동일 | 배정된 후보의 평가식 가중 L2 + 0.3 × 5초 연장 구간 L2 |
+| 손실 | 평가식 가중 L2 + 구간 길이 보조(λ 0.25) + occupancy·lane BCE(각 0.2) + motion 보조(0.2, ego 상태·과거 궤적 회귀는 불확실성 가중) | 1단계와 동일 | 배정된 후보의 평가식 가중 L2 + 0.3 × 5초 연장 구간 L2 |
 | 증강 | 좌우 반전 (p=0.5) | 1단계와 동일 | 없음 |
 | 학습 시간 (B200 1장) | 약 3.6시간 | 약 5.6시간 | 약 0.7시간 |
 
