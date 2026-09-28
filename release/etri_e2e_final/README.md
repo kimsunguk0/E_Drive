@@ -23,7 +23,7 @@
 ├── data/           학습용 파생 캐시, 실행 메타데이터, 검증용 학습 clip 8개
 ├── docker/         Dockerfile
 ├── scripts/        build_image.sh, infer.sh, validate.sh, prepare_train.sh, train.sh
-├── tools/          assemble.py (컨테이너 경로 구성), build_train_cache.py (학습 영상 준비), validate_release.py (검증)
+├── tools/          assemble.py (컨테이너 경로 구성), build_train_cache.py (학습 영상 준비), validate_release.py (검증), small_gpu/ (24 GB GPU 학습 확인용)
 ├── validation/     검증용 테스트 clip 20개와 참조 예측
 └── layout.json     src/·checkpoints/·data/ 파일과 코드 내부 경로의 대응표
 ```
