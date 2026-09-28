@@ -34,13 +34,17 @@
 | 항목 | 환경 | 결과 |
 |---|---|---|
 | 학습 영상 준비 (`prepare_train.sh`, 원본 tar 2개) | 4090, Docker | 영상 3,600장과 parquet 16개가 학습에 사용한 캐시와 바이트 단위로 모두 일치합니다 |
+| 학습 영상 준비, 원본 tar 376개 전체 (`tools/build_train_cache.py`) | B200 | 영상 676,800장과 parquet 3,008개가 학습에 사용한 캐시와 바이트 단위로 모두 일치합니다. crop과 카메라 행렬(`cache_meta.json`)도 같습니다 |
 | 1단계 smoke (2 update + tune 1,998 평가) | B200 | step 1 grad norm 8.681422 (원 기록 8.681418), 평가 d3 12.818012 (원 기록 12.818013) |
 | 2단계 smoke (5 update + 평가·검증 probe) | B200 | 평가 d3 0.106446 (원 기록 0.106435), 종료 코드 0 |
 | 3단계 smoke (20 update) | B200 / 4090 Docker | 두 환경 모두 정상 종료 (64 샘플 평가 0.1633 / 0.1647) |
 | 1단계 smoke, microbatch 2 | 4090 Docker | 학습 샘플 순서 해시가 원 기록과 같습니다. loss 항목은 소수 넷째 자리까지 같고, grad norm은 8.681856(원 8.681418), 평가 d3는 12.818023(원 12.818013)입니다 |
 | 2단계 smoke + verify, microbatch 2 | 4090 Docker | 5 update의 샘플 순서 해시가 같고, 평가 d3는 0.106446(원 0.106435)입니다. verify에서 strict 재로드 후 예측 차이는 0.0입니다 |
 | 3단계 전체 학습 (6,344 update) | B200 | tune 1,998 평가 0.087666 (원 학습 0.087320, +0.4%). 동결 몸통 파라미터 427개는 제출 checkpoint와 비트 단위로 같습니다. 학습 대상 planner의 상대 차이는 1.2%입니다. 같은 GPU에서 전체 추론을 동시에 실행했습니다 |
+| 테스트 1,125 clip 전체 추론 (`scripts/infer.sh`) | 4090, Docker | 약 7분이 걸립니다. 선택 후보는 1,118/1,125(99.4%)가 제출본과 같습니다. 같은 후보를 고른 clip의 좌표 최대 차이는 중앙값 1.5 mm, 최대 1.3 cm이고, 전체 가중 차이 평균은 0.9 mm입니다. FLOPs도 같습니다 |
+| 저장한 이미지 파일 (`docker save` → 기존 이미지 삭제 → `docker load`) | 4090 | 같은 이미지 ID(`sha256:d9c27d55…`)로 복원됩니다. `validate.sh` 결과도 같습니다(8/8, 18/20, 31.2 ms) |
 | 테스트 1,125 clip 전체 추론 (`infer.sh`와 같은 명령) | B200 | 1,125 clip 모두 실제 제출 좌표와 완전히 일치합니다(최대 차이 0). `__flops__` 743,777,233,600으로 같습니다 |
 
 - 1·2단계 코드는 시작할 때 GPU 여유 메모리가 약 174 GiB인지 검사합니다. B200 검증 GPU에서는 다른 작업이 28 GB를 쓰고 있어서, 1단계 smoke에 한해 이 사전 검사에 보고되는 여유 메모리만 늘렸습니다. 소스 코드는 수정하지 않았습니다.
 - 4090(24 GB)에서 1·2단계를 확인할 때는 `tools/small_gpu/sitecustomize.py`를 사용했습니다(`-e RELCHECK_MICROBATCH=2 -e PYTHONPATH=/shim`). microbatch는 8에서 2로 줄이고, 약 174 GiB 여유 메모리 사전 검사는 끕니다. 학습기는 전체 batch(16) 기준 loss normalizer로 microbatch 기울기를 누적하므로, 논리 batch와 계산식은 바뀌지 않습니다. `train.sh`는 이 도구를 사용하지 않습니다.
+- 테스트 전체 추론을 하다가 `scripts/infer.sh`의 버그를 찾아 고쳤습니다. clip이 많으면 첫 clip을 고르는 `ls | head`가 `pipefail`에 걸려 스크립트가 바로 종료됐습니다. 20 clip 검증에서는 드러나지 않았습니다.

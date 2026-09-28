@@ -9,7 +9,7 @@
 ## 구성
 | 제출 요구 항목 | 위치 |
 |---|---|
-| Docker 이미지 | `docker/Dockerfile` (빌드: `scripts/build_image.sh`, 이미지명 `etri-e2e-ext:final`) |
+| Docker 이미지 | 제출 zip의 `docker_image/etri-e2e-ext_final.tar.gz` (`docker load -i`로 불러오기, 이미지명 `etri-e2e-ext:final`). 같은 이미지를 `docker/Dockerfile`로 다시 빌드할 수도 있습니다(`scripts/build_image.sh`) |
 | 리더보드 성능 checkpoint | `checkpoints/ext_full_v7.pth` |
 | 학습·추론 코드 (모델 포함) | `src/` |
 | 데이터셋 준비 및 코드 작동 방법 | 이 문서의 "실행" 절, `docs/DATA_PREP.md` |
@@ -30,7 +30,7 @@
 
 ## 실행
 ```sh
-bash scripts/build_image.sh                         # 1) 이미지 빌드
+docker load -i ../docker_image/etri-e2e-ext_final.tar.gz   # 1) 이미지 불러오기 (또는 bash scripts/build_image.sh)
 bash scripts/validate.sh                            # 2) 동봉 clip 정합성, FLOPs, GPU 추론 시간 확인
 bash scripts/infer.sh /path/to/test OUT_DIR         # 3) 테스트 1,125 clip 추론 → OUT_DIR/package/submission.zip
 bash scripts/prepare_train.sh /path/to/train PREP   # 4) 학습 영상 준비 (원본 → 768×432 캐시, 1회)
