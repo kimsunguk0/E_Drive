@@ -1,3 +1,4 @@
-etri_e2e_final/code/
-etri_e2e_final/data_pm97/
+etri_e2e_final/src/
+etri_e2e_final/checkpoints/
+etri_e2e_final/data/
 etri_e2e_final/validation/test_subset/

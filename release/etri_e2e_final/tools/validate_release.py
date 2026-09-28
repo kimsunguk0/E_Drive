@@ -41,7 +41,7 @@ def main():
     infer_full.configure()
     dev = torch.device('cuda:0')
     model, cp = load(str(CODE / a.ckpt), dev)
-    V = Path('/validation')
+    V = Path('/release/validation')
     fx = sorted(p for p in (CODE / 'data/etri/motiondrive_v2/deploy_fixture_train8').iterdir() if p.is_dir())
     ts = sorted(p for p in (V / 'test_subset').iterdir() if p.is_dir())
     ref_fx = json.loads((V / 'reference_fixtures_B200_bf16.json').read_text())
