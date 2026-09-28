@@ -1,0 +1,59 @@
+// 아키텍처 그림 원본. 생성: dot -Tpng -Gdpi=150 docs/architecture.dot -o docs/architecture.png
+digraph G {
+  rankdir=TB; newrank=true; nodesep=0.35; ranksep=0.4;
+  graph [fontname="Noto Sans CJK KR", fontsize=13, labeljust=l, pad=0.3];
+  node  [fontname="Noto Sans CJK KR", fontsize=11, shape=box, style="rounded,filled", fillcolor="#ffffff", color="#555555", penwidth=1.1];
+  edge  [fontname="Noto Sans CJK KR", fontsize=9, color="#555555", arrowsize=0.7];
+
+  subgraph cluster_in {
+    label="입력 (clip당 1회 forward)"; style="rounded,filled"; fillcolor="#f3f4f6"; color="#bbbbbb";
+    cam6   [label="6개 카메라 현재 영상\n768×432"];
+    hist4  [label="전방 과거 영상 4장\n−0.1 / −0.2 / −0.5 / −1.0 s\n384×216 (scene용)\n768×432 (motion용)"];
+    pose   [label="과거 ego pose\n(현재→과거 SE(3), 카메라 보정)"];
+    goal   [label="5초 목표점 (+50 frame)"];
+  }
+  status [label="현재 ego 상태 5값\nvx, vy, ax, ay, yaw rate\n(과거 pose 5개로 계산)", fillcolor="#f3f4f6"];
+  pose -> status [style=dashed];
+
+  subgraph cluster_bb {
+    label="공유 백본"; style="rounded,filled"; fillcolor="#e8f0fe"; color="#9db5e8";
+    bb [label="ResNet-50 + FPN 128ch\n(공개 nuImages 가중치로 초기화)\n24.3 M\n\n패스 3회: 현재 6장 · scene용 5장 · motion용 5장"];
+  }
+  cam6 -> bb; hist4 -> bb;
+
+  subgraph cluster_scene {
+    label="공통 Scene Encoder (BEV 64×48 = 3,072 셀, x −10~70 m, y ±32 m)"; style="rounded,filled"; fillcolor="#e6f4ea"; color="#9ccfab";
+    q   [label="셀 query\n셀 위치 · 목표점 상대 위치\n+ ego 상태 조건 (MLP 5→32)"];
+    att [label="영상 증거 attention (2회 읽기)\n셀마다 3높이 × 10시점(현재 6 + 과거 4) × 2 FPN 레벨\n= 60개 영상 샘플을 투영·샘플링"];
+    mix [label="+ 전역 영상 문맥\n+ 셀 간 residual attention\nSpatialMix × 2"];
+    sf  [label="scene 특징\n3,072 token × 128", fillcolor="#d2ecd9"];
+    aux1 [label="보조 head (학습용)\noccupancy · lane", fillcolor="#f7f7f7", color="#aaaaaa", fontcolor="#666666"];
+    q -> att -> mix -> sf; mix -> aux1 [style=dotted];
+  }
+  bb -> att [label="현재·과거 특징"];
+  pose -> att [label="기하 투영에만 사용", style=dashed];
+  goal -> q [style=dashed]; status -> q [style=dashed, label="query 조건에만"];
+
+  subgraph cluster_motion {
+    label="Motion Encoder (pose·목표점·ego 상태 입력 없음)"; style="rounded,filled"; fillcolor="#fef7e0"; color="#e6c96f";
+    corr [label="현재↔과거 전방 특징 correlation\n반경 4 (81 bin), 2 레벨\n시점 attention"];
+    mt   [label="motion token 192 × 128\n시점별 pair 특징 4 × 192 × 128", fillcolor="#fcefc2"];
+    st   [label="영상 예측 상태 · 과거 궤적\n(보조 감독)", fillcolor="#fcefc2"];
+    corr -> mt; corr -> st;
+  }
+  bb -> corr [label="motion용 5장"];
+
+  subgraph cluster_plan {
+    label="Planner (후보 15개 = 종방향 5 × 횡방향 3)"; style="rounded,filled"; fillcolor="#fce8e6"; color="#e6a19a";
+    dec  [label="Transformer decoder 2층\nquery: waypoint 6개 + 연장 4개, 후보별 mode 임베딩\nmemory: scene 3,072 + motion 192 + 상태 1 = 3,265 token"];
+    tr   [label="waypoint별 temporal read\n(시점별 motion pair 특징)"];
+    head [label="구간 길이(softplus) · 방향 + 후보별 bias\n→ 누적해 위치 생성\n후보마다 0.5~5.0 s, 10점"];
+    dec -> tr -> head;
+  }
+  sf -> dec; mt -> dec; st -> dec; mt -> tr;
+
+  sel [label="후보 선택 (학습 파라미터 없음)\nargmin_k ‖후보_k(5.0 s) − 목표점‖", fillcolor="#fff3cd", color="#c9a227"];
+  out [label="출력: 선택 후보의 앞 6점\n0.5 ~ 3.0 s (좌표 변경 없음)", fillcolor="#333333", fontcolor="#ffffff", color="#333333"];
+  head -> sel [label="15 × 10 × 2"]; goal -> sel [style=dashed]; sel -> out;
+
+}

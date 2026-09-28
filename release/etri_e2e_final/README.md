@@ -13,7 +13,7 @@
 | 리더보드 성능 checkpoint | `checkpoints/ext_full_v7.pth` |
 | 학습·추론 코드 (모델 포함) | `src/` |
 | 데이터셋 준비 및 코드 작동 방법 | 이 문서의 "실행" 절, `docs/DATA_PREP.md` |
-| 사용 기술 및 전략 설명서 | `docs/TECHNICAL_REPORT.md` |
+| 사용 기술 및 전략 설명서 | `docs/TECHNICAL_REPORT.md` (아키텍처 그림 `docs/architecture.png`) |
 | 참고 자료 | `docs/VALIDATION.md` (검증·재현 결과), `docs/COMPLIANCE.md` (규정 대응) |
 
 ```

@@ -8,7 +8,7 @@
 | 입력 | 사용 경로 |
 |---|---|
 | 6개 카메라 현재 영상 | 백본 → 공통 BEV(scene) 특징, 전역 영상 문맥 |
-| 전방 카메라 과거 영상 (−0.1 / −0.2 / −0.5 / −1.0 s) | motion encoder, scene의 과거 시점 샘플링 |
+| 전방 카메라 과거 영상 (−0.1 / −0.2 / −0.5 / −1.0 s) | 768×432는 motion encoder, 384×216은 scene의 과거 시점 샘플링에 사용합니다 |
 | 과거 ego pose | (a) 위 과거 4 프레임의 기하 정렬, (b) 현재 ego 상태 5값(vx, vy, ax, ay, yaw rate) 계산 |
 | 현재 ego 상태 5값 | 공통 scene attention의 query 조건으로만 사용합니다. planner와 motion encoder에는 입력하지 않습니다 |
 | 5초 목표점 (+50 frame) | (a) 공통 scene attention의 query 조건, (b) 후보 궤적 선택 (5초 끝점과의 거리가 가장 작은 후보) |
@@ -17,24 +17,45 @@
 과거 궤적과 ego 상태는 planner에 직접 입력하지 않고, 단순 임베딩으로도 입력하지 않습니다. 최종 궤적 좌표는 모두 영상 특징을 읽는 planner가 생성합니다. 영상을 단색으로 바꾸면 held-out L2가 0.129에서 3.877로 크게 나빠집니다.
 
 ## 3. 모델 구조
-1. **백본:** ResNet-50과 경량 FPN(128채널)입니다. 입력은 6개 카메라 768×432 영상과 과거 전방 영상 384×216입니다.
+![아키텍처](architecture.png)
+
+그림 원본은 `docs/architecture.dot`입니다. 점선은 조건·기하 정보가 들어가는 경로이고, 실선은 영상 특징이 흐르는 경로입니다.
+
+| 모듈 | 파라미터 | 주요 크기 |
+|---|---:|---|
+| 백본 (ResNet-50 + FPN) | 24.26 M | 현재 6장 768×432, scene용 5장 384×216, motion용 5장 768×432. 패스는 3회입니다 |
+| Scene encoder | 0.39 M | BEV 64×48 = 3,072셀, 셀당 영상 샘플 60개 |
+| Motion encoder | 1.36 M | motion token 192개 (12×16) |
+| Planner | 0.64 M | 후보 15개 × 10점 |
+| ego 상태 query 조건 | 0.001 M | MLP 5→32→32 |
+| **합계** | **26.66 M** | 1회 forward 743.8 GFLOPs |
+
+1. **백본:** ResNet-50과 경량 FPN(128채널)이고, 모든 영상이 하나의 백본을 공유합니다.
+   - 현재 6개 카메라 영상은 768×432로 읽습니다.
+   - scene용 전방 영상 5장(현재 축소본 1장과 과거 4장)은 384×216으로 읽습니다.
+   - motion용 전방 영상 5장(현재 1장과 과거 4장)은 768×432로 읽습니다.
 2. **공통 scene encoder:**
    - BEV 격자 셀마다 query를 둡니다. query는 셀 위치, 목표점 상대 위치, ego 상태 조건으로 구성됩니다.
    - 각 셀의 3D 샘플 점을 카메라에 투영해 현재·과거 영상 특징을 샘플링하고, attention으로 읽습니다(2회 refinement). query는 어떤 영상 증거를 읽을지만 결정하고, 읽히는 값은 영상 특징입니다.
-   - 전역 영상 문맥을 더하고 SpatialMix 2블록으로 정제합니다. 결과 특징은 occupancy head, lane head, planner가 공유합니다.
-3. **Motion encoder:** 현재·과거 전방 특징 쌍의 correlation(반경 4)으로 motion token을 만듭니다. 영상만으로 ego 상태와 과거 궤적을 예측하는 보조 head를 가지며, pose·목표점·ego 상태 입력은 없습니다.
+   - 셀마다 3개 높이(0·1·2 m)와 10개 시점(현재 6개 카메라, 과거 전방 4장), 2개 FPN 레벨에서 영상 샘플 60개를 읽습니다. 과거 시점은 과거 ego pose로 투영 위치만 맞춥니다.
+   - 전역 영상 문맥과 셀 간 residual attention을 더합니다. residual attention은 4×4로 묶은 192개 영역에서 영상 특징을 모읍니다. 이 경로에는 목표점 대신 0을 입력하므로, 목표점을 사용하지 않는 구조입니다.
+   - 이어서 SpatialMix(depthwise 3×3 합성곱과 1×1 MLP로 구성한 residual 블록) 2개로 정제합니다. 결과 특징은 occupancy head, lane head, planner가 공유합니다.
+3. **Motion encoder:** 768×432 현재·과거 전방 특징 쌍의 correlation(반경 4, 81 bin, FPN 2레벨)으로 시점별 pair 특징(4×192)을 만들고, 시점 attention으로 합쳐 motion token 192개를 만듭니다. 영상만으로 ego 상태와 과거 궤적을 예측하는 보조 head를 가지며, pose·목표점·ego 상태 입력은 없습니다.
 4. **Planner:**
-   - transformer decoder가 waypoint query 6개로 scene token, motion token, 영상 예측 상태 token을 읽습니다.
+   - transformer decoder(2층, 4 head)가 waypoint query 6개로 memory를 읽습니다. memory는 scene token 3,072개, motion token 192개, 영상 예측 상태 token 1개입니다.
    - waypoint마다 시간별 motion 특징을 다시 읽습니다(temporal read).
    - 출력은 구간마다 이동 길이(softplus)와 진행 방향을 예측하고 누적해 위치를 만드는 구조입니다.
 5. **후보 확장과 선택 (3단계):**
    - planner가 후보 궤적 **15개**(종방향 5 × 횡방향 3)를 생성합니다. 후보마다 mode 임베딩과 길이·방향 bias를 학습합니다.
+   - bias 초기값은 5.0 s에서 종방향 ±0.06(길이 단위), 횡방향 ±0.04 rad로 균등하게 벌린 값입니다. 설정값은 Dockerfile의 `EXT_*` 환경변수입니다.
    - 각 후보는 **5초까지 10점**입니다. 3.5~5.0 s 구간은 6번째 구간에 학습된 잔차를 더해 만듭니다.
    - 추론 시에는 `argmin_k ‖후보_k(5.0 s) − 목표점‖`으로 후보 하나를 고르고, 앞 6점(0.5~3.0 s)을 좌표 변경 없이 출력합니다.
    - 선택에는 학습 모듈을 사용하지 않고, ego 상태와 과거 정보도 사용하지 않습니다. 영상 입력부터 출력까지 하나의 네트워크입니다.
 
 ## 4. 학습
-공통 설정: 대회 제공 train 376 scenario에서 frame 30 이상 전체(101,520행)를 사용합니다. 최적화는 AdamW, BF16, BN 통계 고정, gradient clip 5입니다.
+공통 설정: 대회 제공 train 376 scenario에서 frame 30 이상 전체(101,520행)를 사용합니다. 최적화는 AdamW(weight decay 0.01), BF16, BN 통계 고정, gradient clip 5이고, seed는 1입니다. 모든 단계는 NVIDIA B200 GPU 1장으로 학습합니다.
+
+"평가식 가중 L2"는 6개 waypoint(0.5~3.0 s)의 L2 오차에 평가식과 같은 가중치 [11, 11, 5, 5, 2, 2] / 36을 곱한 손실입니다.
 
 | | 1단계 | 2단계 | 3단계 |
 |---|---|---|---|
@@ -44,12 +65,14 @@
 | 학습률 | backbone 5e-6, head 5e-5, warmup 200, cosine | backbone 1e-6, head 1e-5, warmup 100, cosine | planner 2e-5, 신규 1e-3, warmup 100, cosine |
 | 손실 | 평가식 가중 L2 + 구간 길이 보조(λ 0.25) + occupancy·lane·motion 보조(각 0.2, 불확실성 가중) | 1단계와 동일 | 배정된 후보의 평가식 가중 L2 + 0.3 × 5초 연장 구간 L2 |
 | 증강 | 좌우 반전 (p=0.5) | 1단계와 동일 | 없음 |
+| 학습 시간 (B200 1장) | 약 3.6시간 | 약 5.6시간 | 약 0.7시간 |
 
-**3단계 후보 배정:** 학습 샘플마다 5.0 s 끝점이 정답 5.0 s 위치에 가장 가까운 후보를 골라 그 후보를 학습합니다. 학습 데이터에서 정답 5.0 s 위치는 목표점(+50 frame)과 같으므로, 학습과 추론이 같은 선택 규칙을 사용하는 구조입니다.
+**3단계 후보 배정:** 학습 샘플마다 5.0 s 끝점이 정답 5.0 s 위치에 가장 가까운 후보를 골라 그 후보를 학습합니다. 학습 데이터에서 정답 5.0 s 위치는 목표점(+50 frame)과 같으므로, 학습과 추론이 같은 선택 규칙을 사용하는 구조입니다. 학습이 끝난 뒤 tune 1,998 샘플에서 15개 후보가 모두 선택되며, 후보당 23~236회입니다.
 
 ## 5. 검증 전략
 - **held-out 모델:**
-  - 설정 결정은 37개 scenario(11 session)를 제외한 310개 scenario로 학습한 held-out 모델로 했습니다.
+  - 376개 scenario를 시간 연속 session 단위로 train 310 / tune 37 / val 29로 나눕니다(`data/split.json`).
+  - 설정 결정은 train 310개로 학습한 held-out 모델을 tune 37개 scenario(11 session, 1,998 샘플)로 평가해 정했습니다.
   - 제출 모델은 같은 설정을 376개 scenario 전체에 적용했습니다.
   - 판정에는 session 단위 bootstrap(2만 회)과 개선 session 수를 사용했습니다.
 - **후보 수 결정:**
