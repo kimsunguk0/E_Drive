@@ -1,5 +1,5 @@
 #!/bin/bash
-# usage: train.sh STAGE PREP_DIR OUT_DIR   (PREP_DIR made by prepare_train.sh)
+# usage: [GPU=0] train.sh STAGE PREP_DIR OUT_DIR   (PREP_DIR made by prepare_train.sh)
 #   1: public initializer -> stage-1 model (24,931 updates)
 #   2: shipped stage-1    -> stage-2 model (+38,070 updates; smoke, verify, main)
 #   3: shipped stage-2    -> submitted model recipe (6,344 updates, trunk frozen)

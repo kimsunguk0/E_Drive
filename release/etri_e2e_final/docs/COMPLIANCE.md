@@ -1,5 +1,7 @@
 # 규정 대응
 
+대회 규정(OPEN_ISSUE 및 공지 답변)의 항목별로 이 모델의 구현 방식과 근거를 정리했습니다. "근거" 열은 해당 코드 위치이거나, 직접 수행한 검사의 결과입니다.
+
 | 규정 | 구현 | 근거 |
 |---|---|---|
 | 과거 궤적과 ego 상태를 planner에 직접 또는 단순 임베딩으로 입력하지 않습니다. 공통 특징 형성에 간접 활용하는 것은 허용됩니다 | ego 상태는 공통 scene attention의 query에만 사용합니다. planner 입력에는 목표점, ego 상태, pose가 없습니다 | `src/models/motiondrive_v2/shared_status_query.py`, `src/ext_model.py` (`ModeExtPlanner.forward`) |
