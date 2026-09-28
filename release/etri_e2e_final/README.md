@@ -22,8 +22,8 @@
 ├── checkpoints/    제출 모델과 학습 단계별 checkpoint
 ├── data/           학습용 파생 캐시, 실행 메타데이터, 검증용 학습 clip 8개
 ├── docker/         Dockerfile
-├── scripts/        build_image.sh, infer.sh, validate.sh, train.sh
-├── tools/          assemble.py (컨테이너 경로 구성), validate_release.py (검증)
+├── scripts/        build_image.sh, infer.sh, validate.sh, prepare_train.sh, train.sh
+├── tools/          assemble.py (컨테이너 경로 구성), build_train_cache.py (학습 영상 준비), validate_release.py (검증)
 ├── validation/     검증용 테스트 clip 20개와 참조 예측
 └── layout.json     src/·checkpoints/·data/ 파일과 코드 내부 경로의 대응표
 ```
@@ -33,12 +33,16 @@
 bash scripts/build_image.sh                         # 1) 이미지 빌드
 bash scripts/validate.sh                            # 2) 동봉 clip 정합성, FLOPs, GPU 추론 시간 확인
 bash scripts/infer.sh /path/to/test OUT_DIR         # 3) 테스트 1,125 clip 추론 → OUT_DIR/package/submission.zip
-bash scripts/train.sh 1 /path/to/train OUT_DIR      # 4) 학습 1단계 (선택)
-bash scripts/train.sh 2 /path/to/train OUT_DIR      #    학습 2단계
-bash scripts/train.sh 3 /path/to/train OUT_DIR      #    학습 3단계 (제출 모델 레시피)
+bash scripts/prepare_train.sh /path/to/train PREP   # 4) 학습 영상 준비 (원본 → 768×432 캐시, 1회)
+bash scripts/train.sh 1 PREP OUT_DIR                #    학습 1단계 (선택)
+bash scripts/train.sh 2 PREP OUT_DIR                #    학습 2단계
+bash scripts/train.sh 3 PREP OUT_DIR                #    학습 3단계 (제출 모델 레시피)
 ```
 - **추론:** GPU 1장이 필요합니다. 테스트 폴더는 대회 배포 형식(`<clip_hash>/camera_*/frame_*.jpg`, `ego_pose.parquet`, `calibration.parquet`)을 그대로 사용합니다.
-- **학습:** 40 GB 이상 GPU 1장과 대회 제공 train 376 scenario 폴더가 필요합니다. 학습은 NVIDIA B200에서 수행했습니다.
+- **학습 데이터:** 대회 제공 train 376 scenario(`<scenario>.tar` 또는 압축을 푼 폴더)를 `prepare_train.sh`로 한 번 변환합니다. 결과는 약 70 GB입니다.
+- **학습 GPU:** 모든 단계를 NVIDIA B200(180 GB) 1장으로 학습했습니다.
+  - 1·2단계 코드는 시작할 때 GPU 여유 메모리가 약 174 GiB(170,000 + 8,192 MiB) 이상인지 검사합니다. 그래서 비어 있는 B200급 GPU가 필요합니다. 실제 최대 사용량은 약 37 GB입니다.
+  - 3단계에는 이 검사가 없고, 실제 사용량은 약 15 GB입니다.
 - **컨테이너 경로:** 코드는 학습 당시의 소스 해시와 저장소 기준 상대 경로를 검사합니다. 그래서 컨테이너가 시작될 때 `tools/assemble.py`가 `layout.json`에 따라 원래 경로 구조를 컨테이너 내부에 구성합니다. 소스 파일은 수정하지 않고 그대로 복사합니다.
 
 ## 학습 단계

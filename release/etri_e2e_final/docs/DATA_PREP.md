@@ -10,8 +10,19 @@ bash scripts/infer.sh /path/to/test OUT_DIR
 ```
 
 ## 2. 학습 데이터
-### 2.1 원본
-대회 제공 train 376 scenario 폴더(`<scenario>/annotation/`, `calibration/`, `camera_*/`, `meta/`)를 그대로 사용합니다. `scripts/train.sh`의 두 번째 인자로 이 폴더를 지정합니다.
+### 2.1 원본 → 학습 입력 (`scripts/prepare_train.sh`)
+대회 제공 train 376 scenario를 입력으로 사용합니다. 배포 형식인 `<scenario>.tar`와, 압축을 푼 `<scenario>/` 폴더를 모두 받습니다.
+
+```sh
+bash scripts/prepare_train.sh /path/to/train PREP     # 약 70 GB, 1회
+```
+
+| 출력 (`PREP/`) | 내용 | 학습 시 컨테이너 경로 |
+|---|---|---|
+| `etri_768/<scenario>/<camera>/<frame>.jpg` | 왜곡 보정 → 1920×1080 crop → 0.4배 → JPEG 품질 95 (768×432) | `/tmp/pm97/cache/etri_768` |
+| `meta_train/<scenario>/{annotation,calibration,meta}/` | 원본 parquet 그대로 | `/tmp/pm97/data/etri/meta_train` |
+
+영상 변환은 학습 캐시를 만들 때 쓴 `src/data_prep/etri_build_cache.py`의 함수를 그대로 사용합니다(`tools/build_train_cache.py`). 원본 tar 2개로 다시 만든 결과를 학습에 사용한 캐시와 비교했을 때, 영상 3,600장과 parquet 16개가 바이트 단위로 모두 일치했습니다. `scripts/train.sh`는 두 번째 인자인 `PREP`의 두 폴더를 위 경로에 마운트합니다.
 
 ### 2.2 파생 캐시 (동봉)
 원본에서 생성한 캐시입니다. 동봉 파일을 그대로 사용하는 것을 권장합니다.
@@ -27,7 +38,7 @@ bash scripts/infer.sh /path/to/test OUT_DIR
 | `metadata/` | 1 MB | 학습 코드가 읽는 이전 단계의 실행 설정과 검증 기록 | — |
 | `fixtures_train8/` | 0.5 GB | 검증용 학습 clip 8개 (테스트 폴더와 같은 형식) | — |
 
-재생성 순서는 원본 → ego 캐시 → 5초 정답 → 분할 → scenario 감독 → geometry 파생 → 상태 캐시입니다. 재생성 결과는 각 폴더의 manifest에 기록된 sha256과 비교해 확인할 수 있습니다.
+생성 순서는 원본 → ego 캐시 → 5초 정답 → 분할 → scenario 감독 → geometry 파생 → 상태 캐시입니다. 생성 코드는 사용한 그대로 동봉합니다. 일부 코드는 당시의 중간 산출물(카메라 보정 pkl, 과거 검증 분할 등)을 입력으로 읽으므로 동봉 캐시를 그대로 사용하는 것을 권장합니다. 각 폴더의 manifest에 파일별 sha256이 기록되어 있습니다.
 
 ## 3. Checkpoint (`checkpoints/`)
 | 파일 | 용도 |
