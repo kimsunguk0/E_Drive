@@ -1,6 +1,6 @@
 # ETRI E2E Driving — final model (EXT-FULL-v7) runtime for inference and training.
-# The code tree is NOT baked in: it is mounted at the original repository path
-# (/NHNHOME/data/sukim/adcl) so every source-hash pin in the training scripts holds.
+# The release is mounted at /release; tools/assemble.py rebuilds the original
+# repository layout (/NHNHOME/data/sukim/adcl) at start-up so source-hash pins hold.
 FROM pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime
 RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir numpy==2.1.3 scipy==1.15.3 pillow==11.2.1 \

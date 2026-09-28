@@ -27,13 +27,13 @@ bash scripts/infer.sh /path/to/test OUT_DIR
 | `metadata/` | 1 MB | 학습 코드가 읽는 이전 단계의 실행 설정과 검증 기록 | — |
 | `fixtures_train8/` | 0.5 GB | 검증용 학습 clip 8개 (테스트 폴더와 같은 형식) | — |
 
-재생성 순서는 원본 → ego 캐시 → 5초 정답 → 분할 → scenario 감독 → geometry 파생 → 상태 캐시입니다. 각 코드는 기존 파일을 덮어쓰지 않습니다. 재생성 결과는 동봉 파일의 manifest sha256과 비교해 확인할 수 있습니다.
+재생성 순서는 원본 → ego 캐시 → 5초 정답 → 분할 → scenario 감독 → geometry 파생 → 상태 캐시입니다. 재생성 결과는 각 폴더의 manifest에 기록된 sha256과 비교해 확인할 수 있습니다.
 
 ## 3. Checkpoint (`checkpoints/`)
 | 파일 | 용도 |
 |---|---|
 | `backbone_nuimages_cascade_r50.pth` | 공개 백본 (외부 데이터) |
-| `stage1_initializer.pth` | 1단계 초기값 (공개 백본 + 무작위 초기화, ETRI 학습 0회) |
+| `stage1_initializer.pth` | 1단계 초기값 (공개 백본 + 무작위 초기화, 대회 데이터 학습 전) |
 | `stage1_h4_progress_full.pth` | 1단계 산출이자 2단계 시작점 |
 | `stage2_l_full6.pth` | 2단계 산출이자 제출 모델의 시작점 |
 | `ext_full_v7.pth` | **제출 모델** |
