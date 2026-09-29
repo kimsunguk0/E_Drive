@@ -5,6 +5,7 @@
 ## 1. 이 제출물의 Docker 이미지로 RTX 4090에서 실행 (`scripts/validate.sh`)
 - 환경: NVIDIA GeForce RTX 4090, 컨테이너 torch 2.7.1+cu128
 - 결과 원문: `validation/result/validation.json`
+- 테스트 clip 20개는 대회 테스트 폴더에서 읽습니다(`bash scripts/validate.sh /path/to/test`). 제출물에는 이 clip들의 참조 예측만 들어 있습니다.
 
 | 항목 | 결과 |
 |---|---|
@@ -46,7 +47,8 @@
 | 3단계 전체 학습 (6,344 update) | B200 | tune 1,998 평가 0.087666 (원 학습 0.087320, +0.4%). 동결 몸통 파라미터 427개는 제출 checkpoint와 비트 단위로 같습니다. 학습 대상 planner의 상대 차이는 1.2%입니다. 같은 GPU에서 전체 추론을 동시에 실행했습니다 |
 | 테스트 1,125 clip 전체 추론 (`scripts/infer.sh`) | 4090, Docker | 약 7분이 걸립니다. 선택 후보는 1,118/1,125(99.4%)가 제출본과 같습니다. 같은 후보를 고른 clip의 좌표 최대 차이는 중앙값 1.5 mm, 최대 1.3 cm이고, 전체 가중 차이 평균은 0.9 mm입니다. FLOPs도 같습니다 |
 | 테스트 1,125 clip 전체 추론 (`infer.sh`와 같은 명령) | B200 | 1,125 clip 모두 실제 제출 좌표와 완전히 일치합니다(최대 차이 0). `__flops__` 743,777,233,600으로 같습니다 |
-| 저장한 이미지 파일 (`docker save` → 기존 이미지 삭제 → `docker load`) | 4090 | 같은 이미지 ID(`sha256:d9c27d55…`)로 복원됩니다. `validate.sh` 결과도 같습니다(8/8, 18/20, 31.2 ms) |
+| 저장한 이미지 파일 (`docker save` → 기존 이미지 삭제 → `docker load`) | 4090 | 같은 이미지 ID로 복원됩니다. `validate.sh` 결과도 같습니다(8/8, 18/20, 31.2 ms) |
+| 용량을 줄인 제출 이미지 (`docker/Dockerfile.slim`) vs 원래 이미지 | RTX 4060 Laptop, Docker | `validate.sh`의 clip별 좌표 차이, 선택 후보, FLOPs가 두 이미지에서 완전히 같습니다. 실제 모델 forward·backward의 loss(0.007673), 기울기가 생긴 파라미터 수(305), 기울기 크기(0.181175)도 같습니다. 1·2·3단계 학습 모듈 import와 AdamW step도 정상입니다 |
 
 - 1·2단계 코드는 시작할 때 GPU 여유 메모리가 약 174 GiB인지 검사합니다. B200 1단계 smoke는 다른 작업이 28 GB를 쓰는 GPU에서 실행했으므로, 이 사전 검사에 보고되는 여유 메모리만 늘렸습니다. 1단계 전체 학습은 빈 GPU에서 실행해 사전 검사를 그대로 통과했습니다. 1단계 코드는 `--gpu` 0~3만 받으므로, 이 실행은 CUDA를 해당 GPU에 먼저 연결한 뒤 장치 0으로 보이게 했습니다(Docker의 `--gpus`와 같은 효과). 두 경우 모두 소스 코드는 수정하지 않았습니다.
 - 4090(24 GB)에서 1·2단계를 확인할 때는 `tools/small_gpu/sitecustomize.py`를 사용했습니다(`-e RELCHECK_MICROBATCH=2 -e PYTHONPATH=/shim`). microbatch는 8에서 2로 줄이고, 약 174 GiB 여유 메모리 사전 검사는 끕니다. 학습기는 전체 batch(16) 기준 loss normalizer로 microbatch 기울기를 누적하므로, 논리 batch와 계산식은 바뀌지 않습니다. `train.sh`는 이 도구를 사용하지 않습니다.

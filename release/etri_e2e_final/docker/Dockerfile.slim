@@ -1,0 +1,23 @@
+# Size-reduced delivery image: the image built from ./Dockerfile, minus files the
+# inference/training code never uses (cusolver: only dense-solver ops such as
+# torch.linalg.inv on GPU need it; this code uses only torch.linalg.norm), flattened into one layer (removing files in a
+# later layer would not shrink the image). Nothing is installed or upgraded here.
+#   docker build -t etri-e2e-ext:final -f docker/Dockerfile.slim docker   (after building ./Dockerfile as etri-e2e-ext:full)
+FROM etri-e2e-ext:full AS full
+RUN rm -rf /opt/conda/pkgs \
+        /opt/conda/lib/python3.11/site-packages/triton /opt/conda/lib/python3.11/site-packages/triton-* \
+        /opt/conda/lib/python3.11/site-packages/cmake /opt/conda/lib/python3.11/site-packages/cmake-* \
+        /opt/conda/bin/cmake /opt/conda/bin/ctest /opt/conda/bin/cpack /opt/conda/bin/ccmake \
+        /opt/conda/lib/python3.11/site-packages/nvidia/cusolver \
+ && find /opt/conda -type d -name include -prune -exec rm -rf {} + \
+ && find /opt/conda -type d -name __pycache__ -prune -exec rm -rf {} +
+
+FROM scratch
+COPY --from=full / /
+ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+    NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility \
+    LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64 PYTORCH_VERSION=2.7.1 \
+    PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
+    EXT_K=5 EXT_LAT=3 EXT_SPREAD=0.06 EXT_LAT_SPREAD=0.04 EXT_ALL_W=0 EXT_EXT_W=0.3
+WORKDIR /NHNHOME/data/sukim/adcl
+CMD ["/bin/bash"]

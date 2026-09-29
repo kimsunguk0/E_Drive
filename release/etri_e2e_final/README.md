@@ -11,8 +11,8 @@
 ## 1. 제출 요구 항목과 위치
 | 제출 요구 항목 | 위치 | 설명 |
 |---|---|---|
-| Docker 이미지 | `../docker_image/etri-e2e-ext_final.tar.gz` | `docker load`로 불러오는 이미지 파일입니다(이미지명 `etri-e2e-ext:final`). `docker/Dockerfile`로 같은 이미지를 다시 빌드할 수도 있습니다 |
-| 리더보드 성능 checkpoint | `checkpoints/ext_full_v7.pth` | 리더보드 0.117067 제출에 사용한 checkpoint입니다. 학습 단계별 시작 checkpoint도 같은 폴더에 있습니다 |
+| Docker 이미지 | `../docker_image/etri-e2e-ext_final.tar.gz` | `docker load`로 불러오는 이미지 파일입니다(이미지명 `etri-e2e-ext:final`). `docker/Dockerfile`로 빌드한 이미지에서 사용하지 않는 파일을 뺀 것입니다(`docker/Dockerfile.slim`, 10절) |
+| 리더보드 성능 checkpoint | `checkpoints/ext_full_v7.pth` | 리더보드 0.117067 제출에 사용한 checkpoint입니다. 학습 단계별 시작 checkpoint도 같은 폴더에 있습니다. 공개 백본 checkpoint 1개는 용량 문제로 넣지 않았습니다(10절) |
 | 학습·추론 코드 (모델 포함) | `src/` | 리더보드 제출 때 사용한 코드를 수정 없이 담았습니다 |
 | 데이터셋 준비 및 코드 작동 방법 | 이 문서 3~5절, `docs/DATA_PREP.md` | 테스트·학습 데이터 준비와 추론·학습 실행 방법입니다 |
 | 사용 기술 및 전략 설명서 | `docs/TECHNICAL_REPORT.md` | 입력 사용 방식, 모델 구조(그림 포함), 학습 방법, 검증 전략, 실험 결과입니다 |
@@ -26,7 +26,7 @@
 | GPU | 추론·검증: NVIDIA GPU 1장(RTX 4090에서 확인). 학습: 6절 참고 |
 | 드라이버 | CUDA 12.8을 지원하는 NVIDIA 드라이버(570 이상, 595.91에서 확인) |
 | 소프트웨어 | Docker, NVIDIA Container Toolkit(`docker run --gpus`가 동작해야 합니다). 인터넷 연결은 필요 없습니다 |
-| 디스크 | 이미지 약 13 GB(압축 파일 4.4 GB), 테스트 데이터 약 68 GB, 학습할 경우 원본 약 199 GB와 준비 결과 약 70 GB |
+| 디스크 | 이미지 약 6.7 GB(압축 파일 3.8 GB), 테스트 데이터 약 68 GB, 학습할 경우 원본 약 199 GB와 준비 결과 약 70 GB |
 
 제출 zip의 구성은 다음과 같습니다.
 ```
@@ -38,22 +38,23 @@
     ├── README.md / README.pdf              이 문서
     ├── docs/                               설명서 (.md, .pdf), 아키텍처 그림
     ├── src/                                모델, 학습, 추론, 데이터 준비 코드
-    ├── checkpoints/                        제출 모델과 학습 단계별 checkpoint (7개)
+    ├── checkpoints/                        제출 모델과 학습 단계별 checkpoint (공개 백본은 제외, 10절)
     ├── data/                               학습용 파생 캐시, 실행 메타데이터, 검증용 학습 clip 8개
     ├── docker/                             Dockerfile
     ├── scripts/                            실행 스크립트 (아래 표)
     ├── tools/                              컨테이너 경로 구성, 학습 영상 준비, 검증 도구
-    ├── validation/                         검증용 테스트 clip 20개, 참조 예측, 검증 결과
+    ├── validation/                         검증용 참조 예측(학습 clip 8개, 테스트 clip 20개), 검증 결과 (테스트 clip 영상은 제외, 10절)
     └── layout.json                         src/·checkpoints/·data/ 파일과 코드 내부 경로의 대응표
 ```
 
 | 스크립트 | 용도 |
 |---|---|
 | `scripts/build_image.sh` | Dockerfile로 이미지를 빌드합니다(이미지 파일을 쓰면 필요 없습니다) |
-| `scripts/validate.sh` | 동봉 clip으로 정합성, FLOPs, GPU 추론 시간을 확인합니다 |
+| `scripts/validate.sh` | 동봉 학습 clip과 테스트 clip 20개로 정합성, FLOPs, GPU 추론 시간을 확인합니다 |
 | `scripts/infer.sh` | 테스트 1,125 clip을 추론하고 리더보드 제출 파일을 만듭니다 |
 | `scripts/prepare_train.sh` | 원본 학습 데이터를 학습 코드가 읽는 형태로 변환합니다 |
 | `scripts/train.sh` | 학습 1·2·3단계를 실행합니다 |
+| `scripts/get_backbone.sh` | 학습 1단계에 필요한 공개 백본을 받고 sha256을 확인합니다 |
 
 ## 3. 빠른 시작: 이미지 불러오기와 검증
 ```sh
@@ -61,9 +62,9 @@ cd 쉬었음청년_20260923_0.117067/docker_image
 sha256sum -c etri-e2e-ext_final.tar.gz.sha256      # "OK"가 나오면 파일이 온전합니다
 docker load -i etri-e2e-ext_final.tar.gz           # "Loaded image: etri-e2e-ext:final" (수 분)
 cd ../etri_e2e_final
-bash scripts/validate.sh                           # RTX 4090 약 20초, 결과: validation/result/validation.json
+bash scripts/validate.sh /path/to/test            # RTX 4090 약 20초, 결과: validation/result/validation.json
 ```
-`validate.sh`는 동봉한 clip 28개로 다음 항목을 확인합니다. RTX 4090 기준 기대값은 다음과 같습니다.
+`validate.sh`의 인자는 대회 테스트 폴더(1,125 clip)입니다. 제출물에 동봉한 학습 clip 8개와, 테스트 폴더 가운데 참조 예측이 있는 20개 clip으로 다음 항목을 확인합니다. 테스트 폴더를 지정하지 않으면 테스트 clip 비교만 건너뛰고(`skipped`) 나머지 항목은 그대로 확인합니다. RTX 4090 기준 기대값은 다음과 같습니다.
 
 | `validation.json` 항목 | 의미 | 기대값 |
 |---|---|---|
@@ -95,6 +96,7 @@ bash scripts/prepare_train.sh /path/to/train PREP   # 1회, 결과 약 70 GB
 
 ## 6. 학습 (선택)
 ```sh
+bash scripts/get_backbone.sh            # 1단계 전에 1회: 공개 백본 받기 (10절)
 bash scripts/train.sh 1 PREP OUT_DIR    # 1단계
 bash scripts/train.sh 2 PREP OUT_DIR    # 2단계
 bash scripts/train.sh 3 PREP OUT_DIR    # 3단계 (제출 모델 레시피)
@@ -127,4 +129,23 @@ CKPT=OUT_DIR/stage3/ckpt_step6344.pth bash scripts/infer.sh /path/to/test OUT_IN
 학습 코드는 학습 당시의 저장소 경로(`/NHNHOME/data/sukim/adcl/...`)와 소스 파일 sha256을 검사합니다. 그래서 컨테이너가 시작할 때마다 `tools/assemble.py`가 `layout.json`에 따라 원래 경로 구조를 컨테이너 내부에 다시 만듭니다. 소스 파일은 수정 없이 복사하고, checkpoint와 데이터는 링크로 연결합니다. 제출물 폴더는 읽기 전용으로 마운트되므로 실행해도 바뀌지 않습니다. 결과는 `validate.sh`가 기본으로 쓰는 `validation/result/`와, 각 스크립트에 지정한 출력 폴더에만 생깁니다.
 
 ## 9. 외부 데이터
-외부 데이터는 1단계 초기값에 들어간 공개 백본 가중치 하나입니다. mmdetection3d의 `cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth`(COCO, nuImages 학습)이고, 파일은 `checkpoints/backbone_nuimages_cascade_r50.pth`입니다. 학습 데이터는 대회 제공 train 376 scenario만 사용했습니다.
+외부 데이터는 1단계 초기값에 들어간 공개 백본 가중치 하나입니다. mmdetection3d의 `cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth`(COCO, nuImages 학습)입니다. 용량 문제로 파일은 넣지 않았고, 받는 방법은 10절에 있습니다. 학습 데이터는 대회 제공 train 376 scenario만 사용했습니다.
+
+## 10. 용량 문제로 제외한 파일
+제출처 용량 제한 때문에 아래 파일은 제출 zip에 넣지 않았습니다. 추론과 `validate.sh`에는 모두 필요하지 않고, 필요한 경우에 받는 방법을 함께 적었습니다.
+
+| 제외한 파일 | 크기 | 무엇인가 | 필요한 경우와 받는 방법 |
+|---|---:|---|---|
+| `checkpoints/backbone_nuimages_cascade_r50.pth` | 309 MB | **공개 checkpoint**입니다. mmdetection3d(OpenMMLab)가 배포하는 nuImages Cascade Mask R-CNN R50 FPN 가중치(COCO로 사전학습 후 nuImages로 학습)이고, 원래 파일명은 `cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth`입니다. 대회 데이터로 학습한 것이 아니며, 이 모델의 유일한 외부 데이터입니다 | 학습 1단계에서만 필요합니다. 1단계 코드가 시작할 때 이 파일의 sha256을 확인하기 때문입니다. 1단계 시작점(`stage1_initializer.pth`)에는 이미 이 가중치가 들어 있으므로, 추론과 2·3단계 학습에는 필요하지 않습니다. `bash scripts/get_backbone.sh`로 받습니다 |
+| `validation/test_subset/` (테스트 clip 20개 영상) | 1.3 GB | 대회 테스트 데이터의 일부입니다 | 운영국이 가진 테스트 폴더를 `bash scripts/validate.sh /path/to/test`로 지정하면 같은 20개 clip을 읽습니다. 참조 예측(`validation/reference_test_submitted.json`)은 제출물에 들어 있습니다 |
+
+- **공개 백본 받는 주소:** `https://download.openmmlab.com/mmdetection3d/v0.1.0_models/nuimages_semseg/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim/cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth`
+- **sha256:** `4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e`
+  - 위 주소에서 받은 파일이 학습에 사용한 파일과 sha256까지 같은 것을 확인했습니다.
+  - `scripts/get_backbone.sh`는 받은 뒤 이 값을 자동으로 확인합니다.
+  - 백본 없이 1단계를 실행하면 `train.sh`가 이 스크립트를 실행하라고 안내하고 멈춥니다.
+- **Docker 이미지:** `docker/Dockerfile`로 만든 이미지(8.3 GB)에서 실행에 쓰지 않는 파일을 지우고 한 레이어로 합쳐 6.7 GB로 줄였습니다(`docker/Dockerfile.slim`).
+  - 지운 파일: conda 패키지 캐시, `torch.compile`용 `triton`, 빌드 도구 `cmake`, 헤더 파일, 파이썬 캐시, GPU 선형방정식 풀이용 `cusolver`
+  - `cusolver`는 `torch.linalg.inv` 같은 GPU 선형대수 풀이에만 쓰입니다. 이 코드는 GPU에서 `torch.linalg.norm`만 사용합니다.
+  - 새로 설치하거나 버전을 바꾼 패키지는 없습니다.
+  - 같은 GPU에서 원래 이미지와 비교했습니다. `validate.sh`의 추론 결과와 FLOPs, 실제 모델 forward·backward의 loss와 기울기가 모두 같습니다.

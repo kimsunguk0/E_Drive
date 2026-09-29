@@ -10,6 +10,8 @@ source "$(dirname "$0")/common.sh"
 STAGE="$1"; PREP="$(realpath "$2")"; OUT="$(realpath -m "$3")"; mkdir -p "$OUT"
 M=(-e CUDA_VISIBLE_DEVICES=0 -v "$PREP/etri_768:/tmp/pm97/cache/etri_768:ro"
    -v "$PREP/meta_train:/tmp/pm97/data/etri/meta_train:ro" -v "$OUT:/out")
+if [ "$STAGE" = 1 ] && [ ! -f "$REL/checkpoints/backbone_nuimages_cascade_r50.pth" ]; then
+  echo "stage 1 needs the public backbone (not bundled): run  bash scripts/get_backbone.sh"; exit 1; fi
 case "$STAGE" in
   1) dockrun "${M[@]}" "python experiments/a2_progress_full_20260921/train_full.py --gpu 0 --run-dir work_dirs/release_stage1/A2-H4-PROGRESS-FULL-s1" ;;
   2) dockrun "${M[@]}" "W=experiments/a2_final_push_20260923/repro_lfull6.py; python \$W smoke && python \$W verify && python \$W main" ;;

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Release validation inside the container (run by scripts/validate.sh).
 
-1. Correctness: predictions on 8 train fixtures and 20 official test clips are
-   compared with references made on the original B200 (fixtures) and with the
-   actually submitted predictions (test clips).
+1. Correctness: predictions on 8 bundled train fixtures are compared with references
+   made on the original B200; if the official test folder is given, 20 of its clips
+   are compared with the actually submitted predictions.
 2. Resource: FlopCounterMode total of one forward, and GPU forward latency
    (median of 100 after 20 warm-up; preprocessing excluded, as the organisers time
    model forward only).
 """
-import argparse, json, sys, time
+import argparse, json, os, sys, time
 from pathlib import Path
 import numpy as np, torch
 
@@ -43,20 +43,24 @@ def main():
     model, cp = load(str(CODE / a.ckpt), dev)
     V = Path('/release/validation')
     fx = sorted(p for p in (CODE / 'data/etri/motiondrive_v2/deploy_fixture_train8').iterdir() if p.is_dir())
-    ts = sorted(p for p in (V / 'test_subset').iterdir() if p.is_dir())
     ref_fx = json.loads((V / 'reference_fixtures_B200_bf16.json').read_text())
     ref_ts = json.loads((V / 'reference_test_submitted.json').read_text())
+    # the 20 reference test clips are read from the official test folder mounted at /tmp/etri_test
+    T = Path(os.environ.get('VALIDATE_TEST_ROOT', '/tmp/etri_test'))
+    ts = [T / c for c in sorted(ref_ts['pred'])] if T.is_dir() else []
+    missing = [c.name for c in ts if not c.is_dir()]
+    assert not missing, f'reference test clips not found in the test folder: {missing}'
     out = dict(device=torch.cuda.get_device_name(0), torch=torch.__version__, cuda=torch.version.cuda,
                checkpoint=a.ckpt,
                fixtures_vs_B200=compare(model, fx, ref_fx['pred'], ref_fx['mode']),
-               test_vs_submitted=compare(model, ts, ref_ts['pred'], ref_ts['mode']))
+               test_vs_submitted=compare(model, ts, ref_ts['pred'], ref_ts['mode']) if ts else 'skipped: no test folder given')
     # FLOPs of one full forward (organisers' counter)
     import torch.utils.module_tracker as mt
     class _H:
         def remove(self): pass
     mt.register_multi_grad_hook = lambda *x, **k: _H()
     from torch.utils.flop_counter import FlopCounterMode
-    x = {k: v.to(dev) for k, v in infer_full.prepare_clip(ts[0]).inputs.items()}
+    x = {k: v.to(dev) for k, v in infer_full.prepare_clip((ts or fx)[0]).inputs.items()}
     with torch.no_grad(): model(**x)
     fc = FlopCounterMode(display=False, depth=3)
     with torch.no_grad(), fc: model(**x)
@@ -75,7 +79,8 @@ def main():
     Path(a.out).write_text(json.dumps(out, indent=1) + '\n')
     s = {k: v for k, v in out.items() if k not in ('fixtures_vs_B200', 'test_vs_submitted')}
     s['fixtures'] = {k: v for k, v in out['fixtures_vs_B200'].items() if k != 'rows'}
-    s['test'] = {k: v for k, v in out['test_vs_submitted'].items() if k != 'rows'}
+    t = out['test_vs_submitted']
+    s['test'] = {k: v for k, v in t.items() if k != 'rows'} if isinstance(t, dict) else t
     print(json.dumps(s, indent=1))
 
 

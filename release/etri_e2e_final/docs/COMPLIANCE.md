@@ -12,5 +12,5 @@
 | 후처리는 제출 규격 변환만 허용됩니다 | 앞 6점을 자르는 것 외에 보정이나 TTA가 없습니다 | — |
 | 과거 정보를 쓰는 프레임은 영상도 함께 입력해야 합니다. 과거 pose로 현재 ego 상태를 계산하는 것은 허용됩니다 | 기하 정렬 pose는 영상을 입력하는 과거 4 프레임에만 사용합니다 | — |
 | FLOPs cutoff와 RTX 4090 추론 시간 | 743.8 G / 7,053 G, 4090 약 31 ms | `docs/VALIDATION.md` |
-| 외부 데이터 명시 | 공개 백본 `cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth` (mmdetection3d, COCO·nuImages) | sha256 `4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e` |
+| 외부 데이터 명시 | 공개 백본 `cascade_mask_rcnn_r50_fpn_coco-20e_20e_nuim_20201009_124951-40963960.pth` (mmdetection3d, COCO·nuImages). 용량 문제로 파일은 제출 zip에서 빼고 받는 주소를 README 10절에 적었습니다 | sha256 `4096396018c0cf59fbe0eb1afe6e269f4676b34460bed5eedde5d7680d58bb4e` |
 | 테스트 데이터로 학습하거나 라벨을 생성하지 않습니다 | 학습에는 제공 train 라벨만 사용했습니다 | — |

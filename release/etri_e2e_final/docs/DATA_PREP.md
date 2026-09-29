@@ -77,7 +77,7 @@ train 원본에서 미리 계산해 둔 캐시입니다. 학습 코드가 이 �
 ## 4. Checkpoint (`checkpoints/`)
 | 파일 | 용도 |
 |---|---|
-| `backbone_nuimages_cascade_r50.pth` | 공개 백본 (외부 데이터, README 9절) |
+| `backbone_nuimages_cascade_r50.pth` | 공개 백본 (외부 데이터, README 9절). **용량 문제로 제출 zip에서 제외했습니다.** 학습 1단계 전에 `bash scripts/get_backbone.sh`로 받습니다(README 10절) |
 | `stage1_initializer.pth` | 1단계 시작점 (공개 백본 + 무작위 초기화, 대회 데이터 학습 전) |
 | `stage1_h4_progress_full.pth` (+ `.experiment.json`) | 1단계 결과이자 2단계 시작점 |
 | `stage2_l_full6.pth` (+ `.experiment.json`) | 2단계 결과이자 3단계 시작점 |
@@ -88,7 +88,7 @@ train 원본에서 미리 계산해 둔 캐시입니다. 학습 코드가 이 �
 ## 5. 코드 작동 순서
 | 명령 | 컨테이너 안에서 실행되는 코드 |
 |---|---|
-| `validate.sh` | `tools/validate_release.py`: 모델을 불러와 동봉 clip 28개를 추론하고, FLOPs와 forward 시간을 측정합니다 |
+| `validate.sh` | `tools/validate_release.py`: 모델을 불러와 동봉 학습 clip 8개와 테스트 폴더의 참조 clip 20개를 추론하고, FLOPs와 forward 시간을 측정합니다 |
 | `infer.sh` | `src/build_ext_submission.py`로 1,125 clip을 추론·병합하고 FLOPs를 기록합니다. 이어서 `src/package_submission.py`가 제출 zip을 만듭니다 |
 | `prepare_train.sh` | `tools/build_train_cache.py`: 3.1절의 변환을 수행합니다 |
 | `train.sh 1` | `src/train_full.py`: 1단계 (24,931 update) |
